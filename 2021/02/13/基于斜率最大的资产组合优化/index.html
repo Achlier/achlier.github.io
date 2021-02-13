@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>Hello World - Borderland</title>
+  <title>基于斜率最大的资产组合优化 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
+            <span class="h2" id="subtitle" title="基于斜率最大的资产组合优化">
               
             </span>
 
@@ -172,7 +172,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-13 03:34" pubdate>
+      <time datetime="2021-02-13 05:50" pubdate>
         February 13, 2021 am
       </time>
     </span>
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      75 字
+      479 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      8
        分钟
     </span>
   
@@ -224,24 +224,76 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">基于斜率最大的资产组合优化</h1>
             
             <div class="markdown-body">
-              <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+              <blockquote>
+<p>现代投资组合理论与投资分析 9th</p>
+</blockquote>
+<a id="more"></a>
+<p>基础定义：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x_i&:分配给项目i的比率\\ \bar{r}_i&:项目i的平均回报率\\ r_f&:无风险回报率\\ \sigma_i&: 项目i的风险\\  p&:投资组合
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\bar{r}_p &= \sum_{i=1}^n x_i\bar{r}_i\\
+\sigma_p^2 &= \sum_{i=1}^n x_i^2\sigma_i^2 + \sum_{i=1}^n\sum_{j=1\\j\ne i}^nx_ix_j\sigma_{ij}
+\end{aligned}</script><p>基于斜率最大，得出目标函数：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+MAX\ \theta &= \frac{\bar{r}_p-r_f}{\sigma_p}\\
+\sum_{i=1}^nx_i&=1
+\end{aligned}</script><p>带入基础定义得：</p>
+<script type="math/tex; mode=display">
+\theta = \frac{\sum_{i=1}^n x_i(\bar{r}_i-r_f)}{\sqrt{\sum_{i=1}^n x_i^2\sigma_i^2 + \sum_{i=1}^n\sum_{j=1\\j\ne i}^nx_ix_j\sigma_{ij}}}</script><p>求最大值即对所有x求导等于0：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Set \ \lambda &= \sum_{i=1}^n x_i^2\sigma_i^2 + \sum_{i=1}^n\sum_{j=1\\j\ne i}^nx_ix_j\sigma_{ij}\\
+\frac{d\theta}{dx_i}&=\frac{(\bar{r}_i-r_f)\lambda^{\frac{1}{2}}-(\sum_{i=1}^n x_i(\bar{r}_i-r_f))·\frac{1}{2}\lambda^{-\frac{1}{2}}·(2x_i\sigma_i^2+2\sum_{j=1\\j\ne i}^nx_j\sigma_{ij})}{\lambda}=0\\
+&\Rightarrow (\bar{r}_i-r_f)-(\sum_{i=1}^n x_i(\bar{r}_i-r_f))·\lambda^{-1}·(x_i\sigma_i^2+\sum_{j=1\\j\ne i}^nx_j\sigma_{ij})=0\\
+&\Rightarrow (\bar{r}_i-r_f)-(\bar{r}_p-r_f)·\lambda^{-1}·(x_i\sigma_i^2+\sum_{j=1\\j\ne i}^nx_j\sigma_{ij})=0\\
+&\Rightarrow (\bar{r}_i-r_f)-\lambda_{new}·(\sum_{j=1}^nx_j\sigma_{ij})=0\\
+&\Rightarrow (\bar{r}_i-r_f)=\lambda_{new}·(\sum_{j=1}^nx_j\sigma_{ij})\\
+&Set\ \ \lambda_{new}x_i=z_i \\
+&\Rightarrow (\bar{r}_i-r_f)=\sum_{j=1}^nz_j\sigma_{ij}
+\end{aligned}</script><p>当用于矩阵求解时：</p>
+<script type="math/tex; mode=display">
+R=\left[\begin{matrix}\bar{r}_1\\\bar{r}_2\\\vdots\\ \bar{r}_n\\\end{matrix}\right]
+,Z=\left[\begin{matrix}z_1\\z_2\\\vdots\\z_n\\\end{matrix}\right]</script><script type="math/tex; mode=display">
+H=\left[\begin{matrix}
+\sigma_1^2&\sigma_{12}&\cdots&\sigma_{1n}\\
+\sigma_{21}&\sigma_2^2&\cdots&\sigma_{2n}\\
+\vdots & \vdots & \ddots & \vdots \\
+\sigma_{n1}&\sigma_{n2}&\cdots&\sigma_n^2\\
+\end{matrix}
+\right]</script><script type="math/tex; mode=display">
+\begin{aligned}
+R-r_f&=HZ\\
+Z &= H^{-1}(R-r_f)\\
+x_i &= \frac{z_i}{\sum_{i=1}^nz_i}
+\end{aligned}</script><hr>
+<p>附赠 MATLAB 公式：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[X]</span> = <span class="hljs-title">portfolio_optimization</span><span class="hljs-params">(R,H,rf)</span></span><br><span class="hljs-comment">% Z = H^(-1)(R-rf)</span><br>n = <span class="hljs-built_in">length</span>(R);<br>X = <span class="hljs-built_in">zeros</span>(n,<span class="hljs-number">1</span>);<br>Z = inv(H)*(R-rf);<br>Z_sum = sum(Z);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:n<br>    X(<span class="hljs-built_in">i</span>)=Z(<span class="hljs-built_in">i</span>)/Z_sum;<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Derivatives/">Derivatives</a>
+                    
+                  </div>
                 
               </div>
               
@@ -252,15 +304,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/13/%E5%9F%BA%E4%BA%8E%E6%96%9C%E7%8E%87%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B5%84%E4%BA%A7%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/">
+                      <a href="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D%E7%AC%94%E8%AE%B0-1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于斜率最大的资产组合优化</span>
+                        <span class="hidden-mobile">数理金融笔记_1</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/02/13/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
