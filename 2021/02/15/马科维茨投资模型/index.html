@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      795 字
+      802 字
     </span>
   
 
@@ -228,16 +228,18 @@
             
             <div class="markdown-body">
               <h3 id="几个方法推导马科维茨投资模型"><a href="#几个方法推导马科维茨投资模型" class="headerlink" title="几个方法推导马科维茨投资模型"></a>几个方法推导马科维茨投资模型</h3><blockquote>
-<p>目前包含1.构造拉格朗日函数公式 2.对方法1第一步的变化方法</p>
+<p>目前包含1.构造拉格朗日函数公式 2.对前一个方法的略微变化</p>
 </blockquote>
 <a id="more"></a>
-<h5 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h5><p>原模型等价于固定预期收益率为常数、权重之和为1的限制条件下求最小方差的线性规划问题如下：</p>
+<h4 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h4><p>原模型等价于固定预期收益率为常数、权重之和为1的限制条件下求最小方差的线性规划问题如下：</p>
 <script type="math/tex; mode=display">
-目标函数：min\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)\\
-s.t.\begin{cases}
+\begin{align}
+目标函数：&min\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)\\
+&s.t.\begin{cases}
 \sum_{i=1}^nr_iw_i=E(R)\\
 \sum_{i=1}^nw_i=1
-\end{cases}\\</script><h5 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h5><p>构造的拉格朗日函数公式如下：</p>
+\end{cases}\\
+\end{align}</script><h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><p>构造的拉格朗日函数公式如下：</p>
 <script type="math/tex; mode=display">
 \mathcal{L}(w,\lambda_1,\lambda_2)=\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)
 -\lambda_1(\sum_{i=1}^nr_iw_i-E(R))-\lambda_2(\sum_{i=1}^nw_i-1)</script><p>对$w_i,\lambda_1,\lambda_2$分别求导取0，满足条件如下:</p>
@@ -276,9 +278,9 @@ E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
 \begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}
 \end{aligned}\tag{5}</script><p>联立(4),(5)得</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设$a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$化简得</p>
+\begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设  $a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$ , 化简得</p>
 <script type="math/tex; mode=display">
-\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h5 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h5><p>单对目标函数求导</p>
+\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>单对目标函数求导</p>
 <script type="math/tex; mode=display">
 2\Sigma w -\lambda_1R-\lambda_21_n=0</script><p>提出$w$得到</p>
 <script type="math/tex; mode=display">
@@ -289,15 +291,17 @@ w = \frac{1}{2}(\lambda_1 \Sigma^{-1}R + \lambda_2\Sigma^{-1}1_n)</script><p>代
 2E(R) &= \lambda_1 R^T\Sigma^{-1}R + \lambda_2R^T\Sigma^{-1}1_n
 \end{aligned}</script><p>从矩阵形式得到</p>
 <script type="math/tex; mode=display">
+\begin{align}
 \begin{bmatrix}2\\2E(R)\end{bmatrix}
-=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}
-\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}\\
-\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}
-=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}</script><p>代入$w$得</p>
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\ R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}\\
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}
+\end{align}</script><p>代入$w$得</p>
 <script type="math/tex; mode=display">
 w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
 <hr>
-<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
 <li><a target="_blank" rel="noopener" href="https://xueqiu.com/1985849148/145570290">投资组合理论学习之马科维茨投资模型（一）</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">矩阵求导公式的数学推导（矩阵求导——基础篇）</a></li>
 </ol>

@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      509 字
+      504 字
     </span>
   
 
@@ -227,19 +227,19 @@
             <h1 style="display: none">基于斜率最大的资产组合优化</h1>
             
             <div class="markdown-body">
-              <h3 id="金融衍生品"><a href="#金融衍生品" class="headerlink" title="金融衍生品"></a>金融衍生品</h3><blockquote>
+              <blockquote>
 <p> 对于基于斜率的资产组合优化的推导，包含MATLAB代码</p>
 <p>根据《现代投资组合理论与投资分析 9th》</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="【基础定义】"><a href="#【基础定义】" class="headerlink" title="【基础定义】"></a>【基础定义】</h4><script type="math/tex; mode=display">
+<h4 id="基础定义"><a href="#基础定义" class="headerlink" title="基础定义"></a>基础定义</h4><script type="math/tex; mode=display">
 \begin{aligned}
 x_i&:分配给项目i的比率\\ \bar{r}_i&:项目i的平均回报率\\ r_f&:无风险回报率\\ \sigma_i&: 项目i的风险\\  p&:投资组合
 \end{aligned}</script><script type="math/tex; mode=display">
 \begin{aligned}
 \bar{r}_p &= \sum_{i=1}^n x_i\bar{r}_i\\
 \sigma_p^2 &= \sum_{i=1}^n x_i^2\sigma_i^2 + \sum_{i=1}^n\sum_{j=1\\j\ne i}^nx_ix_j\sigma_{ij}
-\end{aligned}</script><h4 id="【推导过程】"><a href="#【推导过程】" class="headerlink" title="【推导过程】"></a>【推导过程】</h4><p>基于斜率最大，得出目标函数：</p>
+\end{aligned}</script><h4 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h4><p>基于斜率最大，得出目标函数：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 MAX\ \theta &= \frac{\bar{r}_p-r_f}{\sigma_p}\\
