@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      479 字
+      509 字
     </span>
   
 
@@ -227,19 +227,19 @@
             <h1 style="display: none">基于斜率最大的资产组合优化</h1>
             
             <div class="markdown-body">
-              <blockquote>
-<p>现代投资组合理论与投资分析 9th</p>
+              <h3 id="金融衍生品"><a href="#金融衍生品" class="headerlink" title="金融衍生品"></a>金融衍生品</h3><blockquote>
+<p> 对于基于斜率的资产组合优化的推导，包含MATLAB代码</p>
+<p>根据《现代投资组合理论与投资分析 9th》</p>
 </blockquote>
 <a id="more"></a>
-<p>基础定义：</p>
-<script type="math/tex; mode=display">
+<h4 id="【基础定义】"><a href="#【基础定义】" class="headerlink" title="【基础定义】"></a>【基础定义】</h4><script type="math/tex; mode=display">
 \begin{aligned}
 x_i&:分配给项目i的比率\\ \bar{r}_i&:项目i的平均回报率\\ r_f&:无风险回报率\\ \sigma_i&: 项目i的风险\\  p&:投资组合
 \end{aligned}</script><script type="math/tex; mode=display">
 \begin{aligned}
 \bar{r}_p &= \sum_{i=1}^n x_i\bar{r}_i\\
 \sigma_p^2 &= \sum_{i=1}^n x_i^2\sigma_i^2 + \sum_{i=1}^n\sum_{j=1\\j\ne i}^nx_ix_j\sigma_{ij}
-\end{aligned}</script><p>基于斜率最大，得出目标函数：</p>
+\end{aligned}</script><h4 id="【推导过程】"><a href="#【推导过程】" class="headerlink" title="【推导过程】"></a>【推导过程】</h4><p>基于斜率最大，得出目标函数：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 MAX\ \theta &= \frac{\bar{r}_p-r_f}{\sigma_p}\\
@@ -273,8 +273,7 @@ R-r_f&=HZ\\
 Z &= H^{-1}(R-r_f)\\
 x_i &= \frac{z_i}{\sum_{i=1}^nz_i}
 \end{aligned}</script><hr>
-<p>附赠 MATLAB 公式：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[X]</span> = <span class="hljs-title">portfolio_optimization</span><span class="hljs-params">(R,H,rf)</span></span><br><span class="hljs-comment">% Z = H^(-1)(R-rf)</span><br>n = <span class="hljs-built_in">length</span>(R);<br>X = <span class="hljs-built_in">zeros</span>(n,<span class="hljs-number">1</span>);<br>Z = inv(H)*(R-rf);<br>Z_sum = sum(Z);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:n<br>    X(<span class="hljs-built_in">i</span>)=Z(<span class="hljs-built_in">i</span>)/Z_sum;<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h4 id="【MATLAB-代码】"><a href="#【MATLAB-代码】" class="headerlink" title="【MATLAB 代码】"></a>【MATLAB 代码】</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[X]</span> = <span class="hljs-title">portfolio_optimization</span><span class="hljs-params">(R,H,rf)</span></span><br><span class="hljs-comment">% Z = H^(-1)(R-rf)</span><br>n = <span class="hljs-built_in">length</span>(R);<br>X = <span class="hljs-built_in">zeros</span>(n,<span class="hljs-number">1</span>);<br>Z = inv(H)*(R-rf);<br>Z_sum = sum(Z);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:n<br>    X(<span class="hljs-built_in">i</span>)=Z(<span class="hljs-built_in">i</span>)/Z_sum;<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
