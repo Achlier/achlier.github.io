@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>马科维茨投资模型 - Borderland</title>
+  <title>基于超额收益的资产组合优化 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="马科维茨投资模型">
+            <span class="h2" id="subtitle" title="基于超额收益的资产组合优化">
               
             </span>
 
@@ -172,7 +172,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-15 01:59" pubdate>
+      <time datetime="2021-02-15 05:27" pubdate>
         February 15, 2021 am
       </time>
     </span>
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      802 字
+      455 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      7
        分钟
     </span>
   
@@ -224,89 +224,82 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">马科维茨投资模型</h1>
+            <h1 style="display: none">基于超额收益的资产组合优化</h1>
             
             <div class="markdown-body">
-              <h3 id="几个方法推导马科维茨投资模型"><a href="#几个方法推导马科维茨投资模型" class="headerlink" title="几个方法推导马科维茨投资模型"></a>几个方法推导马科维茨投资模型</h3><blockquote>
-<p>目前包含：</p>
-<p>1.构造拉格朗日函数公式</p>
-<p>2.对前一个方法的略微变化</p>
+              <blockquote>
+<p> 仅包含MATLAB代码，原理请自行查看书<br> 根据《现代投资组合理论与投资分析 9th》第九章</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h4><p>原模型等价于固定预期收益率为常数、权重之和为1的限制条件下求最小方差的线性规划问题如下：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-目标函数：&min\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)\\
-&s.t.\begin{cases}
-\sum_{i=1}^nr_iw_i=E(R)\\
-\sum_{i=1}^nw_i=1
-\end{cases}\\
-\end{align}</script><h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><p>构造的拉格朗日函数公式如下：</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(w,\lambda_1,\lambda_2)=\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)
--\lambda_1(\sum_{i=1}^nr_iw_i-E(R))-\lambda_2(\sum_{i=1}^nw_i-1)</script><p>对$w_i,\lambda_1,\lambda_2$分别求导取0，满足条件如下:</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\frac{\partial \mathcal{L}}{\partial w_i}&=\sum_{j=1}^nw_jCov(r_i,r_j)
--\lambda_1r_i-\lambda_2=0\\
-\frac{\partial \mathcal{L}}{\partial \lambda_1}&=\sum_{i=1}^nr_iw_i-E(R)=0\\
-\frac{\partial \mathcal{L}}{\partial \lambda_2}&=\sum_{i=1}^nw_i-1=0\\
-\end{aligned}</script><p>整合$w_j =&gt; w,r_i =&gt; R,Cov(r_i,r_j)=&gt;\Sigma$</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-&2\Sigma w -\lambda_1R-\lambda_21_n=0\\
-&w^TR-E(R)=0\\
-&e^T1_n-1=0
-\end{cases}</script><p>假设收益率协方差可逆</p>
-<script type="math/tex; mode=display">
-w =\frac{1}{2}\Sigma^{-1}(\lambda_1R+\lambda_21_n) \tag{1}</script><script type="math/tex; mode=display">
-E(R)=w^TR \tag{2}</script><script type="math/tex; mode=display">
-e^T1_n=1 \tag{3}</script><p>将(2),(3)代入(1)</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
-1 = \frac{1}{2}(\lambda_1R^T\Sigma^{-1}1_n+\lambda_21_n^T\Sigma^{-1}1_n)
-\end{cases}</script><p>转为矩阵格式</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix}E(R)\\1\end{bmatrix}
-=\frac{1}{2}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
-\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}\tag{4}</script><p>由于目标函数$=&gt;min\sigma_p^2$</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\sigma_p^2&=w^T\Sigma w\\
-&=\frac{1}{4}(\lambda_1R^T\Sigma^{-1}+\lambda_21_n^T\Sigma^{-1})\Sigma\Sigma^{-1}(\lambda_1R+\lambda_21_n) \\
-&=\frac{1}{4}(\lambda_1^2R^T\Sigma^{-1}R+2\lambda_1\lambda_2R^T\Sigma^{-1}1_n+\lambda_2^21_n^T\Sigma^{-1}1_n)\\
-&=\frac{1}{4}\begin{bmatrix}\lambda_1&\lambda_2 \end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
-\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}
-\end{aligned}\tag{5}</script><p>联立(4),(5)得</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设  $a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$ , 化简得</p>
-<script type="math/tex; mode=display">
-\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>单对目标函数求导</p>
-<script type="math/tex; mode=display">
-2\Sigma w -\lambda_1R-\lambda_21_n=0</script><p>提出$w$得到</p>
-<script type="math/tex; mode=display">
-w = \frac{1}{2}(\lambda_1 \Sigma^{-1}R + \lambda_2\Sigma^{-1}1_n)</script><p>代入限制条件得</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-2 &= \lambda_1 1_n^T\Sigma^{-1}R + \lambda_21_n^T\Sigma^{-1}1_n\\
-2E(R) &= \lambda_1 R^T\Sigma^{-1}R + \lambda_2R^T\Sigma^{-1}1_n
-\end{aligned}</script><p>从矩阵形式得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\begin{bmatrix}2\\2E(R)\end{bmatrix}
-&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\ R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}
-\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}\\
-\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}
-&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}
-\end{align}</script><p>代入$w$得</p>
-<script type="math/tex; mode=display">
-w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
-<hr>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
-<li><a target="_blank" rel="noopener" href="https://xueqiu.com/1985849148/145570290">投资组合理论学习之马科维茨投资模型（一）</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">矩阵求导公式的数学推导（矩阵求导——基础篇）</a></li>
-</ol>
+<p>输入：</p>
+<ul>
+<li>Mean: 期望收益矩阵</li>
+<li>Beta: 市场收益变动1%时，期望变动率矩阵</li>
+<li>Sigma: 证券收益标准差</li>
+<li>Sigma_m: 市场指数标准差</li>
+<li>Rf: 无风险资产收益</li>
+</ul>
+<p>输出：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">证券编号</td>
+<td>收益均值</td>
+<td>超额收益</td>
+<td>贝塔</td>
+<td>超额收益/贝塔</td>
+<td>证券收益标准差</td>
+<td>非系统风险</td>
+<td>超额收益*贝塔/非系统风险2</td>
+<td>8的累加</td>
+<td>贝塔/非系统风险2</td>
+<td>贝塔2/非系统风险2</td>
+<td>11的累加</td>
+<td>截止率候选值</td>
+<td>未调整比率</td>
+<td>调整后比率</td>
+</tr>
+<tr>
+<td style="text-align:center">$i$</td>
+<td>$R_i$</td>
+<td>$R_i-R_f$</td>
+<td>$\beta_i$</td>
+<td>$\frac{R_i-R_f}{\beta_i}$</td>
+<td>$\sigma_i$</td>
+<td>$\sigma_{ei}$</td>
+<td>$\frac{(R_i-R_f)\beta_i}{\sigma_{ei}^2}$</td>
+<td>sum(8)</td>
+<td>$\frac{\beta_i}{\sigma_{ei}^2}$</td>
+<td>$\frac{\beta_i^2}{\sigma_{ei}^2}$</td>
+<td>sum(11)</td>
+<td>$c_i$</td>
+<td>$z_i$</td>
+<td>$x_i$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[matrix]</span> = <span class="hljs-title">portfolio_optimization_c</span><span class="hljs-params">(mean,beta,sigma,sigma_m,rf)</span></span><br><span class="hljs-comment">% mean|excess return|beta|excess return over beta|sigma_i|sigma_ei|(ri-rf)beta/sigma_ei^2|sum(8)|betai/sigma_ei^2|betai^2/sigma_ei^2|sum(11)|C*|Z|X</span><br>n = <span class="hljs-built_in">length</span>(<span class="hljs-built_in">mean</span>);<br>matrix = <span class="hljs-built_in">zeros</span>(n,<span class="hljs-number">15</span>);<br>matrix(:,<span class="hljs-number">1</span>) = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:n;<br>matrix(:,<span class="hljs-number">2</span>) = <span class="hljs-built_in">mean</span>;<br>matrix(:,<span class="hljs-number">3</span>) = <span class="hljs-built_in">mean</span>-rf;<br>matrix(:,<span class="hljs-number">4</span>) = <span class="hljs-built_in">beta</span>;<br>matrix(:,<span class="hljs-number">5</span>) = matrix(:,<span class="hljs-number">3</span>)./matrix(:,<span class="hljs-number">4</span>);<br>matrix(:,<span class="hljs-number">6</span>) = sigma;<br>matrix(:,<span class="hljs-number">7</span>) = <span class="hljs-built_in">sqrt</span>(matrix(:,<span class="hljs-number">6</span>).^<span class="hljs-number">2</span>-sigma_m^<span class="hljs-number">2</span>*matrix(:,<span class="hljs-number">4</span>).^<span class="hljs-number">2</span>);<br>matrix(:,<span class="hljs-number">8</span>) = matrix(:,<span class="hljs-number">3</span>).*matrix(:,<span class="hljs-number">4</span>)./matrix(:,<span class="hljs-number">7</span>).^<span class="hljs-number">2</span>;<br>matrix(:,<span class="hljs-number">10</span>) = matrix(:,<span class="hljs-number">4</span>)./matrix(:,<span class="hljs-number">7</span>).^<span class="hljs-number">2</span>;<br>matrix(:,<span class="hljs-number">11</span>) = matrix(:,<span class="hljs-number">4</span>).^<span class="hljs-number">2.</span>/matrix(:,<span class="hljs-number">7</span>).^<span class="hljs-number">2</span>;<br>matrix = <span class="hljs-built_in">sortrows</span>(matrix,<span class="hljs-number">5</span>,<span class="hljs-string">&#x27;descend&#x27;</span>);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:n<br>    matrix(<span class="hljs-built_in">i</span>,<span class="hljs-number">9</span>) = sum(matrix(<span class="hljs-number">1</span>:<span class="hljs-built_in">i</span>,<span class="hljs-number">8</span>));<br>    matrix(<span class="hljs-built_in">i</span>,<span class="hljs-number">12</span>) = sum(matrix(<span class="hljs-number">1</span>:<span class="hljs-built_in">i</span>,<span class="hljs-number">11</span>));<br><span class="hljs-keyword">end</span><br>matrix(:,<span class="hljs-number">13</span>) = sigma_m^<span class="hljs-number">2</span>*matrix(:,<span class="hljs-number">9</span>)./(<span class="hljs-number">1</span>+sigma_m^<span class="hljs-number">2</span>*matrix(:,<span class="hljs-number">12</span>));<br>C = matrix(<span class="hljs-number">1</span>,<span class="hljs-number">13</span>);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">1</span>:n<br>    <span class="hljs-keyword">if</span> matrix(<span class="hljs-built_in">i</span>,<span class="hljs-number">13</span>) &gt; matrix(<span class="hljs-built_in">i</span>,<span class="hljs-number">5</span>)<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">else</span><br>        C = matrix(<span class="hljs-built_in">i</span>,<span class="hljs-number">13</span>);<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>matrix(:,<span class="hljs-number">14</span>) = matrix(:,<span class="hljs-number">10</span>).*(matrix(:,<span class="hljs-number">5</span>)-C);<br>matrix(:,<span class="hljs-number">15</span>) = matrix(:,<span class="hljs-number">14</span>)/sum(matrix(:,<span class="hljs-number">14</span>));<br>name = &#123;<span class="hljs-string">&#x27;index&#x27;</span>,<span class="hljs-string">&#x27;mean&#x27;</span>,<span class="hljs-string">&#x27;excess_return&#x27;</span>,<span class="hljs-string">&#x27;beta&#x27;</span>,<span class="hljs-string">&#x27;excess_return_over_beta&#x27;</span>,<span class="hljs-string">&#x27;sigma&#x27;</span>,<span class="hljs-string">&#x27;sigma_e&#x27;</span>,<span class="hljs-string">&#x27;excess_return_time_beta_by_sigma_e2&#x27;</span>,<span class="hljs-string">&#x27;sum_of_8&#x27;</span>,<span class="hljs-string">&#x27;beta_by_sigma_e2&#x27;</span>,<span class="hljs-string">&#x27;beta2_by_sigma_e2&#x27;</span>,<span class="hljs-string">&#x27;sum_of_11&#x27;</span>,<span class="hljs-string">&#x27;C&#x27;</span>,<span class="hljs-string">&#x27;Z&#x27;</span>,<span class="hljs-string">&#x27;X&#x27;</span>&#125;;<br>matrix = array2table(matrix, <span class="hljs-string">&#x27;VariableNames&#x27;</span>, name);<br><span class="hljs-keyword">end</span><br><br><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -324,7 +317,7 @@ w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Markowitz/">Markowitz</a>
+                      <a class="hover-with-bg" href="/tags/Derivatives/">Derivatives</a>
                     
                   </div>
                 
@@ -337,18 +330,12 @@ w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/15/%E5%9F%BA%E4%BA%8E%E8%B6%85%E9%A2%9D%E6%94%B6%E7%9B%8A%E7%9A%84%E8%B5%84%E4%BA%A7%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于超额收益的资产组合优化</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/15/%E5%90%91%E9%87%8F%E7%9A%84%E5%86%85%E7%A7%AF%E4%B8%8E%E5%A4%96%E7%A7%AF/">
-                        <span class="hidden-mobile">向量的内积与外积</span>
+                      <a href="/2021/02/15/%E9%A9%AC%E7%A7%91%E7%BB%B4%E8%8C%A8%E6%8A%95%E8%B5%84%E6%A8%A1%E5%9E%8B/">
+                        <span class="hidden-mobile">马科维茨投资模型</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
