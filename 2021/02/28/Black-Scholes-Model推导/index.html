@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      455 字
+      477 字
     </span>
   
 
@@ -260,19 +260,19 @@ S_t = S_0exp((\mu - \frac{\sigma^2}{2})t +\sigma \epsilon \sqrt{t})</script><ul>
 </ul>
 <script type="math/tex; mode=display">
 c = e^{-r \tau}\widetilde{E}_t((S_T-K)^+)</script><ul>
-<li>代入$S_T$（老师写的是$-\sigma \epsilon \sqrt{t}$ ,但说不影响EXP），$y \sim N(0,1)$</li>
+<li>代入$S_T$（老师写的是$-\sigma \epsilon \sqrt{\tau}$ ,但说不影响EXP），$y \sim N(0,1)$</li>
 </ul>
 <script type="math/tex; mode=display">
 \begin{align}
-c &= e^{-r \tau}\widetilde{E}_t((S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)-K)^+)\\
+c &= e^{-r \tau}\widetilde{E}_t((S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{\tau}y)-K)^+)\\
 &(对y求积分)\\
-&= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)-K)^+dy
+&= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{\tau}y)-K)^+dy
 \end{align}</script><ul>
 <li>分析，存在某一个点使$()^+$部分从正数到0</li>
 </ul>
 <script type="math/tex; mode=display">
 \begin{align}
-S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y) &> K\\
+S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{\tau}y) &> K\\
 y &> (ln\frac{K}{S_t}-(r - \frac{\sigma^2}{2})\tau)\frac{1}{\sigma \sqrt{\tau}}\\
 y &< (ln\frac{S_t}{K}+(r - \frac{\sigma^2}{2})\tau)\frac{1}{\sigma \sqrt{\tau}}=d2
 \end{align}</script><ul>
@@ -280,13 +280,25 @@ y &< (ln\frac{S_t}{K}+(r - \frac{\sigma^2}{2})\tau)\frac{1}{\sigma \sqrt{\tau}}=
 </ul>
 <script type="math/tex; mode=display">
 \begin{align}
-c &= \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)-K)dy\\
-&= \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp(r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)dy
+c &= \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{\tau}y)-K)dy\\
+&= \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp(r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{\tau}y)dy
 - \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}Kdy\\
-&= \frac{1}{\sqrt{2\pi}}S_t\int_{-\infty}^{d2} e^{-r \tau}e^{-\frac{1}{2}y^2} e^{(r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y}dy
+&= \frac{1}{\sqrt{2\pi}}S_t\int_{-\infty}^{d2} e^{-r \tau}e^{-\frac{1}{2}y^2} e^{(r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{\tau}y}dy
 - e^{-r \tau}KN(d2)\\
-&卡思路了....等我几天
-\end{align}</script><h3 id="MATLAB公式"><a href="#MATLAB公式" class="headerlink" title="MATLAB公式"></a>MATLAB公式</h3><p><code>[Call,Put] = blsprice(Price,Strike,Rate,Time,Volatility)</code></p>
+&= \frac{1}{\sqrt{2\pi}}S_t\int_{-\infty}^{d2}e^{-\frac{1}{2}(y-\sigma \sqrt{\tau})^2}dy
+- e^{-r \tau}KN(d2)\\
+\end{align}</script><ul>
+<li>第一部分去掉$S_T$相当于：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+N(y-\sigma \sqrt{\tau}<d2) &= N(y<d2+\sigma \sqrt{\tau}) = N(d1)\\
+d1 &= (ln\frac{S_t}{K}+(r + \frac{\sigma^2}{2})\tau)\frac{1}{\sigma \sqrt{\tau}}
+\end{align}</script><ul>
+<li>得到最终结果：</li>
+</ul>
+<script type="math/tex; mode=display">
+c = S_tN(d1)- e^{-r \tau}KN(d2)\\</script><h3 id="MATLAB公式"><a href="#MATLAB公式" class="headerlink" title="MATLAB公式"></a>MATLAB公式</h3><p><code>[Call,Put] = blsprice(Price,Strike,Rate,Time,Volatility)</code></p>
 
             </div>
             <hr>
