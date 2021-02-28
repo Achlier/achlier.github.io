@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>算术平均亚式期权Matlab代码 - Borderland</title>
+  <title>Black_Scholes_Model推导 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="算术平均亚式期权Matlab代码">
+            <span class="h2" id="subtitle" title="Black_Scholes_Model推导">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-17 01:40" pubdate>
-        February 17, 2021 am
+      <time datetime="2021-02-28 03:13" pubdate>
+        February 28, 2021 am
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      612 字
+      455 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      8
        分钟
     </span>
   
@@ -224,106 +224,70 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">算术平均亚式期权Matlab代码</h1>
+            <h1 style="display: none">Black_Scholes_Model推导</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p> 对算术平均亚式期权Matlab代码的阅读</p>
+<p> BSM简要推导过程，基于格拉ECO5009课件</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="Payoff-of-Asian-arithmetic’s-is"><a href="#Payoff-of-Asian-arithmetic’s-is" class="headerlink" title="Payoff of Asian arithmetic’s is"></a>Payoff of Asian arithmetic’s is</h4><script type="math/tex; mode=display">
-call : max(\frac{1}{n}\sum_i^nS_i-K_i,0)</script><h4 id="输入参数"><a href="#输入参数" class="headerlink" title="输入参数"></a>输入参数</h4><ul>
-<li>r = risk free rate</li>
-<li>u , d : $S_1(up)=S_0<em>u, S_1(down)=S_0</em>d$</li>
-<li>strike = strike price (K)</li>
-<li>s0 = $S_0$</li>
-<li>imax = T or periods</li>
+<h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><ul>
+<li>stock price 基于GBM：</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab">r = <span class="hljs-number">0.03</span>; u = <span class="hljs-number">1.1</span>; d = <span class="hljs-number">0.9</span>; <br>strike = <span class="hljs-number">9.5</span>; S0 = <span class="hljs-number">9</span>;<br>imax = <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure>
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><ul>
-<li>rnp = $\frac{1+r-d}{u-d}$ , risk neutral probability</li>
-<li>SS : 初始化价格树，因为不同于欧式需要记录每一步，即$S0ud$和$S0du$的平均价格不等，因此需要$2^{imax}$种情况</li>
+<script type="math/tex; mode=display">
+dS = \mu Sdt + \sigma SdW</script><ul>
+<li>Ito’s lemma：</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab">rnp = (<span class="hljs-number">1</span>+r-d)/(u-d);<br>SS = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">2</span>^imax,imax+<span class="hljs-number">1</span>);<br>SS(:,<span class="hljs-number">1</span>) = S0;<br></code></pre></td></tr></table></figure>
-<h5 id="output："><a href="#output：" class="headerlink" title="output："></a>output：</h5><p>​    SS =  (2^imax,imax+1)</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix} 9 & 0 & 0 & 0 \\
-\vdots&\vdots&\vdots&\vdots \\ 
-9 & 0 & 0 & 0 \\\end{bmatrix} \tag{8 x 4}</script><h4 id="建立up-down组合表"><a href="#建立up-down组合表" class="headerlink" title="建立up-down组合表"></a>建立up-down组合表</h4><ul>
-<li>matr : 将所有可能排成$2^{imax}$行</li>
+df = (\frac{\partial f}{\partial S}\mu S + \frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial S^2}\sigma^2S^2)dt + \frac{\partial f}{\partial S}\sigma SdW</script><h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><ul>
+<li>let f = lnS, we have：</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab">matr=[];<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:imax<br>    v1 = <span class="hljs-built_in">ones</span>(<span class="hljs-number">2</span>^(<span class="hljs-built_in">i</span><span class="hljs-number">-1</span>),<span class="hljs-number">1</span>);<br>    v2 = -v1;<br>    vc = <span class="hljs-built_in">repmat</span>([v1;v2],<span class="hljs-number">2</span>^(imax-<span class="hljs-built_in">i</span>),<span class="hljs-number">1</span>);<br>    <span class="hljs-comment">% repmat : 将矩阵[v1;v2]重复到2^(imax)×1块排列中</span><br>    matr = [vc,matr]; <span class="hljs-comment">%类似+=,从左加</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-<h5 id="output：-1"><a href="#output：-1" class="headerlink" title="output："></a>output：</h5><p>​    matr = （2^imax,imax）</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix} 1 \\
--1 \\
-1 \\
--1 \\
-1 \\
--1 \\
-1 \\
--1 \\\end{bmatrix} =>
-\begin{bmatrix} 1 & 1 \\
-1 & -1 \\
--1 & 1 \\
--1 & -1 \\
-1 & 1 \\
-1 & -1 \\
--1 & 1 \\
--1 & -1 \\\end{bmatrix} =>
-\begin{bmatrix} 1 & 1 & 1 \\
-1 & 1 & -1 \\
-1 & -1 & 1 \\
-1 & -1 & -1 \\
--1 & 1 & 1 \\
--1 & 1 & -1 \\
--1 & -1 & 1 \\
--1 & -1 & -1 \\\end{bmatrix} \tag{8 x 3}</script><h4 id="补充价格树"><a href="#补充价格树" class="headerlink" title="补充价格树"></a>补充价格树</h4><ul>
-<li>按照matr的组合对SS进行补充</li>
+\frac{\partial f}{\partial S} = \frac{1}{S}, \frac{\partial^2 f}{\partial S^2} = \frac{1}{S^2}, \frac{\partial f}{\partial t} = 0</script><ul>
+<li>so ：</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-keyword">for</span> z = <span class="hljs-number">1</span>:<span class="hljs-number">2</span>^imax<br>    <span class="hljs-keyword">for</span> k = <span class="hljs-number">2</span>:imax+<span class="hljs-number">1</span><br>        SS(z,k)=SS(z,k<span class="hljs-number">-1</span>)*u;<br>        <span class="hljs-keyword">if</span> matr(z,k<span class="hljs-number">-1</span>)&lt;<span class="hljs-number">0</span><br>            SS(z,k)=SS(z,k<span class="hljs-number">-1</span>)*d;<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-<h5 id="output：-2"><a href="#output：-2" class="headerlink" title="output："></a>output：</h5><p>​    SS = （2^imax,imax+1）</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix} 
-    9&9.9&10.89&11.979\\
-    9&9.9&10.89&9.8010\\
-    9&9.9&8.91&9.8010\\
-    9&9.9&8.91&8.0190\\
-    9&8.1&8.91&9.8010\\
-    9&8.1&8.91&8.0190\\
-    9&8.1&7.29&8.0190\\
-    9&8.1&7.29&6.5610\\
-\end{bmatrix} \tag{8 x 4}</script><h4 id="计算收益"><a href="#计算收益" class="headerlink" title="计算收益"></a>计算收益</h4><ul>
-<li>按照公式计算收益</li>
+dlnS_t = (\mu - \frac{\sigma^2}{2})dt +\sigma dW_t</script><ul>
+<li>Integrating equation from time 0 to t and taking the exponential：</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">payoff = <span class="hljs-built_in">max</span>(sum(SS,<span class="hljs-number">2</span>)/(imax+<span class="hljs-number">1</span>)-strike,<span class="hljs-number">0</span>); <span class="hljs-comment">% Asian arithmetic&#x27;s</span><br><span class="hljs-comment">%payoff = max(prod(SS,2)^(imax+1)-strike,0); % Asian geometric&#x27;s</span><br></code></pre></td></tr></table></figure>
-<h5 id="output：-3"><a href="#output：-3" class="headerlink" title="output："></a>output：</h5><p>​    payoff = （2^imax,1）</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix}
-0.9422\\
-0.3978\\
-     0\\
-     0\\
-     0\\
-     0\\
-     0\\
-     0\end{bmatrix} \tag{8 x 1}</script><h4 id="计算每个up-down组合up的次数"><a href="#计算每个up-down组合up的次数" class="headerlink" title="计算每个up-down组合up的次数"></a>计算每个up-down组合up的次数</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">2</span>^imax<br>    ind1 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span> =<span class="hljs-number">1</span>:imax<br>        <span class="hljs-keyword">if</span> matr(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>)&gt;<span class="hljs-number">0</span><br>            ind1=ind1+<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br>    pp(<span class="hljs-built_in">i</span>)=ind1;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-<h5 id="output：-4"><a href="#output：-4" class="headerlink" title="output："></a>output：</h5><p>​    pp = （1,2^imax）</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix}
-3&     2&     2&     1&     2&     1&     1&     0
-\end{bmatrix} \tag{1 x 8}</script><h4 id="计算期望值"><a href="#计算期望值" class="headerlink" title="计算期望值"></a>计算期望值</h4><ul>
-<li>rnp_payoff = $rnp ^{pp}*(1-rnp)^{imax-pp}$</li>
-<li>option_price = $\frac{E_{rnp}[payoff]}{(1+r)^{imax}}$</li>
+S_t = S_0exp((\mu - \frac{\sigma^2}{2})t +\sigma W_t)</script><ul>
+<li>In the distribution $W_t  \sim \epsilon \sqrt{t}$</li>
 </ul>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">rnp_payoff=(rnp.^pp).*(<span class="hljs-number">1</span>-rnp).^(imax-pp);<br>option_price=sum(payoff.*rnp_payoff&#x27;)/((<span class="hljs-number">1</span>+r)^imax);<br></code></pre></td></tr></table></figure>
-<h5 id="output：-5"><a href="#output：-5" class="headerlink" title="output："></a>output：</h5><p>​    rnp_payoff = （1,2^imax）</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix}
-0.2746&    0.1479&    0.1479&    0.0796&    0.1479&    0.0796&    0.0796&    0.0429
-\end{bmatrix} \tag{1 x 8}</script><p>​    rnp_payoff = （1,1）</p>
+S_t = S_0exp((\mu - \frac{\sigma^2}{2})t +\sigma \epsilon \sqrt{t})</script><ul>
+<li>With the risk-neutral valuation, where $\tau = T-t$：</li>
+</ul>
 <script type="math/tex; mode=display">
-0.2906 \tag{1 x 1}</script>
+c = e^{-r \tau}\widetilde{E}_t((S_T-K)^+)</script><ul>
+<li>代入$S_T$（老师写的是$-\sigma \epsilon \sqrt{t}$ ,但说不影响EXP），$y \sim N(0,1)$</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+c &= e^{-r \tau}\widetilde{E}_t((S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)-K)^+)\\
+&(对y求积分)\\
+&= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)-K)^+dy
+\end{align}</script><ul>
+<li>分析，存在某一个点使$()^+$部分从正数到0</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y) &> K\\
+y &> (ln\frac{K}{S_t}-(r - \frac{\sigma^2}{2})\tau)\frac{1}{\sigma \sqrt{\tau}}\\
+y &< (ln\frac{S_t}{K}+(r - \frac{\sigma^2}{2})\tau)\frac{1}{\sigma \sqrt{\tau}}=d2
+\end{align}</script><ul>
+<li>代入前一个式子：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+c &= \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp((r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)-K)dy\\
+&= \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}(S_texp(r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y)dy
+- \int_{-\infty}^{d2} \frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}y^2} e^{-r \tau}Kdy\\
+&= \frac{1}{\sqrt{2\pi}}S_t\int_{-\infty}^{d2} e^{-r \tau}e^{-\frac{1}{2}y^2} e^{(r - \frac{\sigma^2}{2})\tau +\sigma \sqrt{t}y}dy
+- e^{-r \tau}KN(d2)\\
+&卡思路了....等我几天
+\end{align}</script><h3 id="MATLAB公式"><a href="#MATLAB公式" class="headerlink" title="MATLAB公式"></a>MATLAB公式</h3><p><code>[Call,Put] = blsprice(Price,Strike,Rate,Time,Volatility)</code></p>
+
             </div>
             <hr>
             <div>
@@ -340,9 +304,7 @@ call : max(\frac{1}{n}\sum_i^nS_i-K_i,0)</script><h4 id="输入参数"><a href="
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Matlab/">Matlab</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Asian-arithmetic-Option/">Asian arithmetic Option</a>
+                      <a class="hover-with-bg" href="/tags/Derivatives/">Derivatives</a>
                     
                   </div>
                 
@@ -355,18 +317,12 @@ call : max(\frac{1}{n}\sum_i^nS_i-K_i,0)</script><h4 id="输入参数"><a href="
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/28/Black-Scholes-Model%E6%8E%A8%E5%AF%BC/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Black_Scholes_Model推导</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/16/Latex%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
-                        <span class="hidden-mobile">Latex基础语法</span>
+                      <a href="/2021/02/17/%E7%AE%97%E6%9C%AF%E5%B9%B3%E5%9D%87%E4%BA%9A%E5%BC%8F%E6%9C%9F%E6%9D%83Matlab%E4%BB%A3%E7%A0%81/">
+                        <span class="hidden-mobile">算术平均亚式期权Matlab代码</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
