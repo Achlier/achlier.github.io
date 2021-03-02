@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.7k 字
+      3.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      64
+      65
        分钟
     </span>
   
@@ -228,7 +228,7 @@
             
             <div class="markdown-body">
               <blockquote>
-<p>用于方便查找的Latex语法表(图片显示失败的，假期再改吧…)</p>
+<p>用于方便查找的Latex语法表(hexo有些Latex格式不好转化，放弃了…)</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="加帽子符号"><a href="#加帽子符号" class="headerlink" title="加帽子符号"></a>加帽子符号</h2><p>latex中如果想在字母上加上一个帽子（尖角）符号应该怎样表达呢？</p>
@@ -1271,7 +1271,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} 5050 \\ \overbrace{ 1+2+\cdots+100 } \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; 5050 \\ \overbrace&#123; 1+2+\cdots+100 &#125; \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} 5050 \\ \overbrace{ 1+2+\cdots+100 } \end{matrix}$</td>
 </tr>
 <tr>
@@ -1281,7 +1281,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} \underbrace{ a+b+\cdots+z } \\ 26 \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; \underbrace&#123; a+b+\cdots+z &#125; \\ 26 \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} \underbrace{ a+b+\cdots+z } \\ 26 \end{matrix}$</td>
 </tr>
 <tr>
@@ -1291,7 +1291,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} \sum_{k=1}^N k^2 \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; \sum_&#123;k=1&#125;^N k^2 \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} \sum_{k=1}^N k^2 \end{matrix}$</td>
 </tr>
 <tr>
@@ -1301,7 +1301,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} \prod_{i=1}^N x_i \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; \prod_&#123;i=1&#125;^N x_i \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} \prod_{i=1}^N x_i \end{matrix}$</td>
 </tr>
 <tr>
@@ -1311,7 +1311,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} \coprod_{i=1}^N x_i \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; \coprod_&#123;i=1&#125;^N x_i \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} \coprod_{i=1}^N x_i \end{matrix}$</td>
 </tr>
 <tr>
@@ -1321,7 +1321,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} \lim_{n \to \infty}x_n \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; \lim_&#123;n \to \infty&#125;x_n \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} \lim_{n \to \infty}x_n \end{matrix}$</td>
 </tr>
 <tr>
@@ -1331,7 +1331,7 @@
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{matrix} \int_{-N}^{N} e^x\, dx \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; \int_&#123;-N&#125;^&#123;N&#125; e^x\, dx \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} \int_{-N}^{N} e^x\, dx \end{matrix}$</td>
 </tr>
 <tr>
@@ -1414,77 +1414,72 @@
 </tr>
 <tr>
 <td style="text-align:left">矩阵</td>
-<td style="text-align:left">\begin{matrix} x &amp; y \\ z &amp; v \end{matrix}</td>
+<td style="text-align:left"><code>\begin&#123;matrix&#125; x &amp; y \\ z &amp; v \end&#123;matrix&#125;</code></td>
 <td style="text-align:left">$\begin{matrix} x &amp; y \\ z &amp; v \end{matrix}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{vmatrix} x &amp; y \\ z &amp; v \end{vmatrix}</td>
+<td style="text-align:left"><code>\begin&#123;vmatrix&#125; x &amp; y \\ z &amp; v \end&#123;vmatrix&#125;</code></td>
 <td style="text-align:left">$\begin{vmatrix} x &amp; y \\ z &amp; v \end{vmatrix}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{Vmatrix} x &amp; y \\ z &amp; v \end{Vmatrix}</td>
+<td style="text-align:left"><code>\begin&#123;Vmatrix&#125; x &amp; y \\ z &amp; v \end&#123;Vmatrix&#125;</code></td>
 <td style="text-align:left">$\begin{Vmatrix} x &amp; y \\ z &amp; v \end{Vmatrix}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{bmatrix} 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end{bmatrix}</td>
+<td style="text-align:left"><code>\begin&#123;bmatrix&#125; 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end&#123;bmatrix&#125;</code></td>
 <td style="text-align:left">$\begin{bmatrix} 0 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; \cdots &amp; 0 \end{bmatrix}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{Bmatrix} x &amp; y \\ z &amp; v \end{Bmatrix}</td>
+<td style="text-align:left"><code>\begin&#123;Bmatrix&#125; x &amp; y \\ z &amp; v \end&#123;Bmatrix&#125;</code></td>
 <td style="text-align:left">$\begin{Bmatrix} x &amp; y \\ z &amp; v \end{Bmatrix}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{pmatrix} x &amp; y \\ z &amp; v \end{pmatrix}</td>
+<td style="text-align:left"><code>\begin&#123;pmatrix&#125; x &amp; y \\ z &amp; v \end&#123;pmatrix&#125;</code></td>
 <td style="text-align:left">$\begin{pmatrix} x &amp; y \\ z &amp; v \end{pmatrix}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\bigl( \begin{smallmatrix} a&amp;b\\ c&amp;d \end{smallmatrix} \bigr)</td>
+<td style="text-align:left"><code>\bigl( \begin&#123;smallmatrix&#125; a&amp;b\\ c&amp;d \end&#123;smallmatrix&#125; \bigr)</code></td>
 <td style="text-align:left">$\bigl( \begin{smallmatrix} a&amp;b\\ c&amp;d \end{smallmatrix} \bigr)$</td>
 </tr>
 <tr>
 <td style="text-align:left">条件定义</td>
-<td style="text-align:left">f(n) = \begin{cases} n/2, &amp; \mbox{if }n\mbox{ is even} \\ 3n+1, &amp; \mbox{if }n\mbox{ is odd} \end{cases}</td>
+<td style="text-align:left"><code>f(n) = \begin&#123;cases&#125; n/2, &amp; \mbox&#123;if &#125;n\mbox&#123; is even&#125; \\ 3n+1, &amp; \mbox&#123;if &#125;n\mbox&#123; is odd&#125; \end&#123;cases&#125;</code></td>
 <td style="text-align:left">$f(n) = \begin{cases} n/2, &amp; \mbox{if }n\mbox{ is even} \\ 3n+1, &amp; \mbox{if }n\mbox{ is odd} \end{cases}$</td>
 </tr>
 <tr>
 <td style="text-align:left">多行等式</td>
-<td style="text-align:left">\begin{align} f(x) &amp; = (m+n)^2 \\ &amp; = m^2+2mn+n^2 \\ \end{align}</td>
+<td style="text-align:left"><code>\begin&#123;align&#125; f(x) &amp; = (m+n)^2 \\ &amp; = m^2+2mn+n^2 \\ \end&#123;align&#125;</code></td>
 <td style="text-align:left">$\begin{align} f(x) &amp; = (m+n)^2 \\ &amp; = m^2+2mn+n^2 \\ \end{align}$</td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">\begin{alignat}{2} f(x) &amp; = (m-n)^2 \\ f(x) &amp; = (-m+n)^2 \\ &amp; = m^2-2mn+n^2 \\ \end{alignat}</td>
+<td style="text-align:left"><code>\begin&#123;alignat&#125;&#123;2&#125; f(x) &amp; = (m-n)^2 \\ f(x) &amp; = (-m+n)^2 \\ &amp; = m^2-2mn+n^2 \\ \end&#123;alignat&#125;</code></td>
 <td style="text-align:left">$\begin{alignat}{2} f(x) &amp; = (m-n)^2 \\ f(x) &amp; = (-m+n)^2 \\ &amp; = m^2-2mn+n^2 \\ \end{alignat}$</td>
 </tr>
 <tr>
 <td style="text-align:left">多行等式（左对齐）</td>
-<td style="text-align:left">\begin{array}{lcl} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}</td>
+<td style="text-align:left"><code>\begin&#123;array&#125;&#123;lcl&#125; z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end&#123;array&#125;</code></td>
 <td style="text-align:left">$\begin{array}{lcl} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}$</td>
 </tr>
 <tr>
 <td style="text-align:left">多行等式（右对齐）</td>
-<td style="text-align:left">\begin{array}{lcr} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}</td>
+<td style="text-align:left"><code>\begin&#123;array&#125;&#123;lcr&#125; z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end&#123;array&#125;</code></td>
 <td style="text-align:left">$\begin{array}{lcr} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}$</td>
 </tr>
 <tr>
-<td style="text-align:left">长公式换行</td>
-<td style="text-align:left"><math>f(x) \,!</math> <math>= \sum_{n=0}^\infty a_n x^n </math> <math>= a_0+a_1x+a_2x^2+\cdots</math></td>
-<td style="text-align:left">$<math>f(x) \,!</math>$ $<math>= \sum_{n=0}^\infty a_n x^n </math>$ $<math>= a_0+a_1x+a_2x^2+\cdots</math>$</td>
-</tr>
-<tr>
 <td style="text-align:left">方程组</td>
-<td style="text-align:left">\begin{cases} 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{cases}</td>
+<td style="text-align:left"><code>\begin&#123;cases&#125; 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end&#123;cases&#125;</code></td>
 <td style="text-align:left">$\begin{cases} 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{cases}$</td>
 </tr>
 <tr>
 <td style="text-align:left">数组</td>
-<td style="text-align:left">\begin{array}{lclcllcl} a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end{array}</td>
+<td style="text-align:left"><code>\begin&#123;array&#125;&#123;lclcllcl&#125; a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end&#123;array&#125;</code></td>
 <td style="text-align:left">$\begin{array}{lclcllcl} a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end{array}$</td>
 </tr>
 </tbody>
