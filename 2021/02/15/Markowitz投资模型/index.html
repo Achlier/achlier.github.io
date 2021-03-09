@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      802 字
+      735 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      12
        分钟
     </span>
   
@@ -282,16 +282,7 @@ E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
 <script type="math/tex; mode=display">
 \begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设  $a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$ , 化简得</p>
 <script type="math/tex; mode=display">
-\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>单对目标函数求导</p>
-<script type="math/tex; mode=display">
-2\Sigma w -\lambda_1R-\lambda_21_n=0</script><p>提出$w$得到</p>
-<script type="math/tex; mode=display">
-w = \frac{1}{2}(\lambda_1 \Sigma^{-1}R + \lambda_2\Sigma^{-1}1_n)</script><p>代入限制条件得</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-2 &= \lambda_1 1_n^T\Sigma^{-1}R + \lambda_21_n^T\Sigma^{-1}1_n\\
-2E(R) &= \lambda_1 R^T\Sigma^{-1}R + \lambda_2R^T\Sigma^{-1}1_n
-\end{aligned}</script><p>从矩阵形式得到</p>
+\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>从矩阵形式得到</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \begin{bmatrix}2\\2E(R)\end{bmatrix}
