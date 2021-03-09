@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>向量的内积与外积 - Borderland</title>
+  <title>Markowitz投资模型 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="向量的内积与外积">
+            <span class="h2" id="subtitle" title="Markowitz投资模型">
               
             </span>
 
@@ -172,7 +172,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-15 00:00" pubdate>
+      <time datetime="2021-02-15 01:59" pubdate>
         February 15, 2021 am
       </time>
     </span>
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      362 字
+      802 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      13
        分钟
     </span>
   
@@ -224,62 +224,88 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">向量的内积与外积</h1>
+            <h1 style="display: none">Markowitz投资模型</h1>
             
             <div class="markdown-body">
-              <blockquote>
-<p>对内积与外积基础性质进行简要陈述</p>
+              <h3 id="几个方法推导马科维茨投资模型"><a href="#几个方法推导马科维茨投资模型" class="headerlink" title="几个方法推导马科维茨投资模型"></a>几个方法推导马科维茨投资模型</h3><blockquote>
+<p>目前包含：</p>
+<p>1.构造拉格朗日函数公式</p>
+<p>2.对前一个方法的略微变化</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="内积（Inner-product，点乘）"><a href="#内积（Inner-product，点乘）" class="headerlink" title="内积（Inner product，点乘）"></a>内积（Inner product，点乘）</h4><script type="math/tex; mode=display">
-a = [a_1,a_2,...,a_n] \ b = [b_1,b_2,...,b_n]</script><script type="math/tex; mode=display">
-a·b = |a||b|cos\angle(a,b)</script><p><img src="/2021/02/15/%E5%90%91%E9%87%8F%E7%9A%84%E5%86%85%E7%A7%AF%E4%B8%8E%E5%A4%96%E7%A7%AF/pic1-1.jpg" srcset="/img/loading.gif" alt></p>
-<p>在几何中这个结果为b在a方向上的<strong>投影</strong>，若a与b正交，$a·b=0$</p>
-<h4 id="外积（Cross-Product，叉乘）"><a href="#外积（Cross-Product，叉乘）" class="headerlink" title="外积（Cross Product，叉乘）"></a>外积（Cross Product，叉乘）</h4><script type="math/tex; mode=display">
-a = (x_1,y_1,z_1) \ b = (x_2,y_2,z_2)</script><script type="math/tex; mode=display">
-a \times b = \begin{vmatrix} i & j & k \\ x_1 & y_1 & z_1 \\x_2 & y_2 & z_2 \end{vmatrix} = (y_1z_2-y_2z_1)i-(x_1z_2-x_2z_1)j+(x_1y_2-x_2y_1)k</script><p>其中</p>
+<h4 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h4><p>原模型等价于固定预期收益率为常数、权重之和为1的限制条件下求最小方差的线性规划问题如下：</p>
 <script type="math/tex; mode=display">
-i = (1,0,0) \ j = (0,1,0) \ k = (0,0,1)</script><p>得到结果向量</p>
+\begin{align}
+目标函数：&min\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)\\
+&s.t.\begin{cases}
+\sum_{i=1}^nr_iw_i=E(R)\\
+\sum_{i=1}^nw_i=1
+\end{cases}\\
+\end{align}</script><h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><p>构造的拉格朗日函数公式如下：</p>
 <script type="math/tex; mode=display">
-a \times b = (y_1z_2-y_2z_1,-(x_1z_2-x_2z_1),x_1y_2-x_2y_1)</script><p><img src="/2021/02/15/%E5%90%91%E9%87%8F%E7%9A%84%E5%86%85%E7%A7%AF%E4%B8%8E%E5%A4%96%E7%A7%AF/pic1-2.jpg" srcset="/img/loading.gif" alt></p>
-<p>在几何中这个结果称为<strong>法向量</strong>，该向量垂直于a和b向量构成的平面</p>
-<p>叉乘同时拥有其它基本性质：</p>
-<ol>
-<li>$a \times a = 0$</li>
-<li>$a \times b = -( b \times a)$</li>
-<li>$(a + b)\times c = a \times c + b \times c$</li>
-</ol>
-<p>可得到叉乘公式推导：</p>
+\mathcal{L}(w,\lambda_1,\lambda_2)=\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)
+-\lambda_1(\sum_{i=1}^nr_iw_i-E(R))-\lambda_2(\sum_{i=1}^nw_i-1)</script><p>对$w_i,\lambda_1,\lambda_2$分别求导取0，满足条件如下:</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-u \times v =& (u_1i+u_2j+u_3k)\times(v_1i+v_2j+v_3k)\\
-=&u_1v_1(i \times i)+u_1v_2(i \times j)+u_1v_3(i \times k)+\\
-&u_2v_1(j \times i)+u_2v_2(j \times j)+u_2v_3(j \times k)+\\
-&u_3v_1(k \times i)+u_3v_2(k \times j)+u_3v_3(k \times k)+
-\end{aligned}</script><p>同时因为</p>
+\frac{\partial \mathcal{L}}{\partial w_i}&=\sum_{j=1}^nw_jCov(r_i,r_j)
+-\lambda_1r_i-\lambda_2=0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_1}&=\sum_{i=1}^nr_iw_i-E(R)=0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_2}&=\sum_{i=1}^nw_i-1=0\\
+\end{aligned}</script><p>整合$w_j =&gt; w,r_i =&gt; R,Cov(r_i,r_j)=&gt;\Sigma$</p>
 <script type="math/tex; mode=display">
-i\times i = j\times j = k\times k = 0</script><script type="math/tex; mode=display">
 \begin{cases}
-i\times j = k\\
-j\times k = i\\
-k\times i = j
-\end{cases}
-\
+&2\Sigma w -\lambda_1R-\lambda_21_n=0\\
+&w^TR-E(R)=0\\
+&e^T1_n-1=0
+\end{cases}</script><p>假设收益率协方差可逆</p>
+<script type="math/tex; mode=display">
+w =\frac{1}{2}\Sigma^{-1}(\lambda_1R+\lambda_21_n) \tag{1}</script><script type="math/tex; mode=display">
+E(R)=w^TR \tag{2}</script><script type="math/tex; mode=display">
+e^T1_n=1 \tag{3}</script><p>将(2),(3)代入(1)</p>
+<script type="math/tex; mode=display">
 \begin{cases}
-j\times i = -k\\
-k\times j = -i\\
-i\times k = -j
-\end{cases}</script><p>得到</p>
+E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
+1 = \frac{1}{2}(\lambda_1R^T\Sigma^{-1}1_n+\lambda_21_n^T\Sigma^{-1}1_n)
+\end{cases}</script><p>转为矩阵格式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E(R)\\1\end{bmatrix}
+=\frac{1}{2}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}\tag{4}</script><p>由于目标函数$=&gt;min\sigma_p^2$</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
-=& \begin{vmatrix} u_2 & u_3 \\v_2 & v_3 \end{vmatrix}i -
-\begin{vmatrix} u_1 & u_3 \\v_1 & v_3 \end{vmatrix}j +
-\begin{vmatrix} u_1 & u_2 \\v_1 & v_2 \end{vmatrix}k\\
-=& \begin{vmatrix} i & j & k\\u_1 & u_2 & u_3\\v_1 & v_2 & v_3 \end{vmatrix}
-\end{aligned}</script><hr>
+\sigma_p^2&=w^T\Sigma w\\
+&=\frac{1}{4}(\lambda_1R^T\Sigma^{-1}+\lambda_21_n^T\Sigma^{-1})\Sigma\Sigma^{-1}(\lambda_1R+\lambda_21_n) \\
+&=\frac{1}{4}(\lambda_1^2R^T\Sigma^{-1}R+2\lambda_1\lambda_2R^T\Sigma^{-1}1_n+\lambda_2^21_n^T\Sigma^{-1}1_n)\\
+&=\frac{1}{4}\begin{bmatrix}\lambda_1&\lambda_2 \end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}
+\end{aligned}\tag{5}</script><p>联立(4),(5)得</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设  $a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$ , 化简得</p>
+<script type="math/tex; mode=display">
+\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>单对目标函数求导</p>
+<script type="math/tex; mode=display">
+2\Sigma w -\lambda_1R-\lambda_21_n=0</script><p>提出$w$得到</p>
+<script type="math/tex; mode=display">
+w = \frac{1}{2}(\lambda_1 \Sigma^{-1}R + \lambda_2\Sigma^{-1}1_n)</script><p>代入限制条件得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+2 &= \lambda_1 1_n^T\Sigma^{-1}R + \lambda_21_n^T\Sigma^{-1}1_n\\
+2E(R) &= \lambda_1 R^T\Sigma^{-1}R + \lambda_2R^T\Sigma^{-1}1_n
+\end{aligned}</script><p>从矩阵形式得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\begin{bmatrix}2\\2E(R)\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\ R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}\\
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}
+\end{align}</script><p>代入$w$得</p>
+<script type="math/tex; mode=display">
+w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
+<hr>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lzhu/p/10405091.html"><strong>向量的内积（点乘）</strong></a></li>
+<li><a target="_blank" rel="noopener" href="https://xueqiu.com/1985849148/145570290">投资组合理论学习之马科维茨投资模型（一）</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">矩阵求导公式的数学推导（矩阵求导——基础篇）</a></li>
 </ol>
 
             </div>
@@ -290,7 +316,7 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Math/">Math</a>
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
                     
                   </div>
                 
@@ -298,7 +324,7 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Inner-product%EF%BC%86Cross-Product/">Inner product＆Cross Product</a>
+                      <a class="hover-with-bg" href="/tags/Markowitz/">Markowitz</a>
                     
                   </div>
                 
@@ -311,9 +337,9 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/15/Markowitz%E6%8A%95%E8%B5%84%E6%A8%A1%E5%9E%8B/">
+                      <a href="/2021/02/15/%E5%9F%BA%E4%BA%8E%E8%B6%85%E9%A2%9D%E6%94%B6%E7%9B%8A%E7%9A%84%E8%B5%84%E4%BA%A7%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Markowitz投资模型</span>
+                        <span class="hidden-mobile">基于超额收益的资产组合优化</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -321,8 +347,8 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D%E7%AC%94%E8%AE%B0_1/">
-                        <span class="hidden-mobile">数理金融笔记_1</span>
+                      <a href="/2021/02/15/%E5%90%91%E9%87%8F%E7%9A%84%E5%86%85%E7%A7%AF%E4%B8%8E%E5%A4%96%E7%A7%AF/">
+                        <span class="hidden-mobile">向量的内积与外积</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
