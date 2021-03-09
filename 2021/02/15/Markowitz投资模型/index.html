@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      735 字
+      801 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      14
        分钟
     </span>
   
@@ -292,7 +292,9 @@ E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
 &=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}
 \end{align}</script><p>代入$w$得</p>
 <script type="math/tex; mode=display">
-w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
+w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}1\\E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
+<hr>
+<h4 id="MATLAB代码："><a href="#MATLAB代码：" class="headerlink" title="MATLAB代码："></a>MATLAB代码：</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">[w]</span> = <span class="hljs-title">optimal_portfolio_1</span><span class="hljs-params">(R,Sigma,ER)</span></span><br><span class="hljs-comment">% no risk-free asset</span><br>n = <span class="hljs-built_in">size</span>(Sigma,<span class="hljs-number">1</span>); <span class="hljs-comment">% the number of risky shares</span><br>V = Sigma^(<span class="hljs-number">-1</span>); <span class="hljs-comment">%inverse of  variance-covariance matrix</span><br>e = <span class="hljs-built_in">ones</span>(n,<span class="hljs-number">1</span>); <span class="hljs-comment">% unit vector, column</span><br>A = e&#x27;*V*R;<br>B = R&#x27;*V*R;<br>C = e&#x27;*V*e;<br>K = [A C;  B A];<br>LM = K^(<span class="hljs-number">-1</span>)*[<span class="hljs-number">1</span>; ER];<br>w = [V*R, V*e]*LM; <span class="hljs-comment">% optimal weight</span><br></code></pre></td></tr></table></figure>
 <hr>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
 <li><a target="_blank" rel="noopener" href="https://xueqiu.com/1985849148/145570290">投资组合理论学习之马科维茨投资模型（一）</a></li>
