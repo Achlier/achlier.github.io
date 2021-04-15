@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      2.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      31
        分钟
     </span>
   
@@ -242,7 +242,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br>l1 = [[<span class="hljs-string">&#x27;李磊&#x27;</span>,<span class="hljs-number">25</span>,[&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;韩梅梅&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-string">&#x27;23&#x27;</span>&#125;]],[<span class="hljs-string">&#x27;王二蛋&#x27;</span>,<span class="hljs-number">21</span>,[]],[<span class="hljs-string">&#x27;朱一旦&#x27;</span>,<span class="hljs-number">35</span>,[&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;赵大&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-string">&#x27;23&#x27;</span>&#125;,&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;钱二&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-string">&#x27;21&#x27;</span>,<span class="hljs-string">&#x27;ex&#x27;</span>:[<span class="hljs-string">&#x27;周五&#x27;</span>,<span class="hljs-string">&#x27;吴六&#x27;</span>,<span class="hljs-string">&#x27;郑七&#x27;</span>]&#125;]]]<br>js = json.dumps(l1, sort_keys=<span class="hljs-literal">True</span>, indent=<span class="hljs-number">4</span>, separators=(<span class="hljs-string">&#x27;,&#x27;</span>, <span class="hljs-string">&#x27;:&#x27;</span>),ensure_ascii=<span class="hljs-literal">False</span>)<br>print(js)<br></code></pre></td></tr></table></figure>
 <p>导出/导入$Jason$文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">root_dir = !echo %cd% <span class="hljs-comment"># 在notebook里面运用的系统查找当前路径的方法</span><br><span class="hljs-comment"># 或os.getcwd()</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(root_dir+<span class="hljs-string">&#x27;exs&#x27;</span>+ <span class="hljs-string">&#x27;.json&#x27;</span>,<span class="hljs-string">&#x27;wb+&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    f.write(json.dumps(l1).encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br><span class="hljs-keyword">del</span> l1<br>l1 = json.load(<span class="hljs-built_in">open</span>(root_dir+<span class="hljs-string">&#x27;exs.json&#x27;</span>))<br></code></pre></td></tr></table></figure>
-<h3 id="1-6-常用函数"><a href="#1-6-常用函数" class="headerlink" title="1.6 常用函数"></a>1.6 常用函数</h3><p>按位</p>
+<h3 id="1-6-常用函数"><a href="#1-6-常用函数" class="headerlink" title="1.6 常用函数"></a>1.6 常用函数</h3><p>$cmd$操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># os.system(str格式的命令)</span><br></code></pre></td></tr></table></figure>
+<p>按位</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 按位与&amp; 参与运算的两个值，如果其二进制值对应位都为1，则该位的结果为1，否则该位为 0</span><br><span class="hljs-comment"># 按位或| 只要对应的二个二进位有一个为 1 时，结果位就为 1，只有对应为都是 0， 结果为才是 0</span><br><span class="hljs-comment"># 二进制运算符</span><br></code></pre></td></tr></table></figure>
 <p>复制</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># .copy()</span><br></code></pre></td></tr></table></figure>
@@ -269,7 +271,90 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 数字索引</span><br><span class="hljs-comment"># arr[首:尾:步长]</span><br>arr = np.array(<span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>))<br>arr[<span class="hljs-number">3</span>::<span class="hljs-number">3</span>]<br>arr[<span class="hljs-number">5</span>::-<span class="hljs-number">1</span>]<br>arr[:<span class="hljs-number">10</span>:-<span class="hljs-number">2</span>]<br><span class="hljs-comment"># 布尔索引</span><br><span class="hljs-comment"># arr[(arr &gt; 0)&amp;(arr &lt; 10)]</span><br></code></pre></td></tr></table></figure>
 <h4 id="变形，拼接和分裂"><a href="#变形，拼接和分裂" class="headerlink" title="变形，拼接和分裂"></a>变形，拼接和分裂</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># arr.T</span><br><span class="hljs-comment"># arr.reshape</span><br><span class="hljs-comment"># np.concatenate 有 axis</span><br><span class="hljs-comment"># np.vstack/np.hstack</span><br><span class="hljs-comment"># np.split/np.vsplit/np.hsplit</span><br></code></pre></td></tr></table></figure>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">arr = np.arange(<span class="hljs-number">100000</span>)<br>li = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">100000</span>))<br>%time arr = arr*<span class="hljs-number">2</span><br>%time li = [l*<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> li]<br><span class="hljs-comment"># 高级函数</span><br></code></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python">arr = np.arange(<span class="hljs-number">100000</span>)<br>li = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">100000</span>))<br>%time arr = arr*<span class="hljs-number">2</span><br>%time li = [l*<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> li]<br><span class="hljs-comment"># 高级函数</span><br>l1 =<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x:x*<span class="hljs-number">2</span>,li) <span class="hljs-comment"># 此时只是map函数本身的对象，需要list()操作</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fun</span>(<span class="hljs-params">x</span>):</span><br>    <span class="hljs-keyword">return</span> x*<span class="hljs-number">2</span><br>l1 =<span class="hljs-built_in">map</span>(fun,li) <span class="hljs-comment"># 同等上面的</span><br><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> reduce<br>l2 = reduce(<span class="hljs-keyword">lambda</span> x,y:x+y,li)<br><span class="hljs-comment"># 运算</span><br><span class="hljs-comment"># +-*/ // ** %</span><br><span class="hljs-comment"># np.sin/cos/tan/arcsin</span><br><span class="hljs-comment"># np.log/log2/log10/exp/exp2/exp10</span><br><span class="hljs-comment"># np.expm1(x) = exp(x) - 1 </span><br><span class="hljs-comment"># np.log1p(x) = log(1 + x)</span><br><span class="hljs-comment"># arr1.dot(arr2)/np.dot(arr1,arr2)</span><br><span class="hljs-comment"># tips:np有matrix函数，利于矩阵计算</span><br></code></pre></td></tr></table></figure>
+<h5 id="Numpy中可用的聚合函数"><a href="#Numpy中可用的聚合函数" class="headerlink" title="Numpy中可用的聚合函数"></a>Numpy中可用的聚合函数</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>描述</th>
+<th>函数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>np.sum</td>
+<td>计算元素的和</td>
+<td>np.argmin</td>
+<td>找出最小值的索引</td>
+</tr>
+<tr>
+<td>np.prod</td>
+<td>计算元素的积</td>
+<td>np.argmax</td>
+<td>找出最大值的索引</td>
+</tr>
+<tr>
+<td>np.mean</td>
+<td>计算元素的平均值</td>
+<td>np.median</td>
+<td>计算元素的中位数</td>
+</tr>
+<tr>
+<td>np.std</td>
+<td>计算元素的标准差</td>
+<td>np.percentile</td>
+<td>计算基于元素排序的统计值</td>
+</tr>
+<tr>
+<td>np.var</td>
+<td>计算元素的方差</td>
+<td>np.quantile</td>
+<td>计算基于元素排序的统计值</td>
+</tr>
+<tr>
+<td>np.min</td>
+<td>找出最小值</td>
+<td>np.any</td>
+<td>验证任何一个元素是否为真</td>
+</tr>
+<tr>
+<td>np.max</td>
+<td>找出最大值</td>
+<td>np.all</td>
+<td>验证所以元素是否为真</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 排序</span><br><span class="hljs-comment"># np.sort/np.argsort/arr.sort</span><br>li.sort(key = <span class="hljs-keyword">lambda</span> x:x%<span class="hljs-number">3</span>) <span class="hljs-comment"># 有 axis</span><br><span class="hljs-comment"># np.sort(arr)[::-1]/li.sort(...,reverse=True) 降序排序</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-2-Pandas"><a href="#2-2-Pandas" class="headerlink" title="2.2 Pandas"></a>2.2 Pandas</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 一维</span><br><span class="hljs-comment"># pd.Series(arr,index = []) index 可重复</span><br><span class="hljs-comment"># pd.Series(dict)</span><br><span class="hljs-comment"># 二维</span><br><span class="hljs-comment"># pd.DataFrame(&#123;col1:sr1,col2:sr2&#125;)</span><br></code></pre></td></tr></table></figure>
+<h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># df.loc[[index],col]</span><br><span class="hljs-comment"># df.iloc[num]</span><br><span class="hljs-comment"># df.ix 综合以上两种方法,不推荐</span><br><span class="hljs-comment"># 缺失值</span><br><span class="hljs-comment"># df.isnull()/df.notnull() 找缺失值</span><br><span class="hljs-comment"># df.dropna() 删除整行</span><br><span class="hljs-comment"># df.fillna(method = &quot;ffill&quot;) 按前位填充 有 axis</span><br><span class="hljs-comment"># df.fillna(&#123;col1:num1,col2:num2&#125;,limit = num, inplace = True)</span><br></code></pre></td></tr></table></figure>
+<h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># pd.concate 用于纵向合并</span><br><span class="hljs-comment"># join = &quot;inner&quot; 交集 &quot;outer&quot; 并集</span><br><span class="hljs-comment"># pd.merge 用于横向合并</span><br><span class="hljs-comment"># on 依照哪个变量拼接 left_on/right_on 不同名称对应拼接</span><br></code></pre></td></tr></table></figure>
+<h4 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># df.groupby(col)</span><br><span class="hljs-comment"># df.describe() 描述性统计</span><br></code></pre></td></tr></table></figure>
+<h4 id="Jason转DF"><a href="#Jason转DF" class="headerlink" title="Jason转DF"></a>Jason转DF</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">all_res = []<br><span class="hljs-keyword">for</span> ii <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    this_line = &#123;&#125;<br>    this_line[<span class="hljs-string">&#x27;num&#x27;</span>] = ii<br>    this_line[<span class="hljs-string">&#x27;奇偶&#x27;</span>] = <span class="hljs-number">0</span>   <span class="hljs-comment">#0是奇数</span><br>    <span class="hljs-keyword">if</span> ii % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:<br>        this_line[<span class="hljs-string">&#x27;奇偶&#x27;</span>] = <span class="hljs-number">1</span><br>    all_res.append(this_line)<br><span class="hljs-keyword">import</span> json<br>js = json.dumps(all_res, sort_keys=<span class="hljs-literal">True</span>, indent=<span class="hljs-number">4</span>, separators=(<span class="hljs-string">&#x27;,&#x27;</span>,<span class="hljs-string">&#x27;:&#x27;</span>),ensure_ascii=<span class="hljs-literal">False</span>)<br>print(js)<br>df_l = pd.DataFrame(all_res)<br>df_l<br></code></pre></td></tr></table></figure>
+<h4 id="保存、读取"><a href="#保存、读取" class="headerlink" title="保存、读取"></a>保存、读取</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># df.to_csv(root_dir+&#x27;df.csv&#x27;,encoding=&#x27;utf-8_sig&#x27;) sig 有中文时</span><br><span class="hljs-comment"># df_in = pd.read_csv(root_dir+&#x27;df.csv&#x27;)</span><br></code></pre></td></tr></table></figure>
+<h2 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3. 可视化"></a>3. 可视化</h2><ul>
+<li>可视化不只是画图，而是为了更好地表达（如:南丁格尔玫瑰图）</li>
+<li>画图工具包$pyecharts$</li>
+</ul>
+<h2 id="4-爬虫"><a href="#4-爬虫" class="headerlink" title="4. 爬虫"></a>4. 爬虫</h2><ul>
+<li>因为视频中讲的比较散，就只记了一点重点</li>
+<li>建议直接读文档</li>
+</ul>
+<h4 id="BeautifulSoup"><a href="#BeautifulSoup" class="headerlink" title="BeautifulSoup"></a>BeautifulSoup</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># 刚爬取到网页之后以防格式问题需要提前去头掐尾 html.strip()</span><br><span class="hljs-meta"># html.find()/html.find_all() 可包含 class_=</span><br><span class="hljs-meta"># parse.quote()汉字编码</span><br></code></pre></td></tr></table></figure>
+<h4 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># 可以使用xpath查找 driver.find_element_by_xpath()</span><br></code></pre></td></tr></table></figure>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><ul>
+<li>高德地图,FutuQuant,Tushare,RiceQuant等</li>
+</ul>
+<h2 id="5-自然语言处理"><a href="#5-自然语言处理" class="headerlink" title="5. 自然语言处理"></a>5. 自然语言处理</h2><ul>
+<li>有监督算法的描述-情绪判断，作者识别</li>
+<li>无监督算法的描述-主题模型，词嵌入</li>
+</ul>
+<h4 id="独热编码（One-Hot）"><a href="#独热编码（One-Hot）" class="headerlink" title="独热编码（One-Hot）"></a>独热编码（One-Hot）</h4><p>主要是采用N位状态寄存器来对N个状态进行编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> preprocessing  <br>   <br>enc = preprocessing.OneHotEncoder()  <br>enc.fit([[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]])  <span class="hljs-comment">#这里一共有4个数据，3种特征</span><br>   <br>array = enc.transform([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]]).toarray()  <span class="hljs-comment">#这里使用一个新的数据来测试</span><br>   <br><span class="hljs-built_in">print</span> array   <span class="hljs-comment"># [[ 1  0  0  1  0  0  0  0  1]]</span><br></code></pre></td></tr></table></figure>
+<h4 id="词袋模型（bag-of-words）"><a href="#词袋模型（bag-of-words）" class="headerlink" title="词袋模型（bag of words）"></a>词袋模型（bag of words）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.corpora <span class="hljs-keyword">import</span> Dictionary<br><br>texts = [[<span class="hljs-string">&#x27;human&#x27;</span>,<span class="hljs-string">&#x27;interface&#x27;</span>,<span class="hljs-string">&#x27;computer&#x27;</span>]]<br>dct = Dictionary(texts)<br>dct.add_documents([[<span class="hljs-string">&#x27;cat&#x27;</span>,<span class="hljs-string">&#x27;say&#x27;</span>,<span class="hljs-string">&#x27;moon&#x27;</span>],[<span class="hljs-string">&#x27;dog&#x27;</span>]])<br>dct.doc2bow([<span class="hljs-string">&#x27;dog&#x27;</span>,<span class="hljs-string">&#x27;computer&#x27;</span>,<span class="hljs-string">&#x27;non_existent_word&#x27;</span>])<br><span class="hljs-comment"># output:[(0,1),(6,1)] -&gt; (index,num)</span><br></code></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90583948">Python小技之骚操作表白女神一</a></p>
 
