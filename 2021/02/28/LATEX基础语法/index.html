@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      70
+      69
        分钟
     </span>
   
@@ -1464,22 +1464,22 @@
 </tr>
 <tr>
 <td style="text-align:left">多行等式（左对齐）</td>
-<td style="text-align:left"><code>\begin&#123;array&#125;&#123;lcl&#125; z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end&#123;array&#125;</code></td>
+<td style="text-align:left">\begin{array}{lcl} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}</td>
 <td style="text-align:left">$\begin{array}{lcl} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}$</td>
 </tr>
 <tr>
 <td style="text-align:left">多行等式（右对齐）</td>
-<td style="text-align:left"><code>\begin&#123;array&#125;&#123;lcr&#125; z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end&#123;array&#125;</code></td>
+<td style="text-align:left">\begin{array}{lcr} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}</td>
 <td style="text-align:left">$\begin{array}{lcr} z &amp; = &amp; a \\ f(x,y,z) &amp; = &amp; x + y + z \end{array}$</td>
 </tr>
 <tr>
 <td style="text-align:left">方程组</td>
-<td style="text-align:left"><code>\begin&#123;cases&#125; 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end&#123;cases&#125;</code></td>
+<td style="text-align:left">\begin{cases} 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{cases}</td>
 <td style="text-align:left">$\begin{cases} 3x + 5y + z \\ 7x - 2y + 4z \\ -6x + 3y + 2z \end{cases}$</td>
 </tr>
 <tr>
 <td style="text-align:left">数组</td>
-<td style="text-align:left"><code>\begin&#123;array&#125;&#123;lclcllcl&#125; a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end&#123;array&#125;</code></td>
+<td style="text-align:left">\begin{array}{lclcllcl} a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end{array}</td>
 <td style="text-align:left">$\begin{array}{lclcllcl} a &amp; b &amp; S \\ \hline 0&amp;0&amp;1\\ 0&amp;1&amp;1\\ 1&amp;0&amp;1\\ 1&amp;1&amp;0\\ \end{array}$</td>
 </tr>
 </tbody>
@@ -1726,16 +1726,16 @@
 <tr>
 <td style="text-align:left">单竖线，绝对值</td>
 <td style="text-align:left">\left<strong>l</strong> \frac{a}{b} \right<strong>l</strong></td>
-<td style="text-align:left">$$ \begin{aligned} \left</td>
+<td style="text-align:left">$ \begin{aligned} \left</td>
 <td>\frac{a}{b} \right</td>
-<td>\end{aligned} $$</td>
+<td>\end{aligned} $</td>
 </tr>
 <tr>
 <td style="text-align:left">双竖线，范</td>
 <td style="text-align:left">\left <strong>\l</strong> \frac{a}{b} \right <strong>\l</strong></td>
-<td style="text-align:left">$$ \begin{aligned} \left \</td>
+<td style="text-align:left">$ \begin{aligned} \left \</td>
 <td>\frac{a}{b} \right \</td>
-<td>\end{aligned} $$</td>
+<td>\end{aligned} $</td>
 </tr>
 <tr>
 <td style="text-align:left">取整函数</td>
@@ -1770,12 +1770,22 @@
 <tr>
 <td style="text-align:left">混合括号</td>
 <td style="text-align:left">\left [ 0,1 \right ) \left \langle \psi \right l</td>
-<td style="text-align:left">$\left [ 0,1 \right )$</td>
+<td style="text-align:left">$\left [ 0,1 \right )$, $\left \langle \psi \right</td>
+<td>$</td>
+</tr>
+<tr>
+<td style="text-align:left">单左括号</td>
+<td style="text-align:left">\left \{ \frac{a}{b} <strong>\right .</strong></td>
+<td style="text-align:left">$\left \{ \frac{a}{b} \right .$</td>
+</tr>
+<tr>
+<td style="text-align:left">单右括号</td>
+<td style="text-align:left"><strong>\left .</strong> \frac{a}{b} \right \}</td>
+<td style="text-align:left">$\left . \frac{a}{b} \right \}$</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>$\left \langle \psi \right |$ |<br>| 单左括号      | \left \{ \frac{a}{b} <strong>\right .</strong>                      | $\left \{ \frac{a}{b} \right .$ |<br>| 单右括号      | <strong>\left .</strong> \frac{a}{b} \right \}                      | $\left . \frac{a}{b} \right \}$ |</p>
 <p>备注：</p>
 <ul>
 <li>可以使用 <code>\big, \Big, \bigg, \Bigg</code> 控制括号的大小，比如代码</li>
