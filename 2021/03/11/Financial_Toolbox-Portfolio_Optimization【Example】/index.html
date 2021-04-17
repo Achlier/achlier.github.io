@@ -228,7 +228,7 @@
             
             <div class="markdown-body">
               <blockquote>
-<p>对Matlab金融工具箱内的Portfolio_Optimization_Example代码的阅读笔记</p>
+<p>对Matlab金融工具箱内的Portfolio_Optimization_Example代码的阅读笔记；</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="打开文档"><a href="#打开文档" class="headerlink" title="打开文档"></a>打开文档</h3><p>打开Matlab，在command中输入：</p>
@@ -259,7 +259,9 @@
 <p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization%E3%80%90Example%E3%80%91/fig5.jpg" srcset="/img/loading.gif" alt></p>
 <h5 id="3-显示portfolio的包含的Assets和weight占比"><a href="#3-显示portfolio的包含的Assets和weight占比" class="headerlink" title="3.显示portfolio的包含的Assets和weight占比"></a>3.显示portfolio的包含的Assets和weight占比</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">aBlotter = dataset(&#123;<span class="hljs-number">100</span>*awgt(awgt &gt; <span class="hljs-number">0</span>),<span class="hljs-string">&#x27;Weight&#x27;</span>&#125;, <span class="hljs-string">&#x27;obsnames&#x27;</span>, p.AssetList(awgt &gt; <span class="hljs-number">0</span>));<br><br>displayPortfolio(sprintf(<span class="hljs-string">&#x27;Portfolio with %g%% Target Return&#x27;</span>, <span class="hljs-number">100</span>*TargetReturn), aBlotter, <span class="hljs-built_in">false</span>);<br><br>bBlotter = dataset(&#123;<span class="hljs-number">100</span>*bwgt(bwgt &gt; <span class="hljs-number">0</span>),<span class="hljs-string">&#x27;Weight&#x27;</span>&#125;, <span class="hljs-string">&#x27;obsnames&#x27;</span>, p.AssetList(bwgt &gt; <span class="hljs-number">0</span>));<br><br>displayPortfolio(sprintf(<span class="hljs-string">&#x27;Portfolio with %g%% Target Risk&#x27;</span>, <span class="hljs-number">100</span>*TargetRisk), bBlotter, <span class="hljs-built_in">false</span>);<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/finance/portfolio-optimization-examples.html"><strong>MathWork</strong> - Help Center</a></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/finance/portfolio-optimization-examples.html"><strong>MathWork</strong> - Help Center</a></li>
+</ol>
 
             </div>
             <hr>
