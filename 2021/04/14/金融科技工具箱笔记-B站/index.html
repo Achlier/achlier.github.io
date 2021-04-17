@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.5k 字
+      3.9k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      57
        分钟
     </span>
   
@@ -415,13 +415,37 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 <p>当集体颜色偏红，且对角一条为蓝点，则拟合成功</p>
 <p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E7%AC%94%E8%AE%B0-B%E7%AB%99/pic1-9.jpg" srcset="/img/loading.gif" alt></p>
 <h3 id="5-3-词向量模型"><a href="#5-3-词向量模型" class="headerlink" title="5.3 词向量模型"></a>5.3 词向量模型</h3><ul>
-<li>Word2vec 简单扩展：doc2vec</li>
+<li>$Word2vec$ 简单扩展：$doc2vec$</li>
 </ul>
 <h5 id="针对主题"><a href="#针对主题" class="headerlink" title="针对主题"></a>针对主题</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> Word2Vec<br><span class="hljs-comment"># 输入doc2bow之前的texts</span><br>model = Word2Vec(texts, size=<span class="hljs-number">50</span>, window=<span class="hljs-number">5</span>, min_count=<span class="hljs-number">1</span>, workers=-<span class="hljs-number">1</span>)<br><span class="hljs-comment"># workers=-1 ， 最大-1</span><br>model.train(sentences = texts,total_words = <span class="hljs-built_in">len</span>(dic),epochs = <span class="hljs-number">50</span>)<br>model.wv.most_similar(<span class="hljs-string">&quot;中国&quot;</span>)<br><br><span class="hljs-comment"># 保存和读取</span><br>model.save(root_dir+<span class="hljs-string">&#x27;sub.w2v&#x27;</span>)<br>model = Word2Vec.load(root_dir+<span class="hljs-string">&#x27;sub.w2v&#x27;</span>)<br></code></pre></td></tr></table></figure>
 <h5 id="针对文章"><a href="#针对文章" class="headerlink" title="针对文章"></a>针对文章</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models.doc2vec <span class="hljs-keyword">import</span> Doc2Vec, TaggedDocument<br>documents = [TaggedDocument(doc, [i]) <span class="hljs-keyword">for</span> i, doc <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(texts)]<br>model = Doc2Vec(documents, size=<span class="hljs-number">50</span>)<br>model.train(sentences = documents,total_examples=<span class="hljs-built_in">len</span>(documents),epochs = <span class="hljs-number">40</span>)<br></code></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></p>
+<h2 id="6-机器学习"><a href="#6-机器学习" class="headerlink" title="6. 机器学习"></a>6. 机器学习</h2><h4 id="6-1-一些概念"><a href="#6-1-一些概念" class="headerlink" title="6.1 一些概念"></a>6.1 一些概念</h4><h5 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h5><ul>
+<li>有监督 : 有标签的数据，人能指出的</li>
+<li>无监督 : 无标签的数据，理论上无法给出完美答案</li>
+<li>半监督 : 部分数据带标签, 如部分带标签的情绪识别</li>
+<li>强化学习 : 含隐藏标签</li>
+</ul>
+<h5 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h5><ul>
+<li>$Batch$ 批处理 : 一次性训练所有数据</li>
+<li>$Online$ : 一批一批使用数据</li>
+<li>$Mini-batch$ : 以上两者结合</li>
+<li>$Active Learning$ : 机器自己选择需要的数据</li>
+</ul>
+<h5 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h5><ul>
+<li>特征数据 : 有具体的含义</li>
+<li>原始数据 : 图像声音本身</li>
+<li>抽象数据 : 无意义的UID，主成分，其他中间结果</li>
+</ul>
+<h5 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h5><p>由于不可能真正地存在完整的数据，输入数据$E_{in}(simple)$和真正完美的数据$E_{out}$ 必然存在误差；由于大数定理，及霍夫丁不等式 $(Hoeffding’s \ inequality)$ 得</p>
+<script type="math/tex; mode=display">
+\mathbb{P}[|E_{in}(h)-E_{out}(h)|>\epsilon]\leq 2exp(-2\epsilon^2N)</script><p>如果$|E_{in}(h)-E_{out}(h)|$ 过大，则为坏数据</p>
+<p>当存在$Breakpoint$, 则增长函数存在上限, 得$Vapnik-Chervonenkis (VC) bound$</p>
+<script type="math/tex; mode=display">
+\mathbb{P}[\exist h\in \mathcal{H} s.t.|E_{in}(h)-E_{out}(h)|>\epsilon]\leq 4(2N)^{k-1}exp(-\frac{1}{8}\epsilon^2N)</script><p>因此，机器学习不仅要使$E_{in}$的误差尽量小，还需要使$E_{in}(h) \approx E_{out}(h)$ ；对此需要求得 $dvc (OLS，线性中为变量+1)$ , $N = 10 dvc$</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90583948">Python小技之骚操作表白女神一</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65511873">文本挖掘从小白到精通（二）—-语料库和词向量空间</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cx411i7op?p=1">林轩田机器学习基石(国语)</a></p>
 
             </div>
             <hr>
