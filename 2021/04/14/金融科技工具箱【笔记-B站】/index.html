@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.1k 字
+      4.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      59
+      67
        分钟
     </span>
   
@@ -452,7 +452,7 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 <h3 id="6-2-线性回归"><a href="#6-2-线性回归" class="headerlink" title="6.2 线性回归"></a>6.2 线性回归</h3><ul>
 <li>$Lasso$ 和 岭回归 不是无偏， 而计量经济中多为对系数的解释，通常不用此方法</li>
 </ul>
-<h3 id="6-3-SVM"><a href="#6-3-SVM" class="headerlink" title="6.3 SVM"></a>6.3 SVM</h3><ul>
+<h3 id="6-3-SVM-Support-Vector-Machine"><a href="#6-3-SVM-Support-Vector-Machine" class="headerlink" title="6.3 SVM (Support Vector Machine)"></a>6.3 SVM (Support Vector Machine)</h3><ul>
 <li><p>$SVM$ 虽然不是无偏的，但 $B$ 变量可大于 $N$ 样本量</p>
 </li>
 <li><p>$CV(Cross-Validation)$ 交叉验证，可用 $K-Fold$ $(sklearn包)$</p>
@@ -463,10 +463,85 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 </ul>
 </li>
 </ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90583948">Python小技之骚操作表白女神一</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65511873">文本挖掘从小白到精通（二）—-语料库和词向量空间</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cx411i7op?p=1">林轩田机器学习基石(国语)</a></p>
+<h3 id="6-4-决策树-Decision-Tree"><a href="#6-4-决策树-Decision-Tree" class="headerlink" title="6.4 决策树 (Decision Tree)"></a>6.4 决策树 (Decision Tree)</h3><h5 id="节点选择-切分策略"><a href="#节点选择-切分策略" class="headerlink" title="节点选择/切分策略"></a>节点选择/切分策略</h5><ul>
+<li>$ID3$算法，选择信息熵增大的最优算法</li>
+<li>$C4.5$算法，选择信息增益比最大的切分点，限制了$ID3$多切带来的过拟合</li>
+<li>$CART$算法，每一步切分使得数据正确率提升最多</li>
+</ul>
+<h5 id="停止切分"><a href="#停止切分" class="headerlink" title="停止切分"></a>停止切分</h5><ul>
+<li>剩余数据$y$相同</li>
+<li>剩余数据$x$相同</li>
+<li>设定最小收益值</li>
+</ul>
+<h5 id="决策树的正则化"><a href="#决策树的正则化" class="headerlink" title="决策树的正则化"></a>决策树的正则化</h5><ul>
+<li>剪枝，减去几个带来收益最小的分叉节点</li>
+<li>$Early Stopping$，提升停止的最小值阈值</li>
+<li>限制树高</li>
+</ul>
+<h5 id="实操建议"><a href="#实操建议" class="headerlink" title="实操建议"></a>实操建议</h5><ul>
+<li>特征数量大容易过拟合</li>
+<li>应预先进行维度压缩 $(PCA,ICA)$</li>
+<li>对不同树的构建方法应有了解</li>
+<li>提前将样本调平<ul>
+<li>把劣势数据复制多份</li>
+</ul>
+</li>
+</ul>
+<h5 id="融合算法-Blending​"><a href="#融合算法-Blending​" class="headerlink" title="融合算法 (Blending​)"></a>融合算法 (Blending​)</h5><ul>
+<li>$t = 1,2,3…T$</li>
+<li>$D_t$ : the data at time $t$</li>
+<li>Obtain $g_t$ by $A(D)$</li>
+</ul>
+<script type="math/tex; mode=display">
+\bar{g} = \lim_{T \to \infty} G = \lim_{T \to \infty} \frac{1}{T}\sum_{t=1}^Tg_t = \varepsilon A(D)</script><h5 id="Bootstrap-Aggregation-Bagging"><a href="#Bootstrap-Aggregation-Bagging" class="headerlink" title="Bootstrap Aggregation (Bagging)"></a>Bootstrap Aggregation (Bagging)</h5><p>在$Size$为$N$的数据里面抽$N’$个数据作为第一个子样本，放回去，再抽$N’$个数据作为第二个子样本</p>
+<h5 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林 (Random Forest)"></a>随机森林 (Random Forest)</h5><ul>
+<li>$Random Forest = Bagging + Decision Tree$</li>
+</ul>
+<h5 id="Out-of-Bag"><a href="#Out-of-Bag" class="headerlink" title="Out of Bag"></a>Out of Bag</h5><ul>
+<li>当数据足够大时，一定有约等于 $\frac{1}{e}$的数据没有被抽取到</li>
+</ul>
+<script type="math/tex; mode=display">
+(1-\frac{1}{N})^N = \frac{1}{(\frac{N}{N-1})^N} = \frac{1}{(1+\frac{1}{N-1})^N}\approx \frac{1}{e}</script><ul>
+<li>样本外数据可以用于 对大$G$的$Validation$<ul>
+<li>$G_N^-(x)=average(g_{没被用到的t})$</li>
+<li>$E_{oob}(G)=\frac{1}{N}\sum_{n=1}^Nerr(y_n,G_n^-(x_n))$</li>
+</ul>
+</li>
+</ul>
+<h5 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h5><ul>
+<li>变量重要性筛选 $permutation$ : 把变量打乱，$x_1 \to y_5$ ，差距越大越重要<ul>
+<li>对于$Dummy Variable$ 这种方法肯能会低估，因为打乱不充足</li>
+</ul>
+</li>
+</ul>
+<h5 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h5><ul>
+<li>计算$E_{in}$的时候，减少对做错过的$g_t$的$err$的权重<ul>
+<li>所有做错的权重只占1/2</li>
+<li>当错$=n_1$，对$=n_2$<ul>
+<li>$incorrect: u_n^{(t)}·n_2 \to u_n^{(t+1)}$</li>
+<li>$correct: u_n^{(t)}·n_1 \to u_n^{(t+1)}$</li>
+</ul>
+</li>
+<li>$\epsilon_t = \frac{\sum_{n=1}^N u_n^{(t)}[y_n \neq g_t(x_n)]}{\sum_{n=1}^N u_n^{(t)}}$，$\Diamond_t=\sqrt\frac{1-\epsilon_t}{\epsilon_t}$，$\alpha_t=ln(\Diamond_t)$<ul>
+<li>$incorrect: u_n^{(t)}·\Diamond_t \to u_n^{(t+1)}$</li>
+<li>$correct: u_n^{(t)}/\Diamond_t \to u_n^{(t+1)}$</li>
+<li>$G(x)=sign(\sum_{t=1}^T\alpha_tg_t(x))$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>决策树中，在再抽样的步骤完成$u^{(t)}\to u^{(t+1)}$的变换（复制多份）</li>
+<li>对于连续值：$GradientBoost$</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/90583948">Python小技之骚操作表白女神一</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65511873">文本挖掘从小白到精通（二）—-语料库和词向量空间</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cx411i7op?p=1">林轩田机器学习基石(国语)</a></p>
+</li>
+</ol>
 
             </div>
             <hr>
