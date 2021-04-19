@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.3k 字
+      6.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      88
+      90
        分钟
     </span>
   
@@ -886,6 +886,61 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
+<h5 id="实践：金融风控"><a href="#实践：金融风控" class="headerlink" title="实践：金融风控"></a>实践：金融风控</h5><ul>
+<li>方法基础：评分卡模型，逻辑回归</li>
+<li>变量处理：离散化</li>
+<li>变量筛选：单变量，多变量</li>
+<li>重要方法：$WOE$与$IV$<ul>
+<li>$WOE_i = ln(\frac{py_i}{pn_i}) = ln(\frac{y_i/y_T}{n_i/n_T}) = ln(\frac{y_i/n_i}{y_T/n_T})$</li>
+<li>$IV_i = (py_i-pn_i)*WOE_i$</li>
+<li>$i = 1$ 是男生</li>
+<li>$py_1 ： $男生违约占比</li>
+<li>$pn_1 ： $男生不违约占比</li>
+<li>$y_1 : $男生违约数量</li>
+<li>$n_1 : $男生不违约数量</li>
+<li>$y_T : $总体违约数量</li>
+<li>$n_T : $总体不违约数量</li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>IV范围</th>
+<th>预测效果</th>
+<th>英文描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;0.02</td>
+<td>几乎没有</td>
+<td>Useless for prediction</td>
+</tr>
+<tr>
+<td>0.02~0.1</td>
+<td>弱</td>
+<td>Weak predictor</td>
+</tr>
+<tr>
+<td>0.1~0.3</td>
+<td>中等</td>
+<td>Medium predictor</td>
+</tr>
+<tr>
+<td>0.3~0.5</td>
+<td>强</td>
+<td>Strong predictor</td>
+</tr>
+<tr>
+<td>&gt;0.5</td>
+<td>难以置信</td>
+<td>Suspicious or too good to be true</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65511873">文本挖掘从小白到精通（二）—-语料库和词向量空间</a></li>
