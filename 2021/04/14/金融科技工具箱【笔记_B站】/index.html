@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.4k 字
+      7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      90
+      97
        分钟
     </span>
   
@@ -230,7 +230,7 @@
               <blockquote>
 <p>基于B站up<strong>无机言nokay</strong>的视频<em>《金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课》</em>的笔记，此视频偏向面对金融系学生的基础讲解；</p>
 <p>优点：快速入门，全面，有主讲人个人研究时的想法；</p>
-<p>缺点：因为面向群众不是计算机系且时间有限，比较零碎，实践不多；</p>
+<p>缺点：因为面向群众不是计算机系且时间有限，比较零碎，深入需要自学；</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="0-其他资料"><a href="#0-其他资料" class="headerlink" title="0. 其他资料"></a>0. 其他资料</h2><ol>
@@ -359,7 +359,7 @@
 <li>有监督算法的描述-情绪判断，作者识别</li>
 <li>无监督算法的描述-主题模型，词嵌入</li>
 </ul>
-<h5 id="独热编码（One-Hot）"><a href="#独热编码（One-Hot）" class="headerlink" title="独热编码（One-Hot）"></a>独热编码（One-Hot）</h5><p>主要是采用N位状态寄存器来对N个状态进行编码</p>
+<h4 id="独热编码（One-Hot）"><a href="#独热编码（One-Hot）" class="headerlink" title="独热编码（One-Hot）"></a>独热编码（One-Hot）</h4><p>主要是采用N位状态寄存器来对N个状态进行编码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> preprocessing  <br>   <br>enc = preprocessing.OneHotEncoder()  <br>enc.fit([[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]])  <br><span class="hljs-comment"># 这里一共有4个数据，3种特征</span><br>   <br>array = enc.transform([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]]).toarray()  <br><span class="hljs-comment"># 这里使用一个新的数据来测试</span><br>   <br><span class="hljs-built_in">print</span> (array)   <span class="hljs-comment"># [[ 1  0 | 0  1  0 | 0  0  0  1]]</span><br></code></pre></td></tr></table></figure>
 <h3 id="5-1-词袋模型（bag-of-words）"><a href="#5-1-词袋模型（bag-of-words）" class="headerlink" title="5.1 词袋模型（bag of words）"></a>5.1 词袋模型（bag of words）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.corpora <span class="hljs-keyword">import</span> Dictionary<br><br>texts = [[<span class="hljs-string">&#x27;human&#x27;</span>,<span class="hljs-string">&#x27;interface&#x27;</span>,<span class="hljs-string">&#x27;computer&#x27;</span>]]<br>dct = Dictionary(texts)<br>dct.add_documents([[<span class="hljs-string">&#x27;cat&#x27;</span>,<span class="hljs-string">&#x27;say&#x27;</span>,<span class="hljs-string">&#x27;moon&#x27;</span>],[<span class="hljs-string">&#x27;dog&#x27;</span>]])<br>dct.doc2bow([<span class="hljs-string">&#x27;dog&#x27;</span>,<span class="hljs-string">&#x27;computer&#x27;</span>,<span class="hljs-string">&#x27;non_existent_word&#x27;</span>])<br><span class="hljs-comment"># output:[(0,1),(6,1)] -&gt; (index,num)</span><br></code></pre></td></tr></table></figure>
 <h4 id="TF-IDF（term-frequency–inverse-document-frequency）"><a href="#TF-IDF（term-frequency–inverse-document-frequency）" class="headerlink" title="TF-IDF（term frequency–inverse document frequency）"></a>TF-IDF（term frequency–inverse document frequency）</h4><p>TF用以评估一字词对于一个文章的重要程度</p>
@@ -409,9 +409,9 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 <li>如果主题数目为 $K$ ,则 $\alpha = 50/K$ </li>
 <li>如果词数量为 $W$ ,则 $\beta = 200/W $</li>
 </ul>
-<h5 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h5><p>动态主题模型</p>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>动态主题模型</p>
 <p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-7.jpg" srcset="/img/loading.gif" alt></p>
-<h5 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> LdaMulticore<br>num_topics = <span class="hljs-number">20</span> <span class="hljs-comment">#主题数</span><br>lda_fst = LdaMulticore(<br>    corpus=corpus, num_topics=num_topics, id2word=dic,<br>    workers=<span class="hljs-number">6</span>, eval_every=<span class="hljs-literal">None</span>, passes=<span class="hljs-number">10</span>, batch=<span class="hljs-literal">True</span><br>)<br><span class="hljs-comment"># 以下步骤仅在Jupyter notebook内显示</span><br><span class="hljs-keyword">import</span> pyLDAvis.gensim<br>pyLDAvis.enable_notebook()<br>vis_sub_10 = pyLDAvis.gensim.prepare(lda_fst, corpus, dic, sort_topics = <span class="hljs-literal">False</span>)<br><br>pyLDAvis.display(vis_sub_10)<br>lda_fst.save(root_dir+<span class="hljs-string">&#x27;tiny_10.lda&#x27;</span>)<br><br><span class="hljs-comment"># 读取的方法</span><br>lda_fst = LdaMulticore.load(<span class="hljs-string">&#x27;tiny_10.lda&#x27;</span>)<br>dic = corpora.Dictionary.load(root_dir+<span class="hljs-string">&#x27;sub_rmrb.dict&#x27;</span>)<br>corpus = MmCorpus(root_dir+<span class="hljs-string">&#x27;sub_rmrb.mm&#x27;</span>)<br><br><span class="hljs-comment"># 某篇文章对应主题的概率,可不用训练集</span><br>print(lda_fst.get_document_topics(corpus[<span class="hljs-number">0</span>],minimum_probability=<span class="hljs-number">0.5</span>))<br></code></pre></td></tr></table></figure>
+<h4 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> LdaMulticore<br>num_topics = <span class="hljs-number">20</span> <span class="hljs-comment">#主题数</span><br>lda_fst = LdaMulticore(<br>    corpus=corpus, num_topics=num_topics, id2word=dic,<br>    workers=<span class="hljs-number">6</span>, eval_every=<span class="hljs-literal">None</span>, passes=<span class="hljs-number">10</span>, batch=<span class="hljs-literal">True</span><br>)<br><span class="hljs-comment"># 以下步骤仅在Jupyter notebook内显示</span><br><span class="hljs-keyword">import</span> pyLDAvis.gensim<br>pyLDAvis.enable_notebook()<br>vis_sub_10 = pyLDAvis.gensim.prepare(lda_fst, corpus, dic, sort_topics = <span class="hljs-literal">False</span>)<br><br>pyLDAvis.display(vis_sub_10)<br>lda_fst.save(root_dir+<span class="hljs-string">&#x27;tiny_10.lda&#x27;</span>)<br><br><span class="hljs-comment"># 读取的方法</span><br>lda_fst = LdaMulticore.load(<span class="hljs-string">&#x27;tiny_10.lda&#x27;</span>)<br>dic = corpora.Dictionary.load(root_dir+<span class="hljs-string">&#x27;sub_rmrb.dict&#x27;</span>)<br>corpus = MmCorpus(root_dir+<span class="hljs-string">&#x27;sub_rmrb.mm&#x27;</span>)<br><br><span class="hljs-comment"># 某篇文章对应主题的概率,可不用训练集</span><br>print(lda_fst.get_document_topics(corpus[<span class="hljs-number">0</span>],minimum_probability=<span class="hljs-number">0.5</span>))<br></code></pre></td></tr></table></figure>
 <p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-8.jpg" srcset="/img/loading.gif" alt></p>
 <h5 id="主题相关性检验"><a href="#主题相关性检验" class="headerlink" title="主题相关性检验"></a>主题相关性检验</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 官方文档给的代码</span><br><span class="hljs-keyword">from</span> string <span class="hljs-keyword">import</span> punctuation<br><span class="hljs-keyword">from</span> nltk <span class="hljs-keyword">import</span> RegexpTokenizer<br><span class="hljs-keyword">from</span> nltk.stem.porter <span class="hljs-keyword">import</span> PorterStemmer<br><span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords<br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> fetch_20newsgroups<br>%matplotlib inline<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plot_difference_plotly</span>(<span class="hljs-params">mdiff, title=<span class="hljs-string">&quot;&quot;</span>, annotation=<span class="hljs-literal">None</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;Plot the difference between models.</span><br><span class="hljs-string">    Uses plotly as the backend.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">import</span> plotly.graph_objs <span class="hljs-keyword">as</span> go<br>    <span class="hljs-keyword">import</span> plotly.offline <span class="hljs-keyword">as</span> py<br>    annotation_html = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">if</span> annotation <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        annotation_html = [<br>            [<br>                <span class="hljs-string">&quot;+++ &#123;&#125;&lt;br&gt;--- &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;, &quot;</span>.join(int_tokens), <span class="hljs-string">&quot;, &quot;</span>.join(diff_tokens))<br>                <span class="hljs-keyword">for</span> (int_tokens, diff_tokens) <span class="hljs-keyword">in</span> row<br>            ]<br>            <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> annotation<br>        ]<br>    data = go.Heatmap(z=mdiff, colorscale=<span class="hljs-string">&#x27;RdBu&#x27;</span>, text=annotation_html)<br>    layout = go.Layout(width=<span class="hljs-number">950</span>, height=<span class="hljs-number">950</span>, title=title, xaxis=<span class="hljs-built_in">dict</span>(title=<span class="hljs-string">&quot;topic&quot;</span>), yaxis=<span class="hljs-built_in">dict</span>(title=<span class="hljs-string">&quot;topic&quot;</span>))<br>    py.iplot(<span class="hljs-built_in">dict</span>(data=[data], layout=layout))<br><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plot_difference_matplotlib</span>(<span class="hljs-params">mdiff, title=<span class="hljs-string">&quot;&quot;</span>, annotation=<span class="hljs-literal">None</span></span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;Helper function to plot difference between models.</span><br><span class="hljs-string">    Uses matplotlib as the backend.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>    fig, ax = plt.subplots(figsize=(<span class="hljs-number">18</span>, <span class="hljs-number">14</span>))<br>    data = ax.imshow(mdiff, cmap=<span class="hljs-string">&#x27;RdBu_r&#x27;</span>, origin=<span class="hljs-string">&#x27;lower&#x27;</span>)<br>    plt.title(title)<br>    plt.colorbar(data)<br><span class="hljs-keyword">try</span>:<br>    get_ipython()<br>    <span class="hljs-keyword">import</span> plotly.offline <span class="hljs-keyword">as</span> py<br><span class="hljs-keyword">except</span> Exception:<br>    <span class="hljs-comment">#</span><br>    <span class="hljs-comment"># Fall back to matplotlib if we&#x27;re not in a notebook, or if plotly is</span><br>    <span class="hljs-comment"># unavailable for whatever reason.</span><br>    <span class="hljs-comment">#</span><br>    plot_difference = plot_difference_matplotlib<br><span class="hljs-keyword">else</span>:<br>    py.init_notebook_mode()<br>    plot_difference = plot_difference_plotly<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> LdaMulticore,LdaModel<br>lda_sub_10 = LdaModel.load(root_dir+<span class="hljs-string">&#x27;sub_10.lda&#x27;</span>)<br>mdiff, annotation = lda_sub_10.diff(lda_sub_10, distance=<span class="hljs-string">&#x27;jaccard&#x27;</span>, num_words=<span class="hljs-number">50</span>)<br>plot_difference(mdiff, title=<span class="hljs-string">&quot;Topic difference (one model) [jaccard distance]&quot;</span>, annotation=annotation)<br></code></pre></td></tr></table></figure>
@@ -426,24 +426,24 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 <li>公式推导可参考B站另一视频<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aE411o7qd">【机器学习】【白板推导系列】【合集 1～23】</a></li>
 <li>理论知识可阅读 林轩田机器学习基石 (本视频采用课件来源)+西瓜书+<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0800a33fd86e">ESL</a></li>
 </ul>
-<h3 id="6-1-一些概念"><a href="#6-1-一些概念" class="headerlink" title="6.1 一些概念"></a>6.1 一些概念</h3><h5 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h5><ul>
+<h3 id="6-1-一些概念"><a href="#6-1-一些概念" class="headerlink" title="6.1 一些概念"></a>6.1 一些概念</h3><h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><ul>
 <li>有监督 : 有标签的数据，人能指出的</li>
 <li>无监督 : 无标签的数据，理论上无法给出完美答案</li>
 <li>半监督 : 部分数据带标签, 如部分带标签的情绪识别</li>
 <li>强化学习 : 含隐藏标签</li>
 </ul>
-<h5 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h5><ul>
+<h4 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h4><ul>
 <li>$Batch$ 批处理 : 一次性训练所有数据</li>
 <li>$Online$ : 一批一批使用数据</li>
 <li>$Mini-batch$ : 以上两者结合</li>
 <li>$Active Learning$ : 机器自己选择需要的数据</li>
 </ul>
-<h5 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h5><ul>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
 <li>特征数据 : 有具体的含义</li>
 <li>原始数据 : 图像声音本身</li>
 <li>抽象数据 : 无意义的$UID$，主成分，其他中间结果</li>
 </ul>
-<h5 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h5><p>由于不可能真正地存在完整的数据，输入数据$E_{in}(simple)$和真正完美的数据$E_{out}$ 必然存在误差；由于大数定理，及霍夫丁不等式 $(Hoeffding’s \ inequality)$ 得</p>
+<h4 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h4><p>由于不可能真正地存在完整的数据，输入数据$E_{in}(simple)$和真正完美的数据$E_{out}$ 必然存在误差；由于大数定理，及霍夫丁不等式 $(Hoeffding’s \ inequality)$ 得</p>
 <script type="math/tex; mode=display">
 \mathbb{P}[|E_{in}(h)-E_{out}(h)|>\epsilon]\leq 2exp(-2\epsilon^2N)</script><p>如果$|E_{in}(h)-E_{out}(h)|$ 过大，则为坏数据</p>
 <p>当存在$Breakpoint$, 则增长函数存在上限, 得$Vapnik-Chervonenkis (VC) bound$</p>
@@ -466,22 +466,22 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 </ul>
 </li>
 </ul>
-<h3 id="6-4-决策树-Decision-Tree"><a href="#6-4-决策树-Decision-Tree" class="headerlink" title="6.4 决策树 (Decision Tree)"></a>6.4 决策树 (Decision Tree)</h3><h5 id="节点选择-切分策略"><a href="#节点选择-切分策略" class="headerlink" title="节点选择/切分策略"></a>节点选择/切分策略</h5><ul>
+<h3 id="6-4-决策树-Decision-Tree"><a href="#6-4-决策树-Decision-Tree" class="headerlink" title="6.4 决策树 (Decision Tree)"></a>6.4 决策树 (Decision Tree)</h3><h4 id="节点选择-切分策略"><a href="#节点选择-切分策略" class="headerlink" title="节点选择/切分策略"></a>节点选择/切分策略</h4><ul>
 <li>$ID3$算法，选择信息熵增大的最优算法</li>
 <li>$C4.5$算法，选择信息增益比最大的切分点，限制了$ID3$多切带来的过拟合</li>
 <li>$CART$算法，每一步切分使得数据正确率提升最多</li>
 </ul>
-<h5 id="停止切分"><a href="#停止切分" class="headerlink" title="停止切分"></a>停止切分</h5><ul>
+<h4 id="停止切分"><a href="#停止切分" class="headerlink" title="停止切分"></a>停止切分</h4><ul>
 <li>剩余数据$y$相同</li>
 <li>剩余数据$x$相同</li>
 <li>设定最小收益值</li>
 </ul>
-<h5 id="决策树的正则化"><a href="#决策树的正则化" class="headerlink" title="决策树的正则化"></a>决策树的正则化</h5><ul>
+<h4 id="决策树的正则化"><a href="#决策树的正则化" class="headerlink" title="决策树的正则化"></a>决策树的正则化</h4><ul>
 <li>剪枝，减去几个带来收益最小的分叉节点</li>
 <li>$Early Stopping$，提升停止的最小值阈值</li>
 <li>限制树高</li>
 </ul>
-<h5 id="实操建议"><a href="#实操建议" class="headerlink" title="实操建议"></a>实操建议</h5><ul>
+<h4 id="实操建议"><a href="#实操建议" class="headerlink" title="实操建议"></a>实操建议</h4><ul>
 <li>特征数量大容易过拟合</li>
 <li>应预先进行维度压缩 $(PCA,ICA)$</li>
 <li>对不同树的构建方法应有了解</li>
@@ -490,15 +490,15 @@ p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" clas
 </ul>
 </li>
 </ul>
-<h5 id="融合算法-Blending​"><a href="#融合算法-Blending​" class="headerlink" title="融合算法 (Blending​)"></a>融合算法 (Blending​)</h5><ul>
+<h4 id="融合算法-Blending​"><a href="#融合算法-Blending​" class="headerlink" title="融合算法 (Blending​)"></a>融合算法 (Blending​)</h4><ul>
 <li>$t = 1,2,3…T$</li>
 <li>$D_t$ : the data at time $t$</li>
 <li>Obtain $g_t$ by $A(D)$</li>
 </ul>
 <script type="math/tex; mode=display">
-\bar{g} = \lim_{T \to \infty} G = \lim_{T \to \infty} \frac{1}{T}\sum_{t=1}^Tg_t = \varepsilon A(D)</script><h5 id="Bootstrap-Aggregation-Bagging"><a href="#Bootstrap-Aggregation-Bagging" class="headerlink" title="Bootstrap Aggregation (Bagging)"></a>Bootstrap Aggregation (Bagging)</h5><p>在$Size$为$N$的数据里面抽$N’$个数据作为第一个子样本，放回去，再抽$N’$个数据作为第二个子样本</p>
-<h5 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林 (Random Forest)"></a>随机森林 (Random Forest)</h5><script type="math/tex; mode=display">
-Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href="#Out-of-Bag" class="headerlink" title="Out of Bag"></a>Out of Bag</h5><ul>
+\bar{g} = \lim_{T \to \infty} G = \lim_{T \to \infty} \frac{1}{T}\sum_{t=1}^Tg_t = \varepsilon A(D)</script><h4 id="Bootstrap-Aggregation-Bagging"><a href="#Bootstrap-Aggregation-Bagging" class="headerlink" title="Bootstrap Aggregation (Bagging)"></a>Bootstrap Aggregation (Bagging)</h4><p>在$Size$为$N$的数据里面抽$N’$个数据作为第一个子样本，放回去，再抽$N’$个数据作为第二个子样本</p>
+<h4 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林 (Random Forest)"></a>随机森林 (Random Forest)</h4><script type="math/tex; mode=display">
+Random \ Forest = Bagging + Decision \ Tree</script><h4 id="Out-of-Bag"><a href="#Out-of-Bag" class="headerlink" title="Out of Bag"></a>Out of Bag</h4><ul>
 <li>当数据足够大时，一定有约等于 $\frac{1}{e}$的数据没有被抽取到</li>
 </ul>
 <script type="math/tex; mode=display">
@@ -509,13 +509,13 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h5><ul>
+<h4 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h4><ul>
 <li>变量重要性筛选 $permutation$ : 把变量打乱，$x_1 \to y_5$ ，差距越大越重要<ul>
 <li>对于$Dummy Variable$ 这种方法肯能会低估，因为打乱不充足</li>
 </ul>
 </li>
 </ul>
-<h5 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h5><ul>
+<h4 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h4><ul>
 <li>计算$E_{in}$的时候，减少对做错过的$g_t$的$err$的权重<ul>
 <li>所有做错的权重只占1/2</li>
 <li>当错$=n_1$，对$=n_2$<ul>
@@ -606,11 +606,11 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 <li>卷积神经网络中会取一个值$b$，$output=sign(output-b)$</li>
 <li>达到了<strong>稀疏连接</strong>与<strong>参数共享</strong>的效果</li>
 </ul>
-<h5 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h5><ul>
+<h4 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h4><ul>
 <li>把数据变小，并保留最敏感的数$（Max Pooling）$</li>
 <li>对应可放大缩小的性质</li>
 </ul>
-<h5 id="扩充"><a href="#扩充" class="headerlink" title="扩充"></a>扩充</h5><ul>
+<h4 id="扩充"><a href="#扩充" class="headerlink" title="扩充"></a>扩充</h4><ul>
 <li>根据图片的特性推断，卷积神经网络适用于拥有以下特征的某些事物<ul>
 <li>小特征决定</li>
 <li>放缩旋转存在</li>
@@ -639,7 +639,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h3 id="7-4-聚类算法"><a href="#7-4-聚类算法" class="headerlink" title="7.4 聚类算法"></a>7.4 聚类算法</h3><h4 id="算法总览"><a href="#算法总览" class="headerlink" title="算法总览"></a>算法总览</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-11.jpeg" srcset="/img/loading.gif" alt></p>
+<h3 id="7-4-聚类算法"><a href="#7-4-聚类算法" class="headerlink" title="7.4 聚类算法"></a>7.4 聚类算法</h3><h4 id="算法总览"><a href="#算法总览" class="headerlink" title="算法总览"></a>算法总览</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-11.jpg" srcset="/img/loading.gif" alt></p>
 <div class="table-container">
 <table>
 <thead>
@@ -726,18 +726,18 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </table>
 </div>
 <h2 id="7-5-PCA"><a href="#7-5-PCA" class="headerlink" title="7.5 PCA"></a>7.5 PCA</h2><p>将数据投射为波动最大的$n$维</p>
-<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>缓解维度灾难，提高可视度</li>
 <li>降噪，提高模型稳定性</li>
 <li>特征独立</li>
 <li>可以对数据进行放缩（各向同性）</li>
 </ul>
-<h5 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h5><ul>
+<h4 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h4><ul>
 <li>$PCA$的根据源于训练集，可能会过拟合</li>
 <li>如果在训练数据进行了放缩，那么测试集要进行同参数的$mean-shift$和$variance$</li>
 <li>不要先放缩再分割样本</li>
 </ul>
-<h5 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto-Encoder"></a>Auto-Encoder</h5><ul>
+<h4 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto-Encoder"></a>Auto-Encoder</h4><ul>
 <li>输入输出长度相等</li>
 <li>扩展：$Denoising \ AutoEncoder$</li>
 </ul>
@@ -751,7 +751,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </li>
 </ul>
 <h2 id="8-特征工程"><a href="#8-特征工程" class="headerlink" title="8 特征工程"></a>8 特征工程</h2><p>从数据到变量</p>
-<h3 id="8-1-结构化与缺失值"><a href="#8-1-结构化与缺失值" class="headerlink" title="8.1 结构化与缺失值"></a>8.1 结构化与缺失值</h3><h5 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h5><ul>
+<h3 id="8-1-结构化与缺失值"><a href="#8-1-结构化与缺失值" class="headerlink" title="8.1 结构化与缺失值"></a>8.1 结构化与缺失值</h3><h4 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h4><ul>
 <li>先思考缺失本身是不是就是一种信息<ul>
 <li>确保缺失是纯随机的</li>
 <li>缺失是在哪个环境造成的<ul>
@@ -773,7 +773,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="结构化"><a href="#结构化" class="headerlink" title="结构化"></a>结构化</h5><ul>
+<h4 id="结构化"><a href="#结构化" class="headerlink" title="结构化"></a>结构化</h4><ul>
 <li>数据<ul>
 <li>分类信息：性别，学历</li>
 <li>文本信息：$one-hot$</li>
@@ -804,13 +804,13 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 <h3 id="8-2-改变分布"><a href="#8-2-改变分布" class="headerlink" title="8.2 改变分布"></a>8.2 改变分布</h3><p>正则项和系数有关系，而系数又和数据有关系，所以要先做标准化</p>
 <p>树方法的正则化不是来自于对系数的惩罚，可省略</p>
-<h5 id="前奏"><a href="#前奏" class="headerlink" title="前奏"></a>前奏</h5><ul>
+<h4 id="前奏"><a href="#前奏" class="headerlink" title="前奏"></a>前奏</h4><ul>
 <li><p>清洗异常值</p>
 </li>
 <li><p>变形，删除极端值（$winsor$)</p>
 </li>
 </ul>
-<h5 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h5><ul>
+<h4 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h4><ul>
 <li><p>（变量-均值）/标准差</p>
 </li>
 <li><p>测试集的标准化按训练集来</p>
@@ -824,7 +824,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="非线性变化：不惜一切变正态分布"><a href="#非线性变化：不惜一切变正态分布" class="headerlink" title="非线性变化：不惜一切变正态分布"></a>非线性变化：不惜一切变正态分布</h5><ul>
+<h4 id="非线性变化：不惜一切变正态分布"><a href="#非线性变化：不惜一切变正态分布" class="headerlink" title="非线性变化：不惜一切变正态分布"></a>非线性变化：不惜一切变正态分布</h4><ul>
 <li><p>方法</p>
 <ul>
 <li>$Box-Cox$</li>
@@ -842,7 +842,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="连续值变成分段值"><a href="#连续值变成分段值" class="headerlink" title="连续值变成分段值"></a>连续值变成分段值</h5><ul>
+<h4 id="连续值变成分段值"><a href="#连续值变成分段值" class="headerlink" title="连续值变成分段值"></a>连续值变成分段值</h4><ul>
 <li><p>增强稳健性：对异常值和非线性</p>
 </li>
 <li><p>试用于分类算法：信用风险模型，征信模型</p>
@@ -851,13 +851,13 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </li>
 </ul>
 <h3 id="8-3-变量选择"><a href="#8-3-变量选择" class="headerlink" title="8.3 变量选择"></a>8.3 变量选择</h3><p>$sklearn.feature_selection$</p>
-<h5 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h5><ul>
+<h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h4><ul>
 <li>方法制约</li>
 <li>解释制约</li>
 <li>预测制约</li>
 <li>实践制约</li>
 </ul>
-<h5 id="单变量选择"><a href="#单变量选择" class="headerlink" title="单变量选择"></a>单变量选择</h5><p>单纯地从一个变量数据的分布进行筛选：$variation$大</p>
+<h4 id="单变量选择"><a href="#单变量选择" class="headerlink" title="单变量选择"></a>单变量选择</h4><p>单纯地从一个变量数据的分布进行筛选：$variation$大</p>
 <ul>
 <li>$VarianceThreshold$：$variance$大于某值的</li>
 <li>$SelectKBest$：筛选$K$个$variance$最高</li>
@@ -867,7 +867,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="多变量选择"><a href="#多变量选择" class="headerlink" title="多变量选择"></a>多变量选择</h5><p>多次共线性的影响</p>
+<h4 id="多变量选择"><a href="#多变量选择" class="headerlink" title="多变量选择"></a>多变量选择</h4><p>多次共线性的影响</p>
 <ul>
 <li>方差膨胀系数（$variance\ inflation factor$）<ul>
 <li>$VIF_i = \frac{1}{1-R_i^2}$</li>
@@ -876,7 +876,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="算法选择"><a href="#算法选择" class="headerlink" title="算法选择"></a>算法选择</h5><p>最稳健的方法</p>
+<h4 id="算法选择"><a href="#算法选择" class="headerlink" title="算法选择"></a>算法选择</h4><p>最稳健的方法</p>
 <ul>
 <li>$SelectFromModel$ 统一接口</li>
 <li>后台算法<ul>
@@ -886,7 +886,7 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </ul>
 </li>
 </ul>
-<h5 id="实践：金融风控"><a href="#实践：金融风控" class="headerlink" title="实践：金融风控"></a>实践：金融风控</h5><ul>
+<h3 id="8-4-实践：金融风控"><a href="#8-4-实践：金融风控" class="headerlink" title="8.4 实践：金融风控"></a>8.4 实践：金融风控</h3><ul>
 <li>方法基础：评分卡模型，逻辑回归</li>
 <li>变量处理：离散化</li>
 <li>变量筛选：单变量，多变量</li>
@@ -941,6 +941,118 @@ Random \ Forest = Bagging + Decision \ Tree</script><h5 id="Out-of-Bag"><a href=
 </tbody>
 </table>
 </div>
+<h2 id="9-训练框架"><a href="#9-训练框架" class="headerlink" title="9 训练框架"></a>9 训练框架</h2><h3 id="9-1-度量指标：二分类问题"><a href="#9-1-度量指标：二分类问题" class="headerlink" title="9.1 度量指标：二分类问题"></a>9.1 度量指标：二分类问题</h3><h4 id="一个标准"><a href="#一个标准" class="headerlink" title="一个标准"></a>一个标准</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-12.jpg" srcset="/img/loading.gif" alt></p>
+<h5 id="四个定义（数据-模型）"><a href="#四个定义（数据-模型）" class="headerlink" title="四个定义（数据-模型）"></a>四个定义（数据-模型）</h5><ul>
+<li>$True-positives$：数据+，模型+</li>
+<li>$False-positives$：数据-，模型+</li>
+<li>$False-negatives$：数据+，模型-</li>
+<li>$True-negatives$：数据-，模型-</li>
+</ul>
+<h5 id="两个公式"><a href="#两个公式" class="headerlink" title="两个公式"></a>两个公式</h5><ul>
+<li>$Precision = True-positives$/ 模型+</li>
+<li>$Recall = True-positives$/ 数据+</li>
+</ul>
+<h5 id="一个指标：F1-score"><a href="#一个指标：F1-score" class="headerlink" title="一个指标：F1_score"></a>一个指标：F1_score</h5><script type="math/tex; mode=display">
+F_1 = (\frac{2}{recall^{-1}+precision^{-1}})=2·\frac{precision·recall}{precision+recall}</script><h4 id="另一个标准：ROC曲线与ROC面积（AUROC）"><a href="#另一个标准：ROC曲线与ROC面积（AUROC）" class="headerlink" title="另一个标准：ROC曲线与ROC面积（AUROC）"></a>另一个标准：ROC曲线与ROC面积（AUROC）</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-13.jpg" srcset="/img/loading.gif" alt></p>
+<h5 id="两个指标"><a href="#两个指标" class="headerlink" title="两个指标"></a>两个指标</h5><ul>
+<li>真正例率（$TPR$）：召回的同义词 ，$sensitivity$<ul>
+<li>$TPR = \frac{TP}{TP+FN}$</li>
+</ul>
+</li>
+<li>假正例率（$FPR$）$specifity$<ul>
+<li>$FPR = \frac{FP}{FP+TN}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="扩展：多分类问题"><a href="#扩展：多分类问题" class="headerlink" title="扩展：多分类问题"></a>扩展：多分类问题</h4><ul>
+<li>三个指标：F1_micro，F1_macro，F1_weighted</li>
+</ul>
+<h3 id="9-2-度量指标：回归"><a href="#9-2-度量指标：回归" class="headerlink" title="9.2 度量指标：回归"></a>9.2 度量指标：回归</h3><ul>
+<li>$MAE = \frac{1}{N}\sum_{t=1}^N|y_i-\hat{y}|$</li>
+<li>$MSE = \frac{1}{N}\sum_{t=1}^N(y_i-\hat{y})^2$</li>
+<li>$RMSE = \sqrt{MSE}$</li>
+<li>$R^2 = 1-\frac{\sum(y_i-\hat{y})^2}{\sum(y_i-\bar{y})^2} = 1-\frac{MSE(\hat{y},y)}{Var(y)}$</li>
+</ul>
+<h3 id="9-3-超参搜寻"><a href="#9-3-超参搜寻" class="headerlink" title="9.3 超参搜寻"></a>9.3 超参搜寻</h3><h4 id="搜索方法"><a href="#搜索方法" class="headerlink" title="搜索方法"></a>搜索方法</h4><ul>
+<li>$Grid Layout$</li>
+<li>$Random Layout$</li>
+<li>步骤<ul>
+<li>阅读论文找范围</li>
+<li>不同尺度的$Grid Layout$</li>
+<li>$Random Layout$</li>
+</ul>
+</li>
+<li>暴力手段之外<ul>
+<li>$Model\ specific cross-validation$</li>
+<li>$AIC，BIC$</li>
+<li>$Out\ of\ Bag\ Estimates$</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-4-交叉验证"><a href="#9-4-交叉验证" class="headerlink" title="9.4 交叉验证"></a>9.4 交叉验证</h3><p>$sklearn.model_selection$</p>
+<h4 id="数据切割"><a href="#数据切割" class="headerlink" title="数据切割"></a>数据切割</h4><ul>
+<li><p>训练数据（7）验证数据（2）测验数据（1）</p>
+</li>
+<li><p>时间上的泄漏：注意时序数据中途没有被其他情况影响</p>
+</li>
+<li>数据分组上的泄漏：一家人不能分开处理</li>
+<li>统计特征上的泄漏：先分割后处理</li>
+</ul>
+<h4 id="怎么划分"><a href="#怎么划分" class="headerlink" title="怎么划分"></a>怎么划分</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-14.jpeg" srcset="/img/loading.gif" alt></p>
+<ul>
+<li>$KFold$</li>
+<li>随机抽取 = $ShuffleSplit$</li>
+<li>抽取时要保证类别间的平衡$= StratifiedShuffleSplit$</li>
+<li>当有小组时 $= GroupKFold$</li>
+<li>当有时间存在，训练集必须早于验证集 = $TimeSeriesSplit$</li>
+</ul>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><ol>
+<li><p>问题提出</p>
+</li>
+<li><p>文献搜集</p>
+<ul>
+<li>做过吗</li>
+<li>怎么做</li>
+<li>与课题有何差别</li>
+<li>能改什么方法</li>
+</ul>
+</li>
+<li>数据搜集<ul>
+<li>典型数据库</li>
+<li>特异数据源</li>
+<li>数据更新管理</li>
+<li>成本控制</li>
+</ul>
+</li>
+<li>特征工程<ul>
+<li>抽取哪些变量</li>
+<li>生成那些指标</li>
+<li>是否要改特征</li>
+<li>是否能改特征</li>
+</ul>
+</li>
+<li>模型选择<ul>
+<li>符合假设</li>
+<li>能力优化</li>
+<li>容易解释</li>
+<li>开销合理</li>
+</ul>
+</li>
+<li>模型优化<ul>
+<li>变量</li>
+<li>结构</li>
+<li>超参数</li>
+<li>训练技巧</li>
+</ul>
+</li>
+<li>结构呈现<ul>
+<li>数据可视化</li>
+<li>关键词提炼</li>
+<li>模型更新策略</li>
+<li>边界与预警</li>
+</ul>
+</li>
+</ol>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65511873">文本挖掘从小白到精通（二）—-语料库和词向量空间</a></li>
