@@ -745,6 +745,7 @@ P = \sum_{t=1}^n\frac{C_t}{(1+y)^t}+\frac{M}{(1+y)^n}</script><p><strong>Spot Ra
 <script type="math/tex; mode=display">
 -\frac{dP}{dy}\frac{1}{P} = \frac{1}{1+y}\times Macaulay \ duration</script><blockquote>
 <p><strong>Modified duration</strong> can be interpreted as the approximate percentage change in bond price for a 1-percent change in yield.</p>
+<p>当按月计算，会有些不同</p>
 </blockquote>
 <p><strong>Percentage Price Change</strong></p>
 <script type="math/tex; mode=display">
@@ -900,7 +901,10 @@ V_{swap} = B_{fl}-B_{fix}</script><p><strong>Valuation of Interest Rate Swaps in
 e^{R_F(T_2-T_1)}\times e^{R_1T_1} = e^{R_2T_2}\ ,\ or\ 
 R_F = \frac{R_2T_2-R_1T_1}{T_2-T_1}</script><p><strong>Valuation of FRAs</strong></p>
 <script type="math/tex; mode=display">
-V_{FRA}=L(R_K-R_F)(T_2-T_1)e^{-R_2T_2}</script><h3 id="Part-3-1"><a href="#Part-3-1" class="headerlink" title="Part 3"></a>Part 3</h3><p><strong>Valuation of Interest Rate Swaps in Terms of FRAs</strong></p>
+V_{FRA}=L(R_K-R_F)(T_2-T_1)e^{-R_2T_2}</script><blockquote>
+<p>因为得到的FRA是连续的，有时候R_K给的是按月复利，所以需要进行转换</p>
+</blockquote>
+<h3 id="Part-3-1"><a href="#Part-3-1" class="headerlink" title="Part 3"></a>Part 3</h3><p><strong>Valuation of Interest Rate Swaps in Terms of FRAs</strong></p>
 <p><strong>Example 5:</strong></p>
 <p>Under the terms of a swap, a financial institution has agreed to receive 6-month LIBOR and pay 3% per annum (with semiannual compounding) on a notional principal of 100 million. The swap has a remaining life of 1.25 years. The LIBOR rates with continuous compounding for 3-month, 9-month, and 15-month maturities are 2.8%, 3.2%, and 3.4%, respectively. The 6-month LIBOR rate at the last payment date was 2.9% (with semiannual compounding).</p>
 <div class="table-container">
