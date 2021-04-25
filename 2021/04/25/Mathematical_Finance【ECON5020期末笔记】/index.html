@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="About python math and finance">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  <title>Mathematical_Finance【ECON5020期末笔记】 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Achlier's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Mathematical_Finance【ECON5020期末笔记】">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-25 00:15" pubdate>
+        April 25, 2021 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mathematical_Finance【ECON5020期末笔记】</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>基于格拉斯哥课件；</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h1><h2 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h2><p>The general aims of this course are to:</p>
+<ul>
+<li>provide an overall introduction to the type of mathematics used extensively in finance;</li>
+<li>provide a necessary foundation for further study of modern finance in the second semester courses.</li>
+</ul>
+<h2 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h2><p>By the end of this course students will be able to:</p>
+<ol>
+<li>Analyse <strong>stochastic processes</strong> closely related to finance and apply stochastic calculus</li>
+<li>Discuss <strong>how well</strong> various stochastic processes function as models in finance and explain the <strong>limitations of</strong> these models</li>
+<li>Deploy techniques of mathematical finance within a <strong>problem solving</strong> context</li>
+<li>Demonstrate skills based on <strong>data interpretation and numeracy</strong></li>
+<li>Demonstrate an ability to construct a focused argument based on <strong>coherent general principles</strong></li>
+<li><strong>Explain</strong> financial issues, problems and solutions.</li>
+</ol>
+<h1 id="Unit-1：Introduction"><a href="#Unit-1：Introduction" class="headerlink" title="Unit 1：Introduction"></a>Unit 1：Introduction</h1><p>Two types of Financial markets:</p>
+<ul>
+<li><p>Exchanges (stock exchange, options exchange, futures exchange, etc.)</p>
+</li>
+<li><p>Over-the-counter (OTC) markets.</p>
+</li>
+</ul>
+<p><strong>Exchanges:</strong> </p>
+<ul>
+<li><p>Equity markets: stocks and shares.</p>
+</li>
+<li><p>Bond market: zero-coupon bonds (ZCBs), government bonds and corporate bonds.</p>
+</li>
+<li><p>Futures market: futures contracts.</p>
+</li>
+<li><p>Foreign exchange (FX) market: foreign currencies, options on foreign currencies.</p>
+</li>
+<li><p>Options market: equity options and interest rate options.</p>
+</li>
+<li><p>Commodity market: oil and metals futures.</p>
+</li>
+</ul>
+<p><strong>OTC Markets:</strong> </p>
+<ul>
+<li><p>Interest rate market (mostly OTC): caps, áoors, swaps and swaptions.</p>
+</li>
+<li><p>Exotic options market: barrier options, lookback options, compound options.</p>
+</li>
+<li><p>Credit market (mostly OTC): credit derivatives such as CDSs and CDOs.</p>
+</li>
+</ul>
+<p><strong>Bear and Bull Markets:</strong> </p>
+<ul>
+<li>In over-supply or under-demand, security prices will generally fall. This is referred to as the bear market.</li>
+<li>In under-supply or over-demand, security prices will generally rise. This is called the bull market.</li>
+<li>Prices that satisfy supply and demand are called to be in equilibrium (at least, in the academic literature).</li>
+</ul>
+<h4 id="Perfect-Markets"><a href="#Perfect-Markets" class="headerlink" title="Perfect Markets:"></a>Perfect Markets:</h4><p><strong>Assumption 1</strong>. Markets are <strong>frictionless</strong>, i.e., no transaction costs, no taxes or other costs and there are no penalties for short selling.</p>
+<p><strong>Assumption 2</strong>. <strong>Infinitely divisible</strong> security prices. It is possible to buy or sell any (also non-integer) quantity of any security.</p>
+<p><strong>Assumption 3</strong>. All traders have <strong>access to the same information</strong>. The Efficient Market Hypothesis (EMH) holds:</p>
+<ul>
+<li>Weak-form: Current security prices reflect all past market prices and data. Technical analysis is of no benefit.</li>
+<li>Semi-strong form: Current security prices reflect all publicly available information. Fundamental analysis is of no benefit.</li>
+<li>Strong form: Current security prices reáect all available information. Inside information is of no benefit.</li>
+</ul>
+<p><strong>Assumption 4</strong>. Markets are assumed to be <strong>arbitrage-free</strong>:</p>
+<ul>
+<li><p>Arbitrage is the guarantee of certain future profit without any current investment. Much of the modern financial theory holds under the assumption that efficient financial markets should forbid such an arbitrage opportunity.</p>
+</li>
+<li><p>It follows from the no-arbitrage principle that if two financial securities have the same pattern of future cash-flows, they should have the same price today. This property is commonly known as the law of one price.</p>
+</li>
+</ul>
+<blockquote>
+<p>Standing assumptions 1. to 4. provide a framework in which we can develop mathematical models for primary securities and propose pricing methods for derivative securities.</p>
+</blockquote>
+<p><strong>European Call Option:</strong> </p>
+<script type="math/tex; mode=display">
+C_T := max(S_T-K,0) = (S_T-K)^+</script><p><strong>European Call Option:</strong>  </p>
+<script type="math/tex; mode=display">
+P_T := max(K-S_T,0) = (K-S_T,0)^+</script><p> <strong>Zero-Coupon Bond:</strong></p>
+<script type="math/tex; mode=display">
+B_t = (1+r)^t\ ,\ B(t,T) = \frac{B_t}{B_T}=(1+r)^{-(T-t)}</script><h1 id="Unit-2：Elementary-Market-Model"><a href="#Unit-2：Elementary-Market-Model" class="headerlink" title="Unit 2：Elementary Market Model"></a>Unit 2：Elementary Market Model</h1><p>Stock price movements are more complicated than indicated by the elementary market model. Hence it cannot be claimed that the elementary model gives a realistic picture of the stock price fluctuations.</p>
+<p><strong>Notation:</strong></p>
+<ul>
+<li>Initial Wealth： $x$</li>
+<li>Riskless Asset：$B$ (Bank account)</li>
+<li>Risky Asset：$S$ (Stock)</li>
+<li>Shares of the stock：$\phi$ </li>
+<li>Sample space：$\Omega = \{\omega_1,\omega_2\}$</li>
+<li>Probability measure：$\mathbb{P}(\omega_1)=p&gt;0$ and $\mathbb{P}(\omega_2)=1-p&gt;0$</li>
+<li>A deterministic interest rate：$r &gt; -1$</li>
+<li>The price of a risky asset at time $t$：$S_t$ ，$S0 &gt; 0$</li>
+<li>$u = \frac{S_1(\omega_1)}{S_0}$ and $d = \frac{S_1(\omega_2)}{S_0}$，$0&lt;d&lt;u$</li>
+<li>Model：$M = (B, S)$</li>
+</ul>
+<p><strong>Trading Strategy:</strong> $(x,\phi)$</p>
+<script type="math/tex; mode=display">
+V_0(x,\phi):=x=(x-\phi S_0)+\phi S_0</script><script type="math/tex; mode=display">
+V_1(x,\phi)(\omega_i):=(x-\phi S_0)(1+r)+\phi S_1(\omega_i)\ ,\ i=1,2</script><h4 id="Arbitrage"><a href="#Arbitrage" class="headerlink" title="Arbitrage:"></a>Arbitrage:</h4><p>A trading strategy $(x, \phi)$ in the single-period market model is called an <strong>arbitrage opportunity</strong> if</p>
+<ol>
+<li>$x = 0$, that is, no initial investment is required.</li>
+<li>$V_1(x, \phi) \ge 0$, that is, no risk of losing money.</li>
+<li>$\mathbb{E}_{\mathbb{P}}\{V_1(x,\phi)\}&gt;0$, that is, a strictly positive expected payoff.<ol>
+<li>OR There exists an $\omega_i$ such that $V_1(x,\phi)(\omega_i)&gt;0$.</li>
+</ol>
+</li>
+</ol>
+<p><strong>Arbitrage-free:</strong> if no arbitrage opportunity exists in the model.</p>
+<ul>
+<li>The elementary market model $M = (B, S)$ is arbitrage free <strong>if and only if</strong> $d&lt;1+r&lt;u$.</li>
+</ul>
+<p><strong>Contingent claim:</strong> a trading strategy $(x, \phi)$ obtain $X=h(S_1)=V_1(x,\phi)$.</p>
+<h4 id="Replicationg-Strategy-or-a-hedge"><a href="#Replicationg-Strategy-or-a-hedge" class="headerlink" title="Replicationg Strategy (or a hedge):"></a>Replicationg Strategy (or a hedge):</h4><script type="math/tex; mode=display">
+\begin{align}
+(x-\phi S_0)(1+r)+\phi S_1(\omega_1)=h(S_1(\omega_1))\\
+(x-\phi S_0)(1+r)+\phi S_1(\omega_2)=h(S_1(\omega_2))
+\end{align}</script><p><strong>Arbitrage Price:</strong> If $(x, \phi)$ is a replicating strategy of a contingent claim then $x$ is called the arbitrage price. $x=\pi_0(X)$</p>
+<p><strong>Delta hedging formula:</strong></p>
+<script type="math/tex; mode=display">
+\phi = \frac{h(S_1(\omega_1))-h(S_1(\omega_2))}{S_1(\omega_1)-S_1(\omega_2)}=\frac{h(uS_0)-h(dS_0)}{(u-d)S_0}</script><script type="math/tex; mode=display">
+\tilde{p}:=\frac{1+r-d}{u-d}\in(0,1)\ ,\ \tilde{\mathbb{P}}(\omega_1)=\tilde{p}\ ,\ \tilde{\mathbb{P}}(\omega_2)=1-\tilde{p}</script><script type="math/tex; mode=display">
+x = \frac{1}{1+r}[\tilde{p}h(S_1(\omega_1))+(1-\tilde{p})h(S_1(\omega_2))]</script><p><strong>Market Completeness:</strong></p>
+<p>All contingent claims (that is, all derivative securities) in thethe elementary market model have replicating strategies, the market described by this model is called <strong>complete</strong>.</p>
+<p><strong>Risk-Neutral Probability Measure:</strong></p>
+<p>A probability measure $\mathbb{Q}$ on the sample space  $\Omega = \{\omega_1,\omega_2\}$ is called a <strong>risk-neutral probability measure</strong> (or an <strong>equivalent martingale measure</strong>) for the market model $M = (B, S)$ if <strong>$\mathbb{Q}$</strong> is equivalent to <strong>$\mathbb{P}$</strong> and the following equality holds</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{Q}}(\frac{S_1}{1+r})=S_0</script><ul>
+<li>The risk-neutral probability measure for the market model $M = (B, S)$ is unique and it satisfies <strong>if and only if</strong> $d &lt; 1 + r &lt; u$.</li>
+</ul>
+<p><strong>Risk-Neutral Valuation Formula:</strong></p>
+<script type="math/tex; mode=display">
+\pi_0(X) = \frac{1}{1+r}\mathbb{E}_{\tilde{\mathbb{P}}}(h(S_1))=\mathbb{E}_{\tilde{\mathbb{P}}}(\frac{X}{1+r})</script><p><strong>Put-Call Parity:</strong></p>
+<script type="math/tex; mode=display">
+C_T - P_T = S_T - B(t,T)K\ ,\ B(t,T) = (1+r)^{-(T-t)}</script><p><strong>Generalisation of the Elementary Market Model:</strong></p>
+<p>If the sample space $\Omega = \{\omega_1,\omega_2,…,\omega_k\}$ where $k&gt;3$.</p>
+<ul>
+<li><p>Some (but not all) contingent claims can be replicated (that is, are attainable). Hence the model $M = (B, S)$ is <strong>incomplete</strong>.</p>
+</li>
+<li><p>The risk-neutral probability measure $\mathbb{Q}$ for the model $M$ exists if and only if $S_1(\omega_k ) &lt; S_0(1 + r) &lt; S_1(\omega_1)$. It is <strong>not unique</strong>.</p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Financial-Mathematics/">Financial Mathematics</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/22/Financial_Markets%E3%80%90ECON5009%E6%9C%9F%E6%9C%AB%E7%AC%94%E8%AE%B0%E3%80%91/">
+                        <span class="hidden-mobile">Financial_Markets【ECON5009期末笔记】</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "IK6vsg2KwVo0vhOAPN7NVkeh-MdYXbMMI",
+          app_key: "nIfa5uk01XqLXABe4JxvFCsi",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
