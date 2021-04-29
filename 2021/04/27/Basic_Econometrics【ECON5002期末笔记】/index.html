@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      2.5k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      38
+      50
        分钟
     </span>
   
@@ -321,11 +321,23 @@ E(y|x)=\beta_0+\beta_1x</script><p><strong>The Ordinary Least Squares (OLS) Esti
 </ol>
 <p><strong>Measures of Variation</strong>:</p>
 <ul>
-<li>SST = $\sum_{i=1}^n(y_i-\bar{y})^2$</li>
-<li>SSE = $\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$=$\sum_{i=1}^n\hat{\beta}_1^2(x_i-\bar{x})^2$</li>
-<li>SSR = $\sum_{i=1}^n\hat{u}_i^2$</li>
+<li>SST = $\sum_{i=1}^n(y_i-\bar{y})^2$<ul>
+<li><strong>total sum of squares</strong></li>
+</ul>
+</li>
+<li>SSE = $\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$=$\sum_{i=1}^n\hat{\beta}_1^2(x_i-\bar{x})^2$<ul>
+<li><strong>explained sum of squares</strong></li>
+</ul>
+</li>
+<li>SSR = $\sum_{i=1}^n\hat{u}_i^2$<ul>
+<li><strong>residual sum of squares</strong></li>
+</ul>
+</li>
 <li>SST = SSR+ SSR</li>
-<li>$R^2$ = $\frac{SSE}{SST}$ = $1-\frac{SSR}{SST}$, $0\leq R^2 \leq 1$</li>
+<li>$R^2$ = $\frac{SSE}{SST}$ = $1-\frac{SSR}{SST}$, $0\leq R^2 \leq 1$<ul>
+<li><strong>coefficient of determination</strong></li>
+</ul>
+</li>
 </ul>
 <p><strong>Summary of Functional Forms Involving Logarithms</strong>:</p>
 <div class="table-container">
@@ -397,6 +409,13 @@ Var(\hat{\beta}_1|x)=\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}=\frac{\sigma^2
 Var(\hat{\beta}_0|x)=\frac{\sigma^2n^{-1}\sum_{i=1}^nx_i^2}{\sum_{i=1}^n(x_i-\bar{x})^2}</script><script type="math/tex; mode=display">
 E(\hat{\sigma}^2)=\sigma^2,\ \ \hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{u}_i^2}{n-2}</script><p><strong>Not robust</strong>: The expectation is sensitive to perturbation in the tails of the distribution.</p>
 <p><strong>y on x</strong></p>
+<h3 id="Quiz-1"><a href="#Quiz-1" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>when the regression equation passes through the origin. $y_i=\beta_1x_i+u_i$<ul>
+<li>$\beta_1 = \frac{\sum_{i=1}^nx_iy_i}{\sum_{i=1}^nx_i^2}$</li>
+</ul>
+</li>
+<li>The observed values of $x$ span a wide range $\to$ SLR.3</li>
+</ol>
 <h2 id="Unit-2-1：The-Multiple-Regression-Model"><a href="#Unit-2-1：The-Multiple-Regression-Model" class="headerlink" title="Unit 2.1：The Multiple Regression Model"></a>Unit 2.1：The Multiple Regression Model</h2><p><strong>Reading</strong>: Wooldridge, 7th Edition: Chapter 3, including Appendix 3A. Chapter 6, Sections 6.1-6.3.</p>
 <p><strong>Additional Reading</strong>: Hansen (2020), Section 2.30</p>
 <h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Multiple Linear Regression Model</strong>:</p>
@@ -498,7 +517,11 @@ Var(\tilde{\beta}_1|x)=\frac{\sigma^2}{SST_1}<\frac{\sigma^2}{SST_1(1-R_1^2)}<Va
 </ul>
 <p><strong>Adjusted <em>R</em>-Squared</strong>:</p>
 <script type="math/tex; mode=display">
-\bar{R}^2 = 1-\frac{[SSR/(n-k-1)]}{[SST/(n-1)]} = 1-\frac{\hat{\sigma}^2}{\hat{\sigma}_y^2}</script><h1 id="Unit-3：Regression-Analysis-Inference"><a href="#Unit-3：Regression-Analysis-Inference" class="headerlink" title="Unit 3：Regression Analysis: Inference"></a>Unit 3：Regression Analysis: Inference</h1><h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Normal-distribution-in-a-nutshell"><a href="#Normal-distribution-in-a-nutshell" class="headerlink" title="Normal distribution in a nutshell"></a>Normal distribution in a nutshell</h4><p>If $x\sim N(\mu,\sigma^2)$, then​</p>
+\bar{R}^2 = 1-\frac{[SSR/(n-k-1)]}{[SST/(n-1)]} = 1-\frac{\hat{\sigma}^2}{\hat{\sigma}_y^2}</script><h3 id="Quiz-2"><a href="#Quiz-2" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>Exclusion of a relevant variable from a multiple linear regression model leads to the problem of <u>misspecification of the model</u>.</li>
+<li>An explanatory variable is said to be <u>endogenous</u> if it is correlated with the error term.</li>
+</ol>
+<h1 id="Unit-3：Regression-Analysis-Inference"><a href="#Unit-3：Regression-Analysis-Inference" class="headerlink" title="Unit 3：Regression Analysis: Inference"></a>Unit 3：Regression Analysis: Inference</h1><h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Normal-distribution-in-a-nutshell"><a href="#Normal-distribution-in-a-nutshell" class="headerlink" title="Normal distribution in a nutshell"></a>Normal distribution in a nutshell</h4><p>If $x\sim N(\mu,\sigma^2)$, then​</p>
 <script type="math/tex; mode=display">
 Z = \frac{X-\mu}{\sigma}\sim N(0,1)</script><ul>
 <li><strong>Assumption MLR.6 (Normality of error terms)</strong></li>
@@ -543,14 +566,34 @@ H_0:\beta_1=\beta_2=...=\beta_k=0</script><script type="math/tex; mode=display">
 F = \frac{R^2/k}{(1-R^2)/(n-k-1)}\sim F_{k,n-k-1}</script><p><strong>Testing general linear restrictions with the F-test</strong>:</p>
 <script type="math/tex; mode=display">
 H_0:\beta_1=1,\beta_2=...=\beta_k=0</script><script type="math/tex; mode=display">
-x_i = y_i-x_{1i},\ \ SSR_r = \sum_{i=1}^n(x_i-\bar{x})^2</script><h1 id="Unit-4：Regression-Analysis-with-Qualitative-Information"><a href="#Unit-4：Regression-Analysis-with-Qualitative-Information" class="headerlink" title="Unit 4：Regression Analysis with Qualitative Information"></a>Unit 4：Regression Analysis with Qualitative Information</h1><h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Dummy variable trap</strong> (perfect collinearity) :</p>
+x_i = y_i-x_{1i},\ \ SSR_r = \sum_{i=1}^n(x_i-\bar{x})^2</script><h3 id="Quiz-3"><a href="#Quiz-3" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>The significance level of a test is: <u>the probability of rejecting the null hypothesis when it is true.</u></li>
+<li>central limit theorem (CLT) </li>
+<li>A <strong>restricted model</strong> will always have <strong>fewer parameters</strong> than its unrestricted model./ <strong>Degrees of freedom</strong> of a <strong>restricted model</strong> is always <strong>more than</strong> the degrees of freedom of an unrestricted model.</li>
+<li>The ordinary least square estimators have the smallest variance among all the unbiased estimators.</li>
+</ol>
+<h1 id="Unit-4：Regression-Analysis-with-Qualitative-Information"><a href="#Unit-4：Regression-Analysis-with-Qualitative-Information" class="headerlink" title="Unit 4：Regression Analysis with Qualitative Information"></a>Unit 4：Regression Analysis with Qualitative Information</h1><h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Dummy variable trap</strong> (perfect collinearity) :</p>
 <p>When using dummy variables, one category always has to be omitted</p>
+<p><strong>Benchmark group</strong></p>
 <p><strong>Chow test</strong>:</p>
 <ul>
 <li>$H_0$: equality of regression functions across two groups.</li>
 </ul>
 <script type="math/tex; mode=display">
 F = \frac{(SSR-(SSR_1+SSR_2)/k+1}{SSR_1+SSR_2/[n-2(k+1)]}</script><p>We can allow for an intercept difference between the groups, and then test for slope difference. Replace $SSR_p$ in Chow F-stat with the residuals from a regression with a dummy.</p>
+<h3 id="Quiz-4"><a href="#Quiz-4" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>In a self-selection problem, the explanatory variables can be: <u>endogenous.</u></li>
+<li>Which of the following Gauss-Markov assumptions is violated by the <strong>linear probability model (LPM)</strong>?<ul>
+<li>The assumption of constant variance of the error term.</li>
+<li>$Var(y|x)=p(x)[1-p(x)]$</li>
+</ul>
+</li>
+<li>Which of the following problems can arise in policy analysis and program evaluation using a multiple linear regression model?<ul>
+<li>The model can produce predicted probabilities that are less than zero and greater than one.</li>
+</ul>
+</li>
+<li>A problem that often arises in policy and program evaluation is that individuals (or firms or cities) choose whether or not to participate in certain behaviors or programs and their choice depends on several other factors. It is not possible to control for these factors while examining the effect of the programs.</li>
+</ol>
 <h1 id="Unit-5：Heteroskedasticity"><a href="#Unit-5：Heteroskedasticity" class="headerlink" title="Unit 5：Heteroskedasticity"></a>Unit 5：Heteroskedasticity</h1><h3 id="Definition-5"><a href="#Definition-5" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Heteroscedasticity</strong>: MLR.5 is violated.</p>
 <h4 id="Testing-for-heteroscedasticity"><a href="#Testing-for-heteroscedasticity" class="headerlink" title="Testing for heteroscedasticity:"></a>Testing for heteroscedasticity:</h4><p><strong>Breusch-Pagan test</strong>:</p>
 <script type="math/tex; mode=display">
@@ -591,7 +634,26 @@ log(u^2)&=\alpha_0+\delta_1x_1+...+\delta_kx_k+e\\
 \Rightarrow \hat{h}_i &= exp(\hat{\alpha}_0+\hat{\delta}_1x_1+...+\hat{\delta}_kx_k)
 \end{align}</script><p><strong>White’s Heteroscedasticity-robust standard variance</strong>:</p>
 <script type="math/tex; mode=display">
-\hat{Var(\hat{\beta}_1)}_{HC}=\frac{\sum_{i=1}^n(x_1-\bar{x})\hat{u}_i^2}{[\sum_{i=1}^n(x_1-\bar{x})^2]^2}</script><h1 id="Unit-6：Regression-Analysis-with-Time-Series-Data"><a href="#Unit-6：Regression-Analysis-with-Time-Series-Data" class="headerlink" title="Unit 6：Regression Analysis with Time Series Data"></a>Unit 6：Regression Analysis with Time Series Data</h1><p><strong>Reading</strong>: Wooldridge 7th Edition Chapter 10: Basic Regression Analysis with the Time Series</p>
+\hat{Var(\hat{\beta}_1)}_{HC}=\frac{\sum_{i=1}^n(x_1-\bar{x})\hat{u}_i^2}{[\sum_{i=1}^n(x_1-\bar{x})^2]^2}</script><h3 id="Quiz-5"><a href="#Quiz-5" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>A test for <strong>heteroskedasticty</strong> can be significant if<ul>
+<li>the functional form of the regression model is misspecified</li>
+<li>Breusch-Pagan test/White test results in a small <em>p-</em>value</li>
+</ul>
+</li>
+<li>The generalized least square (GLS) is an efficient procedure that weights each squared residual by the:<ul>
+<li>inverse of the conditional variance of $u_i$ given $x_i$.</li>
+</ul>
+</li>
+<li>The heteroskedasticity-robust <u><em>F</em> statistic</u> is also called the heteroskedastcity-robust Wald statistic.</li>
+<li>The linear probability model contains heteroskedasticity unless <u>all the slope parameters are zero</u>.</li>
+<li>The heteroskedasticity-robust <em>t</em> statistics are justified only if the sample size is large.</li>
+<li>In weighted least squares estimation, <strong>less weight</strong> is given to observations with a <strong>higher error variance</strong>.</li>
+<li>The WLS method fails if $\hat{h}_i$ is negative or zero for any observation.</li>
+<li><u>The Hausman test</u> is used to compare the Ordinary Least Squares (OLS) estimates and the Weighted Least Squares (WLS) estimates.</li>
+<li><strong>Multicollinearity</strong> among the independent variables in a linear regression model causes the <strong>heteroskedasticity-robust standard errors to be large</strong>.</li>
+<li>The interpretation of goodness-of-fit ($R^2$) measures is unaffected by the presence of heteroskedasticty.</li>
+</ol>
+<h1 id="Unit-6：Regression-Analysis-with-Time-Series-Data"><a href="#Unit-6：Regression-Analysis-with-Time-Series-Data" class="headerlink" title="Unit 6：Regression Analysis with Time Series Data"></a>Unit 6：Regression Analysis with Time Series Data</h1><p><strong>Reading</strong>: Wooldridge 7th Edition Chapter 10: Basic Regression Analysis with the Time Series</p>
 <h3 id="Definition-6"><a href="#Definition-6" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Finite distributed lag models</strong>:</p>
 <p>In finite distributed lag models, the explanatory variables are allowed to influence the dependent variable with a time lag</p>
 <h4 id="Finite-sample-properties-of-OLS-under-classical-assumptions"><a href="#Finite-sample-properties-of-OLS-under-classical-assumptions" class="headerlink" title="Finite sample properties of OLS under classical assumptions:"></a><strong>Finite sample properties of OLS under classical assumptions</strong>:</h4><ul>
@@ -662,11 +724,24 @@ Strict\ exogeneity&:\ E(u_t|X)=0
 <script type="math/tex; mode=display">
 y_t = \alpha_0+\alpha_1t+e_t</script><p><strong>Modelling an exponential time trend</strong>:</p>
 <script type="math/tex; mode=display">
-log(y_t) = \alpha_0+\alpha_1t+e_t</script><h1 id="Unit-7：Further-Issues-Using-OLS-with-Time-Series-Data"><a href="#Unit-7：Further-Issues-Using-OLS-with-Time-Series-Data" class="headerlink" title="Unit 7：Further Issues Using OLS with Time Series Data"></a>Unit 7：Further Issues Using OLS with Time Series Data</h1><p><strong>Reading</strong>: Wooldridge 7th Edition Chapter 11: Further Issues in Using OLS with Time Series Data</p>
+log(y_t) = \alpha_0+\alpha_1t+e_t</script><h3 id="Quiz-6"><a href="#Quiz-6" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>a static model is <strong>postulated</strong> when a change in z at time t is believed to have an <strong>immediate effect</strong> on y</li>
+<li>Adding a time trend can make an explanatory variable more significant if: the dependent and independent variables have different kinds of trends, but movement in the independent variable about its trend line causes movement in the dependent variable away from its trend line.</li>
+<li>Time series regression is based on the assumption that no independent variable is constant nor a perfect linear combination of the others.</li>
+<li>Which of the following assumption for time series analysis does not hold?<ul>
+<li>No serial correlation</li>
+</ul>
+</li>
+<li>One of the assumptions of time series regression is that there should be no serial correlation in the concerned series.</li>
+<li>Cross-sectional regression <strong>rules out perfect collinearity</strong> among the regressors.</li>
+<li>When a series has the <strong>same average growth rate</strong> from period to period, it can be approximated with an exponential trend.</li>
+<li>Price indexes are necessary for turning a time series measured in nominal value into real value.</li>
+</ol>
+<h1 id="Unit-7：Further-Issues-Using-OLS-with-Time-Series-Data"><a href="#Unit-7：Further-Issues-Using-OLS-with-Time-Series-Data" class="headerlink" title="Unit 7：Further Issues Using OLS with Time Series Data"></a>Unit 7：Further Issues Using OLS with Time Series Data</h1><p><strong>Reading</strong>: Wooldridge 7th Edition Chapter 11: Further Issues in Using OLS with Time Series Data</p>
 <h3 id="Definition-7"><a href="#Definition-7" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Stationary stochastic processes</strong>:</p>
 <p>A stochastic $\{x_t:t=1,2…\}$ process is <strong>stationary</strong>, if for every collection of indices  $1\leq t_1\leq t_2\leq…\leq t_m$the joint distribution of $(x_{t_1},x_{t_2},…,x_{t_m})$ , is the same as that of  $(x_{t_1+h},x_{t_2+h},…,x_{t_m+h})$ for all integers $h\ge1$.</p>
 <p><strong>Covariance stationary processes</strong>:</p>
-<p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>covariance stationary</strong>, if its  expected value, its variance, and its covariances are constant over time:</p>
+<p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>covariance stationary</strong>/<strong>asymptotically uncorrelated</strong>, if its  expected value, its variance, and its covariances are constant over time:</p>
 <ol>
 <li>$E(x_t)=\mu$</li>
 <li>$Var(x_t)=\sigma^2$</li>
@@ -725,7 +800,7 @@ H_0:\rho=0\ in\ \hat{u}_t=\rho\hat{u}_{t-1}+error</script><p><strong>Durbin-Wats
 <script type="math/tex; mode=display">
 DW = \sum_{t=2}^n(\hat{u}_t-\hat{u}_{t-1})^2/\sum_{t=2}^n\hat{u}_t^2 \approx 2(1-\hat{\rho})</script><ul>
 <li>$H_0 : \rho = 0$</li>
-<li>Reject if $DW<d_L$, accept if $dw> d_U$</d_L$,></li>
+<li>Reject if $DW<d_L$, accept if $dw> d_U$, else the test is inconclusive.</d_L$,></li>
 </ul>
 <p>When strictly exogeneity does not hold, t-test and DW test are not valid</p>
 <p><strong>Testing for AR(1) with general regressors</strong>:</p>
@@ -763,6 +838,33 @@ u_t=\rho u_{t-1}+e_t \Rightarrow u_t-\rho u_{t-1}=e_t</script><p><strong>Newey-W
 </ul>
 </li>
 </ul>
+<h3 id="Quiz-7"><a href="#Quiz-7" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>Which of the following is a strong assumption for static and finite distributed lag models?<ul>
+<li><strong>Dynamic completeness</strong></li>
+<li>$E(y_t|x_t,y_{t-1},x_{t-1},…)=E(y_t|x_t)$</li>
+<li>The problem of serial correlation does not exist in dynamically complete models.</li>
+</ul>
+</li>
+<li><strong>sequentially exogenous</strong><ul>
+<li>$E(u_t|x_t,x_{t-1},…)=E(u_t)=0$</li>
+</ul>
+</li>
+<li>A model with a lagged dependent variable cannot satisfy the strict exogeneity assumption.</li>
+<li>A random walk process is not stationary.</li>
+<li>Covariance stationarity focuses only on the first two moments of a stochastic process.</li>
+<li>Under adaptive expectations, the expected current value of a variable adapts to a recently observed value of the variable.</li>
+<li>A smaller standard error means: <u>a larger t statistic.</u></li>
+<li>Consistency of FGLS requires $u_t$ to be uncorrelated with $x_{t-1}$,$x_t$, and$x_{t+1}$</li>
+<li><strong>Prais-Winsten estimation</strong> is an example of FGLS estimation.<ul>
+<li>Prais-Winsten standard errors account for serial correlation, whereas OLS estimations do not.</li>
+</ul>
+</li>
+<li><strong>Breusch-Godfrey test</strong> can be used to check for second order serial correlation.</li>
+<li>The <strong>SC-robust standard errors</strong> work better after quasi-differencing a time series that is expected to be serially correlated.</li>
+<li>Consistency of feasible generalized least square estimators requires the error term to be uncorrelated with lags of the explanatory variable. Correlation will lead to inconsistent estimates.</li>
+<li>The <strong>Cochrane-Orcutt</strong> and <strong>Prais-Winsten</strong> methods are iterative methods of feasible generalized least square (FGLS) estimation.</li>
+<li>The serial correlation-robust standard errors are typically larger than the usual OLS standard errors when there is serial correlation.</li>
+</ol>
 
             </div>
             <hr>
