@@ -389,7 +389,10 @@ y_i=\beta_0+\beta_1x_i+u_i</script><ul>
 </ul>
 <script type="math/tex; mode=display">
 0<Var(x_i)<\infty</script><ul>
-<li><strong>Assumption SLR.4</strong> (Zero Conditional Mean)</li>
+<li><strong>Assumption SLR.4</strong> (Zero Conditional Mean)<ul>
+<li>$u_i\ uncorrelate\ with\ x$</li>
+</ul>
+</li>
 </ul>
 <script type="math/tex; mode=display">
 E(u_i|x_i)=0</script><ul>
@@ -741,12 +744,14 @@ log(y_t) = \alpha_0+\alpha_1t+e_t</script><h3 id="Quiz-6"><a href="#Quiz-6" clas
 <h3 id="Definition-7"><a href="#Definition-7" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Stationary stochastic processes</strong>:</p>
 <p>A stochastic $\{x_t:t=1,2…\}$ process is <strong>stationary</strong>, if for every collection of indices  $1\leq t_1\leq t_2\leq…\leq t_m$the joint distribution of $(x_{t_1},x_{t_2},…,x_{t_m})$ , is the same as that of  $(x_{t_1+h},x_{t_2+h},…,x_{t_m+h})$ for all integers $h\ge1$.</p>
 <p><strong>Covariance stationary processes</strong>:</p>
-<p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>covariance stationary</strong>/<strong>asymptotically uncorrelated</strong>, if its  expected value, its variance, and its covariances are constant over time:</p>
+<p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>covariance stationary</strong>, if its  expected value, its variance, and its covariances are constant over time:</p>
 <ol>
 <li>$E(x_t)=\mu$</li>
 <li>$Var(x_t)=\sigma^2$</li>
 <li>$Cov(x_t,x_{t+h})=f(h)$</li>
 </ol>
+<p><strong>asymptotically uncorrelated</strong>：</p>
+<p>when $h \to \infty,\ \ cov(x_t,x_{t+h}) \to 0$</p>
 <p><strong>Weakly dependent time series</strong>：</p>
 <p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>weakly dependent</strong> , if $x_t$ is “almost independent” of $x_{t+h}$ if $h$ grows to infinity (for all $t$).</p>
 <p><strong>Moving average process of order one (MA(1))</strong>:</p>
