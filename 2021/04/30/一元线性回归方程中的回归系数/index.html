@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="About python math and finance">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  <title>一元线性回归方程中的回归系数 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Achlier's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="一元线性回归方程中的回归系数">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-30 18:48" pubdate>
+        April 30, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一元线性回归方程中的回归系数</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>关于：</p>
+<ol>
+<li>回归系数的求解</li>
+<li>系数的无偏性</li>
+<li>系数的抽样方差</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+<h2 id="1-回归系数的求解"><a href="#1-回归系数的求解" class="headerlink" title="1. 回归系数的求解"></a>1. 回归系数的求解</h2><p>首先，我们拥有一个数据集 $x=\{x_1,x_2…,x_n\}$ , $y=\{y_1,y_2,…,y_n\}$</p>
+<script type="math/tex; mode=display">
+\bar x =n^{-1} \sum_{i=1}^n x_i\ ,\  \bar y =n^{-1} \sum_{i=1}^n y_i \tag{0}</script><p>对于一个简单的一元线性回归方程</p>
+<script type="math/tex; mode=display">
+y = \alpha +\beta x+u</script><p>其中 $\alpha , \beta$ 是我们假设的完美情况下存在的系数，$u$ 为得到数据时存在的干扰值</p>
+<p>我们将用普通最小二乘法推导模型</p>
+<script type="math/tex; mode=display">
+\hat y = \hat\alpha + \hat\beta x</script><p>其中 $\alpha , \beta$ 是我们通过数据推导得到的系数, $\hat{y}$ 是通过模型得到的拟合值</p>
+<p>我们的目标函数</p>
+<script type="math/tex; mode=display">
+Min\ Q =(y-\hat{y})^2=(y-\hat\alpha - \hat\beta x)^2  \tag{1}</script><p>为了求最小值， (1) 进行对 $\hat{\alpha},\hat{\beta}$ 求偏导，并令其值等于0</p>
+<p>得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial Q}{\partial \hat\alpha}=(-2)(y-\hat\alpha-\hat\beta x)&=0\\
+y-\hat\alpha-\hat\beta x&=0 \tag{2}
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial Q}{\partial \hat\beta}=(-2x)(y-\hat\alpha-\hat\beta x)&=0\\
+x(y-\hat\alpha-\hat\beta x)&=0 \tag{3}
+\end{align}</script><p>接下来通过对 $x,y$ 的展开(求和的上下限忽略不写)，从 (2) 中推得性质</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum (y_i - \hat\alpha - \hat\beta x_i) &=0\\
+\sum y_i &=\sum (\hat\alpha + \hat\beta x_i) \gets (0) \\
+n \bar y &=n \hat\alpha + n \hat\beta \bar x\\
+\bar y &=\hat\alpha + \hat\beta \bar x \tag{4}
+\end{align}</script><p>将 (4) 代入 (3) 得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+x(y-\bar y + \hat\beta \bar x-\hat\beta x)&=0\\
+x(y-\bar y)&=\hat\beta x(x-\bar x) \tag{5}
+\end{align}</script><p>推导两个新特质</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum (x_i-\bar x_i)^2 &= \sum (x_i^2 + \bar x_i^2 -2\bar xx_i) \\
+&=\sum x_i^2 + n \bar x_i\bar x_i - 2\bar x\sum x_i \gets (0)\\
+&=\sum x_i^2 + n \bar x_i n^{-1}\sum x_i - 2\bar x\sum x_i\\
+&= \sum x_i^2 -\bar x\sum x_i\\
+&= \sum x_i(x_i-\bar x) \tag{6}
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+\sum (x_i-\bar x_i)(y_i-\bar y_i) &= \sum (x_iy_i + \bar x_i\bar y_i -x_i\bar y_i-y_i\bar x_i) \gets (0)\\
+&=\sum x_iy_i + n \bar x_i\bar y_i - n\bar x\bar y - n\bar x\bar y \gets (0)\\
+&=\sum x_iy_i - n \bar y_i n^{-1}\sum x_i\\
+&= \sum x_iy_i -\bar y\sum x_i\\
+&= \sum x_i(y_i-\bar y) \tag{7}
+\end{align}</script><p>将 (6) , (7) 代入 (5) 得</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum (x_i-\bar x)(y_i-\bar y)&= \sum \hat\beta(x_i-\bar x)^2\\
+\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \tag{8}
+\end{align}</script><p><strong>最终我们得到两系数的值</strong></p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\hat\beta = \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \\
+\hat\alpha = \bar y - \hat\beta \bar x \tag{9}
+\end{cases}</script><h2 id="2-系数的无偏性"><a href="#2-系数的无偏性" class="headerlink" title="2. 系数的无偏性"></a>2. 系数的无偏性</h2><p>重申一个特质</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum(x_i-\bar x)&=\sum x_i-n\bar x \gets (0) \\
+&= n\bar x-n\bar x\\
+&= 0 \tag{10}
+\end{align}</script><p>首先对 $\hat\beta$ 进行变换</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \gets (7)\\
+&= \frac{\sum (x_i-\bar x)y_i}{\sum (x_i-\bar x)^2}\\
+&= \frac{\sum (x_i-\bar x)(\alpha +\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (10)\\
+&= \frac{\sum (x_i-\bar x)(\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (6)\\
+&= \frac{\sum ((x_i-\bar x)^2\beta+(x_i-\bar x)u_i)}{\sum (x_i-\bar x)^2}\\
+&= \beta+\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2} \tag{11}
+\end{align}</script><p><strong>对 $\hat\beta$ 无偏性的证明</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+E(\hat\beta) &= \beta + E(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
+&= \beta + \frac{\sum (x_i-\bar x)E(u_i)}{\sum (x_i-\bar x)^2} \gets SLR.4\\
+&= \beta
+\end{align}</script><blockquote>
+<p>SLR.4 : Zero Conditional Mean</p>
+<p>注意在中文版中SLR.3才是零条件均值</p>
+</blockquote>
+<p><strong>对 $\hat\alpha$ 无偏性的证明</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+E(\hat\alpha) &= E(\bar y - \hat\beta \bar x)\\
+&= E(\alpha +\beta \bar x+\bar u - \hat\beta \bar x) \gets SLR.4\\
+&= \alpha + \beta \bar x - \beta \bar x\\
+&= \alpha
+\end{align}</script><h2 id="3-系数的抽样方差"><a href="#3-系数的抽样方差" class="headerlink" title="3. 系数的抽样方差"></a>3. 系数的抽样方差</h2><p>提前定义</p>
+<script type="math/tex; mode=display">
+u_i \sim N(0,\sigma^2)</script><p>重申关于 $Var$ 的知识点</p>
+<script type="math/tex; mode=display">
+Var(x+y)=Var(x)+Var(y)+2Cov(x,y) \tag{12}</script><script type="math/tex; mode=display">
+Cov(x,y)=E(xy)-E(x)E(y) \tag{13}</script><script type="math/tex; mode=display">
+Var(\bar u)=Var(\frac{\sum u_i}{n})=\frac{\sum Var(u_i)}{n^2}=\frac{\sigma^2}{n} \tag{14}</script><p><strong>从 (11) 对 $\hat\beta$ 进行方差的推导</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var(\hat\beta) &= Var(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
+&= \frac{1}{(\sum (x_i-\bar x)^2)^2}Var(\sum (x_i-\bar x)u_i)\\
+&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2Var(u_i)\\
+&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2\sigma^2\\
+&= \frac{\sigma^2}{\sum (x_i-\bar x)^2} \tag{15}
+\end{align}</script><p>推导一个新特质</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(13) \to Cov(\bar u,(\beta - \hat\beta) \bar x) &= E((\beta - \hat\beta) \bar x \bar u)-E(\bar u)E((\beta - \hat\beta) \bar x)\\
+&= E((\beta - \hat\beta) \bar x \bar u) \gets (11) \\
+&= E(\frac{\sum (x_i-\bar x)u_i\bar u\bar x}{\sum (x_i-\bar x)^2})\\
+&= (\frac{\sum (x_i-\bar x)\bar x}{\sum (x_i-\bar x)^2})^2E(u_i\bar u) \gets (10)\\
+&= 0\times E(u_i\bar u) \tag{16}
+\end{align}</script><p>扩展</p>
+<blockquote>
+<p>这里的 $E(u_i\bar u)$ 不能等于0，因为 $i$ 与 $\bar u$ 中除了编号是 $i$ 的其他残差独立</p>
+<p>$E(u_i\bar u)=\frac{1}{n}\sum_{j=1}^nE(u_iu_j)=\frac{1}{n}E(u_i^2)=\frac{\sigma^2}{n}$</p>
+<p>$E(u_i^2) = Var(u_i)-E(u_i)^2=\sigma^2$</p>
+</blockquote>
+<p><strong>对 $\hat\alpha$ 进行方差的推导</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
+&= Var(\alpha +\beta \bar x+\bar u - \hat\beta \bar x)\\
+&= Var(\bar u +(\beta - \hat\beta) \bar x) \gets (12)\\
+&= Var(\bar u)+Var((\beta - \hat\beta) \bar x)+2Cov(\bar u,(\beta - \hat\beta) \bar x) \gets (14)(15)(16)\\
+&= \frac{\sigma^2}{n} + \frac{\sigma^2\bar x^2}{\sum (x_i-\bar x)^2}\\
+&= \frac{\sum (x_i-\bar x)^2\sigma^2+n\sigma^2\bar x^2}{n\sum (x_i-\bar x)^2}\\
+&= \frac{\sigma^2}{n}\frac{\sum (x_i-\bar x)^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
+&= \frac{\sigma^2}{n}\frac{\sum (x_i^2+\bar x^2-2x_i\bar x)+n\bar x^2}{\sum (x_i-\bar x)^2} \gets (0)\\
+&= \frac{\sigma^2}{n}\frac{\sum x_i^2+n\bar x^2-2n\bar x^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
+&= \frac{\sigma^2}{n}\frac{\sum x_i^2}{\sum (x_i-\bar x)^2} \tag{17}
+\end{align}</script>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Econometrics/">Econometrics</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/27/Basic_Econometrics%E3%80%90ECON5002%E6%9C%9F%E6%9C%AB%E7%AC%94%E8%AE%B0%E3%80%91/">
+                        <span class="hidden-mobile">Basic_Econometrics【ECON5002期末笔记】</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "IK6vsg2KwVo0vhOAPN7NVkeh-MdYXbMMI",
+          app_key: "nIfa5uk01XqLXABe4JxvFCsi",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
