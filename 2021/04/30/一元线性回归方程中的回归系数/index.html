@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      30
        分钟
     </span>
   
@@ -228,11 +228,13 @@
             
             <div class="markdown-body">
               <blockquote>
+<p>基于《计量经济学导论》中文译本；</p>
 <p>关于：</p>
 <ol>
-<li>回归系数的求解</li>
-<li>系数的无偏性</li>
-<li>系数的抽样方差</li>
+<li>回归系数的求解；</li>
+<li>系数的无偏性；</li>
+<li>系数的抽样方差；</li>
+<li>sigma的无偏性；</li>
 </ol>
 </blockquote>
 <a id="more"></a>
@@ -240,7 +242,7 @@
 <script type="math/tex; mode=display">
 \bar x =n^{-1} \sum_{i=1}^n x_i\ ,\  \bar y =n^{-1} \sum_{i=1}^n y_i \tag{0}</script><p>对于一个简单的一元线性回归方程</p>
 <script type="math/tex; mode=display">
-y = \alpha +\beta x+u</script><p>其中 $\alpha , \beta$ 是我们假设的完美情况下存在的系数，$u$ 为得到数据时存在的干扰值</p>
+y = \alpha +\beta x+u</script><p>其中 $\alpha , \beta$ 是我们假设的完美情况下存在的系数，$u$ 为得到数据时存在的干扰值/误差</p>
 <p>我们将用普通最小二乘法推导模型</p>
 <script type="math/tex; mode=display">
 \hat y = \hat\alpha + \hat\beta x</script><p>其中 $\alpha , \beta$ 是我们通过数据推导得到的系数, $\hat{y}$ 是通过模型得到的拟合值</p>
@@ -366,7 +368,40 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
 &= \frac{\sigma^2}{n}\frac{\sum (x_i^2+\bar x^2-2x_i\bar x)+n\bar x^2}{\sum (x_i-\bar x)^2} \gets (0)\\
 &= \frac{\sigma^2}{n}\frac{\sum x_i^2+n\bar x^2-2n\bar x^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
 &= \frac{\sigma^2}{n}\frac{\sum x_i^2}{\sum (x_i-\bar x)^2} \tag{17}
-\end{align}</script>
+\end{align}</script><h2 id="4-sigma的无偏性"><a href="#4-sigma的无偏性" class="headerlink" title="4. sigma的无偏性"></a>4. sigma的无偏性</h2><p>定义</p>
+<ul>
+<li>$u_i$ : 误差</li>
+<li><p>$\hat u_i = y-\hat y = u_i+(\alpha-\hat\alpha)+(\beta-\hat\beta)x_i$ : 残差</p>
+</li>
+<li><p>$\sigma^2 = n^{-1}\sum u_i^2 = (n-2)^{-1}\sum \hat u_i^2 = \frac{SSR}{n-2}$ : 因为包含两个限制条件，所以减少两个自由度</p>
+</li>
+</ul>
+<p>由 (2) 得</p>
+<script type="math/tex; mode=display">
+\begin{align}
+0&= y-\hat\alpha-\hat\beta x\\
+&= \alpha -\hat\alpha +\beta x -\hat\beta x +u\\
+&= (\alpha -\hat\alpha) +(\beta -\hat\beta)\bar x +\bar u \tag{18}
+\end{align}</script><p>将原有残差公式与 (18) 相减</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum \hat u_i &= \sum (u_i-\bar u)+\sum (\beta-\hat\beta)(x_i-\bar x)\\
+\sum \hat u_i^2 &= \sum (u_i-\bar u)^2 + \sum (\beta-\hat\beta)^2(x_i-\bar x)^2 + \sum 2(u_i-\bar u)(\beta-\hat\beta)(x_i-\bar x)\\
+\end{align}</script><p>右侧第一项的期望值是样本误差的方差 $(n-1)\sigma^2$</p>
+<p>右侧第二项因为 $E[(\hat\beta-\beta)^2]=Var(\hat\beta)-E[(\hat\beta-\beta)]^2=Var(\hat\beta)$ 代入 (15) 得期望为 $\sigma^2$</p>
+<p>推导一个新特质</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(8)\to \sum(u_i-\bar u)(x_i-\bar x) &=\sum u_i(x_i-\bar x)\\
+&=\sum (y_i-\alpha-\beta x_i)(x_i-\bar x) \gets (10)\\
+&=\sum (y_i-\beta x_i)(x_i-\bar x) \gets (6) (7)\\
+&=\sum (y_i-\bar y)(x_i-\bar x)-\sum\beta (x_i-\bar x)^2 \gets (8)\\
+&=\sum \hat\beta (x_i-\bar x)^2-\sum\beta (x_i-\bar x)^2\\
+&=(\hat \beta-\beta)\sum(x_i-\bar x)^2 \tag{19}
+\end{align}</script><p>右侧第三项可代入 (19) 并求期望得 $E[-2(\hat \beta-\beta)^2\sum(x_i-\bar x)^2]=-2\sigma^2$</p>
+<p>将三项放在一起得 $E(\sum\hat u_i^2)=(n-1)\sigma^2+\sigma^2-2\sigma^2=(n-2)\sigma^2$</p>
+<p>因此可证得 $E[SSR/(n-2)]=\sigma^2$</p>
+
             </div>
             <hr>
             <div>
