@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.4k 字
+      6.5k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      126
+      127
        分钟
     </span>
   
@@ -830,8 +830,8 @@ V_{swap} = B_{fl}-B_{fix}</script><p><strong>Valuation of Interest Rate Swaps in
 <li><p>$t^*$: first payment date (denoted by ) </p>
 </li>
 <li>except maturity: any other subsequent payment date</li>
-<li>$k^<em>$:  the floating payment that be made at time $t^</em>$</li>
-<li>The floating-rate bond can therefore be regarded as an instrument providing a single cash flow of <em>L</em> + $k^<em>$ at time $t^</em>$.</li>
+<li>$k^*$:  the floating payment that be made at first payment date</li>
+<li>The floating-rate bond can therefore be regarded as an instrument providing a single cash flow of <em>L</em> + $k^*$ at first payment date.</li>
 </ul>
 <p><strong>Example 4:</strong></p>
 <p>Suppose that some time ago a financial institution agreed to receive 6-month LIBOR and pay 3% per annum (with semi-annual compounding) on a notional principal of 100 million. The swap has a remaining life of 1.25 years. The LIBOR rates with continuous compounding for 3-month, 9-month, and 15- month maturities are 2.8%, 3.2%, and 3.4%, respectively. The 6-month LIBOR rate at the last payment date was 2.9% (with semi-annual compounding).</p>
@@ -899,10 +899,18 @@ V_{swap} = B_{fl}-B_{fix}</script><p><strong>Valuation of Interest Rate Swaps in
 <h3 id="Part-2-2"><a href="#Part-2-2" class="headerlink" title="Part 2"></a>Part 2</h3><p><strong>Forward Rate</strong></p>
 <script type="math/tex; mode=display">
 e^{R_F(T_2-T_1)}\times e^{R_1T_1} = e^{R_2T_2}\ ,\ or\ 
-R_F = \frac{R_2T_2-R_1T_1}{T_2-T_1}</script><p><strong>Valuation of FRAs</strong></p>
+R_F = \frac{R_2T_2-R_1T_1}{T_2-T_1}</script><blockquote>
+<p>此处为连续的利率时计算，如果是非连续的</p>
+</blockquote>
+<script type="math/tex; mode=display">
+(1+R_1/n)^{T_1n}(1+R_F/n)=(1+R_2/n)^{T_2n}</script><p><strong>Valuation of FRAs</strong></p>
 <script type="math/tex; mode=display">
 V_{FRA}=L(R_K-R_F)(T_2-T_1)e^{-R_2T_2}</script><blockquote>
-<p>因为得到的FRA是连续的，有时候R_K给的是按月复利，所以需要进行转换</p>
+<p>因为第一种得到的FRA是连续的，以上的是非连续的计算，所以有时需要进行转换，如果是连续的</p>
+</blockquote>
+<script type="math/tex; mode=display">
+V_{FRA}=L(e^{R_K(T_2-T_1)}-e^{R_F(T_2-T_1)})e^{-R_2T_2}</script><blockquote>
+<p>折现时的利率默认连续，如果不是需要进行转换</p>
 </blockquote>
 <h3 id="Part-3-1"><a href="#Part-3-1" class="headerlink" title="Part 3"></a>Part 3</h3><p><strong>Valuation of Interest Rate Swaps in Terms of FRAs</strong></p>
 <p><strong>Example 5:</strong></p>
