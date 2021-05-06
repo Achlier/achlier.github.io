@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>一元线性回归方程中的回归系数 - Borderland</title>
+  <title>Exercise_1 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="一元线性回归方程中的回归系数">
+            <span class="h2" id="subtitle" title="Exercise_1">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-30 18:48" pubdate>
-        April 30, 2021 pm
+      <time datetime="2021-05-06 14:57" pubdate>
+        May 6, 2021 pm
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      23
        分钟
     </span>
   
@@ -224,183 +224,163 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">一元线性回归方程中的回归系数</h1>
+            <h1 style="display: none">Exercise_1</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于《计量经济学导论》中文译本；</p>
-<p>关于：</p>
-<ol>
-<li>回归系数的求解；</li>
-<li>系数的无偏性；</li>
-<li>系数的抽样方差；</li>
-<li>sigma的无偏性；</li>
-</ol>
+<p>基于ECON5020期末考试试题;</p>
+<p>Option pricing;</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="1-回归系数的求解"><a href="#1-回归系数的求解" class="headerlink" title="1. 回归系数的求解"></a>1. 回归系数的求解</h2><p>首先，我们拥有一个数据集 $x=\{x_1,x_2…,x_n\}$ , $y=\{y_1,y_2,…,y_n\}$</p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h2><p><strong>Consider a multi-period market model $M=(B,S)$ with two assets: the saving account $B$ and the risky asset $S$. For a natural number $T$, consider the following model for the price of the risky asset $S$:</strong></p>
 <script type="math/tex; mode=display">
-\bar x =n^{-1} \sum_{i=1}^n x_i\ ,\  \bar y =n^{-1} \sum_{i=1}^n y_i \tag{0}</script><p>对于一个简单的一元线性回归方程</p>
+S_t = S_0 +Y_1,Y_2+...+Y_t,</script><p><strong>where the random variables $Y_1,…,Y_T$ are independent and identically distributed under the real-world probability measure $\mathbb{P}$, specifically,</strong></p>
 <script type="math/tex; mode=display">
-y = \alpha +\beta x+u</script><p>其中 $\alpha , \beta$ 是我们假设的完美情况下存在的系数，$u$ 为得到数据时存在的干扰值/误差</p>
-<p>我们将用普通最小二乘法推导模型</p>
+P(Y_1=+a)=.25,\ P(Y_1=-a)=.75</script><p><strong>where $a&gt;0$ is a strictly positive constant. We assume that the risk-free rate $r=0$ so that the savings account equals $B_t=1$ for every $t=0,1,…,T$.</strong></p>
+<ol>
+<li>Check whether the model $M=(B,S)$ is arbitrage-free and complete.</li>
+<li>Find the option price process $\pi_t(X)$, $t=0,1,2,3$ and the replicating strategy $\varphi=(\varphi_0,\varphi_1)$</li>
+</ol>
+<h2 id="Answer"><a href="#Answer" class="headerlink" title="Answer:"></a>Answer:</h2><h3 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h3><p>我们可以看到，在给定前一个时刻的股票价格时，每个时间$t$都存在两个状态。分别是$+a$增长一个值，或者$-a$减少一个值，所以这是个$binomial\ tree$。为了判断模型是不是无套利的，我可以用定义：当$d&lt;1+r&lt;u$ 时无套利。其中$d=\frac{s_t}{s_{t-1}}=\frac{s_{t-1}-a}{s_{t-1}}=1-\frac{a}{s_{t-1}}$,$u=\frac{s_t}{s_{t-1}}=\frac{s_{t-1}+a}{s_{t-1}}=1+\frac{a}{s_{t-1}}$, 所以等式成立。</p>
+<h3 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h3><p>主要流程使用 $Backward\ induction$.</p>
+<p>已知$T=3$,可以先画出股价的变动图。后续会往内补充数字：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>t=0</th>
+<th>t=1</th>
+<th>t=2</th>
+<th>t=3</th>
+<th>value at T</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>$S_0+3a$ , $\omega_1$</td>
+<td>$\gets x_1$</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>$S_0+2a$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$S_0+a$</td>
+<td></td>
+<td>$S_0+a$ , $\omega_2$</td>
+<td>$\gets x_2$</td>
+</tr>
+<tr>
+<td>$S_0$</td>
+<td></td>
+<td>$S_0$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$S_0-a$</td>
+<td></td>
+<td>$S_0-a$ , $\omega_3$</td>
+<td>$\gets x_3$</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>$S_0-2a$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>$S_0-3a$ , $\omega_4$</td>
+<td>$\gets x_4$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因为$X$ 没给定明确的值，我们假设在时间$T$ 有四个状态$\{\omega_1,\omega_2,\omega_3,\omega_4\}$, 同时还有对应的价值$\{x_1,x_2,x_3,x_4\}$。对应$multi-period$ 的模型，需要有$self-financing$ 的过程:</p>
 <script type="math/tex; mode=display">
-\hat y = \hat\alpha + \hat\beta x</script><p>其中 $\alpha , \beta$ 是我们通过数据推导得到的系数, $\hat{y}$ 是通过模型得到的拟合值</p>
-<p>我们的目标函数</p>
+\varphi_0^t+\varphi_1^tS_{t+1}=\varphi_0^{t+1}+\varphi_1^{t+1}S_{t+1}</script><p>对应最后时间$T$我们需要有以下式子:</p>
 <script type="math/tex; mode=display">
-Min\ Q =(y-\hat{y})^2=(y-\hat\alpha - \hat\beta x)^2  \tag{1}</script><p>为了求最小值， (1) 进行对 $\hat{\alpha},\hat{\beta}$ 求偏导，并令其值等于0</p>
-<p>得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial Q}{\partial \hat\alpha}=(-2)(y-\hat\alpha-\hat\beta x)&=0\\
-y-\hat\alpha-\hat\beta x&=0 \tag{2}
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial Q}{\partial \hat\beta}=(-2x)(y-\hat\alpha-\hat\beta x)&=0\\
-x(y-\hat\alpha-\hat\beta x)&=0 \tag{3}
-\end{align}</script><p>接下来通过对 $x,y$ 的展开(求和的上下限忽略不写)，从 (2) 中推得性质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (y_i - \hat\alpha - \hat\beta x_i) &=0\\
-\sum y_i &=\sum (\hat\alpha + \hat\beta x_i) \gets (0) \\
-n \bar y &=n \hat\alpha + n \hat\beta \bar x\\
-\bar y &=\hat\alpha + \hat\beta \bar x \tag{4}
-\end{align}</script><p>将 (4) 代入 (3) 得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-x(y-\bar y + \hat\beta \bar x-\hat\beta x)&=0\\
-x(y-\bar y)&=\hat\beta x(x-\bar x) \tag{5}
-\end{align}</script><p>推导两个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x_i)^2 &= \sum (x_i^2 + \bar x_i^2 -2\bar xx_i) \\
-&=\sum x_i^2 + n \bar x_i\bar x_i - 2\bar x\sum x_i \gets (0)\\
-&=\sum x_i^2 + n \bar x_i n^{-1}\sum x_i - 2\bar x\sum x_i\\
-&= \sum x_i^2 -\bar x\sum x_i\\
-&= \sum x_i(x_i-\bar x) \tag{6}
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x_i)(y_i-\bar y_i) &= \sum (x_iy_i + \bar x_i\bar y_i -x_i\bar y_i-y_i\bar x_i) \gets (0)\\
-&=\sum x_iy_i + n \bar x_i\bar y_i - n\bar x\bar y - n\bar x\bar y \gets (0)\\
-&=\sum x_iy_i - n \bar y_i n^{-1}\sum x_i\\
-&= \sum x_iy_i -\bar y\sum x_i\\
-&= \sum x_i(y_i-\bar y) \tag{7}
-\end{align}</script><p>将 (6) , (7) 代入 (5) 得</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x)(y_i-\bar y)&= \sum \hat\beta(x_i-\bar x)^2\\
-\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \tag{8}
-\end{align}</script><p><strong>最终我们得到两系数的值</strong></p>
-<script type="math/tex; mode=display">
+\varphi_0^2+\varphi_1^2S_{t+1}=h(X)</script><p>然后开始从后向前推导:</p>
+<h4 id="From-t-2-to-3-where-A-1-omega-1-omega-2"><a href="#From-t-2-to-3-where-A-1-omega-1-omega-2" class="headerlink" title="From $t:2 \to 3$ where $A_1=\{\omega_1,\omega_2\}$"></a>From $t:2 \to 3$ where $A_1=\{\omega_1,\omega_2\}$</h4><script type="math/tex; mode=display">
 \begin{cases}
-\hat\beta = \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \\
-\hat\alpha = \bar y - \hat\beta \bar x \tag{9}
-\end{cases}</script><h2 id="2-系数的无偏性"><a href="#2-系数的无偏性" class="headerlink" title="2. 系数的无偏性"></a>2. 系数的无偏性</h2><p>重申一个特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum(x_i-\bar x)&=\sum x_i-n\bar x \gets (0) \\
-&= n\bar x-n\bar x\\
-&= 0 \tag{10}
-\end{align}</script><p>首先对 $\hat\beta$ 进行变换</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \gets (7)\\
-&= \frac{\sum (x_i-\bar x)y_i}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sum (x_i-\bar x)(\alpha +\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (10)\\
-&= \frac{\sum (x_i-\bar x)(\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (6)\\
-&= \frac{\sum ((x_i-\bar x)^2\beta+(x_i-\bar x)u_i)}{\sum (x_i-\bar x)^2}\\
-&= \beta+\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2} \tag{11}
-\end{align}</script><p><strong>对 $\hat\beta$ 无偏性的证明</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-E(\hat\beta) &= \beta + E(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
-&= \beta + \frac{\sum (x_i-\bar x)E(u_i)}{\sum (x_i-\bar x)^2} \gets SLR.4\\
-&= \beta
-\end{align}</script><blockquote>
-<p>SLR.4 : Zero Conditional Mean</p>
-<p>注意在中文版中SLR.3才是零条件均值</p>
-</blockquote>
-<p><strong>对 $\hat\alpha$ 无偏性的证明</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-E(\hat\alpha) &= E(\bar y - \hat\beta \bar x)\\
-&= E(\alpha +\beta \bar x+\bar u - \hat\beta \bar x) \gets SLR.4\\
-&= \alpha + \beta \bar x - \beta \bar x\\
-&= \alpha
-\end{align}</script><h2 id="3-系数的抽样方差"><a href="#3-系数的抽样方差" class="headerlink" title="3. 系数的抽样方差"></a>3. 系数的抽样方差</h2><p>提前定义</p>
-<script type="math/tex; mode=display">
-u_i \sim N(0,\sigma^2)</script><p>重申关于 $Var$ 的知识点</p>
-<script type="math/tex; mode=display">
-Var(x+y)=Var(x)+Var(y)+2Cov(x,y) \tag{12}</script><script type="math/tex; mode=display">
-Cov(x,y)=E(xy)-E(x)E(y) \tag{13}</script><script type="math/tex; mode=display">
-Var(\bar u)=Var(\frac{\sum u_i}{n})=\frac{\sum Var(u_i)}{n^2}=\frac{\sigma^2}{n} \tag{14}</script><p><strong>从 (11) 对 $\hat\beta$ 进行方差的推导</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-Var(\hat\beta) &= Var(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}Var(\sum (x_i-\bar x)u_i)\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2Var(u_i)\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2\sigma^2\\
-&= \frac{\sigma^2}{\sum (x_i-\bar x)^2} \tag{15}
-\end{align}</script><p>推导一个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-(13) \to Cov(\bar u,(\beta - \hat\beta) \bar x) &= E((\beta - \hat\beta) \bar x \bar u)-E(\bar u)E((\beta - \hat\beta) \bar x)\\
-&= E((\beta - \hat\beta) \bar x \bar u) \gets (11) \\
-&= E(\frac{\sum (x_i-\bar x)u_i\bar u\bar x}{\sum (x_i-\bar x)^2})\\
-&= (\frac{\sum (x_i-\bar x)\bar x}{\sum (x_i-\bar x)^2})^2E(u_i\bar u) \gets (10)\\
-&= 0\times E(u_i\bar u) \tag{16}
-\end{align}</script><p>扩展</p>
-<blockquote>
-<p>这里的 $E(u_i\bar u)$ 不能等于0，因为 $i$ 与 $\bar u$ 中除了编号是 $i$ 的其他残差独立</p>
-<p>$E(u_i\bar u)=\frac{1}{n}\sum_{j=1}^nE(u_iu_j)=\frac{1}{n}E(u_i^2)=\frac{\sigma^2}{n}$</p>
-<p>$E(u_i^2) = Var(u_i)-E(u_i)^2=\sigma^2$</p>
-</blockquote>
-<p><strong>对 $\hat\alpha$ 进行方差的推导</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
-&= Var(\alpha +\beta \bar x+\bar u - \hat\beta \bar x)\\
-&= Var(\bar u +(\beta - \hat\beta) \bar x) \gets (12)\\
-&= Var(\bar u)+Var((\beta - \hat\beta) \bar x)+2Cov(\bar u,(\beta - \hat\beta) \bar x) \gets (14)(15)(16)\\
-&= \frac{\sigma^2}{n} + \frac{\sigma^2\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sum (x_i-\bar x)^2\sigma^2+n\sigma^2\bar x^2}{n\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum (x_i-\bar x)^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum (x_i^2+\bar x^2-2x_i\bar x)+n\bar x^2}{\sum (x_i-\bar x)^2} \gets (0)\\
-&= \frac{\sigma^2}{n}\frac{\sum x_i^2+n\bar x^2-2n\bar x^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum x_i^2}{\sum (x_i-\bar x)^2} \tag{17}
-\end{align}</script><h2 id="4-sigma的无偏性"><a href="#4-sigma的无偏性" class="headerlink" title="4. sigma的无偏性"></a>4. sigma的无偏性</h2><p>定义</p>
-<ul>
-<li>$u_i$ : 误差</li>
-<li><p>$\hat u_i = y-\hat y = u_i+(\alpha-\hat\alpha)+(\beta-\hat\beta)x_i$ : 残差</p>
-</li>
-<li><p>$\sigma^2 = n^{-1}\sum u_i^2 = (n-2)^{-1}\sum \hat u_i^2 = \frac{SSR}{n-2}$ : 因为包含两个限制条件，所以减少两个自由度</p>
-</li>
-</ul>
-<p>由 (2) 得</p>
-<script type="math/tex; mode=display">
-\begin{align}
-0&= y-\hat\alpha-\hat\beta x\\
-&= \alpha -\hat\alpha +\beta x -\hat\beta x +u\\
-&= (\alpha -\hat\alpha) +(\beta -\hat\beta)\bar x +\bar u \tag{18}
-\end{align}</script><p>将原有残差公式与 (18) 相减</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum \hat u_i &= \sum (u_i-\bar u)+\sum (\beta-\hat\beta)(x_i-\bar x)\\
-\sum \hat u_i^2 &= \sum (u_i-\bar u)^2 + \sum (\beta-\hat\beta)^2(x_i-\bar x)^2 + \sum 2(u_i-\bar u)(\beta-\hat\beta)(x_i-\bar x)\\
-\end{align}</script><p>右侧第一项的期望值是样本误差的方差 $(n-1)\sigma^2$</p>
-<p>右侧第二项因为 $E[(\hat\beta-\beta)^2]=Var(\hat\beta)-E[(\hat\beta-\beta)]^2=Var(\hat\beta)$ 代入 (15) 得期望为 $\sigma^2$</p>
-<p>推导一个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-(8)\to \sum(u_i-\bar u)(x_i-\bar x) &=\sum u_i(x_i-\bar x)\\
-&=\sum (y_i-\alpha-\beta x_i)(x_i-\bar x) \gets (10)\\
-&=\sum (y_i-\beta x_i)(x_i-\bar x) \gets (6) (7)\\
-&=\sum (y_i-\bar y)(x_i-\bar x)-\sum\beta (x_i-\bar x)^2 \gets (8)\\
-&=\sum \hat\beta (x_i-\bar x)^2-\sum\beta (x_i-\bar x)^2\\
-&=(\hat \beta-\beta)\sum(x_i-\bar x)^2 \tag{19}
-\end{align}</script><p>右侧第三项可代入 (19) 并求期望得 $E[-2(\hat \beta-\beta)^2\sum(x_i-\bar x)^2]=-2\sigma^2$</p>
-<p>将三项放在一起得 $E(\sum\hat u_i^2)=(n-1)\sigma^2+\sigma^2-2\sigma^2=(n-2)\sigma^2$</p>
-<p>因此可证得 $E[SSR/(n-2)]=\sigma^2$</p>
+\varphi_0^2+\varphi_1^2(S_0+3a)=x_1\\
+\varphi_0^2+\varphi_1^2(S_0+a)=x_2
+\end{cases}
+\to
+\begin{cases}
+\varphi_1^2·2a=x_1-x_2\\
+\varphi_0^2=x_1-\varphi_1^2(S_0+3a)
+\end{cases}</script><p>we find that $(\varphi_0^2,\varphi_1^2)=(x_1-\frac{(S_0+3a)(x_1 - x_2)}{2a},\frac{x_1-x_2}{2a})$</p>
+<p>and $\pi_2(A_1)=x_1-\frac{(S_0+3a)(x_1 - x_2)}{2a}+\frac{(S_0+2a)(x_1-x_2)}{2a}=x_1-\frac{x_1 - x_2}{2}=\frac{x_1 + x_2}{2}$</p>
+<h4 id="From-t-2-to-3-where-A-2-omega-2-omega-3"><a href="#From-t-2-to-3-where-A-2-omega-2-omega-3" class="headerlink" title="From $t:2 \to 3$ where $A_2=\{\omega_2,\omega_3\}$"></a>From $t:2 \to 3$ where $A_2=\{\omega_2,\omega_3\}$</h4><script type="math/tex; mode=display">
+\begin{cases}
+\varphi_0^2+\varphi_1^2(S_0+a)=x_2\\
+\varphi_0^2+\varphi_1^2(S_0-a)=x_3
+\end{cases}
+\to
+\begin{cases}
+\varphi_1^2·2a=x_2-x_3\\
+\varphi_0^2=x_2-\varphi_1^2(S_0+a)
+\end{cases}</script><p>we find that $(\varphi_0^2,\varphi_1^2)=(x_2-\frac{(S_0+a)(x_2 - x_3)}{2a},\frac{x_2-x_3}{2a})$</p>
+<p>and $\pi_2(A_2)=x_2-\frac{(S_0+a)(x_2 - x_3)}{2a}+\frac{S_0(x_2-x_3)}{2a}=x_2-\frac{x_2 - x_3}{2}=\frac{x_2 + x_3}{2}$</p>
+<h4 id="From-t-2-to-3-where-A-3-omega-3-omega-4"><a href="#From-t-2-to-3-where-A-3-omega-3-omega-4" class="headerlink" title="From $t:2 \to 3$ where $A_3=\{\omega_3,\omega_4\}$"></a>From $t:2 \to 3$ where $A_3=\{\omega_3,\omega_4\}$</h4><script type="math/tex; mode=display">
+\begin{cases}
+\varphi_0^2+\varphi_1^2(S_0-a)=x_3\\
+\varphi_0^2+\varphi_1^2(S_0-3a)=x_4
+\end{cases}
+\to
+\begin{cases}
+\varphi_1^2·2a=x_3-x_4\\
+\varphi_0^2=x_3-\varphi_1^2(S_0-a)
+\end{cases}</script><p>we find that $(\varphi_0^2,\varphi_1^2)=(x_3-\frac{(S_0-a)(x_3 - x_4)}{2a},\frac{x_3-x_4}{2a})$</p>
+<p>and $\pi_2(A_3)=x_3-\frac{(S_0-a)(x_3 - x_4)}{2a}+\frac{(S_0-2a)(x_3-x_4)}{2a}=x_2-\frac{x_3 - x_4}{2}=\frac{x_3 + x_4}{2}$</p>
+<h4 id="From-t-1-to-2-where-A-u-A-1-A-2"><a href="#From-t-1-to-2-where-A-u-A-1-A-2" class="headerlink" title="From $t:1 \to 2$ where $A_u=\{A_1,A_2\}$"></a>From $t:1 \to 2$ where $A_u=\{A_1,A_2\}$</h4><script type="math/tex; mode=display">
+\begin{cases}
+\varphi_0^1+\varphi_1^1(S_0+2a)=\frac{x_1 + x_2}{2}\\
+\varphi_0^1+\varphi_1^1S_0=\frac{x_2 + x_3}{2}
+\end{cases}
+\to
+\begin{cases}
+\varphi_1^1·2a=\frac{x_1 - x_3}{2}\\
+\varphi_0^1=\frac{x_1 + x_2}{2}-\varphi_1^1(S_0+2a)
+\end{cases}</script><p>we find that $(\varphi_0^1,\varphi_1^1)=(\frac{x_1 + x_2}{2}-\frac{(S_0+2a)(x_1 - x_3)}{4a},\frac{x_1-x_3}{4a})$</p>
+<p>and $\pi_1(A_u)=\frac{x_1 + x_2}{2}-\frac{(S_0+2a)(x_1 - x_3)}{4a}+\frac{(S_0+a)(x_1-x_3)}{4a}=\frac{x_1 + x_2}{2}-\frac{x_1 - x_3}{4}=\frac{x_1 + 2x_2-x_3}{4}$</p>
+<h4 id="From-t-1-to-2-where-A-d-A-2-A-3"><a href="#From-t-1-to-2-where-A-d-A-2-A-3" class="headerlink" title="From $t:1 \to 2$ where $A_d=\{A_2,A_3\}$"></a>From $t:1 \to 2$ where $A_d=\{A_2,A_3\}$</h4><script type="math/tex; mode=display">
+\begin{cases}
+\varphi_0^1+\varphi_1^1S_0=\frac{x_2 + x_3}{2}\\
+\varphi_0^1+\varphi_1^1(S_0-2a)=\frac{x_3 + x_4}{2}
+\end{cases}
+\to
+\begin{cases}
+\varphi_1^1·2a=\frac{x_2 - x_4}{2}\\
+\varphi_0^1=\frac{x_2 + x_3}{2}-\varphi_1^1S_0
+\end{cases}</script><p>we find that $(\varphi_0^1,\varphi_1^1)=(\frac{x_2 + x_3}{2}-\frac{S_0(x_2 - x_4)}{4a},\frac{x_2-x_4}{4a})$</p>
+<p>and $\pi_1(A_u)=\frac{x_2 + x_3}{2}-\frac{S_0(x_2 - x_4)}{4a}+\frac{(S_0-a)(x_2-x_4)}{4a}=\frac{x_2 + x_3}{2}-\frac{x_2 - x_4}{4}=\frac{x_2 + 2x_3-x_4}{4}$</p>
+<h4 id="From-t-0-to-1-where-A-0-A-u-A-d"><a href="#From-t-0-to-1-where-A-0-A-u-A-d" class="headerlink" title="From $t:0 \to 1$ where $A_0=\{A_u,A_d\}$"></a>From $t:0 \to 1$ where $A_0=\{A_u,A_d\}$</h4><script type="math/tex; mode=display">
+\begin{cases}
+\varphi_0^0+\varphi_1^0(S_0+a)=\frac{x_1 + 2x_2-x_3}{4}\\
+\varphi_0^0+\varphi_1^0(S_0-a)=\frac{x_2 + 2x_3-x_4}{4}
+\end{cases}
+\to
+\begin{cases}
+\varphi_1^0·2a=\frac{x_1 +x_2 -x_3 -x_4}{4}\\
+\varphi_0^0=\frac{x_1 + 2x_2-x_3}{4}-\varphi_1^0(S_0+a)
+\end{cases}</script><p>we find that $(\varphi_0^0,\varphi_1^0)=(\frac{x_1 + 2x_2-x_3}{4}-\frac{(S_0+a)(x_1 +x_2 -x_3 -x_4)}{8a},\frac{x_1 +x_2 -x_3 -x_4}{8a})$</p>
+<p>$\begin{align}\pi_0(A_0)&amp;=\frac{x_1 + 2x_2-x_3}{4}-\frac{(S_0+a)(x_1 +x_2 -x_3 -x_4)}{8a}+\frac{S_0(x_1 +x_2 -x_3 -x_4)}{8a}\\ &amp;=\frac{x_1 + 2x_2-x_3}{4}-\frac{x_1 +x_2 -x_3 -x_4}{8}=\frac{x_1 + 3x_2-3x_3 - x_4}{8}\end{align}$</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>题目的难度不大，主要在计算过程中比较繁杂的化简，选择性化简是比较重要的，我们可以发现$(S_0+a)$通常都作为一个整体出现，所以无需拆分。同时因为这道题特别的对仗工整，我们可以发现在同一时间$t$下的计算特别相似，所以有时可以采用直接替换数字。当计算时，如果出现了<em>不友好</em>的数字，比如一些没有规律的，与上下式子不对应的答案，可以检查过程中是否出现，少除，错减之类的。</p>
+<h2 id="Matlab代码"><a href="#Matlab代码" class="headerlink" title="Matlab代码"></a>Matlab代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs Matlab">syms s0 a x1 x2 x3 x4<br>r = <span class="hljs-number">0</span>; u = a; d = -a; S0 = s0;imax = <span class="hljs-number">3</span>;<br>SS = sym(<span class="hljs-built_in">zeros</span>(imax+<span class="hljs-number">1</span>,imax+<span class="hljs-number">1</span>));<br>SS(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) = S0;<br><span class="hljs-keyword">for</span> t = <span class="hljs-number">2</span>:imax+<span class="hljs-number">1</span> <span class="hljs-comment">% 对应股价变化</span><br>    <span class="hljs-keyword">for</span> n = <span class="hljs-number">1</span>:t<br>        SS(n,t) = S0+u*(t-n)+d*(n<span class="hljs-number">-1</span>);<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>payoff = [x1;x2;x3;x4]; <span class="hljs-comment">% 在T时的价值</span><br>PayOffMatr = sym(<span class="hljs-built_in">zeros</span>(imax+<span class="hljs-number">1</span>,imax+<span class="hljs-number">1</span>));<br>PayOffMatr(:,imax+<span class="hljs-number">1</span>) = payoff;<br>phiMatr = sym(<span class="hljs-built_in">zeros</span>(imax,imax,<span class="hljs-number">2</span>));<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=imax:<span class="hljs-number">-1</span>:<span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:<span class="hljs-built_in">j</span><br>        pi1=PayOffMatr(k,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        pi2=PayOffMatr(k+<span class="hljs-number">1</span>,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        s1=SS(k,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        s2=SS(k+<span class="hljs-number">1</span>,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">2</span>)=simplify((pi1-pi2)/(s1-s2)); <span class="hljs-comment">% phi1</span><br>        phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">1</span>)=simplify((pi1-phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">2</span>)*s1)/(<span class="hljs-number">1</span>+r)); <span class="hljs-comment">% phi0</span><br>        PayOffMatr(k,<span class="hljs-built_in">j</span>)=simplify(phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">1</span>)+phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">2</span>)*SS(k,<span class="hljs-built_in">j</span>)); <span class="hljs-comment">% pi</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -418,7 +398,11 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Econometrics/">Econometrics</a>
+                      <a class="hover-with-bg" href="/tags/Derivatives/">Derivatives</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Financial-Mathematics/">Financial Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Arbitrage-Price/">Arbitrage Price</a>
                     
                   </div>
                 
@@ -431,18 +415,12 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/06/Exercise_1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Exercise_1</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/27/Basic_Econometrics%E3%80%90ECON5002%E6%9C%9F%E6%9C%AB%E7%AC%94%E8%AE%B0%E3%80%91/">
-                        <span class="hidden-mobile">Basic_Econometrics【ECON5002期末笔记】</span>
+                      <a href="/2021/04/30/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%96%B9%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0/">
+                        <span class="hidden-mobile">一元线性回归方程中的回归系数</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
