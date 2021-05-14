@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>Exercise_1 - Borderland</title>
+  <title>Applied_Computational_Finance【ECON5065】 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Exercise_1">
+            <span class="h2" id="subtitle" title="Applied_Computational_Finance【ECON5065】">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-06 14:57" pubdate>
-        May 6, 2021 pm
+      <time datetime="2021-05-12 22:02" pubdate>
+        May 12, 2021 pm
       </time>
     </span>
   
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      27
        分钟
     </span>
   
@@ -224,164 +224,167 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Exercise_1</h1>
+            <h1 style="display: none">Applied_Computational_Finance【ECON5065】</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于ECON5020期末考试试题;</p>
-<p>Option pricing;</p>
+<p>基于格拉斯哥课件；</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h2><p><strong>Consider a multi-period market model $M=(B,S)$ with two assets: the saving account $B$ and the risky asset $S$. For a natural number $T$, consider the following model for the price of the risky asset $S$:</strong></p>
-<script type="math/tex; mode=display">
-S_t = S_0 +Y_1,Y_2+...+Y_t,</script><p><strong>where the random variables $Y_1,…,Y_T$ are independent and identically distributed under the real-world probability measure $\mathbb{P}$, specifically,</strong></p>
-<script type="math/tex; mode=display">
-P(Y_1=+a)=.25,\ P(Y_1=-a)=.75</script><p><strong>where $a&gt;0$ is a strictly positive constant. We assume that the risk-free rate $r=0$ so that the savings account equals $B_t=1$ for every $t=0,1,…,T$.</strong></p>
+<h1 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h1><p>Many problems in economics, finance and financial engineering do not possess a closed-form solution which could be computed easily. Typically, these problems are solved by using <strong>numerical algorithms and simulation methods</strong>. This course covers the study and implementation of such techniques. These include <strong>Monte Carlo simulation</strong> for <strong>pricing complex derivatives</strong>; <strong>finite difference methods</strong> to solve <strong>partial differential equations</strong> for option pricing; <strong>effective methods</strong> to compute <strong>hedging strategies</strong>; <strong>numerical dynamic programming</strong> for <strong>optimal portfolios</strong>, <strong>resource management and economic growth</strong>. Advanced understanding of these techniques and their implementation on computer using software packages and programming languages is the focus of this course.</p>
+<h1 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h1><p>The main aims of this course are to introduce students to core techniques in computational finance, such as <strong>simulation of asset prices</strong>, pricing options using <strong>stochastic models</strong>, <strong>Monte Carlo methods</strong> as applied to complex derivatives, solving <strong>Black-Scholes</strong> type equations <strong>numerically</strong>, solving <strong>dynamic optimization</strong> problems <strong>numerically</strong>, and how to implement these techniques using modelling software packages and programming languages.</p>
+<h1 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h1><p>By the end of this course, students will be able to:</p>
 <ol>
-<li>Check whether the model $M=(B,S)$ is arbitrage-free and complete.</li>
-<li>Find the option price process $\pi_t(X)$, $t=0,1,2,3$ and the replicating strategy $\varphi=(\varphi_0,\varphi_1)$</li>
+<li>Calculate the price and hedging portfolios of complex derivatives using <strong>Monte Carlo simulations</strong>; </li>
+<li>Calculate the price of American and other exotic options by implementing <strong>numerical methods</strong> to solve the related partial differential equations; </li>
+<li>Implement <strong>dynamic programming algorithms</strong> to solve problems in portfolio optimisation, resource management and monetary policy; </li>
+<li>Demonstrate advanced skills in modelling software package <strong>MATLAB</strong>.</li>
 </ol>
-<h2 id="Answer"><a href="#Answer" class="headerlink" title="Answer:"></a>Answer:</h2><h3 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h3><p>我们可以看到，在给定前一个时刻的股票价格时，每个时间$t$都存在两个状态。分别是$+a$增长一个值，或者$-a$减少一个值，所以这是个$binomial\ tree$。为了判断模型是不是无套利的，我可以用定义：当$d&lt;1+r&lt;u$ 时无套利。其中$d=\frac{s_t}{s_{t-1}}=\frac{s_{t-1}-a}{s_{t-1}}=1-\frac{a}{s_{t-1}}$,$u=\frac{s_t}{s_{t-1}}=\frac{s_{t-1}+a}{s_{t-1}}=1+\frac{a}{s_{t-1}}$, 所以等式成立。</p>
-<h3 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h3><p>主要流程使用 $Backward\ induction$.</p>
-<p>已知$T=3$,可以先画出股价的变动图。后续会往内补充数字：</p>
+<h1 id="Unit-1：Black-Scholes-Model"><a href="#Unit-1：Black-Scholes-Model" class="headerlink" title="Unit 1：Black-Scholes Model"></a>Unit 1：Black-Scholes Model</h1><h2 id="Unit-1-1：P-amp-L-Approach-to-Black-Scholes-Equation"><a href="#Unit-1-1：P-amp-L-Approach-to-Black-Scholes-Equation" class="headerlink" title="Unit 1.1：P&amp;L Approach to Black-Scholes Equation"></a>Unit 1.1：P&amp;L Approach to Black-Scholes Equation</h2><ul>
+<li><strong>P&amp;L</strong>：profit and loss </li>
+<li><strong>T</strong>：maturity</li>
+<li><strong>S</strong>：underlying asset price</li>
+<li>$F(S_T)$：payoff function</li>
+<li>$P(t, S)$：pricing function </li>
+</ul>
+<p>Consider the <strong>P&amp;L</strong> due to trading between time $t$ and $t + \delta t$</p>
+<script type="math/tex; mode=display">
+P\&L=-[P(t+\delta t,S+\delta S)-P(t,S)]+rP(t,S)\delta t+\Delta\delta S-(r-q)\Delta S\delta t</script><script type="math/tex; mode=display">
+P(t+\delta t,S+\delta S)-P(t,S) \approx \frac{dP}{dt}\delta t+\frac{dP}{dS}\delta S +\frac{1}{2}\frac{d^2P}{dS^2}(\delta S)^2</script><ul>
+<li><p>$\delta S$：change in the stock price, $\delta S$ independent of $\delta t$</p>
+</li>
+<li><p>$\Delta = \frac{dP}{dS}$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+P\&L&=-[\frac{dP}{dt}\delta t+\frac{dP}{dS}\delta S +\frac{1}{2}\frac{d^2P}{dS^2}(\delta S)^2]+rP\delta t+\frac{dP}{dS}\delta S-(r-q)\frac{dP}{dS} S\delta t\\
+&=-\underbrace{(\frac{dP}{dt}-rP+(r-q)\frac{dP}{dS} S)}\delta t -\underbrace{\frac{1}{2}S^2\frac{d^2P}{dS^2}(\frac{\delta S}{S})^2}\\
+&\qquad \qquad deterministic\ part \quad \quad \quad random\ exposure
+\end{align}</script><ul>
+<li>theta：$\frac{dP}{dt}$</li>
+<li><p>corrected theta：$\frac{dP}{dt}-rP+(r-q)S\frac{dP}{dS}$</p>
+</li>
+<li><p>gamma：$\frac{d^2P}{dS^2}$</p>
+</li>
+<li>Dollar gamma：$S^2\frac{d^2P}{dS^2}$</li>
+</ul>
+<script type="math/tex; mode=display">
+P\&L=-A(t,S)\delta t -B(t,S)(\frac{\delta S}{S})^2</script><p>Any model is unusable if $A(t, S)$ and $B(t, S)$ have the same sign. The model is usable only if $A(t, S)$ and $B(t, S)$ have different signs.</p>
+<p>No money is made if</p>
+<script type="math/tex; mode=display">
+\frac{\delta S}{S}=\pm \sqrt{-\frac{A(t, S)}{B(t, S)}}\delta t</script><p>On average we have </p>
+<script type="math/tex; mode=display">
+\langle(\frac{\delta S}{S})^2\rangle=\hat{\sigma}^2\delta t</script><p>where $\hat{\sigma}$ is the historical volatility of $S$ based on returns $\delta S/S$</p>
+<p>For risk-management, our model should satisfy the condition</p>
+<script type="math/tex; mode=display">
+A(t, S) = -\hat{\sigma}^2B(t, S)</script><p>Thus,</p>
+<script type="math/tex; mode=display">
+\frac{dP_{\sigma^2}}{dt}-rP_{\sigma^2}+(r-q)\frac{dP_{\sigma^2}}{dS} S= -\frac{\hat{\sigma}^2}{2}S^2\frac{d^2P_{\sigma^2}}{dS^2}</script><p>where $P_{\sigma^2}$ accounts for dependence on the volatility level $\hat{\sigma}$</p>
+<p>We then get,</p>
+<script type="math/tex; mode=display">
+P\&L=-\frac{S^2}{2}\frac{d^2P_{\sigma}^2}{dS^2}((\frac{\delta S}{S})^2-\hat{\sigma}^2\delta t)</script><p>For vanilla options in the market, $\hat{\sigma}$ is the <strong>implied volatility</strong> such that $P_{\sigma^2}$ is equal to the market price.</p>
+<h2 id="Unit-1-2：Stochastic-Differential-Equations"><a href="#Unit-1-2：Stochastic-Differential-Equations" class="headerlink" title="Unit 1.2：Stochastic Differential Equations"></a>Unit 1.2：Stochastic Differential Equations</h2><p>Recall a <strong>differential equation</strong></p>
+<script type="math/tex; mode=display">
+\dot{X}(t)=\frac{dX(t)}{dt}=g(t,X(t))</script><p>This can be written alternatively as</p>
+<script type="math/tex; mode=display">
+dX(t)=g(t,X(t))dt</script><p>or approximately as an <strong>difference equation</strong> with small time interval (increment) $\Delta t$</p>
+<script type="math/tex; mode=display">
+\Delta X(t)=X(t+\Delta t)-X(t)=g(t,X(t))\Delta t</script><p>with  the increments of <strong>Brownian motion</strong> $\Delta W = W(t+\Delta t)-W(t), \Delta W \sim N(0,\Delta t)$</p>
+<script type="math/tex; mode=display">
+\begin{matrix}
+\Delta X(t)=\underbrace{g(t,X(t))\Delta t}+\underbrace{\sigma(t,X(t))\Delta W}\\
+\qquad\qquad\quad drift\ part \quad \quad diffusion\ part
+\end{matrix}</script><p><strong>stochastic differential equation</strong></p>
+<script type="math/tex; mode=display">
+dX(t)=g(t,X(t))d t+\sigma(t,X(t))d W</script><h2 id="Unit-1-3：Ito-Formula"><a href="#Unit-1-3：Ito-Formula" class="headerlink" title="Unit 1.3：Ito Formula"></a>Unit 1.3：Ito Formula</h2><p>We are interested in the dynamics of an expression such as $f(t)=F(t,X(t))$ with $F:[0,\infty]\times \mathbb{R}\to \mathbb{R}$ .</p>
+<ul>
+<li>$F$：option pricing function</li>
+<li>$X(t)$：underlying share price</li>
+<li>$(dW)^2 = dt$</li>
+<li>up to order 1 in $dt$：$(dt)^2=0$， $(dW)(dt)=dt\sqrt{dt}=0$</li>
+<li>$(dX)^2=\sigma(t,X(t))^2dt$</li>
+</ul>
+<p>Then, the stochastic process $f$  has the following dynamics</p>
+<script type="math/tex; mode=display">
+\begin{align}
+df&=F_tdt+F_XdX+\frac{1}{2}F_{XX}(dX)^2\\
+&=F_tdt+F_Xg(t,X(t))dt+F_X\sigma(t,X(t)) dW+\frac{1}{2}F_{XX}\sigma(t,X(t))^2dt\\
+&=(F_t+F_Xg(t,X(t))+\frac{1}{2}F_{XX}\sigma(t,X(t))^2)dt+F_X\sigma(t,X(t)) dW
+\end{align}</script><p>Suppose that the asset price $S$ solves the following stochastic differential equation</p>
+<script type="math/tex; mode=display">
+\frac{dS(t)}{S(t)}=\mu dt+\sigma dW(t) \sim N(\mu,\sigma^2 dt)</script><p>At $t = T$, we have</p>
+<script type="math/tex; mode=display">
+S(T)=S(t)exp((\mu-\frac{1}{2}\sigma^2)(T-t)+\sigma(W(T)-W(t)))</script><h4 id="Delta-Hedging"><a href="#Delta-Hedging" class="headerlink" title="Delta Hedging"></a>Delta Hedging</h4><p>Black, Scholes, Merton approach : construct a riskless portfolio, which consists of selling the option and buying the asset</p>
+<script type="math/tex; mode=display">
+\begin{align}
+-dP+\Delta dS&=-(P_tdt+P_SdS+\frac{1}{2}P_{SS}(dS)^2)+\Delta dS\\
+&=-(P_t+\frac{1}{2}S^2\sigma^2P_{SS})dt+(-P_S+\Delta)dS
+\end{align}</script><p>where</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(dS)^2&=(S(t)(\mu dt+\sigma dW(t)))^2\\
+&=S(t)^2(\mu^2(dt)^2+2\mu\sigma dtdW(t)+\sigma^2(dW(t))^2)\\
+&=S(t)^2(0+0+\sigma^2dt)
+\end{align}</script><p>Substitution of $dS$ gives</p>
+<script type="math/tex; mode=display">
+-dP+\Delta dS=-(P_t+\frac{1}{2}S^2\sigma^2P_{SS}+(P_S-\Delta)S\mu)dt+(-P_S+\Delta)S\sigma dW</script><p>riskless $\Rightarrow \Delta = P_S$</p>
+<p>Substitution gives</p>
+<script type="math/tex; mode=display">
+-dP+\Delta dS=-(P_t+\frac{1}{2}S^2\sigma^2P_{SS})dt</script><p>Recall that</p>
+<script type="math/tex; mode=display">
+-dP+\Delta dS=(-P+\Delta S)rdt</script><p>Combining the above results, leads to the Black-Scholes equation</p>
+<script type="math/tex; mode=display">
+-Pr+P_SSr+P_t+\frac{1}{2}S^2\sigma^2P_{SS}=0</script><p>with boundary condition</p>
+<script type="math/tex; mode=display">
+P(T,S(T))=F(S(T))</script><p>Under the Black-Scholes-Merton (BSM) model, European call option price is given as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C(t,S,T,K)&=S\Phi(d_1)-Ke^{-r(T-t)}\Phi(d_2)\\
+d_1&=\frac{ln(\frac{S}{Ke^{-r(T-t)}})+\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}\\
+d_2&=\frac{ln(\frac{S}{Ke^{-r(T-t)}})-\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}\\
+&=d_1-\sigma\sqrt{T-t}
+\end{align}</script><p>European put option price is given as</p>
+<script type="math/tex; mode=display">
+P(t,S,T,K)=Ke^{-r(T-t)}\Phi(-d_2)-S\Phi(-d_1)</script><p>Black-Scholes PDE can be transformed to Black-Scholes Pricing Formula through <strong>solving the heat equation</strong></p>
+<h2 id="Unit-1-4-Greeks"><a href="#Unit-1-4-Greeks" class="headerlink" title="Unit 1.4 Greeks"></a>Unit 1.4 Greeks</h2><p>Certain partial derivatives of option prices are widely used for hedging purposes and have been assigned Greek names and symbols : </p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th>t=0</th>
-<th>t=1</th>
-<th>t=2</th>
-<th>t=3</th>
-<th>value at T</th>
+<th>Delta</th>
+<th>Gamma</th>
+<th>Rho</th>
+<th>Theta</th>
+<th>Vega</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td>$S_0+3a$ , $\omega_1$</td>
-<td>$\gets x_1$</td>
+<td>$\Delta$</td>
+<td>$\Gamma$</td>
+<td>$\rho$</td>
+<td>$\Theta$</td>
+<td>$vega$</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td>$S_0+2a$</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>$S_0+a$</td>
-<td></td>
-<td>$S_0+a$ , $\omega_2$</td>
-<td>$\gets x_2$</td>
-</tr>
-<tr>
-<td>$S_0$</td>
-<td></td>
-<td>$S_0$</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>$S_0-a$</td>
-<td></td>
-<td>$S_0-a$ , $\omega_3$</td>
-<td>$\gets x_3$</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>$S_0-2a$</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td>$S_0-3a$ , $\omega_4$</td>
-<td>$\gets x_4$</td>
+<td>$\frac{\partial C}{\partial S}$</td>
+<td>$\frac{\partial^2 C}{\partial S^2}$</td>
+<td>$\frac{\partial C}{\partial r}$</td>
+<td>$\frac{\partial C}{\partial t}$</td>
+<td>$\frac{\partial C}{\partial \sigma}$</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>因为$X$ 没给定明确的值，我们假设在时间$T$ 有四个状态$\{\omega_1,\omega_2,\omega_3,\omega_4\}$, 同时还有对应的价值$\{x_1,x_2,x_3,x_4\}$。对应$multi-period$ 的模型，需要有$self-financing$ 的过程:</p>
+<p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/04/25/Mathematical_Finance%E3%80%90ECON5020%E6%9C%9F%E6%9C%AB%E7%AC%94%E8%AE%B0%E3%80%91/#Unit-8：Greeks-Hedging-and-limits-of-Black-Scholes">Read more about those functions</a></p>
+<p>Recall that</p>
 <script type="math/tex; mode=display">
-\varphi_0^t+\varphi_1^tS_{t+1}=\varphi_0^{t+1}+\varphi_1^{t+1}S_{t+1}</script><p>对应最后时间$T$我们需要有以下式子:</p>
-<script type="math/tex; mode=display">
-\varphi_0^2+\varphi_1^2S_{t+1}=h(X)</script><p>然后开始从后向前推导:</p>
-<h4 id="From-t-2-to-3-where-A-1-omega-1-omega-2"><a href="#From-t-2-to-3-where-A-1-omega-1-omega-2" class="headerlink" title="From $t:2 \to 3$ where $A_1=\{\omega_1,\omega_2\}$"></a>From $t:2 \to 3$ where $A_1=\{\omega_1,\omega_2\}$</h4><script type="math/tex; mode=display">
-\begin{cases}
-\varphi_0^2+\varphi_1^2(S_0+3a)=x_1\\
-\varphi_0^2+\varphi_1^2(S_0+a)=x_2
-\end{cases}
-\to
-\begin{cases}
-\varphi_1^2·2a=x_1-x_2\\
-\varphi_0^2=x_1-\varphi_1^2(S_0+3a)
-\end{cases}</script><p>we find that $(\varphi_0^2,\varphi_1^2)=(x_1-\frac{(S_0+3a)(x_1 - x_2)}{2a},\frac{x_1-x_2}{2a})$</p>
-<p>and $\pi_2(A_1)=x_1-\frac{(S_0+3a)(x_1 - x_2)}{2a}+\frac{(S_0+2a)(x_1-x_2)}{2a}=x_1-\frac{x_1 - x_2}{2}=\frac{x_1 + x_2}{2}$</p>
-<h4 id="From-t-2-to-3-where-A-2-omega-2-omega-3"><a href="#From-t-2-to-3-where-A-2-omega-2-omega-3" class="headerlink" title="From $t:2 \to 3$ where $A_2=\{\omega_2,\omega_3\}$"></a>From $t:2 \to 3$ where $A_2=\{\omega_2,\omega_3\}$</h4><script type="math/tex; mode=display">
-\begin{cases}
-\varphi_0^2+\varphi_1^2(S_0+a)=x_2\\
-\varphi_0^2+\varphi_1^2(S_0-a)=x_3
-\end{cases}
-\to
-\begin{cases}
-\varphi_1^2·2a=x_2-x_3\\
-\varphi_0^2=x_2-\varphi_1^2(S_0+a)
-\end{cases}</script><p>we find that $(\varphi_0^2,\varphi_1^2)=(x_2-\frac{(S_0+a)(x_2 - x_3)}{2a},\frac{x_2-x_3}{2a})$</p>
-<p>and $\pi_2(A_2)=x_2-\frac{(S_0+a)(x_2 - x_3)}{2a}+\frac{S_0(x_2-x_3)}{2a}=x_2-\frac{x_2 - x_3}{2}=\frac{x_2 + x_3}{2}$</p>
-<h4 id="From-t-2-to-3-where-A-3-omega-3-omega-4"><a href="#From-t-2-to-3-where-A-3-omega-3-omega-4" class="headerlink" title="From $t:2 \to 3$ where $A_3=\{\omega_3,\omega_4\}$"></a>From $t:2 \to 3$ where $A_3=\{\omega_3,\omega_4\}$</h4><script type="math/tex; mode=display">
-\begin{cases}
-\varphi_0^2+\varphi_1^2(S_0-a)=x_3\\
-\varphi_0^2+\varphi_1^2(S_0-3a)=x_4
-\end{cases}
-\to
-\begin{cases}
-\varphi_1^2·2a=x_3-x_4\\
-\varphi_0^2=x_3-\varphi_1^2(S_0-a)
-\end{cases}</script><p>we find that $(\varphi_0^2,\varphi_1^2)=(x_3-\frac{(S_0-a)(x_3 - x_4)}{2a},\frac{x_3-x_4}{2a})$</p>
-<p>and $\pi_2(A_3)=x_3-\frac{(S_0-a)(x_3 - x_4)}{2a}+\frac{(S_0-2a)(x_3-x_4)}{2a}=x_2-\frac{x_3 - x_4}{2}=\frac{x_3 + x_4}{2}$</p>
-<h4 id="From-t-1-to-2-where-A-u-A-1-A-2"><a href="#From-t-1-to-2-where-A-u-A-1-A-2" class="headerlink" title="From $t:1 \to 2$ where $A_u=\{A_1,A_2\}$"></a>From $t:1 \to 2$ where $A_u=\{A_1,A_2\}$</h4><script type="math/tex; mode=display">
-\begin{cases}
-\varphi_0^1+\varphi_1^1(S_0+2a)=\frac{x_1 + x_2}{2}\\
-\varphi_0^1+\varphi_1^1S_0=\frac{x_2 + x_3}{2}
-\end{cases}
-\to
-\begin{cases}
-\varphi_1^1·2a=\frac{x_1 - x_3}{2}\\
-\varphi_0^1=\frac{x_1 + x_2}{2}-\varphi_1^1(S_0+2a)
-\end{cases}</script><p>we find that $(\varphi_0^1,\varphi_1^1)=(\frac{x_1 + x_2}{2}-\frac{(S_0+2a)(x_1 - x_3)}{4a},\frac{x_1-x_3}{4a})$</p>
-<p>and $\pi_1(A_u)=\frac{x_1 + x_2}{2}-\frac{(S_0+2a)(x_1 - x_3)}{4a}+\frac{(S_0+a)(x_1-x_3)}{4a}=\frac{x_1 + x_2}{2}-\frac{x_1 - x_3}{4}=\frac{x_1 + 2x_2-x_3}{4}$</p>
-<h4 id="From-t-1-to-2-where-A-d-A-2-A-3"><a href="#From-t-1-to-2-where-A-d-A-2-A-3" class="headerlink" title="From $t:1 \to 2$ where $A_d=\{A_2,A_3\}$"></a>From $t:1 \to 2$ where $A_d=\{A_2,A_3\}$</h4><script type="math/tex; mode=display">
-\begin{cases}
-\varphi_0^1+\varphi_1^1S_0=\frac{x_2 + x_3}{2}\\
-\varphi_0^1+\varphi_1^1(S_0-2a)=\frac{x_3 + x_4}{2}
-\end{cases}
-\to
-\begin{cases}
-\varphi_1^1·2a=\frac{x_2 - x_4}{2}\\
-\varphi_0^1=\frac{x_2 + x_3}{2}-\varphi_1^1S_0
-\end{cases}</script><p>we find that $(\varphi_0^1,\varphi_1^1)=(\frac{x_2 + x_3}{2}-\frac{S_0(x_2 - x_4)}{4a},\frac{x_2-x_4}{4a})$</p>
-<p>and $\pi_1(A_u)=\frac{x_2 + x_3}{2}-\frac{S_0(x_2 - x_4)}{4a}+\frac{(S_0-a)(x_2-x_4)}{4a}=\frac{x_2 + x_3}{2}-\frac{x_2 - x_4}{4}=\frac{x_2 + 2x_3-x_4}{4}$</p>
-<h4 id="From-t-0-to-1-where-A-0-A-u-A-d"><a href="#From-t-0-to-1-where-A-0-A-u-A-d" class="headerlink" title="From $t:0 \to 1$ where $A_0=\{A_u,A_d\}$"></a>From $t:0 \to 1$ where $A_0=\{A_u,A_d\}$</h4><script type="math/tex; mode=display">
-\begin{cases}
-\varphi_0^0+\varphi_1^0(S_0+a)=\frac{x_1 + 2x_2-x_3}{4}\\
-\varphi_0^0+\varphi_1^0(S_0-a)=\frac{x_2 + 2x_3-x_4}{4}
-\end{cases}
-\to
-\begin{cases}
-\varphi_1^0·2a=\frac{x_1 +x_2 -x_3 -x_4}{4}\\
-\varphi_0^0=\frac{x_1 + 2x_2-x_3}{4}-\varphi_1^0(S_0+a)
-\end{cases}</script><p>we find that $(\varphi_0^0,\varphi_1^0)=(\frac{x_1 + 2x_2-x_3}{4}-\frac{(S_0+a)(x_1 +x_2 -x_3 -x_4)}{8a},\frac{x_1 +x_2 -x_3 -x_4}{8a})$</p>
-<p>$\begin{align}\pi_0(A_0)&amp;=\frac{x_1 + 2x_2-x_3}{4}-\frac{(S_0+a)(x_1 +x_2 -x_3 -x_4)}{8a}+\frac{S_0(x_1 +x_2 -x_3 -x_4)}{8a}\\ &amp;=\frac{x_1 + 2x_2-x_3}{4}-\frac{x_1 +x_2 -x_3 -x_4}{8}=\frac{x_1 + 3x_2-3x_3 - x_4}{8}\end{align}$</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>题目的难度不大，主要在计算过程中比较繁杂的化简，选择性化简是比较重要的，我们可以发现$(S_0+a)$通常都作为一个整体出现，所以无需拆分。同时因为这道题特别的对仗工整，我们可以发现在同一时间$t$下的计算特别相似，所以有时可以采用直接替换数字。当计算时，如果出现了<em>不友好</em>的数字，比如一些没有规律的，与上下式子不对应的答案，可以检查过程中是否出现，少除，错减之类的。</p>
-<h2 id="Matlab代码"><a href="#Matlab代码" class="headerlink" title="Matlab代码"></a>Matlab代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs Matlab">syms s0 a x1 x2 x3 x4<br>r = <span class="hljs-number">0</span>; u = a; d = -a; S0 = s0;imax = <span class="hljs-number">3</span>;<br>SS = sym(<span class="hljs-built_in">zeros</span>(imax+<span class="hljs-number">1</span>,imax+<span class="hljs-number">1</span>));<br>SS(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) = S0;<br><span class="hljs-keyword">for</span> t = <span class="hljs-number">2</span>:imax+<span class="hljs-number">1</span> <span class="hljs-comment">% 对应股价变化</span><br>    <span class="hljs-keyword">for</span> n = <span class="hljs-number">1</span>:t<br>        SS(n,t) = S0+u*(t-n)+d*(n<span class="hljs-number">-1</span>);<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>payoff = [x1;x2;x3;x4]; <span class="hljs-comment">% 在T时的价值</span><br>PayOffMatr = sym(<span class="hljs-built_in">zeros</span>(imax+<span class="hljs-number">1</span>,imax+<span class="hljs-number">1</span>));<br>PayOffMatr(:,imax+<span class="hljs-number">1</span>) = payoff;<br>phiMatr = sym(<span class="hljs-built_in">zeros</span>(imax,imax,<span class="hljs-number">2</span>));<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=imax:<span class="hljs-number">-1</span>:<span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:<span class="hljs-built_in">j</span><br>        pi1=PayOffMatr(k,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        pi2=PayOffMatr(k+<span class="hljs-number">1</span>,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        s1=SS(k,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        s2=SS(k+<span class="hljs-number">1</span>,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>);<br>        phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">2</span>)=simplify((pi1-pi2)/(s1-s2)); <span class="hljs-comment">% phi1</span><br>        phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">1</span>)=simplify((pi1-phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">2</span>)*s1)/(<span class="hljs-number">1</span>+r)); <span class="hljs-comment">% phi0</span><br>        PayOffMatr(k,<span class="hljs-built_in">j</span>)=simplify(phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">1</span>)+phiMatr(k,<span class="hljs-built_in">j</span>,<span class="hljs-number">2</span>)*SS(k,<span class="hljs-built_in">j</span>)); <span class="hljs-comment">% pi</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-
+\begin{align}
+C(t,S,T,K)&=S\Phi(d_1)-Ke^{-r(T-t)}\Phi(d_2)\\
+\underbrace{Ke^{-r(T-t)}\Phi(d_2)}&=S\underbrace{\Phi(d_1)}-C(t,S,T,K)\\
+money\ market &\quad shares\ in\ asset
+\end{align}</script>
             </div>
             <hr>
             <div>
@@ -398,11 +401,7 @@ P(Y_1=+a)=.25,\ P(Y_1=-a)=.75</script><p><strong>where $a&gt;0$ is a strictly po
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Derivatives/">Derivatives</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Financial-Mathematics/">Financial Mathematics</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Arbitrage-Price/">Arbitrage Price</a>
+                      <a class="hover-with-bg" href="/tags/Financial-Engineering/">Financial Engineering</a>
                     
                   </div>
                 
@@ -415,18 +414,12 @@ P(Y_1=+a)=.25,\ P(Y_1=-a)=.75</script><p><strong>where $a&gt;0$ is a strictly po
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/12/Applied_Computational_Finance%E3%80%90ECON5065%E3%80%91/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Applied_Computational_Finance【ECON5065】</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/30/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%96%B9%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0/">
-                        <span class="hidden-mobile">一元线性回归方程中的回归系数</span>
+                      <a href="/2021/05/06/Exercise_1/">
+                        <span class="hidden-mobile">Exercise_1</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
