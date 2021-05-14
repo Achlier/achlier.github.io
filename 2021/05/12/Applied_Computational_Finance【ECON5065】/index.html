@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      33
        分钟
     </span>
   
@@ -347,7 +347,7 @@ d_2&=\frac{ln(\frac{S}{Ke^{-r(T-t)}})-\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}
 \end{align}</script><p>European put option price is given as</p>
 <script type="math/tex; mode=display">
 P(t,S,T,K)=Ke^{-r(T-t)}\Phi(-d_2)-S\Phi(-d_1)</script><p>Black-Scholes PDE can be transformed to Black-Scholes Pricing Formula through <strong>solving the heat equation</strong></p>
-<h2 id="Unit-1-4-Greeks"><a href="#Unit-1-4-Greeks" class="headerlink" title="Unit 1.4 Greeks"></a>Unit 1.4 Greeks</h2><p>Certain partial derivatives of option prices are widely used for hedging purposes and have been assigned Greek names and symbols : </p>
+<h2 id="Unit-1-4：Greeks"><a href="#Unit-1-4：Greeks" class="headerlink" title="Unit 1.4：Greeks"></a>Unit 1.4：Greeks</h2><p>Certain partial derivatives of option prices are widely used for hedging purposes and have been assigned Greek names and symbols : </p>
 <div class="table-container">
 <table>
 <thead>
@@ -384,7 +384,23 @@ P(t,S,T,K)=Ke^{-r(T-t)}\Phi(-d_2)-S\Phi(-d_1)</script><p>Black-Scholes PDE can b
 C(t,S,T,K)&=S\Phi(d_1)-Ke^{-r(T-t)}\Phi(d_2)\\
 \underbrace{Ke^{-r(T-t)}\Phi(d_2)}&=S\underbrace{\Phi(d_1)}-C(t,S,T,K)\\
 money\ market &\quad shares\ in\ asset
-\end{align}</script>
+\end{align}</script><h2 id="Unit-1-5：Implied-Volatility"><a href="#Unit-1-5：Implied-Volatility" class="headerlink" title="Unit 1.5：Implied Volatility"></a>Unit 1.5：Implied Volatility</h2><p>Suppose that the market price of a European call option with expiry $T$ and strike $K$ at time $t$ is observed to be $C^{mkt}(t)$</p>
+<p>In our model</p>
+<script type="math/tex; mode=display">
+C(t,T,\sigma,K)=C^{mkt}(t)</script><p>Now consider <strong>vega</strong> of the option given by</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial\sigma}C(t,T,\sigma,K)=S_t\sqrt{T-t}\Phi'(d_1)</script><ul>
+<li>It can be shown, that there exists a solution whenever $C^{mkt}(t)$ is contained in the open interval  $((S_t-Ke^{-r(T-t)})^+,S_t)$</li>
+<li>The positivity of vega tells us that the function $C(t,T, σ,K) – C^{obs}(t)$ is strictly increasing as a function of $\sigma$</li>
+</ul>
+<p>The solution of the equation,  $\sigma^{impl}$ , is called implied volatility</p>
+<p>We can therefore compute its zeros numerically by applying the <strong>Newton method</strong> (it always works if the function is convex)</p>
+<script type="math/tex; mode=display">
+\sigma_{k+1} = \sigma_k - \frac{C(t,T, \sigma_k,K)-C^{obs}(t)}{\frac{\partial}{\partial \sigma}C(t,T, \sigma_k,K)}</script><blockquote>
+<p>然而实际上 BS model 服从的是 normal distribution ，并且只包函基本的参数。因此对于 BS model 来说 moneyness （in，at，out of money）是不影响 volatility的，即画出的 moneyness-volatility 是一条直线。</p>
+<p>对于真正的市场，存在 fat tail 现象，除此之外流动性，手续费，最低报价间隔，以及最小报价单位等变量未包含在 BS model 中，导致了它的不准确。此外，投资者参与期权交易的目的对隐含波动率也有影响。股票期权交易者中有很大一部分的交易目的是防止股票下跌，因此他们选择的策略多是 buy put 或者 covered call ，这样导致波动率曲线向右下侧倾斜；而外汇期权的交易者的交易目的并不偏向两种方向，因此隐含波动率曲线多是smile的形状。</p>
+</blockquote>
+
             </div>
             <hr>
             <div>
