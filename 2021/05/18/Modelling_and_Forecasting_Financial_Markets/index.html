@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>数理金融【笔记_1】 - Borderland</title>
+  <title>Modelling_and_Forecasting_Financial_Markets - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="数理金融【笔记_1】">
+            <span class="h2" id="subtitle" title="Modelling_and_Forecasting_Financial_Markets">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-13 07:05" pubdate>
-        February 13, 2021 am
+      <time datetime="2021-05-18 02:39" pubdate>
+        May 18, 2021 am
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      572 字
+      787 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      15
        分钟
     </span>
   
@@ -224,99 +224,87 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数理金融【笔记_1】</h1>
+            <h1 style="display: none">Modelling_and_Forecasting_Financial_Markets</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于《数理金融学引论—离散时间模型》；</p>
-<p>第一部分笔记：单时期市场；</p>
+<p>基于格拉斯哥ECON5022；</p>
+<p>【笔记】</p>
 </blockquote>
 <a id="more"></a>
+<h1 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h1><p>The course offers an introduction to modelling and forecasting financial time series. The first part of the course will be mainly devoted to analysing univariate models for the conditional mean and the conditional variance (<strong>ARMA and GARCH models</strong>). These models will be used to produce forecasts. Additional topics, e.g. <strong>multiple time series analysis and nonlinear models</strong> may be discussed, if time allows. In the second part of the course will discuss forecasts evaluation, aimed to <strong>monitor and improve forecast performances</strong>. The course will be complemented by practical session using statistical or econometric software.</p>
+<h1 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h1><p>The main aims of the course are to introduce the basic models widely used to analyse and forecast <strong>financial time series</strong>, and to evaluate the forecast produced using these models.</p>
+<h1 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h1><p>By the end of this course, students will be able to:</p>
+<ol>
+<li><strong>Select and fit</strong> the appropriate model to analyse financial time series.</li>
+<li><strong>Derive the main properties</strong> of the models used to analyse and forecast financial time series.</li>
+<li><strong>Produce optimal forecasts</strong> for a given information set and forecast horizon.</li>
+<li><strong>Evaluate</strong> critically the forecasts.</li>
+<li><strong>Model and predict</strong> financial time series using statistical/econometric software.</li>
+<li><strong>Work collaboratively</strong> in a group to produce a combined output, by liaising with other class members, allocating tasks and co-ordinating.</li>
+</ol>
+<h1 id="Unit-1：Time-Series-and-Their-Features"><a href="#Unit-1：Time-Series-and-Their-Features" class="headerlink" title="Unit 1：Time Series and Their Features"></a>Unit 1：Time Series and Their Features</h1><p><strong>Reading</strong>：</p>
 <ul>
-<li>在有限样本空间 $\Omega$ 中，$\omega$ 为某一时间的一种可能状态，P($\omega_k$) 为状态 k 发生的概率。</li>
+<li>Brooks, Chapter 2, Section 2.7 (Essential)</li>
+<li>Brooks, Chapter 6, Sections 6.1-6.2 (Essential)</li>
 </ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\Omega = \{\omega_1,\omega_2,...,\omega_K\}\\
-P(\omega_k)>0 \ , \ \sum_{k=1}^K p(\omega_k)=1
-\end{aligned}</script><ul>
-<li>银行账户过程（Bank Account Process）B</li>
-<li>价格过程（Price Process）S</li>
-<li>交易策略（Trading Strategy）H</li>
+<p>Students are supposed to be familiar with the topics covered in the sections below:</p>
+<ul>
+<li>Brooks, Chapter 1, Sections 1.5-1.6.</li>
+<li>Brooks, Chapter 2, Section 2.1-2.5.</li>
 </ul>
-<script type="math/tex; mode=display">
-H_0 = x-\sum_{i=1}^{n}H_nS_n(0)</script><ul>
-<li>价值过程（Value Process）V</li>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 1, Self-Study Questions 6, 10, 23.</li>
+<li>Brooks, Chapter 2, Self-Study Questions 1-6, 9.</li>
 </ul>
-<script type="math/tex; mode=display">
-V_t \equiv H_0B_t + \sum_{n=1}^N H_nS_n(t) \ , \ t = 0,1</script><ul>
-<li>增益过程（Gains Process）G</li>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h3><p>Most financial studies involves returns, instead of prices, of assets</p>
+<ul>
+<li>Return of an asset is a scale-free summary of an investment opportunity.</li>
+<li>Return series are easier to handle than prices because of the more attractive statistical properties.</li>
 </ul>
+<h4 id="Time-Series-Data"><a href="#Time-Series-Data" class="headerlink" title="Time Series Data"></a>Time Series Data</h4><ol>
+<li>The term <strong>time series</strong> is used to mean both the data $\{x_t\}$ and the process $\{X_t\}$ of which it is a realization.</li>
+<li>$\{x_t\}$ and $\{X_t\}$ are the shorthand notations for $\{x_t , t \in T_0\}$ and $\{X_t , t \in T_0\}$ when it is not necessary to specify $\mathbb{T}_0$ where $\mathbb{T}_0$ is a discrete set..</li>
+</ol>
+<p><strong>Mean function</strong></p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-\Delta S_n &\equiv S_n(1)-S_n(0)\\
-G &\equiv V_1-V_0 \equiv H_0r + \sum_{n=1}^N H_n \Delta S_n
-\end{aligned}</script><ul>
-<li>折现价格过程（Discounted Price Process）S^*^</li>
+\mu(t)\equiv\mathbb{E}X_t</script><p><strong>covariance function</strong></p>
+<script type="math/tex; mode=display">
+\gamma(t,s)\equiv\mathbb{Cov}(X_t,X_s)=\mathbb{E}[(X_t-\mu(t))(X_s-\mu(s))]</script><p><strong>Strict Stationarity</strong>：</p>
+<p>The process is said to be strictly stationary if thejoint distribution of $(X_{t_1}, X_{t_2}, . . .X_{t_n})’$ and $(X_{t_1+h}, X_{t_2+h}, . . .X_{t_n+h})’$ are the same for all the positive integers $n$ and for all $t_1, t_2, . . . , t_n$</p>
+<p><strong>Weak Stationarity</strong>：</p>
+<ol>
+<li>$\mathbb{E}|X_t|^2&lt;\infty$,</li>
+<li>$\mu(t)=\mu \ \ \forall t \in \mathbb{Z}$</li>
+<li>$\gamma(t+h,t)=\gamma(h)\ \ \forall t\in\mathbb{Z},h\in\mathbb{N}$</li>
+</ol>
+<p><strong>Autocovariance function (ACVF)</strong></p>
+<script type="math/tex; mode=display">
+\gamma(h)\equiv\mathbb{Cov}(X_{t+h},X_h)</script><p><strong>Autocorrelation function (ACF)</strong> </p>
+<script type="math/tex; mode=display">
+\rho(h)\equiv\frac{\gamma(h)}{\gamma(0)}=\mathbb{Corr}(X_{t+h},X_h)=\frac{\mathbb{Cov}(X_{t+h},X_h)}{\sqrt{\mathbb{Var}(X_{t})}\sqrt{\mathbb{Var}(X_{t+h})}}</script><p>A weakly stationary time series $\{X_t\}$ is <strong>not serially autocorrelated</strong> if $\rho(h) = 0$ for all $h &gt; 0$.</p>
+<p>For a given sample $\{x_t\}$</p>
+<script type="math/tex; mode=display">
+\rho(h)=\frac{\sum_{t=h+1}^T(x_t-\bar{x})(x_{t-h}-\bar{x})}{\sum_{t=h+1}^T(x_t-\bar{x})^2}</script><p>If $\{X_t\}$ is a sequence of independent and identically distributed (iid) random variables satisfying $\mathbb{E}|X_t|^2&lt;\infty$</p>
+<script type="math/tex; mode=display">
+\hat{\rho}(h)\sim N(0,1/T)</script><p>The interval $[-\frac{1.96}{\sqrt{T}},\frac{1.96}{\sqrt{T}}]$ is the 95% non-rejection region for the null $\rho(h) = 0$. We can use the confidence interval to test individual ACFs.</p>
+<p><strong>Box and Pierce (1970)</strong> proposed the statistic</p>
+<script type="math/tex; mode=display">
+Q^*(m)\equiv T\sum_{h=1}^m\hat{\rho}^2(h)</script><p>as a test static for $H_0 : \rho(1) = · · · = \rho(m) = 0$ versus $H_1 : \rho(h) \not= 0$ for some $k \in \{1, . . . , m\}$. The null is rejected if $Q^∗ (m)$ lies in the upper tail of $\chi^2 (m)$.</p>
+<p><strong>Ljung and Box (1978)</strong> modified the statistic to improve the small sample properties of the test</p>
+<script type="math/tex; mode=display">
+Q^*(m)\equiv T(T+2)\sum_{h=1}^m\frac{\hat{\rho}^2(h)}{T-h}\sim \chi^2 (m)</script><h1 id="Unit-2：Linear-Models-for-Stationary-Time-Series"><a href="#Unit-2：Linear-Models-for-Stationary-Time-Series" class="headerlink" title="Unit 2：Linear Models for Stationary Time Series"></a>Unit 2：Linear Models for Stationary Time Series</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Sections 6.1-6.8 (Essential)</li>
+<li>Diebold, Chapter 6, Sections 6.1-6.6 (Recommended)</li>
+<li>Diebold, Chapter 7, Sections 7.1-7.2 (Recommended)</li>
 </ul>
-<script type="math/tex; mode=display">
-S_n^*(t) \equiv S_n(t)/B_t \ , \ t = 0,1</script><ul>
-<li>折现价值过程（Discounted Value Process）V^*^</li>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Self-Study Questions 1-9</li>
 </ul>
-<script type="math/tex; mode=display">
-V_t^* \equiv V_t/B_t \equiv H_0 + \sum_{n=1}^N H_nS_n^*(t) \ , \ t = 0,1</script><ul>
-<li>折现增益过程（Discounted Gains Process）G^*^</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-G^* &\equiv V_1^*-V_0^* \equiv \sum_{n=1}^N H_n \Delta S_n^*\\
-G^* &\not\equiv G/B_t  \ (\ V_0,V_1除的B_t不一样\ )
-\end{aligned}</script><ul>
-<li>线性定价测度（Linear Pricing Measure）$\pi$</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-V_0^* &= \sum_\omega \pi(\omega)V_1^*(\omega) = \sum_\omega \pi(\omega)V_1(\omega)/B_1(\omega)\\
-H_0 +& \sum_{n=1}^N H_nS_n^*(0) = \sum_\omega \pi(\omega)[H_0 + \sum_{n=1}^N H_nS_n^*(1)(\omega)]
-\end{aligned}</script><blockquote>
-<p>为满足线性条件使$\sum_\omega \pi(\omega)=1$ , 这样人们把 $\pi$ 解释成样本空间 $\Omega$ 上的一个概率测度</p>
-</blockquote>
-<script type="math/tex; mode=display">
-S_n^*(0) = \sum_\omega \pi(\omega)S_n^*(1)(\omega)</script><ul>
-<li>风险中性概率测度（Risk Neutral Probability）Q</li>
-</ul>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&Q(\omega)>0 \ , \ E_Q[\Delta S_n^*]=0\\
-E_Q[\Delta S_n^*] = &E_Q[S_n^*(1)-S_n^*(0)] = E_Q[S_n^*(1)]-S_n^*(0)
-\end{aligned}</script><blockquote>
-<p>与$\pi(\omega)$等价</p>
-</blockquote>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\mathbb{W} &\equiv \{X\in \mathbb{R}^K:X = G^* 对于某一个交易策略H\}\\
-\mathbb{A} &\equiv \{X\in \mathbb{R}^K:X \geqq0 ,X\not=0 \}\\
-\mathbb{W} \cap \mathbb{A}&\not= \empty \ :\mathbb{W}的非负象限\\
-\mathbb{W}^\perp &\equiv \{Y\in \mathbb{R}^K:X·Y=0 \ 对于所有X\in \mathbb{W}\}\\
-\mathbb{P}^+ &\equiv \{X\in \mathbb{R}^K:X_1+...+X_K=1 ,X_1>0,...,X_K>0\}
-\end{aligned}</script><p><img src="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D%E3%80%90%E7%AC%94%E8%AE%B0_1%E3%80%91/pic1-1.jpg" srcset="/img/loading.gif" alt></p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-Q\in &\mathbb{W}^\perp \cap \mathbb{P}^+\\
-Where \ E_Q[G^*]&=\sum_{n=1}^NH_nE_Q[S_n^*]=0
-\end{aligned}</script><ul>
-<li>超平面分离定理（Separating hyperplane theorem）: 若 C , D为非空凸集，且  $C \cap D = \empty$，则存在  $a \not= 0\ ,\ b $ 使得<script type="math/tex; mode=display">
-\begin{aligned}
-a^Tx&\leqq b \ for \ x\in C\\
-a^Tx&\geqq b \ for \ x\in D\\
-inf_{x\in D}a^Tx&\geqq sup_{x\in C}a^Tx
-\end{aligned}</script></li>
-</ul>
-<blockquote>
-<p>可推导当$\mathbb{W}\cap\mathbb{A} = \empty$, 必有$\mathbb{W}^\perp\cap\mathbb{P}^+\not=\empty$, 且$\mathbb{W}^\perp=\lambda a$</p>
-</blockquote>
-<p><img src="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D%E3%80%90%E7%AC%94%E8%AE%B0_1%E3%80%91/pic1-2.jpg" srcset="/img/loading.gif" alt></p>
-
+<h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition:"></a>Definition:</h3>
             </div>
             <hr>
             <div>
@@ -325,7 +313,7 @@ inf_{x\in D}a^Tx&\geqq sup_{x\in C}a^Tx
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
+                      <a class="hover-with-bg" href="/categories/Economics/">Economics</a>
                     
                   </div>
                 
@@ -333,7 +321,7 @@ inf_{x\in D}a^Tx&\geqq sup_{x\in C}a^Tx
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Financial-Mathematics/">Financial Mathematics</a>
+                      <a class="hover-with-bg" href="/tags/Time-Series/">Time Series</a>
                     
                   </div>
                 
@@ -346,18 +334,12 @@ inf_{x\in D}a^Tx&\geqq sup_{x\in C}a^Tx
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/15/%E5%90%91%E9%87%8F%E7%9A%84%E5%86%85%E7%A7%AF%E4%B8%8E%E5%A4%96%E7%A7%AF/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">向量的内积与外积</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/13/%E5%9F%BA%E4%BA%8E%E6%96%9C%E7%8E%87%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B5%84%E4%BA%A7%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/">
-                        <span class="hidden-mobile">基于斜率最大的资产组合优化</span>
+                      <a href="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/">
+                        <span class="hidden-mobile">Economic_Fundamentals_and_Financial_Markets</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
