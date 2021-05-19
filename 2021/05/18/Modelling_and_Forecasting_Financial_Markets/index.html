@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      31
+      33
        分钟
     </span>
   
@@ -383,7 +383,27 @@ X_t &= \phi_0+\phi_1X_{t-1}+\epsilon_t\\
 </li>
 </ul>
 <p><strong>If ACF and PACF are both declining geometrically $\to$ ARMA(1,1)</strong></p>
-<h4 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h4><p>The residuals satisfy the equation ARMA(p,q)</p>
+<h4 id="Yule-Walker"><a href="#Yule-Walker" class="headerlink" title="Yule-Walker"></a>Yule-Walker</h4><p>For AR(p) we have</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+Y_t\\Y_{t+1}\\...\\Y_{t+n}
+\end{bmatrix}
+=
+\begin{bmatrix}
+Y_{t-1}&Y_{t-2}&...&Y_{t-p}\\
+Y_{t}&Y_{t-1}&...&Y_{t+1-p}\\
+...&...&...&...\\
+Y_{t+n-1}&Y_{t+n-2}&...&Y_{t+n-p}
+\end{bmatrix}
+\begin{bmatrix}
+\phi_1\\ \phi_2\\...\\ \phi_p
+\end{bmatrix}
++
+\begin{bmatrix}
+\epsilon_t\\ \epsilon_{t+1}\\...\\ \epsilon_{t+n}
+\end{bmatrix}</script><p>Times $Y_{t-1}$ at both side and taking $\mathbb{E}$, with $\mathbb{E}(Y_t)=0$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(Y_tY_{t-1})=\gamma(1)=\sum_{j=1}^p\gamma_{j-1}\phi_j</script><h4 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h4><p>The residuals satisfy the equation ARMA(p,q)</p>
 <script type="math/tex; mode=display">
 e_t=X_t-\hat{\phi}_0-\hat{\phi}_1X_{t-1}-...-\hat{\phi}_pX_{t-p}-\hat{\theta}_1e_{t-1}-...-\hat{\theta}_qe_{t-q}</script><p>Let $k=p+q+1$.  The information criteria are often written as</p>
 <ul>
