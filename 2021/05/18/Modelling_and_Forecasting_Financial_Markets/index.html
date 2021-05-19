@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      787 字
+      1.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      31
        分钟
     </span>
   
@@ -304,7 +304,154 @@ Q^*(m)\equiv T(T+2)\sum_{h=1}^m\frac{\hat{\rho}^2(h)}{T-h}\sim \chi^2 (m)</scrip
 <ul>
 <li>Brooks, Chapter 6, Self-Study Questions 1-9</li>
 </ul>
-<h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition:"></a>Definition:</h3>
+<h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="White-noise"><a href="#White-noise" class="headerlink" title="White noise"></a>White noise</h4><ul>
+<li>mean 0 and variance $\sigma^2$, $\epsilon_t\sim WN(0,\sigma^2)$</li>
+<li>$\gamma(h)=\begin{cases}\sigma^2&amp;if\ h= 0\\ 0&amp;if\ h\ne 0 \end{cases}$</li>
+<li>If iid $\to$ a <em>strong</em> white noise</li>
+</ul>
+<h4 id="Moving-Average-Models-MA"><a href="#Moving-Average-Models-MA" class="headerlink" title="Moving Average Models (MA)"></a>Moving Average Models (MA)</h4><ul>
+<li><p>$X_t = \epsilon_t+\theta_1\epsilon_{t-1}+\theta_2\epsilon_{t-2}…,\ \epsilon_t\sim WN(0,\sigma^2)$</p>
+</li>
+<li><p>$\gamma(h)=\begin{cases}\sigma^2(\theta_h+\sum_{j=1}^{q-h}\theta_{h+j}\theta_j)&amp;0\leq h\leq q\\0&amp;h&gt;q\end{cases}$</p>
+</li>
+<li>MA(q) Test by ACF</li>
+</ul>
+<p><strong>MA(1)</strong></p>
+<ul>
+<li>$X_t=\mu+\epsilon_t+\theta\epsilon_{t-1}$</li>
+<li>For $Y_{t-k}=X_{t-k}-\mu=\epsilon_{t-k}+\theta\epsilon_{t-k-1}$</li>
+</ul>
+<p>By backward substitution</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Y_t&=\theta\epsilon_{t-1}+\epsilon_{t}\\
+&=\theta(Y_{t-1}+\theta\epsilon_{t-2})+\epsilon_{t}\\
+
+&=...\\
+&=\sum_{j=1}^{k-1}\theta^jY_{t-j}+\epsilon_t+\theta^k\epsilon_{t-k}
+\end{align}</script><ul>
+<li>If $k\to\infty\ and\ |\theta_1|&lt;1$,  $Y_t=\sum_{j=1}^\infty\theta^jY_{t-j}+\epsilon_t$</li>
+</ul>
+<h4 id="Autoregressive-Models-AR"><a href="#Autoregressive-Models-AR" class="headerlink" title="Autoregressive Models (AR)"></a>Autoregressive Models (AR)</h4><ul>
+<li>$X_t = \phi_0+\phi_1X_{t-1}+\phi_2X_{t-2}…+\epsilon_t,\ \epsilon_t\sim WN(0,\sigma^2)$</li>
+<li>AR(p) Test by PACF</li>
+</ul>
+<p><strong>AR(1)</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+X_t &= \phi_0+\phi_1X_{t-1}+\epsilon_t\\
+&=\phi_0+\phi_1(\phi_0+\phi_1X_{t-2}+\epsilon_{t-1})+\epsilon_t\\
+&=...\\
+&=\underbrace{\phi_0\sum_{j=0}^{k-1}\phi_1^j}+\phi_1^kX_{t-k}+\sum_{j=0}^{k-1}\phi_1^j\epsilon_{t-j}\\
+\phi_0&\frac{1-\phi_1^k}{1-\phi_1}=\mu(1-\phi_1^k)
+\end{align}</script><blockquote>
+<p>Summation for geometric sequence：$S_n=a_1+…+a_n=a_1\frac{1-q^n}{1-q}$</p>
+</blockquote>
+<p>we obtain</p>
+<script type="math/tex; mode=display">
+(X_t-\mu)=\phi_1^k(X_{t-k}-\mu)+\sum_{j=0}^{k-1}\phi_1^j\epsilon_{t-j},\ \mu\equiv\frac{\phi_0}{1-\phi_1}</script><ul>
+<li>If $k\to\infty\ and\ |\phi_1|&lt;1$,  $X_t=\mu+\sum_{j=0}^\infty\phi_1^j\epsilon_{t-j}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}(X_t)=\mu=\frac{\phi_0}{1-\phi_1}</script><script type="math/tex; mode=display">
+\mathbb{Var}(X_t)=\sigma^2\sum_{j=0}^\infty\phi_1^{2j}=\frac{\sigma^2}{1-\phi_1^2}</script><script type="math/tex; mode=display">
+\begin{align}
+\mathbb{Cov}(X_t,X_{t-h})&=\mathbb{E}[(X_t-\mu)(X_{t-h}-\mu)]\\
+&=\mathbb{E}[(\sum_{k=0}^{h-1}\phi_1^k\epsilon_{t-k}+\sum_{k=h}^\infty\phi_1^k\epsilon_{t-k})(\sum_{j=0}^\infty\phi_1^j\epsilon_{t-h-j})]\\
+&=\mathbb{E}[\phi_1^h(\sum_{k=0}^\infty\phi_1^k\epsilon_{t-h-k})(\sum_{j=0}^\infty\phi_1^j\epsilon_{t-h-j})]\\
+&=\phi_1^h\sigma^2\sum_{j=0}^\infty\phi_1^{2j}=\phi_1^h\mathbb{Var}(X_t)
+\end{align}</script><script type="math/tex; mode=display">
+\mathbb{Corr}(X_t,X_{t-h})=\phi_1^h</script><p><strong>Linear projection</strong> of $X$ onto $\{1, z_1, . . . , z_n\}$</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[X|1, z_1,..., z_n]=\sum_{j=0}^na_jz_j,\ z_0=1</script><p>where $a_0, . . . , a_n$ satisfy</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[(X-\sum_{j=0}^na_jz_j)z_j]=0,\ i=0,1,...,n</script><blockquote>
+<p>同等于OLS中$\sum_{i=1}^n\hat{u}_ix_i=0$, 此处是$z_j$对$X$的回归</p>
+</blockquote>
+<p><strong>Partial Autocorrelation Function (PACF)</strong></p>
+<ul>
+<li>$\alpha(0)\equiv 1$</li>
+<li>$\alpha(1)\equiv\rho(1)=\mathbb{Corr}(X_2,X_1)$</li>
+<li>$\alpha(2)=\mathbb{Corr}(e_2,e_1)=\frac{\rho(2)-\rho^2(1)}{1-\rho^2(1)}$</li>
+<li>$\alpha(h)\equiv\mathbb{Corr}(e_{h+1},e_1),\ h&gt;1$<ul>
+<li>$e_{h+1}=X_{h+1}-\mathscr{P}[X_{h+1}|1, X_1,…, X_h]$</li>
+</ul>
+</li>
+<li>$\alpha(h)=\phi_{hh}$<ul>
+<li>$\mathscr{P}[X_{h+1}|1, X_1,…, X_h]=\phi_{h0}+\phi_{h1}X_h+\phi_{h2}X_{h-1}+…+\phi_{hh}X_1$</li>
+</ul>
+</li>
+</ul>
+<p><strong>If ACF and PACF are both declining geometrically $\to$ ARMA(1,1)</strong></p>
+<h4 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h4><p>The residuals satisfy the equation ARMA(p,q)</p>
+<script type="math/tex; mode=display">
+e_t=X_t-\hat{\phi}_0-\hat{\phi}_1X_{t-1}-...-\hat{\phi}_pX_{t-p}-\hat{\theta}_1e_{t-1}-...-\hat{\theta}_qe_{t-q}</script><p>Let $k=p+q+1$.  The information criteria are often written as</p>
+<ul>
+<li>AIC = $ln(\hat{\sigma}^2)+2\frac{k}{T}$</li>
+<li>SBIC =  $ln(\hat{\sigma}^2)+2\frac{k}{T}ln(T)$</li>
+<li>HQIC = $ln(\hat{\sigma}^2)+2\frac{k}{T}ln(ln(T))$</li>
+</ul>
+<p>where $\hat{\sigma}^2=T^{-1}\sum_{t=1}^Te_t^2$</p>
+<p>Select p,q to minimize the information criteria.</p>
+<p><strong>lag operator</strong> $L$</p>
+<ul>
+<li><p>$L^kX_t=X_{t-k}$</p>
+</li>
+<li><p>The AR(p) process can be rewritten as</p>
+<ul>
+<li>$\Phi(L)X_t=\phi_0+\epsilon,\ \Phi(L)=1-\phi_1L-\phi_2L^2-…-\phi_pL^p$</li>
+</ul>
+</li>
+<li>The solutions of the equation $\Phi(z)=0$ are called the roots of the polynomial.</li>
+</ul>
+<p><strong>Stationarity of an AR(p) process</strong></p>
+<p>If $\Phi(z)\ne 0$ for $|Z|\leq 1$, then $\{X_t\}$  is stationary, and the following <strong>causal</strong> representation</p>
+<script type="math/tex; mode=display">
+X_t=\mu+\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1</script><p>where</p>
+<ul>
+<li>$\mu = \frac{\phi_0}{\Phi(1)}$</li>
+<li>$\Psi(z)=1+\psi_1z+\psi_2z^2+…=\Phi^{-1}(z)=1/\Phi(z)$</li>
+<li>For AR(1), $\psi_j=\phi^j$ by Taylor Expansion</li>
+</ul>
+<h4 id="ARMA-models"><a href="#ARMA-models" class="headerlink" title="ARMA models"></a>ARMA models</h4><p><strong>Causal Processes</strong></p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1,\ \sum_{j=0}^\infty|\psi_j|<\infty</script><p><strong>Invertible Processes</strong></p>
+<script type="math/tex; mode=display">
+\epsilon_t=\sum_{j=0}^\infty\pi_jY_{t-j},\ \pi_0=1,\ \sum_{j=0}^\infty|\pi_j|<\infty</script><p>We have</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\Theta(L)\epsilon_t</script><p>where</p>
+<script type="math/tex; mode=display">
+\Phi(z)=1-\phi_1z-\phi_2z^2-...-\phi_pz^p,\ \Theta(z)=1+\theta_1z+\theta_2z^2+...+\theta_qz^q</script><ol>
+<li><p>$\{Y_t\}$ is stationary and causal if and only if</p>
+<p>$\Phi(z)\ne 0\ for\ all\ |z|\leq1$</p>
+<p>and the coefficients are determined by the relationship</p>
+<p>$\Psi(z)=\sum_{j=0}^\infty\psi_jz^j=\frac{\Theta(z)}{\Phi(z)}$</p>
+</li>
+<li><p>$\{Y_t\}$ is invertible if and only if</p>
+<p>$\Theta(z)\ne 0\ for\ all\ |z|\leq1$</p>
+<p>and the coefficients are determined by the relationship</p>
+<p>$\Pi(z)=\sum_{j=0}^\infty\pi_jz^j=\frac{\Phi(z)}{\Theta(z)}$</p>
+</li>
+<li><p>The ARMA(p,q) models is often preferred for parsimony reasons:</p>
+<p>$\frac{\Theta(z)}{\Phi(z)}=1+\sum_{j=1}^\infty\psi_j^{(p,q)}z^j$</p>
+</li>
+</ol>
+<p><strong>On the representation of ARMA processes</strong></p>
+<p>We have $\Psi(z)=\frac{\Theta(z)}{\Phi(z)}$</p>
+<p>Rewrite as $\Psi(z)\Phi(z)=\Theta(z)$ with $\phi_0=\theta_0=1$, i.e.</p>
+<script type="math/tex; mode=display">
+\sum_{j=0}^\infty\psi_jz^j(1-\sum_{i=1}^p\phi_iz^i)=1+\sum_{k=1}^q\theta_kz^k</script><p>Evaluating at $z=0$, we find $\psi_0=1$</p>
+<p>Taking first derivative</p>
+<script type="math/tex; mode=display">
+\sum_{j=1}^\infty j\psi_jz^{j-1}-\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=0}^\infty\psi_jz^j-\sum_{i=1}^p\phi_iz^i\sum_{j=1}^\infty j\psi_jz^{j-1}=\sum_{k=1}^qk\theta_kz^{k-1}</script><p>Evaluating at $z=0$, we find $\psi_1-\phi_1\psi_0=\theta_1$, so $\psi_1=\phi_1+\theta_1$</p>
+<p>Taking first derivative again</p>
+<script type="math/tex; mode=display">
+\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}-\sum_{i=2}^pi(i-1)\phi_iz^{i-2}\sum_{j=0}^\infty\psi_jz^j-2\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=1}^\infty j\psi_jz^{j-1}\\
+-\sum_{i=1}^p\phi_iz^i\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}=\sum_{k=2}^qk(k-1)\theta_kz^{k-2}</script><p>Evaluating at $z=0$, we find $2\psi_2-2\phi_2-2\phi_1\psi_1=2\theta_2$, so $\psi_2=\theta_2+\phi_2+\phi_1^2+\phi_1\theta_1$</p>
+<p>Repeating the step above, we can find</p>
+<script type="math/tex; mode=display">
+\psi_j=\theta_j+\sum_{0< k\leq j}\phi_k\psi_{j-k},\ 0\leq j< max(p,q+1)</script><script type="math/tex; mode=display">
+\psi_j=\sum_{0< k\leq p}\phi_k\psi_{j-k},\ j\ge max(p,q+1)</script>
             </div>
             <hr>
             <div>
