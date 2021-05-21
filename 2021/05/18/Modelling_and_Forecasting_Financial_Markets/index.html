@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33
+      35
        分钟
     </span>
   
@@ -424,8 +424,7 @@ e_t=X_t-\hat{\phi}_0-\hat{\phi}_1X_{t-1}-...-\hat{\phi}_pX_{t-p}-\hat{\theta}_1e
 </li>
 <li>The solutions of the equation $\Phi(z)=0$ are called the roots of the polynomial.</li>
 </ul>
-<p><strong>Stationarity of an AR(p) process</strong></p>
-<p>If $\Phi(z)\ne 0$ for $|Z|\leq 1$, then $\{X_t\}$  is stationary, and the following <strong>causal</strong> representation</p>
+<h4 id="Stationarity-of-an-AR-p-process"><a href="#Stationarity-of-an-AR-p-process" class="headerlink" title="Stationarity of an AR(p) process"></a><strong>Stationarity of an AR(p) process</strong></h4><p>If $\Phi(z)\ne 0$ for $|Z|\leq 1$, then $\{X_t\}$  is stationary and causal, and the following <strong>causal</strong> representation</p>
 <script type="math/tex; mode=display">
 X_t=\mu+\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1</script><p>where</p>
 <ul>
@@ -433,7 +432,22 @@ X_t=\mu+\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1</script><p>where</p>
 <li>$\Psi(z)=1+\psi_1z+\psi_2z^2+…=\Phi^{-1}(z)=1/\Phi(z)$</li>
 <li>For AR(1), $\psi_j=\phi^j$ by Taylor Expansion</li>
 </ul>
-<h4 id="ARMA-models"><a href="#ARMA-models" class="headerlink" title="ARMA models"></a>ARMA models</h4><p><strong>Causal Processes</strong></p>
+<p><strong>Stationarity only need $|Z|\ne 1$, So we can find the stationary solution of AR(1) with $|\phi|&gt;1$</strong></p>
+<script type="math/tex; mode=display">
+Y_t=\phi Y_{t-1}+\epsilon_t</script><p>Equation can be rewritten as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(1-\phi L)Y_t&=\epsilon_t\\
+-(\phi L)^{-1}(1-\phi L)Y_t&=-(\phi L)^{-1}\epsilon_t\\
+(1-\phi^{-1} L^{-1})Y_t&=-(\phi L)^{-1}\epsilon_t
+\end{align}</script><p>we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Y_t&=-(1-\phi^{-1} L^{-1})^{-1}(\phi L)^{-1}\epsilon_t\\
+&=-[\sum_{j=0}^\infty\phi^{-j} L^{-j}](\phi L)^{-1}\epsilon_t\\
+&=-[\sum_{j=1}^\infty\phi^{-j} L^{-j}]\epsilon_t\\
+&=-\sum_{j=1}^\infty\phi^{-j}\epsilon_{t+j}
+\end{align}</script><h4 id="ARMA-models"><a href="#ARMA-models" class="headerlink" title="ARMA models"></a>ARMA models</h4><p><strong>Causal Processes</strong></p>
 <script type="math/tex; mode=display">
 Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1,\ \sum_{j=0}^\infty|\psi_j|<\infty</script><p><strong>Invertible Processes</strong></p>
 <script type="math/tex; mode=display">

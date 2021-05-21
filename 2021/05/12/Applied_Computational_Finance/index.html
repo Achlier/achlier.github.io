@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33
+      52
        分钟
     </span>
   
@@ -397,11 +397,156 @@ C(t,T,\sigma,K)=C^{mkt}(t)</script><p>Now consider <strong>vega</strong> of the 
 <p>The solution of the equation,  $\sigma^{impl}$ , is called implied volatility</p>
 <p>We can therefore compute its zeros numerically by applying the <strong>Newton method</strong> (it always works if the function is convex)</p>
 <script type="math/tex; mode=display">
-\sigma_{k+1} = \sigma_k - \frac{C(t,T, \sigma_k,K)-C^{obs}(t)}{\frac{\partial}{\partial \sigma}C(t,T, \sigma_k,K)}</script><blockquote>
+\sigma_{k+1} = \sigma_k - \frac{C(t,T, \sigma_k,K)-C^{obs}(t)}{\frac{\partial}{\partial \sigma}C(t,T, \sigma_k,K)}</script><p>Plot the Implied Volatility - Moneyness ( $\frac{ln(K/F)}{\sigma\sqrt{T}}$ ) and we could have volatility smile</p>
+<blockquote>
 <p>然而实际上 BS model 服从的是 normal distribution ，并且只包函基本的参数。因此对于 BS model 来说 moneyness （in，at，out of money）是不影响 volatility的，即画出的 moneyness-volatility 是一条直线。</p>
 <p>对于真正的市场，存在 fat tail 现象，除此之外流动性，手续费，最低报价间隔，以及最小报价单位等变量未包含在 BS model 中，导致了它的不准确。此外，投资者参与期权交易的目的对隐含波动率也有影响。股票期权交易者中有很大一部分的交易目的是防止股票下跌，因此他们选择的策略多是 buy put 或者 covered call ，这样导致波动率曲线向右下侧倾斜；而外汇期权的交易者的交易目的并不偏向两种方向，因此隐含波动率曲线多是smile的形状。</p>
 </blockquote>
-
+<h1 id="Unit-2：Advanced-stochastic-models-and-their-calibration"><a href="#Unit-2：Advanced-stochastic-models-and-their-calibration" class="headerlink" title="Unit 2：Advanced stochastic models and their calibration"></a>Unit 2：Advanced stochastic models and their calibration</h1><h2 id="Unit-2-1：local-volatility"><a href="#Unit-2-1：local-volatility" class="headerlink" title="Unit 2.1：local volatility"></a>Unit 2.1：local volatility</h2><p>Local volatility is a class of market models which is an extension of the fixed volatility Black-Scholes-Merton model. In the model, instantaneous volatility is a function of t, S; $\sigma(t,S)$</p>
+<p>Given the market observed European option prices, our aim is to find<br>the function $\sigma(t,S)$. It was shown by Bruno Dupire that</p>
+<script type="math/tex; mode=display">
+\sigma(t,S)^2=2\frac{\frac{dC}{dt}+qC+(r-q)K\frac{dC}{dK}}{K^2\frac{d^2C}{dK^2}}| _ { K = S,T=t }</script><h2 id="Unit-2-2：Derivation-of-the-Dupire-Formula"><a href="#Unit-2-2：Derivation-of-the-Dupire-Formula" class="headerlink" title="Unit 2.2：Derivation of the Dupire Formula"></a>Unit 2.2：Derivation of the Dupire Formula</h2><p>Suppose that we have the following dynamics</p>
+<script type="math/tex; mode=display">
+dS_t=(r-q)S_t dt+\sigma_tS_tdW_t</script><p>Next, recall that the price of a European call option is given as $C(T,K)=e^{-rT}\mathbb{E}[(S_T-K)^+]$</p>
+<p>First, use Ito’s formula for $(S_T-K)^+$ over $[T,T + dT]$ :</p>
+<script type="math/tex; mode=display">
+d(S_T-K)^+=\frac{\partial(S_T-K)^+}{\partial S_T}dS_T+\frac{1}{2}\frac{\partial^2(S_T-K)^+}{\partial S_T^2}(dS_T)^2</script><p>We then get</p>
+<script type="math/tex; mode=display">
+d(S_T-K)^+=\frac{\partial(S_T-K)^+}{\partial S_T}((r-q)S_T dT+\sigma_TS_TdW_T)+\frac{1}{2}\frac{\partial^2(S_T-K)^+}{\partial S_T^2}\sigma^2_TS^2_TdT</script><p>Next, note that</p>
+<script type="math/tex; mode=display">
+\frac{\partial(S_T-K)^+}{\partial S_T}=\theta(S_T-K)\ Heaviside\ function</script><script type="math/tex; mode=display">
+\frac{\partial^2(S_T-K)^+}{\partial S_T^2}=\delta(S_T-K)\ Dirac\ delta\ function</script><p>where <strong>Heaviside function</strong></p>
+<script type="math/tex; mode=display">
+\theta(x)=\begin{cases}1&x>0\\0&x<0\end{cases}</script><p>and <strong>delta function</strong></p>
+<script type="math/tex; mode=display">
+\delta(x)=\begin{cases}\infty&x=0\\0&x\ne0\end{cases},\ \int_{-\infty}^\infty \delta(x)dx=1</script><blockquote>
+<p>$\int_{-\infty}^\infty\delta(x-y)f(x)dx=f(y)$</p>
+</blockquote>
+<p>Then,</p>
+<script type="math/tex; mode=display">
+d(S_T-K)^+=\theta(S_T-K)((r-q)S_T dT+\sigma_TS_TdW_T)+\frac{1}{2}\delta(S_T-K)\sigma^2_TS^2_TdT</script><p>To use the above formula, let us consider “undiscounted” option prices $\mathscr{C}(T,K)=\mathbb{E}[(S_T-K)^+]$. Taking derivative w.r.t. K</p>
+<script type="math/tex; mode=display">
+\frac{d\mathbb{E}[(S_T-K)^+]}{d K}=-\mathbb{E}[\theta(S_T-K)],\ \frac{d^2\mathbb{E}[(S_T-K)^+]}{d K^2}=\mathbb{E}[\delta(S_T-K)]</script><p>Note that $\mathbb{E}[\delta(S_T-K)]$ is the density of stock prices</p>
+<blockquote>
+<p>$\mathbb{E}[\delta(S_T-K)]=\int_{-\infty}^\infty\delta(S_T-K)f(S_T)dx=f(K)$</p>
+</blockquote>
+<p>From the identity</p>
+<script type="math/tex; mode=display">
+\mathscr{C}(T,K)=\mathbb{E}[(S_T-K)\theta(S_T-K)]=\mathbb{E}[S_T\theta(S_T-K)]-K\mathbb{E}[\theta(S_T-K)]</script><p>we get $\mathbb{E}[S_T\theta(S_T-K)]=\mathscr{C}+K\mathbb{E}[\theta(S_T-K)]=\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}$</p>
+<p>Next note that $\mathbb{E}[d(S_T-K)^+]=d\mathbb{E}[(S_T-K)^+]$</p>
+<p>Then, by taking expectation in the Ito’s formula applied on $(S_T-K)^+$ with $\mathbb{E}[W_t]=0$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}[d(S_T-K)^+]&=\mathbb{E}[\theta(S_T-K)((r-q)S_T dT+0)]+\frac{1}{2}\mathbb{E}[\delta(S_T-K)\sigma^2_TS^2_TdT]\\
+d\mathscr{C}&=(r-q)\mathbb{E}[\theta(S_T-K)S_T]dT+\frac{1}{2}\mathbb{E}[\delta(S_T-K)\sigma^2_TS^2_T]dT\\
+\frac{d\mathscr{C}}{dT}dT&=(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})dT+\frac{1}{2}\mathbb{E}[\delta(S_T-K)\sigma^2_TS^2_T]dT
+\end{align}</script><p>we evaluate the function at $S_t$ equal to $K$</p>
+<script type="math/tex; mode=display">
+\frac{d\mathscr{C}}{dT}dT=(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})dT+\frac{1}{2}K^2\mathbb{E}[\delta(S_T-K)\sigma^2_T]dT</script><p>Above yields</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\delta(S_T-K)\sigma^2_T]=\frac{2}{K^2}(\frac{d\mathscr{C}}{dT}-(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}))</script><script type="math/tex; mode=display">
+\frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}=2\frac{\frac{d\mathscr{C}}{dT}-(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})}{K^2\frac{d^2\mathscr{C}}{dK^2}}</script><p>Going back to the notation of $C = e^{–rT}\mathscr{C}$ , we obtain the Dupire’se quation</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\sigma_T^2|S_T=K]=\frac{\sigma(T,K)f(K)}{f(K)}=\frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}</script><p>Thus, we get the Dupire’s formula</p>
+<script type="math/tex; mode=display">
+\sigma^2(t,S)=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}|_{K=s, T=t}</script><p>For a known volatility function $\sigma(t, S)$, we can use the Dupire’s formula to price all European call options on $S_0$</p>
+<script type="math/tex; mode=display">
+\frac{dC}{dT}+(r-q)K\frac{\partial C}{\partial K}-\frac{1}{2}K^2\sigma^2(t=T,S=K)\frac{d^2C}{dK^2}=-qC</script><p>with initial condition $C(T=0,K)=(S_0-K)^+$</p>
+<h2 id="Unit-2-3：Positivity-of-the-right-hand-side-of-the-Dupire-formula"><a href="#Unit-2-3：Positivity-of-the-right-hand-side-of-the-Dupire-formula" class="headerlink" title="Unit 2.3：Positivity of the right hand side of the Dupire formula"></a>Unit 2.3：Positivity of the right hand side of the Dupire formula</h2><p>Consider the second derivative in the <strong>denominator</strong></p>
+<script type="math/tex; mode=display">
+\frac{d^2C}{dK^2}=\lim_{\epsilon\to 0}\frac{C(T,K-\epsilon)-2C(T,K)+C(T,K+\epsilon)}{\epsilon^2}</script><p>The right hand side can be thought of a <strong>Butterfly spread</strong></p>
+<p>As $\epsilon \to 0$, the butterfly spread (more narrow and more much higher) converges to a Dirac-delta function which is either 0 or strictly positive and thus, it’s price must be positive, thus $\frac{d^2C}{dK^2}&gt;0$</p>
+<p>The <strong>numerator</strong> in the Dupire’s formula can be re-written as</p>
+<script type="math/tex; mode=display">
+e^{-qT}\frac{d}{dT}(e^{qT}C(T,Ke^{(r-q)T}))|_{K=S}</script><p>For the above to be positive, call option with a strike which is a fixed proportion $K$ of the forward $F_T=Se^{(r-q)T}$ must be an increasing function of $T$</p>
+<p>For $T_1 \leq  T_2$</p>
+<script type="math/tex; mode=display">
+e^{qT_1}C(T_1,KF_{T_1})\leq e^{qT_2}C(T_2,KF_{T_2})</script><p>In order to prove it, we suppose that the monotonicity condition is violated, that is </p>
+<script type="math/tex; mode=display">
+e^{qT_1}C(T_1,KF_{T_1})> e^{qT_2}C(T_2,KF_{T_2})</script><p>Set up the following strategy:</p>
+<ul>
+<li><p>Buy one option of maturity $T_2$, strike $KF_{T_2}$ </p>
+</li>
+<li><p>Sell $e^{–q(T2–T1)}$ options of maturity $T_1$, strike $KF_{T1}$</p>
+</li>
+</ul>
+<p>At inception, setting up the above strategy pays a premium ( &gt; 0 )</p>
+<p>At $T_1$, take the following $\Delta$ position on S:</p>
+<ul>
+<li>If $S_{T_1}&lt;KF_{T1}$ : $\Delta =0$</li>
+<li>If $S_{T_1}&gt;KF_{T1}$ : $\Delta =-1$</li>
+</ul>
+<p>At $T_2$ , the P&amp;L comprises of the following positions</p>
+<ul>
+<li>receipt of payoff from $T_2$ maturity option</li>
+<li>payment of payoff from $T_1$ maturity option, capitalized up to $T_2$</li>
+<li>P&amp;L generated by the delta position created at $T_1$ and liquidated at $T_2$</li>
+</ul>
+<p>For $S_{T_1}^*=\frac{F_{T_2}}{F_{T_1}}S_{T_1}$ , the P&amp;L is written as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&T_2\ Option\ at\ T_2 \qquad\ \qquad T_1\ Option\ at\ T_2 \qquad\qquad\ \quad Delta\  portfolio\\
+&\overbrace{(S_{T_2}-KF_{T_2})^+}-\overbrace{e^{r(T_2-T_1)}e^{-q(T_2-T_1)}(S_{T_1}-KF_{T_1})^+}+\overbrace{\Delta(S_{T_2}-\frac{F_{T_2}}{F_{T_1}}S_{T_1})}\\
+&=(S_{T_2}-KF_{T_2})^+-[\frac{F_{T_2}}{F_{T_1}}(S_{T_1}-KF_{T_1})^++1_{S_{T_1}>KF_{T_1}}(S_{T_2}-\frac{F_{T_2}}{F_{T_1}}S_{T_1})]\\
+&=(S_{T_2}-KF_{T_2})^+-[(S_{T_1}^*-KF_{T_2})^++1_{S_{T_1}^*>KF_{T_2}}(S_{T_2}-S_{T_1}^*)]
+\end{align}</script><p>The last equation reads as</p>
+<script type="math/tex; mode=display">
+f(S_{T_2})-[f(S_{T_1}^*)+(S_{T_2}-S_{T_1}^*)\frac{df}{dx}(S_{T_1}^*)]</script><p>for $f(x)=(x-KF_{T_2})^+$</p>
+<blockquote>
+<p>$f(y)-f(x)&gt;(y-x)f(x)\ when\ f’’(x)&gt;0$</p>
+</blockquote>
+<p>Thus, our strategy produces positive amount at inception and at $T_2$. Therefore, there’s an arbitrage.</p>
+<p>Thus, the numerator in the Dupire’s formula is always positive.</p>
+<h2 id="Unit-2-4-Further-aspects-of-the-Dupire-formula-and-local-volatility"><a href="#Unit-2-4-Further-aspects-of-the-Dupire-formula-and-local-volatility" class="headerlink" title="Unit 2.4 Further aspects of the Dupire formula and local volatility"></a>Unit 2.4 Further aspects of the Dupire formula and local volatility</h2><p>To compute the Dupire’s local volatility function in terms of implied volatility $\hat\sigma(T,K)$, first write</p>
+<script type="math/tex; mode=display">
+C(T,K)=C^{BS}(\hat\sigma(T,K),T,K)</script><p>Next, define</p>
+<ul>
+<li>forward price as $F_t=S_0e^{(r-q)(t-t_0)}$</li>
+<li>log strike as $y=ln(\frac{K}{F_t})$</li>
+<li>parameterized volatility as $f(t,y)=(t-t_0)\hat\sigma^2(t,K)$</li>
+</ul>
+<p>Next, replace $C(T,K)$ in the Dupire’s formula with $C^{BS}(\hat\sigma(T,K),T,K)$ and compute derivatives using $f$ and $y$ rather than $\hat\sigma$and $K$</p>
+<p>The local volatility function is then given as</p>
+<script type="math/tex; mode=display">
+\sigma^2(t,S)=\frac{\frac{df}{dt}}{(\frac{y}{2f}\frac{df}{dy}-1)^2+\frac{1}{2}\frac{d^2f}{dy^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{f})(\frac{df}{dy})^2}|_{y=ln(\frac{S}{F_t})}</script><p>As in the markets, the option prices are only available for discrete strikes and maturities, to use the Dupire’s formula, we need to interpolate between the available strikes and maturities, and extrapolate outside the market range.</p>
+<p><strong>Issues with Dupire’s Local Volatility Model</strong></p>
+<ul>
+<li><p>The local volatility surface obtained by the Dupire’s formula is very sensitive to the method of data interpolation</p>
+</li>
+<li><p>The only risky asset used is the underlying asset which does not account for the volatility risk (affected by random shocks)</p>
+</li>
+<li><p>The calibrated local volatility surface is not stable with the passage of time (in practice the local volatility surface is is changing all the time)</p>
+</li>
+<li><p>The dynamics of the volatility process assumed by the model does not correspond to that observed in the market</p>
+</li>
+</ul>
+<h4 id="CEV-Model"><a href="#CEV-Model" class="headerlink" title="CEV Model"></a>CEV Model</h4><p>Constant Elasticity of Variance (CEV) model is given as</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\frac{\sigma}{S_t^{1-a}}dW_t</script><blockquote>
+<p>If $a$ less than one, then we have that non constant local volatility function</p>
+</blockquote>
+<p>Under the risk-neutral measure, by assuming that the forward price is given as $F_t=S_te^{r(T-t)}$, the CEV model can be re-written as</p>
+<script type="math/tex; mode=display">
+dF_t=\sigma_0F_t^adW_t,\ 0<a\leq1</script><p>The implied volatility is given by the asymptotic approximation</p>
+<script type="math/tex; mode=display">
+\sigma^{imp}(T,K)=\frac{\sigma_0}{F_m^{(1-a)}}(1+\frac{(1-a)(2+a)}{24}(\frac{F_0-K}{F_m})^2+\frac{(1-a)^2}{24}\frac{\sigma^2_0T}{F_m^{2-2a}}+...)</script><p>with $F_m=\frac{1}{2}(F_0+K)$</p>
+<h4 id="Trinomial-Pricing-Tree"><a href="#Trinomial-Pricing-Tree" class="headerlink" title="Trinomial Pricing Tree"></a>Trinomial Pricing Tree</h4><p>The issue of non-recombining binomial tree is addressed by using a trinomial tree model where the prices are given by</p>
+<script type="math/tex; mode=display">
+\hat{S}_{t_{i+1}}=\begin{cases}u\hat{S}_{t_i}&p\\
+(1+r\Delta t)\hat{S}_{t_i}&1-p-q\\d\hat{S}_{t_i}&q\end{cases}</script><p>For the trinomial tree to converge to a continuous process, we further impose</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\hat{S}_{t_{i+1}}|\hat{S}_{t_i}]=(1+r\Delta t)\hat{S}_{t_i}</script><script type="math/tex; mode=display">
+Var(\hat{S}_{t_{i+1}}|\hat{S}_{t_i})=\hat{S}_{t_i}^2\sigma^2(t_i,\hat{S}_{t_i})\Delta t</script><p>For a recombining tree (i.e. the number of nodes increase linearly and not exponentially), we need $u d=(1+\Delta t)^2$ </p>
+<p>The probabilities are given as</p>
+<script type="math/tex; mode=display">
+p(t_i,\hat{S}_{t_i})=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(u-1-r\Delta t)},\ q(t_i,\hat{S}_{t_i})=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(1+r\Delta t-d)}</script><p>To ensure the absence of arbitrage in the model, we need that $p + q\leq 1$ whic is ensured if</p>
+<script type="math/tex; mode=display">
+1 + r\Delta t - d > \sigma(t_i, \hat S_{t_i}) \sqrt{∆t}</script><p>Such that the above inequality is always satisfied, we choose</p>
+<script type="math/tex; mode=display">
+d=1+r\Delta t-\bar\sigma\sqrt{\Delta t}</script><p>where $\sigma &gt; \sigma(t, S)$ for all the nodes in the trinomial tree</p>
+<p>By choosing $\bar\sigma$ sufficiently large, in the limit, we obtain the following model which does not admit arbitrage</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\min(\bar\sigma,\sigma(t,S))dW_t</script>
             </div>
             <hr>
             <div>
