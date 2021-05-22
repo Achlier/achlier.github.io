@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      1.9k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      37
        分钟
     </span>
   
@@ -361,29 +361,7 @@ X_t &= \phi_0+\phi_1X_{t-1}+\epsilon_t\\
 &=\mathbb{E}[\phi_1^h(\sum_{k=0}^\infty\phi_1^k\epsilon_{t-h-k})(\sum_{j=0}^\infty\phi_1^j\epsilon_{t-h-j})]\\
 &=\phi_1^h\sigma^2\sum_{j=0}^\infty\phi_1^{2j}=\phi_1^h\mathbb{Var}(X_t)
 \end{align}</script><script type="math/tex; mode=display">
-\mathbb{Corr}(X_t,X_{t-h})=\phi_1^h</script><p><strong>Linear projection</strong> of $X$ onto $\{1, z_1, . . . , z_n\}$</p>
-<script type="math/tex; mode=display">
-\mathscr{P}[X|1, z_1,..., z_n]=\sum_{j=0}^na_jz_j,\ z_0=1</script><p>where $a_0, . . . , a_n$ satisfy</p>
-<script type="math/tex; mode=display">
-\mathbb{E}[(X-\sum_{j=0}^na_jz_j)z_j]=0,\ i=0,1,...,n</script><blockquote>
-<p>同等于OLS中$\sum_{i=1}^n\hat{u}_ix_i=0$, 此处是$z_j$对$X$的回归</p>
-</blockquote>
-<p><strong>Partial Autocorrelation Function (PACF)</strong></p>
-<ul>
-<li>$\alpha(0)\equiv 1$</li>
-<li>$\alpha(1)\equiv\rho(1)=\mathbb{Corr}(X_2,X_1)$</li>
-<li>$\alpha(2)=\mathbb{Corr}(e_2,e_1)=\frac{\rho(2)-\rho^2(1)}{1-\rho^2(1)}$</li>
-<li>$\alpha(h)\equiv\mathbb{Corr}(e_{h+1},e_1),\ h&gt;1$<ul>
-<li>$e_{h+1}=X_{h+1}-\mathscr{P}[X_{h+1}|1, X_1,…, X_h]$</li>
-</ul>
-</li>
-<li>$\alpha(h)=\phi_{hh}$<ul>
-<li>$\mathscr{P}[X_{h+1}|1, X_1,…, X_h]=\phi_{h0}+\phi_{h1}X_h+\phi_{h2}X_{h-1}+…+\phi_{hh}X_1$</li>
-</ul>
-</li>
-</ul>
-<p><strong>If ACF and PACF are both declining geometrically $\to$ ARMA(1,1)</strong></p>
-<h4 id="Yule-Walker"><a href="#Yule-Walker" class="headerlink" title="Yule-Walker"></a>Yule-Walker</h4><p>For AR(p) we have</p>
+\mathbb{Corr}(X_t,X_{t-h})=\phi_1^h</script><h4 id="Yule-Walker"><a href="#Yule-Walker" class="headerlink" title="Yule-Walker"></a>Yule-Walker</h4><p>For AR(p) we have</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
 Y_t\\Y_{t+1}\\...\\Y_{t+n}
@@ -403,7 +381,44 @@ Y_{t+n-1}&Y_{t+n-2}&...&Y_{t+n-p}
 \epsilon_t\\ \epsilon_{t+1}\\...\\ \epsilon_{t+n}
 \end{bmatrix}</script><p>Times $Y_{t-1}$ at both side and taking $\mathbb{E}$, with $\mathbb{E}(Y_t)=0$</p>
 <script type="math/tex; mode=display">
-\mathbb{E}(Y_tY_{t-1})=\gamma(1)=\sum_{j=1}^p\gamma_{j-1}\phi_j</script><h4 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h4><p>The residuals satisfy the equation ARMA(p,q)</p>
+\mathbb{E}(Y_tY_{t-1})=\gamma(1)=\sum_{j=1}^p\gamma_{j-1}\phi_j</script><p><strong>Linear projection</strong> of $X$ onto $\{1, z_1, . . . , z_n\}$</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[X|1, z_1,..., z_n]=\sum_{j=0}^na_jz_j,\ z_0=1</script><p>where $a_0, . . . , a_n$ satisfy</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[(X-\sum_{j=0}^na_jz_j)z_j]=0,\ i=0,1,...,n</script><blockquote>
+<p>同等于OLS中$\sum_{i=1}^n\hat{u}_ix_i=0$, 此处是$z_j$对$X$的回归</p>
+</blockquote>
+<p><strong>Partial Autocorrelation Function (PACF)</strong></p>
+<ul>
+<li>$\alpha(0)\equiv 1$</li>
+<li>$\alpha(1)\equiv\rho(1)=\mathbb{Corr}(X_2,X_1)$</li>
+<li>$\alpha(2)=\mathbb{Corr}(e_2,e_1)=\frac{\rho(2)-\rho^2(1)}{1-\rho^2(1)}$</li>
+<li>$\alpha(h)\equiv\mathbb{Corr}(e_{h+1},e_1),\ h&gt;1$<ul>
+<li>$e_{h+1}=X_{h+1}-\mathscr{P}[X_{h+1}|1, X_2,…, X_h]$</li>
+<li>$e_{1}=X_{1}-\mathscr{P}[X_1|1, X_2,…, X_h]$</li>
+</ul>
+</li>
+<li>$\alpha(h)=\phi_{hh}$<ul>
+<li>$\mathscr{P}[X_{h+1}|1, X_1,…, X_h]=\phi_{h0}+\phi_{h1}X_h+\phi_{h2}X_{h-1}+…+\phi_{hh}X_1$</li>
+<li>$\alpha=\Gamma_p^{-1}\gamma(p)$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\alpha(1)\\ \alpha(2)\\...\\ \alpha(p)
+\end{bmatrix}
+=
+\begin{bmatrix}
+\gamma(0)&\gamma(1)&...&\gamma(p-1)\\
+\gamma(1)&\gamma(2)&...&\gamma(p-2)\\
+...&...&...&...\\
+\gamma(p-1)&\gamma(p-2)&...&\gamma(0)
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+\gamma(1)\\ \gamma(2)\\...\\ \gamma(p)
+\end{bmatrix}</script><p><strong>If ACF and PACF are both declining geometrically $\to$ ARMA(1,1)</strong></p>
+<h4 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h4><p>The residuals satisfy the equation ARMA(p,q)</p>
 <script type="math/tex; mode=display">
 e_t=X_t-\hat{\phi}_0-\hat{\phi}_1X_{t-1}-...-\hat{\phi}_pX_{t-p}-\hat{\theta}_1e_{t-1}-...-\hat{\theta}_qe_{t-q}</script><p>Let $k=p+q+1$.  The information criteria are often written as</p>
 <ul>
@@ -431,6 +446,7 @@ X_t=\mu+\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1</script><p>where</p>
 <li>$\mu = \frac{\phi_0}{\Phi(1)}$</li>
 <li>$\Psi(z)=1+\psi_1z+\psi_2z^2+…=\Phi^{-1}(z)=1/\Phi(z)$</li>
 <li>For AR(1), $\psi_j=\phi^j$ by Taylor Expansion</li>
+<li>For AR(2), $\psi_0=1,\psi_1=\phi_1,\psi_j=\phi_1\psi_{j-1}+\phi_2\psi_{j-2}$</li>
 </ul>
 <p><strong>Stationarity only need $|Z|\ne 1$, So we can find the stationary solution of AR(1) with $|\phi|&gt;1$</strong></p>
 <script type="math/tex; mode=display">
