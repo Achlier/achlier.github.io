@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>一元线性回归方程中的回归系数 - Borderland</title>
+  <title>概率测度变换【笔记_B站】 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="一元线性回归方程中的回归系数">
+            <span class="h2" id="subtitle" title="概率测度变换【笔记_B站】">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-30 18:48" pubdate>
-        April 30, 2021 pm
+      <time datetime="2021-05-23 12:46" pubdate>
+        May 23, 2021 pm
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      365 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      6
        分钟
     </span>
   
@@ -224,183 +224,74 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">一元线性回归方程中的回归系数</h1>
+            <h1 style="display: none">概率测度变换【笔记_B站】</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于《计量经济学导论》中文译本；</p>
-<p>关于：</p>
-<ol>
-<li>回归系数的求解；</li>
-<li>系数的无偏性；</li>
-<li>系数的抽样方差；</li>
-<li>sigma的无偏性；</li>
-</ol>
+<p>基于B站up Jerry Xu的视频《[金融工程]概率测度变换》系列的笔记</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="1-回归系数的求解"><a href="#1-回归系数的求解" class="headerlink" title="1. 回归系数的求解"></a>1. 回归系数的求解</h2><p>首先，我们拥有一个数据集 $x=\{x_1,x_2…,x_n\}$ , $y=\{y_1,y_2,…,y_n\}$</p>
-<script type="math/tex; mode=display">
-\bar x =n^{-1} \sum_{i=1}^n x_i\ ,\  \bar y =n^{-1} \sum_{i=1}^n y_i \tag{0}</script><p>对于一个简单的一元线性回归方程</p>
-<script type="math/tex; mode=display">
-y = \alpha +\beta x+u</script><p>其中 $\alpha , \beta$ 是我们假设的完美情况下存在的系数，$u$ 为得到数据时存在的干扰值/误差</p>
-<p>我们将用普通最小二乘法推导模型</p>
-<script type="math/tex; mode=display">
-\hat y = \hat\alpha + \hat\beta x</script><p>其中 $\alpha , \beta$ 是我们通过数据推导得到的系数, $\hat{y}$ 是通过模型得到的拟合值</p>
-<p>我们的目标函数</p>
-<script type="math/tex; mode=display">
-Min\ Q =(y-\hat{y})^2=(y-\hat\alpha - \hat\beta x)^2  \tag{1}</script><p>为了求最小值， (1) 进行对 $\hat{\alpha},\hat{\beta}$ 求偏导，并令其值等于0</p>
-<p>得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial Q}{\partial \hat\alpha}=(-2)(y-\hat\alpha-\hat\beta x)&=0\\
-y-\hat\alpha-\hat\beta x&=0 \tag{2}
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial Q}{\partial \hat\beta}=(-2x)(y-\hat\alpha-\hat\beta x)&=0\\
-x(y-\hat\alpha-\hat\beta x)&=0 \tag{3}
-\end{align}</script><p>接下来通过对 $x,y$ 的展开(求和的上下限忽略不写)，从 (2) 中推得性质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (y_i - \hat\alpha - \hat\beta x_i) &=0\\
-\sum y_i &=\sum (\hat\alpha + \hat\beta x_i) \gets (0) \\
-n \bar y &=n \hat\alpha + n \hat\beta \bar x\\
-\bar y &=\hat\alpha + \hat\beta \bar x \tag{4}
-\end{align}</script><p>将 (4) 代入 (3) 得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-x(y-\bar y + \hat\beta \bar x-\hat\beta x)&=0\\
-x(y-\bar y)&=\hat\beta x(x-\bar x) \tag{5}
-\end{align}</script><p>推导两个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x_i)^2 &= \sum (x_i^2 + \bar x_i^2 -2\bar xx_i) \\
-&=\sum x_i^2 + n \bar x_i\bar x_i - 2\bar x\sum x_i \gets (0)\\
-&=\sum x_i^2 + n \bar x_i n^{-1}\sum x_i - 2\bar x\sum x_i\\
-&= \sum x_i^2 -\bar x\sum x_i\\
-&= \sum x_i(x_i-\bar x) \tag{6}
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x_i)(y_i-\bar y_i) &= \sum (x_iy_i + \bar x_i\bar y_i -x_i\bar y_i-y_i\bar x_i) \gets (0)\\
-&=\sum x_iy_i + n \bar x_i\bar y_i - n\bar x\bar y - n\bar x\bar y \gets (0)\\
-&=\sum x_iy_i - n \bar y_i n^{-1}\sum x_i\\
-&= \sum x_iy_i -\bar y\sum x_i\\
-&= \sum x_i(y_i-\bar y) \tag{7}
-\end{align}</script><p>将 (6) , (7) 代入 (5) 得</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x)(y_i-\bar y)&= \sum \hat\beta(x_i-\bar x)^2\\
-\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \tag{8}
-\end{align}</script><p><strong>最终我们得到两系数的值</strong></p>
-<script type="math/tex; mode=display">
-\begin{cases}
-\hat\beta = \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \\
-\hat\alpha = \bar y - \hat\beta \bar x \tag{9}
-\end{cases}</script><h2 id="2-系数的无偏性"><a href="#2-系数的无偏性" class="headerlink" title="2. 系数的无偏性"></a>2. 系数的无偏性</h2><p>重申一个特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum(x_i-\bar x)&=\sum x_i-n\bar x \gets (0) \\
-&= n\bar x-n\bar x\\
-&= 0 \tag{10}
-\end{align}</script><p>首先对 $\hat\beta$ 进行变换</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \gets (7)\\
-&= \frac{\sum (x_i-\bar x)y_i}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sum (x_i-\bar x)(\alpha +\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (10)\\
-&= \frac{\sum (x_i-\bar x)(\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (6)\\
-&= \frac{\sum ((x_i-\bar x)^2\beta+(x_i-\bar x)u_i)}{\sum (x_i-\bar x)^2}\\
-&= \beta+\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2} \tag{11}
-\end{align}</script><p><strong>对 $\hat\beta$ 无偏性的证明</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-E(\hat\beta) &= \beta + E(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
-&= \beta + \frac{\sum (x_i-\bar x)E(u_i)}{\sum (x_i-\bar x)^2} \gets SLR.4\\
-&= \beta
-\end{align}</script><blockquote>
-<p>SLR.4 : Zero Conditional Mean</p>
-<p>注意在中文版中SLR.3才是零条件均值</p>
-</blockquote>
-<p><strong>对 $\hat\alpha$ 无偏性的证明</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-E(\hat\alpha) &= E(\bar y - \hat\beta \bar x)\\
-&= E(\alpha +\beta \bar x+\bar u - \hat\beta \bar x) \gets SLR.4\\
-&= \alpha + \beta \bar x - \beta \bar x\\
-&= \alpha
-\end{align}</script><h2 id="3-系数的抽样方差"><a href="#3-系数的抽样方差" class="headerlink" title="3. 系数的抽样方差"></a>3. 系数的抽样方差</h2><p>提前定义</p>
-<script type="math/tex; mode=display">
-u_i \sim N(0,\sigma^2)</script><p>重申关于 $Var$ 的知识点</p>
-<script type="math/tex; mode=display">
-Var(x+y)=Var(x)+Var(y)+2Cov(x,y) \tag{12}</script><script type="math/tex; mode=display">
-Cov(x,y)=E(xy)-E(x)E(y) \tag{13}</script><script type="math/tex; mode=display">
-Var(\bar u)=Var(\frac{\sum u_i}{n})=\frac{\sum Var(u_i)}{n^2}=\frac{\sigma^2}{n} \tag{14}</script><p><strong>从 (11) 对 $\hat\beta$ 进行方差的推导</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-Var(\hat\beta) &= Var(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}Var(\sum (x_i-\bar x)u_i)\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2Var(u_i)\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2\sigma^2\\
-&= \frac{\sigma^2}{\sum (x_i-\bar x)^2} \tag{15}
-\end{align}</script><p>推导一个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-(13) \to Cov(\bar u,(\beta - \hat\beta) \bar x) &= E((\beta - \hat\beta) \bar x \bar u)-E(\bar u)E((\beta - \hat\beta) \bar x)\\
-&= E((\beta - \hat\beta) \bar x \bar u) \gets (11) \\
-&= E(\frac{\sum (x_i-\bar x)u_i\bar u\bar x}{\sum (x_i-\bar x)^2})\\
-&= (\frac{\sum (x_i-\bar x)\bar x}{\sum (x_i-\bar x)^2})^2E(u_i\bar u) \gets (10)\\
-&= 0\times E(u_i\bar u) \tag{16}
-\end{align}</script><p>扩展</p>
-<blockquote>
-<p>这里的 $E(u_i\bar u)$ 不能等于0，因为 $i$ 与 $\bar u$ 中除了编号是 $i$ 的其他残差独立</p>
-<p>$E(u_i\bar u)=\frac{1}{n}\sum_{j=1}^nE(u_iu_j)=\frac{1}{n}E(u_i^2)=\frac{\sigma^2}{n}$</p>
-<p>$E(u_i^2) = Var(u_i)-E(u_i)^2=\sigma^2$</p>
-</blockquote>
-<p><strong>对 $\hat\alpha$ 进行方差的推导</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
-&= Var(\alpha +\beta \bar x+\bar u - \hat\beta \bar x)\\
-&= Var(\bar u +(\beta - \hat\beta) \bar x) \gets (12)\\
-&= Var(\bar u)+Var((\beta - \hat\beta) \bar x)+2Cov(\bar u,(\beta - \hat\beta) \bar x) \gets (14)(15)(16)\\
-&= \frac{\sigma^2}{n} + \frac{\sigma^2\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sum (x_i-\bar x)^2\sigma^2+n\sigma^2\bar x^2}{n\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum (x_i-\bar x)^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum (x_i^2+\bar x^2-2x_i\bar x)+n\bar x^2}{\sum (x_i-\bar x)^2} \gets (0)\\
-&= \frac{\sigma^2}{n}\frac{\sum x_i^2+n\bar x^2-2n\bar x^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum x_i^2}{\sum (x_i-\bar x)^2} \tag{17}
-\end{align}</script><h2 id="4-sigma的无偏性"><a href="#4-sigma的无偏性" class="headerlink" title="4. sigma的无偏性"></a>4. sigma的无偏性</h2><p>定义</p>
+<h1 id="Section-1：Preliminary-of-Probability-Theory"><a href="#Section-1：Preliminary-of-Probability-Theory" class="headerlink" title="Section 1：Preliminary of Probability Theory"></a>Section 1：Preliminary of Probability Theory</h1><h3 id="1-Probability-Space"><a href="#1-Probability-Space" class="headerlink" title="1. Probability Space"></a>1. Probability Space</h3><script type="math/tex; mode=display">
+(\Omega,\mathcal{F},\mathbb{P})</script><ul>
+<li><p>Sample Space (可能出现的结果)：$\Omega$</p>
 <ul>
-<li>$u_i$ : 误差</li>
-<li><p>$\hat u_i = y-\hat y = u_i+(\alpha-\hat\alpha)+(\beta-\hat\beta)x_i$ : 残差</p>
-</li>
-<li><p>$\sigma^2 = n^{-1}\sum u_i^2 = (n-2)^{-1}\sum \hat u_i^2 = \frac{SSR}{n-2}$ : 因为包含两个限制条件，所以减少两个自由度</p>
+<li>$\Omega=\{\omega_1,\omega_2,…\}$</li>
+<li>$\Omega =\omega_i,\ i\in I(index\ set)$，无限多不可数</li>
+<li>Random Variable $X(\omega)$定义在$\Omega$上<ul>
+<li>$X：\Omega \to \mathbb{R}^K$</li>
+<li>$X^{-1}(B)=\{\omega\in\Omega:X(\omega)\in B\}\in \mathcal{F}\ for\ all$<ul>
+<li>Borel sets：$B\in\mathscr{B}(\mathbb{R}^K)$</li>
+</ul>
 </li>
 </ul>
-<p>由 (2) 得</p>
+</li>
+</ul>
+</li>
+<li><p>$\sigma$-algebra (all measurable events)：$\mathcal{F}$</p>
+<ul>
+<li>$\varnothing \in \mathcal{F}$</li>
+<li>$A \in \mathcal{F} \Rightarrow A^C \in \mathcal{F}$</li>
+<li>$A_1,A_2,…\in\mathcal{F}\Rightarrow\cup_{n=1}^\infty A_n\in\mathcal{F}$</li>
+<li>Events are subset of $\Omega$</li>
+</ul>
+</li>
+<li>Probability measure (all events will be assigned a value)：$\mathbb{P}$<ul>
+<li>$\mathbb{P}(\Omega)=1$</li>
+<li>$If\ A_1,A_2,… are\ disjoint\ sets\ \Rightarrow \mathbb{P}(\cup_{n=1}^\infty A_n)=\sum_{n=1}^\infty\mathbb{P}(A_n)$</li>
+<li>$\mathbb{P}$能给$\mathcal{F}$中每一个事件都映射到闭区间0到1上，所以概率测度定义域是$\sigma$域<ul>
+<li>$\mathbb{P}：\Omega \to [0,1]$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="De-Morgan’s-law"><a href="#De-Morgan’s-law" class="headerlink" title="De Morgan’s law"></a>De Morgan’s law</h4><script type="math/tex; mode=display">
+(A\cap B)^C=A^C\cup B^C,\ (A\cup B)^C=A^C\cap B^C</script><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p><strong>测度</strong></p>
+<ul>
+<li><p>测度$\mathbb{P}$：真实世界测度</p>
+</li>
+<li><p>测度$\mathbb{Q}$：单个风险中性测度 (股票过程) 多个等价鞅测度 (债券过程)</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+dW_t^\mathbb{Q}=dW_t^\mathbb{P}+\theta_tdt,\ \theta_t=\frac{\mu-r}{\sigma}</script><p><strong>期望</strong></p>
+<ul>
+<li>Countable Infinite</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}X=\sum_{k=1}^\infty X(\omega_k)\mathbb{P}(\omega_k)</script><ul>
+<li>Uncountable Infinite</li>
+</ul>
 <script type="math/tex; mode=display">
 \begin{align}
-0&= y-\hat\alpha-\hat\beta x\\
-&= \alpha -\hat\alpha +\beta x -\hat\beta x +u\\
-&= (\alpha -\hat\alpha) +(\beta -\hat\beta)\bar x +\bar u \tag{18}
-\end{align}</script><p>将原有残差公式与 (18) 相减</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum \hat u_i &= \sum (u_i-\bar u)+\sum (\beta-\hat\beta)(x_i-\bar x)\\
-\sum \hat u_i^2 &= \sum (u_i-\bar u)^2 + \sum (\beta-\hat\beta)^2(x_i-\bar x)^2 + \sum 2(u_i-\bar u)(\beta-\hat\beta)(x_i-\bar x)\\
-\end{align}</script><p>右侧第一项的期望值是样本误差的方差 $(n-1)\sigma^2$</p>
-<p>右侧第二项因为 $E[(\hat\beta-\beta)^2]=Var(\hat\beta)-E[(\hat\beta-\beta)]^2=Var(\hat\beta)$ 代入 (15) 得期望为 $\sigma^2$</p>
-<p>推导一个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-(8)\to \sum(u_i-\bar u)(x_i-\bar x) &=\sum u_i(x_i-\bar x)\\
-&=\sum (y_i-\alpha-\beta x_i)(x_i-\bar x) \gets (10)\\
-&=\sum (y_i-\beta x_i)(x_i-\bar x) \gets (6) (7)\\
-&=\sum (y_i-\bar y)(x_i-\bar x)-\sum\beta (x_i-\bar x)^2 \gets (8)\\
-&=\sum \hat\beta (x_i-\bar x)^2-\sum\beta (x_i-\bar x)^2\\
-&=(\hat \beta-\beta)\sum(x_i-\bar x)^2 \tag{19}
-\end{align}</script><p>右侧第三项可代入 (19) 并求期望得 $E[-2(\hat \beta-\beta)^2\sum(x_i-\bar x)^2]=-2\sigma^2$</p>
-<p>将三项放在一起得 $E(\sum\hat u_i^2)=(n-1)\sigma^2+\sigma^2-2\sigma^2=(n-2)\sigma^2$</p>
-<p>因此可证得 $E[SSR/(n-2)]=\sigma^2$</p>
+\mathbb{E}X&=\int_\Omega X(\omega)d\mathbb{P}(\omega) (Leb\ Integral)\\
+&=\int_{-\infty}^\infty x\underbrace{f(x)}dx=\int_{-\infty}^\infty xd\underbrace{F(x)}\\
+&\ \qquad\qquad  pdf\ \qquad\qquad\quad\quad cdf
+\end{align}</script><p><strong>Riemann积分(upper)&amp;Lebesgue积分(lower)</strong></p>
+<p><img src="/2021/05/23/%E6%A6%82%E7%8E%87%E6%B5%8B%E5%BA%A6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-1.png" srcset="/img/loading.gif" alt></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/275959084/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate">Jerry Xu B站主页</a></li>
+</ol>
 
             </div>
             <hr>
@@ -410,7 +301,7 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Econometrics/">Econometrics</a>
+                      <a class="hover-with-bg" href="/categories/Math/">Math</a>
                     
                   </div>
                 
@@ -418,7 +309,9 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Simple-Regression-Model/">Simple Regression Model</a>
+                      <a class="hover-with-bg" href="/tags/Probability-Theory/">Probability Theory</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Rado-Nicodym/">Rado-Nicodym</a>
                     
                   </div>
                 
@@ -431,18 +324,12 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/06/Exercise_1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Exercise_1</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/27/Basic_Econometrics/">
-                        <span class="hidden-mobile">Basic_Econometrics</span>
+                      <a href="/2021/05/18/Modelling_and_Forecasting_Financial_Markets/">
+                        <span class="hidden-mobile">Modelling_and_Forecasting_Financial_Markets</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
