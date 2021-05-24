@@ -426,13 +426,18 @@ d(S_T-K)^+=\frac{\partial(S_T-K)^+}{\partial S_T}((r-q)S_T dT+\sigma_TS_TdW_T)+\
 <script type="math/tex; mode=display">
 d(S_T-K)^+=\theta(S_T-K)((r-q)S_T dT+\sigma_TS_TdW_T)+\frac{1}{2}\delta(S_T-K)\sigma^2_TS^2_TdT</script><p>To use the above formula, let us consider “undiscounted” option prices $\mathscr{C}(T,K)=\mathbb{E}[(S_T-K)^+]$. Taking derivative w.r.t. K</p>
 <script type="math/tex; mode=display">
-\frac{d\mathbb{E}[(S_T-K)^+]}{d K}=-\mathbb{E}[\theta(S_T-K)],\ \frac{d^2\mathbb{E}[(S_T-K)^+]}{d K^2}=\mathbb{E}[\delta(S_T-K)]</script><p>Note that $\mathbb{E}[\delta(S_T-K)]$ is the density of stock prices</p>
+\begin{align}
+\frac{d\mathbb{E}[(S_T-K)^+]}{d K}&=-\mathbb{E}[\theta(S_T-K)]\\ \frac{d^2\mathbb{E}[(S_T-K)^+]}{d K^2}&=\mathbb{E}[\delta(S_T-K)]
+\end{align}</script><p>Note that $\mathbb{E}[\delta(S_T-K)]$ is the density of stock prices</p>
 <blockquote>
 <p>$\mathbb{E}[\delta(S_T-K)]=\int_{-\infty}^\infty\delta(S_T-K)f(S_T)dx=f(K)$</p>
 </blockquote>
 <p>From the identity</p>
 <script type="math/tex; mode=display">
-\mathscr{C}(T,K)=\mathbb{E}[(S_T-K)\theta(S_T-K)]=\mathbb{E}[S_T\theta(S_T-K)]-K\mathbb{E}[\theta(S_T-K)]</script><p>we get $\mathbb{E}[S_T\theta(S_T-K)]=\mathscr{C}+K\mathbb{E}[\theta(S_T-K)]=\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}$</p>
+\begin{align}
+\mathscr{C}(T,K)&=\mathbb{E}[(S_T-K)\theta(S_T-K)]\\
+&=\mathbb{E}[S_T\theta(S_T-K)]-K\mathbb{E}[\theta(S_T-K)]
+\end{align}</script><p>we get $\mathbb{E}[S_T\theta(S_T-K)]=\mathscr{C}+K\mathbb{E}[\theta(S_T-K)]=\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}$</p>
 <p>Next note that $\mathbb{E}[d(S_T-K)^+]=d\mathbb{E}[(S_T-K)^+]$</p>
 <p>Then, by taking expectation in the Ito’s formula applied on $(S_T-K)^+$ with $\mathbb{E}[W_t]=0$</p>
 <script type="math/tex; mode=display">
@@ -447,7 +452,10 @@ d\mathscr{C}&=(r-q)\mathbb{E}[\theta(S_T-K)S_T]dT+\frac{1}{2}\mathbb{E}[\delta(S
 \mathbb{E}[\delta(S_T-K)\sigma^2_T]=\frac{2}{K^2}(\frac{d\mathscr{C}}{dT}-(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}))</script><script type="math/tex; mode=display">
 \frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}=2\frac{\frac{d\mathscr{C}}{dT}-(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})}{K^2\frac{d^2\mathscr{C}}{dK^2}}</script><p>Going back to the notation of $C = e^{–rT}\mathscr{C}$ , we obtain the Dupire’se quation</p>
 <script type="math/tex; mode=display">
-\mathbb{E}[\sigma_T^2|S_T=K]=\frac{\sigma(T,K)f(K)}{f(K)}=\frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}</script><p>Thus, we get the Dupire’s formula</p>
+\begin{align}
+\mathbb{E}[\sigma_T^2|S_T=K]&=\frac{\sigma(T,K)f(K)}{f(K)}=\frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}\\
+&=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}
+\end{align}</script><p>Thus, we get the Dupire’s formula</p>
 <script type="math/tex; mode=display">
 \sigma^2(t,S)=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}|_{K=s, T=t}</script><p>For a known volatility function $\sigma(t, S)$, we can use the Dupire’s formula to price all European call options on $S_0$</p>
 <script type="math/tex; mode=display">
@@ -539,7 +547,10 @@ dF_t=\sigma_0F_t^adW_t,\ 0<a\leq1</script><p>The implied volatility is given by 
 Var(\hat{S}_{t_{i+1}}|\hat{S}_{t_i})=\hat{S}_{t_i}^2\sigma^2(t_i,\hat{S}_{t_i})\Delta t</script><p>For a recombining tree (i.e. the number of nodes increase linearly and not exponentially), we need $u d=(1+\Delta t)^2$ </p>
 <p>The probabilities are given as</p>
 <script type="math/tex; mode=display">
-p(t_i,\hat{S}_{t_i})=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(u-1-r\Delta t)},\ q(t_i,\hat{S}_{t_i})=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(1+r\Delta t-d)}</script><p>To ensure the absence of arbitrage in the model, we need that $p + q\leq 1$ whic is ensured if</p>
+\begin{align}
+p(t_i,\hat{S}_{t_i})&=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(u-1-r\Delta t)}\\
+q(t_i,\hat{S}_{t_i})&=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(1+r\Delta t-d)}
+\end{align}</script><p>To ensure the absence of arbitrage in the model, we need that $p + q\leq 1$ whic is ensured if</p>
 <script type="math/tex; mode=display">
 1 + r\Delta t - d > \sigma(t_i, \hat S_{t_i}) \sqrt{∆t}</script><p>Such that the above inequality is always satisfied, we choose</p>
 <script type="math/tex; mode=display">

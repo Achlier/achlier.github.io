@@ -399,7 +399,7 @@ Y_{t+n-1}&Y_{t+n-2}&...&Y_{t+n-p}
 </ul>
 </li>
 <li>$\alpha(h)=\phi_{hh}$<ul>
-<li>$\mathscr{P}[X_{h+1}|1, X_1,…, X_h]=\phi_{h0}+\phi_{h1}X_h+\phi_{h2}X_{h-1}+…+\phi_{hh}X_1$</li>
+<li>$\mathscr{P}[X_{h+1}|1, X_1,…, X_h]=\phi_{h0}+\phi_{h1}X_h+…+\phi_{hh}X_1$</li>
 <li>$\alpha=\Gamma_p^{-1}\gamma(p)$</li>
 </ul>
 </li>
@@ -471,7 +471,10 @@ Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1,\ \sum_{j=0}^\infty|\psi_j|
 <script type="math/tex; mode=display">
 \Phi(L)Y_t=\Theta(L)\epsilon_t</script><p>where</p>
 <script type="math/tex; mode=display">
-\Phi(z)=1-\phi_1z-\phi_2z^2-...-\phi_pz^p,\ \Theta(z)=1+\theta_1z+\theta_2z^2+...+\theta_qz^q</script><ol>
+\begin{align}
+\Phi(z)&=1-\phi_1z-\phi_2z^2-...-\phi_pz^p\\
+\Theta(z)&=1+\theta_1z+\theta_2z^2+...+\theta_qz^q
+\end{align}</script><ol>
 <li><p>$\{Y_t\}$ is stationary and causal if and only if</p>
 <p>$\Phi(z)\ne 0\ for\ all\ |z|\leq1$</p>
 <p>and the coefficients are determined by the relationship</p>
@@ -493,11 +496,17 @@ Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1,\ \sum_{j=0}^\infty|\psi_j|
 \sum_{j=0}^\infty\psi_jz^j(1-\sum_{i=1}^p\phi_iz^i)=1+\sum_{k=1}^q\theta_kz^k</script><p>Evaluating at $z=0$, we find $\psi_0=1$</p>
 <p>Taking first derivative</p>
 <script type="math/tex; mode=display">
-\sum_{j=1}^\infty j\psi_jz^{j-1}-\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=0}^\infty\psi_jz^j-\sum_{i=1}^p\phi_iz^i\sum_{j=1}^\infty j\psi_jz^{j-1}=\sum_{k=1}^qk\theta_kz^{k-1}</script><p>Evaluating at $z=0$, we find $\psi_1-\phi_1\psi_0=\theta_1$, so $\psi_1=\phi_1+\theta_1$</p>
+\begin{align}
+&\sum_{j=1}^\infty j\psi_jz^{j-1}-\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=0}^\infty\psi_jz^j\\
+&-\sum_{i=1}^p\phi_iz^i\sum_{j=1}^\infty j\psi_jz^{j-1}=\sum_{k=1}^qk\theta_kz^{k-1}
+\end{align}</script><p>Evaluating at $z=0$, we find $\psi_1-\phi_1\psi_0=\theta_1$, so $\psi_1=\phi_1+\theta_1$</p>
 <p>Taking first derivative again</p>
 <script type="math/tex; mode=display">
-\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}-\sum_{i=2}^pi(i-1)\phi_iz^{i-2}\sum_{j=0}^\infty\psi_jz^j-2\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=1}^\infty j\psi_jz^{j-1}\\
--\sum_{i=1}^p\phi_iz^i\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}=\sum_{k=2}^qk(k-1)\theta_kz^{k-2}</script><p>Evaluating at $z=0$, we find $2\psi_2-2\phi_2-2\phi_1\psi_1=2\theta_2$, so $\psi_2=\theta_2+\phi_2+\phi_1^2+\phi_1\theta_1$</p>
+\begin{align}
+&\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}-\sum_{i=2}^pi(i-1)\phi_iz^{i-2}\sum_{j=0}^\infty\psi_jz^j\\
+&-2\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=1}^\infty j\psi_jz^{j-1}-\sum_{i=1}^p\phi_iz^i\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}\\
+&=\sum_{k=2}^qk(k-1)\theta_kz^{k-2}
+\end{align}</script><p>Evaluating at $z=0$, we find $2\psi_2-2\phi_2-2\phi_1\psi_1=2\theta_2$, so $\psi_2=\theta_2+\phi_2+\phi_1^2+\phi_1\theta_1$</p>
 <p>Repeating the step above, we can find</p>
 <script type="math/tex; mode=display">
 \psi_j=\theta_j+\sum_{0< k\leq j}\phi_k\psi_{j-k},\ 0\leq j< max(p,q+1)</script><script type="math/tex; mode=display">
