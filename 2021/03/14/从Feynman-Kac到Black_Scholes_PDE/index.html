@@ -329,7 +329,7 @@ u(t,x)&=\mathbb{E}[e^{-\int_t^Tr(s,x_s)ds}f(X_T)|\mathcal{F}_t]\\
 \mathbb{E}[\tilde{M}_{T}]=\mathbb{E}[e^{-\int_t^{T}r(S,X_s^{t,x})ds}u(T,X_T^{t,x})]</script><p>and final condition</p>
 <script type="math/tex; mode=display">
 \mathbb{E}[\tilde{M}_{T}]=\mathbb{E}[e^{-\int_t^{T}r(S,X_s^{t,x})ds}f(X_T^{t,x})] \tag{2}</script><p><strong>总结：凡是满足以上的所有条件的，都能写成期望公式(2)的格式，因此两种形式可以互通</strong></p>
-<h1 id="Black-Scholes-PDE推导"><a href="#Black-Scholes-PDE推导" class="headerlink" title="Black-Scholes-PDE推导"></a>Black-Scholes-PDE推导</h1><h3 id="1-三个采用Feynman-Kac-theorem的推导"><a href="#1-三个采用Feynman-Kac-theorem的推导" class="headerlink" title="1. 三个采用Feynman-Kac theorem的推导"></a>1. 三个采用Feynman-Kac theorem的推导</h3><h4 id="【第一版-B站版】"><a href="#【第一版-B站版】" class="headerlink" title="【第一版-B站版】"></a>【第一版-B站版】</h4><p>根据B站<a target="_blank" rel="noopener" href="https://space.bilibili.com/453522144">杨维强老师</a>的讲解，将Feynman-Kac theorem比作了一个连接SED与PDE的桥梁</p>
+<h1 id="Black-Scholes-PDE推导"><a href="#Black-Scholes-PDE推导" class="headerlink" title="Black-Scholes-PDE推导"></a>Black-Scholes-PDE推导</h1><h3 id="1-三个采用Feynman-Kac-theorem的推导"><a href="#1-三个采用Feynman-Kac-theorem的推导" class="headerlink" title="1. 三个采用Feynman-Kac theorem的推导"></a>1. 三个采用Feynman-Kac theorem的推导</h3><h4 id="【第一版-B站版】"><a href="#【第一版-B站版】" class="headerlink" title="【第一版-B站版】"></a>【第一版-B站版】</h4><p>根据B站<a target="_blank" rel="noopener" href="https://space.bilibili.com/453522144">杨维强老师</a>的讲解，将Feynman-Kac theorem比作了一个连接SDE与PDE的桥梁</p>
 <p>Recall：</p>
 <script type="math/tex; mode=display">
 SDE: dX_t = \mu(X_t)dt + \sigma(X_t)dB_t \ , \ X_0 = x</script><p>Feynman-Kac theorem 使用概率方法去解出PDE：</p>
@@ -343,7 +343,7 @@ PDE：u_t + \mu(x)u_x+\frac{1}{2}\sigma^2(x)u_{xx}-\lambda(x)u = 0 \ , \ u(T,x)=
 dX_t = rX_tdt + \sigma X_tdB_t\\
 V(t,x) = E_Q[e^{-r(T-t)}h(X_T)|X_t=x]</script><p>当设 $\mu(x)=rx,\sigma(x)=\sigma x,\lambda(x)=r$ , 得到PDE：</p>
 <script type="math/tex; mode=display">
-rV = V_t + rxV_x+\frac{1}{2}\sigma^2x^2V_{xx} \ , \ V(T,x)=h(x)</script><h4 id="【第二版-格拉版】"><a href="#【第二版-格拉版】" class="headerlink" title="【第二版-格拉版】"></a>【第二版-格拉版】</h4><p>区别的地方是：</p>
+rV = V_t + rxV_x+\frac{1}{2}\sigma^2x^2V_{xx} \ , \ V(T,x)=h(x)</script><h4 id="【第二版-格拉版】"><a href="#【第二版-格拉版】" class="headerlink" title="【第二版-格拉版】"></a>【第二版-格拉版】</h4><p>区别的地方是采用BM构建Process：</p>
 <script type="math/tex; mode=display">
 \begin{align}
 V(t,x) &= E_Q[e^{-r(T-t)}h(X_T)|X_t=x]\\
