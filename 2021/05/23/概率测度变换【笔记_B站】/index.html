@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      2.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      39
        分钟
     </span>
   
@@ -397,7 +397,115 @@ dW_t^\mathbb{P}=dW_t^\mathbb{Q}-\theta_tdt,\ \theta_t=\frac{\mu-r}{\sigma}</scri
 \mathbb{Q}:dS_t&=\mu S_tdt+\sigma S_t(dW_t^\mathbb{Q}-\theta_tdt)\\
 &=\mu S_tdt+\sigma S_tdW_t^\mathbb{Q}-S_t(\mu-r)dt\\
 &=r S_tdt+\sigma S_tdW_t^\mathbb{Q}
-\end{align}</script><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+\end{align}</script><h1 id="Section-2：Girsanov’s-Theorem"><a href="#Section-2：Girsanov’s-Theorem" class="headerlink" title="Section 2：Girsanov’s Theorem"></a>Section 2：Girsanov’s Theorem</h1><h3 id="1-Conditional-Expection"><a href="#1-Conditional-Expection" class="headerlink" title="1. Conditional Expection"></a>1. Conditional Expection</h3><p>$\mathscr{G}$ is a sub-$\sigma$-algebra of $\mathcal{F}$. $X$ is a nonnegative &amp; integrable r.v. The conditiond expextation of $X$ given $\mathscr{G}$, denoted $\mathbb{E}[X|\mathscr{G}]$, is any r.v. that satisfies：</p>
+<ul>
+<li>$\mathbb{E}[X|\mathscr{G}]$ is $\mathscr{G}$-measurable</li>
+<li>$\int_A \mathbb{E}[X|\mathscr{G}]d\mathbb{P}(\omega)=\int_AX(\omega)d\mathbb{P}(\omega),\ for\ \forall A\in\mathscr{G}$ : Partical Averaging</li>
+</ul>
+<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><ol>
+<li><strong>Pull out property:</strong> If $X$ is a $\mathscr{G}$-measureable, then</li>
+</ol>
+<script type="math/tex; mode=display">
+\mathbb{E}[XY|\mathscr{G}]=X\mathbb{E}[Y|\mathscr{G}]</script><ol>
+<li><strong>Tower property (or Iteration):</strong> If $\mathcal{H}$ is a sub-$\sigma$-algebra of $\mathscr{G}$</li>
+</ol>
+<script type="math/tex; mode=display">
+\mathbb{E}[\mathbb{E}[X|\mathscr{G}]|\mathcal{H}]=\mathbb{E}[X|\mathcal{H}]</script><h4 id="Radon-Nikodym-Derivative-Process"><a href="#Radon-Nikodym-Derivative-Process" class="headerlink" title="Radon-Nikodym Derivative Process"></a>Radon-Nikodym Derivative Process</h4><script type="math/tex; mode=display">
+Z(t)=\mathbb{E}[Z|\mathcal{F}(t)],\ 0\leq t\leq T</script><ol>
+<li>$Z(t)$ is a martingale ($\ 0\leq s\leq t\leq T$)</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}[Z(t)|\mathcal{F}(s)]&=\mathbb{E}[Z(t)|\mathcal{F}(s)]\\
+&=\mathbb{E}[\mathbb{E}[Z|\mathcal{F}(t)]|\mathcal{F}(s)]\\
+&=\mathbb{E}[Z|\mathcal{F}(s)]\\
+&=Z(s)
+\end{align}</script><ol>
+<li>$Z(t)$ is Radon-Nikodym Derivative ($Y$ is $\mathcal{F}(t)$-measureable)</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}^\mathbb{Q}[Y]&=\mathbb{E}^\mathbb{P}[YZ]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{E}^\mathbb{P}[YZ|\mathcal{F}(t)]]\\
+&=\mathbb{E}^\mathbb{P}[Y\mathbb{E}^\mathbb{P}[Z|\mathcal{F}(t)]]\\
+&=\mathbb{E}^\mathbb{P}[YZ(t)]
+\end{align}</script><ol>
+<li>$\mathbb{Q}^\mathbb{P}[Y|\mathcal{F}(s)]=\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]$ (Right hand side is the conditiond expextation of $Y$)<ul>
+<li>$\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]$ is $\mathcal{F}(s)$-measureable</li>
+<li>For any $A \in \mathcal{F}(s)$, we have $\int_AY(\omega)d\mathbb{Q}(\omega)=\int_A \frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]d\mathbb{Q}(\omega)$</li>
+</ul>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+RHS&=\int_\Omega \mathbb{I}_A(\omega)\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]d\mathbb{Q}(\omega)\\
+&=\mathbb{E}^\mathbb{Q}[\mathbb{I}_A(\omega)\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{I}_A(\omega)\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{E}^\mathbb{P}[\mathbb{I}_A(\omega)YZ(t)|\mathcal{F}(s)]]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{I}_A(\omega)YZ(t)]\\
+&=\mathbb{E}^\mathbb{Q}[\mathbb{I}_A(\omega)Y]\\
+&=\int_\Omega\mathbb{I}_A(\omega)Yd\mathbb{Q}(\omega)\\
+&=\int_A Yd\mathbb{Q}(\omega)=LHS
+\end{align}</script><ol>
+<li>levy’s theorem：Let $M(t)$, $t\ge 0$, be a martingale, relative to$\mathcal{F}(t)$, $t\ge 0$. Assume $M(0)=0$, $M(T)$ has contiunous paths and $<a href="t">M,M</a>=t$ ( quadratic variation 二次变差 ) for all $t\ge 0$. $\Rightarrow M(t)$ is a Brownian Motion.</li>
+</ol>
+<ul>
+<li>当 $\{t_i^n\}_{i=0}^n$ 遍取 $[0,t]$ 的分割，其模 $\delta_n=max_{0\leq i\leq n-1}\{t_{i+1}^n-t_i^n\}\to 0$时，依概率收敛意义下的极限</li>
+</ul>
+<script type="math/tex; mode=display">
+[B,B](t)=[B,B]([0,t])=\lim_{\delta_n\to0}\sum_{i=0}^{n-1}|B(t_{i+1}^n)-B(t_i^n)|^2</script><ul>
+<li>BM 只有 $dW(t)dW(t)=dt$ 会在一单位时间内积累一单位二次变差. $dtdt=dtdW(t)=0$</li>
+</ul>
+<h3 id="2-Girsanov"><a href="#2-Girsanov" class="headerlink" title="2. Girsanov"></a>2. Girsanov</h3><p>Let $W(t)$ be a BM on $(\Omega,\mathcal{F},\mathbb{P})$ and let $\mathcal{F}(t)$ be a filtration. For this BM, let $\Theta(t)$ be an adopted process. Define</p>
+<script type="math/tex; mode=display">
+Z(t)=exp(-\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv)</script><script type="math/tex; mode=display">
+\tilde{W}(t)=W(t)+\int_0^t\Theta(u)du</script><p>Set $Z=Z(T)$. Then $\mathbb{E}Z=1$, $Z\ge 0$</p>
+<p>Where $\mathbb{Q}$ given by</p>
+<script type="math/tex; mode=display">
+\mathbb{Q}=\int_AZ(\omega)d\mathbb{P}(\omega),\ for\ \forall A\in \mathcal{F}</script><p>The process $\tilde{W}(t)$ is a BM</p>
+<h4 id="Prove"><a href="#Prove" class="headerlink" title="Prove"></a>Prove</h4><ol>
+<li>$\mathbb{E}Z=1$</li>
+</ol>
+<p>Set </p>
+<script type="math/tex; mode=display">
+X(t)=-\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv</script><script type="math/tex; mode=display">
+\begin{align}
+dZ(t)&=0+e^{X(t)}dX(t)+\frac{1}{2}e^{X(t)}dX(t)dX(t)\\
+&=Z(t)(-\Theta(t)dW(t)-\frac{1}{2}\Theta^2(t)dt)+\frac{1}{2}Z(t)\Theta^2(t)dt\\
+&=-\Theta(t)Z(t)dW(t)
+\end{align}</script><p>$\Rightarrow Z(t)$ is a $\mathbb{P}$-martingale</p>
+<script type="math/tex; mode=display">
+Z(t)=Z(0)-\int_0^t\Theta(u)Z(u)dW(u),\ Z(0)=exp(0)=1</script><script type="math/tex; mode=display">
+\mathbb{E}Z=\mathbb{E}[Z(T)]=\mathbb{E}[Z(T)|\mathcal{F}(0)]=Z(0)=1</script><ol>
+<li>$\tilde{W}(t)Z(t)$ is a martingale</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+d(\tilde{W}(t)Z(t))&=Z(t)d\tilde{W}(t)+\tilde{W}(t)dZ(t)+dZ(t)d\tilde{W}(t)\\
+&=Z(t)[dW(t)+\Theta(t)dt]+\tilde{W}(t)[-\Theta(t)Z(t)dW(t)]...\\
+&\quad ...+[-\Theta(t)Z(t)dW(t)][dW(t)+\Theta(t)dt]\\
+&=Z(t)\Theta(t)dt+Z(t)dW(t)-\tilde{W}(t)\Theta(t)Z(t)dW(t)-\Theta(t)Z(t)dt\\
+&=Z(t)(1-\tilde{W}(t)\Theta(t))dW(t)
+\end{align}</script><p>$\Rightarrow \tilde{W}(t)Z(t)$ is a $\mathbb{P}$-martingale</p>
+<ol>
+<li>$\tilde{W}(t)$ is a martingale $\mathbb{E}^\mathbb{Q}[\tilde{W}(t)|\mathcal{F(s)}]=\tilde{W}(s)$</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+LHS&=\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[\tilde{W}Z(t)|\mathcal{F}(s)]\\
+&=\frac{1}{Z(s)}\tilde{W}(s)Z(s)=\tilde{W}(s)
+\end{align}</script><p>$\Rightarrow \tilde{W}(t)$ is a $\mathbb{Q}$-martingale</p>
+<ol>
+<li><p>$\tilde{W}(0)=W(0)+\int_0^0\Theta(s)ds=0$</p>
+</li>
+<li><p>The both parts of $\tilde{W}(t)$ has contiunous paths.</p>
+</li>
+<li><p>$d\tilde{W}(t)=dW(t)+\Theta(t)dt$, where $dtdt=0$ accumulated zero quadratic variation. $<a href="t">\tilde{W},\tilde{W}</a>=<a href="t">W,W</a>=t$</p>
+</li>
+<li><p>$[3-6]\Rightarrow \tilde{W}(t)$ is a BM </p>
+</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/275959084/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate">Jerry Xu B站主页</a></li>
 <li><a target="_blank" rel="noopener" href="https://space.bilibili.com/275959084/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate">从Riemann积分到Lebesgue积分</a></li>
 </ol>
