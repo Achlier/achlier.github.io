@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      2.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      53
        分钟
     </span>
   
@@ -298,7 +298,10 @@ dX(t)=g(t,X(t))dt</script><p>or approximately as an <strong>difference equation<
 \qquad\qquad\quad drift\ part \quad \quad diffusion\ part
 \end{matrix}</script><p><strong>stochastic differential equation</strong></p>
 <script type="math/tex; mode=display">
-dX(t)=g(t,X(t))d t+\sigma(t,X(t))d W</script><h2 id="Unit-1-3：Ito-Formula"><a href="#Unit-1-3：Ito-Formula" class="headerlink" title="Unit 1.3：Ito Formula"></a>Unit 1.3：Ito Formula</h2><p>We are interested in the dynamics of an expression such as $f(t)=F(t,X(t))$ with $F:[0,\infty]\times \mathbb{R}\to \mathbb{R}$ .</p>
+dX(t)=g(t,X(t))d t+\sigma(t,X(t))d W</script><h2 id="Unit-1-3：Ito-Formula"><a href="#Unit-1-3：Ito-Formula" class="headerlink" title="Unit 1.3：Ito Formula"></a>Unit 1.3：Ito Formula</h2><blockquote>
+<p>Ito Formula 相当于 Taylor 展开的一种特殊形式，因为它是针对随机过程的，因此在二次导的展开项中直接略过了所有与 dt 相乘的项， 只留下 $F_{XX}$</p>
+</blockquote>
+<p>We are interested in the dynamics of an expression such as $f(t)=F(t,X(t))$ with $F:[0,\infty]\times \mathbb{R}\to \mathbb{R}$ .</p>
 <ul>
 <li>$F$：option pricing function</li>
 <li>$X(t)$：underlying share price</li>
