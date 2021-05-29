@@ -510,7 +510,138 @@ Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1,\ \sum_{j=0}^\infty|\psi_j|
 <p>Repeating the step above, we can find</p>
 <script type="math/tex; mode=display">
 \psi_j=\theta_j+\sum_{0< k\leq j}\phi_k\psi_{j-k},\ 0\leq j< max(p,q+1)</script><script type="math/tex; mode=display">
-\psi_j=\sum_{0< k\leq p}\phi_k\psi_{j-k},\ j\ge max(p,q+1)</script>
+\psi_j=\sum_{0< k\leq p}\phi_k\psi_{j-k},\ j\ge max(p,q+1)</script><h3 id="Lab"><a href="#Lab" class="headerlink" title="Lab"></a>Lab</h3><p>ACF/PACF Confident interval $\pm 1.96/\sqrt{T}$</p>
+<p>Persistent : How long the shock will die out. ( long when $\theta \to 1$)</p>
+<h1 id="Unit-3：Forecasting-with-ARMA-models"><a href="#Unit-3：Forecasting-with-ARMA-models" class="headerlink" title="Unit 3：Forecasting with ARMA models"></a>Unit 3：Forecasting with ARMA models</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Sections 6.10.1 - 6.10.8 (Essential)</li>
+<li>Diebold, Chapter 6, Sections 6.7, 6.8, 7.3-7.5 (Essential)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Self-Study Questions 10(a)-(b); 11(a)-(c); 12(a)-(e).</li>
+</ul>
+<h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition:"></a>Definition:</h3><ul>
+<li>h : forecast horizon</li>
+<li>Univariate information set : $\Omega_T \equiv\{X_t,t\leq T\}$</li>
+<li>The definition of the forecast horizon implies that we are dealing with out of sample forecasts</li>
+</ul>
+<h4 id="Forecast-types"><a href="#Forecast-types" class="headerlink" title="Forecast types"></a>Forecast types</h4><ol>
+<li>Point Forecast: A single number.</li>
+<li>Interval Forecast: A range of values in which we expect the realized value of the series to fall with a given probability. The length of the interval depends on the uncertainty surrounding the point forecast.</li>
+<li>Density Forecast: The conditional probability distribution of the series at a give forecast horizon.</li>
+</ol>
+<h4 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h4><ul>
+<li>$\{X_t\}^T_{t=1}$ : Series</li>
+<li>Point forecast : $f_{T,h}=\mathbb{E}(X_{T+h}|\Omega_T)$ </li>
+<li>Forecast error : $e_{T,h}\equiv X_{T+h}-f_{T,h}$</li>
+<li>Mean Squared Error (MSE) : $\mathbb{E}[e_{T,h}]^2$</li>
+<li>$\mathbb{E}[X_{T+h}-\mathbb{E}(X_{T+h}|\Omega_T )]\leq \mathbb{E}[e_{T,h}]^2$</li>
+<li>Loss function : $l(e_{T,h})$</li>
+</ul>
+<p>We will consider $Y_t=X_t-\mu,\ \mathbb{E}(Y_t)=0$</p>
+<h4 id="Forecasting-based-on-lagged-epsilon-’s"><a href="#Forecasting-based-on-lagged-epsilon-’s" class="headerlink" title="Forecasting based on lagged $\epsilon$’s"></a>Forecasting based on lagged $\epsilon$’s</h4><p>Consider a stationary process $\{Y_t\}$ with Wold representation</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \epsilon_t\sim WN(0,\sigma^2)</script><p>with $\psi_0=1$ and $\sum_{j=0}^\infty \psi_j^2&lt;\infty$</p>
+<script type="math/tex; mode=display">
+Y_{T+h}=\sum_{j=0}^\infty\psi_j\epsilon_{T+h-j},\ \epsilon_t\sim WN(0,\sigma^2)</script><p>Recall that for $f_{T,h}=\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]=\sum_{j=0}^\infty\beta_j\epsilon_{T-j}$</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\mathbb{E}[(Y_{T+h}-f_{T,h})\epsilon_{T}]\\ \mathbb{E}[(Y_{T+h}-f_{T,h})\epsilon_{T-1}]\\...
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathbb{E}[(\psi_h-\beta_0)\epsilon_{T}^2]\\ \mathbb{E}[(\psi_{h+1}-\beta_1)\epsilon_{T-1}^2]\\...
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\0\\...
+\end{bmatrix}</script><p>So $\psi_h=\beta_0,\psi_{h+1}=\beta_1,….$</p>
+<p>The optimal linear forecast takes the form</p>
+<script type="math/tex; mode=display">
+f_{T,h}=\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]=\sum_{j=0}^\infty\psi_{j+h}\epsilon_{T-j}</script><p>The forecast error takes the form</p>
+<script type="math/tex; mode=display">
+\begin{align}
+e_{T,h} &= Y_{T+h}-\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]\\
+&=\epsilon_{T+h}+\psi_1\epsilon_{T+h-1}+...+\psi_{h-1}\epsilon_{T+1}\\
+&=\sum_{j=0}^{h-1}\psi_j\epsilon_{T+h-j}
+\end{align}</script><p>with $\mathbb{E}(e_{T,h})=0$ and $\mathbb{Cov}(e_{T,h},\epsilon_j)=0\ for\ j\leq T$</p>
+<p>We also note that $e_{T,h}\sim MA(h-1)$ process, and</p>
+<script type="math/tex; mode=display">
+\mathbb{Var}(e_{T,h})=\sigma^2(1+\psi^2_1+\psi^2_2+...+\psi^2_{h-1})</script><p>that is, the MSE (risk) approaches to $\mathbb{Var}(Y_t)$ when $h \to \infty$</p>
+<p>$Y_t$ can be rewritten as ,$Y_t=\Psi(L)\epsilon_t$ with</p>
+<script type="math/tex; mode=display">
+\Psi(L)=\sum_{j=0}^\infty\psi_jL^j</script><p>Divide $\Psi(L)$ by $L^h$</p>
+<script type="math/tex; mode=display">
+\frac{\Psi(L)}{L^h}=L^{-h}+\psi_1L^{1-h}+\psi_2L^{2-h}+...+\psi_{h-1}L^{-1}+\psi_h+\psi_{h+1}L+...</script><p>The annihilation operator $[·]_+$ replace the negative powers of L with a zero,</p>
+<script type="math/tex; mode=display">
+[\frac{\Psi(L)}{L^h}]_+\equiv \psi_h+\psi_{h+1}L+\psi_{h+2}L^2+...</script><p>Then, optimal linear forecast can be rewritten as</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]=\sum_{j=0}^\infty\psi_{j+h}\epsilon_{T-j}=[\frac{\Psi(L)}{L^h}]_+\epsilon_T</script><h4 id="Forecasting-based-on-lagged-Y-t-’s"><a href="#Forecasting-based-on-lagged-Y-t-’s" class="headerlink" title="Forecasting based on lagged $Y_t$’s"></a>Forecasting based on lagged $Y_t$’s</h4><p>If $Y_t$ admits the $AR(\infty)$ representation</p>
+<script type="math/tex; mode=display">
+\alpha(L)Y_t=\epsilon_t,\ \alpha(L)=\Psi^{-1}(L)</script><p>we can obtain the forecast of $Y_{T+h}$ as a function of $\Omega_T$</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+h}|Y_j,j\leq T]=\mathscr{P}[Y_{T+h}|\Omega_T]=[\frac{\Psi(L)}{L^h}]_+\alpha(L)Y_T</script><p>known as <strong>Wiener-Kolmogorov prediction formula</strong>.</p>
+<h4 id="Forecasting-an-AR-1-process"><a href="#Forecasting-an-AR-1-process" class="headerlink" title="Forecasting an AR(1) process"></a>Forecasting an AR(1) process</h4><script type="math/tex; mode=display">
+Y_t=\phi_1Y_{t-1}+\epsilon_t,\ |\phi_1|<1</script><p>1-step-ahead forecast :</p>
+<script type="math/tex; mode=display">
+f_{T,1}=\mathscr{P}[Y_{T+1}|\Omega_T]=\phi_1Y_T</script><p>2-step-ahead forecast:</p>
+<script type="math/tex; mode=display">
+f_{T,2}=\mathscr{P}[Y_{T+2}|\Omega_T]=\mathscr{P}[\phi_1Y_{T+1}+\epsilon_{T+2}|\Omega_T]=\phi_1\mathscr{P}[Y_{T+1}|\Omega_T]=\phi_1^2Y_T</script><p>h-step-ahead forecast:</p>
+<script type="math/tex; mode=display">
+f_{T,h}=\mathscr{P}[Y_{T+h}|\Omega_T]=\phi_1^hY_T</script><p>We refer to this approach as the <strong>chain rule of forecasting</strong></p>
+<p>Noting that</p>
+<script type="math/tex; mode=display">
+\Psi(L)=(1-\phi_1L)^{-1}=1+\phi_1L+\phi_1^2L^2+...</script><p>we have</p>
+<script type="math/tex; mode=display">
+[\frac{\Psi(L)}{L^h}]_+=\phi_1^h+\phi_1^{h+1}L+\phi_1^{h+2}L^2+...=\frac{\phi_1^{h}}{1-\phi_1L}</script><p>Hence, using the Wiener-Kolmogorov prediction formula</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+h}|\Omega_T]=[\frac{\Psi(L)}{L^h}]_+(1-\phi_1L)Y_T=\phi_1^hY_T</script><script type="math/tex; mode=display">
+e_{T,h} = Y_{T+h}-\mathscr{P}[Y_{T+h}|\Omega_T]=\sum_{j=0}^{h-1}\psi_j\epsilon_{T+h-j},\ with\ \psi_j=\phi^j</script><h4 id="Forecasting-an-AR-2-process"><a href="#Forecasting-an-AR-2-process" class="headerlink" title="Forecasting an AR(2) process"></a>Forecasting an AR(2) process</h4><script type="math/tex; mode=display">
+Y_T=\phi_1Y_{T-1}+\phi_2T_{T-2}+\epsilon_T</script><p>By backward substitution we get</p>
+<script type="math/tex; mode=display">
+Y_{T+2}=\epsilon_{T+2}+\phi_1\epsilon_{T+1}+(\phi_1^2+\phi_2)Y_t+\phi_1\phi_2Y_{T-1}</script><p>The Wiener-Kolmogorov prediction formula gives</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+2}|\Omega_T]=(\phi_1^2+\phi_2)Y_t+\phi_1\phi_2Y_{T-1}</script><p>The same result can be obtained using the chain rule</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\mathscr{P}[Y_{T+2}|\Omega_T]\\
+&=\phi_1\mathscr{P}[Y_{T+1}|\Omega_T]+\phi_2\mathscr{P}[Y_{T}|\Omega_T]+\mathscr{P}[\epsilon_{T+2}|\Omega_T]\\
+&=\phi_1(\phi_1Y_T+\phi_2Y_{T-1})+\phi_2Y_T+0\\
+&=(\phi_1^2+\phi_2)Y_t+\phi_1\phi_2Y_{T-1}
+\end{align}</script><h4 id="Forecasting-an-MA-1-process"><a href="#Forecasting-an-MA-1-process" class="headerlink" title="Forecasting an MA(1) process"></a>Forecasting an MA(1) process</h4><script type="math/tex; mode=display">
+Y_T=(1+\theta L)\epsilon_T</script><p>Note that</p>
+<script type="math/tex; mode=display">
+[\frac{(1+\theta L)}{L^h}]_+=\begin{cases}\theta&if\ h=1\\ 0&if\ h>1\end{cases}</script><p>Hence,</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+1}|\epsilon_T]=\theta\epsilon_T,\ \mathscr{P}[Y_{T+1}|\Omega_T] = \frac{\theta}{1+\theta L}Y_T</script><p>and view $\theta\epsilon_T$ as the outcome of the infifinite recursion</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\epsilon_T&=Y_T-\theta\epsilon_{T-1}=Y_T-\theta Y_{T-1}+\theta^2\epsilon_{T-2}=...\\
+&=(\sum_{j=0}^{m-1}\theta^jY_{T-j}+\theta^m\epsilon_{T-m})
+\end{align}</script><h4 id="Interval-and-Density-forecasts"><a href="#Interval-and-Density-forecasts" class="headerlink" title="Interval and Density forecasts"></a>Interval and Density forecasts</h4><p>Let $\{Y_t\}$</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\Theta(L)\epsilon_t,\ \epsilon_t\sim N(0,\sigma^2)</script><p>be a stationary and invertible Gaussian ARMA process. Then,</p>
+<script type="math/tex; mode=display">
+Y_t=\Psi(L)\epsilon_t \sim N(0,\sigma^2\sum_{j=0}^\infty\psi_j^2)</script><p>By construction,</p>
+<script type="math/tex; mode=display">
+Y_{T+h}=f_{T,h}+e_{T,h},\ with\ e_{T,h}=\sum_{j=0}^{h-1}\psi_j\epsilon_{T+h-j}</script><p>The 95% h-step-ahead interval forecast is</p>
+<script type="math/tex; mode=display">
+f_{T,h}\pm 1.96\sqrt{\mathbb{Var}(e_{T,h})}</script><p>The h-step-ahead density forecast is $N(f_{T,h},\mathbb{Var}(e_{T,h}))$</p>
+<h4 id="Making-the-forecasts-operational"><a href="#Making-the-forecasts-operational" class="headerlink" title="Making the forecasts operational"></a>Making the forecasts operational</h4><ul>
+<li>For forecasting an <strong>AR(p) process</strong>, an optimal <strong>h−step-ahead forecast</strong> based on $\Omega_T$ make uses only of the p most recent values $\{Y_T , Y_{T −1}, . . . , Y_{T −p+1}\}$.</li>
+<li>For an <strong>MA or ARMA process</strong> we would need to know $\Omega_T$<br>to use the <strong>Wiener-Kolmogorov prediction formula</strong>.</li>
+</ul>
+<p><strong>In MA(1) Process, if we assume $\theta$ is not observable</strong></p>
+<p>We replace the optimal linear forecast $f_{T,1}=\theta\epsilon_T$ with $\hat{f}_{T,1}=\hat\theta\epsilon_T$</p>
+<p>The forecast error will take the form</p>
+<script type="math/tex; mode=display">
+\hat{e}_{T,1}\equiv Y_{T+1}-\hat{f}_{T,1}=e_{T,1}+(\theta-\hat\theta)\epsilon_T</script><p>$\mathbb{Var}(\hat{e}_{T,1})$ will also account for the variability of $\hat\theta$</p>
+<h3 id="Lab-1"><a href="#Lab-1" class="headerlink" title="Lab :"></a>Lab :</h3><script type="math/tex; mode=display">
+(1+\phi L)(1-\phi L)=1-\phi^2L^2</script><script type="math/tex; mode=display">
+(1+\phi L)(1-\phi L + \phi^2 L^2) = 1-\phi^3L^3</script><script type="math/tex; mode=display">
+(1+\phi L)(1-\phi L + \phi^2 L^2 - \phi^3 L^3) = 1-\phi^4L^4</script><script type="math/tex; mode=display">
+(1+\phi L)^{-1}=\sum_{j=0}^\infty(-\phi)^jL^j</script>
             </div>
             <hr>
             <div>

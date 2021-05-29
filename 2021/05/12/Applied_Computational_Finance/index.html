@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      4.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      53
+      93
        分钟
     </span>
   
@@ -510,27 +510,52 @@ f(S_{T_2})-[f(S_{T_1}^*)+(S_{T_2}-S_{T_1}^*)\frac{df}{dx}(S_{T_1}^*)]</script><p
 <p>Thus, the numerator in the Dupire’s formula is always positive.</p>
 <h2 id="Unit-2-4-Further-aspects-of-the-Dupire-formula-and-local-volatility"><a href="#Unit-2-4-Further-aspects-of-the-Dupire-formula-and-local-volatility" class="headerlink" title="Unit 2.4 Further aspects of the Dupire formula and local volatility"></a>Unit 2.4 Further aspects of the Dupire formula and local volatility</h2><p>To compute the Dupire’s local volatility function in terms of implied volatility $\hat\sigma(T,K)$, first write</p>
 <script type="math/tex; mode=display">
-C(T,K)=C^{BS}(\hat\sigma(T,K),T,K)</script><p>Next, define</p>
+C(S_0,T,K)=C^{BS}(S_0,T,K,\hat\sigma(T,K))</script><p>Next, define</p>
 <ul>
 <li>forward price as $F_t=S_0e^{(r-q)(t-t_0)}$</li>
 <li>log strike as $y=ln(\frac{K}{F_t})$</li>
 <li>parameterized volatility as $f(t,y)=(t-t_0)\hat\sigma^2(t,K)$</li>
 </ul>
-<p>Next, replace $C(T,K)$ in the Dupire’s formula with $C^{BS}(\hat\sigma(T,K),T,K)$ and compute derivatives using $f$ and $y$ rather than $\hat\sigma$and $K$</p>
-<p>The local volatility function is then given as</p>
+<p>Next, replace $C(S_0,T,K)$ in the Dupire’s formula with $C^{BS}(S_0,T,K,\hat\sigma(T,K))$ and compute derivatives using $f$ and $y$ rather than $\hat\sigma$and $K$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C^{BS}(F_t,y,f)&=F_t\Phi(d_1)-K\Phi(d_2)\\
+&=F_t(\Phi(\frac{-y}{\sqrt{f}}+\frac{\sqrt{f}}{2})-e^{y}\Phi(\frac{-y}{\sqrt{f}}-\frac{\sqrt{f}}{2}))
+\end{align}</script><p>With</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial K}=\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}+\frac{\partial C}{\partial f}\frac{\partial f}{\partial K}=\frac{1}{K}\frac{\partial C}{\partial y}+\frac{\partial C}{\partial f}\frac{\partial f}{\partial K}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial^2 C}{\partial K^2}&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})+\frac{\partial}{\partial K}(\frac{\partial C}{\partial f})\frac{\partial f}{\partial K}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}\\
+&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f})...\\
+&...+\frac{\partial f}{\partial K}(\frac{1}{K}\frac{\partial^2 C}{\partial y\partial f}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial f^2})+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}\\
+&=\frac{1}{K^2}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\frac{2}{K}\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f}+(\frac{\partial f}{\partial K})^2\frac{\partial^2 C}{\partial f^2}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}
+\end{align}</script><script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=(r-q)C+\frac{\partial C}{\partial f}\frac{\partial f}{\partial t}</script><p>【Hint】</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})&=\frac{\partial}{\partial y}(\frac{\partial C}{\partial y})\frac{\partial y}{\partial K}+\frac{\partial}{\partial f}(\frac{\partial C}{\partial y})\frac{\partial f}{\partial K}\\
+&=\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f}
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial}{\partial K}(\frac{\partial C}{\partial f})&=\frac{\partial}{\partial y}(\frac{\partial C}{\partial f})\frac{\partial y}{\partial K}+\frac{\partial}{\partial f}(\frac{\partial C}{\partial f})\frac{\partial f}{\partial K}\\
+&=\frac{1}{K}\frac{\partial^2 C}{\partial y\partial f}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial f^2}
+\end{align}</script><p>Inserting these equations into</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{dC}{dt}=\frac{1}{2}K^2\sigma^2(t,S)\frac{d^2C}{dK^2}-(r-q)K\frac{\partial C}{\partial K}-qC
+\end{align}</script><p>The local volatility function is then given as</p>
 <script type="math/tex; mode=display">
 \sigma^2(t,S)=\frac{\frac{df}{dt}}{(\frac{y}{2f}\frac{df}{dy}-1)^2+\frac{1}{2}\frac{d^2f}{dy^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{f})(\frac{df}{dy})^2}|_{y=ln(\frac{S}{F_t})}</script><p>As in the markets, the option prices are only available for discrete strikes and maturities, to use the Dupire’s formula, we need to interpolate between the available strikes and maturities, and extrapolate outside the market range.</p>
 <p><strong>Issues with Dupire’s Local Volatility Model</strong></p>
 <ul>
-<li><p>The local volatility surface obtained by the Dupire’s formula is very sensitive to the method of data interpolation</p>
-</li>
-<li><p>The only risky asset used is the underlying asset which does not account for the volatility risk (affected by random shocks)</p>
-</li>
-<li><p>The calibrated local volatility surface is not stable with the passage of time (in practice the local volatility surface is is changing all the time)</p>
-</li>
-<li><p>The dynamics of the volatility process assumed by the model does not correspond to that observed in the market</p>
-</li>
+<li>The local volatility surface obtained by the Dupire’s formula is very sensitive to the method of data interpolation</li>
+<li>The only risky asset used is the underlying asset which does not account for the volatility risk (affected by random shocks)</li>
+<li>The calibrated local volatility surface is not stable with the passage of time (in practice the local volatility surface is is changing all the time)</li>
+<li>The dynamics of the volatility process assumed by the model does not correspond to that observed in the market</li>
 </ul>
+<h4 id="More"><a href="#More" class="headerlink" title="More"></a>More</h4><p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/539e67b7910ef12d2af9e763.html">Derivation of Loval Volatility</a></p>
+<p><a target="_blank" rel="noopener" href="https://max.book118.com/html/2017/0322/96459464.shtm">Local volatility modelling</a></p>
+<p><a target="_blank" rel="noopener" href="http://web.math.ku.dk/~rolf/teaching/ctff03/Gatheral.1.pdf">Stochastic Volatility and Local Volatility</a></p>
 <h4 id="CEV-Model"><a href="#CEV-Model" class="headerlink" title="CEV Model"></a>CEV Model</h4><p>Constant Elasticity of Variance (CEV) model is given as</p>
 <script type="math/tex; mode=display">
 \frac{dS_t}{S_t}=rdt+\frac{\sigma}{S_t^{1-a}}dW_t</script><blockquote>
@@ -560,7 +585,115 @@ q(t_i,\hat{S}_{t_i})&=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(1+r\Delta
 d=1+r\Delta t-\bar\sigma\sqrt{\Delta t}</script><p>where $\sigma &gt; \sigma(t, S)$ for all the nodes in the trinomial tree</p>
 <p>By choosing $\bar\sigma$ sufficiently large, in the limit, we obtain the following model which does not admit arbitrage</p>
 <script type="math/tex; mode=display">
-\frac{dS_t}{S_t}=rdt+\min(\bar\sigma,\sigma(t,S))dW_t</script>
+\frac{dS_t}{S_t}=rdt+\min(\bar\sigma,\sigma(t,S))dW_t</script><h2 id="Unit-2-5：Stochastic-Volatility"><a href="#Unit-2-5：Stochastic-Volatility" class="headerlink" title="Unit 2.5：Stochastic Volatility"></a>Unit 2.5：Stochastic Volatility</h2><p>For local volatility</p>
+<script type="math/tex; mode=display">
+d\sigma(t,S_t)=\frac{\partial}{\partial t}\sigma(t,S_t)dt+\frac{1}{2}\frac{\partial^2}{\partial S^2}\sigma(t,S_t)dS_tdS_t+\frac{\partial}{\partial S}\sigma(t,S_t)dS_t</script><p>The last part show that the randomness of volatility is totally depended on the randomness of stock. However, the empirical data we will find that the randomness in the stock and the randomness in the volatility differ from each other. So the volatility should affected by other sources of randomness.</p>
+<p>The class of models where volatility is supposed to be a stochastic process is called <strong>stochastic volatility models</strong></p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=a_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><h2 id="Unit-2-6：Pricing-EquationURL"><a href="#Unit-2-6：Pricing-EquationURL" class="headerlink" title="Unit 2.6：Pricing EquationURL"></a>Unit 2.6：Pricing EquationURL</h2><h4 id="Incomplete-Market"><a href="#Incomplete-Market" class="headerlink" title="Incomplete Market"></a>Incomplete Market</h4><p>In an incomplete market, the <strong>risk from volatility (vega)</strong> cannot be eliminated by trading only in the underlying asset</p>
+<p>We have two sources of randomness. However we only allow trading in the money market account. So the market is incomplete. We can make an incomplete market complete by adding additional assets (like option or future).</p>
+<p>We create a self-financing portfolio using two risky assets $S$ and option $C^0$</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=a_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><script type="math/tex; mode=display">
+\frac{dB_t}{B_t}=rdt</script><p>The coefficients $a_t$, $b_t$ and $C^0$ are functions of ($t, S_t, \sigma$)</p>
+<p>Suppose $V_t$ denotes the value of a self-financing portfolio with $\delta_t$ shares in $S$ and $\omega_t$ units of $C^0$</p>
+<script type="math/tex; mode=display">
+dV_t=(V_t-\delta_tS_t-\omega_tC^0_t)rdt+\delta_tdS_t+\omega_tdC^0_t</script><p>By using Ito’s formula, we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dC^0_t&=\frac{\partial C^0}{\partial t}dt+\frac{\partial C^0}{\partial S_t}dS_t+\frac{\partial C^0}{\partial \sigma_t}d\sigma_t...\\
+&...+\frac{1}{2}\frac{\partial^2 C^0}{\partial S_t^2}(dS_t)^2+\frac{1}{2}\frac{\partial^2 C^0}{\partial \sigma_t^2}(d\sigma_t)^2+\frac{\partial^2 C^0}{\partial S_t\partial \sigma_t}dS_td\sigma_t\\
+&=(\frac{\partial C^0}{\partial t}+\frac{1}{2}S_t^2\sigma_t^2\frac{\partial^2 C^0}{\partial S_t^2}+\frac{1}{2}b_t^2\frac{\partial^2 C^0}{\partial \sigma_t^2}+S_t\sigma_tb_t\rho\frac{\partial^2 C^0}{\partial S_t\partial \sigma_t})dt...\\
+&...+\frac{\partial C^0}{\partial S_t}dS_t+\frac{\partial C^0}{\partial \sigma_t}d\sigma_t\\
+&=\mathscr{L}_tC^0dt+\frac{\partial C^0}{\partial S_t}dS_t+\frac{\partial C^0}{\partial \sigma_t}d\sigma_t
+\end{align}</script><p>where $\mathscr{L}_t$ is a <strong>operator</strong></p>
+<script type="math/tex; mode=display">
+dV_t=(V_t-\delta_tS_t-\omega_tC^0_t)rdt+(\delta_t+\omega_t\frac{\partial C^0}{\partial S_t})dS_t+\omega_t\frac{\partial C^0}{\partial \sigma_t}d\sigma_t+\omega_t\mathscr{L}_tC^0dt</script><p>The value of portfolio to match the option price of C</p>
+<script type="math/tex; mode=display">
+dV_t\Rightarrow dC_t=\mathscr{L}_tCdt+\frac{\partial C}{\partial S_t}dS_t+\frac{\partial C}{\partial \sigma_t}d\sigma_t</script><p>For the two expressions of dV<em>t</em> to match, we need</p>
+<script type="math/tex; mode=display">
+\omega_t=\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}},\ \delta_t=\frac{\partial C}{\partial S_t}-\omega_t\frac{\partial C^0}{\partial S_t}</script><p>Set $V_t=C$ and substitute it to</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{L}_tCdt-\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}}\mathscr{L}_tC^0dt&=(V_t-S_t\frac{\partial C}{\partial S_t}+S_t\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}}\frac{\partial C^0}{\partial S_t}-\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}}C^0_t)rdt\\
+\mathscr{L}_tC-rC+rS_t\frac{\partial C}{\partial S_t}+&=\frac{\partial C}{\partial \sigma_t}\frac{rS_t\frac{\partial C^0}{\partial S_t}-rC^0_t+\mathscr{L}_tC^0}{\frac{\partial C^0}{\partial \sigma_t}}\\
+\end{align}</script><p>In the pricing equation for $C$, there is a factor which depends on $C^0$, which we add to our portfolio to complete the market </p>
+<p>Denote</p>
+<script type="math/tex; mode=display">
+\lambda(t,S_t,\sigma_t)=-\frac{rS_t\frac{\partial C^0}{\partial S_t}-rC^0_t+\mathscr{L}_tC^0}{\frac{\partial C^0}{\partial \sigma_t}}</script><p>Thus, by argument of creating a self-replicating portfolio, we have shown that the price $C$ of a European option with payoff $h(S_T)$, solves the following equation</p>
+<script type="math/tex; mode=display">
+\mathscr{L}_tC-rC+rS_t\frac{\partial C}{\partial S_t}+\lambda(t,S_t,\sigma_t)\frac{\partial C}{\partial \sigma_t}=0,\ C(T,S_T,\sigma_T)=h(S)</script><p>with</p>
+<script type="math/tex; mode=display">
+\mathscr{L}_t=\frac{\partial}{\partial t}+\frac{1}{2}S_t^2\sigma_t^2\frac{\partial^2}{\partial S_t^2}+\frac{1}{2}b_t^2\frac{\partial^2}{\partial \sigma_t^2}+S_t\sigma_tb_t\rho\frac{\partial^2}{\partial S_t\partial \sigma_t}</script><p>if chosen $\lambda=0$, the difference of BS-PDE is the last two part of $\mathscr{L}$ with $b_t$</p>
+<h2 id="Unit-2-7：Risk-Neutral-Measure-and-Risk-Premia"><a href="#Unit-2-7：Risk-Neutral-Measure-and-Risk-Premia" class="headerlink" title="Unit 2.7：Risk Neutral Measure and Risk Premia"></a>Unit 2.7：Risk Neutral Measure and Risk Premia</h2><h4 id="Finding-the-Risk-Neutral-Measure"><a href="#Finding-the-Risk-Neutral-Measure" class="headerlink" title="Finding the Risk-Neutral Measure"></a>Finding the Risk-Neutral Measure</h4><p>From its definition, under the risk-neutral measure, price $C_t$ of a European satisfies</p>
+<script type="math/tex; mode=display">
+dC_t=rC_tdt+\text{ a random term with zero mean}</script><p>Applying the Ito’s formula and using the equation (PDE) in previous part, we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dC_t&=\mathscr{L}_tC_tdt+\frac{\partial C_t}{\partial S_t}dS_t+\frac{\partial C_t}{\partial \sigma_t}d\sigma_t\\
+&=(rC_t-rS_t\frac{\partial C_t}{\partial S_t}-\lambda(t,S_t,\sigma_t)\frac{\partial C_t}{\partial \sigma_t})dt+\frac{\partial C_t}{\partial S_t}dS_t+\frac{\partial C_t}{\partial \sigma_t}d\sigma_t\\
+&=rC_tdt+\frac{\partial C_t}{\partial S_t}(dS_t-rS_tdt)+\frac{\partial C_t}{\partial \sigma_t}(d\sigma_t-\lambda_tdt)
+\end{align}</script><p>Thus, under the risk-neutral measure (cancels out the $dt$ part in parenthese of the function above), we must have the following</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=\lambda_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><p>Under the risk-neutral measure, the price of a European option is written as</p>
+<script type="math/tex; mode=display">
+C(t,s,\sigma)=\mathbb{E}[e^{-rT}h(S_T)|\sigma_t=\sigma,S_t=s]</script><p>For the choice of model under physical measure</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=\alpha_tdt+b_tdW'_t</script><p>By matching the coefficients, we get</p>
+<script type="math/tex; mode=display">
+\mu_t=r+\sigma_t\beta_t,\ \alpha_t=\lambda_t+b_t\phi_t</script><p>where $\beta_t$(<strong>market prices of risk</strong>) and $\phi_t$ are bounded processes </p>
+<blockquote>
+<p>$dW_t^\mathbb{P}+\theta_tdt=dW_t^\mathbb{Q}$, $\mathbb{P}:$现实测度</p>
+</blockquote>
+<h4 id="Risk-Premiums"><a href="#Risk-Premiums" class="headerlink" title="Risk Premiums"></a>Risk Premiums</h4><p>$\beta_t$ is typically called the risk premium. Analogously, $\phi_t$ is called the risk premium of volatility</p>
+<script type="math/tex; mode=display">
+\beta_t=\frac{\mu_t-r}{\sigma_t},\ \phi_t=\frac{\alpha_t-\lambda_t}{b_t}</script><p>$\lambda_t$ is calibrated directly under the risk-neutral measure (chosen by market)</p>
+<h2 id="Unit-2-8：Estimation-Error"><a href="#Unit-2-8：Estimation-Error" class="headerlink" title="Unit 2.8：Estimation Error"></a>Unit 2.8：Estimation Error</h2><p><strong>Estimation of Volatility</strong></p>
+<p>We could approximate $\sigma_t$ by its <strong>average</strong> over a period of T estimated using the historical data. However, estimation of historical volatility faces the following issues</p>
+<ul>
+<li>Variance of the estimator decreases with T</li>
+<li>Bias of the approximation of $\sigma_t$ by average volatility increases with T</li>
+</ul>
+<p>Recall that</p>
+<script type="math/tex; mode=display">
+dlogS_t=(\mu_t-\frac{1}{2}\sigma_t^2)dt+\sigma_tdW_t</script><p>Thus, the quadratic variation of $log S_t$ is given as</p>
+<script type="math/tex; mode=display">
+\langle log S\rangle_t=\int_0^t\sigma_s^2ds</script><p>Recall from the definition of quadratic variation of a random process</p>
+<script type="math/tex; mode=display">
+\langle X\rangle_t=\lim_{N\to\infty}\sum_{i=1}^N(X_{\frac{i}{N}t}-X_{\frac{i-1}{N}t})^2</script><p>Denote the log-returns of asset price as</p>
+<script type="math/tex; mode=display">
+r(t,h):=log\frac{S_{t+h}}{S_t}</script><p>Then, we have</p>
+<script type="math/tex; mode=display">
+\langle log S\rangle_t=\int_0^t\sigma_s^2ds=\lim_{N\to\infty}\sum_{i=1}^Nr(\frac{i-1}{N}t,\frac{t}{N})^2</script><h4 id="Realised-Variance"><a href="#Realised-Variance" class="headerlink" title="Realised Variance"></a>Realised Variance</h4><p>Therefore, we could estimate the integrated variance by the <strong>realised variance</strong></p>
+<script type="math/tex; mode=display">
+VR_t^N:=\sum_{i=1}^Nr(\frac{i-1}{N}t,\frac{t}{N})^2</script><p>Next, suppose that</p>
+<ul>
+<li>$\sigma_t$ is independent of Brownian motion W driving asset prices S </li>
+<li>Drift function $\mu$ is deterministic</li>
+</ul>
+<p>Then, for a fixed volatility path, the log-returns $R_i:=r(\frac{i-1}{N}t,\frac{t}{N})$ are <strong>independent Gaussian random variables</strong> with variance &amp; mean</p>
+<script type="math/tex; mode=display">
+v_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2ds,\ m_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_s-\frac{\sigma_s^2}{2})ds</script><h4 id="Error-in-Realised-Variance"><a href="#Error-in-Realised-Variance" class="headerlink" title="Error in Realised Variance"></a>Error in Realised Variance</h4><p>If we compute the expectation of realised variance $VR^N_t$ for a given volatility path $\sigma_t$, we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&(True\  Value) (Estimator) \\
+&\quad\ \overbrace{\mathbb{E}_\sigma[VR_t^N]}\approx\overbrace{\int_0^t\sigma_s^2ds}+\frac{t}{N}\int_0^t(\mu_s-\frac{\sigma_s^2}{2})ds
+\end{align}</script><p>Thus, the bias of estimating the integrated variance with realised variance</p>
+<script type="math/tex; mode=display">
+Bias:=\mathbb{E}[True\ Value-Estimator]\approx\mathscr{O}(\frac{t}{N})</script><p>Similarly, the variance of $VR^N_t$ for a given volatility path $\sigma_t$ is</p>
+<script type="math/tex; mode=display">
+Var(VR_t^N)=\sum_{i=1}^N\mathbb{E}_\sigma[(R_i^2-v_i-m_i^2)^2]=\sum_{i=1}^N(2v_i^2+4v_im_i^2)</script><p>Approximately, the variance of $VR^N_t$ for a given volatility path  $\sigma_t$ is</p>
+<script type="math/tex; mode=display">
+Var(VR_t^N)\approx\frac{2t}{N}\int_0^t\sigma_s^4ds+\frac{4t^2}{N^2}\int_0^t\sigma_s^2(\mu_s-\frac{\sigma_s^2}{2})^2ds</script><p>Next, we note that the root mean squared error (RMSE) of an estimator is given by</p>
+<script type="math/tex; mode=display">
+RMSE=\sqrt{Bias+Variance}</script><p>Therefore, the dominant term in the error of realised variance is</p>
+<script type="math/tex; mode=display">
+\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}</script><script type="math/tex; mode=display">
+Relative\ error=\frac{\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}}{\int_0^t\sigma_s^2ds}</script>
             </div>
             <hr>
             <div>
