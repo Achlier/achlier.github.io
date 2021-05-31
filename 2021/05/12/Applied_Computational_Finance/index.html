@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.8k 字
+      5.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      93
+      102
        分钟
     </span>
   
@@ -598,6 +598,7 @@ d\sigma_t=a_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><h2 id="Unit-2
 \frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
 d\sigma_t=a_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><script type="math/tex; mode=display">
 \frac{dB_t}{B_t}=rdt</script><p>The coefficients $a_t$, $b_t$ and $C^0$ are functions of ($t, S_t, \sigma$)</p>
+<p>Often the volatility process will be chosen as a <strong>mean-reverting process</strong></p>
 <p>Suppose $V_t$ denotes the value of a self-financing portfolio with $\delta_t$ shares in $S$ and $\omega_t$ units of $C^0$</p>
 <script type="math/tex; mode=display">
 dV_t=(V_t-\delta_tS_t-\omega_tC^0_t)rdt+\delta_tdS_t+\omega_tdC^0_t</script><p>By using Ito’s formula, we get</p>
@@ -693,7 +694,43 @@ Var(VR_t^N)\approx\frac{2t}{N}\int_0^t\sigma_s^4ds+\frac{4t^2}{N^2}\int_0^t\sigm
 RMSE=\sqrt{Bias+Variance}</script><p>Therefore, the dominant term in the error of realised variance is</p>
 <script type="math/tex; mode=display">
 \sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}</script><script type="math/tex; mode=display">
-Relative\ error=\frac{\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}}{\int_0^t\sigma_s^2ds}</script>
+Relative\ error=\frac{\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}}{\int_0^t\sigma_s^2ds}</script><p>If the Relative error is large. We should check out the Greek (sensitive of option price to the Volatility). Insensitive $\to$ no matter that much</p>
+<h2 id="Unit-2-9：The-Heston-Model"><a href="#Unit-2-9：The-Heston-Model" class="headerlink" title="Unit 2.9：The Heston Model"></a>Unit 2.9：The Heston Model</h2><h3 id="Heston’s-Stochastic-Volatility-Model"><a href="#Heston’s-Stochastic-Volatility-Model" class="headerlink" title="Heston’s Stochastic Volatility Model"></a>Heston’s Stochastic Volatility Model</h3><p>Under the risk-neutral measure, Heston’s stochastic volatility model is given as</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+\begin{align}
+&d\sigma_t^2=k(\theta-\sigma_t^2)dt+\delta\sigma_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt\\
+or,\ &dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t,\ with\ v_t=\sigma_t^2
+\end{align}</script><p>The variance process vt is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
+<p>To model the variance of asset prices, we need vt to remain positive</p>
+<p><strong>（Advantage）</strong>For $\frac{2k\theta}{\delta^2}&gt;1$ the process never hits zero. This constraint on parameters is also known as <strong>Feller condition</strong></p>
+<p>This process is <strong>mean reverting</strong></p>
+<p>For the square root process</p>
+<script type="math/tex; mode=display">
+dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t</script><ul>
+<li>$\theta$ is the long term mean</li>
+<li>k is the speed of mean-reversion</li>
+<li>$\delta$ is volatility of volatility</li>
+</ul>
+<p>First we define the log-price $X_t$ by $S_t=S_0e^{rt+X_t}$</p>
+<p>Next, by using the Ito’s formula, we get</p>
+<script type="math/tex; mode=display">
+dX_t=-\frac{1}{2}\sigma_t^2dt+\sigma_tdW_t</script><p>European call option price with maturity T and strike K is given as</p>
+<script type="math/tex; mode=display">
+C(K)=e^{-rT}\mathbb{E}[(S_0e^{rt+X_T}-K)^+]=S_0\mathbb{E}[(e^{X_T}-\frac{Ke^{-rT}}{S_0})^+]</script><p>For log-strike</p>
+<script type="math/tex; mode=display">
+K:=log\frac{Ke^{-rT}}{S_0},\ C(K)=S_0\mathbb{E}[(e^{X_T}-e^k)^+]</script><p>We first find the characteristic function of $X_T$</p>
+<script type="math/tex; mode=display">
+f(t,u,x,v):=\mathbb{E}[e^{iuX_T}|X_t=x,v_t=v]</script><p>To compute $C(K)=S_0\mathbb{E}[(e^{X_T}-e^k)^+]$ , we then use the <strong>Fourier transform</strong> $f (t, u, x, v)$ of $X_T$</p>
+<h4 id="European-Call-Option-Price-Formula"><a href="#European-Call-Option-Price-Formula" class="headerlink" title="European Call Option Price Formula"></a>European Call Option Price Formula</h4><script type="math/tex; mode=display">
+C(x,v;T-t,K)=e^xP_1-Ke^{-r(T-t)}P_2, where\ for j=1,2</script><script type="math/tex; mode=display">
+P_j(x,v;T-t,lnK):=\frac{1}{2}+\frac{1}{\pi}\int_0^\infty Re(\frac{e^{-i\phi lnK}f_j(\phi;T-t,x,v)}{i\phi})d\phi</script><p>where $Re(a+ib)=a$, We can only solve the $P_j$ numerical</p>
+<script type="math/tex; mode=display">
+f_j(\phi;T-t,x,v):=exp(C_j(T-t,\phi)+D_j(T-t,\phi)+i\phi x)</script><script type="math/tex; mode=display">
+C_j(\tau,\phi):=ri\phi\tau+\frac{a}{\delta^2}((b_j-\rho\delta i\phi+d_j)\tau-2ln\frac{1-g_je^{d_j\tau}}{1-g_j})</script><script type="math/tex; mode=display">
+D_j(\tau,\phi):=\frac{b_j-\rho\delta i\phi+d_j}{\delta^2}(\frac{1-e^{d_j\tau}}{1-g_je^{d_j\tau}})</script><script type="math/tex; mode=display">
+g_j:=\frac{b_j-\rho\delta i\phi+d_j}{b_j-\rho\delta i\phi-d_j}</script><script type="math/tex; mode=display">
+d_j=\sqrt{(b_j-\rho\delta i\phi)^2-\delta^2(2iu_j\phi-\phi^2)}</script>
             </div>
             <hr>
             <div>
