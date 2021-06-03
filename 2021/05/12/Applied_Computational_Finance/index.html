@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6k 字
+      6.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      116
+      127
        分钟
     </span>
   
@@ -519,18 +519,20 @@ C(S_0,T,K)=C^{BS}(S_0,T,K,\hat\sigma(T,K))</script><p>Next, define</p>
 <p>Next, replace $C(S_0,T,K)$ in the Dupire’s formula with $C^{BS}(S_0,T,K,\hat\sigma(T,K))$ and compute derivatives using $f$ and $y$ rather than $\hat\sigma$and $K$</p>
 <script type="math/tex; mode=display">
 \begin{align}
-C^{BS}(F_t,y,f)&=F_t\Phi(d_1)-K\Phi(d_2)\\
-&=F_t(\Phi(\frac{-y}{\sqrt{f}}+\frac{\sqrt{f}}{2})-e^{y}\Phi(\frac{-y}{\sqrt{f}}-\frac{\sqrt{f}}{2}))
-\end{align}</script><p>With</p>
+C^{BS}(F_t,y,f)&=F_tN(d_1)-KN(d_2)\\
+&=F_t(N(\frac{-y}{\sqrt{f}}+\frac{\sqrt{f}}{2})-e^{y}N(\frac{-y}{\sqrt{f}}-\frac{\sqrt{f}}{2}))
+\end{align}</script><h4 id="【Method-1】"><a href="#【Method-1】" class="headerlink" title="【Method 1】"></a>【Method 1】</h4><blockquote>
+<p>More的第四个连接, 这个方法需要求 $\frac{\partial f}{\partial K}$, 此处省略了, 计算比较复杂,以下$C$为$C^{BS}$</p>
+</blockquote>
+<p>With</p>
 <script type="math/tex; mode=display">
 \frac{\partial C}{\partial K}=\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}+\frac{\partial C}{\partial f}\frac{\partial f}{\partial K}=\frac{1}{K}\frac{\partial C}{\partial y}+\frac{\partial C}{\partial f}\frac{\partial f}{\partial K}</script><script type="math/tex; mode=display">
 \begin{align}
 \frac{\partial^2 C}{\partial K^2}&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})+\frac{\partial}{\partial K}(\frac{\partial C}{\partial f})\frac{\partial f}{\partial K}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}\\
 &=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f})...\\
 &...+\frac{\partial f}{\partial K}(\frac{1}{K}\frac{\partial^2 C}{\partial y\partial f}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial f^2})+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}\\
-&=\frac{1}{K^2}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\frac{2}{K}\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f}+(\frac{\partial f}{\partial K})^2\frac{\partial^2 C}{\partial f^2}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}
-\end{align}</script><script type="math/tex; mode=display">
-\frac{\partial C}{\partial t}=(r-q)C+\frac{\partial C}{\partial f}\frac{\partial f}{\partial t}</script><p>【Hint】</p>
+&=\frac{1}{K^2}(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\frac{2}{K}\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f}+(\frac{\partial f}{\partial K})^2\frac{\partial^2 C}{\partial f^2}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}
+\end{align}</script><p>【Hint】</p>
 <script type="math/tex; mode=display">
 \begin{align}
 \frac{\partial}{\partial K}(\frac{\partial C}{\partial y})&=\frac{\partial}{\partial y}(\frac{\partial C}{\partial y})\frac{\partial y}{\partial K}+\frac{\partial}{\partial f}(\frac{\partial C}{\partial y})\frac{\partial f}{\partial K}\\
@@ -543,7 +545,47 @@ C^{BS}(F_t,y,f)&=F_t\Phi(d_1)-K\Phi(d_2)\\
 <script type="math/tex; mode=display">
 \begin{align}
 \frac{dC}{dt}=\frac{1}{2}K^2\sigma^2(t,S)\frac{d^2C}{dK^2}-(r-q)K\frac{\partial C}{\partial K}-qC
-\end{align}</script><p>The local volatility function is then given as</p>
+\end{align}</script><h4 id="【Method-2】"><a href="#【Method-2】" class="headerlink" title="【Method 2】"></a>【Method 2】</h4><blockquote>
+<p>以下$c$ 为 $C^{BS}$</p>
+</blockquote>
+<h4 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h4><p>按Method 1同样的方法, 但此时C考虑的是K与f不相关,与t相关</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial K}=\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}=\frac{1}{K}\frac{\partial C}{\partial y}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial^2 C}{\partial K^2}&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})\\
+&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f})\\
+&=\frac{1}{K^2}(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})
+\end{align}</script><p>Since $K=S_0e^{(r-q)(t-t_0)}$ so that $\frac{\partial K}{\partial t}=K(r-q)=K\mu$. And $\frac{\partial y}{\partial K}=\frac{1}{K}$</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=\frac{\partial C}{\partial t}+\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}K\mu=\frac{\partial C}{\partial t}+\frac{\partial C}{\partial y}\mu</script><p>we substitute into Equation</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{dC}{dt}=\frac{1}{2}K^2\sigma^2(t,S)\frac{d^2C}{dK^2}+(r-q)(C-K\frac{\partial C}{\partial K})
+\end{align}</script><blockquote>
+<p>因为考虑的是forward，不用把C折现，所以不减去rC</p>
+</blockquote>
+<p>We get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial C}{\partial t}+\frac{\partial C}{\partial y}\mu&=\frac{1}{2}\sigma^2(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\mu(C-\frac{\partial C}{\partial y})\\
+\frac{\partial C}{\partial t}&=\frac{1}{2}\sigma^2(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\mu C
+\end{align}</script><h4 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h4><p>By taking derivatives of the Black-Scholes formula, we obtain</p>
+<blockquote>
+<p>这个部分我还没推过，但在More的第四个连接里有过程</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\frac{\partial^2c}{\partial f^2}=(-\frac{1}{8}-\frac{1}{2f}+\frac{y^2}{2f^2})\frac{\partial c}{\partial f}</script><script type="math/tex; mode=display">
+\frac{\partial^2 c}{\partial y\partial f}=(\frac{1}{2}-\frac{y}{f})\frac{\partial c}{\partial f}</script><script type="math/tex; mode=display">
+\frac{\partial^2 c}{\partial y^2}-\frac{\partial c}{\partial y}=2\frac{\partial c}{\partial f}</script><p>and we have</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial y}=\frac{\partial c}{\partial y}+\frac{\partial c}{\partial f}\frac{\partial f}{\partial y}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial^2 C}{\partial y^2}&=\frac{\partial^2 c}{\partial^2 y}+\frac{\partial^2 c}{\partial y\partial f}\frac{\partial f}{\partial y}+(\frac{\partial^2 c}{\partial f\partial y}+\frac{\partial^2 c}{\partial f^2}\frac{\partial f}{\partial y})\frac{\partial f}{\partial y}+\frac{\partial c}{\partial f}\frac{\partial^2 f}{\partial y^2}\\
+&=\frac{\partial^2 c}{\partial^2 y}+2\frac{\partial^2 c}{\partial y\partial f}\frac{\partial f}{\partial y}+\frac{\partial^2 c}{\partial f^2}(\frac{\partial f}{\partial y})^2+\frac{\partial c}{\partial f}\frac{\partial^2 f}{\partial y^2}
+\end{align}</script><script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=\frac{\partial c}{\partial t}+\frac{\partial c}{\partial f}\frac{\partial f}{\partial t}=(r-q)c+\frac{\partial c}{\partial f}\frac{\partial f}{\partial t}</script><p>Inserting these equations into</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=\frac{\sigma^2}{2}(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+(r-q)C</script><p>The local volatility function is then given as</p>
 <script type="math/tex; mode=display">
 \sigma^2(t,S)=\frac{\frac{df}{dt}}{(\frac{y}{2f}\frac{df}{dy}-1)^2+\frac{1}{2}\frac{d^2f}{dy^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{f})(\frac{df}{dy})^2}|_{y=ln(\frac{S}{F_t})}</script><p>As in the markets, the option prices are only available for discrete strikes and maturities, to use the Dupire’s formula, we need to interpolate between the available strikes and maturities, and extrapolate outside the market range.</p>
 <p><strong>Issues with Dupire’s Local Volatility Model</strong></p>
@@ -556,6 +598,7 @@ C^{BS}(F_t,y,f)&=F_t\Phi(d_1)-K\Phi(d_2)\\
 <h4 id="More"><a href="#More" class="headerlink" title="More"></a>More</h4><p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/539e67b7910ef12d2af9e763.html">Derivation of Loval Volatility</a></p>
 <p><a target="_blank" rel="noopener" href="https://max.book118.com/html/2017/0322/96459464.shtm">Local volatility modelling</a></p>
 <p><a target="_blank" rel="noopener" href="http://web.math.ku.dk/~rolf/teaching/ctff03/Gatheral.1.pdf">Stochastic Volatility and Local Volatility</a></p>
+<p><a target="_blank" rel="noopener" href="http://frouah.com/finance%20notes/Dupire%20Local%20Volatility.pdf">Dupire Local Volatility</a></p>
 <h4 id="CEV-Model"><a href="#CEV-Model" class="headerlink" title="CEV Model"></a>CEV Model</h4><p>Constant Elasticity of Variance (CEV) model is given as</p>
 <script type="math/tex; mode=display">
 \frac{dS_t}{S_t}=rdt+\frac{\sigma}{S_t^{1-a}}dW_t</script><blockquote>

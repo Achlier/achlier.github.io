@@ -736,7 +736,10 @@ X_t=\mu t+\Psi(1)\sum_{j=1}^t\epsilon_j+\Psi^*(L)\epsilon_t+k_0</script><p>where
 <li>$\Psi^<em>(L)=\sum_{j=0}^\infty\psi_j^</em>L^j$, $\psi_j^*=-\sum_{k=j+1}^\infty\psi_k$</li>
 <li>$k_0$ denotes the initial condition</li>
 </ul>
-<h4 id="Characteristics-of-I-0-processes"><a href="#Characteristics-of-I-0-processes" class="headerlink" title="Characteristics of I(0) processes"></a>Characteristics of I(0) processes</h4><ul>
+<script type="math/tex; mode=display">
+X_t=\mu t+\epsilon_t+(1+\psi_1)\epsilon_{t-1}+(1+\psi_1+\psi_2)\epsilon_{t-2}+....+k_0</script><script type="math/tex; mode=display">
+X_{t-1}=\mu(t-1)+\epsilon_{t-1}+(1+\psi_1)\epsilon_{t-2}+(1+\psi_1+\psi_2)\epsilon_{t-3}+....+k_0</script><script type="math/tex; mode=display">
+X_t-X_{t-1}=\mu+\epsilon_t+\psi_1\epsilon_{t-1}+\psi_2\epsilon_{t-2}+....</script><h4 id="Characteristics-of-I-0-processes"><a href="#Characteristics-of-I-0-processes" class="headerlink" title="Characteristics of I(0) processes"></a>Characteristics of I(0) processes</h4><ul>
 <li>$\mathbb{Var}(X_t)$ is finite and does not depended on <em>t</em>.</li>
 <li>The innovation $\epsilon_t$ has a temporary effect on $X_t$.</li>
 <li>The expected length of time between crossing of $\mu$ is finite, so that $X_t$ fluctuates around its mean $\mu$.</li>
@@ -765,11 +768,26 @@ t_\lambda=\frac{\hat\lambda}{\sqrt{\hat{\mathbb{Var}}(\hat\lambda)}},\ \hat\lamb
 <p>If $Y_t$ satisfies $(1-\sum_{j=1}^p\phi_jL^p)X_t=\epsilon_t$, the following <strong>always</strong> holds:</p>
 <script type="math/tex; mode=display">
 \Delta X_t=\lambda X_{t-1}+\sum_{j=1}^{p-1}\phi_j^*\Delta X_{t-j}+\epsilon_t</script><p>where $\lambda=1-\phi_1-…-\phi_p,\ \phi_j^*=-\sum_{i=j+1}^p\phi_i$</p>
-<p><strong>Problems with Unit Root tests</strong></p>
+<ul>
+<li>P should large enough to ensure $\epsilon_t$ is White noise</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>If we have</p>
+<script type="math/tex; mode=display">
+X_t=\phi_1X_{t-1}+\phi_2X_{t-2}+\phi_3X_{t-3}+\epsilon</script><p>This series is I(1) if $(1-\phi_1-\phi_2-\phi_3)=0$</p>
+<p>We construct the function</p>
+<script type="math/tex; mode=display">
+\begin{align}
+X_t-X_{t-1}&=(\phi_1-1)X_{t-1}+\phi_2X_{t-2}+\phi_3X_{t-3}+\epsilon_t\\
+&=(\phi_1+\phi_2-1)X_{t-1}+\phi_2(X_{t-2}-X_{t-1})+\phi_3X_{t-3}+\epsilon_t\\
+&=(\phi_1+\phi_2+\phi_3-1)X_{t-1}+\phi_2(X_{t-2}-X_{t-1})-\phi_3X_{t-1}+\phi_3X_{t-3}+\epsilon_t\\
+&=(\phi_1+\phi_2+\phi_3-1)X_{t-1}+\phi_2(X_{t-2}-X_{t-1})+\phi_3(X_{t-2}-X_{t-1})+\phi_3(X_{t-3}-X_{t-2})+\epsilon_t\\
+&=(\phi_1+\phi_2+\phi_3-1)X_{t-1}+(\phi_2+\phi_3)(X_{t-2}-X_{t-1})+\phi_3(X_{t-3}-X_{t-2})+\epsilon_t
+\end{align}</script><p><strong>Problems with Unit Root tests</strong></p>
 <ul>
 <li><p>Reject $I(1)$ null too often when is true, if $\Delta Y_t$ is an ARMA(p,q) with large and negative MA component.</p>
 </li>
-<li><p>Low power against $I(0)$ alternatives that are close to being $I(1)$ (see the Example).</p>
+<li><p>Low power against $I(0)$ alternatives that are close to being $I(1)$ .</p>
 </li>
 <li><p>Fail to reject $I(1)$ when $Y_t$ is $I(0)$ around a trend function with a break.</p>
 </li>
