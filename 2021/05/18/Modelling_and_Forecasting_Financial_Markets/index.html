@@ -792,7 +792,193 @@ X_t-X_{t-1}&=(\phi_1-1)X_{t-1}+\phi_2X_{t-2}+\phi_3X_{t-3}+\epsilon_t\\
 <li><p>Fail to reject $I(1)$ when $Y_t$ is $I(0)$ around a trend function with a break.</p>
 </li>
 </ul>
-
+<h1 id="Unit-5：Conditional-Heteroskedasticity"><a href="#Unit-5：Conditional-Heteroskedasticity" class="headerlink" title="Unit 5：Conditional Heteroskedasticity"></a>Unit 5：Conditional Heteroskedasticity</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 9, Sections 9.1-9.8, 9.10-9.14 (Essential)</li>
+<li>Diebold, Chapter 8 (Recommended)</li>
+<li>Robert Engle (2001), <a target="_blank" rel="noopener" href="http://www.cmat.edu.uy/~mordecki/hk/engle.pdf">GARCH 101: The Use of ARCH/GARCH Models in Applied Econometrics</a> (Further)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 9, Self-Study Questions, Question 1 (except (f)), Question 3(a) and Question 5</li>
+</ul>
+<h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Volatility-models"><a href="#Volatility-models" class="headerlink" title="Volatility models"></a>Volatility models</h4><script type="math/tex; mode=display">
+\mathbb{Var}(r_t|\Omega_{t-1})\equiv \sigma_t^2\ne const</script><p>Let $\mathbb{E}(r_t|\Omega_{t-1})\equiv \mu_t$ and define $\epsilon_t\equiv r_t-\mu_t$</p>
+<script type="math/tex; mode=display">
+r_t=\mu_t+\epsilon_t,\ \epsilon_t=\sigma_t\eta_t</script><p>where $\sigma_t$ is deterministic function of $\Omega_{t-1}$, $\sigma_t&gt;0$, {$\eta_t$} is i.i.d.(0,1), $\eta_t\perp \Omega_{t-1}$</p>
+<p><strong>Thickness of the tails is measured by the kurtosis</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathcal{K}_\epsilon &\equiv \frac{\mathbb{E}[\epsilon_t-\mathbb{E}(\epsilon_t)]^4}{[\mathbb{Var}(\epsilon_t)]^2}
+=\frac{\mathbb{E}[\mathbb{E}(\epsilon_t^4|\Omega_{t-1})]}{\mathbb{E}[\mathbb{E}(\epsilon_t^2|\Omega_{t-1})]^2}\\
+&=\frac{\mathbb{E}[\mathbb{E}(\sigma_t^4\eta_t^4|\Omega_{t-1})]}{\mathbb{E}[\mathbb{E}(\sigma_t^2\eta_t^2|\Omega_{t-1})]^2}
+=\frac{\mathbb{E}[\sigma_t^4\mathbb{E}(\eta_t^4|\Omega_{t-1})]}{\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2|\Omega_{t-1})]^2}\\
+&=\frac{\mathbb{E}[\sigma_t^4\mathbb{E}(\eta_t^4)]}{\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2)]^2}=\frac{\mathbb{E}[\sigma_t^4]}{\mathbb{E}[\sigma_t^2]^2}\mathcal{K}_\eta=(1+\frac{\mathbb{Var}(\sigma_t^2)}{\mathbb{E}[\sigma_t^2]^2})\mathcal{K}_\eta
+\end{align}</script><p>If $\sigma_t^2=\sigma^2$, then $\mathcal{K}_\epsilon=\mathcal{K}_\eta$</p>
+<p>Fat-tails can be modelled by a leptokurtic distribution of {$\eta_t$} and/or variability of {$\sigma_t^2$}</p>
+<h4 id="The-ARCH-p-models"><a href="#The-ARCH-p-models" class="headerlink" title="The ARCH(p) models"></a>The ARCH(p) models</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2,\ \omega>0,\ \alpha_i\ge0\ \forall i</script><ul>
+<li>$\mathbb{E}(\epsilon_t|\Omega_{t-1})=\sigma_t\mathbb{E}(\eta_t|\Omega_{t-1})=0$, implying that, for $s\ne t$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}(\epsilon_t)=0,\ \mathbb{Cov}(\epsilon_t,\epsilon_s)=\mathbb{E}(\epsilon_t\epsilon_s)=0</script><ul>
+<li>$\epsilon_t,\epsilon_s$ are uncorrelated, but NOT independent!</li>
+<li>$\mathbb{Var}(\epsilon_t|\Omega_{t-1})=\sigma_t^2\mathbb{E}(\eta_t^2|\Omega_{t-1})=\sigma_t^2$</li>
+</ul>
+<h4 id="Volatility-Clustering-波动聚类"><a href="#Volatility-Clustering-波动聚类" class="headerlink" title="Volatility Clustering (波动聚类)"></a>Volatility Clustering (波动聚类)</h4><ul>
+<li>Large past squared shocks $\epsilon_{t-i}^2(i&gt;0)$imply a large conditional variance $\sigma_t^2$ for $\epsilon_t$</li>
+<li>The magnitude of the noise is a function of its past value</li>
+<li>$\mathbb{Var}(\sigma_t^2)\ne 0$, then implies that $\mathcal{K}_\epsilon&gt;\mathcal{K}_\eta$ (Excess Kurtosis)</li>
+</ul>
+<h4 id="ARCH-1"><a href="#ARCH-1" class="headerlink" title="ARCH(1)"></a>ARCH(1)</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\alpha\epsilon_{t-1}^2=\omega+(\alpha\eta_{t-1}^2)\sigma_{t-1}^2</script><script type="math/tex; mode=display">
+\epsilon_t^2=\omega+\alpha\epsilon_{t-1}^2+v_t,\ v_t=\epsilon_t^2-\sigma_t^2</script><p>With $\mathbb{E}(v_t|\Omega_{t-1})=\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2-1|\Omega_{t-1})]=0$ for $\alpha&lt;1$</p>
+<script type="math/tex; mode=display">
+\mathbb{Var}(\epsilon_t)=\mathbb{E}(\epsilon_t^2)=\frac{\omega}{1-\alpha}+\mathbb{E}[\sum_{j=0}^\infty\alpha^jv_{t-j}]=\frac{\omega}{1-\alpha}</script><p>If $\alpha&lt;1$, then $\epsilon_t$ is weakly stationary.</p>
+<script type="math/tex; mode=display">
+\mathbb{Var}(v_t)=\mathbb{E}[\sigma_t^4\mathbb{E}[(\eta_t^2-1)^2|\Omega_{t-1}]]</script><h4 id="The-GARCH-p-q-models"><a href="#The-GARCH-p-q-models" class="headerlink" title="The GARCH(p,q) models"></a>The GARCH(p,q) models</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2+\sum_{j=1}^q\beta_j\sigma_{t-j}^2,\ \omega>0,\ \alpha_i\ge0,\ \beta_i\ge0\ \forall i</script><p>Let</p>
+<script type="math/tex; mode=display">
+A(z)=\sum_{i=1}^p\alpha_iz^i,\ \ B(z)=1-\sum_{j=1}^q\beta_jz^j</script><p>Then</p>
+<script type="math/tex; mode=display">
+B(L)\sigma_t^2=\omega+A(L)\epsilon_t^2</script><p>and</p>
+<script type="math/tex; mode=display">
+\sigma_t^2=\phi_0+\sum_{i=1}^\infty\phi_i\epsilon_{t-i}^2,\ \phi_0=\frac{\omega}{B(1)},\ \sum_{i=1}^\infty\phi_iz^i=\frac{A(z)}{B(z)}</script><p><strong>ARMA representation of GARCH</strong></p>
+<p>The original equation can be rewritten as</p>
+<script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^{max(p,q)}(\alpha_i+\beta_i)\epsilon_{t-i}^2+v_t-\sum_{j=1}^q\beta_jv_{t-j}</script><ul>
+<li>using the convention $\alpha_i=0 (\beta_i=0)$ if $i&gt;p(i&gt;q)$</li>
+</ul>
+<p>Bollerslev (1986), Theorem 1, shows that if</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^p\alpha_i+\sum_{j=1}^q\beta_j<1</script><p>then $\epsilon_t$ is weakly stationary, and {$\epsilon_t^2$} $\sim$ ARMA(max(p,q),q)</p>
+<p>For GARCH(1,1) </p>
+<script type="math/tex; mode=display">
+\mathbb{E}(\epsilon_t^2)=\frac{\omega}{1-\alpha-\beta}=\sigma^2</script><p>and the autocorrelation function of $\epsilon_t^2$ is</p>
+<script type="math/tex; mode=display">
+\rho(h)=\begin{cases}
+\frac{\alpha(1-\beta(\alpha+\beta))}{1-(\alpha+\beta)^2+\alpha^2}=\alpha+\frac{\alpha^2\beta}{1-2\alpha\beta-\beta^2}&for\ h=1\\
+\rho(1)(\alpha+\beta)^{h-1}&for\ h>1
+\end{cases}</script><p>GARCH models are often estimated using the maximum likelihood estimator based on the Gaussian Likelihood (GMLE)</p>
+<ul>
+<li>If $\eta_t\sim NID(0,1)$, then $\epsilon_t|\Omega_{t-1}\sim N(0,\sigma_t^2)$</li>
+</ul>
+<p><strong>Specification strategy for GARCH models</strong></p>
+<p>Specific-to-general” approach</p>
+<ol>
+<li><p>Specify an adequate model for the $\mu_t=\mathbb{E}(r_t,\Omega_{t-1})$.</p>
+</li>
+<li><p>Test for the presence of conditional heteroskedasticity;</p>
+</li>
+<li><p>Select p,q and estimate GARCH models (use IC);</p>
+</li>
+<li><p>Evaluate the model by misspecifification tests, e.g. $\epsilon_t/\hat\sigma_t$should behave like a i.i.d. sequence.</p>
+</li>
+<li><p>Estimate a more suitable GARCH model (if necessary);</p>
+</li>
+</ol>
+<h4 id="Extensions-of-the-GARCH-models"><a href="#Extensions-of-the-GARCH-models" class="headerlink" title="Extensions of the GARCH models"></a>Extensions of the GARCH models</h4><p>Drawbacks of GARCH(p,q) Models:</p>
+<ul>
+<li><p>Non-negativity constraints may be violated.</p>
+</li>
+<li><p>Symmetric response to past shocks.</p>
+</li>
+</ul>
+<h4 id="The-leverage-effect"><a href="#The-leverage-effect" class="headerlink" title="The leverage effect"></a>The leverage effect</h4><ul>
+<li>Negative shocks appear to contribute more to stock market volatility than do positive shocks. (stylized fact )</li>
+<li>A negative shock to the market value of equity increases the debt/equity ratio (other things the same), increasing leverage.</li>
+<li>The asymmetric response of the volatility to past shocks is known as <strong>leverage effect</strong>.</li>
+</ul>
+<h4 id="The-EGARCH-Exponential-GARCH-Models"><a href="#The-EGARCH-Exponential-GARCH-Models" class="headerlink" title="The EGARCH (Exponential GARCH) Models"></a>The EGARCH (Exponential GARCH) Models</h4><script type="math/tex; mode=display">
+ln(\sigma_t^2)=\omega+\sum_{i=1}^p\alpha_ig(\eta_{t-i})+\sum_{j=1}^q\beta_jln\sigma_{t-j}^2</script><p>where</p>
+<script type="math/tex; mode=display">
+g(\eta_{t-i})=\theta\eta_{t-i}+\zeta(|\eta_{t-i}|-\mathbb{E}|\eta_{t-i}|)</script><ul>
+<li><p>$\sigma_t^2$ will be positive (without imposing non-negativeness restrictions on the parameters)</p>
+</li>
+<li><p>The asymmetry property is taken into account through $\theta$.</p>
+</li>
+<li><p>The leverage effect will imply that $\theta&lt;0$.</p>
+</li>
+<li><p>Innovation of large modulus should increase the volatility, entailing that we expect</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+-\zeta<\theta<\zeta,\ \alpha_i\ge0,\ \beta_j\ge0</script><p><strong>An Example</strong></p>
+<script type="math/tex; mode=display">
+ln\sigma_t^2=\omega+\theta\eta_{t-1}</script><ul>
+<li><p>If $\eta_{t-1}&lt;0(i.e.\epsilon_{t-1}&lt;0)$, the variable $ln(\sigma_t^2)$ will be larger than its mean $\omega$.</p>
+</li>
+<li><p>If $\eta_{t-1}&gt;0(i.e.\epsilon_{t-1}&gt;0)$, the variable $ln(\sigma_t^2)$ will be smaller than its mean $\omega$.</p>
+</li>
+</ul>
+<p>Thus, we obtain the typical asymmetry property of financial time series.</p>
+<h4 id="The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models"><a href="#The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models" class="headerlink" title="The GJR-GARCH (Glosten, Jaganathan and Runkle) models"></a>The GJR-GARCH (Glosten, Jaganathan and Runkle) models</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2+\sum_{i=1}^p\gamma_i\epsilon_{t-1}^21_{\epsilon_{t-1}<0}+\sum_{j=1}^q\beta_j\sigma_{t-j}^2</script><ul>
+<li><p>The asymmetry is accounted for through the $\gamma_i$</p>
+</li>
+<li><p>$\omega&gt;0,(\alpha_i+\gamma_i)\ge0,\beta_j\ge0$  are sufficient for $\sigma_t^2&gt;0$</p>
+</li>
+</ul>
+<h4 id="News-Impact-Curves-NIC"><a href="#News-Impact-Curves-NIC" class="headerlink" title="News Impact Curves (NIC)"></a>News Impact Curves (NIC)</h4><ul>
+<li>The news impact curve plots $\sigma_t^2$ against $\epsilon_{t-1}$, setting $\sigma_{t-h}^2=\sigma^2$, for $h&gt;0$</li>
+</ul>
+<h4 id="Forecasting"><a href="#Forecasting" class="headerlink" title="Forecasting"></a>Forecasting</h4><p>Consider the AR(1)-GARCH(1,1) model</p>
+<script type="math/tex; mode=display">
+X_t=\phi X_{t-1}+\epsilon_t</script><script type="math/tex; mode=display">
+\epsilon_t=\sigma_t\eta_t</script><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\alpha\epsilon_{t-1}^2+\beta\sigma_{t-1}^2</script><p>with $\omega&gt;0,\alpha,\beta\ge0,\alpha+\beta&lt;1,|\phi|&lt;1$</p>
+<p>Recall that $f_{T,h}=\phi^hX_T$</p>
+<script type="math/tex; mode=display">
+e_{T+h}=\sum_{j=1}^h\phi^{h-j}\epsilon_{T+j}</script><p>and</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{Var}(e_{T+h}|\Omega_T)&=\mathbb{E}[(\sum_{j=1}^h\phi^{h-j}\epsilon_{T+j})^2|\Omega_T]\\
+&=\sum_{j=1}^h\phi^{2(h-j)}\mathbb{E}[\epsilon_{T+j}^2|\Omega_T]\\
+&=\sum_{j=1}^h\phi^{2(h-j)}\mathbb{E}[\mathbb{E}(\epsilon_{T+j}^2|\Omega_{T+j-1})|\Omega_T]\\
+&=\sum_{j=1}^h\phi^{2(h-j)}\mathbb{E}[\sigma_{T+j}^2|\Omega_T]
+\end{align}</script><p>The 1-step-ahead forecast  of $\sigma_{T+1}^2$ </p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_{T,1}^{\sigma^2}&=\mathbb{E}[\sigma_{T+1}^2|\Omega_T]\\
+&=\mathbb{E}[\omega+\alpha\epsilon_T^2+\beta\sigma_T^2|\Omega_T]\\
+&=\omega+\alpha\epsilon_T^2+\beta\sigma_T^2\\
+&=\sigma_{T+1}^2
+\end{align}</script><ul>
+<li><p>GARCH model are <strong>deterministic</strong> volatility models.</p>
+</li>
+<li><p>If the parameters are known, $\sigma_{T+1}^2$ is a deterministic function of $\Omega_T$ .</p>
+</li>
+</ul>
+<p>The 2-step-ahead forecast</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_{T,2}^{\sigma^2}&=\mathbb{E}[\sigma_{T+2}^2|\Omega_T]\\
+&=\mathbb{E}[\omega+\alpha\epsilon_{T+1}^2+\beta\sigma_{T+1}^2|\Omega_T]\\
+&=\omega+\alpha\mathbb{E}[\epsilon_{T+1}^2|\Omega_T]+\beta\sigma_{T+1}^2\\
+&=\omega+(\alpha+\beta)\sigma_{T+1}^2
+\end{align}</script><p>because</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\epsilon_{T+1}^2|\Omega_T]=\mathbb{E}[\sigma_{T+1}^2\eta_{T+1}^2|\Omega_T]=\sigma_{T+1}^2\mathbb{E(\eta_{T+1}^2)}=\sigma_{T+1}^2</script><p>In general, the h-step-ahead forecast</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_{T,h}^{\sigma^2}&=\mathbb{E}[\omega+\alpha\epsilon_{T+h-1}^2+\beta\sigma_{T+h-1}^2|\Omega_T]\\
+&=\omega+\alpha\mathbb{E}[\epsilon_{T+h-1}^2|\Omega_T]+\beta f_{T,h-1}^{\sigma^2}\\
+&=\omega+(\alpha+\beta)f_{T,h-1}^{\sigma^2}
+\end{align}</script><p>By recursive substitutions it follows that</p>
+<script type="math/tex; mode=display">
+f_{T,h}^{\sigma^2}=\omega\sum_{j=0}^{h-2}(\alpha+\beta)^j+(\alpha+\beta)^{h-1}\sigma_{T+1}^2</script><ul>
+<li>If $(\alpha+\beta)&lt;1$, $lim_{h\to\infty}f_{T,h}^{\sigma^2}=\sigma^2$, where</li>
+</ul>
+<script type="math/tex; mode=display">
+\sigma^2\equiv\lim_{h\to\infty}\omega\sum_{j=0}^{h-1}(\alpha+\beta)^j=\frac{\omega}{1-\alpha-\beta}</script><ul>
+<li>If $(\alpha+\beta)=1$ (IGARCH)</li>
+</ul>
+<script type="math/tex; mode=display">
+f_{T,h}^{\sigma^2}=\omega(h-1)+\sigma_{t+1}^2</script><h4 id="Heteroskedasticity-and-interval-forecasts"><a href="#Heteroskedasticity-and-interval-forecasts" class="headerlink" title="Heteroskedasticity and interval forecasts"></a>Heteroskedasticity and interval forecasts</h4><p>The $100 \times (1 - \alpha)\%$ interval forecast for $X_{T+h}$ takes the form</p>
+<script type="math/tex; mode=display">
+Pr(L_{T,h}\leq X_{T+h}\leq U_{T,h}|\Omega_T)=1-\alpha</script><p>It is usual to construct interval forecasts that are symmetric around the conditional mean of $X_{T+h}$</p>
+<script type="math/tex; mode=display">
+f_{T,h}\pm z_{1-\alpha/2}\sqrt{\mathbb{Var}[e_{T,h}|\Omega_T]}</script>
             </div>
             <hr>
             <div>

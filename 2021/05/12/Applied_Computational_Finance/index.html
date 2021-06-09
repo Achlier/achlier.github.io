@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.6k 字
+      8.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      127
+      157
        分钟
     </span>
   
@@ -381,7 +381,7 @@ P(t,S,T,K)=Ke^{-r(T-t)}\Phi(-d_2)-S\Phi(-d_1)</script><p>Black-Scholes PDE can b
 </tbody>
 </table>
 </div>
-<p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/04/25/Mathematical_Finance%E3%80%90ECON5020%E6%9C%9F%E6%9C%AB%E7%AC%94%E8%AE%B0%E3%80%91/#Unit-8：Greeks-Hedging-and-limits-of-Black-Scholes">Read more about those functions</a></p>
+<p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/04/25/Mathematical_Finance/#Greeks">Read more about those functions</a></p>
 <p>Recall that</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -724,25 +724,76 @@ VR_t^N:=\sum_{i=1}^Nr(\frac{i-1}{N}t,\frac{t}{N})^2</script><p>Next, suppose tha
 </ul>
 <p>Then, for a fixed volatility path (由已知数据得出), the log-returns $R_i:=r(\frac{i-1}{N}t,\frac{t}{N})$  are <strong>independent Gaussian random variables</strong> with variance &amp; mean</p>
 <script type="math/tex; mode=display">
-v_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2ds,\ m_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_s-\frac{\sigma_s^2}{2})ds</script><h4 id="Error-in-Realised-Variance"><a href="#Error-in-Realised-Variance" class="headerlink" title="Error in Realised Variance"></a>Error in Realised Variance</h4><p>If we compute thxe expectation of realised variance $VR^N_t$ for a given volatility path $\sigma_t$, we get</p>
+v_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2ds,\ m_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_s-\frac{\sigma_s^2}{2})ds</script><h4 id="Error-in-Realised-Variance"><a href="#Error-in-Realised-Variance" class="headerlink" title="Error in Realised Variance"></a>Error in Realised Variance</h4><blockquote>
+<p>Thank the Professor Ankush Agarwal and Christian Ewald. They provide the precise process of following.</p>
+</blockquote>
+<p>If we compute thxe expectation of realised variance $VR^N_t$ for a given volatility path $\sigma_t$, we get</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_\sigma[VR_t^N]=\sum_{i=1}^NE_\sigma[R_i^2]=\sum_{i=1}^N(v_i+m_i^2)</script><script type="math/tex; mode=display">
 \begin{align}
-&\ (Estimator) (True\ Value) \\
-&\quad\ \overbrace{\mathbb{E}_\sigma[VR_t^N]}\approx\overbrace{\int_0^t\sigma_s^2ds}+\frac{t}{N}\int_0^t(\mu_s-\frac{\sigma_s^2}{2})^2ds
+\mathbb{E}_\sigma[VR_t^N]&=\sum_{i=1}^NE_\sigma[R_i^2]=\sum_{i=1}^N(v_i+m_i^2)\\
+&=\sum_{i=1}^N\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2ds+\sum_{i=1}^Nm_i^2\\
+&=\int_0^t\sigma_s^2ds+\sum_{i=1}^Nm_i^2
 \end{align}</script><blockquote>
 <p>$E(x^2)=Var(x)+E(x)^2$</p>
 </blockquote>
-<p>Thus, the bias of estimating the integrated variance with realised variance</p>
+<p>with</p>
+<script type="math/tex; mode=display">
+m_i^2=(\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_s-\frac{\sigma_s^2}{2})ds)^2
+\approx(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\frac{t^2}{N^2}</script><blockquote>
+<p>直接取一个固定值来代替这一段的积分，积分在t时间上的宽度是 t/N​</p>
+</blockquote>
+<p>Then</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=1}^Nm_i^2&\approx\sum_{i=1}^N\frac{t^2}{N^2}(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\\
+&=\frac{t}{N}\sum_{i=1}^N\frac{t}{N}(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\\
+&\approx\frac{t}{N}\sum_{i=1}^N\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds\\
+&=\frac{t}{N}\int_{0}^{t}(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+&\ (Estimator) (True\ Value) \\
+&\quad\ \overbrace{\mathbb{E}_\sigma[VR_t^N]}\approx\overbrace{\int_0^t\sigma_s^2ds}+\frac{t}{N}\int_0^t(\mu_s-\frac{\sigma_s^2}{2})^2ds
+\end{align}</script><p>Thus, the bias of estimating the integrated variance with realised variance</p>
 <script type="math/tex; mode=display">
 Bias:=\mathbb{E}[True\ Value-Estimator]\approx\mathscr{O}(\frac{t}{N})</script><p>Similarly, the variance of $VR^N_t$ for a given volatility path $\sigma_t$ is</p>
 <script type="math/tex; mode=display">
+Var(VR_t^N)=E[(VR_t^N-(E[VR_t^N])^2)]=E[(\sum_{i=1}^N(R_i^2-v_i-m_i^2))^2]</script><p>$R_i$ are iid</p>
+<script type="math/tex; mode=display">
+E[(\sum_{i=1}^N(R_i^2-v_i-m_i^2))^2]=\sum_{i=1}^NE[(R_i^2-v_i-m_i^2)^2]</script><p>For every i</p>
+<script type="math/tex; mode=display">
 \begin{align}
-E[(R^2-v-m^2)^2]&=E[R^4-2vR^2-2m^2R^2+v^2+2vm^2+m^4]\\
-&=E[R^4]-2(v+m^2)(v+m^2)+v^2+2vm^2+m^4\\
-&=E[R^4]-v^2-2vm^2-m^4\\
-\end{align}</script><script type="math/tex; mode=display">
-Var(VR_t^N)=\sum_{i=1}^N\mathbb{E}_\sigma[(R_i^2-v_i-m_i^2)^2]=\sum_{i=1}^N(2v_i^2+4v_im_i^2)</script><p>Approximately, the variance of $VR^N_t$ for a given volatility path  $\sigma_t$ is</p>
+E[(R_i^2-v_i-m_i^2)^2]&=E[R_i^4-2v_iR_i^2-2m_i^2R_i^2+v_i^2+2v_im_i^2+m_i^4]\\
+&=E[R_i^4]-2(v_i+m_i^2)(v_i+m_i^2)+v_i^2+2v_im_i^2+m_i^4\\
+&=E[R_i^4]-v_i^2-2v_im_i^2-m_i^4\\
+\end{align}</script><p>With $E[R_i^4]=m_i^4+6m_i^2v_i+3v_i^2$</p>
+<p><img src="/2021/05/12/Applied_Computational_Finance/pic1-1.jpg" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>关于这一定理可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148408669">如何通俗的理解矩母函数</a>，以及 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Normal_distribution">wiki</a> 中展示的 Order 4 的 Non-central moment</p>
+<p>或者尝试 <a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41895958/article/details/103827936">极坐标转换</a> 的方法直接求</p>
+<p>step 1:</p>
+<p>$sin^n x * cos^m x$ 从0到2pi的定积分有以下特性</p>
+<ol>
+<li><p>当n为奇数时,被积函数是奇函数,所以积分等于0</p>
+</li>
+<li><p>当m为奇数时, $m=2k+1$, 原式化为$sin^n x * (1-sin^2 x)^k dsinx$  在-pi到+pi的积分,然后这个式子等于0</p>
+</li>
+</ol>
+<p>因此只取 $x^2$,$y^2$,$x^4$,$y^4$,$x^2y^2$,$x^2y^4$,$x^4y^2$,$x^4y^4$和整数的部分</p>
+<p>step 2:</p>
+<p>配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$x^2y^2=\rho^4(\frac{sin2\theta}{2})^2$,$x^4y^4=\rho^4(\frac{sin2\theta}{2})^4$, 和 $\int_0^\infty t^{n}e^{-t}dt=n!$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+E[(R^2-v-m^2)^2]=2v_i^2+4v_im_i^2</script><p>and</p>
+<script type="math/tex; mode=display">
+Var(VR_t^N)=\sum_{i=1}^N\mathbb{E}_\sigma[(R_i^2-v_i-m_i^2)^2]=\sum_{i=1}^N(2v_i^2+4v_im_i^2)</script><p>Repeat the same step as above</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^Nv_i^2\approx\frac{t}{N}\int_0^t\sigma_s^4ds</script><p>Also</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=1}^Nv_im_i^2&\approx\sum_{i=1}^N\frac{t}{N}\sigma_{\frac{i-1}{N}t}^2\frac{t^2}{N^2}(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\\
+&\approx\frac{t^2}{N^2}\sum_{i=1}^N\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds\\
+&=\frac{t^2}{N^2}\int_{0}^{t}\sigma^2_s(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds
+\end{align}</script><p>Approximately, the variance of $VR^N_t$ for a given volatility path  $\sigma_t$ is</p>
 <script type="math/tex; mode=display">
 Var(VR_t^N)\approx\frac{2t}{N}\int_0^t\sigma_s^4ds+\frac{4t^2}{N^2}\int_0^t\sigma_s^2(\mu_s-\frac{\sigma_s^2}{2})^2ds</script><p>Next, we note that the root mean squared error (RMSE) of an estimator is given by</p>
 <script type="math/tex; mode=display">
@@ -750,7 +801,7 @@ RMSE=\sqrt{Bias+Variance}</script><p>Therefore, the dominant term in the error o
 <script type="math/tex; mode=display">
 \sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}</script><script type="math/tex; mode=display">
 Relative\ error=\frac{\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}}{\int_0^t\sigma_s^2ds}</script><p>If the Relative error is large. We should check out the Greek (sensitive of option price to the Volatility). Insensitive $\to$ no matter that much</p>
-<h4 id="Supplyment-reading"><a href="#Supplyment-reading" class="headerlink" title="Supplyment reading"></a>Supplyment reading</h4><p><a target="_blank" rel="noopener" href="https://faculty.washington.edu/ezivot/econ589/econ512realizedvariance.pdf">link</a></p>
+<h4 id="Supplymental-reading"><a href="#Supplymental-reading" class="headerlink" title="Supplymental reading"></a>Supplymental reading</h4><p><a target="_blank" rel="noopener" href="https://faculty.washington.edu/ezivot/econ589/econ512realizedvariance.pdf">link</a></p>
 <p><strong>defination</strong></p>
 <ul>
 <li>$p_t$ = log-price of asset at time $t$ = $logS_t$</li>
@@ -855,7 +906,138 @@ f_j(\phi;T-t,x,v):=exp(C_j(T-t,\phi)+D_j(T-t,\phi)+i\phi x)</script><script type
 C_j(\tau,\phi):=ri\phi\tau+\frac{a}{\delta^2}((b_j-\rho\delta i\phi+d_j)\tau-2ln\frac{1-g_je^{d_j\tau}}{1-g_j})</script><script type="math/tex; mode=display">
 D_j(\tau,\phi):=\frac{b_j-\rho\delta i\phi+d_j}{\delta^2}(\frac{1-e^{d_j\tau}}{1-g_je^{d_j\tau}})</script><script type="math/tex; mode=display">
 g_j:=\frac{b_j-\rho\delta i\phi+d_j}{b_j-\rho\delta i\phi-d_j}</script><script type="math/tex; mode=display">
-d_j=\sqrt{(b_j-\rho\delta i\phi)^2-\delta^2(2iu_j\phi-\phi^2)}</script>
+d_j=\sqrt{(b_j-\rho\delta i\phi)^2-\delta^2(2iu_j\phi-\phi^2)}</script><h2 id="Unit-2-10：Introduction-to-Calibration"><a href="#Unit-2-10：Introduction-to-Calibration" class="headerlink" title="Unit 2.10：Introduction to Calibration"></a>Unit 2.10：Introduction to Calibration</h2><h4 id="Exotic-Option"><a href="#Exotic-Option" class="headerlink" title="Exotic Option"></a>Exotic Option</h4><p><strong>Not traded on the market and $\to$ need to be priced by a model</strong></p>
+<ul>
+<li><p>A forward start option: $(S_T-aS_{T_1})^+$</p>
+</li>
+<li><p>A cliquet: $\sum_{i=1}^{n-1}(S_{T_{i+1}}-aS_{T_i})^+$</p>
+</li>
+<li><p>A barrier option: $(S_T-K)^+1_{sup_{t\in[0,T]}S_t\leq B}$</p>
+</li>
+</ul>
+<p><strong>Identify the hedging instruments</strong> : liquid products (small bid-ask spread) quoted on a market</p>
+<p>we aim at constructing a hedging portfolio of the form</p>
+<script type="math/tex; mode=display">
+V_t=\Delta_t^0B_t+\Delta_tS_t+\sum_{i=1}^n\Delta_t^{C,i}Call^i+\sum_{j=1}^m\Delta_t^{P,j}Put^j</script><p><strong>Choose a model</strong></p>
+<p>Reproduce the prices of simple instruments quoted on the market.  (This step is <strong>model calibration</strong>)</p>
+<p>Then compute the hedging strategies $\Delta^0,\Delta,\Delta^{C,i},\Delta^{P,j}$</p>
+<h4 id="General-Considerations"><a href="#General-Considerations" class="headerlink" title="General Considerations"></a>General Considerations</h4><p><strong>Model calibration</strong> = determine the model parameters from market data of liquid instruments</p>
+<p><strong>Two approaches in model calibration</strong></p>
+<ol>
+<li><strong>Statistical</strong> parameter estimation<ul>
+<li>from <strong>historical</strong> observations</li>
+<li>done under the physical (market) measure</li>
+</ul>
+</li>
+<li><strong>Calibration</strong><ul>
+<li>based on quotes of option prices (typically calls/puts)</li>
+<li>done under the <strong>risk-neutral measure</strong></li>
+<li>reflects the market view on the future evolution of the asset</li>
+</ul>
+</li>
+</ol>
+<p><strong>Which price? Bid or Ask?</strong></p>
+<ul>
+<li>Typically one calibrates to the mid-price</li>
+</ul>
+<h4 id="Model-Calibration"><a href="#Model-Calibration" class="headerlink" title="Model Calibration"></a>Model Calibration</h4><p>In general, a “good” model should have</p>
+<ul>
+<li><p>A parsimonious parametrization and should be intuitive</p>
+</li>
+<li><p>An efficient numerical calibration method</p>
+</li>
+</ul>
+<p>We want to find $\theta$ such that</p>
+<script type="math/tex; mode=display">
+P^{model(\theta)}(T_i,K_j)=P^{market(\theta)}(T_i,K_j)</script><p>or a <strong>least squares approach</strong></p>
+<script type="math/tex; mode=display">
+\min_{\theta}\sum_{i,j}(P^{model}(T_i,K_j)-P^{market}(T_i,K_j))^2</script><h4 id="Calibration-of-local-volatility-models"><a href="#Calibration-of-local-volatility-models" class="headerlink" title="Calibration of local volatility models"></a>Calibration of local volatility models</h4><p>The inverse problem of finding the local volatility function with finite number of call option prices is then ill posed. To overcome the difficulty, typically two approaches are used</p>
+<ul>
+<li><p><strong>Implied volatility interpolation</strong> using either parametric or semi-parametric form</p>
+<ul>
+<li>Non-parametric methods of interpolation, for example, the method of splines(三次样条插值), provide very mediocre performance for such problems</li>
+<li>Implied volatility interpolation methods are very intuitive and fast, but could lead to <strong>infeasible volatility surface</strong></li>
+</ul>
+</li>
+<li><p><strong>Regularisation approach</strong></p>
+<ul>
+<li>Regularisation methods provide the best <strong>performance</strong> in terms of precision and regularity of the volatility surface</li>
+</ul>
+</li>
+</ul>
+<h4 id="Stochastic-Volatility-Inspired-SVI-Parametrisation-by-Jim-Gatheral"><a href="#Stochastic-Volatility-Inspired-SVI-Parametrisation-by-Jim-Gatheral" class="headerlink" title="Stochastic Volatility Inspired(SVI) Parametrisation (by Jim Gatheral)"></a>Stochastic Volatility Inspired(SVI) Parametrisation (by Jim Gatheral)</h4><p>It is a parametrisation of implied volatility as a function of parameters in terms of log-strike $k=log\frac{K}{S}-rT$</p>
+<p>In the parametrisation, for a given maturity $T$, the total implied variance $V(T, k) := I^2(T, k)T$ satisfies</p>
+<script type="math/tex; mode=display">
+V(T, k)=a+b(\rho(k-m)+\sqrt{(k-m)^2+\sigma^2})</script><p>with</p>
+<ul>
+<li><p>$a\ge 0$: global level of smile</p>
+</li>
+<li><p>$b\ge 0$: slope of the wings</p>
+</li>
+<li><p>$\rho\in[-1,1]$: asymmetry (rotation of the smile)</p>
+</li>
+<li><p>$m\in\mathbb{R}$: translation to the right</p>
+</li>
+<li><p>$\sigma\ge 0$: at-the-money convexity</p>
+</li>
+</ul>
+<p><strong>Step</strong></p>
+<ul>
+<li>For a given maturity $T_i$, we compute the implied volatility $I(T_i, k_j)$ for all the strikes $K_j$ of the liquidly traded call options</li>
+</ul>
+<script type="math/tex; mode=display">
+\sigma^2(T,k)=\frac{\frac{\partial V(T,k)}{\partial T}}{(1-\frac{k}{2V}\frac{\partial V}{\partial k})^2+\frac{1}{2}\frac{\partial^2V}{\partial k^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{V})(\frac{\partial V}{d k})^2}</script><ul>
+<li><p>Then using an optimisation procedure, for example, <strong>least-squares</strong>, we compute the optimal values for parameters $a,b,\rho,m$ and $\sigma$ for maturity $T_i$</p>
+<ul>
+<li>The parameters are estimated for each maturity separately</li>
+</ul>
+</li>
+<li><p>For the intermediate maturities without liquidly traded options, the implied volatility can be computed using linear <strong>interpolation</strong> and the SVI parameters can be computed</p>
+</li>
+</ul>
+<p><strong>Absence of Arbitrage</strong></p>
+<ul>
+<li>Due to the interpolation procedure, SVI parametrisation can lead to arbitrage opportunities in the model<ul>
+<li>Option price function $P(T, k)$ which is not convex with respect to $k$</li>
+<li>$\frac{\partial^2P(T,k)}{\partial k^2}&lt;0$</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://mathworld.wolfram.com/images/eps-gif/ConcaveConvexFunction_1000.gif" srcset="/img/loading.gif" alt></p>
+<ul>
+<li><p>To ensure the absence of arbitrage: $\lim_{k\to\infty}C^{BS}(T,k)=0$</p>
+</li>
+<li><p>The absence of arbitrage of the “calendar spread” type: $\frac{\partial V(T,k)}{\partial T}\ge 0$</p>
+<ul>
+<li>The above condition implies that the total implied variance is an increasing function with respect to maturity. This is equivalent to non-crossing of the curves of total implied variance for different maturities</li>
+</ul>
+</li>
+<li><p>The absence of arbitrage of the “butterfly” type</p>
+<ul>
+<li>The condition leads to the convexity of option prices with respect to $k$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+d(T,k)=(1-\frac{k}{2V}\frac{\partial V}{\partial k})^2+\frac{1}{2}\frac{\partial^2V}{\partial k^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{V})(\frac{\partial V}{d k})^2\ge 0</script><h4 id="Regularisation-Approach"><a href="#Regularisation-Approach" class="headerlink" title="Regularisation Approach"></a>Regularisation Approach</h4><p>The calibration of volatility surface is posed as an optimisation problem using <strong>Tikhonov regularisation</strong></p>
+<p>Minimise the functional</p>
+<script type="math/tex; mode=display">
+J(\sigma):=\sum_{i,j=1}^{n,m}w_{ij}(C(T_i,K_j,\sigma)-C^{market}(T_i,K_j))^2+\alpha||\nabla\sigma||_2^2</script><script type="math/tex; mode=display">
+||\nabla\sigma||_2^2=\int_{K_{min}}^{K_{max}}dK\int_{T_{min}}^{T_{max}}dT((\frac{\partial\sigma}{\partial K})^2+(\frac{\partial\sigma}{\partial T})^2)</script><p>To minimise $J(\sigma)$, we use, for example, the method of <strong>gradient descent</strong> or the method of <strong>conjugate gradient</strong></p>
+<p><strong>Typical algortihm</strong></p>
+<ul>
+<li>Discretise local volatility function on a mesh of space and time</li>
+<li>Make an initial guess $\sigma^{(0)}$,for example, a constant function</li>
+<li>Evaluate the gradient of $J(\sigma)$ at point $\sigma^{(0)}$to calculate the direction of descent $\lambda^{(0)}$ </li>
+<li>Solve the one-dimensional minimisation problem</li>
+</ul>
+<script type="math/tex; mode=display">
+h^*=arg\min_{h}J(\sigma^{(0)}+h\lambda^{(0)})</script><ul>
+<li>Set $\sigma^{(1)}:=\sigma^{(0)}+h^*\lambda^{(0)}$ and iterate again</li>
+</ul>
+<p>The local volatility function is discretised using different methods, for example, finite differences or trinomial tree model</p>
+<p>The regularisation using $||\nabla\sigma||$ is the same in regions of the surface where the influence of volatility on the price is very high and in the regions where it is very small</p>
+
             </div>
             <hr>
             <div>

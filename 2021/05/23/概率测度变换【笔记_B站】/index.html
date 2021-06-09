@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      39
+      40
        分钟
     </span>
   
@@ -459,7 +459,10 @@ RHS&=\int_\Omega \mathbb{I}_A(\omega)\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\
 <h3 id="2-Girsanov"><a href="#2-Girsanov" class="headerlink" title="2. Girsanov"></a>2. Girsanov</h3><p>Let $W(t)$ be a BM on $(\Omega,\mathcal{F},\mathbb{P})$ and let $\mathcal{F}(t)$ be a filtration. For this BM, let $\Theta(t)$ be an adopted process. Define</p>
 <script type="math/tex; mode=display">
 Z(t)=exp(-\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv)</script><script type="math/tex; mode=display">
-\tilde{W}(t)=W(t)+\int_0^t\Theta(u)du</script><p>Set $Z=Z(T)$. Then $\mathbb{E}Z=1$, $Z\ge 0$</p>
+\tilde{W}(t)=W(t)+\int_0^t\Theta(u)du</script><p>or</p>
+<script type="math/tex; mode=display">
+Z(t)=exp(\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv)</script><script type="math/tex; mode=display">
+\tilde{W}(t)=W(t)-\int_0^t\Theta(u)du</script><p>Set $Z=Z(T)$. Then $\mathbb{E}Z=1$, $Z\ge 0$</p>
 <p>Where $\mathbb{Q}$ given by</p>
 <script type="math/tex; mode=display">
 \mathbb{Q}=\int_AZ(\omega)d\mathbb{P}(\omega),\ for\ \forall A\in \mathcal{F}</script><p>The process $\tilde{W}(t)$ is a BM</p>
@@ -500,7 +503,8 @@ LHS&=\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[\tilde{W}Z(t)|\mathcal{F}(s)]\\
 </li>
 <li><p>The both parts of $\tilde{W}(t)$ has contiunous paths.</p>
 </li>
-<li><p>$d\tilde{W}(t)=dW(t)+\Theta(t)dt$, where $dtdt=0$ accumulated zero quadratic variation. $<a href="t">\tilde{W},\tilde{W}</a>=<a href="t">W,W</a>=t$</p>
+<li><p>$d\tilde{W}(t)=dW(t)+\Theta(t)dt$, where $dtdt=0$ accumulated zero quadratic variation. </p>
+<p>$<a href="t">\tilde{W},\tilde{W}</a>=<a href="t">W,W</a>=t$</p>
 </li>
 <li><p>$[3-6]\Rightarrow \tilde{W}(t)$ is a BM </p>
 </li>
