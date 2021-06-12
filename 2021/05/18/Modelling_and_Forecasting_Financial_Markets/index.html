@@ -802,11 +802,23 @@ X_t-X_{t-1}&=(\phi_1-1)X_{t-1}+\phi_2X_{t-2}+\phi_3X_{t-3}+\epsilon_t\\
 <ul>
 <li>Brooks, Chapter 9, Self-Study Questions, Question 1 (except (f)), Question 3(a) and Question 5</li>
 </ul>
-<h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Volatility-models"><a href="#Volatility-models" class="headerlink" title="Volatility models"></a>Volatility models</h4><script type="math/tex; mode=display">
+<h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><blockquote>
+<p>Jarque-Bera统计量，是用来检验一组样本是否能够认为来自正态总体的一种方法</p>
+</blockquote>
+<h4 id="Volatility-models"><a href="#Volatility-models" class="headerlink" title="Volatility models"></a>Volatility models</h4><script type="math/tex; mode=display">
 \mathbb{Var}(r_t|\Omega_{t-1})\equiv \sigma_t^2\ne const</script><p>Let $\mathbb{E}(r_t|\Omega_{t-1})\equiv \mu_t$ and define $\epsilon_t\equiv r_t-\mu_t$</p>
 <script type="math/tex; mode=display">
-r_t=\mu_t+\epsilon_t,\ \epsilon_t=\sigma_t\eta_t</script><p>where $\sigma_t$ is deterministic function of $\Omega_{t-1}$, $\sigma_t&gt;0$, {$\eta_t$} is i.i.d.(0,1), $\eta_t\perp \Omega_{t-1}$</p>
+r_t=\mu_t+\epsilon_t,\ \epsilon_t=\sigma_t\eta_t</script><p>where $\sigma_t$ is deterministic function of $\Omega_{t-1}$, $\sigma_t&gt;0$, {$\eta_t$} <strong>is i.i.d.(0,1)</strong>, $\sigma_t\in\Omega_{t-1},\ \eta_t\perp \Omega_{t-1}$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(\epsilon_t|\Omega_{t-1})=\mathbb{E}(\sigma_t\eta_t|\Omega_{t-1})=\sigma_t\mathbb{E}(\eta_t|\Omega_{t-1})=\sigma_t\times 0</script><script type="math/tex; mode=display">
+\mathbb{Var}(\epsilon_t|\Omega_{t-1})=\mathbb{E}(\epsilon_t^2|\Omega_{t-1})=\mathbb{E}(\sigma_t^2\eta_t^2|\Omega_{t-1})=\sigma_t^2\mathbb{E}(\eta_t^2|\Omega_{t-1})=\sigma_t^2\times 1</script><p>So with $\eta_t\sim N(0,1)$, $\epsilon_t|\Omega_{t-1}\sim N(0,\sigma_t^2)$</p>
+<blockquote>
+<p>此时$\epsilon_t$随时间变换，$\sigma_s^2$越大，正态分布越扁</p>
+</blockquote>
 <p><strong>Thickness of the tails is measured by the kurtosis</strong></p>
+<blockquote>
+<p>峰度反映了峰部的尖度</p>
+</blockquote>
 <script type="math/tex; mode=display">
 \begin{align}
 \mathcal{K}_\epsilon &\equiv \frac{\mathbb{E}[\epsilon_t-\mathbb{E}(\epsilon_t)]^4}{[\mathbb{Var}(\epsilon_t)]^2}
@@ -832,7 +844,9 @@ r_t=\mu_t+\epsilon_t,\ \epsilon_t=\sigma_t\eta_t</script><p>where $\sigma_t$ is 
 </ul>
 <h4 id="ARCH-1"><a href="#ARCH-1" class="headerlink" title="ARCH(1)"></a>ARCH(1)</h4><script type="math/tex; mode=display">
 \sigma_t^2=\omega+\alpha\epsilon_{t-1}^2=\omega+(\alpha\eta_{t-1}^2)\sigma_{t-1}^2</script><script type="math/tex; mode=display">
-\epsilon_t^2=\omega+\alpha\epsilon_{t-1}^2+v_t,\ v_t=\epsilon_t^2-\sigma_t^2</script><p>With $\mathbb{E}(v_t|\Omega_{t-1})=\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2-1|\Omega_{t-1})]=0$ for $\alpha&lt;1$</p>
+\epsilon_t^2=\omega+\alpha\epsilon_{t-1}^2+v_t,\ v_t=\epsilon_t^2-\sigma_t^2</script><p>With $\omega,\alpha&gt;0$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(v_t|\Omega_{t-1})=\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2-1|\Omega_{t-1})]=0</script><p>for $\alpha&lt;1$</p>
 <script type="math/tex; mode=display">
 \mathbb{Var}(\epsilon_t)=\mathbb{E}(\epsilon_t^2)=\frac{\omega}{1-\alpha}+\mathbb{E}[\sum_{j=0}^\infty\alpha^jv_{t-j}]=\frac{\omega}{1-\alpha}</script><p>If $\alpha&lt;1$, then $\epsilon_t$ is weakly stationary.</p>
 <script type="math/tex; mode=display">
@@ -846,14 +860,20 @@ B(L)\sigma_t^2=\omega+A(L)\epsilon_t^2</script><p>and</p>
 \sigma_t^2=\phi_0+\sum_{i=1}^\infty\phi_i\epsilon_{t-i}^2,\ \phi_0=\frac{\omega}{B(1)},\ \sum_{i=1}^\infty\phi_iz^i=\frac{A(z)}{B(z)}</script><p><strong>ARMA representation of GARCH</strong></p>
 <p>The original equation can be rewritten as</p>
 <script type="math/tex; mode=display">
-\sigma_t^2=\omega+\sum_{i=1}^{max(p,q)}(\alpha_i+\beta_i)\epsilon_{t-i}^2+v_t-\sum_{j=1}^q\beta_jv_{t-j}</script><ul>
+\epsilon_t^2=\omega+\sum_{i=1}^{max(p,q)}(\alpha_i+\beta_i)\epsilon_{t-i}^2+v_t-\sum_{j=1}^q\beta_jv_{t-j}</script><ul>
 <li>using the convention $\alpha_i=0 (\beta_i=0)$ if $i&gt;p(i&gt;q)$</li>
 </ul>
 <p>Bollerslev (1986), Theorem 1, shows that if</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^p\alpha_i+\sum_{j=1}^q\beta_j<1</script><p>then $\epsilon_t$ is weakly stationary, and {$\epsilon_t^2$} $\sim$ ARMA(max(p,q),q)</p>
-<p>For GARCH(1,1) </p>
+<p><strong>GARCH(1,1)</strong> </p>
 <script type="math/tex; mode=display">
+\begin{align}
+\sigma_t^2&=\omega+\alpha\epsilon_{t-1}^2+\beta \sigma_{t-1}^2\\
+\epsilon_t^2&=\omega+\alpha\epsilon_{t-1}^2+\beta \sigma_{t-1}^2+v_t\\
+&=\omega+(\alpha+\beta)\epsilon_{t-1}^2-\beta(\epsilon_{t-1}^2-\sigma_{t-1}^2)+v_t\\
+&=\omega+(\alpha+\beta)\epsilon_{t-1}^2-\beta v_{t-1}^2+v_t
+\end{align}</script><script type="math/tex; mode=display">
 \mathbb{E}(\epsilon_t^2)=\frac{\omega}{1-\alpha-\beta}=\sigma^2</script><p>and the autocorrelation function of $\epsilon_t^2$ is</p>
 <script type="math/tex; mode=display">
 \rho(h)=\begin{cases}
@@ -996,6 +1016,8 @@ f_{T,h}\pm z_{1-\alpha/2}\sqrt{\mathbb{Var}[e_{T,h}|\Omega_T]}</script>
                     <i class="iconfont icon-tags"></i>
                     
                       <a class="hover-with-bg" href="/tags/Time-Series/">Time Series</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Econometrics/">Econometrics</a>
                     
                   </div>
                 

@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>一元线性回归方程中的回归系数 - Borderland</title>
+  <title>Ito积分与随机过程【笔记_知乎】 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="一元线性回归方程中的回归系数">
+            <span class="h2" id="subtitle" title="Ito积分与随机过程【笔记_知乎】">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-30 18:48" pubdate>
-        April 30, 2021 pm
+      <time datetime="2021-06-11 02:58" pubdate>
+        June 11, 2021 am
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      271 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      3
        分钟
     </span>
   
@@ -224,183 +224,76 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">一元线性回归方程中的回归系数</h1>
+            <h1 style="display: none">Ito积分与随机过程【笔记_知乎】</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于《计量经济学导论》中文译本；</p>
-<p>关于：</p>
-<ol>
-<li>回归系数的求解；</li>
-<li>系数的无偏性；</li>
-<li>系数的抽样方差；</li>
-<li>sigma的无偏性；</li>
-</ol>
+<p>基于 知乎 埃格先生 的文章的笔记;</p>
+<p>对 Ito公式 进行了有逻辑的推导，很适合初学者学习;</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="1-回归系数的求解"><a href="#1-回归系数的求解" class="headerlink" title="1. 回归系数的求解"></a>1. 回归系数的求解</h2><p>首先，我们拥有一个数据集 $x=\{x_1,x_2…,x_n\}$ , $y=\{y_1,y_2,…,y_n\}$</p>
+<h2 id="Ito积分"><a href="#Ito积分" class="headerlink" title="Ito积分"></a>Ito积分</h2><p>在时间 [$T_0,T$], 布朗运动 {$W_t$}$_{t\in[T_0,T]}$. 将时间分成 $N$段, 所以有 $\Delta t=(T-T_0)/N$. 定义 $W_j=w_1+w_2+…+w_j$, 其中 $\omega_i=\xi_i\sqrt{\Delta t}$. {$\xi_i$} 是一列独立同分布的随机变量，它们的均值为 0, 方差为 1,  且满足如下伯努利分布：$P(\xi_i=1)=P(\xi_i=-1)=\frac{1}{2}$</p>
+<p>有 $W(t)-W(s)\sim N(0,t-s)$</p>
+<p>Ito 积分一般写为</p>
 <script type="math/tex; mode=display">
-\bar x =n^{-1} \sum_{i=1}^n x_i\ ,\  \bar y =n^{-1} \sum_{i=1}^n y_i \tag{0}</script><p>对于一个简单的一元线性回归方程</p>
+\int_{T_0}^Tf_tdW_t</script><p>接下来我们采用如下的固定范式来讨论：</p>
+<ol>
+<li>固定 $N$</li>
+<li>令 $N\to\infty$</li>
+</ol>
+<h4 id="随机徘徊的离散-Ito-积分"><a href="#随机徘徊的离散-Ito-积分" class="headerlink" title="随机徘徊的离散 Ito 积分"></a>随机徘徊的离散 Ito 积分</h4><p>设 {$f_j$}$_{j=0}^N$ 对 {$W_j$}$_{j=0}^N$ 适应, 我们定义其离散 Ito 积分 $I_W[f]$ 是如下随机变量:</p>
 <script type="math/tex; mode=display">
-y = \alpha +\beta x+u</script><p>其中 $\alpha , \beta$ 是我们假设的完美情况下存在的系数，$u$ 为得到数据时存在的干扰值/误差</p>
-<p>我们将用普通最小二乘法推导模型</p>
+I_W[f]=\sum_{i=0}^{N-1}f_i(W_{i+1}-W_i)=\sum_{i=0}^{N-1}f_iw_{i+1}</script><p>例如，取 $f_j=W_j$</p>
 <script type="math/tex; mode=display">
-\hat y = \hat\alpha + \hat\beta x</script><p>其中 $\alpha , \beta$ 是我们通过数据推导得到的系数, $\hat{y}$ 是通过模型得到的拟合值</p>
-<p>我们的目标函数</p>
-<script type="math/tex; mode=display">
-Min\ Q =(y-\hat{y})^2=(y-\hat\alpha - \hat\beta x)^2  \tag{1}</script><p>为了求最小值， (1) 进行对 $\hat{\alpha},\hat{\beta}$ 求偏导，并令其值等于0</p>
-<p>得到</p>
-<script type="math/tex; mode=display">
+\omega_i^2=(\xi_i\sqrt{\Delta t})^2=\Delta t</script><script type="math/tex; mode=display">
 \begin{align}
-\frac{\partial Q}{\partial \hat\alpha}=(-2)(y-\hat\alpha-\hat\beta x)&=0\\
-y-\hat\alpha-\hat\beta x&=0 \tag{2}
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial Q}{\partial \hat\beta}=(-2x)(y-\hat\alpha-\hat\beta x)&=0\\
-x(y-\hat\alpha-\hat\beta x)&=0 \tag{3}
-\end{align}</script><p>接下来通过对 $x,y$ 的展开(求和的上下限忽略不写)，从 (2) 中推得性质</p>
+I_W[f]&=\sum_{i=0}^{N-1}W_iw_{i+1}=\sum_{i=1}^{N}(\sum_{j=0}^{i-1}w_j)w_i=\sum_{j<i\leq N}w_iw_j\\
+&=\frac{1}{2}(\sum_{i=1}^{N}w_i)^2-\frac{1}{2}\sum_{i=1}^{N}w_i^2=\frac{1}{2}W_N^2-\frac{T-T_0}{2}
+\end{align}</script><p>$I_W[f]$ 具有如下性质：</p>
+<ol>
+<li>$\mathbb{E}I_W[f]=0$</li>
+<li>$\mathbb{E}(I_W[f])^2=\mathbb{E}(\frac{T-T_0}{N}\sum_{i=0}^{N-1}f_i^2)$</li>
+</ol>
+<h4 id="连续时间的-Ito-积分"><a href="#连续时间的-Ito-积分" class="headerlink" title="连续时间的 Ito 积分"></a>连续时间的 Ito 积分</h4><script type="math/tex; mode=display">
+I_W[f]=\int_{T_0}^Tf_tdW_t</script><p>取 $f_j=W_j$</p>
 <script type="math/tex; mode=display">
+\int_{T_0}^TW_tdW_t=\frac{1}{2}W_T^2-\frac{T-T_0}{2}</script><blockquote>
+<p>如果 $W_{T_0}\ne 0$, 则多一项 $-W_{T_0}^2/2$</p>
+</blockquote>
+<p>$I_W[f]$ 具有如下性质：</p>
+<ol>
+<li>$\mathbb{E}\int_{T_0}^Tf_tdW_t=0$</li>
+<li>$\mathbb{E}(\int_{T_0}^Tf_tdW_t)^2=\mathbb{E}\int_{T_0}^Tf_t^2dt$</li>
+</ol>
+<h3 id="随机差分方程的等价的离散积分形式及其连续极限"><a href="#随机差分方程的等价的离散积分形式及其连续极限" class="headerlink" title="随机差分方程的等价的离散积分形式及其连续极限"></a>随机差分方程的等价的离散积分形式及其连续极限</h3><script type="math/tex; mode=display">
 \begin{align}
-\sum (y_i - \hat\alpha - \hat\beta x_i) &=0\\
-\sum y_i &=\sum (\hat\alpha + \hat\beta x_i) \gets (0) \\
-n \bar y &=n \hat\alpha + n \hat\beta \bar x\\
-\bar y &=\hat\alpha + \hat\beta \bar x \tag{4}
-\end{align}</script><p>将 (4) 代入 (3) 得到</p>
-<script type="math/tex; mode=display">
-\begin{align}
-x(y-\bar y + \hat\beta \bar x-\hat\beta x)&=0\\
-x(y-\bar y)&=\hat\beta x(x-\bar x) \tag{5}
-\end{align}</script><p>推导两个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x_i)^2 &= \sum (x_i^2 + \bar x_i^2 -2\bar xx_i) \\
-&=\sum x_i^2 + n \bar x_i\bar x_i - 2\bar x\sum x_i \gets (0)\\
-&=\sum x_i^2 + n \bar x_i n^{-1}\sum x_i - 2\bar x\sum x_i\\
-&= \sum x_i^2 -\bar x\sum x_i\\
-&= \sum x_i(x_i-\bar x) \tag{6}
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x_i)(y_i-\bar y_i) &= \sum (x_iy_i + \bar x_i\bar y_i -x_i\bar y_i-y_i\bar x_i) \gets (0)\\
-&=\sum x_iy_i + n \bar x_i\bar y_i - n\bar x\bar y - n\bar x\bar y \gets (0)\\
-&=\sum x_iy_i - n \bar y_i n^{-1}\sum x_i\\
-&= \sum x_iy_i -\bar y\sum x_i\\
-&= \sum x_i(y_i-\bar y) \tag{7}
-\end{align}</script><p>将 (6) , (7) 代入 (5) 得</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum (x_i-\bar x)(y_i-\bar y)&= \sum \hat\beta(x_i-\bar x)^2\\
-\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \tag{8}
-\end{align}</script><p><strong>最终我们得到两系数的值</strong></p>
-<script type="math/tex; mode=display">
-\begin{cases}
-\hat\beta = \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \\
-\hat\alpha = \bar y - \hat\beta \bar x \tag{9}
-\end{cases}</script><h2 id="2-系数的无偏性"><a href="#2-系数的无偏性" class="headerlink" title="2. 系数的无偏性"></a>2. 系数的无偏性</h2><p>重申一个特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum(x_i-\bar x)&=\sum x_i-n\bar x \gets (0) \\
-&= n\bar x-n\bar x\\
-&= 0 \tag{10}
-\end{align}</script><p>首先对 $\hat\beta$ 进行变换</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\hat\beta &= \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2} \gets (7)\\
-&= \frac{\sum (x_i-\bar x)y_i}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sum (x_i-\bar x)(\alpha +\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (10)\\
-&= \frac{\sum (x_i-\bar x)(\beta x_i+u_i)}{\sum (x_i-\bar x)^2} \gets (6)\\
-&= \frac{\sum ((x_i-\bar x)^2\beta+(x_i-\bar x)u_i)}{\sum (x_i-\bar x)^2}\\
-&= \beta+\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2} \tag{11}
-\end{align}</script><p><strong>对 $\hat\beta$ 无偏性的证明</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-E(\hat\beta) &= \beta + E(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
-&= \beta + \frac{\sum (x_i-\bar x)E(u_i)}{\sum (x_i-\bar x)^2} \gets SLR.4\\
-&= \beta
+X_{j+1}&\approx X_j+b_j\Delta t+\sigma_j\omega_{j+1}\\
+&= X_j+ \underbrace{b_j\Delta t}+\underbrace{\sigma_j\xi_{j+1}\sqrt{\Delta t}}\\
+&\qquad\quad\ 确定运动 \quad\ 随机运动
 \end{align}</script><blockquote>
-<p>SLR.4 : Zero Conditional Mean</p>
-<p>注意在中文版中SLR.3才是零条件均值</p>
+<p>第一步省略了一个 $o(\Delta t)$</p>
 </blockquote>
-<p><strong>对 $\hat\alpha$ 无偏性的证明</strong></p>
+<h4 id="离散积分"><a href="#离散积分" class="headerlink" title="离散积分"></a>离散积分</h4><script type="math/tex; mode=display">
+X_n=X_0+\Delta t\sum_{j=0}^{n-1} b_j+\sum_{j=0}^{n-1} w_{j+1}\sigma_j</script><h4 id="连续积分"><a href="#连续积分" class="headerlink" title="连续积分"></a>连续积分</h4><script type="math/tex; mode=display">
+X(t)=X(0)+\int_0^t b(s)ds+\int_0^t\sigma(s)dW(s)</script><h4 id="Ito-公式"><a href="#Ito-公式" class="headerlink" title="Ito 公式"></a>Ito 公式</h4><p>做 Taylor 二阶展开, 将超过 $o(\Delta t) $的部分省略, 其中包含二阶以上导($X_{n+1}-X_n$ 是一个 $o(\sqrt{\Delta t})$ 的量)与一部分二阶导 ($\Delta t$ 超过一次的)</p>
 <script type="math/tex; mode=display">
 \begin{align}
-E(\hat\alpha) &= E(\bar y - \hat\beta \bar x)\\
-&= E(\alpha +\beta \bar x+\bar u - \hat\beta \bar x) \gets SLR.4\\
-&= \alpha + \beta \bar x - \beta \bar x\\
-&= \alpha
-\end{align}</script><h2 id="3-系数的抽样方差"><a href="#3-系数的抽样方差" class="headerlink" title="3. 系数的抽样方差"></a>3. 系数的抽样方差</h2><p>提前定义</p>
+f(X_{n+1})&=f(X_n)+f'(X_n)·(X_{n+1}-X_n)+\frac{f''(X_n)}{2}·(X_{n+1}-X_n)^2+o(\Delta t)^{3/2}\\
+&=f(X_n)+f'(X_n)·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})+\frac{f''(X_n)}{2}·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})^2\\
+&=f(X_n)+f'(X_n)·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})+\frac{f''(X_n)}{2}·\sigma_n^2\xi_{n+1}^2\Delta t\\
+\end{align}</script><p>$\xi_{n+1}^2$ 在 almost surely (a.s.) 的意义下等于 1, 整理上式得到</p>
 <script type="math/tex; mode=display">
-u_i \sim N(0,\sigma^2)</script><p>重申关于 $Var$ 的知识点</p>
+f(X_{n+1})-f(X_n)=f'(X_n)\sigma_n\xi_{n+1}\sqrt{\Delta t}+(f'(X_n)·b_n+\frac{f''(X_n)·\sigma_n^2}{2})\Delta t</script><p>也可以写成离散积分的形式</p>
 <script type="math/tex; mode=display">
-Var(x+y)=Var(x)+Var(y)+2Cov(x,y) \tag{12}</script><script type="math/tex; mode=display">
-Cov(x,y)=E(xy)-E(x)E(y) \tag{13}</script><script type="math/tex; mode=display">
-Var(\bar u)=Var(\frac{\sum u_i}{n})=\frac{\sum Var(u_i)}{n^2}=\frac{\sigma^2}{n} \tag{14}</script><p><strong>从 (11) 对 $\hat\beta$ 进行方差的推导</strong></p>
+f(X_n)=X_0+\sum_{j=0}^{n-1}f'(X_j)\sigma_jw_{j+1}+\sum_{j=0}^{n-1}(f'(X_j)·b_j+\frac{f''(X_j)·\sigma_j^2}{2})\Delta t</script><p>对应于连续的形式</p>
 <script type="math/tex; mode=display">
-\begin{align}
-Var(\hat\beta) &= Var(\frac{\sum (x_i-\bar x)u_i}{\sum (x_i-\bar x)^2})\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}Var(\sum (x_i-\bar x)u_i)\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2Var(u_i)\\
-&= \frac{1}{(\sum (x_i-\bar x)^2)^2}\sum (x_i-\bar x)^2\sigma^2\\
-&= \frac{\sigma^2}{\sum (x_i-\bar x)^2} \tag{15}
-\end{align}</script><p>推导一个新特质</p>
+f(X(t))=X(0)+\int_0^tf'(X(s))\sigma(s)dw(s)+\int_0^t(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><p>上述公式被称为<strong>Ito公式</strong>，简记为</p>
 <script type="math/tex; mode=display">
-\begin{align}
-(13) \to Cov(\bar u,(\beta - \hat\beta) \bar x) &= E((\beta - \hat\beta) \bar x \bar u)-E(\bar u)E((\beta - \hat\beta) \bar x)\\
-&= E((\beta - \hat\beta) \bar x \bar u) \gets (11) \\
-&= E(\frac{\sum (x_i-\bar x)u_i\bar u\bar x}{\sum (x_i-\bar x)^2})\\
-&= (\frac{\sum (x_i-\bar x)\bar x}{\sum (x_i-\bar x)^2})^2E(u_i\bar u) \gets (10)\\
-&= 0\times E(u_i\bar u) \tag{16}
-\end{align}</script><p>扩展</p>
-<blockquote>
-<p>这里的 $E(u_i\bar u)$ 不能等于0，因为 $i$ 与 $\bar u$ 中除了编号是 $i$ 的其他残差独立</p>
-<p>$E(u_i\bar u)=\frac{1}{n}\sum_{j=1}^nE(u_iu_j)=\frac{1}{n}E(u_i^2)=\frac{\sigma^2}{n}$</p>
-<p>$E(u_i^2) = Var(u_i)-E(u_i)^2=\sigma^2$</p>
-</blockquote>
-<p><strong>对 $\hat\alpha$ 进行方差的推导</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
-&= Var(\alpha +\beta \bar x+\bar u - \hat\beta \bar x)\\
-&= Var(\bar u +(\beta - \hat\beta) \bar x) \gets (12)\\
-&= Var(\bar u)+Var((\beta - \hat\beta) \bar x)+2Cov(\bar u,(\beta - \hat\beta) \bar x) \gets (14)(15)(16)\\
-&= \frac{\sigma^2}{n} + \frac{\sigma^2\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sum (x_i-\bar x)^2\sigma^2+n\sigma^2\bar x^2}{n\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum (x_i-\bar x)^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum (x_i^2+\bar x^2-2x_i\bar x)+n\bar x^2}{\sum (x_i-\bar x)^2} \gets (0)\\
-&= \frac{\sigma^2}{n}\frac{\sum x_i^2+n\bar x^2-2n\bar x^2+n\bar x^2}{\sum (x_i-\bar x)^2}\\
-&= \frac{\sigma^2}{n}\frac{\sum x_i^2}{\sum (x_i-\bar x)^2} \tag{17}
-\end{align}</script><h2 id="4-sigma的无偏性"><a href="#4-sigma的无偏性" class="headerlink" title="4. sigma的无偏性"></a>4. sigma的无偏性</h2><p>定义</p>
-<ul>
-<li>$u_i$ : 误差</li>
-<li><p>$\hat u_i = y-\hat y = u_i+(\alpha-\hat\alpha)+(\beta-\hat\beta)x_i$ : 残差</p>
-</li>
-<li><p>$\sigma^2 = n^{-1}\sum u_i^2 = (n-2)^{-1}\sum \hat u_i^2 = \frac{SSR}{n-2}$ : 因为包含两个限制条件，所以减少两个自由度</p>
-</li>
-</ul>
-<p>由 (2) 得</p>
-<script type="math/tex; mode=display">
-\begin{align}
-0&= y-\hat\alpha-\hat\beta x\\
-&= \alpha -\hat\alpha +\beta x -\hat\beta x +u\\
-&= (\alpha -\hat\alpha) +(\beta -\hat\beta)\bar x +\bar u \tag{18}
-\end{align}</script><p>将原有残差公式与 (18) 相减</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum \hat u_i &= \sum (u_i-\bar u)+\sum (\beta-\hat\beta)(x_i-\bar x)\\
-\sum \hat u_i^2 &= \sum (u_i-\bar u)^2 + \sum (\beta-\hat\beta)^2(x_i-\bar x)^2 + \sum 2(u_i-\bar u)(\beta-\hat\beta)(x_i-\bar x)\\
-\end{align}</script><p>右侧第一项的期望值是样本误差的方差 $(n-1)\sigma^2$</p>
-<p>右侧第二项因为 $E[(\hat\beta-\beta)^2]=Var(\hat\beta)-E[(\hat\beta-\beta)]^2=Var(\hat\beta)$ 代入 (15) 得期望为 $\sigma^2$</p>
-<p>推导一个新特质</p>
-<script type="math/tex; mode=display">
-\begin{align}
-(8)\to \sum(u_i-\bar u)(x_i-\bar x) &=\sum u_i(x_i-\bar x)\\
-&=\sum (y_i-\alpha-\beta x_i)(x_i-\bar x) \gets (10)\\
-&=\sum (y_i-\beta x_i)(x_i-\bar x) \gets (6) (7)\\
-&=\sum (y_i-\bar y)(x_i-\bar x)-\sum\beta (x_i-\bar x)^2 \gets (8)\\
-&=\sum \hat\beta (x_i-\bar x)^2-\sum\beta (x_i-\bar x)^2\\
-&=(\hat \beta-\beta)\sum(x_i-\bar x)^2 \tag{19}
-\end{align}</script><p>右侧第三项可代入 (19) 并求期望得 $E[-2(\hat \beta-\beta)^2\sum(x_i-\bar x)^2]=-2\sigma^2$</p>
-<p>将三项放在一起得 $E(\sum\hat u_i^2)=(n-1)\sigma^2+\sigma^2-2\sigma^2=(n-2)\sigma^2$</p>
-<p>因此可证得 $E[SSR/(n-2)]=\sigma^2$</p>
+df(X(t))=f'(X(s))\sigma(s)dw(s)+(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><h4 id="随机差分方程"><a href="#随机差分方程" class="headerlink" title="随机差分方程"></a>随机差分方程</h4><script type="math/tex; mode=display">
+X_{j+1}-X_j=s(X_j,t)w_{j+1}+m(X_j,t)\Delta t</script><h4 id="随机微分方程"><a href="#随机微分方程" class="headerlink" title="随机微分方程"></a>随机微分方程</h4><script type="math/tex; mode=display">
+dX(t)=\sigma(X(t),t)dW(t)+m(X(t),t)dt</script><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/wei-zhi-3-47">埃格先生</a></li>
+</ol>
 
             </div>
             <hr>
@@ -410,7 +303,7 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Economics/">Economics</a>
+                      <a class="hover-with-bg" href="/categories/Math/">Math</a>
                     
                   </div>
                 
@@ -418,9 +311,9 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Simple-Regression-Model/">Simple Regression Model</a>
+                      <a class="hover-with-bg" href="/tags/Ito-calculus/">Ito calculus</a>
                     
-                      <a class="hover-with-bg" href="/tags/Econometrics/">Econometrics</a>
+                      <a class="hover-with-bg" href="/tags/Stochastic-Process/">Stochastic Process</a>
                     
                   </div>
                 
@@ -433,18 +326,12 @@ Var(\hat\alpha) &= Var(\bar y - \hat\beta \bar x)\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/06/Exercise_1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Exercise_1</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/27/Basic_Econometrics/">
-                        <span class="hidden-mobile">Basic_Econometrics</span>
+                      <a href="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/">
+                        <span class="hidden-mobile">复数与傅里叶变换【笔记_B站】</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
