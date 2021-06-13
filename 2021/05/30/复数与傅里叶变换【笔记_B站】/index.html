@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      2.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25
+      46
        分钟
     </span>
   
@@ -301,6 +301,7 @@ Z-Z_0=\delta(Cos\theta+iSin\theta)</script><script type="math/tex; mode=display"
 </ul>
 </li>
 </ol>
+<h4 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h4><p>有 $u(x,y)=f(x)·g(y)$, 期望求关于 $s=x+y$ 的概率密度, 就是 $f*g$</p>
 <h2 id="傅里叶变换-Fourier"><a href="#傅里叶变换-Fourier" class="headerlink" title="傅里叶变换 Fourier"></a>傅里叶变换 Fourier</h2><p>傅里叶级数：表示$2\pi$为周期</p>
 <script type="math/tex; mode=display">
 f(x)=\frac{1}{2}a_0+\sum_{n=1}^\infty a_nCosnx+\sum_{n=1}^\infty b_nSinnx</script><p>以 $\{\mathbb{I},Sinnx,Cosnx\}$ 为基向量</p>
@@ -323,32 +324,32 @@ a_0=\frac{1}{\pi}\int_0^\pi f(x)dx=1</script><blockquote>
 </blockquote>
 <script type="math/tex; mode=display">
 \begin{align}
-a_n&=\frac{1}{\pi}\int_0^\pi f(x)cosnxdx\\
-&=\frac{1}{\pi}\int_0^\pi cosnxdx\\
-&=\frac{1}{n\pi}\int_0^\pi cosnxdnx\\
-&=\frac{1}{n\pi}\int_0^\pi dsinnx\\
-&=\frac{1}{n\pi} sinnx|_0^\pi=0-0
+a_n&=\frac{1}{\pi}\int_0^\pi f(x)Cosnx\ dx\\
+&=\frac{1}{\pi}\int_0^\pi Cosnx\ dx\\
+&=\frac{1}{n\pi}\int_0^\pi Cosnx\ dnx\\
+&=\frac{1}{n\pi}\int_0^\pi dSinnx\\
+&=\frac{1}{n\pi} Sinnx|_0^\pi=0-0
 \end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-b_n&=\frac{1}{\pi}\int_0^\pi f(x)sinnxdx\\
-&=\frac{1}{\pi}\int_0^\pi sinnxdx\\
-&=\frac{1}{n\pi}\int_0^\pi sinnxdnx\\
-&=\frac{1}{n\pi}\int_0^\pi -dcosnx\\
-&=-\frac{1}{n\pi} cosnx|_0^\pi\\
+b_n&=\frac{1}{\pi}\int_0^\pi f(x)Sinnx\ dx\\
+&=\frac{1}{\pi}\int_0^\pi Sinnx\ dx\\
+&=\frac{1}{n\pi}\int_0^\pi Sinnx\ dnx\\
+&=\frac{1}{n\pi}\int_0^\pi -\ dCosnx\\
+&=-\frac{1}{n\pi} Cosnx|_0^\pi\\
 &=\begin{cases}\frac{2}{n\pi}& n=2k+1\\
 0&n=2k
 \end{cases}
 \end{align}</script><script type="math/tex; mode=display">
-f(x)=\frac{1}{2}+\frac{2}{\pi}(sinx+\frac{sin3x}{3}+\frac{sin5x}{5}+...)</script><p>当 $sinnx$ 项加的越多 $n\to\infty$, 越趋近目标图像. 但当不够多时，振动会比较剧烈，且存在吉布斯现象/音爆 (可用小波变换解决)</p>
+f(x)=\frac{1}{2}+\frac{2}{\pi}(Sinx+\frac{Sin3x}{3}+\frac{Sin5x}{5}+...)</script><p>当 $Sinnx$ 项加的越多 $n\to\infty$, 越趋近目标图像. 但当不够多时，振动会比较剧烈，且存在吉布斯现象/音爆 (可用小波变换解决)</p>
 <p>如果将原目标往左移 $\frac{\pi}{2}$ , $x\to x+\frac{\pi}{2}$</p>
 <blockquote>
-<p>$sinx$ 向左移 $\frac{\pi}{2}$ 得到 $cosx$, $cosx$ 向左移 $\frac{\pi}{2}$ 得到 $-sinx$</p>
-<p>$sinx$ 向右移 $\frac{\pi}{2}$ 得到 $-cosx$, $cosx$ 向右移 $\frac{\pi}{2}$ 得到 $sinx$</p>
+<p>$Sinx$ 向左移 $\frac{\pi}{2}$ 得到 $Cosx$, $Cosx$ 向左移 $\frac{\pi}{2}$ 得到 $-Sinx$</p>
+<p>$Sinx$ 向右移 $\frac{\pi}{2}$ 得到 $-Cosx$, $Cosx$ 向右移 $\frac{\pi}{2}$ 得到 $Sinx$</p>
 </blockquote>
 <script type="math/tex; mode=display">
 \begin{align}
-f(x+\frac{1}{2}\pi)&=\frac{1}{2}+\frac{2}{\pi}(sin(x+\frac{1}{2}\pi)+\frac{sin(3x+\frac{3}{2}\pi)}{3}+\frac{sin(5x+\frac{5}{2}\pi)}{5}+...)\\
-&=\frac{1}{2}+\frac{2}{\pi}(cosx-\frac{cos3x}{3}+\frac{cos5x}{5}-...)
+f(x+\frac{1}{2}\pi)&=\frac{1}{2}+\frac{2}{\pi}(Sin(x+\frac{1}{2}\pi)+\frac{Sin(3x+\frac{3}{2}\pi)}{3}+\frac{Sin(5x+\frac{5}{2}\pi)}{5}+...)\\
+&=\frac{1}{2}+\frac{2}{\pi}(Cosx-\frac{Cos3x}{3}+\frac{Cos5x}{5}-...)
 \end{align}</script><p>令 $x=0$</p>
 <script type="math/tex; mode=display">
 1=\frac{1}{2}+\frac{2}{\pi}(1-\frac{1}{3}+\frac{1}{5}-...)</script><p>得出一个重要的恒等式</p>
@@ -360,18 +361,18 @@ a_0=\frac{1}{\pi}\frac{x^2}{2}|_0^\pi=\frac{\pi}{2}</script><blockquote>
 </blockquote>
 <script type="math/tex; mode=display">
 \begin{align}
-a_n&=\frac{1}{n\pi}\int_0^\pi xdsinnx\\
-&=\frac{1}{n\pi}[0-\int_0^\pi sinnxdx]\\
-&=\frac{1}{n^2\pi}cosnx|_0^\pi\\
+a_n&=\frac{1}{n\pi}\int_0^\pi x\ dSinnx\\
+&=\frac{1}{n\pi}[0-\int_0^\pi Sinnx\ dx]\\
+&=\frac{1}{n^2\pi}Cosnx|_0^\pi\\
 &=\begin{cases}-\frac{2}{n^2\pi}&n=2k+1\\0&n=2k\end{cases}
 \end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-a_n&=\frac{1}{n\pi}\int_0^\pi -xdcosnx\\
-&=\frac{1}{n\pi}[\int_0^\pi cosnxdx+\pi]\\
-&=\frac{1}{n^2\pi}sinnx|_0^\pi-\frac{cosn\pi}{n}\\
+b_n&=\frac{1}{n\pi}\int_0^\pi -x\ dCosnx\\
+&=\frac{1}{n\pi}[\int_0^\pi Cosnx\ dx+\pi]\\
+&=\frac{1}{n^2\pi}Sinnx|_0^\pi-\frac{Cosn\pi}{n}\\
 &=\frac{(-1)^{n-1}}{n}
 \end{align}</script><script type="math/tex; mode=display">
-f(x)=\frac{\pi}{4}-\frac{2}{\pi}(cosx+\frac{cos3x}{3^2}+\frac{cos5x}{5^2}+...)+(sinx-\frac{sin2x}{2}+\frac{sin3x}{3}-...)</script><p>令 $x=0$</p>
+f(x)=\frac{\pi}{4}-\frac{2}{\pi}(Cosx+\frac{Cos3x}{3^2}+\frac{Cos5x}{5^2}+...)+(Sinx-\frac{Sin2x}{2}+\frac{Sin3x}{3}-...)</script><p>令 $x=0$</p>
 <script type="math/tex; mode=display">
 0=\frac{\pi}{4}-\frac{2}{\pi}(1+\frac{1}{3^2}+\frac{1}{5^2}+...)</script><p>得出一个重要的恒等式</p>
 <script type="math/tex; mode=display">
@@ -393,11 +394,126 @@ f(x)=\frac{a_0}{2}+振动=c_0+振动</script><p>以 $e^{inx}$ 为基向量</p>
 \begin{align}
 &\int_0^{2\pi}e^{inx}·e^{-imx}dx\\
 =&\int_0^{2\pi}e^{i(n-m)x}dx\\
-=&\int_0^{2\pi}cos(n-m)x+isin(n-m)xdx\\
+=&\int_0^{2\pi}Cos(n-m)x+iSin(n-m)x\ dx\\
 =&\begin{cases}2\pi&m=n\\0&m\ne n\end{cases}
 \end{align}</script><p>可证得正交性被满足</p>
 <script type="math/tex; mode=display">
-c_n=\frac{1}{2\pi}\int_0^{2\pi}f(x)·e^{-inx}dx</script>
+c_n=\frac{1}{2\pi}\int_0^{2\pi}f(x)·e^{-inx}dx</script><p><strong>帕塞瓦尔定理</strong></p>
+<script type="math/tex; mode=display">
+E(f^2(x))=\frac{1}{2\pi}\int_0^{2\pi}f^2(x)dx=(\frac{a_0}{2})^2+\sum_{n=1}^\infty(\frac{1}{2}a_n^2+\frac{1}{2}b_n^2)</script><script type="math/tex; mode=display">
+E(f^2(x))=\frac{1}{2\pi}\int_0^{2\pi}|f(x)|^2dx=\sum_{n=1}^\infty|c_n|^2,\ \frac{a_0}{2}=c_0</script><p>where $|f(x)|^2=f(x)\bar{f}(x)$</p>
+<h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><p>将原先以 $(-\pi,\pi)$ 为一周期，改写为以 $(-L,L)$ 为一周期</p>
+<script type="math/tex; mode=display">
+Cosnx \Leftrightarrow Cosn(\frac{2\pi x}{2L})=Cos\frac{n\pi x}{L}</script><script type="math/tex; mode=display">
+Sinnx \Leftrightarrow Sin\frac{n\pi x}{L}</script><script type="math/tex; mode=display">
+e^{inx}\Leftrightarrow e^{\frac{in\pi x}{L}}</script><script type="math/tex; mode=display">
+a_n=\frac{1}{\pi}\int_{-\pi}^\pi f(x)Cosnx\ dx\Leftrightarrow \frac{1}{L}\int_{-L}^L f(x)Cos\frac{n\pi x}{L}\ dx</script><script type="math/tex; mode=display">
+c_n\Leftrightarrow\frac{1}{L}\int_{-L}^Lf(x)·e^{-\frac{in\pi x}{L}}dx</script><p>普通 $2L$ 周期的展开</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{n=-\infty}^\infty c_n e^{\frac{in\pi}{L}x}</script><p>定义：$\frac{n\pi}{L}=\alpha_n$, $\Delta \alpha=\alpha_{n+1}-\alpha_n=\frac{\pi}{L}$</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{n=-\infty}^\infty c_n e^{i\alpha_nx}</script><script type="math/tex; mode=display">
+c_n=\frac{1}{2L}\int_{-L}^Lf(x)e^{-i\alpha_nx}dx=\frac{\Delta\alpha}{2\pi}\int_{-L}^Lf(x)e^{-i\alpha_nx}dx</script><p>把 $c_n$ 代入 $f(x)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f(x)&=\sum_{n=-\infty}^\infty \frac{\Delta\alpha}{2\pi} \int_{-L}^Lf(u)e^{-i\alpha_nu}du\ e^{i\alpha_nx}\\
+&=\frac{1}{2\pi}\sum_{n=-\infty}^\infty \int_{-L}^Lf(u)e^{i\alpha_n(x-u)}du\ \Delta\alpha\\
+\end{align}</script><p>令 $L\to\infty$, 有 $\Delta\alpha\to 0$</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty\int_{-\infty}^\infty f(u)e^{i\alpha_n(x-u)}du\ d\alpha\\</script><p>可以将上式拆成两份</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty g(\alpha)e^{i\alpha_nx}d\alpha\\</script><script type="math/tex; mode=display">
+g(\alpha)=\int_{-\infty}^\infty f(u)e^{-i\alpha_nu}du</script><p><strong>双重可逆定义</strong></p>
+<script type="math/tex; mode=display">
+f(x) \leftrightarrow g(\alpha)</script><p>总结得</p>
+<script type="math/tex; mode=display">
+F.T\begin{cases}
+g(\alpha)=\int_{-\infty}^\infty f(x)e^{-i\alpha_nx}dx\\
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty g(\alpha)e^{i\alpha_nx}d\alpha\\
+\end{cases}</script><p>有时候表达式不同，但积分前的数相乘必须等于$\frac{1}{2\pi}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f'(x)&\leftrightarrow\int_{-\infty}^\infty f'(x)e^{-i\alpha_nx}dx\\
+&=f(x)e^{-i\alpha_nx}|_{-\infty}^\infty-\int_{-\infty}^\infty (-i\alpha_n)f(x)e^{-i\alpha_nx}dx\\
+&=0+i\alpha_ng(\alpha)
+\end{align}</script><p>因此可推导</p>
+<script type="math/tex; mode=display">
+f''(x)\leftrightarrow(i\alpha)^2g(\alpha),\ f'''(x)\leftrightarrow(i\alpha)^3g(\alpha)</script><p>此方法可以用来 $求导\leftrightarrow乘积$</p>
+<script type="math/tex; mode=display">
+(3f'''(x)+2f''(x)+f(x))\rightarrow多项式</script><script type="math/tex; mode=display">
+f(x)\leftarrow g(\alpha)</script><p>如果采用</p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^\infty f(x)e^{-\alpha x}dx</script><p>则是拉普拉斯变换</p>
+<p><strong>傅里叶变换的正式表达</strong></p>
+<script type="math/tex; mode=display">
+\mathscr{F}(f(x))(\alpha)=g(\alpha)</script><script type="math/tex; mode=display">
+\mathscr{F}(g(\alpha))(x)=f(x)</script><p><strong>帕塞瓦尔定理</strong></p>
+<p>函数的模（在一定区间内的积分）= 所有系数的平方和的叠加； 能量没有损失</p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^\infty|g(\alpha)|^2d\alpha=2\pi\int_{-\infty}^\infty|f(x)|^2dx</script><p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\int_{-\infty}^\infty|g(\alpha)|^2d\alpha&=\int_{-\infty}^\infty g(\alpha)\bar{g}(\alpha)d\alpha\\
+&=\int_{-\infty}^\infty g(\alpha)(\int_{-\infty}^\infty\bar{f}(x)e^{idx}dx)d\alpha\\
+&=\int_{-\infty}^\infty \bar{f}(x)(\int_{-\infty}^\infty g(\alpha)e^{idx}d\alpha)dx\\
+&=2\pi\int_{-\infty}^\infty \bar{f}(x)f(x)dx
+\end{align}</script><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p><strong>线性性</strong></p>
+<p>有 F.T : $f\to g$, $s\to t$</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(\alpha f+\beta s)=\alpha g+\beta t</script><p><strong>求导特性</strong></p>
+<script type="math/tex; mode=display">
+f^{(n)}(x)\leftrightarrow(i\alpha)^ng(\alpha)</script><script type="math/tex; mode=display">
+(-ix)^nf(x)\leftrightarrow g^{(n)}(\alpha)</script><p><strong>卷积特性</strong></p>
+<p>有 F.T : $f\to g$, $s\to t$</p>
+<script type="math/tex; mode=display">
+f*s\leftrightarrow g*t</script><h4 id="不确定性关系-Uncertainty-Principle"><a href="#不确定性关系-Uncertainty-Principle" class="headerlink" title="不确定性关系 Uncertainty Principle"></a>不确定性关系 Uncertainty Principle</h4><script type="math/tex; mode=display">
+\Delta X\Delta P\ge\frac{\hbar}{2}</script><blockquote>
+<p>$G(引力), \hbar (普朗克常量\ 量子), c (时定)$</p>
+</blockquote>
+<p><strong>求正态分布分F.T</strong></p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{\sqrt{4\pi a}}e^{-\frac{x^2}{4a}}</script><script type="math/tex; mode=display">
+\mathscr{F}(f(x))=e^{-\alpha u^2}</script><blockquote>
+<p>用到解析函数在解析区域内围道积分=0</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+g(u)&=\int_{-\infty}^\infty f(x)e^{-iux}dx\\
+&=\frac{1}{\sqrt{4\pi a}}\int_{-\infty}^\infty e^{-\frac{x^2}{4a}}e^{-iux}dx\\
+&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}\int_{-\infty}^\infty e^{-(\frac{x^2}{4a}+iux+a(iu)^2)}dx\\
+&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}\int_{-\infty}^\infty e^{-(\frac{x}{2\sqrt{a}}+\sqrt{a}iu)^2}dx\\
+\end{align}</script><p><strong>Recall</strong></p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^\infty e^{-x^2}dx=I=\sqrt{\pi}</script><p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align}
+I^2&=\int_{-\infty}^\infty e^{-x^2}dx\int_{-\infty}^\infty e^{-y^2}dy\\
+&=\int\int_{-\infty}^\infty e^{-(x^2+y^2)}dx\ dy\\
+&=\int_0^{2\pi}\int_{-\infty}^\infty e^{-r^2}rdr\ d\theta\\
+&=\pi\int_{-\infty}^\infty e^{-r^2}dr^2\\
+&=\pi
+\end{align}</script><blockquote>
+<p>$\int\int_Df(x,y)dxdy=\int\int_Df(\rho Cos\theta,\rho Sin\theta)\rho d\rho d\theta$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\oint_{I-II}e^{-z^2}dZ=0</script><script type="math/tex; mode=display">
+II:\int_{-\infty}^\infty e^{-(\frac{x}{2\sqrt{a}}+\sqrt{a}iu)^2}dx=I:\int_{-\infty}^\infty e^{-(\frac{x}{2\sqrt{a}})^2}dx=2\sqrt{a}\int_{-\infty}^\infty e^{-x'^2}dx'=2\sqrt{a\pi}</script><blockquote>
+<p>从另一种角度解释了正态分布的形成</p>
+</blockquote>
+<p>所以</p>
+<script type="math/tex; mode=display">
+\begin{align}
+g(u)&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}·2\sqrt{a\pi}\\
+&=e^{-au^2}
+\end{align}</script><p>引入定理</p>
+<script type="math/tex; mode=display">
+\psi(x)=\frac{1}{\sqrt{4\pi a}}e^{-\frac{x^2}{4a}}</script><script type="math/tex; mode=display">
+P(k)=e^{-ak^2}</script><p>with $4a=2\sigma_x^2$, $\frac{1}{a}=2\sigma_k^2$; $\sigma_x\sigma_k=const.$ 位置越确定，动量越不确定，反之亦然. 两者只有一种能优化到一种程度.</p>
+<h2 id="傅里叶变换表"><a href="#傅里叶变换表" class="headerlink" title="傅里叶变换表"></a>傅里叶变换表</h2><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-5.jpg" srcset="/img/loading.gif" alt></p>
+<h2 id="Read-more"><a href="#Read-more" class="headerlink" title="Read more"></a>Read more</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析之掐死教程（完整版）</a></li>
+</ol>
+
             </div>
             <hr>
             <div>
