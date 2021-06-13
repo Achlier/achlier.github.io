@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      2.9k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      46
+      50
        分钟
     </span>
   
@@ -458,15 +458,15 @@ f(x)\leftarrow g(\alpha)</script><p>如果采用</p>
 &=\int_{-\infty}^\infty \bar{f}(x)(\int_{-\infty}^\infty g(\alpha)e^{idx}d\alpha)dx\\
 &=2\pi\int_{-\infty}^\infty \bar{f}(x)f(x)dx
 \end{align}</script><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p><strong>线性性</strong></p>
-<p>有 F.T : $f\to g$, $s\to t$</p>
+<p>有 F.T : $f\to g$, $t\to s$</p>
 <script type="math/tex; mode=display">
-\mathscr{F}(\alpha f+\beta s)=\alpha g+\beta t</script><p><strong>求导特性</strong></p>
+\mathscr{F}(\alpha f+\beta t)=\alpha g+\beta s</script><p><strong>求导特性</strong></p>
 <script type="math/tex; mode=display">
 f^{(n)}(x)\leftrightarrow(i\alpha)^ng(\alpha)</script><script type="math/tex; mode=display">
 (-ix)^nf(x)\leftrightarrow g^{(n)}(\alpha)</script><p><strong>卷积特性</strong></p>
-<p>有 F.T : $f\to g$, $s\to t$</p>
+<p>有 F.T : $f\to g$, $t\to s$</p>
 <script type="math/tex; mode=display">
-f*s\leftrightarrow g*t</script><h4 id="不确定性关系-Uncertainty-Principle"><a href="#不确定性关系-Uncertainty-Principle" class="headerlink" title="不确定性关系 Uncertainty Principle"></a>不确定性关系 Uncertainty Principle</h4><script type="math/tex; mode=display">
+f*t\leftrightarrow g*s</script><h4 id="不确定性关系-Uncertainty-Principle"><a href="#不确定性关系-Uncertainty-Principle" class="headerlink" title="不确定性关系 Uncertainty Principle"></a>不确定性关系 Uncertainty Principle</h4><script type="math/tex; mode=display">
 \Delta X\Delta P\ge\frac{\hbar}{2}</script><blockquote>
 <p>$G(引力), \hbar (普朗克常量\ 量子), c (时定)$</p>
 </blockquote>
@@ -509,7 +509,28 @@ g(u)&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}·2\sqrt{a\pi}\\
 <script type="math/tex; mode=display">
 \psi(x)=\frac{1}{\sqrt{4\pi a}}e^{-\frac{x^2}{4a}}</script><script type="math/tex; mode=display">
 P(k)=e^{-ak^2}</script><p>with $4a=2\sigma_x^2$, $\frac{1}{a}=2\sigma_k^2$; $\sigma_x\sigma_k=const.$ 位置越确定，动量越不确定，反之亦然. 两者只有一种能优化到一种程度.</p>
-<h2 id="傅里叶变换表"><a href="#傅里叶变换表" class="headerlink" title="傅里叶变换表"></a>傅里叶变换表</h2><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-5.jpg" srcset="/img/loading.gif" alt></p>
+<h4 id="解热传导公式"><a href="#解热传导公式" class="headerlink" title="解热传导公式"></a>解热传导公式</h4><blockquote>
+<p>此步骤可以套入由BS-PDE推导的BS model</p>
+</blockquote>
+<p>初始热温分布 $f(x)$, 目标函数 $h(x,t)$ 在 t 时间 x 位置的温度.</p>
+<p><strong>热传导方程</strong></p>
+<script type="math/tex; mode=display">
+\frac{\partial h(x,t)}{\partial t}=k\frac{\partial^2 h(x,t)}{\partial x^2}</script><p>在 t 时增加的温度，是两边温差的差乘以一个系数</p>
+<p>选择 x 消去，用 F.T $x\to u$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{F}(\frac{\partial h}{\partial t})&=\mathscr{F}(k\frac{\partial^2 h}{\partial x^2})\\
+\frac{\partial}{\partial t}[\mathscr{F}(h)]&=k(iu)^2\mathscr{F}(h)
+\end{align}</script><p>因为有 $\frac{d}{dt}W=aW$, 判断 $\mathscr{F}(h)$ 为指数形式</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(h)=c(u)e^{-ku^2t}</script><p>由卷积特性，若 F.T : $f\to g$, $t\to s$, 有$f<em>t\leftrightarrow g</em>s$</p>
+<p>因为存在初态 t=0 时，$h(x,0)=f(x)$</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(f(x))=c(u)e^{-ku^20}=c(u)</script><p>依照正态分布分F.T得出</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(\frac{1}{\sqrt{4\pi kt}}e^{-\frac{x^2}{4kt}})=e^{-ku^2t}</script><p>总结</p>
+<script type="math/tex; mode=display">
+h(x,t)=\int_{-\infty}^\infty f(L)\frac{1}{\sqrt{4\pi kt}}e^{-\frac{(x-L)^2}{4kt}}dL</script><h2 id="傅里叶变换表"><a href="#傅里叶变换表" class="headerlink" title="傅里叶变换表"></a>傅里叶变换表</h2><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/pic1-5.jpg" srcset="/img/loading.gif" alt></p>
 <h2 id="Read-more"><a href="#Read-more" class="headerlink" title="Read more"></a>Read more</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析之掐死教程（完整版）</a></li>
 </ol>
