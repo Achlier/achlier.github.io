@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.6k 字
+      9.5k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      166
+      182
        分钟
     </span>
   
@@ -1044,7 +1044,7 @@ h^*=arg\min_{h}J(\sigma^{(0)}+h\lambda^{(0)})</script><ul>
 <li>Chapter 3 Section 3.1, Section 3.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
 <li>Chapter 6 Section 6.1 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
 </ul>
-<h2 id="Unit-3-1：Introduction"><a href="#Unit-3-1：Introduction" class="headerlink" title="Unit 3.1：Introduction"></a>Unit 3.1：Introduction</h2><p>Monte Carlo methods are preferable in high dimensions as their accuracy is independent of dimensionality</p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Monte Carlo methods are preferable in high dimensions as their accuracy is independent of dimensionality</p>
 <p>If f is integrable over [0, 1], then by strong <strong>law of large numbers</strong> (SLLN)</p>
 <blockquote>
 <p>大数定律的定义是，当随机事件发生的次数足够多时，随机事件发生的频率趋近于预期的概率。可以简单理解为样本数量越多，其平概率越接近于期望值。大数定律的条件：1、独立重复事件；2、重复次数足够多。</p>
@@ -1082,7 +1082,79 @@ s_C=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(C_i-\hat C_N)^2}</script><ul>
 </ul>
 <h4 id="Central-limit-theorem-CLT"><a href="#Central-limit-theorem-CLT" class="headerlink" title="Central limit theorem (CLT)"></a>Central limit theorem (CLT)</h4><p>With unbiased estimator $\hat C_N=\frac1N\sum_{i=1}^NC_i$ for iid samples $C_i$, $\mathbb{E}[C_i]=C$ and $Var(C_i)=\sigma_C^2&lt;\infty$</p>
 <script type="math/tex; mode=display">
-\frac{\hat C_N-C}{\sigma_C/\sqrt{N}}\sim N(0,1)</script>
+\frac{\hat C_N-C}{\sigma_C/\sqrt{N}}\sim N(0,1)</script><ul>
+<li>$\sigma_C$ can only be estimated</li>
+</ul>
+<p>Suppose it takes $\tau$ time to generate $C_i$. Given computational budget $\Gamma$,  can generate $\Gamma/\tau$ samples and create estimator $\hat C_{\Gamma/\tau}$</p>
+<ul>
+<li>$\sqrt{\Gamma/\tau}(\hat C_{\Gamma/\tau}-C)\sim N(0,\sigma_C^2)$</li>
+<li><p>as $\Gamma\to\infty$, $\sqrt{\Gamma}(\hat C_{\Gamma/\tau}-C)\sim N(0,\sigma_C^2\tau)$</p>
+</li>
+<li><p>Given a choice, we should use an estimator with lower value of $\sigma_C^2\tau$</p>
+</li>
+</ul>
+<h4 id="Mean-Square-Error"><a href="#Mean-Square-Error" class="headerlink" title="Mean Square Error"></a>Mean Square Error</h4><p>For an estimator $\hat\alpha$ of true value $\alpha$</p>
+<script type="math/tex; mode=display">
+MSE(\hat\alpha)=\mathbb{E}[(\hat\alpha-\alpha)^2]=(\mathbb{E}\hat\alpha-\alpha)^2+\mathbb{E}[(\hat\alpha-\mathbb{E}\alpha)^2]=Bias^2(\hat\alpha)+Variance(\hat\alpha)</script><p>Landau’s notation: For parameter $h\to 0$</p>
+<script type="math/tex; mode=display">
+f(h)=\mathscr{O}(h^n)\Rightarrow |f(h)|\leq Mh^n</script><script type="math/tex; mode=display">
+f(h)=o(h^n)\Rightarrow \lim_{h\to 0}f(h)/h^n \to 0</script><h3 id="Euler-Method"><a href="#Euler-Method" class="headerlink" title="Euler Method"></a>Euler Method</h3><p>Consider an ordinary differential equation (ODE) in time interval [0, 1]</p>
+<script type="math/tex; mode=display">
+\dot x(t)=b(t,x(t)),\ x(0)=x_0</script><p>The above ODE can be solved approximately using an <strong>Euler scheme</strong></p>
+<script type="math/tex; mode=display">
+x_0^h=x_0,\ x_n^h=x_{n-1}^h+b(t_{n-1}^h,x_{n-1}^h)h</script><p>where</p>
+<script type="math/tex; mode=display">
+x_n^h:=x^h(t_n^h),\ t_n^h:=nh,\ h=\frac1N</script><ul>
+<li>Error criterion $e(h):=|x(1)-x^h(1)|$</li>
+<li>Under suitable assumptions $e(h)=\mathscr{O}(h)=\mathscr{O}(1/N)$</li>
+</ul>
+<blockquote>
+<p>更多方法可参考数值分析的部分</p>
+</blockquote>
+<h4 id="Euler-Discretisation-for-BM"><a href="#Euler-Discretisation-for-BM" class="headerlink" title="Euler Discretisation for BM"></a>Euler Discretisation for BM</h4><p>with $h=\frac TN,t_n^h:=nh,\Delta W_n^h:=W(t_n^h)-W(t_{n-1}^h)$,  the Euler scheme for BM is given as</p>
+<script type="math/tex; mode=display">
+W_n^h:=W(t_n^h)=\Delta W_1^h+...+\Delta W_n^h</script><p>Note that $\Delta W_n^h$ are iid increments which are normally distributed $N(0,h)$</p>
+<h4 id="Euler-Method-for-SDEs"><a href="#Euler-Method-for-SDEs" class="headerlink" title="Euler Method for SDEs"></a>Euler Method for SDEs</h4><p>The Euler scheme for $X(t)$ is given as $X^h(0)=x_0$</p>
+<script type="math/tex; mode=display">
+X_n^h:=X(t_n^h)=X_{n-1}^h+b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p>If we wish to price options based on <strong>the path of</strong> the SDE, for example, Asian option with price</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[e^{-rT}(\frac1M\sum_{j=1}^MS(t_j)-K)^+]</script><p>we need a good approximation of the <strong>sample path</strong> of $X$ which leads to the error criterion (<strong>strong error</strong>)</p>
+<script type="math/tex; mode=display">
+e_s(h):=\mathbb E|X(T)-X_N^h(T)|</script><p>If we wish to price options based only on <strong>the terminal value</strong> of the SDE, for example, European option with price</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[e^{-rT}(S(T)-K)^+]</script><p>we need a good approximation of the distribution of $X(T)$ which leads to the error criterion (<strong>weak error</strong>)</p>
+<script type="math/tex; mode=display">
+e_w(h):=|\mathbb E_gX(T)-\mathbb E_gX_N^h(T)|</script><p>for smooth functions g</p>
+<p>We say that $X^h$ converges to $X$ with order $\beta &gt; 0$</p>
+<ul>
+<li>strongly with order $\beta$ if $e_s(h)=\mathscr O(h^\beta)$</li>
+<li>weakly with order $\beta$ if $e_w(h)=\mathscr O(h^\beta)$</li>
+</ul>
+<h3 id="Milstein-Scheme"><a href="#Milstein-Scheme" class="headerlink" title="Milstein Scheme"></a>Milstein Scheme</h3><p>Consider the SDE</p>
+<script type="math/tex; mode=display">
+X(t_{n-1}+h)-X(t_{n-1})=\int_{t_{n-1}}^{t_{n-1}+h}b(s,X(s))ds+\int_{t_{n-1}}^{t_{n-1}+h}\sigma(s,X(s))dW(s)</script><p>and its Euler scheme approximation</p>
+<script type="math/tex; mode=display">
+X_n^h-X_{n-1}^h=b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p>Thus, the Euler scheme approximates</p>
+<script type="math/tex; mode=display">
+\int_{t_{n-1}}^{t_{n-1}+h}\sigma(s,X(s))dW(s)\sim\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p><strong>Milstein scheme is an improvement on the Euler scheme</strong>. The main idea is to approximate the stochastic integral in a better way</p>
+<p>Let us estimate the error in Euler scheme by applying Itô’s formula on $\sigma(t,X(t))$. Suppose $t_{n-1}=0$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(\sigma(s,X(s)))&=\partial_t\sigma ds+\partial_x\sigma dX(s)+\frac12\partial_x^2\sigma dX(s)dX(s)\\
+&=\partial_t\sigma ds+\partial_x\sigma (bds+\sigma dW(s))+\frac12\partial_x^2\sigma^3 ds
+\end{align}</script><p>Then</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^h\sigma(t,X(t))dW(t)-\sigma(0,X(0))W(h)\\
+=&\int_0^h(\sigma(t,X(t))-\sigma(0,X(0)))dW(t)
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+\int_0^h\int_0^t[\partial_t\sigma+\partial_x\sigma b+\frac12\partial_x^2\sigma^3]dsdW(t)+\int_0^h\int_0^t\partial_x\sigma^2dW(s)dW(t)\\
+\sim\mathscr{O}(h^{3/2})+\partial_x\sigma(0,X(0))\sigma(0,X(0))\int_0^h\int_0^tdW(s)dW(t)
+\end{align}</script><script type="math/tex; mode=display">
+\int_0^h\int_0^tdW(s)dW(t)=\int_0^hW(t)dW(t)=\frac12(W^2(h)-h)</script><p>Thus, the Milstein scheme is given as $X^h(0)=x_0$</p>
+<script type="math/tex; mode=display">
+X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma^2((\Delta W_n^h)^2-h)</script>
             </div>
             <hr>
             <div>
