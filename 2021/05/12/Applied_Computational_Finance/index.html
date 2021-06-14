@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.1k 字
+      8.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      157
+      166
        分钟
     </span>
   
@@ -1039,7 +1039,50 @@ h^*=arg\min_{h}J(\sigma^{(0)}+h\lambda^{(0)})</script><ul>
 </ul>
 <p>The local volatility function is discretised using different methods, for example, finite differences or trinomial tree model</p>
 <p>The regularisation using $||\nabla\sigma||$ is the same in regions of the surface where the influence of volatility on the price is very high and in the regions where it is very small</p>
-
+<h1 id="Unit-3：Monte-Carlo-methods"><a href="#Unit-3：Monte-Carlo-methods" class="headerlink" title="Unit 3：Monte Carlo methods"></a>Unit 3：Monte Carlo methods</h1><p>Readings for the module on Monte Carlo Methods</p>
+<ul>
+<li>Chapter 3 Section 3.1, Section 3.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
+<li>Chapter 6 Section 6.1 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
+</ul>
+<h2 id="Unit-3-1：Introduction"><a href="#Unit-3-1：Introduction" class="headerlink" title="Unit 3.1：Introduction"></a>Unit 3.1：Introduction</h2><p>Monte Carlo methods are preferable in high dimensions as their accuracy is independent of dimensionality</p>
+<p>If f is integrable over [0, 1], then by strong <strong>law of large numbers</strong> (SLLN)</p>
+<blockquote>
+<p>大数定律的定义是，当随机事件发生的次数足够多时，随机事件发生的频率趋近于预期的概率。可以简单理解为样本数量越多，其平概率越接近于期望值。大数定律的条件：1、独立重复事件；2、重复次数足够多。</p>
+</blockquote>
+<p>for</p>
+<script type="math/tex; mode=display">
+\alpha=\int_0^1f(x)dx</script><script type="math/tex; mode=display">
+\hat{\alpha}_N=\frac{1}{N}\sum_{i=1}^Nf(U_i),U_i\sim U</script><script type="math/tex; mode=display">
+\hat{\alpha}_N\to \alpha\ w.p.\ 1\ as\ N\to\infty</script><blockquote>
+<p>w.p. 1 (with probability 1)</p>
+</blockquote>
+<p>If f is also square integrable, for</p>
+<script type="math/tex; mode=display">
+\sigma_f^2=\int_0^1(f(x)-\alpha)^2dx</script><p><strong>the error in the estimator</strong> $\hat\alpha_N$ is approximately normally distributed with mean 0 and standard deviation $\frac{\sigma_f}{\sqrt{N}}$</p>
+<p>Typically $\sigma_f$ is unknown and is estimated as</p>
+<script type="math/tex; mode=display">
+s_f=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(f(U_i)-\hat\alpha_N)^2}</script><h3 id="Monte-Carlo-Estimation-for-European-Option"><a href="#Monte-Carlo-Estimation-for-European-Option" class="headerlink" title="Monte Carlo Estimation for European Option"></a>Monte Carlo Estimation for European Option</h3><p>Monte Carlo samples $S_i(T)$ of $S(T)$ can be generated as</p>
+<script type="math/tex; mode=display">
+S_i(T)=S_0exp((r-\frac{1}{2}\sigma^2)T+\sigma\sqrt{T}Z_i)</script><p>where $Z_i\sim N(0,1)$</p>
+<p>Call price estimator is given as</p>
+<script type="math/tex; mode=display">
+\hat C_N=\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+</script><p>The estimator $\hat C_N$ is unbiased in the sense that</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\hat C_N]=\mathbb{E}[\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+]=\mathbb{E}[\frac1N\sum_{i=1}^NC_i]=C(T,K)</script><h4 id="Confidence-Interval"><a href="#Confidence-Interval" class="headerlink" title="Confidence Interval"></a>Confidence Interval</h4><p>Using estimator $\hat C_N$ makes sense with a confidence interval</p>
+<script type="math/tex; mode=display">
+[\hat C_N-z_{\delta/2}\frac{s_C}{\sqrt{N}},\hat C_N+z_{\delta/2}\frac{s_C}{\sqrt{N}}]</script><p>where</p>
+<script type="math/tex; mode=display">
+s_C=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(C_i-\hat C_N)^2}</script><ul>
+<li>$2z_{\delta/2}\frac{s_C}{\sqrt{N}}$ is called the width of the confidence interval</li>
+<li>$z_\delta$ denotes the $1-\delta$ quantile of the standard normal distribution<ul>
+<li>$\mathbb{P}(Z\leq z_\delta)=1-\delta$ for $Z\sim N(0,1)$</li>
+<li>For $\delta = 0.05, z_\delta/2 \approx 1.96$, we get a 95% confidence interval</li>
+</ul>
+</li>
+</ul>
+<h4 id="Central-limit-theorem-CLT"><a href="#Central-limit-theorem-CLT" class="headerlink" title="Central limit theorem (CLT)"></a>Central limit theorem (CLT)</h4><p>With unbiased estimator $\hat C_N=\frac1N\sum_{i=1}^NC_i$ for iid samples $C_i$, $\mathbb{E}[C_i]=C$ and $Var(C_i)=\sigma_C^2&lt;\infty$</p>
+<script type="math/tex; mode=display">
+\frac{\hat C_N-C}{\sigma_C/\sqrt{N}}\sim N(0,1)</script>
             </div>
             <hr>
             <div>
