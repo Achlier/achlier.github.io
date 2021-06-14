@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.5k 字
+      10.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      182
+      196
        分钟
     </span>
   
@@ -1039,27 +1039,27 @@ h^*=arg\min_{h}J(\sigma^{(0)}+h\lambda^{(0)})</script><ul>
 </ul>
 <p>The local volatility function is discretised using different methods, for example, finite differences or trinomial tree model</p>
 <p>The regularisation using $||\nabla\sigma||$ is the same in regions of the surface where the influence of volatility on the price is very high and in the regions where it is very small</p>
-<h1 id="Unit-3：Monte-Carlo-methods"><a href="#Unit-3：Monte-Carlo-methods" class="headerlink" title="Unit 3：Monte Carlo methods"></a>Unit 3：Monte Carlo methods</h1><p>Readings for the module on Monte Carlo Methods</p>
+<h1 id="Unit-3-1：Monte-Carlo-methods"><a href="#Unit-3-1：Monte-Carlo-methods" class="headerlink" title="Unit 3.1：Monte Carlo methods"></a>Unit 3.1：Monte Carlo methods</h1><p>Readings for the module on Monte Carlo Methods</p>
 <ul>
 <li>Chapter 3 Section 3.1, Section 3.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
 <li>Chapter 6 Section 6.1 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
 </ul>
-<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Monte Carlo methods are preferable in high dimensions as their accuracy is independent of dimensionality</p>
+<h2 id="Unit-3-1-1：Introduction"><a href="#Unit-3-1-1：Introduction" class="headerlink" title="Unit 3.1.1：Introduction"></a>Unit 3.1.1：Introduction</h2><p>Monte Carlo methods are preferable in high dimensions as their accuracy is independent of dimensionality</p>
 <p>If f is integrable over [0, 1], then by strong <strong>law of large numbers</strong> (SLLN)</p>
 <blockquote>
 <p>大数定律的定义是，当随机事件发生的次数足够多时，随机事件发生的频率趋近于预期的概率。可以简单理解为样本数量越多，其平概率越接近于期望值。大数定律的条件：1、独立重复事件；2、重复次数足够多。</p>
 </blockquote>
 <p>for</p>
 <script type="math/tex; mode=display">
-\alpha=\int_0^1f(x)dx</script><script type="math/tex; mode=display">
+\alpha=\int_0^1f(x)dx=\mathbb{E}[f(U)]</script><script type="math/tex; mode=display">
 \hat{\alpha}_N=\frac{1}{N}\sum_{i=1}^Nf(U_i),U_i\sim U</script><script type="math/tex; mode=display">
 \hat{\alpha}_N\to \alpha\ w.p.\ 1\ as\ N\to\infty</script><blockquote>
 <p>w.p. 1 (with probability 1)</p>
 </blockquote>
 <p>If f is also square integrable, for</p>
 <script type="math/tex; mode=display">
-\sigma_f^2=\int_0^1(f(x)-\alpha)^2dx</script><p><strong>the error in the estimator</strong> $\hat\alpha_N$ is approximately normally distributed with mean 0 and standard deviation $\frac{\sigma_f}{\sqrt{N}}$</p>
-<p>Typically $\sigma_f$ is unknown and is estimated as</p>
+\sigma_f^2=\int_0^1(f(x)-\alpha)^2dx=\mathbb{E}[(f(U)-\alpha)^2]</script><p><strong>the error in the estimator</strong> $\hat\alpha_N$ is approximately normally distributed with mean 0 and standard deviation $\frac{\sigma_f}{\sqrt{N}}$</p>
+<p>Typically $\sigma_f$ is <strong>unknown</strong> and is estimated as</p>
 <script type="math/tex; mode=display">
 s_f=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(f(U_i)-\hat\alpha_N)^2}</script><h3 id="Monte-Carlo-Estimation-for-European-Option"><a href="#Monte-Carlo-Estimation-for-European-Option" class="headerlink" title="Monte Carlo Estimation for European Option"></a>Monte Carlo Estimation for European Option</h3><p>Monte Carlo samples $S_i(T)$ of $S(T)$ can be generated as</p>
 <script type="math/tex; mode=display">
@@ -1068,7 +1068,7 @@ S_i(T)=S_0exp((r-\frac{1}{2}\sigma^2)T+\sigma\sqrt{T}Z_i)</script><p>where $Z_i\
 <script type="math/tex; mode=display">
 \hat C_N=\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+</script><p>The estimator $\hat C_N$ is unbiased in the sense that</p>
 <script type="math/tex; mode=display">
-\mathbb{E}[\hat C_N]=\mathbb{E}[\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+]=\mathbb{E}[\frac1N\sum_{i=1}^NC_i]=C(T,K)</script><h4 id="Confidence-Interval"><a href="#Confidence-Interval" class="headerlink" title="Confidence Interval"></a>Confidence Interval</h4><p>Using estimator $\hat C_N$ makes sense with a confidence interval</p>
+\mathbb{E}[\hat C_N]=\mathbb{E}[\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+]=\mathbb{E}[\frac1N\sum_{i=1}^NC_i]=C(T,K)</script><h2 id="Unit-3-1-2：Efficiency-of-Monte-Carlo-methods"><a href="#Unit-3-1-2：Efficiency-of-Monte-Carlo-methods" class="headerlink" title="Unit 3.1.2：Efficiency of Monte Carlo methods"></a>Unit 3.1.2：Efficiency of Monte Carlo methods</h2><h4 id="Confidence-Interval"><a href="#Confidence-Interval" class="headerlink" title="Confidence Interval"></a>Confidence Interval</h4><p>Using estimator $\hat C_N$ makes sense with a confidence interval</p>
 <script type="math/tex; mode=display">
 [\hat C_N-z_{\delta/2}\frac{s_C}{\sqrt{N}},\hat C_N+z_{\delta/2}\frac{s_C}{\sqrt{N}}]</script><p>where</p>
 <script type="math/tex; mode=display">
@@ -1095,12 +1095,19 @@ s_C=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(C_i-\hat C_N)^2}</script><ul>
 </ul>
 <h4 id="Mean-Square-Error"><a href="#Mean-Square-Error" class="headerlink" title="Mean Square Error"></a>Mean Square Error</h4><p>For an estimator $\hat\alpha$ of true value $\alpha$</p>
 <script type="math/tex; mode=display">
-MSE(\hat\alpha)=\mathbb{E}[(\hat\alpha-\alpha)^2]=(\mathbb{E}\hat\alpha-\alpha)^2+\mathbb{E}[(\hat\alpha-\mathbb{E}\alpha)^2]=Bias^2(\hat\alpha)+Variance(\hat\alpha)</script><p>Landau’s notation: For parameter $h\to 0$</p>
+MSE(\hat\alpha)=\mathbb{E}[(\hat\alpha-\alpha)^2]=(\mathbb{E}\hat\alpha-\alpha)^2+\mathbb{E}[(\hat\alpha-\mathbb{E}\hat\alpha)^2]=Bias^2(\hat\alpha)+Variance(\hat\alpha)</script><blockquote>
+<p>两边可以尝试配平</p>
+</blockquote>
+<p>Landau’s notation: For parameter $h\to 0$</p>
 <script type="math/tex; mode=display">
 f(h)=\mathscr{O}(h^n)\Rightarrow |f(h)|\leq Mh^n</script><script type="math/tex; mode=display">
-f(h)=o(h^n)\Rightarrow \lim_{h\to 0}f(h)/h^n \to 0</script><h3 id="Euler-Method"><a href="#Euler-Method" class="headerlink" title="Euler Method"></a>Euler Method</h3><p>Consider an ordinary differential equation (ODE) in time interval [0, 1]</p>
+f(h)=o(h^n)\Rightarrow \lim_{h\to 0}f(h)/h^n \to 0</script><blockquote>
+<p>类似于算法复杂度，大 O 是上界，小 o 是下届</p>
+</blockquote>
+<h2 id="Unit-3-1-3：Euler-Method"><a href="#Unit-3-1-3：Euler-Method" class="headerlink" title="Unit 3.1.3：Euler Method"></a>Unit 3.1.3：Euler Method</h2><p>Consider an ordinary differential equation (ODE) in time interval [0, 1]</p>
 <script type="math/tex; mode=display">
-\dot x(t)=b(t,x(t)),\ x(0)=x_0</script><p>The above ODE can be solved approximately using an <strong>Euler scheme</strong></p>
+\frac{dX(t)}{dt}=\dot x(t)=b(t,x(t)),\ x(0)=x_0</script><p>Divide interval into $N$, $h=1/N$ </p>
+<p>The above ODE can be solved approximately using an <strong>Euler scheme</strong></p>
 <script type="math/tex; mode=display">
 x_0^h=x_0,\ x_n^h=x_{n-1}^h+b(t_{n-1}^h,x_{n-1}^h)h</script><p>where</p>
 <script type="math/tex; mode=display">
@@ -1109,7 +1116,7 @@ x_n^h:=x^h(t_n^h),\ t_n^h:=nh,\ h=\frac1N</script><ul>
 <li>Under suitable assumptions $e(h)=\mathscr{O}(h)=\mathscr{O}(1/N)$</li>
 </ul>
 <blockquote>
-<p>更多方法可参考数值分析的部分</p>
+<p>Euler Method更多解释可参考数值分析的部分</p>
 </blockquote>
 <h4 id="Euler-Discretisation-for-BM"><a href="#Euler-Discretisation-for-BM" class="headerlink" title="Euler Discretisation for BM"></a>Euler Discretisation for BM</h4><p>with $h=\frac TN,t_n^h:=nh,\Delta W_n^h:=W(t_n^h)-W(t_{n-1}^h)$,  the Euler scheme for BM is given as</p>
 <script type="math/tex; mode=display">
@@ -1125,12 +1132,16 @@ e_s(h):=\mathbb E|X(T)-X_N^h(T)|</script><p>If we wish to price options based on
 \mathbb{E}[e^{-rT}(S(T)-K)^+]</script><p>we need a good approximation of the distribution of $X(T)$ which leads to the error criterion (<strong>weak error</strong>)</p>
 <script type="math/tex; mode=display">
 e_w(h):=|\mathbb E_gX(T)-\mathbb E_gX_N^h(T)|</script><p>for smooth functions g</p>
+<blockquote>
+<p>光滑函数（smooth function）:在其定义域内无穷阶数连续可导的函数</p>
+</blockquote>
 <p>We say that $X^h$ converges to $X$ with order $\beta &gt; 0$</p>
 <ul>
 <li>strongly with order $\beta$ if $e_s(h)=\mathscr O(h^\beta)$</li>
 <li>weakly with order $\beta$ if $e_w(h)=\mathscr O(h^\beta)$</li>
 </ul>
-<h3 id="Milstein-Scheme"><a href="#Milstein-Scheme" class="headerlink" title="Milstein Scheme"></a>Milstein Scheme</h3><p>Consider the SDE</p>
+<p>Under some regularity conditions on functions $b$ and $\sigma$, Euler scheme converges strongly with order $\beta = 1/2$ and weakly with order $\beta = 1$</p>
+<h2 id="Unit-3-1-4：Milstein-Scheme"><a href="#Unit-3-1-4：Milstein-Scheme" class="headerlink" title="Unit 3.1.4：Milstein Scheme"></a>Unit 3.1.4：Milstein Scheme</h2><p>Consider the SDE</p>
 <script type="math/tex; mode=display">
 X(t_{n-1}+h)-X(t_{n-1})=\int_{t_{n-1}}^{t_{n-1}+h}b(s,X(s))ds+\int_{t_{n-1}}^{t_{n-1}+h}\sigma(s,X(s))dW(s)</script><p>and its Euler scheme approximation</p>
 <script type="math/tex; mode=display">
@@ -1147,14 +1158,112 @@ d(\sigma(s,X(s)))&=\partial_t\sigma ds+\partial_x\sigma dX(s)+\frac12\partial_x^
 \begin{align}
 &\int_0^h\sigma(t,X(t))dW(t)-\sigma(0,X(0))W(h)\\
 =&\int_0^h(\sigma(t,X(t))-\sigma(0,X(0)))dW(t)
-\end{align}</script><script type="math/tex; mode=display">
+\end{align}</script><p>Combined with</p>
+<script type="math/tex; mode=display">
+\int_0^hd(\sigma(s,X(s)))=\sigma(t,X(t))-\sigma(0,X(0))</script><p>So we have</p>
+<script type="math/tex; mode=display">
 \begin{align}
 \int_0^h\int_0^t[\partial_t\sigma+\partial_x\sigma b+\frac12\partial_x^2\sigma^3]dsdW(t)+\int_0^h\int_0^t\partial_x\sigma^2dW(s)dW(t)\\
 \sim\mathscr{O}(h^{3/2})+\partial_x\sigma(0,X(0))\sigma(0,X(0))\int_0^h\int_0^tdW(s)dW(t)
-\end{align}</script><script type="math/tex; mode=display">
-\int_0^h\int_0^tdW(s)dW(t)=\int_0^hW(t)dW(t)=\frac12(W^2(h)-h)</script><p>Thus, the Milstein scheme is given as $X^h(0)=x_0$</p>
+\end{align}</script><blockquote>
+<p>$W(h)\sim o(h^{1/2})$，$\sigma$ 采用 0 点时</p>
+</blockquote>
 <script type="math/tex; mode=display">
-X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma^2((\Delta W_n^h)^2-h)</script>
+\int_0^h\int_0^tdW(s)dW(t)=\int_0^hW(t)dW(t)=\frac12(W^2(h)-h)</script><blockquote>
+<p>这一步过程看 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/11/Ito%E7%A7%AF%E5%88%86%E4%B8%8E%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E3%80%90%E7%AC%94%E8%AE%B0_%E7%9F%A5%E4%B9%8E%E3%80%91/">定义</a></p>
+</blockquote>
+<p>Thus, the Milstein scheme is given as $X^h(0)=x_0$</p>
+<script type="math/tex; mode=display">
+X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma^2((\Delta W_n^h)^2-h)</script><h1 id="Unit-3-2：Variance-reduction-methods"><a href="#Unit-3-2：Variance-reduction-methods" class="headerlink" title="Unit 3.2：Variance reduction methods"></a>Unit 3.2：Variance reduction methods</h1><p>Readings for the module on variance reduction methods</p>
+<ul>
+<li>Chapter 4 Section 4.1, 4.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
+</ul>
+<h2 id="Unit-3-2-1：Control-variate-method"><a href="#Unit-3-2-1：Control-variate-method" class="headerlink" title="Unit 3.2.1：Control variate method"></a>Unit 3.2.1：Control variate method</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>In financial markets and the insurance industry, most quantities of interest can be expressed as</p>
+<script type="math/tex; mode=display">
+\alpha=\mathbb{E}[\psi(x)],\ p=\mathbb{P}(x\in A)</script><p>Suppose the goal is to compute $p$. Then, use the Monte Carlo method:</p>
+<ul>
+<li><p>Generate $(X_i)_{1\leq i\leq N}$ i.i.d. samples of $X$ &amp; set</p>
+<script type="math/tex; mode=display">
+\hat p_N:=(N)^{-1}\sum_{i=1}^N1_{X_i\in A}</script></li>
+<li><p>By the Central Limit Theorem (CLT)</p>
+<script type="math/tex; mode=display">
+\sqrt{N}(\hat p_N-\mathbb{P}(x\in A))\Rightarrow N(0,p(1-p))</script></li>
+<li><p>95% confidence interval</p>
+<script type="math/tex; mode=display">
+(\hat p_N-1.96\sqrt{\frac{p(1-p)}{N}},\hat p_N+1.96\sqrt{\frac{p(1-p)}{N}})</script></li>
+</ul>
+<p>The <strong>relative error</strong> is given as</p>
+<script type="math/tex; mode=display">
+\frac{Estimator\ error}{True\ Value}=\sqrt{p(1-p)}/(p\sqrt{N})\approx(\sqrt{Np})^{-1}</script><p>which is large for small value of $p$</p>
+<p>Thus, to estimate small $p$, using the crude Monte Carlo method, we may need a <strong>large number of samples</strong> $N$</p>
+<p>As discussed in the last lecture, the estimator error is given by $s_p/\sqrt{N}$ where $s_p$ is the estimate of standard deviation of estimator $\hat p_N$</p>
+<p>The aim of <strong>variance reduction methods</strong> is to produce an alternative estimator $\hat p_N^{var}$ such that $\mathbb{E}[\hat p_N^{var}]=p$ but with <strong>smaller variance</strong> than estimator $\hat p_N$</p>
+<h3 id="Control-Variates"><a href="#Control-Variates" class="headerlink" title="Control Variates"></a>Control Variates</h3><p>Let $Y_1, Y_2, . . . , Y_N$ be i.i.d. outputs from $N$ replications of a simulation. For example, $Y_i$ could be the discounted payoff of a derivative security on the $i$th simulated path.</p>
+<p>Suppose that our aim is to compute $\alpha=\mathbb{E}[Y_i]$ and the crude Monte Carlo estimator $\alpha_N:=\sum_{i=1}^N\frac{Y_i}N$ is unbiased and converges with probability (w.p.) 1 as $N\to\infty$</p>
+<p>Suppose on each replication, we generate another output $X_i$ along with $Y_i$</p>
+<p>Suppose that $(X_i,Y_i)$ are i.i.d. $i=1,…,N$ and that $\alpha_0=\mathbb{E}[X_i]$ is known</p>
+<p>Furthermore, denote $(X, Y)$ as a generic pair of $(X_i,Y_i)$</p>
+<p>For fixed $b$, calculate</p>
+<script type="math/tex; mode=display">
+Y_i(b):=Y_i-b(X_i-\alpha_0)</script><p>and compute the sample mean</p>
+<script type="math/tex; mode=display">
+\hat\alpha_N(b):=\hat\alpha_N-b(N_{-1}\sum_{i=1}^NX_i-\alpha_0)=\frac1N\sum_{i=1}^NY_i(b)</script><p>$\hat\alpha_N(b)$ is a <strong>control variate estimator</strong> and the observable error $N^{-1}\sum_{i=1}^NX_i-\alpha_0$ acts as a control in estimating $\alpha$</p>
+<p>The control variate estimator is <strong>unbiased</strong></p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\hat\alpha_N(b)]=\frac1N\sum_{i=1}^N\mathbb{E}[Y_i(b)]=\alpha</script><p>$\hat\alpha_N(b)$ is also <strong>strongly consistent</strong></p>
+<p>Each $Y_i(b)$ has variance which is equal to</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var(Y_i(b))&=Var(Y_i-b(X_i-\alpha_0))\\
+&=\sigma_Y^2-2b\sigma_X\sigma_Y\rho_{XY}+b^2\sigma_X^2\equiv\sigma^2(b)
+\end{align}</script><script type="math/tex; mode=display">
+\sigma_X^2=Var(X),\sigma_Y^2=Var(Y),\rho_{XY}=Correl(X,Y)</script><script type="math/tex; mode=display">
+Var(\hat\alpha_N(b))=\frac{\sigma^2(b)}N,Var(\hat\alpha_N)=\frac{\sigma^2_Y}N</script><p>$\hat\alpha_N(b)$ <strong>provides variance reduction</strong> if</p>
+<script type="math/tex; mode=display">
+b\sigma_X<2\sigma_Y\rho_{XY}</script><p>Optimal coefficient $b^<em>$ <em>*minimizes</em></em> $\sigma^2(b)$ and is given as</p>
+<script type="math/tex; mode=display">
+b^*=\frac{\sigma_Y\rho_{XY}}{\sigma_X}=\frac{Cov(X,Y)}{Var(X)}</script><p>The ratio of the variance of optimally controlled estimator to that of uncontrolled</p>
+<script type="math/tex; mode=display">
+\frac{Var(\hat\alpha_N(b^*))}{Var(\hat\alpha_N)}=1-\rho_{XY}^2</script><p>The <strong>variance reduction factor</strong> is given as</p>
+<script type="math/tex; mode=display">
+\frac{Var(\hat\alpha_N)}{Var(\hat\alpha_N(b^*))}=\frac{1}{1-\rho_{XY}^2}</script><h3 id="Computing-b"><a href="#Computing-b" class="headerlink" title="Computing $b^*$"></a>Computing $b^*$</h3><p>As $\alpha=\mathbb E[Y]$ is unknown, in practice, $\sigma_Y$ or $\rho_{XY}$ are also unknown</p>
+<p>Estimate $b^*$ as</p>
+<script type="math/tex; mode=display">
+\hat b_N=\frac{\sum_{i=1}^N(X_i-\frac{\sum_{j=1}^NX_j}N)(Y_i-\frac{\sum_{j=1}^NY_j}N)}{\sum_{i=1}^N(X_i-\frac{\sum_{j=1}^N X_j}N)^2}</script><p>Then, instead of $Y_i(b)$, we use</p>
+<script type="math/tex; mode=display">
+Y_i(\hat b_N):=Y_i-\hat b_N(X_i-\alpha_0)</script><p>Replacing $b$ with $\hat b_N$ introduces bias as the samples $Y_i(\hat b_N)$ are not independent any more, thus, application of CLT is not clear</p>
+<p>Estimate $\alpha$ as $\hat\alpha_N(\hat b_N)=\frac1N\sum_{i=1}^NY_i(\hat b_N)$</p>
+<h2 id="Unit-3-2-2：Application-of-control-variate-estimator"><a href="#Unit-3-2-2：Application-of-control-variate-estimator" class="headerlink" title="Unit 3.2.2：Application of control variate estimator"></a>Unit 3.2.2：Application of control variate estimator</h2><h3 id="Using-Underlying-Assets"><a href="#Using-Underlying-Assets" class="headerlink" title="Using Underlying Assets"></a>Using Underlying Assets</h3><p>Consider the Black-Scholes model</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma dW_t,\ S_0=s_0</script><p>Suggest a Monte Carlo control variate method to estimate the price of option</p>
+<h3 id="Asian-Options"><a href="#Asian-Options" class="headerlink" title="Asian Options"></a>Asian Options</h3><p>An arithmetic Asian call option with discounted payoff $e^{-rT}(\bar S_m^A(T)-K)^+$ where</p>
+<script type="math/tex; mode=display">
+\bar S_m^A(T):=\frac{1}{m}\sum_{j=1}^mS_{t_j},\ t_j=j\ \frac Tm,\ j=1,...,m</script><p>we have a closed-form formula for geometric Asian call option with discounted payoff $e^{-rT}(\bar S_m^G(T)-K)^+$</p>
+<script type="math/tex; mode=display">
+\bar S_m^G(T):=(\prod_{j=1}^mS_{t_j})^{1/m},\ t_j=j\ \frac Tm,\ j=1,...,m</script><h2 id="Unit-3-2-3：Antithetic-variate-method"><a href="#Unit-3-2-3：Antithetic-variate-method" class="headerlink" title="Unit 3.2.3：Antithetic variate method"></a>Unit 3.2.3：Antithetic variate method</h2><p>Method of <strong>antithetic variates</strong> attempts to reduce variance by introducing <strong>negative dependence</strong> between pair of replications</p>
+<ul>
+<li><p>Note that if $U$ is uniformly distributed over [0, 1] then so is $1 – U$</p>
+<ul>
+<li>$U_i$ and $1 – U_i$ form an antithetic pair in the sense that a big value of one is accompanied by a small value of the other</li>
+<li>Thus, a large value of the function value computed on one path is compensated by the small value on the antithetic path, leading to reduction in variance</li>
+</ul>
+</li>
+<li><p>If $Z$ is distributed as $N (0, 1)$ then so is $–Z$</p>
+<ul>
+<li><p>Suppose we generate a path $Y_i$ using a sample $Z_1, Z_2 , . . . , Z_n$ of normally distributed random variable, we can create an antithetic path $\tilde Y_i$ using the sample $–Z_1, –Z_2, . . . , –Z_n$</p>
+</li>
+<li><p>Suppose we generate N antithetic pairs $(Y_i, \tilde Y_i )^N_{i=1}$</p>
+<script type="math/tex; mode=display">
+\hat Y_N^{AV}=\frac{1}{2N}(\sum_{i=1}^NY_i+\sum_{i=1}^N\tilde Y_i )=\frac{1}{N}\sum_{i=1}^N\frac12(Y_i+\tilde Y_i )</script></li>
+<li><p>The confidence interval is given as</p>
+<script type="math/tex; mode=display">
+(\hat Y_N^{AV}-z_{\delta/2}\frac{s_N^{AV}}{\sqrt{N}},\hat Y_N^{AV}+z_{\delta/2}\frac{s_N^{AV}}{\sqrt{N}})</script></li>
+<li><p>Antithetic sampling reduces variance when $Cov(Y_i,\tilde Y_i)&lt;0$</p>
+</li>
+</ul>
+</li>
+</ul>
+
             </div>
             <hr>
             <div>

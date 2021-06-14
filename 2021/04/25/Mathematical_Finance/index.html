@@ -654,7 +654,8 @@ p(t,x)=\frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}</script><p>Hence for any real 
 <script type="math/tex; mode=display">
 \mathbb{P}(W_t\in[a,b])=\int_a^b\frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}dx = N(\frac{b}{\sqrt{t}})-N(\frac{a}{\sqrt{t}})</script><h4 id="Markov-Property"><a href="#Markov-Property" class="headerlink" title="Markov Property"></a>Markov Property</h4><script type="math/tex; mode=display">
 \mathbb{P}(W_t\leq x|W_{t_1}=x_1,...,W_{t_n}=x_n)=\mathbb{P}(W_t\leq x|W_{t_n}=x_n)</script><script type="math/tex; mode=display">
-\mathbb{P}(W_t\leq y|W_s=x) = \int_{-\infty}^tp(t-s,z-x)dz</script><script type="math/tex; mode=display">
+\mathbb{P}(W_t\leq y|W_s=x) = \int_{-\infty}^yp(t-s,z-x)dz</script><script type="math/tex; mode=display">
+p(t-s,z-x)=\frac{1}{\sqrt{2\pi (t-s)}}exp(-\frac{(z-x)^2}{2(t-s)})</script><script type="math/tex; mode=display">
 \mathbb{E}_{\mathbb{P}}(W_t|W_s)=W_s</script><p><strong>Stochastic Differential Equation:</strong></p>
 <script type="math/tex; mode=display">
 dS_t = rS_tdt + \sigma S_tdW_t</script><p><strong>Geometric Brownian motion:</strong></p>
