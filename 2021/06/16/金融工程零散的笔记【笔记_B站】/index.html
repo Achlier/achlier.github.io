@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>金色长廊 - Borderland</title>
+  <title>金融工程零散的笔记【笔记_B站】 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="金色长廊">
+            <span class="h2" id="subtitle" title="金融工程零散的笔记【笔记_B站】">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-12 18:17" pubdate>
-        June 12, 2021 pm
+      <time datetime="2021-06-16 14:43" pubdate>
+        June 16, 2021 pm
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      40 字
+      617 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -224,25 +224,69 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">金色长廊</h1>
+            <h1 style="display: none">金融工程零散的笔记【笔记_B站】</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>名人长廊，持续收录；</p>
+<p>基于B站up Jerry Xu (Love小矫情Forever) 的视频；</p>
+<p>主要复习基础部分一些遗忘的，或是未观察到的点；</p>
+<p>up主yyds;</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="Alan-Mathison-Turing"><a href="#Alan-Mathison-Turing" class="headerlink" title="Alan Mathison Turing"></a>Alan Mathison Turing</h3><p><img src="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/Turing.jpg" srcset="/img/loading.gif" alt></p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Alan_Turing">wiki</a></p>
-<h3 id="Georg-Friedrich-Bernhard-Riemann"><a href="#Georg-Friedrich-Bernhard-Riemann" class="headerlink" title="Georg Friedrich Bernhard Riemann"></a>Georg Friedrich Bernhard Riemann</h3><p><img src="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/Riemann.jpeg" srcset="/img/loading.gif" alt></p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bernhard_Riemann">wiki</a></p>
-<h3 id="Godfrey-Harold-Hardy"><a href="#Godfrey-Harold-Hardy" class="headerlink" title="Godfrey Harold Hardy"></a>Godfrey Harold Hardy</h3><p><img src="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/Hardy.jpg" srcset="/img/loading.gif" alt></p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/G._H._Hardy">wiki</a></p>
-<h3 id="Johann-Carl-Friedrich-Gauss"><a href="#Johann-Carl-Friedrich-Gauss" class="headerlink" title="Johann Carl Friedrich Gauss"></a>Johann Carl Friedrich Gauss</h3><p><img src="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/Gauss.jpg" srcset="/img/loading.gif" alt></p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">wiki</a></p>
-<h3 id="Joseph-Louis-Lagrange"><a href="#Joseph-Louis-Lagrange" class="headerlink" title="Joseph-Louis Lagrange"></a>Joseph-Louis Lagrange</h3><p><img src="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/Lagrange.jpg" srcset="/img/loading.gif" alt></p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange">wiki</a></p>
-<h3 id="Fischer-Sheffey-Black-amp-Myron-Samuel-Scholes"><a href="#Fischer-Sheffey-Black-amp-Myron-Samuel-Scholes" class="headerlink" title="Fischer Sheffey Black &amp; Myron Samuel Scholes"></a>Fischer Sheffey Black &amp; Myron Samuel Scholes</h3><p><img src="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/BS.jpg" srcset="/img/loading.gif" alt></p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fischer_Black">wiki</a> &amp; <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Myron_Scholes">wiki</a></p>
+<h2 id="期权定价"><a href="#期权定价" class="headerlink" title="期权定价"></a>期权定价</h2><script type="math/tex; mode=display">
+dS_t=\mu S_tdt+\sigma S_tdW_t</script><p>主要分为两种方法定价</p>
+<ol>
+<li>建立投资组合消去 $dW_t$，保留 $dt$ (对冲 Hedge)</li>
+<li>消去 $dt$，保留 $dW_t$ 构造一个鞅的过程</li>
+</ol>
+<blockquote>
+<p>鞅是一个很好的性质，如果在第一个方法，只能形成上鞅或者下鞅，因此它可能会跑到 BS-PDE的那边去，用傅里叶变换解.</p>
+</blockquote>
+<h3 id="第一个方法"><a href="#第一个方法" class="headerlink" title="第一个方法"></a>第一个方法</h3><h4 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h4><p>我们设 $S_t^*$ 是 $S_t$ 折现后的价值，其中 $S_t$ 存在于 $\mathbb P$ 测度下, 而折现后在 $\mathbb Q$ 测度下是鞅</p>
+<script type="math/tex; mode=display">
+S^*_t=S_te^{-rt}</script><script type="math/tex; mode=display">
+\begin{align}
+dS_t^*&=d(S_te^{-rt})=S_tde^{-rt}+e^{-rt}dS_t+dS_tde^{-rt}\\
+&=-re^{-rt}S_tdt+e^{-rt}(\mu S_tdt+\sigma S_tdW_t)\\
+&=(\mu-r)S_t^*dt+\sigma S_t^*dW_t
+\end{align}</script><p>因为 $\mu&gt;r$ 永远存在，所以在 $\mathbb P$ 测度下永远不可能得到鞅，因此要换测度</p>
+<h4 id="Novikov-condition"><a href="#Novikov-condition" class="headerlink" title="Novikov condition"></a>Novikov condition</h4><p>若 $\theta^2$ 可积，存在一个 process $M^\theta$</p>
+<script type="math/tex; mode=display">
+M_t^\theta=exp(-\int_0^t\theta_sdX_s-\frac12\int_0^t\theta_s^2ds)</script><p>是一个鞅</p>
+<h4 id="Girsanov‘s-Theorem"><a href="#Girsanov‘s-Theorem" class="headerlink" title="Girsanov‘s Theorem"></a>Girsanov‘s Theorem</h4><p>可以通过 Radon Nicodym 导数</p>
+<script type="math/tex; mode=display">
+\frac{d\mathbb Q}{d\mathbb P}=exp(-\int_0^t\theta_sdX_s-\frac12\int_0^t\theta_s^2ds)</script><p>得到在 $\mathbb Q$ 测度下的布朗运动</p>
+<script type="math/tex; mode=display">
+W_t^\mathbb Q=W_t+\int_0^t\theta(s)ds</script><script type="math/tex; mode=display">
+dW_t^\mathbb Q=dW_t+\theta_tdt</script><blockquote>
+<p>只有随机变量在不同概率测度下才会有影响</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/05/23/%E6%A6%82%E7%8E%87%E6%B5%8B%E5%BA%A6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/">测度变换笔记</a></p>
+<p>得到替换后的在 $\mathbb Q$ 测度下的 $dS_t^*$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dS_t^*&=(\mu-r)S_t^*dt+\sigma S_t^*(dW_t^\mathbb Q-\theta_tdt)\\
+&=(\mu-r-\sigma\theta_t)S_t^*dt+\sigma S_t^*dW_t^\mathbb Q
+\end{align}</script><p>为了取鞅 $\theta_t=\frac{\mu-r}{\sigma}$，此时</p>
+<script type="math/tex; mode=display">
+dS_t^*=\sigma S_t^*dW_t^\mathbb Q</script><p>对于一个投资组合</p>
+<script type="math/tex; mode=display">
+dV_t=\phi_t^SdS_t+\phi_t^BdB_t,\quad B_t=B_0e^{rt}</script><script type="math/tex; mode=display">
+\begin{align}
+dV_t^*&=V_tde^{-rt}+e^{-rt}dV_t\\
+&=-re^{-rt}(\phi_t^SS_t+\phi_t^BB_t)dt+e^{-rt}(\phi_t^SdS_t+\phi_t^BdB_t)\\
+&=\phi_t^S(-re^{-rt}S_tdt+e^{-rt}dS_t)+\phi_t^B(-re^{-rt}B_tdt+e^{-rt}dB_t)\\
+&=\phi_t^S(S_tde^{-rt}+e^{-rt}dS_t)+\phi_t^B(-re^{-rt}B_tdt+e^{-rt}rB_tdt)\\
+&=\phi_t^SdS_te^{-rt}=\phi_t^SdS_t^*=\phi_t^S\sigma S_t^*dW_t^\mathbb Q
+\end{align}</script><p>也是一个 $\mathbb Q$ 鞅</p>
+<script type="math/tex; mode=display">
+\mathbb E^\mathbb Q[V_T^*|\mathscr{F}_t]=V_t^*</script><p>设 $G(S_T)$ 为期权到期日的收益，因为 $V_T$ 是一个复制期权的组合</p>
+<script type="math/tex; mode=display">
+\mathbb E^\mathbb Q[V_T^*|\mathscr{F}_t]=\mathbb E^\mathbb Q[G(S_T)e^{-rT}|\mathscr{F}_t]</script><p>最后能得到</p>
+<script type="math/tex; mode=display">
+V_t^*=\mathbb E^\mathbb Q[G(S_T)e^{-rT}|\mathscr{F}_t]</script><p><strong>初步的定价公式</strong></p>
+<script type="math/tex; mode=display">
+V_t=V_t^*e^{rt}=e^{-r(T-t)}\mathbb E^\mathbb Q[G(S_T)|\mathscr{F}_t]</script><h4 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h4><p>有两种方法可以推出结果，如果不用测度变换的方法可以参考 </p>
 
             </div>
             <hr>
@@ -252,7 +296,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Others/">Others</a>
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
                     
                   </div>
                 
@@ -260,7 +304,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Blog/">Blog</a>
+                      <a class="hover-with-bg" href="/tags/Financial-Engineering/">Financial Engineering</a>
                     
                   </div>
                 
@@ -273,9 +317,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/16/%E9%87%91%E8%9E%8D%E5%B7%A5%E7%A8%8B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%AC%94%E8%AE%B0%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/">
+                      <a href="/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">金融工程零散的笔记【笔记_B站】</span>
+                        <span class="hidden-mobile">Black_Scholes_Model推导_进阶版</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -283,8 +327,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/11/Ito%E7%A7%AF%E5%88%86%E4%B8%8E%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E3%80%90%E7%AC%94%E8%AE%B0_%E7%9F%A5%E4%B9%8E%E3%80%91/">
-                        <span class="hidden-mobile">Ito积分与随机过程【笔记_知乎】</span>
+                      <a href="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/">
+                        <span class="hidden-mobile">金色长廊</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

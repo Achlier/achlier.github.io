@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.1k 字
+      10.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      196
+      198
        分钟
     </span>
   
@@ -873,13 +873,16 @@ RV_t^m\sim N(IV_t,\frac{2\ IQ_t}{m})</script><p>IQ$_t$ may be consistently estim
 RQ_t^m=\sum_{j=1}^mr_{t-1+j\Delta}^4</script><script type="math/tex; mode=display">
 \frac{m}{3}RQ_t^m\xrightarrow{p}IQ_t,\ as\ m\to\infty</script><p>The feasible asymptotic distribution for $RV_t^m$ is</p>
 <script type="math/tex; mode=display">
-RV_t^m\sim N(IV_t,\frac{2}{3}RQ_t^m)</script><h2 id="Unit-2-9：The-Heston-Model"><a href="#Unit-2-9：The-Heston-Model" class="headerlink" title="Unit 2.9：The Heston Model"></a>Unit 2.9：The Heston Model</h2><h3 id="Heston’s-Stochastic-Volatility-Model"><a href="#Heston’s-Stochastic-Volatility-Model" class="headerlink" title="Heston’s Stochastic Volatility Model"></a>Heston’s Stochastic Volatility Model</h3><p>Under the risk-neutral measure, Heston’s stochastic volatility model is given as</p>
+RV_t^m\sim N(IV_t,\frac{2}{3}RQ_t^m)</script><h2 id="Unit-2-9：The-Heston-Model"><a href="#Unit-2-9：The-Heston-Model" class="headerlink" title="Unit 2.9：The Heston Model"></a>Unit 2.9：The Heston Model</h2><h3 id="Heston’s-Stochastic-Volatility-Model"><a href="#Heston’s-Stochastic-Volatility-Model" class="headerlink" title="Heston’s Stochastic Volatility Model"></a>Heston’s Stochastic Volatility Model</h3><p>Under the <strong>risk-neutral measure</strong>, Heston’s stochastic volatility model is given as</p>
 <script type="math/tex; mode=display">
 \frac{dS_t}{S_t}=rdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
 \begin{align}
 &d\sigma_t^2=k(\theta-\sigma_t^2)dt+\delta\sigma_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt\\
 or,\ &dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t,\ with\ v_t=\sigma_t^2
-\end{align}</script><p>The variance process vt is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
+\end{align}</script><blockquote>
+<p>本课的模型都是在风险中性 (鞅) 的测度下，对于有些文章会按现实测度写，但实际是效果都相同</p>
+</blockquote>
+<p>The variance process vt is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
 <p>To model the variance of asset prices, we need vt to remain positive</p>
 <p><strong>（Advantage）</strong>For $\frac{2k\theta}{\delta^2}&gt;1$ the process never hits zero. This constraint on parameters is also known as <strong>Feller condition</strong></p>
 <p>This process is <strong>mean reverting</strong></p>
@@ -1064,6 +1067,9 @@ h^*=arg\min_{h}J(\sigma^{(0)}+h\lambda^{(0)})</script><ul>
 s_f=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(f(U_i)-\hat\alpha_N)^2}</script><h3 id="Monte-Carlo-Estimation-for-European-Option"><a href="#Monte-Carlo-Estimation-for-European-Option" class="headerlink" title="Monte Carlo Estimation for European Option"></a>Monte Carlo Estimation for European Option</h3><p>Monte Carlo samples $S_i(T)$ of $S(T)$ can be generated as</p>
 <script type="math/tex; mode=display">
 S_i(T)=S_0exp((r-\frac{1}{2}\sigma^2)T+\sigma\sqrt{T}Z_i)</script><p>where $Z_i\sim N(0,1)$</p>
+<blockquote>
+<p>用 $\sqrt TZ_i$ 代替 $W_t$ 可以减少 noise</p>
+</blockquote>
 <p>Call price estimator is given as</p>
 <script type="math/tex; mode=display">
 \hat C_N=\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+</script><p>The estimator $\hat C_N$ is unbiased in the sense that</p>
@@ -1140,7 +1146,10 @@ e_w(h):=|\mathbb E_gX(T)-\mathbb E_gX_N^h(T)|</script><p>for smooth functions g<
 <li>strongly with order $\beta$ if $e_s(h)=\mathscr O(h^\beta)$</li>
 <li>weakly with order $\beta$ if $e_w(h)=\mathscr O(h^\beta)$</li>
 </ul>
-<p>Under some regularity conditions on functions $b$ and $\sigma$, Euler scheme converges strongly with order $\beta = 1/2$ and weakly with order $\beta = 1$</p>
+<p>Under some regularity conditions on functions $b$ and $\sigma$, Euler scheme converges strongly with order $\beta = 1/2$ (Euler) and weakly with order $\beta = 1$ (Milstein)</p>
+<blockquote>
+<p>当 $\beta$ 数越大，收敛速度越快，越准确</p>
+</blockquote>
 <h2 id="Unit-3-1-4：Milstein-Scheme"><a href="#Unit-3-1-4：Milstein-Scheme" class="headerlink" title="Unit 3.1.4：Milstein Scheme"></a>Unit 3.1.4：Milstein Scheme</h2><p>Consider the SDE</p>
 <script type="math/tex; mode=display">
 X(t_{n-1}+h)-X(t_{n-1})=\int_{t_{n-1}}^{t_{n-1}+h}b(s,X(s))ds+\int_{t_{n-1}}^{t_{n-1}+h}\sigma(s,X(s))dW(s)</script><p>and its Euler scheme approximation</p>
@@ -1152,7 +1161,7 @@ X_n^h-X_{n-1}^h=b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h<
 <script type="math/tex; mode=display">
 \begin{align}
 d(\sigma(s,X(s)))&=\partial_t\sigma ds+\partial_x\sigma dX(s)+\frac12\partial_x^2\sigma dX(s)dX(s)\\
-&=\partial_t\sigma ds+\partial_x\sigma (bds+\sigma dW(s))+\frac12\partial_x^2\sigma^3 ds
+&=\partial_t\sigma ds+\partial_x\sigma (bds+\sigma dW(s))+\frac12\partial_x^2\sigma\sigma^2 ds
 \end{align}</script><p>Then</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -1163,7 +1172,7 @@ d(\sigma(s,X(s)))&=\partial_t\sigma ds+\partial_x\sigma dX(s)+\frac12\partial_x^
 \int_0^hd(\sigma(s,X(s)))=\sigma(t,X(t))-\sigma(0,X(0))</script><p>So we have</p>
 <script type="math/tex; mode=display">
 \begin{align}
-\int_0^h\int_0^t[\partial_t\sigma+\partial_x\sigma b+\frac12\partial_x^2\sigma^3]dsdW(t)+\int_0^h\int_0^t\partial_x\sigma^2dW(s)dW(t)\\
+\int_0^h\int_0^t[\partial_t\sigma+\partial_x\sigma b+\frac12\partial_x^2\sigma\sigma^2]dsdW(t)+\int_0^h\int_0^t\partial_x\sigma\sigma dW(s)dW(t)\\
 \sim\mathscr{O}(h^{3/2})+\partial_x\sigma(0,X(0))\sigma(0,X(0))\int_0^h\int_0^tdW(s)dW(t)
 \end{align}</script><blockquote>
 <p>$W(h)\sim o(h^{1/2})$，$\sigma$ 采用 0 点时</p>
@@ -1174,7 +1183,10 @@ d(\sigma(s,X(s)))&=\partial_t\sigma ds+\partial_x\sigma dX(s)+\frac12\partial_x^
 </blockquote>
 <p>Thus, the Milstein scheme is given as $X^h(0)=x_0$</p>
 <script type="math/tex; mode=display">
-X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma^2((\Delta W_n^h)^2-h)</script><h1 id="Unit-3-2：Variance-reduction-methods"><a href="#Unit-3-2：Variance-reduction-methods" class="headerlink" title="Unit 3.2：Variance reduction methods"></a>Unit 3.2：Variance reduction methods</h1><p>Readings for the module on variance reduction methods</p>
+X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma\sigma((\Delta W_n^h)^2-h)</script><blockquote>
+<p>如果 payoff 只取决于最终的价格，两种方法不明显，如果取决于path，Milstein 会明显提高</p>
+</blockquote>
+<h1 id="Unit-3-2：Variance-reduction-methods"><a href="#Unit-3-2：Variance-reduction-methods" class="headerlink" title="Unit 3.2：Variance reduction methods"></a>Unit 3.2：Variance reduction methods</h1><p>Readings for the module on variance reduction methods</p>
 <ul>
 <li>Chapter 4 Section 4.1, 4.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
 </ul>
@@ -1187,7 +1199,10 @@ X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma^2((\Delta
 \hat p_N:=(N)^{-1}\sum_{i=1}^N1_{X_i\in A}</script></li>
 <li><p>By the Central Limit Theorem (CLT)</p>
 <script type="math/tex; mode=display">
-\sqrt{N}(\hat p_N-\mathbb{P}(x\in A))\Rightarrow N(0,p(1-p))</script></li>
+\sqrt{N}(\hat p_N-\mathbb{P}(x\in A))\Rightarrow N(0,p(1-p))</script><blockquote>
+<p>binomial 分布, p 是存在的概率</p>
+</blockquote>
+</li>
 <li><p>95% confidence interval</p>
 <script type="math/tex; mode=display">
 (\hat p_N-1.96\sqrt{\frac{p(1-p)}{N}},\hat p_N+1.96\sqrt{\frac{p(1-p)}{N}})</script></li>
@@ -1196,6 +1211,9 @@ X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma^2((\Delta
 <script type="math/tex; mode=display">
 \frac{Estimator\ error}{True\ Value}=\sqrt{p(1-p)}/(p\sqrt{N})\approx(\sqrt{Np})^{-1}</script><p>which is large for small value of $p$</p>
 <p>Thus, to estimate small $p$, using the crude Monte Carlo method, we may need a <strong>large number of samples</strong> $N$</p>
+<blockquote>
+<p>如果 $p = 0.01 (10^{-2})$, $N$ 至少 $=10^6$ 才使得 relative error $=(\sqrt{10^4})^{-1}=10^{-2}$</p>
+</blockquote>
 <p>As discussed in the last lecture, the estimator error is given by $s_p/\sqrt{N}$ where $s_p$ is the estimate of standard deviation of estimator $\hat p_N$</p>
 <p>The aim of <strong>variance reduction methods</strong> is to produce an alternative estimator $\hat p_N^{var}$ such that $\mathbb{E}[\hat p_N^{var}]=p$ but with <strong>smaller variance</strong> than estimator $\hat p_N$</p>
 <h3 id="Control-Variates"><a href="#Control-Variates" class="headerlink" title="Control Variates"></a>Control Variates</h3><p>Let $Y_1, Y_2, . . . , Y_N$ be i.i.d. outputs from $N$ replications of a simulation. For example, $Y_i$ could be the discounted payoff of a derivative security on the $i$th simulated path.</p>
@@ -1210,8 +1228,10 @@ Y_i(b):=Y_i-b(X_i-\alpha_0)</script><p>and compute the sample mean</p>
 \hat\alpha_N(b):=\hat\alpha_N-b(N_{-1}\sum_{i=1}^NX_i-\alpha_0)=\frac1N\sum_{i=1}^NY_i(b)</script><p>$\hat\alpha_N(b)$ is a <strong>control variate estimator</strong> and the observable error $N^{-1}\sum_{i=1}^NX_i-\alpha_0$ acts as a control in estimating $\alpha$</p>
 <p>The control variate estimator is <strong>unbiased</strong></p>
 <script type="math/tex; mode=display">
-\mathbb{E}[\hat\alpha_N(b)]=\frac1N\sum_{i=1}^N\mathbb{E}[Y_i(b)]=\alpha</script><p>$\hat\alpha_N(b)$ is also <strong>strongly consistent</strong></p>
-<p>Each $Y_i(b)$ has variance which is equal to</p>
+\mathbb{E}[\hat\alpha_N(b)]=\frac1N\sum_{i=1}^N\mathbb{E}[Y_i(b)]=\alpha</script><script type="math/tex; mode=display">
+\mathbb{E}[\hat\alpha_N(b)]=\mathbb{E}[\hat\alpha_N]-\mathbb{E}[b(N_{-1}\sum_{i=1}^NX_i-\alpha_0)]=\alpha-(\alpha_0-\alpha_0)</script><p>$\hat\alpha_N(b)$ is also <strong>strongly consistent</strong></p>
+<script type="math/tex; mode=display">
+Var(\hat\alpha_N(b))=\frac{Var(\sum_{i=1}^NY_i(b))}{N^2}=\frac{N\sigma^2(b)}{N^2}=\frac{\sigma^2(b)}{N}</script><p>Each $Y_i(b)$ has variance which is equal to</p>
 <script type="math/tex; mode=display">
 \begin{align}
 Var(Y_i(b))&=Var(Y_i-b(X_i-\alpha_0))\\
@@ -1226,7 +1246,11 @@ b^*=\frac{\sigma_Y\rho_{XY}}{\sigma_X}=\frac{Cov(X,Y)}{Var(X)}</script><p>The ra
 <script type="math/tex; mode=display">
 \frac{Var(\hat\alpha_N(b^*))}{Var(\hat\alpha_N)}=1-\rho_{XY}^2</script><p>The <strong>variance reduction factor</strong> is given as</p>
 <script type="math/tex; mode=display">
-\frac{Var(\hat\alpha_N)}{Var(\hat\alpha_N(b^*))}=\frac{1}{1-\rho_{XY}^2}</script><h3 id="Computing-b"><a href="#Computing-b" class="headerlink" title="Computing $b^*$"></a>Computing $b^*$</h3><p>As $\alpha=\mathbb E[Y]$ is unknown, in practice, $\sigma_Y$ or $\rho_{XY}$ are also unknown</p>
+\frac{Var(\hat\alpha_N)}{Var(\hat\alpha_N(b^*))}=\frac{1}{1-\rho_{XY}^2}</script><blockquote>
+<p>$Var(\hat\alpha_N)\times(1-\rho_{XY}^2)={Var(\hat\alpha_N(b^*))}$ 如果要达到原来的值，需要用 $N/(1-\rho_{XY}^2)$ 个样本</p>
+</blockquote>
+<p>For example, for $|\rho_{XY}| = 0.95$, leads to 10-times variance reduction, whereas $|\rho_{XY}| = 0.90$, leads to 5-times variance reduction (usually 5)</p>
+<h3 id="Computing-b"><a href="#Computing-b" class="headerlink" title="Computing $b^*$"></a>Computing $b^*$</h3><p>As $\alpha=\mathbb E[Y]$ is unknown, in practice, $\sigma_Y$ or $\rho_{XY}$ are also unknown</p>
 <p>Estimate $b^*$ as</p>
 <script type="math/tex; mode=display">
 \hat b_N=\frac{\sum_{i=1}^N(X_i-\frac{\sum_{j=1}^NX_j}N)(Y_i-\frac{\sum_{j=1}^NY_j}N)}{\sum_{i=1}^N(X_i-\frac{\sum_{j=1}^N X_j}N)^2}</script><p>Then, instead of $Y_i(b)$, we use</p>

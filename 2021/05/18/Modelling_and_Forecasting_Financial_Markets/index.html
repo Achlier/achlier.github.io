@@ -733,7 +733,7 @@ X_t=\mu t+\Psi(1)\sum_{j=1}^t\epsilon_j+\Psi^*(L)\epsilon_t+k_0</script><p>where
 <ul>
 <li>$\mu t$ is the deterministic (linear) trend</li>
 <li>$\Psi(1)\sum_{j=1}^t\epsilon_j$ is the stochastic trend</li>
-<li>$\Psi^<em>(L)=\sum_{j=0}^\infty\psi_j^</em>L^j$, $\psi_j^*=-\sum_{k=j+1}^\infty\psi_k$</li>
+<li>$\Psi^\star(L)=\sum_{j=0}^\infty\psi_j^\star L^j$, $\psi_j^*=-\sum_{k=j+1}^\infty\psi_k$</li>
 <li>$k_0$ denotes the initial condition</li>
 </ul>
 <script type="math/tex; mode=display">
@@ -998,7 +998,210 @@ f_{T,h}^{\sigma^2}=\omega(h-1)+\sigma_{t+1}^2</script><h4 id="Heteroskedasticity
 <script type="math/tex; mode=display">
 Pr(L_{T,h}\leq X_{T+h}\leq U_{T,h}|\Omega_T)=1-\alpha</script><p>It is usual to construct interval forecasts that are symmetric around the conditional mean of $X_{T+h}$</p>
 <script type="math/tex; mode=display">
-f_{T,h}\pm z_{1-\alpha/2}\sqrt{\mathbb{Var}[e_{T,h}|\Omega_T]}</script>
+f_{T,h}\pm z_{1-\alpha/2}\sqrt{\mathbb{Var}[e_{T,h}|\Omega_T]}</script><h1 id="Unit-4：Multivariate-Time-Series"><a href="#Unit-4：Multivariate-Time-Series" class="headerlink" title="Unit 4：Multivariate Time Series"></a>Unit 4：Multivariate Time Series</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 1, Section 1.7 (Essential - Week 6)</li>
+<li>Brooks, Chapter 7, Sections 7.10 - 7.16 (Essential - Week 7)</li>
+<li>Diebold, Chapter 16 (Recommended)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 1, Self-Study Questions 21, 22.</li>
+</ul>
+<h3 id="Definition-5"><a href="#Definition-5" class="headerlink" title="Definition:"></a>Definition:</h3><p>We consider n possibly related time series $X_{1t}. . . , X_{nt}$, and<br>define the $n$−vector</p>
+<script type="math/tex; mode=display">
+X_t\equiv[X_{1t},. . . , X_{nt}]'=\begin{bmatrix}X_{1t}\\. . . \\X_{nt}\end{bmatrix}</script><h4 id="Weak-Stationarity"><a href="#Weak-Stationarity" class="headerlink" title="Weak Stationarity"></a>Weak Stationarity</h4><ul>
+<li>$\mathbb E(X_t)\equiv \mu &lt; \infty$ for all $t$</li>
+<li>$\mathbb E(X_t-\mu)(X_t-\mu)’\equiv\Gamma(0)&lt;\infty$ for all $t$</li>
+<li>$\mathbb E(X_t-\mu)(X_{t-h}-\mu)’\equiv\Gamma(h)$ for all $t$</li>
+</ul>
+<p><strong>The expectation of a vector</strong></p>
+<script type="math/tex; mode=display">
+\mu = \mathbb E(X_t)=\begin{bmatrix}\mathbb E(X_{1t})\\. . . \\\mathbb E(X_{nt})\end{bmatrix}=\begin{bmatrix}\mathbb \mu_1\\. . . \\\mu_n\end{bmatrix}</script><p><strong>The variance-Covariance matrix</strong></p>
+<p>When $h=0$</p>
+<script type="math/tex; mode=display">
+\gamma_{ij}(0)=\mathbb E(X_{it}-\mu_i)(X_{jt}-\mu_j)=\mathbb{Cov}(X_{it},X_{jt})</script><script type="math/tex; mode=display">
+\Gamma(0)=\begin{bmatrix}
+\mathbb{Var}(X_{1t})&\mathbb{Cov}(X_{1t},X_{2t})&...&\mathbb{Cov}(X_{1t},X_{nt})\\
+\mathbb{Cov}(X_{2t},X_{1t})&\mathbb{Var}(X_{2t})&...&\mathbb{Cov}(X_{2t},X_{nt})\\
+...&...&...&...&\\
+\mathbb{Cov}(X_{nt},X_{1t})&\mathbb{Cov}(X_{nt},X_{2t})&...&\mathbb{Var}(X_{nt})
+\end{bmatrix}</script><p>When $h\ne0$</p>
+<script type="math/tex; mode=display">
+\gamma_{ij}(h)=\mathbb E(X_{it}-\mu_i)(X_{j,t-h}-\mu_j)=\mathbb{Cov}(X_{it},X_{j,t-h})</script><script type="math/tex; mode=display">
+\gamma_{ij}(-h)=\mathbb E(X_{it}-\mu_i)(X_{j,t+h}-\mu_j)=\mathbb{Cov}(X_{it},X_{j,t-h})</script><script type="math/tex; mode=display">
+\Gamma(h)=\Gamma'(-h)</script><script type="math/tex; mode=display">
+\Gamma(0)=\begin{bmatrix}
+\mathbb{Cov}(X_{1t},X_{1,t-h})&\mathbb{Cov}(X_{1t},X_{2,t-h})&...&\mathbb{Cov}(X_{1t},X_{n,t-h})\\
+\mathbb{Cov}(X_{2t},X_{1,t-h})&\mathbb{Cov}(X_{2t},X_{2,t-h})&...&\mathbb{Cov}(X_{2t},X_{n,t-h})\\
+...&...&...&...&\\
+\mathbb{Cov}(X_{nt},X_{1,t-h})&\mathbb{Cov}(X_{nt},X_{2,t-h})&...&\mathbb{Cov}(X_{nt},X_{n,t-h})
+\end{bmatrix}</script><p><strong>Diagonal matrix</strong></p>
+<script type="math/tex; mode=display">
+D=\begin{bmatrix}
+sd(X_{1t})&0&...&0\\
+0&sd(X_{2t})&...&0\\
+...&...&...&...&\\
+0&0&...&sd(X_{nt})
+\end{bmatrix}</script><p><strong>Correlation Matrix</strong></p>
+<script type="math/tex; mode=display">
+\rho(h)\equiv D^{-1}\Gamma(h)D^{-1},\ with\ \rho_{ij}(h)=\frac{\mathbb{Cov}(X_{it},X_{j,t-h})}{sd(X_{it})sd(X_{jt})}</script><h4 id="The-multivariate-white-noise"><a href="#The-multivariate-white-noise" class="headerlink" title="The multivariate white noise"></a>The multivariate white noise</h4><p>Let $\epsilon_t\equiv[\epsilon_{1t},…,\epsilon_{nt}]’$</p>
+<ul>
+<li>$\mathbb E(\epsilon_t)=0$</li>
+<li>$\Gamma(h)=\mathbb E(\epsilon_t\epsilon_{t-h})=\begin{cases}\Sigma&amp;for\ h=0\\0&amp;for\ h\ne 0\end{cases}$</li>
+</ul>
+<p>For individual shocks</p>
+<ul>
+<li>$\mathbb E(\epsilon_{it})=0$</li>
+<li>$\mathbb E(\epsilon_{it}^2)=\sigma_i^2$</li>
+<li>$\mathbb E(\epsilon_{it}\epsilon_{i,t-h})=0$</li>
+</ul>
+<p>We do allow for <strong>contemporaneous correlation</strong></p>
+<ul>
+<li>$\mathbb E(\epsilon_{it}\epsilon_{jt})=\sigma_{ij}$</li>
+<li>$\mathbb E(\epsilon_{it}\epsilon_{j,t-h})=0$</li>
+</ul>
+<h4 id="Vector-Autoregressive-Processes-VAR"><a href="#Vector-Autoregressive-Processes-VAR" class="headerlink" title="Vector Autoregressive Processes (VAR)"></a>Vector Autoregressive Processes (VAR)</h4><p>Let $Y_t\equiv X_t-\mu$. A VAR(p) process satisfifies the equation</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1 Y_{t-1}+...+\Phi_p Y_{t-p}+\epsilon_t</script><script type="math/tex; mode=display">
+\Phi(L)Y_t=\epsilon_t</script><script type="math/tex; mode=display">
+\Phi(L)=I_n-\Phi_1L-...-\Phi_pL^P</script><p>and $I_n$ denotes the n−dimensional identity matrix.</p>
+<p>【<strong>Example</strong>】</p>
+<p>For $n = 2, p = 1$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+y_{1t}&=\phi_{11}^{(1)}y_{1,t-1}+\phi_{12}^{(1)}y_{2,t-1}+\phi_{11}^{(2)}y_{1,t-2}+\phi_{12}^{(2)}y_{2,t-2}+\epsilon_{1t}\\
+y_{2t}&=\phi_{21}^{(1)}y_{1,t-1}+\phi_{22}^{(1)}y_{2,t-1}+\phi_{21}^{(2)}y_{1,t-2}+\phi_{22}^{(2)}y_{2,t-2}+\epsilon_{2t}
+\end{align}</script><p><strong>Stationarity of a VAR</strong></p>
+<p>Consider the VAR(1) process</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1Y_{t-1}+\epsilon_t</script><p>By recursively substituting</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1^tY_0+\sum_{j=0}^{t-1}\Phi_1^j\epsilon_{t-j}</script><p>when $max_{j=1,…,n}|\lambda_j(\Phi_1)|&lt;1$, $\Phi_1^t\to 0$ as $t\to\infty$</p>
+<p>The previous condition can be restated as</p>
+<script type="math/tex; mode=display">
+det[\Phi_1-\lambda I_n]=0\ for\ |\lambda|<1</script><p> is equivalent to</p>
+<script type="math/tex; mode=display">
+det[\Phi(z)]=det[I_n-\Phi_1z]\ne 0\ for\ |z|<1</script><p>If the above conditions are satisfified</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\Phi_1^j\epsilon_{t-j}</script><p>A VAR(p) process <strong>is stationary if</strong></p>
+<script type="math/tex; mode=display">
+det(I_n-\Phi_1z-...-\Phi_pz^p)\ne 0\ for\ |z|<1</script><p><strong>Remarks</strong></p>
+<p>The VAR(p) processes belong to the class of VARMA(p,q) processes</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\Theta(L)\epsilon_t</script><p>where</p>
+<script type="math/tex; mode=display">
+\Theta(L)\equiv I_n-\Theta_1L-...-\Theta_qL^q</script><p>VARMA(p,q) processes are difficult to estimate when $q &gt; 0$. VAR models are usually used in empirical applications.</p>
+<p><strong>Applying VAR models</strong></p>
+<p>Supposed that the appropriate order p for the VAR model is found, that is, a VAR(p-1) is <strong>misspecified</strong> and VAR(p+1) <strong>contains too many redundant parameters</strong>, and the parameters are estimated.</p>
+<p>The resultant empirical model can be used for various purposes.</p>
+<ol>
+<li>Out-of-sample forecasting.</li>
+<li>Granger causality analysis.</li>
+<li>Structural analysis (impulse response function and error variance decomposition).</li>
+</ol>
+<p><strong>Forecasting</strong></p>
+<p>Consider the VAR(1) model. The h−step forecast at time T is given by</p>
+<script type="math/tex; mode=display">
+f_{T,h}=\Phi_1^hY_T</script><p>The forecast error covariance matrix equals</p>
+<script type="math/tex; mode=display">
+e_{T,h}=\Sigma+\Phi_1\Sigma\Phi_1'+...+\Phi_1^{(h-1)}\Sigma\Phi_1^{(h-1)'}</script><p><strong>Granger Causality</strong></p>
+<p>An important statistical notion of causality that’s intimately related to forecasting is based on two key principles</p>
+<ul>
+<li><p>Cause should occur before effect.</p>
+</li>
+<li><p>A causal series should contain information useful for forecasting that in not available in other series.</p>
+</li>
+</ul>
+<p>We can say that $X$ Granger-cause $Y$ , $“X \Rightarrow Y ”$ if</p>
+<script type="math/tex; mode=display">
+\mathbb E(Y_t|Y_{t-1},X_{t-1},Y_{t-2},X_{t-2},...)\ne \mathbb E(Y_t|Y_{t-1},Y_{t-2},...)</script><p>It $Z_t=[X_t,Y_t]’$ can be represented as a bivariate VAR</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\phi_{11}(L)&\phi_{12}(L)\\\phi_{21}(L)&\phi_{22}(L)
+\end{bmatrix}
+\begin{bmatrix}
+Y_t\\X_t
+\end{bmatrix}
+=
+\begin{bmatrix}
+\epsilon_{1t}\\ \epsilon_{2t}
+\end{bmatrix}</script><p>then $X\not\Rightarrow Y$ if $\phi_{12}(L)\equiv 1+\sum_{j=1}^p\phi_{12,j}L^j=0$</p>
+<p>The the equation for $Y_t$</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=1}^p\phi_{11,j}Y_{t-j}+\sum_{j=1}^p\phi_{12,j}X_{t-j}+\epsilon_{1t}</script><p>then, the hypothesis $X\not\Rightarrow Y$ is equivalent to</p>
+<script type="math/tex; mode=display">
+H_0:\phi_{12,1}=\phi_{12,2}=...=\phi_{12,p}</script><p>If the VAR is stationary an F−test can be used.</p>
+<p><strong>Impulse Response Functions</strong></p>
+<p>To understand what are the dynamic effects of the error process $\epsilon_t$ on $Y_{t+h}$, one can calculate the so-called impulse-response function.</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1Y_{t-1}+\epsilon_t,\ \epsilon_t\sim WN(0,\Sigma)</script><p>with $\Sigma=diag[1,…,\sigma_n^2]$</p>
+<p>Suppose there is an interest in the effect of shocks corresponding to the first variable.</p>
+<p>One can then calculate</p>
+<script type="math/tex; mode=display">
+V_0\equiv e_1=[1,0,0,...,0]'</script><p>and</p>
+<script type="math/tex; mode=display">
+V_k\equiv\Phi_1^je_1,\ k=1,...,h</script><p>The n elements of the $V_j$ vector series, $k = 0, 1, 2, . . . , h$ are called the <strong>impulse-response functions</strong></p>
+<p>The i-th impulse-response function is the trajectory $\{v_{ik},k=0,1,…,h\}$</p>
+<p>If we consider a VAR(p) stationary process</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi(L)^{-1}\epsilon_t=\sum_{k=0}^\infty\Psi_k\epsilon_{t-k}</script><p>The impulse-response function is defined as</p>
+<script type="math/tex; mode=display">
+v(i,j,k)\equiv\frac{\partial T_{it}}{\partial\epsilon_{j,t-k}}=\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><p>$v(i,j,k)$ represent the response of $Y_{it}$ to a unitary shock in $Y_{j,t-k}$ (produced by a unitary shock in $\epsilon_{j,t-k}$.)</p>
+<p>$\Sigma$ is <strong>not required</strong> to be diagonal, so the component of  $\epsilon_t$ may be <strong>contemporaneously correlated</strong>.</p>
+<p>If the correlations are high, there is <strong>no way</strong> of separating the response of $Y_{it}$ to a shock on $\epsilon_{j,t−k}$ from its response to other shocks that are correlated to $\epsilon_{j,t−k}$.</p>
+<p>If we defifine the <strong>square invertible matrix</strong> $S$ such that</p>
+<script type="math/tex; mode=display">
+\epsilon_t\equiv S\xi_t\ with\ \mathbb E(\xi_t\xi_t')\equiv I_n</script><p>then, setting $\tilde\Psi_j\equiv\Psi_jS,\xi_t=S^{-1}\epsilon_t$</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\Psi_k\epsilon_{t-k}=\sum_{j=0}^\infty(\Psi_kS)S^{-1}\epsilon_{t-k}=\sum_{j=0}^\infty\tilde\Psi_k\xi_{t-k}</script><p>We can define the <strong>structural impulse-response function</strong> as</p>
+<script type="math/tex; mode=display">
+\tilde v(i,j,k)\equiv\frac{\partial T_{it}}{\partial\xi_{j,t-k}}=\tilde\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><ul>
+<li>Note that if $\epsilon_t=S\xi_t$, then $\Sigma=SS’$</li>
+</ul>
+<p>$S$ is often defined as a lower triangular matrix (<strong>Choleski decomposition</strong>)</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\epsilon_{1t}\\\epsilon_{2t}\\...\\\epsilon_{nt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+s_{11}&0&...&0\\
+s_{21}&s_{22}&...&0\\
+...&...&...&...\\
+s_{n1}&s_{n2}&...&s_{nn}\\
+\end{bmatrix}
+\begin{bmatrix}
+\xi_{1t}\\\xi_{2t}\\...\\\xi_{nt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+s_{11}\xi_{1t}\\s_{21}\xi_{1t}+s_{22}\xi_{2t}\\...\\
+s_{n1}\xi_{1t}+...+s_{nn}\xi_{nt}
+\end{bmatrix}</script><p>The fact that $S$ is triangular implies that $\epsilon_{1t}$ is a function of the first structural shocks $\xi_{1t}, \epsilon_{2t}$ is a function of the structural shocks $\xi_{1t}$ and $\xi_{2t}$ and so on.</p>
+<p>【<strong>Example</strong>】</p>
+<p>Let $Y_t=\Phi Y_{t-1}+\epsilon_t,\epsilon_t\sim(0,\Sigma)$, with</p>
+<script type="math/tex; mode=display">
+\Phi=\begin{bmatrix}0.4&0.5\\-0.2&1.1\end{bmatrix}\qquad
+\Sigma=\begin{bmatrix}1&0.6\\0.6&1\end{bmatrix}</script><p>Hence,</p>
+<script type="math/tex; mode=display">
+\Phi^2=\begin{bmatrix}0.06&0.75\\-0.3&1.11\end{bmatrix}\qquad
+\Phi^3=\begin{bmatrix}-0.126&0.855\\-0.342&1.071\end{bmatrix}</script><p>and so on.</p>
+<p>Note that $\Sigma=SS’$, with</p>
+<script type="math/tex; mode=display">
+S=\begin{bmatrix}1&0\\0.6&0.8\end{bmatrix}</script><p>which is equivalent to $\tilde\Psi_0$. Moreover</p>
+<script type="math/tex; mode=display">
+\tilde\Psi_1=\Phi S=\begin{bmatrix}0.7&0.4\\0.46&0.88\end{bmatrix}\qquad
+\tilde\Psi_2=\Phi^2S=\begin{bmatrix}0.51&0.6\\0.366&0.888\end{bmatrix}</script><p>and so on.</p>
+<p>In practice $ \Sigma$ is estimate by</p>
+<script type="math/tex; mode=display">
+\hat\Sigma=\frac1T\sum_{t=1}^T\hat\epsilon_t\hat\epsilon_t'</script><p>and the Cholesky decomposition is computed on $ \hat\Sigma$, that is</p>
+<script type="math/tex; mode=display">
+\hat\Sigma=\hat S\hat S'</script><p><strong>Forecast error variance decomposition</strong></p>
+<p>The <strong>orthogonalized error variance decomposition</strong> is defined as</p>
+<script type="math/tex; mode=display">
+\psi(i,j,h)\equiv\frac{\sum_{k=0}^{h-1}\tilde v^2(i,j,k)}{\sum_{j=1}^n\sum_{k=0}^{h-1}\tilde v^2(i,j,k)}</script><p>Expressed as percentage, one can thus examine the relative importance of the error variance $Y_j$ for forecasting $Y_i$ h-step ahead.</p>
+
             </div>
             <hr>
             <div>
