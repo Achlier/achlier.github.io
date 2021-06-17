@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.5k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40
+      44
        分钟
     </span>
   
@@ -460,6 +460,32 @@ FV_T(f)=\int_0^t|f'(t)|dt</script><p><strong>Quadratic Variation</strong></p>
 <blockquote>
 <p>如果一个函数是连续的，它的Quadratic Variation为0</p>
 </blockquote>
+<p>对于Brownian motion $W(t)$ 设</p>
+<script type="math/tex; mode=display">
+Q_{\pi}=\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2</script><script type="math/tex; mode=display">
+\begin{align}
+\mathbb E[Q_\pi]&=\sum_{j=0}^{n-1}\mathbb E[(W(t_{j+1})-W(t_j))^2]\\
+&=\sum_{j=0}^{n-1}Var(W(t_{j+1})-W(t_j))\\
+&=\sum_{j=0}^{n-1}(t_{j+1}-t_j)=T
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+Var[Q_\pi]&=\sum_{j=0}^{n-1}Var[(W(t_{j+1})-W(t_j))^2]\\
+&=\sum_{j=0}^{n-1}\mathbb E[(W(t_{j+1})-W(t_j))^4]-(t_{j+1}-t_j)^2\\
+&=\sum_{j=0}^{n-1}2(t_{j+1}-t_j)^2\\
+&\leq 2||\pi||T\to 0
+\end{align}</script><p>所以波动趋近于 0, $Q_{\pi}$ 趋近于 $T$</p>
+<p>补充</p>
+<p>通过 Moment Generating Function 的特性可知</p>
+<script type="math/tex; mode=display">
+e^{uY}=1+uY+\frac{u^2Y^2}{2!}+\frac{u^3Y^3}{3!}+...</script><script type="math/tex; mode=display">
+M_Y(u)=\mathbb E[e^{uY}]=1+u\mathbb E(Y)+\frac{u^2\mathbb E(Y^2)}{2!}+\frac{u^3\mathbb E(Y^3)}{3!}+...</script><script type="math/tex; mode=display">
+M_Y^{(k)}(0)=E(Y^k)</script><p>上面求过</p>
+<script type="math/tex; mode=display">
+\mathbb E[e^{uY}]=e^{\frac{u^2\sigma^2}2}</script><p>可得</p>
+<script type="math/tex; mode=display">
+M_Y^{(4)}(0)=3\sigma^4</script><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61828433">矩母函数、正态分布、二次型</a></li>
+</ol>
 
             </div>
             <hr>
