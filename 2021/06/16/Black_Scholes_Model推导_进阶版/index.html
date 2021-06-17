@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      821 字
+      1.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      22
        分钟
     </span>
   
@@ -236,7 +236,51 @@
 <p>有同学可能会问，这个在 $\mathbb P$ 测度下过程一样，为什么要转换测度？</p>
 <p>按照up主的解释，$\mathbb P$ 测度下的鞅是不存在的，只能转换到 $\mathbb Q$ 去求</p>
 </blockquote>
-<h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>已知初步的定价公式</p>
+<h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p>我们设 $S_t^*$ 是 $S_t$ 折现后的价值，其中 $S_t$ 存在于 $\mathbb P$ 测度下, 而折现后在 $\mathbb Q$ 测度下是鞅</p>
+<script type="math/tex; mode=display">
+S^*_t=S_te^{-rt}</script><script type="math/tex; mode=display">
+\begin{align}
+dS_t^*&=d(S_te^{-rt})=S_tde^{-rt}+e^{-rt}dS_t+dS_tde^{-rt}\\
+&=-re^{-rt}S_tdt+e^{-rt}(\mu S_tdt+\sigma S_tdW_t)\\
+&=(\mu-r)S_t^*dt+\sigma S_t^*dW_t
+\end{align}</script><p>因为 $\mu&gt;r$ 永远存在，所以在 $\mathbb P$ 测度下永远不可能得到鞅，因此要换测度</p>
+<h4 id="Novikov-condition"><a href="#Novikov-condition" class="headerlink" title="Novikov condition"></a>Novikov condition</h4><p>若 $\theta^2$ 可积，存在一个 process $M^\theta$</p>
+<script type="math/tex; mode=display">
+M_t^\theta=exp(-\int_0^t\theta_sdX_s-\frac12\int_0^t\theta_s^2ds)</script><p>是一个鞅</p>
+<h4 id="Girsanov‘s-Theorem"><a href="#Girsanov‘s-Theorem" class="headerlink" title="Girsanov‘s Theorem"></a>Girsanov‘s Theorem</h4><p>可以通过 Radon Nicodym 导数</p>
+<script type="math/tex; mode=display">
+\frac{d\mathbb Q}{d\mathbb P}=exp(-\int_0^t\theta_sdW_s-\frac12\int_0^t\theta_s^2ds)</script><p>得到在 $\mathbb Q$ 测度下的布朗运动</p>
+<script type="math/tex; mode=display">
+W_t^\mathbb Q=W_t+\int_0^t\theta(s)ds</script><script type="math/tex; mode=display">
+dW_t^\mathbb Q=dW_t+\theta_tdt</script><blockquote>
+<p>只有随机变量在不同概率测度下才会有影响</p>
+</blockquote>
+<p>详细见 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/05/23/%E6%A6%82%E7%8E%87%E6%B5%8B%E5%BA%A6%E5%8F%98%E6%8D%A2%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/">概率测度变换笔记</a></p>
+<p>得到替换后的在 $\mathbb Q$ 测度下的 $dS_t^*$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dS_t^*&=(\mu-r)S_t^*dt+\sigma S_t^*(dW_t^\mathbb Q-\theta_tdt)\\
+&=(\mu-r-\sigma\theta_t)S_t^*dt+\sigma S_t^*dW_t^\mathbb Q
+\end{align}</script><p>为了取鞅 $\theta_t=\frac{\mu-r}{\sigma}$，此时</p>
+<script type="math/tex; mode=display">
+dS_t^*=\sigma S_t^*dW_t^\mathbb Q</script><p>对于一个投资组合</p>
+<script type="math/tex; mode=display">
+dV_t=\phi_t^SdS_t+\phi_t^BdB_t,\quad B_t=B_0e^{rt}</script><script type="math/tex; mode=display">
+\begin{align}
+dV_t^*&=V_tde^{-rt}+e^{-rt}dV_t\\
+&=-re^{-rt}(\phi_t^SS_t+\phi_t^BB_t)dt+e^{-rt}(\phi_t^SdS_t+\phi_t^BdB_t)\\
+&=\phi_t^S(-re^{-rt}S_tdt+e^{-rt}dS_t)+\phi_t^B(-re^{-rt}B_tdt+e^{-rt}dB_t)\\
+&=\phi_t^S(S_tde^{-rt}+e^{-rt}dS_t)+\phi_t^B(-re^{-rt}B_tdt+e^{-rt}rB_tdt)\\
+&=\phi_t^SdS_te^{-rt}=\phi_t^SdS_t^*=\phi_t^S\sigma S_t^*dW_t^\mathbb Q
+\end{align}</script><p>也是一个 $\mathbb Q$ 鞅</p>
+<script type="math/tex; mode=display">
+\mathbb E^\mathbb Q[V_T^*|\mathscr{F}_t]=V_t^*</script><p>设 $G(S_T)$ 为期权到期日的收益，因为 $V_T$ 是一个复制期权的组合</p>
+<script type="math/tex; mode=display">
+\mathbb E^\mathbb Q[V_T^*|\mathscr{F}_t]=\mathbb E^\mathbb Q[G(S_T)e^{-rT}|\mathscr{F}_t]</script><p>最后能得到</p>
+<script type="math/tex; mode=display">
+V_t^*=\mathbb E^\mathbb Q[G(S_T)e^{-rT}|\mathscr{F}_t]</script><p><strong>初步的定价公式</strong></p>
+<script type="math/tex; mode=display">
+V_t=V_t^*e^{rt}=e^{-r(T-t)}\mathbb E^\mathbb Q[G(S_T)|\mathscr{F}_t]</script><h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p>已知对于看涨期权初步的定价公式</p>
 <script type="math/tex; mode=display">
 C=V_t^*e^{rt}=e^{-rT}\mathbb E^\mathbb Q[(S_T-K,0)^+]</script><p>引入示性函数 $\mathbb I$</p>
 <script type="math/tex; mode=display">
@@ -269,7 +313,7 @@ S_t &= S_0exp((r - \frac{\sigma^2}{2})t +\sigma W_t^\mathbb Q)\\
 &=e^{m+\frac{\lambda^2}2}(1-N(a-\lambda))
 \end{align}</script><p>With $N(x)+N(-x)=1$</p>
 <script type="math/tex; mode=display">
-\mathbb E[e^{m+\lambda\epsilon}\mathbb I_{\{\epsilon\ge a\}}]=e^{m+\frac{\lambda^2}2}N(\lambda-a)</script><h3 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h3><p>求第一项</p>
+\mathbb E[e^{m+\lambda\epsilon}\mathbb I_{\{\epsilon\ge a\}}]=e^{m+\frac{\lambda^2}2}N(\lambda-a)</script><h4 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h4><p>求第一项</p>
 <script type="math/tex; mode=display">
 \begin{align}
 &e^{-rT}\mathbb E^\mathbb Q[S_T\mathbb I_{\{S_T\ge K\}}]\\

@@ -634,7 +634,10 @@ C_T^a = (S_T-K)^+\ ,\ P_T^a = (K-S_T)^+</script><p>The quantities $C_{t+1}^{au}/
 <script type="math/tex; mode=display">
 u = e^{\sigma\sqrt{\Delta t}}\ and\ d=\frac{1}{u}</script><p>Assume that $B_{k\Delta t}=(1+r\Delta t)^k$ for every $k = 0, 1, . . . , n$. Then the risk-neutral probability measure  $\tilde{\mathbb{P}}$ satisfies</p>
 <script type="math/tex; mode=display">
-\tilde{\mathbb{P}}(S_{t+\Delta t}=S_tu|S_t)=\frac{1}{2}+\frac{r-\frac{\sigma^2}{2}}{2\sigma}\sqrt{\Delta t}+o(\sqrt{\Delta t})</script><p><strong>The Jarrow-Rudd (JR) parameterisation:</strong></p>
+\tilde{\mathbb{P}}(S_{t+\Delta t}=S_tu|S_t)=\frac{1}{2}+\frac{r-\frac{\sigma^2}{2}}{2\sigma}\sqrt{\Delta t}+o(\sqrt{\Delta t})</script><blockquote>
+<p>BS-PDE是这个 CRR 求的</p>
+</blockquote>
+<p><strong>The Jarrow-Rudd (JR) parameterisation:</strong></p>
 <script type="math/tex; mode=display">
 u=e^{(r-\frac{\sigma^2}{2})\Delta t+\sigma\sqrt{\Delta t}}\ and \ d=e^{(r-\frac{\sigma^2}{2})\Delta t-\sigma\sqrt{\Delta t}}</script><p>Let  $B_{k\Delta t}=(1+r\Delta t)^k$ for every $k = 0, 1, . . . , n$. Then the risk-neutral probability measure  $\tilde{\mathbb{P}}$ satisfies</p>
 <script type="math/tex; mode=display">
@@ -686,7 +689,7 @@ C_t(S_t)=S_tN(d_+(S_t,T-t))-Ke^{-r(T-t)}N(d_{\_}(S_t,T-t))</script><script type=
 P_t(S_t)=Ke^{-r(T-t)}N(-d_{\_}(S_t,T-t))-S_tN(-d_+(S_t,T-t))</script><script type="math/tex; mode=display">
 C_t-P_t = S_T-Ke^{-r(T-t)}</script><p>where</p>
 <script type="math/tex; mode=display">
-d_\pm(S_t,T-t)=\frac{ln\frac{S_t}{K}+(r\pm\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}</script><p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/02/28/Black_Scholes_Model%E6%8E%A8%E5%AF%BC/">推导过程</a></p>
+d_\pm(S_t,T-t)=\frac{ln\frac{S_t}{K}+(r\pm\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}</script><p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">推导过程</a></p>
 <h4 id="The-Black-Scholes-PDE"><a href="#The-Black-Scholes-PDE" class="headerlink" title="The Black-Scholes PDE"></a>The Black-Scholes PDE</h4><p>Let the price of the contingent claim at t given the current stock price $S_t = x$ be denoted by $V (t, x)$. Then $V (t, x)$ is the solution of the <strong>Black-Scholes partial differential equation</strong>.</p>
 <script type="math/tex; mode=display">
 \frac{\partial}{\partial t}V(t,x)+\frac{\sigma^2x^2}{2}\frac{\partial^2}{\partial x^2}V(t,x)+rx\frac{\partial}{\partial x}V(t,x)-rV(t,x)=0</script><p>with the terminal condition $V (T, x) = h(x)$.</p>

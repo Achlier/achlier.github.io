@@ -620,7 +620,7 @@ S_t = S_0exp((\mu - \frac{\sigma^2}{2})t+\sigma W_t)</script><p>The solution to 
 <script type="math/tex; mode=display">
 lnS_T \sim N(lnS_0 + (\mu - \frac{\sigma^2}{2})T, \sigma^2T)</script><p>or：</p>
 <script type="math/tex; mode=display">
-ln\frac{S_T}{S_0} \sim N((\mu - \frac{\sigma^2}{2})T, \sigma^2T)</script><h2 id="Unit-3-7"><a href="#Unit-3-7" class="headerlink" title="Unit 3.7"></a>Unit 3.7</h2><h4 id="Deriving-the-BSM-Partial-Differential-Equation-更多步骤"><a href="#Deriving-the-BSM-Partial-Differential-Equation-更多步骤" class="headerlink" title="Deriving the BSM Partial Differential Equation 更多步骤"></a>Deriving the BSM Partial Differential Equation <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/03/14/%E4%BB%8EFeynman-Kac%E5%88%B0Black_Scholes_PDE/">更多步骤</a></h4><p> Assuming $\delta$ is the number of shares needed to hedge one call option.</p>
+ln\frac{S_T}{S_0} \sim N((\mu - \frac{\sigma^2}{2})T, \sigma^2T)</script><h2 id="Unit-3-7"><a href="#Unit-3-7" class="headerlink" title="Unit 3.7"></a>Unit 3.7</h2><h4 id="Deriving-the-BSM-Partial-Differential-Equation"><a href="#Deriving-the-BSM-Partial-Differential-Equation" class="headerlink" title="Deriving the BSM Partial Differential Equation"></a>Deriving the BSM Partial Differential Equation</h4><p> Assuming $\delta$ is the number of shares needed to hedge one call option.</p>
 <script type="math/tex; mode=display">
 \delta \sigma S \Delta W = \frac{\partial f}{\partial S}\sigma S \Delta W</script><p>where $\delta = \frac{\partial f}{\partial S}$ is called the <strong>delta</strong> of the option.</p>
 <p>Define $\Pi$ as the value of this portfolio, therefore:</p>
@@ -636,7 +636,8 @@ ln\frac{S_T}{S_0} \sim N((\mu - \frac{\sigma^2}{2})T, \sigma^2T)</script><h2 id=
 <script type="math/tex; mode=display">
 \Delta \Pi = r \Pi \Delta t</script><p>Substituting equations above, we obtain the BSM partial differential equation:</p>
 <script type="math/tex; mode=display">
-\frac{\partial f}{\partial t}+rS\frac{\partial f}{\partial S}+\frac{1}{2}\sigma^2S^2\frac{\partial^2 f}{\partial S^2} = rf</script><h4 id="BSM-European-Option-Pricing-Formula-推导步骤"><a href="#BSM-European-Option-Pricing-Formula-推导步骤" class="headerlink" title="BSM European Option Pricing Formula: 推导步骤"></a>BSM European Option Pricing Formula: <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/02/28/Black_Scholes_Model%E6%8E%A8%E5%AF%BC/">推导步骤</a></h4><script type="math/tex; mode=display">
+\frac{\partial f}{\partial t}+rS\frac{\partial f}{\partial S}+\frac{1}{2}\sigma^2S^2\frac{\partial^2 f}{\partial S^2} = rf</script><p><strong><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/03/14/%E4%BB%8EFeynman-Kac%E5%88%B0Black_Scholes_PDE/">其他方法</a></strong></p>
+<h4 id="BSM-European-Option-Pricing-Formula"><a href="#BSM-European-Option-Pricing-Formula" class="headerlink" title="BSM European Option Pricing Formula:"></a>BSM European Option Pricing Formula:</h4><script type="math/tex; mode=display">
 \begin{align}
 c &= S_tN(d_1)- e^{-r (T-t)}KN(d_2)\\
 p &= e^{-r (T-t)}KN(-d_2)- S_tN(-d_1)
@@ -646,7 +647,8 @@ p &= e^{-r (T-t)}KN(-d_2)- S_tN(-d_1)
 d_1&=\frac{1}{\sigma \sqrt{T-t}}(ln\frac{S_t}{K}+(r+\frac{1}{2}\sigma^2)(T-t))\\
 d_2&=\frac{1}{\sigma \sqrt{T-t}}(ln\frac{S_t}{K}+(r-\frac{1}{2}\sigma^2)(T-t))\\
 &=d1 - \sigma \sqrt{T-t}
-\end{align}</script><p><strong>Matlab function</strong></p>
+\end{align}</script><p><strong><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">推导步骤</a></strong></p>
+<p><strong>Matlab function</strong></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">[Call,Put] = blsprice(Price,Strike,Rate,Time,Volatility)<br></code></pre></td></tr></table></figure>
 <p><strong>Factors affecting option prices</strong></p>
 <div class="table-container">

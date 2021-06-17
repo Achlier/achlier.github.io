@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.3k 字
+      10.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      198
+      199
        分钟
     </span>
   
@@ -882,8 +882,12 @@ or,\ &dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t,\ with\ v_t=\sigma_t^2
 \end{align}</script><blockquote>
 <p>本课的模型都是在风险中性 (鞅) 的测度下，对于有些文章会按现实测度写，但实际是效果都相同</p>
 </blockquote>
-<p>The variance process vt is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
-<p>To model the variance of asset prices, we need vt to remain positive</p>
+<p>If we have $\epsilon\sim N(0,\Delta t)$</p>
+<script type="math/tex; mode=display">
+dW_t=\epsilon</script><script type="math/tex; mode=display">
+dW_t'=\rho dW_t+\sqrt{1-\rho^2}\epsilon</script><script type="math/tex; mode=display">
+d\langle W,W'\rangle_t=\rho dt</script><p>The variance process $v_t$ is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
+<p>To model the variance of asset prices, we need $v_t$ to remain positive</p>
 <p><strong>（Advantage）</strong>For $\frac{2k\theta}{\delta^2}&gt;1$ the process never hits zero. This constraint on parameters is also known as <strong>Feller condition</strong></p>
 <p>This process is <strong>mean reverting</strong></p>
 <p>For the square root process</p>
@@ -1140,6 +1144,7 @@ e_s(h):=\mathbb E|X(T)-X_N^h(T)|</script><p>If we wish to price options based on
 e_w(h):=|\mathbb E_gX(T)-\mathbb E_gX_N^h(T)|</script><p>for smooth functions g</p>
 <blockquote>
 <p>光滑函数（smooth function）:在其定义域内无穷阶数连续可导的函数</p>
+<p>g 可以取 $(S(T)-K)^+$</p>
 </blockquote>
 <p>We say that $X^h$ converges to $X$ with order $\beta &gt; 0$</p>
 <ul>
