@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28
+      39
        分钟
     </span>
   
@@ -267,6 +267,9 @@
 </ul>
 </li>
 <li><p>Stochastic Calculus</p>
+<ul>
+<li>《Stochastic Calculus for Finance》 - Shreve</li>
+</ul>
 </li>
 </ul>
 <h1 id="期权定价"><a href="#期权定价" class="headerlink" title="期权定价"></a>期权定价</h1><ul>
@@ -287,7 +290,7 @@ dS_t=\mu S_tdt+\sigma S_tdW_t</script><p>按公式分为两种方法建立 BS mo
 </blockquote>
 <p><strong>针对第一个方法详细见 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/03/14/%E4%BB%8EFeynman-Kac%E5%88%B0Black_Scholes_PDE/#2-对冲版推导">从Feynman_Kac到Black_Scholes_PDE</a></strong> + 还没有补的PDE到BS过程</p>
 <p><strong>针对第二个方法详细见 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">Black_Scholes_Model推导_进阶版</a></strong></p>
-<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>二叉树的定价也可以分为两种</p>
+<h2 id="二叉树定价"><a href="#二叉树定价" class="headerlink" title="二叉树定价"></a>二叉树定价</h2><p>二叉树的定价也可以分为两种</p>
 <ol>
 <li>对冲 Hedge (Risk)</li>
 <li>复制 (Replicate Option)</li>
@@ -387,6 +390,68 @@ r(\Delta t)V&\approx rS(\Delta t)\frac{\partial V}{\partial S}+(\Delta t)\frac{\
 0=\frac{\partial V}{\partial t}+rS\frac{\partial V}{\partial S}+\frac 12\sigma^2S^2\frac{\partial^2 V}{\partial S^2}-rV</script><blockquote>
 <p>因为我们省略的 $\Delta t$ 最高阶是 1，所以 $\alpha$ 最低取 1</p>
 </blockquote>
+<h2 id="布朗运动"><a href="#布朗运动" class="headerlink" title="布朗运动"></a>布朗运动</h2><h3 id="对称随机游走S-R-W"><a href="#对称随机游走S-R-W" class="headerlink" title="对称随机游走S.R.W"></a>对称随机游走S.R.W</h3><p>基本定义</p>
+<script type="math/tex; mode=display">
+X_i=\begin{cases}1&Head\\-1&Tail\end{cases}</script><script type="math/tex; mode=display">
+M_k=M_0+\sum_{i=1}^kX_i</script><script type="math/tex; mode=display">
+\mathbb E[X_i]=1\times\frac 12-1\times\frac 12=0</script><script type="math/tex; mode=display">
+Var(X_i)=(1-0)^2\times\frac12+(-1-0)^2\times\frac12=1</script><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p><strong>Indipendent increments</strong></p>
+<blockquote>
+<p>增量直接独立</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\mathbb E[M_{k_{i+1}}-M_{k_i}]=0</script><script type="math/tex; mode=display">
+Var(M_{k_{i+1}}-M_{k_i})=k_{i+1}-k_i</script><p><strong>Martingle Property</strong></p>
+<p>Set $k&lt;l$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb E[M_l|\mathscr F_k]&=\mathbb E[M_l-M_k+M_k|\mathscr F_k]\\
+&=\mathbb E[M_l-M_k|\mathscr F_k]+\mathbb E[M_k|\mathscr F_k]\\
+&=0+M_k
+\end{align}</script><p><strong>Quadratic Variation</strong></p>
+<script type="math/tex; mode=display">
+[M,M]_k=\sum_{j=1}^k(M_j-M_{j-1})^2=K\times 1=K</script><blockquote>
+<p>与 $Var(M_{k}-M_{0})$ 不同的是，上式考察的是每一步，而 $Var$ 考察的是在最后的点的 $\sigma$</p>
+</blockquote>
+<h3 id="Scaled-Random-Walk-n"><a href="#Scaled-Random-Walk-n" class="headerlink" title="Scaled Random Walk (n)"></a>Scaled Random Walk (n)</h3><p>单位时间内走 $n$ 步, 一共 $nt$ 步, 每步 $\frac1{\sqrt n}$</p>
+<script type="math/tex; mode=display">
+W^n(t)=\frac1{\sqrt n}M_{nt}</script><script type="math/tex; mode=display">
+\mathbb E[W^n(t)-W^n(s)]=\mathbb E[\frac1{\sqrt n}\sum_{j=ns+1}^{nt}x_j]=0</script><script type="math/tex; mode=display">
+Var(W^n(t)-W^n(s))=\frac1nVar(M_{nt}-M_{ns})=t-s</script><p><strong>Martingle Property</strong></p>
+<p><strong>Martingle Property</strong></p>
+<p><strong>Quadratic Variation</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+[W^n,W^n]_t&=\sum_{i=1}^{nt}(W^n(\frac in)-W^n(\frac {i-1}n))^2\\
+&=\sum_{i=1}^{nt}(\frac1{\sqrt n}(M_{i}-M_{i-1}))^2\\
+&=\sum_{i=1}^{nt}\frac1n=t
+\end{align}</script><h3 id="Brownian-motion"><a href="#Brownian-motion" class="headerlink" title="Brownian motion"></a>Brownian motion</h3><p><strong>Moment Generating Function</strong> 矩生成函数</p>
+<p>$W^n(t)$ 的 MGF ：$\phi_n(u)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\phi_n(u)&=\mathbb E[e^{uW^n(t)}]=\mathbb E[exp(\frac u{\sqrt n}M_{nt})]\\
+&=\mathbb E[exp(\frac {uX_1}{\sqrt n})exp(\frac {uX_2}{\sqrt n})...exp(\frac {uX_{nt}}{\sqrt n})]\\
+&=(\frac12(e^{\frac u{\sqrt n}}+e^{\frac {-u}{\sqrt n}}))^{nt}\\
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+ln\phi_n(u)&=nt\ln(\frac12(e^{\frac u{\sqrt n}}+e^{\frac {-u}{\sqrt n}}))\\
+(Set\ \frac1{\sqrt{n}}=\lambda) &\Rightarrow \frac t{\lambda^2}\ln(\frac12(e^{\lambda u}+e^{-\lambda u}))\\
+(泰勒展开)&=\frac t{\lambda^2}\ln(1+\frac12\lambda^2u^2+o(\lambda^2))\\
+(If\ x\to 0,
+\ln(1+x)\sim x)&=\frac t{\lambda^2}(\frac12\lambda^2u^2+o(\lambda^2))\\
+&=\frac t2u^2+to(\lambda^4)=\frac t2u^2
+\end{align}</script><p>当 $n\to\infty$</p>
+<script type="math/tex; mode=display">
+\phi_n(u)=exp(\frac t2u^2)</script><p>If $Y\sim N(0,t)$</p>
+<script type="math/tex; mode=display">
+PDF:\frac1{\sqrt{2\pi t}}exp(-\frac{x^2}{2t})</script><script type="math/tex; mode=display">
+\begin{align}
+W^n(t)的MGF:\mathbb E[e^{uY}]&=\int_{-\infty}^\infty e^{ux}\frac1{\sqrt{2\pi t}}exp(-\frac{x^2}{2t})dx\\
+&=\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-(\frac{x^2}{2t}-ux+\frac{u^2t}2)+\frac{u^2t}2)dx\\
+&=\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-\frac1{2t}(x-ut)^2+\frac{u^2t}2)dx\\
+&=e^{\frac{u^2t}2}\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-\frac1{2t}(x-ut)^2)dx\\
+&=e^{\frac{u^2t}2}
+\end{align}</script><p><strong>$W^n(t)$ 的 MGF 趋于 $N(0,t)$ 的 MGF</strong></p>
 
             </div>
             <hr>

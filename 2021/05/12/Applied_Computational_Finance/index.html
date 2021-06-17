@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      199
+      200
        分钟
     </span>
   
@@ -882,11 +882,14 @@ or,\ &dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t,\ with\ v_t=\sigma_t^2
 \end{align}</script><blockquote>
 <p>本课的模型都是在风险中性 (鞅) 的测度下，对于有些文章会按现实测度写，但实际是效果都相同</p>
 </blockquote>
-<p>If we have $\epsilon\sim N(0,\Delta t)$</p>
+<p>If we have $W_1,\tilde W$ where $\langle W _1,\tilde W\rangle=0$</p>
 <script type="math/tex; mode=display">
-dW_t=\epsilon</script><script type="math/tex; mode=display">
-dW_t'=\rho dW_t+\sqrt{1-\rho^2}\epsilon</script><script type="math/tex; mode=display">
-d\langle W,W'\rangle_t=\rho dt</script><p>The variance process $v_t$ is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
+W_2=\rho W_1+\sqrt{1-\rho^2}\tilde W</script><script type="math/tex; mode=display">
+\begin{align}
+d\langle W_1,W_2\rangle&=d\langle W_1,\rho W_1+\sqrt{1-\rho^2}\tilde W\rangle_t\\
+&=\rho d\langle W_1,W_1\rangle+\sqrt{1-\rho^2} d\langle W _1,\tilde W\rangle\\
+&=\rho dt
+\end{align}</script><p>The variance process $v_t$ is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
 <p>To model the variance of asset prices, we need $v_t$ to remain positive</p>
 <p><strong>（Advantage）</strong>For $\frac{2k\theta}{\delta^2}&gt;1$ the process never hits zero. This constraint on parameters is also known as <strong>Feller condition</strong></p>
 <p>This process is <strong>mean reverting</strong></p>

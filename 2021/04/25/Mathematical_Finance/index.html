@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      83
+      84
        分钟
     </span>
   
@@ -634,8 +634,9 @@ C_T^a = (S_T-K)^+\ ,\ P_T^a = (K-S_T)^+</script><p>The quantities $C_{t+1}^{au}/
 <script type="math/tex; mode=display">
 u = e^{\sigma\sqrt{\Delta t}}\ and\ d=\frac{1}{u}</script><p>Assume that $B_{k\Delta t}=(1+r\Delta t)^k$ for every $k = 0, 1, . . . , n$. Then the risk-neutral probability measure  $\tilde{\mathbb{P}}$ satisfies</p>
 <script type="math/tex; mode=display">
-\tilde{\mathbb{P}}(S_{t+\Delta t}=S_tu|S_t)=\frac{1}{2}+\frac{r-\frac{\sigma^2}{2}}{2\sigma}\sqrt{\Delta t}+o(\sqrt{\Delta t})</script><blockquote>
+\tilde{\mathbb{P}}(S_{t+\Delta t}=S_tu|S_t)=\frac{1+r\Delta t-d}{u-d}=\frac{1}{2}+\frac{r-\frac{\sigma^2}{2}}{2\sigma}\sqrt{\Delta t}+o(\sqrt{\Delta t})</script><blockquote>
 <p>BS-PDE是这个 CRR 求的</p>
+<p>$\tilde{\mathbb{P}}$ 部分可以用泰勒展开约到 $o(\Delta t)$求</p>
 </blockquote>
 <p><strong>The Jarrow-Rudd (JR) parameterisation:</strong></p>
 <script type="math/tex; mode=display">
