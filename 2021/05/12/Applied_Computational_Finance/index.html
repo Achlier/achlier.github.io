@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.4k 字
+      10.2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      200
+      197
        分钟
     </span>
   
@@ -771,18 +771,7 @@ E[(R_i^2-v_i-m_i^2)^2]&=E[R_i^4-2v_iR_i^2-2m_i^2R_i^2+v_i^2+2v_im_i^2+m_i^4]\\
 </blockquote>
 <p><img src="/2021/05/12/Applied_Computational_Finance/pic1-1.png" srcset="/img/loading.gif" alt></p>
 <blockquote>
-<p>或者尝试 <a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41895958/article/details/103827936">极坐标转换</a> 的方法直接求</p>
-<p>step 1:</p>
-<p>$sin^n x * cos^m x$ 从0到2pi的定积分有以下特性</p>
-<ol>
-<li><p>当n为奇数时,被积函数是奇函数,所以积分等于0</p>
-</li>
-<li><p>当m为奇数时, $m=2k+1$, 原式化为$sin^n x * (1-sin^2 x)^k dsinx$  在-pi到+pi的积分,然后这个式子等于0</p>
-</li>
-</ol>
-<p>因此只取 $x^2$,$y^2$,$x^4$,$y^4$,$x^2y^2$,$x^2y^4$,$x^4y^2$,$x^4y^4$和整数的部分</p>
-<p>step 2:</p>
-<p>配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$x^2y^2=\rho^4(\frac{sin2\theta}{2})^2$,$x^4y^4=\rho^4(\frac{sin2\theta}{2})^4$, 和 $\int_0^\infty t^{n}e^{-t}dt=n!$</p>
+<p>更多参考</p>
 </blockquote>
 <script type="math/tex; mode=display">
 E[(R^2-v-m^2)^2]=2v_i^2+4v_im_i^2</script><p>and</p>
