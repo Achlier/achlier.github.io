@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      793 字
+      1.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      22
        分钟
     </span>
   
@@ -228,13 +228,13 @@
             
             <div class="markdown-body">
               <blockquote>
-<p>基于乱各种笔记的总结归纳；</p>
+<p>基于乱七八糟各种笔记的总结归纳；</p>
 <p>原目的是求正态分布下的E(x^4)，结果找到了许多之前遗忘的知识点。</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><script type="math/tex; mode=display">
-f(x)=\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>我们知道求标准正态分布下的 $E(x^k)$ 有很多种方法，可以用极坐标转换，还能直接强行推，本文章的第一步就先把这两种基础方法不快乐地各推一遍，再引入矩母函数用更快乐更多样的方法求值.</p>
-<h3 id="极坐标转换"><a href="#极坐标转换" class="headerlink" title="极坐标转换"></a>极坐标转换</h3><p>为了简单按 $N(0,1)$ 为例子，但可以套用其他系数（虽然过程会特别麻烦）</p>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><script type="math/tex; mode=display">
+f(x)=\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>我们知道求标准正态分布下的 $E(x^k)$ 有很多种方法，可以用极坐标转换推，本文章的第一步就先把这两种基础方法不快乐地各推一遍，再引入矩母函数用更快乐更多样的方法求值.</p>
+<h3 id="极坐标转换第一种"><a href="#极坐标转换第一种" class="headerlink" title="极坐标转换第一种"></a>极坐标转换第一种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以套用其他系数（虽然过程会特别麻烦）</p>
 <script type="math/tex; mode=display">
 \begin{align}
 E(x)&=\int x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx\\
@@ -254,13 +254,13 @@ E(x)&=\int x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx\\
 \end{bmatrix}
 =\rho</script><script type="math/tex; mode=display">
 \begin{align}
-E(x)&=\frac4{\sqrt{\pi}}\int x^4e^{-x^2}dx\int y^4e^{-y^2}dy\\
-&=\frac4{\sqrt{\pi}}\int\int x^4y^4e^{-(x^2+y^2)}dxdy
+E(x)&=\int x^4e^{-x^2}dx\int y^4e^{-y^2}dy\\
+&=\int\int x^4y^4e^{-(x^2+y^2)}dxdy
 \end{align}</script><script type="math/tex; mode=display">
 x=\rho cos\theta,\quad y=\rho sin\theta</script><script type="math/tex; mode=display">
 \begin{align}
-E(x)&=\frac4{\sqrt{\pi}}\int_0^\infty\int_0^{2\pi} \rho^8cos\theta^4sin\theta^4e^{-\rho^2}\times\rho\ d\theta  d\rho\\
-&=\frac2{\sqrt{\pi}}\int_0^\infty\rho^8e^{-\rho^2} d\rho^2\int_0^{2\pi} cos\theta^4sin\theta^4d\theta \\
+E(x)&=\int_0^\infty\int_0^{2\pi} \rho^8cos\theta^4sin\theta^4e^{-\rho^2}\times\rho\ d\theta  d\rho\\
+&=\frac12\int_0^\infty\rho^8e^{-\rho^2} d\rho^2\int_0^{2\pi} cos\theta^4sin\theta^4d\theta \\
 \end{align}</script><p>接下来分成两部分相乘，主要如果原分布含有$\mu$, 此时会有许多相加的项，但也按同样的方法分成两部分计算</p>
 <p><strong>第一部分</strong></p>
 <p>令 $t=\rho^2$</p>
@@ -285,9 +285,67 @@ E(x)&=\frac4{\sqrt{\pi}}\int_0^\infty\int_0^{2\pi} \rho^8cos\theta^4sin\theta^4e
 </li>
 </ol>
 <p>因此只取 $n,m$ 都为双数和整数的部分，如果 $k=4$, 只取 $x^2$,$y^2$,$x^4$,$y^4$,$x^2y^2$,$x^2y^4$,$x^4y^2$,$x^4y^4$和整数的部分.</p>
-<p>然后争取把所有项凑成 $m,n$ 相同的形式，配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$x^2y^2=\rho^4(\frac{sin2\theta}{2})^2$，,$x^4y^4=\rho^4(\frac{sin2\theta}{2})^4$</p>
+<p>然后争取把所有项凑成 $m,n$ 相同的形式，配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$sin\theta^2cos\theta^2=(\frac{sin2\theta}{2})^2$，,$sin\theta^4cos\theta^4=(\frac{sin2\theta}{2})^4$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^{2\pi}(\frac{sin2\theta}{2})^4d\theta\\
+=&\frac 1{16}\int_0^{2\pi}sin2\theta^4d\theta\\
+=&\frac 1{16}\int_0^{2\pi}(\frac{1-cos4\theta}2)^4d\theta\\
+=&\frac 1{64}\int_0^{2\pi}(1-2cos4\theta+\frac{1+cos8\theta}2)d\theta\\
+=&\frac 1{64}\times\frac 32\times2\pi=\frac{3}{64}\pi
+\end{align}</script><p>最终得到</p>
+<script type="math/tex; mode=display">
+E(x)=\frac4{\sqrt{\pi}}\times\sqrt{\frac12\times 24\times\frac{3}{64}\pi}=3</script><blockquote>
+<p>运用好 Matlab 的 符号运算 和 simplify(f)  对符号表达式进行化简</p>
+</blockquote>
+<h3 id="极坐标转换第二种"><a href="#极坐标转换第二种" class="headerlink" title="极坐标转换第二种"></a>极坐标转换第二种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以转到 $N(0,\sigma^2)$</p>
+<p>If $X\sim N(0,\sigma^2)$, $Y=\frac{x-0}\sigma=\frac x\sigma\sim N(0,1)$</p>
+<script type="math/tex; mode=display">
+\mathbb E[\frac{x^4}{\sigma^4}]=3\Rightarrow E[x^4]=3\sigma^4</script><p>开始求</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_{-\infty}^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
+=&2\int_0^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
+=&(-2)\int_0^\infty x^3\frac1{\sqrt{2\pi}}de^{-\frac{x^2}2}\\
+=&-\frac2{\sqrt{2\pi}}(x^3e^{-\frac{x^2}2}|_0^\infty-3\int_0^\infty e^{-\frac{x^2}2}x^2dx)\\
+=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}x^2dx\\
+=&-\frac6{\sqrt{2\pi}}\int_0^\infty xde^{-\frac{x^2}2}\\
+=&-\frac6{\sqrt{2\pi}}(xe^{-\frac{x^2}2}|_0^\infty-\int_0^\infty e^{-\frac{x^2}2}dx)\\
+=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}dx
+\end{align}</script><blockquote>
+<p>这部分感觉能直接说是 CDF 的一半，就是 $\frac 12$，结果等于 3 , 但是up主继续求了，不确定有没有坑.</p>
+</blockquote>
+<p>极坐标转换</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^\infty\int_0^\infty e^{-\frac{x^2}2} e^{-\frac{y^2}2} dxdy\\
+(只在第一象限)=&\int_0^\frac{\pi}2\int_0^\infty e^{-\frac{r^2}2}rdrd\theta\\
+=&\int_0^\frac{\pi}2 [e^{-\frac{r^2}2}|_\infty^0]d\theta\\
+=&\frac\pi2
+\end{align}</script><p>原式子等于</p>
+<script type="math/tex; mode=display">
+\frac6{\sqrt{2\pi}}\sqrt{\frac{\pi}2}=3</script><h3 id="矩母函数"><a href="#矩母函数" class="headerlink" title="矩母函数"></a>矩母函数</h3><script type="math/tex; mode=display">
+M_x(t)=E(e^{tx})</script><p>对于正态分布 $x\sim N(\mu,\sigma^2)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+M_x(t)&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}+tx}dx\\
+&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{x^2+\mu^2-2(\mu+t\sigma^2)x}{2\sigma^2}}dx\\
+&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2+\mu^2-(\mu+t\sigma^2)^2}{2\sigma^2}}dx\\
+&=e^{-\frac{\mu^2-(\mu^2+t^2\sigma^4+2\mu\sigma^2 t)}{2\sigma^2}}\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2}{2\sigma^2}}dx\\
+&=e^{\frac{t^2\sigma^2}2+\mu t}
+\end{align}</script><p>通过 Moment Generating Function 的特性可知</p>
+<script type="math/tex; mode=display">
+e^{uY}=1+uY+\frac{u^2Y^2}{2!}+\frac{u^3Y^3}{3!}+...</script><script type="math/tex; mode=display">
+M_Y(u)=\mathbb E[e^{uY}]=1+u\mathbb E(Y)+\frac{u^2\mathbb E(Y^2)}{2!}+\frac{u^3\mathbb E(Y^3)}{3!}+...</script><script type="math/tex; mode=display">
+M_Y^{(k)}(0)=E(Y^k)</script><p><strong>【补充】</strong></p>
+<p><img src="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/pic1-1.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/pic1-2.png" srcset="/img/loading.gif" alt></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41895958/article/details/103827936">标准正态分布的E(X^4)积分求解</a></li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fb411V7Gg">[金融工程][Jerry Xu的金工小知识]Stochastc Calculus布朗运动(Part 3)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61828433">矩母函数、正态分布、二次型</a></p>
+</li>
 </ol>
 
             </div>
