@@ -251,19 +251,39 @@ I_W[f]&=\sum_{i=0}^{N-1}W_iw_{i+1}=\sum_{i=1}^{N}(\sum_{j=0}^{i-1}w_j)w_i=\sum_{
 &=\frac{1}{2}(\sum_{i=1}^{N}w_i)^2-\frac{1}{2}\sum_{i=1}^{N}w_i^2=\frac{1}{2}W_N^2-\frac{T-T_0}{2}
 \end{align}</script><p>$I_W[f]$ 具有如下性质：</p>
 <ol>
-<li>$\mathbb{E}I_W[f]=0$</li>
-<li>$\mathbb{E}(I_W[f])^2=\mathbb{E}(\frac{T-T_0}{N}\sum_{i=0}^{N-1}f_i^2)$</li>
+<li><p>$\mathbb{E}I_W[f]=0$</p>
+<blockquote>
+<p>用 Tower property 证鞅，然后 $I_W<a href="0">f</a>=0$</p>
+</blockquote>
+</li>
+<li><p>$\mathbb{E}(I_W[f])^2=\mathbb{E}[f_t^2]\mathbb E[(W_{t+1}-W_t)^2]=\mathbb{E}<a href="T-T_0">f_t^2</a>=\mathbb{E}(\frac{T-T_0}{N}\sum_{i=0}^{N-1}f_i^2)$</p>
+</li>
 </ol>
 <h4 id="连续时间的-Ito-积分"><a href="#连续时间的-Ito-积分" class="headerlink" title="连续时间的 Ito 积分"></a>连续时间的 Ito 积分</h4><script type="math/tex; mode=display">
 I_W[f]=\int_{T_0}^Tf_tdW_t</script><p>取 $f_j=W_j$</p>
 <script type="math/tex; mode=display">
 \int_{T_0}^TW_tdW_t=\frac{1}{2}W_T^2-\frac{T-T_0}{2}</script><blockquote>
 <p>如果 $W_{T_0}\ne 0$, 则多一项 $-W_{T_0}^2/2$</p>
+<p>这题也可以用另一个角度解</p>
+</blockquote>
+<script type="math/tex; mode=display">
+f(t,x)=\frac12 x^2,\ f_t(t,x)=0,\ f_x(t,x)=x,\ f_{xx}(t,x)=1</script><script type="math/tex; mode=display">
+df(t,x)=W(t)dW(t)+\frac12dt</script><p>求积分</p>
+<script type="math/tex; mode=display">
+\frac12 W(T)^2=\int_0^TW(t)dW(t)+\frac12\int_0^Tdt=\int_0^TW(t)dW(t)+\frac12T</script><blockquote>
+<p>相比于普通的积分 $\int_0^Tf(t)df(t) = \frac12f(T)^2$, 伊藤积分是取左值求积分的，如果采用取中值求积分（Stratonovich）</p>
 </blockquote>
 <p>$I_W[f]$ 具有如下性质：</p>
 <ol>
 <li>$\mathbb{E}\int_{T_0}^Tf_tdW_t=0$</li>
-<li>$\mathbb{E}(\int_{T_0}^Tf_tdW_t)^2=\mathbb{E}\int_{T_0}^Tf_t^2dt$</li>
+<li>$\mathbb{E}(\int_{T_0}^Tf_tdW_t)^2=\mathbb{E}\int_{T_0}^Tf_t^2dt$<ul>
+<li>Ito Isometry</li>
+</ul>
+</li>
+<li>$[I_W[f],I_W[f]]_T=\int_0^Tf^2(t)dt$<ul>
+<li>$dI_W[f]dI_W[f]=f^2(t)dt$</li>
+</ul>
+</li>
 </ol>
 <h3 id="随机差分方程的等价的离散积分形式及其连续极限"><a href="#随机差分方程的等价的离散积分形式及其连续极限" class="headerlink" title="随机差分方程的等价的离散积分形式及其连续极限"></a>随机差分方程的等价的离散积分形式及其连续极限</h3><script type="math/tex; mode=display">
 \begin{align}

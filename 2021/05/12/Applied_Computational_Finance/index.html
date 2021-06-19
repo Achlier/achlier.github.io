@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.2k 字
+      10.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      197
+      199
        分钟
     </span>
   
@@ -300,6 +300,7 @@ dX(t)=g(t,X(t))dt</script><p>or approximately as an <strong>difference equation<
 <script type="math/tex; mode=display">
 dX(t)=g(t,X(t))d t+\sigma(t,X(t))d W</script><h2 id="Unit-1-3：Ito-Formula"><a href="#Unit-1-3：Ito-Formula" class="headerlink" title="Unit 1.3：Ito Formula"></a>Unit 1.3：Ito Formula</h2><blockquote>
 <p>Ito Formula 相当于 Taylor 展开的一种特殊形式，因为它是针对随机过程的，因此在二次导的展开项中直接略过了所有与 dt 相乘的项， 只留下 $F_{XX}$</p>
+<p>与 dt 相乘的项都趋近 0 的原因是，对于 dtdt/dtdW，其中一个部分是作用于 $||\pi||\to 0$ 时，把累加部分相连的. $\sum f(x) (t_{i+1}-t_i)\to \int f(x) dt$. 剩下的那一部分由于 $||\pi||$ 极限趋近于 0，即两个 t 之间相隔极近，会使整个式子趋近 0. 比如 dtdt 为 $(dt)^2$, dtdW 为 $(dt)^{1.5}$, 去掉一个 dt 仍然有保留的幂，则整个式子取 0.</p>
 </blockquote>
 <p>We are interested in the dynamics of an expression such as $f(t)=F(t,X(t))$ with $F:[0,\infty]\times \mathbb{R}\to \mathbb{R}$ .</p>
 <ul>

@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      2.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43
+      45
        分钟
     </span>
   
@@ -417,7 +417,7 @@ Var(M_{k_{i+1}}-M_{k_i})=k_{i+1}-k_i</script><p><strong>Martingle Property</stro
 <script type="math/tex; mode=display">
 W^n(t)=\frac1{\sqrt n}M_{nt}</script><script type="math/tex; mode=display">
 \mathbb E[W^n(t)-W^n(s)]=\mathbb E[\frac1{\sqrt n}\sum_{j=ns+1}^{nt}x_j]=0</script><script type="math/tex; mode=display">
-Var(W^n(t)-W^n(s))=\frac1nVar(M_{nt}-M_{ns})=t-s</script><p><strong>Martingle Property</strong></p>
+Var(W^n(t)-W^n(s))=\frac1nVar(M_{nt}-M_{ns})=t-s</script><p><strong>Indipendent increments</strong></p>
 <p><strong>Martingle Property</strong></p>
 <p><strong>Quadratic Variation</strong></p>
 <script type="math/tex; mode=display">
@@ -477,7 +477,19 @@ Var[Q_\pi]&=\sum_{j=0}^{n-1}Var[(W(t_{j+1})-W(t_j))^2]\\
 <blockquote>
 <p>$E(x^4)$ 的解法可参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/">正态分布与矩母函数</a></p>
 </blockquote>
-
+<h3 id="额外的点"><a href="#额外的点" class="headerlink" title="额外的点"></a>额外的点</h3><p>已知两个定义</p>
+<script type="math/tex; mode=display">
+dW(t)=\epsilon\sqrt{dt},\ \epsilon\sim N(0,1)</script><script type="math/tex; mode=display">
+dW(t)dW(t)=dt</script><p>这两个公式都是不完美的定义，因为 W(t) 实际上是处处不可导的</p>
+<p>对于第一个公式，可以理解为在 T 时的分布成正态分布</p>
+<script type="math/tex; mode=display">
+W(T)=\epsilon\sqrt T</script><script type="math/tex; mode=display">
+W(T)-W(0)=\epsilon\sqrt T</script><script type="math/tex; mode=display">
+W(t+\Delta t)-W(t)=dW(t)=\epsilon\sqrt {\Delta T}</script><p>对于第二个公式，可以理解为去除了随机性，是由 Quadratic Variation 推出的</p>
+<script type="math/tex; mode=display">
+\lim_{||\pi||\to0}\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2=T</script><script type="math/tex; mode=display">
+\int_0^TdW(t)dW(t)=\int_0^Tdt</script><script type="math/tex; mode=display">
+dW(t)dW(t)=dt</script>
             </div>
             <hr>
             <div>
