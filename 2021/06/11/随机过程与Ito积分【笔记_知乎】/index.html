@@ -232,7 +232,7 @@
 <p>对 Ito公式 进行了有逻辑的推导，很适合初学者学习;</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Ito积分"><a href="#Ito积分" class="headerlink" title="Ito积分"></a>Ito积分</h2><p>在时间 [$T_0,T$], 布朗运动 {$W_t$}$_{t\in[T_0,T]}$. 将时间分成 $N$段, 所以有 $\Delta t=(T-T_0)/N$. 定义 $W_j=w_1+w_2+…+w_j$, 其中 $\omega_i=\xi_i\sqrt{\Delta t}$. {$\xi_i$} 是一列独立同分布的随机变量，它们的均值为 0, 方差为 1,  且满足如下伯努利分布：$P(\xi_i=1)=P(\xi_i=-1)=\frac{1}{2}$</p>
+<h2 id="Ito-积分"><a href="#Ito-积分" class="headerlink" title="Ito 积分"></a>Ito 积分</h2><p>在时间 [$T_0,T$], 布朗运动 {$W_t$}$_{t\in[T_0,T]}$. 将时间分成 $N$段, 所以有 $\Delta t=(T-T_0)/N$. 定义 $W_j=w_1+w_2+…+w_j$, 其中 $\omega_i=\xi_i\sqrt{\Delta t}$. {$\xi_i$} 是一列独立同分布的随机变量，它们的均值为 0, 方差为 1,  且满足如下伯努利分布：$P(\xi_i=1)=P(\xi_i=-1)=\frac{1}{2}$</p>
 <p>有 $W(t)-W(s)\sim N(0,t-s)$</p>
 <p>Ito 积分一般写为</p>
 <script type="math/tex; mode=display">
@@ -311,8 +311,29 @@ f(X(t))=X(0)+\int_0^tf'(X(s))\sigma(s)dw(s)+\int_0^t(f'(X(s))·b(s)+\frac{f''(X(
 <script type="math/tex; mode=display">
 df(X(t))=f'(X(s))\sigma(s)dw(s)+(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><h4 id="随机差分方程"><a href="#随机差分方程" class="headerlink" title="随机差分方程"></a>随机差分方程</h4><script type="math/tex; mode=display">
 X_{j+1}-X_j=s(X_j,t)w_{j+1}+m(X_j,t)\Delta t</script><h4 id="随机微分方程"><a href="#随机微分方程" class="headerlink" title="随机微分方程"></a>随机微分方程</h4><script type="math/tex; mode=display">
-dX(t)=\sigma(X(t),t)dW(t)+m(X(t),t)dt</script><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/wei-zhi-3-47">埃格先生</a></li>
+dX(t)=\sigma(X(t),t)dW(t)+m(X(t),t)dt</script><h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p><strong>（Vasicek Model）Interest rate stochastic differential equation</strong></p>
+<script type="math/tex; mode=display">
+dR(t)=(\alpha-\beta R(t))dt+\sigma dW(t)</script><p>有一个 mean reversion 的特点，均值为 $\frac\alpha\beta$</p>
+<script type="math/tex; mode=display">
+f(t,x)=e^{\beta t}x,\ f_t=x\beta e^{\beta t},\ f_x=e^{\beta t},\ f_{xx}=0</script><script type="math/tex; mode=display">
+\begin{align}
+d(e^{\beta t}R(t))=df(t,R(t))&=x\beta e^{\beta t}dt+e^{\beta t}dR(t)\\
+&=R(t)\beta e^{\beta t}dt+e^{\beta t}((\alpha-\beta R(t))dt+\sigma dW(t))\\
+&=e^{\beta t}\alpha dt+e^{\beta t}\sigma dW(t)
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+e^{\beta T}R(T)&=R(0)+\int_0^Te^{\beta t}\alpha dt+\int_0^Te^{\beta t}\sigma dW(t)\\
+R(T)&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta[e^{\beta t}|_0^T]+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
+&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta(e^{\beta T}-1)+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
+&=e^{-\beta T}R(0)+\frac\alpha\beta(1-e^{-\beta T})+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
+\end{align}</script><p><strong>特性</strong></p>
+<script type="math/tex; mode=display">
+\mathbb E[R(t)]=e^{-\beta t}R(0)+\frac\alpha\beta(1-e^{-\beta t})</script><p>If $t\to\infty$, then $\mathbb E[R(t)]\to \frac\alpha\beta$</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/wei-zhi-3-47">埃格先生</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC4y1a7XY">Ito积分练习题(Part 2)</a></p>
+</li>
 </ol>
 
             </div>

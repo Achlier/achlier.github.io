@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36
+      44
        分钟
     </span>
   
@@ -393,7 +393,7 @@ g_{xx} &= e^{-rt}V_{xx}
 \begin{align}
 -re^{rt}V + e^{-rt}V_t + rxe^{-rt}V_x+\frac{1}{2}\sigma^2 x^2e^{-rt}V_{xx}= 0\\
 -rV + V_t + rxV_x+\frac{1}{2}\sigma^2 x^2V_{xx}= 0\\
-\end{align}</script><h3 id="2-对冲版推导"><a href="#2-对冲版推导" class="headerlink" title="2. 对冲版推导"></a>2. 对冲版推导</h3><p>做一个Delta对冲的投资组合：</p>
+\end{align}</script><h3 id="2-对冲版推导"><a href="#2-对冲版推导" class="headerlink" title="2. 对冲版推导"></a>2. 对冲版推导</h3><h4 id="【第一版-Delta-对冲】"><a href="#【第一版-Delta-对冲】" class="headerlink" title="【第一版-Delta 对冲】"></a>【第一版-Delta 对冲】</h4><p>做一个Delta对冲的投资组合：</p>
 <script type="math/tex; mode=display">
 \Pi = C(X,t) - \Delta X \ , \ \Delta = \frac{\partial C}{\partial X}</script><p> Ito formula：</p>
 <script type="math/tex; mode=display">
@@ -407,7 +407,62 @@ d\Pi = r\Pi dt = r(C(X,t) - \Delta X)dt = r(C(X,t) - X \frac{\partial C}{\partia
 <script type="math/tex; mode=display">
 \frac{\partial C}{\partial t}dt + \frac{1}{2}\sigma^2X^2\frac{\partial^2C}{\partial X^2}dt = r(C(X,t) - X \frac{\partial C}{\partial X})dt</script><p>so that：</p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\partial t} + rX \frac{\partial C}{\partial X} + \frac{1}{2}\sigma^2X^2\frac{\partial^2C}{\partial X^2} = rC</script><h3 id="【附加资料】"><a href="#【附加资料】" class="headerlink" title="【附加资料】"></a>【附加资料】</h3><p>Black-Scholes equation is written in the form ：</p>
+\frac{\partial C}{\partial t} + rX \frac{\partial C}{\partial X} + \frac{1}{2}\sigma^2X^2\frac{\partial^2C}{\partial X^2} = rC</script><h4 id="【第二版-Ito-公式】"><a href="#【第二版-Ito-公式】" class="headerlink" title="【第二版-Ito 公式】"></a>【第二版-Ito 公式】</h4><p>建立一个期权的复制组合</p>
+<ul>
+<li><p>$\Delta(t)$：持有股票数</p>
+</li>
+<li><p>$X(t)$：portfolio 价值</p>
+</li>
+<li><p>股票价值增量：$dS(t)=\alpha S(t)dt+\sigma S(t)dW(t)$</p>
+</li>
+<li><p>portfolio 价值增量：超额收益+无风险收益+风险</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dX(t)&=\Delta(t)dS(t)+r(X(t)-\Delta(t)S(t))dt\\
+&=\Delta(t)\alpha S(t)dt+\Delta(t)\sigma S(t)dW(t)+rX(t)dt-r\Delta(t)S(t)dt\\
+&=(\alpha-r)\Delta(t)S(t)dt+rX(t)dt+\Delta(t)\sigma S(t)dW(t)
+\end{align}</script></li>
+</ul>
+<p>股票价值的折现过程</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(e^{-rt}S(t))&=S(t)de^{-rt}+e^{-rt}dS(t)+dS(t)de^{-rt}\\
+&=-re^{-rt}S(t)dt+e^{-rt}(\alpha S(t)dt+\sigma S(t)dW(t))\\
+&=(\alpha-r)e^{-rt}S(t)dt+e^{-rt}\sigma S(t)dW(t)
+\end{align}</script><p>组合价值的折现过程</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(e^{-rt}X(t))&=X(t)de^{-rt}+e^{-rt}dX(t)+dX(t)de^{-rt}\\
+&=-re^{-rt}X(t)dt+e^{-rt}(\alpha-r)\Delta(t)S(t)dt...\\
+&...+e^{-rt}rX(t)dt+e^{-rt}\Delta(t)\sigma S(t)dW(t)\\
+&=\Delta(t)(e^{-rt}(\alpha-r)S(t)dt+e^{-rt}\sigma S(t)dW(t))\\
+&=\Delta(t)d(e^{-rt}S(t))
+\end{align}</script><ul>
+<li>$C(t,x)$：Option price</li>
+</ul>
+<p>当复制成立时</p>
+<script type="math/tex; mode=display">
+d(e^{-rt}C(t,S(t)))=d(e^{-rt}X(t))</script><p>先准备</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(C(t,S(t)))&=C_tdt+C_xdS(t)+\frac12C_{xx}dS(t)dS(t)\\
+&=C_tdt+C_x(\alpha S(t)dt+\sigma S(t)dW(t))...\\
+&...+\frac12C_{xx}\sigma^2S(t)^2dt\\
+&=(C_t+C_x\alpha S(t)+\frac12C_{xx}\sigma^2S(t)^2)dt+C_x\sigma S(t)dW(t)
+\end{align}</script><p>代入</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(e^{-rt}C(t,S(t)))&=Cde^{-rt}+e^{-rt}dC\\
+&=-re^{-rt}Cdt+e^{-rt}C_x\sigma S(t)dW(t)...\\
+&...+e^{-rt}(C_t+C_x\alpha S(t)+\frac12C_{xx}\sigma^2S(t)^2)dt\\
+&=e^{-rt}(C_t+C_x\alpha S(t)+\frac12C_{xx}\sigma^2S(t)^2-rC)dt...\\
+&...+e^{-rt}C_x\sigma S(t)dW(t)
+\end{align}</script><p>与组合价值的折现过程对比</p>
+<script type="math/tex; mode=display">
+\Delta(t)(e^{-rt}(\alpha-r)S(t)dt+e^{-rt}\sigma S(t)dW(t))</script><p>得出</p>
+<script type="math/tex; mode=display">
+\Delta(t)=C_x</script><script type="math/tex; mode=display">
+rC=C_t+\frac12C_{xx}\sigma^2S(t)^2+rC_xS(t)</script><h3 id="【附加资料】"><a href="#【附加资料】" class="headerlink" title="【附加资料】"></a>【附加资料】</h3><p>Black-Scholes equation is written in the form ：</p>
 <script type="math/tex; mode=display">
 \frac{\partial C}{\partial t} + bX \frac{\partial C}{\partial X} + \frac{1}{2}\sigma^2X^2\frac{\partial^2C}{\partial X^2} - rC = 0</script><p>where：</p>
 <div class="table-container">

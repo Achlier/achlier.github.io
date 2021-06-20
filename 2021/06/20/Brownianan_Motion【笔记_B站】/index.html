@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>正态分布与矩母函数 - Borderland</title>
+  <title>Brownianan_Motion【笔记_B站】 - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="正态分布与矩母函数">
+            <span class="h2" id="subtitle" title="Brownianan_Motion【笔记_B站】">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-17 22:55" pubdate>
-        June 17, 2021 pm
+      <time datetime="2021-06-20 00:32" pubdate>
+        June 20, 2021 am
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.4k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      23
        分钟
     </span>
   
@@ -224,143 +224,155 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">正态分布与矩母函数</h1>
+            <h1 style="display: none">Brownianan_Motion【笔记_B站】</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于乱七八糟各种笔记的总结归纳；</p>
-<p>原目的是求正态分布下的E(x^4)，结果找到了许多之前遗忘的知识点。</p>
+<p>基于B站up Jerry Xu (Love小矫情Forever) 的视频；</p>
+<p>跨了一些视频，收集了一些关于BM的点；</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><script type="math/tex; mode=display">
-f(x)=\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>我们知道求标准正态分布下的 $E(x^k)$ 有很多种方法，可以用极坐标转换推，本文章的第一步就先把这两种基础方法不快乐地各推一遍，再引入矩母函数用更快乐更多样的方法求值.</p>
-<h3 id="极坐标转换第一种"><a href="#极坐标转换第一种" class="headerlink" title="极坐标转换第一种"></a>极坐标转换第一种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以套用其他系数（虽然过程会特别麻烦）</p>
+<h3 id="对称随机游走S-R-W"><a href="#对称随机游走S-R-W" class="headerlink" title="对称随机游走S.R.W"></a>对称随机游走S.R.W</h3><p>基本定义</p>
 <script type="math/tex; mode=display">
-\begin{align}
-E(x)&=\int x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx\\
-&=\frac1{\sqrt{2\pi}}\int x^4e^{-\frac{x^2}{2}}dx\\
-(换元t=\frac{x}{\sqrt2})&=\frac1{\sqrt{2\pi}}\int 4t^4e^{-t^2}\sqrt 2dt\\
-&=\frac4{\sqrt{\pi}}\int t^4e^{-t^2}dt\\
-\end{align}</script><p>换元的这一步主要是把$exp$上面的系数换掉，如果存在$\mu$,也要加上去，虽然会变得比较麻烦.</p>
-<p>接下来极坐标转换, 注意转换的时候要乘$\rho$</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix}
-\frac{\partial x}{\partial\theta}&\frac{\partial x}{\partial \rho}\\
-\frac{\partial y}{\partial\theta}&\frac{\partial y}{\partial \rho}
-\end{bmatrix}
-=\begin{bmatrix}
--\rho sin\theta&cos\theta\\
-\rho cos\theta&sin\theta
-\end{bmatrix}
-=\rho</script><blockquote>
-<p>Jacobian Matrix</p>
+X_i=\begin{cases}1&Head\\-1&Tail\end{cases}</script><script type="math/tex; mode=display">
+M_k=M_0+\sum_{i=1}^kX_i</script><script type="math/tex; mode=display">
+\mathbb E[X_i]=1\times\frac 12-1\times\frac 12=0</script><script type="math/tex; mode=display">
+Var(X_i)=(1-0)^2\times\frac12+(-1-0)^2\times\frac12=1</script><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p><strong>Indipendent increments</strong></p>
+<blockquote>
+<p>增量直接独立</p>
 </blockquote>
 <script type="math/tex; mode=display">
+\mathbb E[M_{k_{i+1}}-M_{k_i}]=0</script><script type="math/tex; mode=display">
+Var(M_{k_{i+1}}-M_{k_i})=k_{i+1}-k_i</script><p><strong>Martingle Property</strong></p>
+<p>Set $k&lt;l$</p>
+<script type="math/tex; mode=display">
 \begin{align}
-E(x)&=\int x^4e^{-x^2}dx\int y^4e^{-y^2}dy\\
-&=\int\int x^4y^4e^{-(x^2+y^2)}dxdy
+\mathbb E[M_l|\mathscr F_k]&=\mathbb E[M_l-M_k+M_k|\mathscr F_k]\\
+&=\mathbb E[M_l-M_k|\mathscr F_k]+\mathbb E[M_k|\mathscr F_k]\\
+&=0+M_k
+\end{align}</script><p><strong>Quadratic Variation</strong></p>
+<script type="math/tex; mode=display">
+[M,M]_k=\sum_{j=1}^k(M_j-M_{j-1})^2=K\times 1=K</script><blockquote>
+<p>与 $Var(M_{k}-M_{0})$ 不同的是，上式考察的是每一步，而 $Var$ 考察的是在最后的点的 $\sigma$</p>
+</blockquote>
+<h3 id="Scaled-Random-Walk-n"><a href="#Scaled-Random-Walk-n" class="headerlink" title="Scaled Random Walk (n)"></a>Scaled Random Walk (n)</h3><p>单位时间内走 $n$ 步, 一共 $nt$ 步, 每步 $\frac1{\sqrt n}$</p>
+<script type="math/tex; mode=display">
+W^n(t)=\frac1{\sqrt n}M_{nt}</script><script type="math/tex; mode=display">
+\mathbb E[W^n(t)-W^n(s)]=\mathbb E[\frac1{\sqrt n}\sum_{j=ns+1}^{nt}x_j]=0</script><script type="math/tex; mode=display">
+Var(W^n(t)-W^n(s))=\frac1nVar(M_{nt}-M_{ns})=t-s</script><p><strong>Indipendent increments</strong></p>
+<p><strong>Martingle Property</strong></p>
+<p><strong>Quadratic Variation</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+[W^n,W^n]_t&=\sum_{i=1}^{nt}(W^n(\frac in)-W^n(\frac {i-1}n))^2\\
+&=\sum_{i=1}^{nt}(\frac1{\sqrt n}(M_{i}-M_{i-1}))^2\\
+&=\sum_{i=1}^{nt}\frac1n=t
+\end{align}</script><h3 id="Brownian-motion"><a href="#Brownian-motion" class="headerlink" title="Brownian motion"></a>Brownian motion</h3><p><strong>Moment Generating Function</strong> 矩生成函数</p>
+<p>$W^n(t)$ 的 MGF ：$\phi_n(u)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\phi_n(u)&=\mathbb E[e^{uW^n(t)}]=\mathbb E[exp(\frac u{\sqrt n}M_{nt})]\\
+&=\mathbb E[exp(\frac {uX_1}{\sqrt n})exp(\frac {uX_2}{\sqrt n})...exp(\frac {uX_{nt}}{\sqrt n})]\\
+&=(\frac12(e^{\frac u{\sqrt n}}+e^{\frac {-u}{\sqrt n}}))^{nt}\\
 \end{align}</script><script type="math/tex; mode=display">
-x=\rho cos\theta,\quad y=\rho sin\theta</script><script type="math/tex; mode=display">
 \begin{align}
-E(x)&=\int_0^\infty\int_0^{2\pi} \rho^8cos\theta^4sin\theta^4e^{-\rho^2}\times\rho\ d\theta  d\rho\\
-&=\frac12\int_0^\infty\rho^8e^{-\rho^2} d\rho^2\int_0^{2\pi} cos\theta^4sin\theta^4d\theta \\
-\end{align}</script><p>接下来分成两部分相乘，主要如果原分布含有$\mu$, 此时会有许多相加的项，但也按同样的方法分成两部分计算</p>
-<p><strong>第一部分</strong></p>
-<p>令 $t=\rho^2$</p>
+ln\phi_n(u)&=nt\ln(\frac12(e^{\frac u{\sqrt n}}+e^{\frac {-u}{\sqrt n}}))\\
+(Set\ \frac1{\sqrt{n}}=\lambda) &\Rightarrow \frac t{\lambda^2}\ln(\frac12(e^{\lambda u}+e^{-\lambda u}))\\
+(泰勒展开)&=\frac t{\lambda^2}\ln(1+\frac12\lambda^2u^2+o(\lambda^2))\\
+(If\ x\to 0,
+\ln(1+x)\sim x)&=\frac t{\lambda^2}(\frac12\lambda^2u^2+o(\lambda^2))\\
+&=\frac t2u^2+to(\lambda^4)=\frac t2u^2
+\end{align}</script><p>当 $n\to\infty$</p>
 <script type="math/tex; mode=display">
+\phi_n(u)=exp(\frac t2u^2)</script><p>If $Y\sim N(0,t)$</p>
+<script type="math/tex; mode=display">
+PDF:\frac1{\sqrt{2\pi t}}exp(-\frac{x^2}{2t})</script><script type="math/tex; mode=display">
 \begin{align}
-&\int_0^\infty t^4e^{-t}dt\\
-=&-\int_0^\infty t^4de^{-t}\\
-=&-t^4e^{-t}|_0^\infty+4\int_0^\infty e^{-t}t^3dt\\
-=&-4\int_0^\infty t^3de^{-t}\\
-=&-4t^3e^{-t}|_0^\infty+4\times3\int_0^\infty e^{-t}t^2dt\\
-=&4!\int_0^\infty e^{-t}dt\\
-=&-4!e^{-t}|_0^\infty=4!=24
-\end{align}</script><p>可以得到规律</p>
+W^n(t)的MGF:\mathbb E[e^{uY}]&=\int_{-\infty}^\infty e^{ux}\frac1{\sqrt{2\pi t}}exp(-\frac{x^2}{2t})dx\\
+&=\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-(\frac{x^2}{2t}-ux+\frac{u^2t}2)+\frac{u^2t}2)dx\\
+&=\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-\frac1{2t}(x-ut)^2+\frac{u^2t}2)dx\\
+&=e^{\frac{u^2t}2}\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-\frac1{2t}(x-ut)^2)dx\\
+&=e^{\frac{u^2t}2}
+\end{align}</script><p><strong>$W^n(t)$ 的 MGF 趋于 $N(0,t)$ 的 MGF</strong></p>
+<p><strong>First-Order Variation</strong></p>
 <script type="math/tex; mode=display">
-\int_0^\infty t^{n}e^{-t}dt=n!</script><p>当我们的次数 $n$ 变换时也可以直接套用</p>
-<p><strong>第二部分</strong></p>
-<p>当存在 $\mu$ 时，这部分会有不同的组合，可能会遍历 $sin^n x \times cos^m x,\quad m,n\in (1,2,…,k)$  的所有可能. 但由于其从0到2pi的定积分有以下特性：</p>
-<ol>
-<li><p>当n为奇数时,被积函数是奇函数,所以积分等于0</p>
-</li>
-<li><p>当m为奇数时, $m=2k+1$, 原式化为$sin^n x * (1-sin^2 x)^k dsinx$  在-pi到+pi的积分,然后这个式子等于0</p>
-</li>
-</ol>
-<p>因此只取 $n,m$ 都为双数和整数的部分，如果 $k=4$, 只取 $x^2$,$y^2$,$x^4$,$y^4$,$x^2y^2$,$x^2y^4$,$x^4y^2$,$x^4y^4$和整数的部分.</p>
-<p>然后争取把所有项凑成 $m,n$ 相同的形式，配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$sin\theta^2cos\theta^2=(\frac{sin2\theta}{2})^2$，,$sin\theta^4cos\theta^4=(\frac{sin2\theta}{2})^4$</p>
+FV_T(f)=\int_0^t|f'(t)|dt</script><p><strong>Quadratic Variation</strong></p>
 <script type="math/tex; mode=display">
-\begin{align}
-&\int_0^{2\pi}(\frac{sin2\theta}{2})^4d\theta\\
-=&\frac 1{16}\int_0^{2\pi}sin2\theta^4d\theta\\
-=&\frac 1{16}\int_0^{2\pi}(\frac{1-cos4\theta}2)^4d\theta\\
-=&\frac 1{64}\int_0^{2\pi}(1-2cos4\theta+\frac{1+cos8\theta}2)d\theta\\
-=&\frac 1{64}\times\frac 32\times2\pi=\frac{3}{64}\pi
-\end{align}</script><p>最终得到</p>
-<script type="math/tex; mode=display">
-E(x)=\frac4{\sqrt{\pi}}\times\sqrt{\frac12\times 24\times\frac{3}{64}\pi}=3</script><blockquote>
-<p>运用好 Matlab 的 符号运算 和 simplify(f)  对符号表达式进行化简</p>
+[f,f](T)=\lim_{||\pi||\to0}\sum_{j=0}^{n-1}(f(t_{j+1})-f(t_j))^2</script><p>where $||\pi||=max(t_{j+1}-t_j)$</p>
+<blockquote>
+<p>如果一个函数是连续的，它的Quadratic Variation为0</p>
 </blockquote>
-<h3 id="极坐标转换第二种"><a href="#极坐标转换第二种" class="headerlink" title="极坐标转换第二种"></a>极坐标转换第二种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以转到 $N(0,\sigma^2)$</p>
-<p>If $X\sim N(0,\sigma^2)$, $Y=\frac{x-0}\sigma=\frac x\sigma\sim N(0,1)$</p>
+<p>对于Brownian motion $W(t)$ 设</p>
 <script type="math/tex; mode=display">
-\mathbb E[\frac{x^4}{\sigma^4}]=3\Rightarrow E[x^4]=3\sigma^4</script><p>开始求</p>
-<script type="math/tex; mode=display">
+Q_{\pi}=\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2</script><script type="math/tex; mode=display">
 \begin{align}
-&\int_{-\infty}^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
-=&2\int_0^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
-=&(-2)\int_0^\infty x^3\frac1{\sqrt{2\pi}}de^{-\frac{x^2}2}\\
-=&-\frac2{\sqrt{2\pi}}(x^3e^{-\frac{x^2}2}|_0^\infty-3\int_0^\infty e^{-\frac{x^2}2}x^2dx)\\
-=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}x^2dx\\
-=&-\frac6{\sqrt{2\pi}}\int_0^\infty xde^{-\frac{x^2}2}\\
-=&-\frac6{\sqrt{2\pi}}(xe^{-\frac{x^2}2}|_0^\infty-\int_0^\infty e^{-\frac{x^2}2}dx)\\
-=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}dx
-\end{align}</script><blockquote>
-<p>这部分感觉能直接说是 CDF 的一半，就是 $\frac 12$，结果等于 3 , 但是up主继续求了，不确定有没有坑.</p>
-</blockquote>
-<p>极坐标转换</p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\int_0^\infty\int_0^\infty e^{-\frac{x^2}2} e^{-\frac{y^2}2} dxdy\\
-(只在第一象限)=&\int_0^\frac{\pi}2\int_0^\infty e^{-\frac{r^2}2}rdrd\theta\\
-=&\int_0^\frac{\pi}2 [e^{-\frac{r^2}2}|_\infty^0]d\theta\\
-=&\frac\pi2
-\end{align}</script><p>原式子等于</p>
-<script type="math/tex; mode=display">
-\frac6{\sqrt{2\pi}}\sqrt{\frac{\pi}2}=3</script><h3 id="矩母函数"><a href="#矩母函数" class="headerlink" title="矩母函数"></a>矩母函数</h3><script type="math/tex; mode=display">
-M_x(t)=\mathbb E(e^{tx})</script><p>对于正态分布 $x\sim N(\mu,\sigma^2)$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-M_x(t)&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}+tx}dx\\
-&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{x^2+\mu^2-2(\mu+t\sigma^2)x}{2\sigma^2}}dx\\
-&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2+\mu^2-(\mu+t\sigma^2)^2}{2\sigma^2}}dx\\
-&=e^{-\frac{\mu^2-(\mu^2+t^2\sigma^4+2\mu\sigma^2 t)}{2\sigma^2}}\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2}{2\sigma^2}}dx\\
-&=e^{\frac{t^2\sigma^2}2+\mu t}
-\end{align}</script><p>通过 Moment Generating Function 的特性可知</p>
-<script type="math/tex; mode=display">
-e^{uY}=1+uY+\frac{u^2Y^2}{2!}+\frac{u^3Y^3}{3!}+...</script><script type="math/tex; mode=display">
-M_Y(u)=\mathbb E[e^{uY}]=1+u\mathbb E(Y)+\frac{u^2\mathbb E(Y^2)}{2!}+\frac{u^3\mathbb E(Y^3)}{3!}+...</script><script type="math/tex; mode=display">
-M_Y^{(k)}(0)=E(Y^k)</script><p><strong>【补充】</strong></p>
-<p><img src="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/pic1-1.png" srcset="/img/loading.gif" alt></p>
-<p><img src="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/pic1-2.png" srcset="/img/loading.gif" alt></p>
-<h3 id="补充使用-Ito-求-mathbb-E-W-6-T-的方法"><a href="#补充使用-Ito-求-mathbb-E-W-6-T-的方法" class="headerlink" title="补充使用 Ito 求$\mathbb E(W^6(T))$的方法"></a>补充使用 Ito 求$\mathbb E(W^6(T))$的方法</h3><p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/11/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%8EIto%E7%A7%AF%E5%88%86%E3%80%90%E7%AC%94%E8%AE%B0_%E7%9F%A5%E4%B9%8E%E3%80%91/">随机过程与Ito积分【笔记_知乎】</a></p>
-<p>如果要求 $\mathbb E(W^6(T))$, 设 $f(t,x)=x^6$, $f_t=0,\ f_x=6x^5,\ f_{xx}=30x^4$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-df(t,W(t))=dW^6(T)&=6W(t)^5dW(t)+\frac1230W(t)^4dW(t)dW(t)\\
-&=6W(t)^5dW(t)+15W(t)^4dt
+\mathbb E[Q_\pi]&=\sum_{j=0}^{n-1}\mathbb E[(W(t_{j+1})-W(t_j))^2]\\
+&=\sum_{j=0}^{n-1}Var(W(t_{j+1})-W(t_j))\\
+&=\sum_{j=0}^{n-1}(t_{j+1}-t_j)=T
 \end{align}</script><script type="math/tex; mode=display">
-W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mode=display">
-\mathbb E[W^6(T)]=0+\int_0^T15·3t^2dt=15T^3</script><blockquote>
-<p>当然也可以直接查表</p>
+\begin{align}
+Var[Q_\pi]&=\sum_{j=0}^{n-1}Var[(W(t_{j+1})-W(t_j))^2]\\
+&=\sum_{j=0}^{n-1}\mathbb E[(W(t_{j+1})-W(t_j))^4]-(t_{j+1}-t_j)^2\\
+&=\sum_{j=0}^{n-1}2(t_{j+1}-t_j)^2\\
+&\leq 2||\pi||T\to 0
+\end{align}</script><p>所以波动趋近于 0, $Q_{\pi}$ 趋近于 $T$</p>
+<blockquote>
+<p>$E(x^4)$ 的解法可参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/">正态分布与矩母函数</a></p>
 </blockquote>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41895958/article/details/103827936">标准正态分布的E(X^4)积分求解</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fb411V7Gg">[金融工程][Jerry Xu的金工小知识]Stochastc Calculus布朗运动(Part 3)</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61828433">矩母函数、正态分布、二次型</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC4y1a7XY">Ito积分练习题(Part 2)</a></li>
-</ol>
-
+<h2 id="Stratonovich-Integral"><a href="#Stratonovich-Integral" class="headerlink" title="Stratonovich Integral"></a>Stratonovich Integral</h2><blockquote>
+<p>采用取中值 $t^*$ 求积分</p>
+</blockquote>
+<p>它的 Half-sample quadratic variation 是</p>
+<script type="math/tex; mode=display">
+Q_{\pi/2}=\sum_{j=0}^{n-1}[W(t_j^*)-W(t_j)]^2=\frac{T}{2}</script><p>而</p>
+<script type="math/tex; mode=display">
+\int_{T_0}^TW_t \circ dW_t=\lim_{||\pi||\to 0}\sum_{j=0}^{n-1}W(t_j^*)[W(t_{j+1})-W(t_j)]=\frac12 W^2(T)</script><p>为了求这个值，可以提出一个由 $t^*$ 划分的 Ito 积分</p>
+<script type="math/tex; mode=display">
+(Ito)\sum_{j=0}^{n-1}W(t_j)[W(t_j^*)-W(t_j)]+\sum_{j=0}^{n-1}W(t_j^*)[W(t_j)-W(t_j^*)]</script><p>为了合成 Stratonovich Integral 要加上</p>
+<script type="math/tex; mode=display">
+\sum_{j=0}^{n-1}W(t_j^*)^2-2W(t_j)W(t^*_j)+W(t_j)^2=Q_{\pi/2}</script><p>得到</p>
+<script type="math/tex; mode=display">
+\int_{T_0}^TW_t \circ dW_t=\int_{T_0}^TW_tdW_t+Q_{\pi/2}=W(T)^2-\frac{T}{2}+\frac{T}{2}</script><h3 id="联合分布"><a href="#联合分布" class="headerlink" title="联合分布"></a>联合分布</h3><p>求 $P(W_1\leq0,W_2\leq0…)$ 可运用联合正态分布</p>
+<p>首先已知 $W_t\sim N(0,t)$, with $0&lt;s&lt;t$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var(W_s,W_t)&=E(W_sW_t)-E(W_s)E(W_t)\\
+&=E(W_s(W_t-W_s)+W_s^2)-0\\
+&=0+E(W_s^2)=s
+\end{align}</script><p>可得知 $[W_1,W_2,…,W_n]$ 的协方差矩阵为</p>
+<script type="math/tex; mode=display">
+\Sigma=\begin{bmatrix}
+1&1&1&...&1\\
+1&2&2&...&2\\
+1&2&3&...&3\\
+...&...&...&...&...\\
+1&2&3&...&n\\
+\end{bmatrix}</script><p>代入联合高斯分布</p>
+<script type="math/tex; mode=display">
+f(x)=\frac1{(\sqrt{2\pi})^n|\Sigma|^\frac12}e^{-\frac{(x-\mu_x)'(\Sigma)^{-1}(x-\mu_x)}2}</script><p>并求多重积分</p>
+<h4 id="Log-normal"><a href="#Log-normal" class="headerlink" title="Log normal"></a>Log normal</h4><p>求 GBM 期望的时候</p>
+<script type="math/tex; mode=display">
+\mathbb E(S_t)=S_0exp((\mu-\frac12\sigma^2)t)\mathbb E[e^{\sigma W_t}]</script><p>需要运用到 Log normal 的特性，我们可以用 GBM 的方法求</p>
+<p>GMB：这里的 $\sigma^2$ 是服从的正态分布的 VAR</p>
+<script type="math/tex; mode=display">
+M_x(t)=\mathbb E(e^{tx})=e^{\frac{t^2\sigma^2}2+\mu t}</script><p>所以 $\mathbb E[e^{\sigma W_t}]= e^{\frac{\sigma^2t}2}$</p>
+<blockquote>
+<p>如果 x 服从对数正态分布 with $ln(x)\sim N(\mu,\sigma^2)$</p>
+<p>$\mathbb E(x)=e^{\mu+\sigma^2/2}$, $D(x)=(e^{\sigma^2}-1)e^{2\mu+\sigma^2}$ </p>
+</blockquote>
+<h3 id="额外的点"><a href="#额外的点" class="headerlink" title="额外的点"></a>额外的点</h3><p>已知两个定义</p>
+<script type="math/tex; mode=display">
+dW(t)=\epsilon\sqrt{dt},\ \epsilon\sim N(0,1)</script><script type="math/tex; mode=display">
+dW(t)dW(t)=dt</script><p>这两个公式都是不完美的定义，因为 W(t) 实际上是处处不可导的</p>
+<p>对于第一个公式，可以理解为在 T 时的分布成正态分布</p>
+<script type="math/tex; mode=display">
+W(T)=\epsilon\sqrt T</script><script type="math/tex; mode=display">
+W(T)-W(0)=\epsilon\sqrt T</script><script type="math/tex; mode=display">
+W(t+\Delta t)-W(t)=dW(t)=\epsilon\sqrt {\Delta T}</script><p>对于第二个公式，可以理解为去除了随机性，是由 Quadratic Variation 推出的</p>
+<script type="math/tex; mode=display">
+\lim_{||\pi||\to0}\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2=T</script><script type="math/tex; mode=display">
+\int_0^TdW(t)dW(t)=\int_0^Tdt</script><script type="math/tex; mode=display">
+dW(t)dW(t)=dt</script>
             </div>
             <hr>
             <div>
@@ -369,7 +381,7 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Math/">Math</a>
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
                     
                   </div>
                 
@@ -377,9 +389,7 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Normal-Distribution/">Normal Distribution</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Moment-Generating-Function/">Moment Generating Function</a>
+                      <a class="hover-with-bg" href="/tags/Brownianan-Motion/">Brownianan Motion</a>
                     
                   </div>
                 
@@ -392,9 +402,9 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/20/Brownianan_Motion%E3%80%90%E7%AC%94%E8%AE%B0_B%E7%AB%99%E3%80%91/">
+                      <a href="/2021/06/20/Exercise_2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Brownianan_Motion【笔记_B站】</span>
+                        <span class="hidden-mobile">Exercise_2</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -402,8 +412,8 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">
-                        <span class="hidden-mobile">Black_Scholes_Model推导_进阶版</span>
+                      <a href="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/">
+                        <span class="hidden-mobile">正态分布与矩母函数</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

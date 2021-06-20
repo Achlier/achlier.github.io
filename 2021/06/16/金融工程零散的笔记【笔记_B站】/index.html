@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.6k 字
+      1.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      45
+      29
        分钟
     </span>
   
@@ -390,106 +390,7 @@ r(\Delta t)V&\approx rS(\Delta t)\frac{\partial V}{\partial S}+(\Delta t)\frac{\
 0=\frac{\partial V}{\partial t}+rS\frac{\partial V}{\partial S}+\frac 12\sigma^2S^2\frac{\partial^2 V}{\partial S^2}-rV</script><blockquote>
 <p>因为我们省略的 $\Delta t$ 最高阶是 1，所以 $\alpha$ 最低取 1</p>
 </blockquote>
-<h2 id="布朗运动"><a href="#布朗运动" class="headerlink" title="布朗运动"></a>布朗运动</h2><h3 id="对称随机游走S-R-W"><a href="#对称随机游走S-R-W" class="headerlink" title="对称随机游走S.R.W"></a>对称随机游走S.R.W</h3><p>基本定义</p>
-<script type="math/tex; mode=display">
-X_i=\begin{cases}1&Head\\-1&Tail\end{cases}</script><script type="math/tex; mode=display">
-M_k=M_0+\sum_{i=1}^kX_i</script><script type="math/tex; mode=display">
-\mathbb E[X_i]=1\times\frac 12-1\times\frac 12=0</script><script type="math/tex; mode=display">
-Var(X_i)=(1-0)^2\times\frac12+(-1-0)^2\times\frac12=1</script><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><p><strong>Indipendent increments</strong></p>
-<blockquote>
-<p>增量直接独立</p>
-</blockquote>
-<script type="math/tex; mode=display">
-\mathbb E[M_{k_{i+1}}-M_{k_i}]=0</script><script type="math/tex; mode=display">
-Var(M_{k_{i+1}}-M_{k_i})=k_{i+1}-k_i</script><p><strong>Martingle Property</strong></p>
-<p>Set $k&lt;l$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\mathbb E[M_l|\mathscr F_k]&=\mathbb E[M_l-M_k+M_k|\mathscr F_k]\\
-&=\mathbb E[M_l-M_k|\mathscr F_k]+\mathbb E[M_k|\mathscr F_k]\\
-&=0+M_k
-\end{align}</script><p><strong>Quadratic Variation</strong></p>
-<script type="math/tex; mode=display">
-[M,M]_k=\sum_{j=1}^k(M_j-M_{j-1})^2=K\times 1=K</script><blockquote>
-<p>与 $Var(M_{k}-M_{0})$ 不同的是，上式考察的是每一步，而 $Var$ 考察的是在最后的点的 $\sigma$</p>
-</blockquote>
-<h3 id="Scaled-Random-Walk-n"><a href="#Scaled-Random-Walk-n" class="headerlink" title="Scaled Random Walk (n)"></a>Scaled Random Walk (n)</h3><p>单位时间内走 $n$ 步, 一共 $nt$ 步, 每步 $\frac1{\sqrt n}$</p>
-<script type="math/tex; mode=display">
-W^n(t)=\frac1{\sqrt n}M_{nt}</script><script type="math/tex; mode=display">
-\mathbb E[W^n(t)-W^n(s)]=\mathbb E[\frac1{\sqrt n}\sum_{j=ns+1}^{nt}x_j]=0</script><script type="math/tex; mode=display">
-Var(W^n(t)-W^n(s))=\frac1nVar(M_{nt}-M_{ns})=t-s</script><p><strong>Indipendent increments</strong></p>
-<p><strong>Martingle Property</strong></p>
-<p><strong>Quadratic Variation</strong></p>
-<script type="math/tex; mode=display">
-\begin{align}
-[W^n,W^n]_t&=\sum_{i=1}^{nt}(W^n(\frac in)-W^n(\frac {i-1}n))^2\\
-&=\sum_{i=1}^{nt}(\frac1{\sqrt n}(M_{i}-M_{i-1}))^2\\
-&=\sum_{i=1}^{nt}\frac1n=t
-\end{align}</script><h3 id="Brownian-motion"><a href="#Brownian-motion" class="headerlink" title="Brownian motion"></a>Brownian motion</h3><p><strong>Moment Generating Function</strong> 矩生成函数</p>
-<p>$W^n(t)$ 的 MGF ：$\phi_n(u)$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\phi_n(u)&=\mathbb E[e^{uW^n(t)}]=\mathbb E[exp(\frac u{\sqrt n}M_{nt})]\\
-&=\mathbb E[exp(\frac {uX_1}{\sqrt n})exp(\frac {uX_2}{\sqrt n})...exp(\frac {uX_{nt}}{\sqrt n})]\\
-&=(\frac12(e^{\frac u{\sqrt n}}+e^{\frac {-u}{\sqrt n}}))^{nt}\\
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-ln\phi_n(u)&=nt\ln(\frac12(e^{\frac u{\sqrt n}}+e^{\frac {-u}{\sqrt n}}))\\
-(Set\ \frac1{\sqrt{n}}=\lambda) &\Rightarrow \frac t{\lambda^2}\ln(\frac12(e^{\lambda u}+e^{-\lambda u}))\\
-(泰勒展开)&=\frac t{\lambda^2}\ln(1+\frac12\lambda^2u^2+o(\lambda^2))\\
-(If\ x\to 0,
-\ln(1+x)\sim x)&=\frac t{\lambda^2}(\frac12\lambda^2u^2+o(\lambda^2))\\
-&=\frac t2u^2+to(\lambda^4)=\frac t2u^2
-\end{align}</script><p>当 $n\to\infty$</p>
-<script type="math/tex; mode=display">
-\phi_n(u)=exp(\frac t2u^2)</script><p>If $Y\sim N(0,t)$</p>
-<script type="math/tex; mode=display">
-PDF:\frac1{\sqrt{2\pi t}}exp(-\frac{x^2}{2t})</script><script type="math/tex; mode=display">
-\begin{align}
-W^n(t)的MGF:\mathbb E[e^{uY}]&=\int_{-\infty}^\infty e^{ux}\frac1{\sqrt{2\pi t}}exp(-\frac{x^2}{2t})dx\\
-&=\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-(\frac{x^2}{2t}-ux+\frac{u^2t}2)+\frac{u^2t}2)dx\\
-&=\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-\frac1{2t}(x-ut)^2+\frac{u^2t}2)dx\\
-&=e^{\frac{u^2t}2}\int_{-\infty}^\infty\frac1{\sqrt{2\pi t}}exp(-\frac1{2t}(x-ut)^2)dx\\
-&=e^{\frac{u^2t}2}
-\end{align}</script><p><strong>$W^n(t)$ 的 MGF 趋于 $N(0,t)$ 的 MGF</strong></p>
-<p><strong>First-Order Variation</strong></p>
-<script type="math/tex; mode=display">
-FV_T(f)=\int_0^t|f'(t)|dt</script><p><strong>Quadratic Variation</strong></p>
-<script type="math/tex; mode=display">
-[f,f](T)=\lim_{||\pi||\to0}\sum_{j=0}^{n-1}(f(t_{j+1})-f(t_j))^2</script><p>where $||\pi||=max(t_{j+1}-t_j)$</p>
-<blockquote>
-<p>如果一个函数是连续的，它的Quadratic Variation为0</p>
-</blockquote>
-<p>对于Brownian motion $W(t)$ 设</p>
-<script type="math/tex; mode=display">
-Q_{\pi}=\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2</script><script type="math/tex; mode=display">
-\begin{align}
-\mathbb E[Q_\pi]&=\sum_{j=0}^{n-1}\mathbb E[(W(t_{j+1})-W(t_j))^2]\\
-&=\sum_{j=0}^{n-1}Var(W(t_{j+1})-W(t_j))\\
-&=\sum_{j=0}^{n-1}(t_{j+1}-t_j)=T
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-Var[Q_\pi]&=\sum_{j=0}^{n-1}Var[(W(t_{j+1})-W(t_j))^2]\\
-&=\sum_{j=0}^{n-1}\mathbb E[(W(t_{j+1})-W(t_j))^4]-(t_{j+1}-t_j)^2\\
-&=\sum_{j=0}^{n-1}2(t_{j+1}-t_j)^2\\
-&\leq 2||\pi||T\to 0
-\end{align}</script><p>所以波动趋近于 0, $Q_{\pi}$ 趋近于 $T$</p>
-<blockquote>
-<p>$E(x^4)$ 的解法可参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/">正态分布与矩母函数</a></p>
-</blockquote>
-<h3 id="额外的点"><a href="#额外的点" class="headerlink" title="额外的点"></a>额外的点</h3><p>已知两个定义</p>
-<script type="math/tex; mode=display">
-dW(t)=\epsilon\sqrt{dt},\ \epsilon\sim N(0,1)</script><script type="math/tex; mode=display">
-dW(t)dW(t)=dt</script><p>这两个公式都是不完美的定义，因为 W(t) 实际上是处处不可导的</p>
-<p>对于第一个公式，可以理解为在 T 时的分布成正态分布</p>
-<script type="math/tex; mode=display">
-W(T)=\epsilon\sqrt T</script><script type="math/tex; mode=display">
-W(T)-W(0)=\epsilon\sqrt T</script><script type="math/tex; mode=display">
-W(t+\Delta t)-W(t)=dW(t)=\epsilon\sqrt {\Delta T}</script><p>对于第二个公式，可以理解为去除了随机性，是由 Quadratic Variation 推出的</p>
-<script type="math/tex; mode=display">
-\lim_{||\pi||\to0}\sum_{j=0}^{n-1}(W(t_{j+1})-W(t_j))^2=T</script><script type="math/tex; mode=display">
-\int_0^TdW(t)dW(t)=\int_0^Tdt</script><script type="math/tex; mode=display">
-dW(t)dW(t)=dt</script>
+
             </div>
             <hr>
             <div>
