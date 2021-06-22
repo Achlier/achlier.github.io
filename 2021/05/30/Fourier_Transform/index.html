@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>复数与傅里叶变换 - Borderland</title>
+  <title>Fourier_Transform - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="复数与傅里叶变换">
+            <span class="h2" id="subtitle" title="Fourier_Transform">
               
             </span>
 
@@ -224,14 +224,14 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">复数与傅里叶变换</h1>
+            <h1 style="display: none">Fourier_Transform</h1>
             
             <div class="markdown-body">
               <blockquote>
 <p>基于B站up 童哲校长 的视频《傅里叶变换，拉普拉斯变换与小波变换》的笔记</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="复数基本复习"><a href="#复数基本复习" class="headerlink" title="复数基本复习"></a>复数基本复习</h1><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/pic1-1.jpg" srcset="/img/loading.gif" alt></p>
+<h1 id="复数基本复习"><a href="#复数基本复习" class="headerlink" title="复数基本复习"></a>复数基本复习</h1><p><img src="/2021/05/30/Fourier_Transform/pic1-1.jpg" srcset="/img/loading.gif" alt></p>
 <script type="math/tex; mode=display">
 Z=x+iy,\ i^2=-1</script><script type="math/tex; mode=display">
 f(Z)=u(x,y)+iv(x,y),\ x,y,u,v\in\mathbb{R}</script><h4 id="在图中虚部的解释"><a href="#在图中虚部的解释" class="headerlink" title="在图中虚部的解释"></a>在图中虚部的解释</h4><ol>
@@ -281,7 +281,7 @@ f(Z_0)=\frac{1}{2\pi i}\oint_{L}\frac{f(Z)}{Z-Z_0}dZ</script><p><strong>证明</
 <script type="math/tex; mode=display">
 \oint_{L}f(Z)dZ=\oint_{l}f(Z)dZ=0</script><p>or</p>
 <script type="math/tex; mode=display">
-\oint_{L-l}f(Z)dZ=0</script><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/pic1-2.jpg" srcset="/img/loading.gif" alt></p>
+\oint_{L-l}f(Z)dZ=0</script><p><img src="/2021/05/30/Fourier_Transform/pic1-2.jpg" srcset="/img/loading.gif" alt></p>
 <p>对边界求积时的 $dZ$ 相当于在边界上走一步</p>
 <script type="math/tex; mode=display">
 dZ=\delta(-Sin\theta d\theta+iCos\theta d\theta)</script><script type="math/tex; mode=display">
@@ -319,7 +319,7 @@ a_n=\frac{1}{\pi}\int_0^{2\pi}f(x)Cosnx\ dx</script><p>同理</p>
 b_n=\frac{1}{\pi}\int_0^{2\pi}f(x)Sinnx\ dx</script><p>and</p>
 <script type="math/tex; mode=display">
 a_0=\frac{1}{\pi}\int_0^{2\pi}f(x)\ dx=2</script><p>使得常值为 1</p>
-<h3 id="【Example-1】"><a href="#【Example-1】" class="headerlink" title="【Example 1】"></a>【Example 1】</h3><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/pic1-3.jpg" srcset="/img/loading.gif" alt></p>
+<h3 id="【Example-1】"><a href="#【Example-1】" class="headerlink" title="【Example 1】"></a>【Example 1】</h3><p><img src="/2021/05/30/Fourier_Transform/pic1-3.jpg" srcset="/img/loading.gif" alt></p>
 <script type="math/tex; mode=display">
 a_0=\frac{1}{\pi}\int_0^\pi f(x)dx=1</script><blockquote>
 <p>$a_0$ 通常是均值</p>
@@ -356,7 +356,7 @@ f(x+\frac{1}{2}\pi)&=\frac{1}{2}+\frac{2}{\pi}(Sin(x+\frac{1}{2}\pi)+\frac{Sin(3
 <script type="math/tex; mode=display">
 1=\frac{1}{2}+\frac{2}{\pi}(1-\frac{1}{3}+\frac{1}{5}-...)</script><p>得出一个重要的恒等式</p>
 <script type="math/tex; mode=display">
-\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-...</script><h3 id="【Example-2】"><a href="#【Example-2】" class="headerlink" title="【Example 2】"></a>【Example 2】</h3><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/pic1-4.jpg" srcset="/img/loading.gif" alt></p>
+\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-...</script><h3 id="【Example-2】"><a href="#【Example-2】" class="headerlink" title="【Example 2】"></a>【Example 2】</h3><p><img src="/2021/05/30/Fourier_Transform/pic1-4.jpg" srcset="/img/loading.gif" alt></p>
 <script type="math/tex; mode=display">
 a_0=\frac{1}{\pi}\frac{x^2}{2}|_0^\pi=\frac{\pi}{2}</script><blockquote>
 <p>$\int udv=uv-\int vdu$</p>
@@ -595,7 +595,7 @@ F.T\begin{cases}
 \mathscr{L}(f(t))(p)=F(p)=\int_0^\infty f(t)e^{-pt}dt\\
 f'(t)\leftrightarrow pF(p)-f(0)\\
 f''(t)\leftrightarrow p(pF(p)-f(0))-f'(0)\\
-\end{cases}</script><h1 id="傅里叶变换表"><a href="#傅里叶变换表" class="headerlink" title="傅里叶变换表"></a>傅里叶变换表</h1><p><img src="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/pic1-5.jpg" srcset="/img/loading.gif" alt></p>
+\end{cases}</script><h1 id="傅里叶变换表"><a href="#傅里叶变换表" class="headerlink" title="傅里叶变换表"></a>傅里叶变换表</h1><p><img src="/2021/05/30/Fourier_Transform/pic1-5.jpg" srcset="/img/loading.gif" alt></p>
 <h1 id="Read-More"><a href="#Read-More" class="headerlink" title="Read More"></a>Read More</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析之掐死教程（完整版）</a></li>
 </ol>
@@ -631,9 +631,9 @@ f''(t)\leftrightarrow p(pF(p)-f(0))-f'(0)\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/11/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%8EIto%E7%A7%AF%E5%88%86/">
+                      <a href="/2021/06/11/Stochastic_Process_and_Ito_Integral/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">随机过程与Ito积分</span>
+                        <span class="hidden-mobile">Stochastic_Process_and_Ito_Integral</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -641,8 +641,8 @@ f''(t)\leftrightarrow p(pF(p)-f(0))-f'(0)\\
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/23/%E6%A6%82%E7%8E%87%E6%B5%8B%E5%BA%A6%E5%8F%98%E6%8D%A2/">
-                        <span class="hidden-mobile">概率测度变换</span>
+                      <a href="/2021/05/23/Change_of_Measure/">
+                        <span class="hidden-mobile">Change_of_Measure</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

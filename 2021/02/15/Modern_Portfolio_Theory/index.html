@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>正态分布与矩母函数 - Borderland</title>
+  <title>Modern_Portfolio_Theory - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="正态分布与矩母函数">
+            <span class="h2" id="subtitle" title="Modern_Portfolio_Theory">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-17 22:55" pubdate>
-        June 17, 2021 pm
+      <time datetime="2021-02-15 01:59" pubdate>
+        February 15, 2021 am
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      801 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      14
        分钟
     </span>
   
@@ -224,141 +224,82 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">正态分布与矩母函数</h1>
+            <h1 style="display: none">Modern_Portfolio_Theory</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于乱七八糟各种笔记的总结归纳；</p>
-<p>原目的是求正态分布下的E(x^4)，结果找到了许多之前遗忘的知识点。</p>
+<p>几个方法推导马科维茨投资模型；</p>
+<p>目前包含：</p>
+<p>1.构造拉格朗日函数公式；</p>
+<p>2.对前一个方法的略微变化；</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><script type="math/tex; mode=display">
-f(x)=\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>我们知道求标准正态分布下的 $E(x^k)$ 有很多种方法，可以用极坐标转换推，本文章的第一步就先把这两种基础方法不快乐地各推一遍，再引入矩母函数用更快乐更多样的方法求值.</p>
-<h3 id="极坐标转换第一种"><a href="#极坐标转换第一种" class="headerlink" title="极坐标转换第一种"></a>极坐标转换第一种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以套用其他系数（虽然过程会特别麻烦）</p>
+<h4 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h4><p>原模型等价于固定预期收益率为常数、权重之和为1的限制条件下求最小方差的线性规划问题如下：</p>
 <script type="math/tex; mode=display">
 \begin{align}
-E(x)&=\int x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx\\
-&=\frac1{\sqrt{2\pi}}\int x^4e^{-\frac{x^2}{2}}dx\\
-(换元t=\frac{x}{\sqrt2})&=\frac1{\sqrt{2\pi}}\int 4t^4e^{-t^2}\sqrt 2dt\\
-&=\frac4{\sqrt{\pi}}\int t^4e^{-t^2}dt\\
-\end{align}</script><p>换元的这一步主要是把$exp$上面的系数换掉，如果存在$\mu$,也要加上去，虽然会变得比较麻烦.</p>
-<p>接下来极坐标转换, 注意转换的时候要乘$\rho$</p>
+目标函数：&min\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)\\
+&s.t.\begin{cases}
+\sum_{i=1}^nr_iw_i=E(R)\\
+\sum_{i=1}^nw_i=1
+\end{cases}\\
+\end{align}</script><h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h4><p>构造的拉格朗日函数公式如下：</p>
 <script type="math/tex; mode=display">
-\begin{bmatrix}
-\frac{\partial x}{\partial\theta}&\frac{\partial x}{\partial \rho}\\
-\frac{\partial y}{\partial\theta}&\frac{\partial y}{\partial \rho}
-\end{bmatrix}
-=\begin{bmatrix}
--\rho sin\theta&cos\theta\\
-\rho cos\theta&sin\theta
-\end{bmatrix}
-=\rho</script><blockquote>
-<p>Jacobian Matrix</p>
-</blockquote>
+\mathcal{L}(w,\lambda_1,\lambda_2)=\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)
+-\lambda_1(\sum_{i=1}^nr_iw_i-E(R))-\lambda_2(\sum_{i=1}^nw_i-1)</script><p>对$w_i,\lambda_1,\lambda_2$分别求导取0，满足条件如下:</p>
 <script type="math/tex; mode=display">
-\begin{align}
-E(x)&=\int x^4e^{-x^2}dx\int y^4e^{-y^2}dy\\
-&=\int\int x^4y^4e^{-(x^2+y^2)}dxdy
-\end{align}</script><script type="math/tex; mode=display">
-x=\rho cos\theta,\quad y=\rho sin\theta</script><script type="math/tex; mode=display">
-\begin{align}
-E(x)&=\int_0^\infty\int_0^{2\pi} \rho^8cos\theta^4sin\theta^4e^{-\rho^2}\times\rho\ d\theta  d\rho\\
-&=\frac12\int_0^\infty\rho^8e^{-\rho^2} d\rho^2\int_0^{2\pi} cos\theta^4sin\theta^4d\theta \\
-\end{align}</script><p>接下来分成两部分相乘，主要如果原分布含有$\mu$, 此时会有许多相加的项，但也按同样的方法分成两部分计算</p>
-<p><strong>第一部分</strong></p>
-<p>令 $t=\rho^2$</p>
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial w_i}&=\sum_{j=1}^nw_jCov(r_i,r_j)
+-\lambda_1r_i-\lambda_2=0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_1}&=\sum_{i=1}^nr_iw_i-E(R)=0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_2}&=\sum_{i=1}^nw_i-1=0\\
+\end{aligned}</script><p>整合$w_j =&gt; w,r_i =&gt; R,Cov(r_i,r_j)=&gt;\Sigma$</p>
 <script type="math/tex; mode=display">
-\begin{align}
-&\int_0^\infty t^4e^{-t}dt\\
-=&-\int_0^\infty t^4de^{-t}\\
-=&-t^4e^{-t}|_0^\infty+4\int_0^\infty e^{-t}t^3dt\\
-=&-4\int_0^\infty t^3de^{-t}\\
-=&-4t^3e^{-t}|_0^\infty+4\times3\int_0^\infty e^{-t}t^2dt\\
-=&4!\int_0^\infty e^{-t}dt\\
-=&-4!e^{-t}|_0^\infty=4!=24
-\end{align}</script><p>可以得到规律</p>
+\begin{cases}
+&2\Sigma w -\lambda_1R-\lambda_21_n=0\\
+&w^TR-E(R)=0\\
+&e^T1_n-1=0
+\end{cases}</script><p>假设收益率协方差可逆</p>
 <script type="math/tex; mode=display">
-\int_0^\infty t^{n}e^{-t}dt=n!</script><p>当我们的次数 $n$ 变换时也可以直接套用</p>
-<p><strong>第二部分</strong></p>
-<p>当存在 $\mu$ 时，这部分会有不同的组合，可能会遍历 $sin^n x \times cos^m x,\quad m,n\in (1,2,…,k)$  的所有可能. 但由于其从0到2pi的定积分有以下特性：</p>
-<ol>
-<li><p>当n为奇数时,被积函数是奇函数,所以积分等于0</p>
-</li>
-<li><p>当m为奇数时, $m=2k+1$, 原式化为$sin^n x * (1-sin^2 x)^k dsinx$  在-pi到+pi的积分,然后这个式子等于0</p>
-</li>
-</ol>
-<p>因此只取 $n,m$ 都为双数和整数的部分，如果 $k=4$, 只取 $x^2$,$y^2$,$x^4$,$y^4$,$x^2y^2$,$x^2y^4$,$x^4y^2$,$x^4y^4$和整数的部分.</p>
-<p>然后争取把所有项凑成 $m,n$ 相同的形式，配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$sin\theta^2cos\theta^2=(\frac{sin2\theta}{2})^2$，,$sin\theta^4cos\theta^4=(\frac{sin2\theta}{2})^4$</p>
+w =\frac{1}{2}\Sigma^{-1}(\lambda_1R+\lambda_21_n) \tag{1}</script><script type="math/tex; mode=display">
+E(R)=w^TR \tag{2}</script><script type="math/tex; mode=display">
+e^T1_n=1 \tag{3}</script><p>将(2),(3)代入(1)</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
+1 = \frac{1}{2}(\lambda_1R^T\Sigma^{-1}1_n+\lambda_21_n^T\Sigma^{-1}1_n)
+\end{cases}</script><p>转为矩阵格式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E(R)\\1\end{bmatrix}
+=\frac{1}{2}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}\tag{4}</script><p>由于目标函数$=&gt;min\sigma_p^2$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma_p^2&=w^T\Sigma w\\
+&=\frac{1}{4}(\lambda_1R^T\Sigma^{-1}+\lambda_21_n^T\Sigma^{-1})\Sigma\Sigma^{-1}(\lambda_1R+\lambda_21_n) \\
+&=\frac{1}{4}(\lambda_1^2R^T\Sigma^{-1}R+2\lambda_1\lambda_2R^T\Sigma^{-1}1_n+\lambda_2^21_n^T\Sigma^{-1}1_n)\\
+&=\frac{1}{4}\begin{bmatrix}\lambda_1&\lambda_2 \end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}
+\end{aligned}\tag{5}</script><p>联立(4),(5)得</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设  $a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$ , 化简得</p>
+<script type="math/tex; mode=display">
+\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h4><p>从矩阵形式得到</p>
 <script type="math/tex; mode=display">
 \begin{align}
-&\int_0^{2\pi}(\frac{sin2\theta}{2})^4d\theta\\
-=&\frac 1{16}\int_0^{2\pi}sin2\theta^4d\theta\\
-=&\frac 1{16}\int_0^{2\pi}(\frac{1-cos4\theta}2)^4d\theta\\
-=&\frac 1{64}\int_0^{2\pi}(1-2cos4\theta+\frac{1+cos8\theta}2)d\theta\\
-=&\frac 1{64}\times\frac 32\times2\pi=\frac{3}{64}\pi
-\end{align}</script><p>最终得到</p>
+\begin{bmatrix}2\\2E(R)\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\ R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}\\
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}
+\end{align}</script><p>代入$w$得</p>
 <script type="math/tex; mode=display">
-E(x)=\frac4{\sqrt{\pi}}\times\sqrt{\frac12\times 24\times\frac{3}{64}\pi}=3</script><blockquote>
-<p>运用好 Matlab 的 符号运算 和 simplify(f)  对符号表达式进行化简</p>
-</blockquote>
-<h3 id="极坐标转换第二种"><a href="#极坐标转换第二种" class="headerlink" title="极坐标转换第二种"></a>极坐标转换第二种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以转到 $N(0,\sigma^2)$</p>
-<p>If $X\sim N(0,\sigma^2)$, $Y=\frac{x-0}\sigma=\frac x\sigma\sim N(0,1)$</p>
-<script type="math/tex; mode=display">
-\mathbb E[\frac{x^4}{\sigma^4}]=3\Rightarrow E[x^4]=3\sigma^4</script><p>开始求</p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\int_{-\infty}^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
-=&2\int_0^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
-=&(-2)\int_0^\infty x^3\frac1{\sqrt{2\pi}}de^{-\frac{x^2}2}\\
-=&-\frac2{\sqrt{2\pi}}(x^3e^{-\frac{x^2}2}|_0^\infty-3\int_0^\infty e^{-\frac{x^2}2}x^2dx)\\
-=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}x^2dx\\
-=&-\frac6{\sqrt{2\pi}}\int_0^\infty xde^{-\frac{x^2}2}\\
-=&-\frac6{\sqrt{2\pi}}(xe^{-\frac{x^2}2}|_0^\infty-\int_0^\infty e^{-\frac{x^2}2}dx)\\
-=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}dx
-\end{align}</script><blockquote>
-<p>这部分感觉能直接说是 CDF 的一半，就是 $\frac 12$，结果等于 3 , 但是up主继续求了，不确定有没有坑.</p>
-</blockquote>
-<p>极坐标转换</p>
-<script type="math/tex; mode=display">
-\begin{align}
-&\int_0^\infty\int_0^\infty e^{-\frac{x^2}2} e^{-\frac{y^2}2} dxdy\\
-(只在第一象限)=&\int_0^\frac{\pi}2\int_0^\infty e^{-\frac{r^2}2}rdrd\theta\\
-=&\int_0^\frac{\pi}2 [e^{-\frac{r^2}2}|_\infty^0]d\theta\\
-=&\frac\pi2
-\end{align}</script><p>原式子等于</p>
-<script type="math/tex; mode=display">
-\frac6{\sqrt{2\pi}}\sqrt{\frac{\pi}2}=3</script><h3 id="矩母函数"><a href="#矩母函数" class="headerlink" title="矩母函数"></a>矩母函数</h3><script type="math/tex; mode=display">
-M_x(t)=\mathbb E(e^{tx})</script><p>对于正态分布 $x\sim N(\mu,\sigma^2)$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-M_x(t)&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}+tx}dx\\
-&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{x^2+\mu^2-2(\mu+t\sigma^2)x}{2\sigma^2}}dx\\
-&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2+\mu^2-(\mu+t\sigma^2)^2}{2\sigma^2}}dx\\
-&=e^{-\frac{\mu^2-(\mu^2+t^2\sigma^4+2\mu\sigma^2 t)}{2\sigma^2}}\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2}{2\sigma^2}}dx\\
-&=e^{\frac{t^2\sigma^2}2+\mu t}
-\end{align}</script><p>通过 Moment Generating Function 的特性可知</p>
-<script type="math/tex; mode=display">
-e^{uY}=1+uY+\frac{u^2Y^2}{2!}+\frac{u^3Y^3}{3!}+...</script><script type="math/tex; mode=display">
-M_Y(u)=\mathbb E[e^{uY}]=1+u\mathbb E(Y)+\frac{u^2\mathbb E(Y^2)}{2!}+\frac{u^3\mathbb E(Y^3)}{3!}+...</script><script type="math/tex; mode=display">
-M_Y^{(k)}(0)=E(Y^k)</script><p><strong>【补充】</strong></p>
-<p><img src="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/pic1-1.png" srcset="/img/loading.gif" alt></p>
-<p><img src="/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/pic1-2.png" srcset="/img/loading.gif" alt></p>
-<h3 id="补充使用-Ito-求-mathbb-E-W-6-T-的方法"><a href="#补充使用-Ito-求-mathbb-E-W-6-T-的方法" class="headerlink" title="补充使用 Ito 求$\mathbb E(W^6(T))$的方法"></a>补充使用 Ito 求$\mathbb E(W^6(T))$的方法</h3><p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/11/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%8EIto%E7%A7%AF%E5%88%86%E3%80%90%E7%AC%94%E8%AE%B0_%E7%9F%A5%E4%B9%8E%E3%80%91/">随机过程与Ito积分【笔记_知乎】</a></p>
-<p>如果要求 $\mathbb E(W^6(T))$, 设 $f(t,x)=x^6$, $f_t=0,\ f_x=6x^5,\ f_{xx}=30x^4$</p>
-<script type="math/tex; mode=display">
-\begin{align}
-df(t,W(t))=dW^6(T)&=6W(t)^5dW(t)+\frac1230W(t)^4dW(t)dW(t)\\
-&=6W(t)^5dW(t)+15W(t)^4dt
-\end{align}</script><script type="math/tex; mode=display">
-W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mode=display">
-\mathbb E[W^6(T)]=0+\int_0^T15·3t^2dt=15T^3</script><blockquote>
-<p>当然也可以直接查表</p>
-</blockquote>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41895958/article/details/103827936">标准正态分布的E(X^4)积分求解</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fb411V7Gg">[金融工程][Jerry Xu的金工小知识]Stochastc Calculus布朗运动(Part 3)</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61828433">矩母函数、正态分布、二次型</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC4y1a7XY">Ito积分练习题(Part 2)</a></li>
+w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}1\\E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
+<hr>
+<h4 id="MATLAB代码："><a href="#MATLAB代码：" class="headerlink" title="MATLAB代码："></a>MATLAB代码：</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">[w]</span> = <span class="hljs-title">optimal_portfolio_1</span><span class="hljs-params">(R,Sigma,ER)</span></span><br><span class="hljs-comment">% no risk-free asset</span><br>n = <span class="hljs-built_in">size</span>(Sigma,<span class="hljs-number">1</span>); <span class="hljs-comment">% the number of risky shares</span><br>V = Sigma^(<span class="hljs-number">-1</span>); <span class="hljs-comment">%inverse of  variance-covariance matrix</span><br>e = <span class="hljs-built_in">ones</span>(n,<span class="hljs-number">1</span>); <span class="hljs-comment">% unit vector, column</span><br>A = e&#x27;*V*R;<br>B = R&#x27;*V*R;<br>C = e&#x27;*V*e;<br>K = [A C;  B A];<br>LM = K^(<span class="hljs-number">-1</span>)*[<span class="hljs-number">1</span>; ER];<br>w = [V*R, V*e]*LM; <span class="hljs-comment">% optimal weight</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://xueqiu.com/1985849148/145570290">投资组合理论学习之马科维茨投资模型（一）</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">矩阵求导公式的数学推导（矩阵求导——基础篇）</a></li>
 </ol>
 
             </div>
@@ -369,7 +310,7 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Math/">Math</a>
+                      <a class="hover-with-bg" href="/categories/Finance/">Finance</a>
                     
                   </div>
                 
@@ -377,9 +318,7 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Normal-Distribution/">Normal Distribution</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Moment-Generating-Function/">Moment Generating Function</a>
+                      <a class="hover-with-bg" href="/tags/Markowitz/">Markowitz</a>
                     
                   </div>
                 
@@ -392,9 +331,9 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/20/Brownianan_Motion/">
+                      <a href="/2021/02/15/%E5%9F%BA%E4%BA%8E%E8%B6%85%E9%A2%9D%E6%94%B6%E7%9B%8A%E7%9A%84%E8%B5%84%E4%BA%A7%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Brownianan_Motion</span>
+                        <span class="hidden-mobile">基于超额收益的资产组合优化</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -402,8 +341,8 @@ W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mo
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">
-                        <span class="hidden-mobile">Black_Scholes_Model推导_进阶版</span>
+                      <a href="/2021/02/15/Inner_product_and_Cross_Product/">
+                        <span class="hidden-mobile">Inner_product_and_Cross_Product</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

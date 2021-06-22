@@ -17,7 +17,7 @@
   <meta name="description" content="About python math and finance">
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
-  <title>随机过程与Ito积分 - Borderland</title>
+  <title>Inner_product_and_Cross_Product - Borderland</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="随机过程与Ito积分">
+            <span class="h2" id="subtitle" title="Inner_product_and_Cross_Product">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-11 02:58" pubdate>
-        June 11, 2021 am
+      <time datetime="2021-02-15 00:00" pubdate>
+        February 15, 2021 am
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      271 字
+      362 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        分钟
     </span>
   
@@ -224,116 +224,62 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">随机过程与Ito积分</h1>
+            <h1 style="display: none">Inner_product_and_Cross_Product</h1>
             
             <div class="markdown-body">
               <blockquote>
-<p>基于 知乎 埃格先生 的文章的笔记;</p>
-<p>对 Ito公式 进行了有逻辑的推导，很适合初学者学习;</p>
+<p>对内积与外积基础性质进行简要陈述；</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Ito-积分"><a href="#Ito-积分" class="headerlink" title="Ito 积分"></a>Ito 积分</h2><p>在时间 [$T_0,T$], 布朗运动 {$W_t$}$_{t\in[T_0,T]}$. 将时间分成 $N$段, 所以有 $\Delta t=(T-T_0)/N$. 定义 $W_j=w_1+w_2+…+w_j$, 其中 $\omega_i=\xi_i\sqrt{\Delta t}$. {$\xi_i$} 是一列独立同分布的随机变量，它们的均值为 0, 方差为 1,  且满足如下伯努利分布：$P(\xi_i=1)=P(\xi_i=-1)=\frac{1}{2}$</p>
-<p>有 $W(t)-W(s)\sim N(0,t-s)$</p>
-<p>Ito 积分一般写为</p>
+<h4 id="内积（Inner-product，点乘）"><a href="#内积（Inner-product，点乘）" class="headerlink" title="内积（Inner product，点乘）"></a>内积（Inner product，点乘）</h4><script type="math/tex; mode=display">
+a = [a_1,a_2,...,a_n] \ b = [b_1,b_2,...,b_n]</script><script type="math/tex; mode=display">
+a·b = |a||b|cos\angle(a,b)</script><p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-1.jpg" srcset="/img/loading.gif" alt></p>
+<p>在几何中这个结果为b在a方向上的<strong>投影</strong>，若a与b正交，$a·b=0$</p>
+<h4 id="外积（Cross-Product，叉乘）"><a href="#外积（Cross-Product，叉乘）" class="headerlink" title="外积（Cross Product，叉乘）"></a>外积（Cross Product，叉乘）</h4><script type="math/tex; mode=display">
+a = (x_1,y_1,z_1) \ b = (x_2,y_2,z_2)</script><script type="math/tex; mode=display">
+a \times b = \begin{vmatrix} i & j & k \\ x_1 & y_1 & z_1 \\x_2 & y_2 & z_2 \end{vmatrix} = (y_1z_2-y_2z_1)i-(x_1z_2-x_2z_1)j+(x_1y_2-x_2y_1)k</script><p>其中</p>
 <script type="math/tex; mode=display">
-\int_{T_0}^Tf_tdW_t</script><p>接下来我们采用如下的固定范式来讨论：</p>
+i = (1,0,0) \ j = (0,1,0) \ k = (0,0,1)</script><p>得到结果向量</p>
+<script type="math/tex; mode=display">
+a \times b = (y_1z_2-y_2z_1,-(x_1z_2-x_2z_1),x_1y_2-x_2y_1)</script><p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-2.jpg" srcset="/img/loading.gif" alt></p>
+<p>在几何中这个结果称为<strong>法向量</strong>，该向量垂直于a和b向量构成的平面</p>
+<p>叉乘同时拥有其它基本性质：</p>
 <ol>
-<li>固定 $N$</li>
-<li>令 $N\to\infty$</li>
+<li>$a \times a = 0$</li>
+<li>$a \times b = -( b \times a)$</li>
+<li>$(a + b)\times c = a \times c + b \times c$</li>
 </ol>
-<h4 id="随机徘徊的离散-Ito-积分"><a href="#随机徘徊的离散-Ito-积分" class="headerlink" title="随机徘徊的离散 Ito 积分"></a>随机徘徊的离散 Ito 积分</h4><p>设 {$f_j$}$_{j=0}^N$ 对 {$W_j$}$_{j=0}^N$ 适应, 我们定义其离散 Ito 积分 $I_W[f]$ 是如下随机变量:</p>
+<p>可得到叉乘公式推导：</p>
 <script type="math/tex; mode=display">
-I_W[f]=\sum_{i=0}^{N-1}f_i(W_{i+1}-W_i)=\sum_{i=0}^{N-1}f_iw_{i+1}</script><p>例如，取 $f_j=W_j$</p>
+\begin{aligned}
+u \times v =& (u_1i+u_2j+u_3k)\times(v_1i+v_2j+v_3k)\\
+=&u_1v_1(i \times i)+u_1v_2(i \times j)+u_1v_3(i \times k)+\\
+&u_2v_1(j \times i)+u_2v_2(j \times j)+u_2v_3(j \times k)+\\
+&u_3v_1(k \times i)+u_3v_2(k \times j)+u_3v_3(k \times k)+
+\end{aligned}</script><p>同时因为</p>
 <script type="math/tex; mode=display">
-\omega_i^2=(\xi_i\sqrt{\Delta t})^2=\Delta t</script><script type="math/tex; mode=display">
-\begin{align}
-I_W[f]&=\sum_{i=0}^{N-1}W_iw_{i+1}=\sum_{i=1}^{N}(\sum_{j=0}^{i-1}w_j)w_i=\sum_{j<i\leq N}w_iw_j\\
-&=\frac{1}{2}(\sum_{i=1}^{N}w_i)^2-\frac{1}{2}\sum_{i=1}^{N}w_i^2=\frac{1}{2}W_N^2-\frac{T-T_0}{2}
-\end{align}</script><p>$I_W[f]$ 具有如下性质：</p>
-<ol>
-<li><p>$\mathbb{E}I_W[f]=0$</p>
-<blockquote>
-<p>用 Tower property 证鞅，然后 $I_W<a href="0">f</a>=0$</p>
-</blockquote>
-</li>
-<li><p>$\mathbb{E}(I_W[f])^2=\mathbb{E}[f_t^2]\mathbb E[(W_{t+1}-W_t)^2]=\mathbb{E}<a href="T-T_0">f_t^2</a>=\mathbb{E}(\frac{T-T_0}{N}\sum_{i=0}^{N-1}f_i^2)$</p>
-</li>
-</ol>
-<h4 id="连续时间的-Ito-积分"><a href="#连续时间的-Ito-积分" class="headerlink" title="连续时间的 Ito 积分"></a>连续时间的 Ito 积分</h4><script type="math/tex; mode=display">
-I_W[f]=\int_{T_0}^Tf_tdW_t</script><p>取 $f_j=W_j$</p>
+i\times i = j\times j = k\times k = 0</script><script type="math/tex; mode=display">
+\begin{cases}
+i\times j = k\\
+j\times k = i\\
+k\times i = j
+\end{cases}
+\
+\begin{cases}
+j\times i = -k\\
+k\times j = -i\\
+i\times k = -j
+\end{cases}</script><p>得到</p>
 <script type="math/tex; mode=display">
-\int_{T_0}^TW_tdW_t=\frac{1}{2}W_T^2-\frac{T-T_0}{2}</script><blockquote>
-<p>如果 $W_{T_0}\ne 0$, 则多一项 $-W_{T_0}^2/2$</p>
-<p>这题也可以用另一个角度解</p>
-</blockquote>
-<script type="math/tex; mode=display">
-f(t,x)=\frac12 x^2,\ f_t(t,x)=0,\ f_x(t,x)=x,\ f_{xx}(t,x)=1</script><script type="math/tex; mode=display">
-df(t,x)=W(t)dW(t)+\frac12dt</script><p>求积分</p>
-<script type="math/tex; mode=display">
-\frac12 W(T)^2=\int_0^TW(t)dW(t)+\frac12\int_0^Tdt=\int_0^TW(t)dW(t)+\frac12T</script><blockquote>
-<p>相比于普通的积分 $\int_0^Tf(t)df(t) = \frac12f(T)^2$, 伊藤积分是取左值求积分的，如果采用取中值求积分（Stratonovich）</p>
-</blockquote>
-<p>$I_W[f]$ 具有如下性质：</p>
-<ol>
-<li>$\mathbb{E}\int_{T_0}^Tf_tdW_t=0$</li>
-<li>$\mathbb{E}(\int_{T_0}^Tf_tdW_t)^2=\mathbb{E}\int_{T_0}^Tf_t^2dt$<ul>
-<li>Ito Isometry</li>
-</ul>
-</li>
-<li>$[I_W[f],I_W[f]]_T=\int_0^Tf^2(t)dt$<ul>
-<li>$dI_W[f]dI_W[f]=f^2(t)dt$</li>
-</ul>
-</li>
-</ol>
-<h3 id="随机差分方程的等价的离散积分形式及其连续极限"><a href="#随机差分方程的等价的离散积分形式及其连续极限" class="headerlink" title="随机差分方程的等价的离散积分形式及其连续极限"></a>随机差分方程的等价的离散积分形式及其连续极限</h3><script type="math/tex; mode=display">
-\begin{align}
-X_{j+1}&\approx X_j+b_j\Delta t+\sigma_j\omega_{j+1}\\
-&= X_j+ \underbrace{b_j\Delta t}+\underbrace{\sigma_j\xi_{j+1}\sqrt{\Delta t}}\\
-&\qquad\quad\ 确定运动 \quad\ 随机运动
-\end{align}</script><blockquote>
-<p>第一步省略了一个 $o(\Delta t)$</p>
-</blockquote>
-<h4 id="离散积分"><a href="#离散积分" class="headerlink" title="离散积分"></a>离散积分</h4><script type="math/tex; mode=display">
-X_n=X_0+\Delta t\sum_{j=0}^{n-1} b_j+\sum_{j=0}^{n-1} w_{j+1}\sigma_j</script><h4 id="连续积分"><a href="#连续积分" class="headerlink" title="连续积分"></a>连续积分</h4><script type="math/tex; mode=display">
-X(t)=X(0)+\int_0^t b(s)ds+\int_0^t\sigma(s)dW(s)</script><h4 id="Ito-公式"><a href="#Ito-公式" class="headerlink" title="Ito 公式"></a>Ito 公式</h4><p>做 Taylor 二阶展开, 将超过 $o(\Delta t) $的部分省略, 其中包含二阶以上导($X_{n+1}-X_n$ 是一个 $o(\sqrt{\Delta t})$ 的量)与一部分二阶导 ($\Delta t$ 超过一次的)</p>
-<script type="math/tex; mode=display">
-\begin{align}
-f(X_{n+1})&=f(X_n)+f'(X_n)·(X_{n+1}-X_n)+\frac{f''(X_n)}{2}·(X_{n+1}-X_n)^2+o(\Delta t)^{3/2}\\
-&=f(X_n)+f'(X_n)·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})+\frac{f''(X_n)}{2}·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})^2\\
-&=f(X_n)+f'(X_n)·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})+\frac{f''(X_n)}{2}·\sigma_n^2\xi_{n+1}^2\Delta t\\
-\end{align}</script><p>$\xi_{n+1}^2$ 在 almost surely (a.s.) 的意义下等于 1, 整理上式得到</p>
-<script type="math/tex; mode=display">
-f(X_{n+1})-f(X_n)=f'(X_n)\sigma_n\xi_{n+1}\sqrt{\Delta t}+(f'(X_n)·b_n+\frac{f''(X_n)·\sigma_n^2}{2})\Delta t</script><p>也可以写成离散积分的形式</p>
-<script type="math/tex; mode=display">
-f(X_n)=X_0+\sum_{j=0}^{n-1}f'(X_j)\sigma_jw_{j+1}+\sum_{j=0}^{n-1}(f'(X_j)·b_j+\frac{f''(X_j)·\sigma_j^2}{2})\Delta t</script><p>对应于连续的形式</p>
-<script type="math/tex; mode=display">
-f(X(t))=X(0)+\int_0^tf'(X(s))\sigma(s)dw(s)+\int_0^t(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><p>上述公式被称为<strong>Ito公式</strong>，简记为</p>
-<script type="math/tex; mode=display">
-df(X(t))=f'(X(s))\sigma(s)dw(s)+(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><h4 id="随机差分方程"><a href="#随机差分方程" class="headerlink" title="随机差分方程"></a>随机差分方程</h4><script type="math/tex; mode=display">
-X_{j+1}-X_j=s(X_j,t)w_{j+1}+m(X_j,t)\Delta t</script><h4 id="随机微分方程"><a href="#随机微分方程" class="headerlink" title="随机微分方程"></a>随机微分方程</h4><script type="math/tex; mode=display">
-dX(t)=\sigma(X(t),t)dW(t)+m(X(t),t)dt</script><h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p><strong>（Vasicek Model）Interest rate stochastic differential equation</strong></p>
-<script type="math/tex; mode=display">
-dR(t)=(\alpha-\beta R(t))dt+\sigma dW(t)</script><p>有一个 mean reversion 的特点，均值为 $\frac\alpha\beta$</p>
-<script type="math/tex; mode=display">
-f(t,x)=e^{\beta t}x,\ f_t=x\beta e^{\beta t},\ f_x=e^{\beta t},\ f_{xx}=0</script><script type="math/tex; mode=display">
-\begin{align}
-d(e^{\beta t}R(t))=df(t,R(t))&=x\beta e^{\beta t}dt+e^{\beta t}dR(t)\\
-&=R(t)\beta e^{\beta t}dt+e^{\beta t}((\alpha-\beta R(t))dt+\sigma dW(t))\\
-&=e^{\beta t}\alpha dt+e^{\beta t}\sigma dW(t)
-\end{align}</script><script type="math/tex; mode=display">
-\begin{align}
-e^{\beta T}R(T)&=R(0)+\int_0^Te^{\beta t}\alpha dt+\int_0^Te^{\beta t}\sigma dW(t)\\
-R(T)&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta[e^{\beta t}|_0^T]+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
-&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta(e^{\beta T}-1)+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
-&=e^{-\beta T}R(0)+\frac\alpha\beta(1-e^{-\beta T})+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
-\end{align}</script><p><strong>特性</strong></p>
-<script type="math/tex; mode=display">
-\mathbb E[R(t)]=e^{-\beta t}R(0)+\frac\alpha\beta(1-e^{-\beta t})</script><p>If $t\to\infty$, then $\mathbb E[R(t)]\to \frac\alpha\beta$</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/wei-zhi-3-47">埃格先生</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC4y1a7XY">Ito积分练习题(Part 2)</a></p>
-</li>
+\begin{aligned}
+u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
+=& \begin{vmatrix} u_2 & u_3 \\v_2 & v_3 \end{vmatrix}i -
+\begin{vmatrix} u_1 & u_3 \\v_1 & v_3 \end{vmatrix}j +
+\begin{vmatrix} u_1 & u_2 \\v_1 & v_2 \end{vmatrix}k\\
+=& \begin{vmatrix} i & j & k\\u_1 & u_2 & u_3\\v_1 & v_2 & v_3 \end{vmatrix}
+\end{aligned}</script><hr>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lzhu/p/10405091.html"><strong>向量的内积（点乘）</strong></a></li>
 </ol>
 
             </div>
@@ -352,9 +298,7 @@ R(T)&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta[e^{\beta t}|_0^T]+\int_0^Te^
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Ito-calculus/">Ito calculus</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Stochastic-Process/">Stochastic Process</a>
+                      <a class="hover-with-bg" href="/tags/Inner-product%EF%BC%86Cross-Product/">Inner product＆Cross Product</a>
                     
                   </div>
                 
@@ -367,9 +311,9 @@ R(T)&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta[e^{\beta t}|_0^T]+\int_0^Te^
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/">
+                      <a href="/2021/02/15/Modern_Portfolio_Theory/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">金色长廊</span>
+                        <span class="hidden-mobile">Modern_Portfolio_Theory</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -377,8 +321,8 @@ R(T)&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta[e^{\beta t}|_0^T]+\int_0^Te^
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/30/%E5%A4%8D%E6%95%B0%E4%B8%8E%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/">
-                        <span class="hidden-mobile">复数与傅里叶变换</span>
+                      <a href="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D_1/">
+                        <span class="hidden-mobile">数理金融_1</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
