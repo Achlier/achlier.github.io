@@ -523,7 +523,7 @@ C(S_0,T,K)=C^{BS}(S_0,T,K,\hat\sigma(T,K))</script><p>Next, define</p>
 C^{BS}(F_t,y,f)&=F_tN(d_1)-KN(d_2)\\
 &=F_t(N(\frac{-y}{\sqrt{f}}+\frac{\sqrt{f}}{2})-e^{y}N(\frac{-y}{\sqrt{f}}-\frac{\sqrt{f}}{2}))
 \end{align}</script><h4 id="【Method-1】"><a href="#【Method-1】" class="headerlink" title="【Method 1】"></a>【Method 1】</h4><blockquote>
-<p>More的第四个连接, 这个方法需要求 $\frac{\partial f}{\partial K}$, 此处省略了, 计算比较复杂,以下$C$为$C^{BS}$</p>
+<p>这个方法需要求 $\frac{\partial f}{\partial K}$, 此处省略了, 计算比较复杂,以下$C$为$C^{BS}$</p>
 </blockquote>
 <p>With</p>
 <script type="math/tex; mode=display">
@@ -572,7 +572,7 @@ C^{BS}(F_t,y,f)&=F_tN(d_1)-KN(d_2)\\
 \frac{\partial C}{\partial t}&=\frac{1}{2}\sigma^2(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\mu C
 \end{align}</script><h4 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h4><p>By taking derivatives of the Black-Scholes formula, we obtain</p>
 <blockquote>
-<p>这个部分我还没推过，但在More的第四个连接里有过程</p>
+<p>这个部分我还没推过，但在More的第二个连接里有过程</p>
 </blockquote>
 <script type="math/tex; mode=display">
 \frac{\partial^2c}{\partial f^2}=(-\frac{1}{8}-\frac{1}{2f}+\frac{y^2}{2f^2})\frac{\partial c}{\partial f}</script><script type="math/tex; mode=display">
@@ -597,9 +597,9 @@ C^{BS}(F_t,y,f)&=F_tN(d_1)-KN(d_2)\\
 <li>The dynamics of the volatility process assumed by the model does not correspond to that observed in the market</li>
 </ul>
 <h4 id="More"><a href="#More" class="headerlink" title="More"></a>More</h4><p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/539e67b7910ef12d2af9e763.html">Derivation of Loval Volatility</a></p>
+<p><a target="_blank" rel="noopener" href="http://frouah.com/finance%20notes/Dupire%20Local%20Volatility.pdf">Dupire Local Volatility</a></p>
 <p><a target="_blank" rel="noopener" href="https://max.book118.com/html/2017/0322/96459464.shtm">Local volatility modelling</a></p>
 <p><a target="_blank" rel="noopener" href="http://web.math.ku.dk/~rolf/teaching/ctff03/Gatheral.1.pdf">Stochastic Volatility and Local Volatility</a></p>
-<p><a target="_blank" rel="noopener" href="http://frouah.com/finance%20notes/Dupire%20Local%20Volatility.pdf">Dupire Local Volatility</a></p>
 <h4 id="CEV-Model"><a href="#CEV-Model" class="headerlink" title="CEV Model"></a>CEV Model</h4><p>Constant Elasticity of Variance (CEV) model is given as</p>
 <script type="math/tex; mode=display">
 \frac{dS_t}{S_t}=rdt+\frac{\sigma}{S_t^{1-a}}dW_t</script><blockquote>
@@ -769,7 +769,7 @@ E[(R_i^2-v_i-m_i^2)^2]&=E[R_i^4-2v_iR_i^2-2m_i^2R_i^2+v_i^2+2v_im_i^2+m_i^4]\\
 \end{align}</script><p>With $E[R_i^4]=m_i^4+6m_i^2v_i+3v_i^2$</p>
 <blockquote>
 <p>关于这一定理可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148408669">如何通俗的理解矩母函数</a>，以及 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Normal_distribution">wiki</a> 中展示的 Order 4 的 Non-central moment</p>
-<p>更多参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/">正态分布与矩母函数</a></p>
+<p>本站更多参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/Normal_Distribution_and_E(x4">正态分布与矩母函数</a>/)</p>
 </blockquote>
 <script type="math/tex; mode=display">
 E[(R^2-v-m^2)^2]=2v_i^2+4v_im_i^2</script><p>and</p>

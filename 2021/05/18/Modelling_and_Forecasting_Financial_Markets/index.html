@@ -1201,6 +1201,26 @@ S=\begin{bmatrix}1&0\\0.6&0.8\end{bmatrix}</script><p>which is equivalent to $\t
 <p>The <strong>orthogonalized error variance decomposition</strong> is defined as</p>
 <script type="math/tex; mode=display">
 \psi(i,j,h)\equiv\frac{\sum_{k=0}^{h-1}\tilde v^2(i,j,k)}{\sum_{j=1}^n\sum_{k=0}^{h-1}\tilde v^2(i,j,k)}</script><p>Expressed as percentage, one can thus examine the relative importance of the error variance $Y_j$ for forecasting $Y_i$ h-step ahead.</p>
+<h4 id="Nonstationary-VAR"><a href="#Nonstationary-VAR" class="headerlink" title="Nonstationary VAR"></a>Nonstationary VAR</h4><p>Consider the n−variate VAR</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\epsilon_t,\ \Phi(L)=I_n-\Phi_1L-...-\Phi_pL^p</script><p>The VAR process is stationary if</p>
+<script type="math/tex; mode=display">
+det[\Phi(z)]\ne 0,\ for |z|<1</script><p>Recall that</p>
+<script type="math/tex; mode=display">
+\Phi(L)=I_n(1-L)+\Pi L+\sum_{j=1}^{p-1}\Phi_j^*L^j(1-L)</script><p>where $\Phi_j^*=\sum_{k=j+1}^p\Phi_k$ and $\Pi\equiv\Phi(1)$</p>
+<ul>
+<li><p>If $\Pi\ne 0$ and $det(\Pi)\ne0$ the process is stationary.</p>
+</li>
+<li><p>If $\Pi\ne 0$ but $det(\Pi)=0$,  that is <strong>Π</strong> has reduced rank, then $Y_t$ is a cointegrated process.</p>
+</li>
+<li><p>If $rank(\Pi)=r&lt;n$, then</p>
+<script type="math/tex; mode=display">
+\Pi =\alpha\beta'</script><p>where $\alpha$ and $\beta$ are $(n \times r)$ full column rank matrices.</p>
+<p>Hence, the VAR admits the representation</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\alpha\beta'Y_t+\sum_{j=1}^{p-1}\Phi_j^*\Delta Y_{t-j}+\epsilon_t</script><p>where $\beta’Y_t$ needs to be stationary!</p>
+</li>
+</ul>
 
             </div>
             <hr>

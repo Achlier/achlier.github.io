@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      28
        分钟
     </span>
   
@@ -317,8 +317,9 @@ Var[Q_\pi]&=\sum_{j=0}^{n-1}Var[(W(t_{j+1})-W(t_j))^2]\\
 &\leq 2||\pi||T\to 0
 \end{align}</script><p>所以波动趋近于 0, $Q_{\pi}$ 趋近于 $T$</p>
 <blockquote>
-<p>$E(x^4)$ 的解法可参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E4%B8%8E%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0/">正态分布与矩母函数</a></p>
+<p>$E(x^4)$ 的解法可参考 <a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/17/Normal_Distribution_and_E(x4">正态分布与矩母函数</a>/)</p>
 </blockquote>
+<h2 id="Ito-Integral"><a href="#Ito-Integral" class="headerlink" title="Ito Integral"></a>Ito Integral</h2><p><a target="_blank" rel="noopener" href="https://achlier.github.io/2021/06/11/Ito_Integral/">Ito_Integral</a></p>
 <h2 id="Stratonovich-Integral"><a href="#Stratonovich-Integral" class="headerlink" title="Stratonovich Integral"></a>Stratonovich Integral</h2><blockquote>
 <p>采用取中值 $t^*$ 求积分</p>
 </blockquote>
@@ -332,7 +333,36 @@ Q_{\pi/2}=\sum_{j=0}^{n-1}[W(t_j^*)-W(t_j)]^2=\frac{T}{2}</script><p>而</p>
 <script type="math/tex; mode=display">
 \sum_{j=0}^{n-1}W(t_j^*)^2-2W(t_j)W(t^*_j)+W(t_j)^2=Q_{\pi/2}</script><p>得到</p>
 <script type="math/tex; mode=display">
-\int_{T_0}^TW_t \circ dW_t=\int_{T_0}^TW_tdW_t+Q_{\pi/2}=W(T)^2-\frac{T}{2}+\frac{T}{2}</script><h3 id="联合分布"><a href="#联合分布" class="headerlink" title="联合分布"></a>联合分布</h3><p>求 $P(W_1\leq0,W_2\leq0…)$ 可运用联合正态分布</p>
+\int_{T_0}^TW_t \circ dW_t=\int_{T_0}^TW_tdW_t+Q_{\pi/2}=W(T)^2-\frac{T}{2}+\frac{T}{2}</script><h2 id="Ito-与-Stratonovich-转换"><a href="#Ito-与-Stratonovich-转换" class="headerlink" title="Ito 与 Stratonovich 转换"></a>Ito 与 Stratonovich 转换</h2><p>We have</p>
+<script type="math/tex; mode=display">
+\int_0^Tf(t,X_t)\circ dB_t=\int_0^T f(t,X_t)dB_t+\frac12\int_0^Tb(t,X_t)f_x(t,X_t)dt</script><p>If we set two Equivalent function</p>
+<script type="math/tex; mode=display">
+(Ito)\quad dX_t=a(t,X_t)dt+b(t,X_t)dB_t</script><script type="math/tex; mode=display">
+(Stra)\quad dX_t=\tilde a(t,X_t)dt+\tilde b(t,X_t)\circ dB_t</script><p>Put $b(t,X_t)$ into first equation</p>
+<script type="math/tex; mode=display">
+b(t,X_t)\circ dB_t=b(t,X_t)dB_t+\frac12 b(t,X_t)b_x(t,X_t)dt</script><p>So</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dX_t&=a(t,X_t)dt+b(t,X_t)\circ dB_t-\frac12 b(t,X_t)b_x(t,X_t)dt\\
+&=(a(t,X_t)-\frac12 b(t,X_t)b_x(t,X_t))dt+b(t,X_t)\circ dB_t
+\end{align}</script><p>Where</p>
+<script type="math/tex; mode=display">
+\tilde a(t,X_t)=a(t,X_t)-\frac12 b(t,X_t)b_x(t,X_t)</script><script type="math/tex; mode=display">
+\tilde b(t,X_t)=b(t,X_t)</script><p>【Example】</p>
+<script type="math/tex; mode=display">
+dX_t=\frac12f(X_t)f'(X_t)dt+f(X_t)dB_t</script><script type="math/tex; mode=display">
+\tilde a(t,X_t)=0,\quad \tilde b(t,X_t)=f(X_t)</script><p>So the Equivalent SDE</p>
+<script type="math/tex; mode=display">
+dX_t=f(X_t)\circ dB_t</script><p>Analogue</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dl(t)&=f(l(t))dc(t)\\
+\frac{dl(t)}{f(l(t))}&=dc(t),\quad [0,t]\\
+\int_{l(0)}^{l(t)}\frac{du}{f(u)}&=c(t)-c(0)
+\end{align}</script><p>If $g’(u)=\frac1{f(u)}$</p>
+<script type="math/tex; mode=display">
+g(l(t))-g(l(0))=c(t)-c(0)</script><script type="math/tex; mode=display">
+g(X_t)-g(X_0)=B_t-B_0</script><h2 id="额外的点"><a href="#额外的点" class="headerlink" title="额外的点"></a>额外的点</h2><h3 id="联合分布"><a href="#联合分布" class="headerlink" title="联合分布"></a>联合分布</h3><p>求 $P(W_1\leq0,W_2\leq0…)$ 可运用联合正态分布</p>
 <p>首先已知 $W_t\sim N(0,t)$, with $0&lt;s&lt;t$</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -360,7 +390,7 @@ M_x(t)=\mathbb E(e^{tx})=e^{\frac{t^2\sigma^2}2+\mu t}</script><p>所以 $\mathb
 <p>如果 x 服从对数正态分布 with $ln(x)\sim N(\mu,\sigma^2)$</p>
 <p>$\mathbb E(x)=e^{\mu+\sigma^2/2}$, $D(x)=(e^{\sigma^2}-1)e^{2\mu+\sigma^2}$ </p>
 </blockquote>
-<h3 id="额外的点"><a href="#额外的点" class="headerlink" title="额外的点"></a>额外的点</h3><p>已知两个定义</p>
+<h3 id="额外的理解"><a href="#额外的理解" class="headerlink" title="额外的理解"></a>额外的理解</h3><p>已知两个定义</p>
 <script type="math/tex; mode=display">
 dW(t)=\epsilon\sqrt{dt},\ \epsilon\sim N(0,1)</script><script type="math/tex; mode=display">
 dW(t)dW(t)=dt</script><p>这两个公式都是不完美的定义，因为 W(t) 实际上是处处不可导的</p>
