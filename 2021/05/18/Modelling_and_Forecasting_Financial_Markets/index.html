@@ -1223,7 +1223,7 @@ Y_t\\X_t
 Y_t=\sum_{j=1}^p\phi_{11,j}Y_{t-j}+\sum_{j=1}^p\phi_{12,j}X_{t-j}+\epsilon_{1t}</script><p>then, the hypothesis $X\not\Rightarrow Y$ is equivalent to</p>
 <script type="math/tex; mode=display">
 H_0:\phi_{12,1}=\phi_{12,2}=...=\phi_{12,p}</script><p>If the VAR is stationary an F−test can be used.</p>
-<p><strong>Impulse Response Functions</strong>（脉冲响应方程）</p>
+<p><strong>Impulse Response Functions</strong>（脉冲响应函数）</p>
 <p>To understand what are the dynamic effects of the error process $\epsilon_t$ on $Y_{t+h}$, one can calculate the so-called impulse-response function.</p>
 <script type="math/tex; mode=display">
 Y_t=\Phi_1Y_{t-1}+\epsilon_t,\ \epsilon_t\sim WN(0,\Sigma)</script><p>with $\Sigma=diag[\sigma_1^2,…,\sigma_n^2]$</p>
@@ -1238,14 +1238,20 @@ V_k\equiv\Phi_1^ke_1,\ k=1,...,h</script><p>The n elements of the $V_k$ vector s
 <script type="math/tex; mode=display">
 Y_t=\Phi(L)^{-1}\epsilon_t=\sum_{k=0}^\infty\Psi_k\epsilon_{t-k}</script><p>The impulse-response function is defined as</p>
 <script type="math/tex; mode=display">
-v(i,j,k)\equiv\frac{\partial Y_{it}}{\partial\epsilon_{j,t-k}}=\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><p>$v(i,j,k)$ represent the response of $Y_{it}$ to a unitary shock in $Y_{j,t-k}$ (produced by a unitary shock in $\epsilon_{j,t-k}$.)</p>
+v(i,j,k)\equiv\frac{\partial Y_{it}}{\partial\epsilon_{j,t-k}}=\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><blockquote>
+<p>k 时间上 j 对 i 的影响</p>
+</blockquote>
+<p>$v(i,j,k)$ represent the response of $Y_{it}$ to a unitary shock in $Y_{j,t-k}$ (produced by a unitary shock in $\epsilon_{j,t-k}$.)</p>
 <p>$\Sigma$ is <strong>not required</strong> to be diagonal, so the component of  $\epsilon_t$ may be <strong>contemporaneously correlated</strong>.</p>
 <p>If the correlations are high, there is <strong>no way</strong> of separating the response of $Y_{it}$ to a shock on $\epsilon_{j,t−k}$ from its response to other shocks that are correlated to $\epsilon_{j,t−k}$.</p>
 <p>If we defifine the <strong>square invertible matrix</strong> $S$ such that</p>
 <script type="math/tex; mode=display">
 \epsilon_t\equiv S\xi_t\ with\ \mathbb E(\xi_t\xi_t')\equiv I_n</script><p>then, setting $\tilde\Psi_j\equiv\Psi_jS,\xi_t=S^{-1}\epsilon_t$</p>
 <script type="math/tex; mode=display">
-Y_t=\sum_{j=0}^\infty\Psi_k\epsilon_{t-k}=\sum_{j=0}^\infty(\Psi_kS)S^{-1}\epsilon_{t-k}=\sum_{j=0}^\infty\tilde\Psi_k\xi_{t-k}</script><p>We can define the <strong>structural impulse-response function</strong> as</p>
+Y_t=\sum_{j=0}^\infty\Psi_k\epsilon_{t-k}=\sum_{j=0}^\infty(\Psi_kS)S^{-1}\epsilon_{t-k}=\sum_{j=0}^\infty\tilde\Psi_k\xi_{t-k}</script><blockquote>
+<p>让原本相关性强的残差变成白噪</p>
+</blockquote>
+<p>We can define the <strong>structural impulse-response function</strong> as</p>
 <script type="math/tex; mode=display">
 \tilde v(i,j,k)\equiv\frac{\partial T_{it}}{\partial\xi_{j,t-k}}=\tilde\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><ul>
 <li>Note that if $\epsilon_t=S\xi_t$, then $\Sigma=SS’$</li>
@@ -1299,13 +1305,20 @@ S=\begin{bmatrix}1&0\\0.6&0.8\end{bmatrix}</script><p>which is equivalent to $\t
 det[\Phi(z)]\ne 0,\ for |z|<1</script><p>Recall that</p>
 <script type="math/tex; mode=display">
 \Phi(L)=I_n(1-L)+\Pi L+\sum_{j=1}^{p-1}\Phi_j^*L^j(1-L)</script><p>where $\Phi_j^*=\sum_{k=j+1}^p\Phi_k$ and $\Pi\equiv\Phi(1)$</p>
+<blockquote>
+<p>Beveridge-Nelson Decomposition 取 I(1)</p>
+<p>Augmented Dickey Fuller (ADF)  Test</p>
+</blockquote>
 <ul>
 <li><p>If $\Pi$ is a matrix of zeros</p>
 <script type="math/tex; mode=display">
 \Delta Y_t=\sum_{j=1}^{p-1}\Phi^*_j\Delta Y_{t-j}+\epsilon_t</script></li>
 <li><p>If $\Pi\ne 0$ and $det(\Pi)\ne0$ the process is stationary.</p>
 </li>
-<li><p>If $\Pi\ne 0$ but $det(\Pi)=0$,  that is <strong>Π</strong> has reduced rank, then $Y_t$ is a cointegrated process.</p>
+<li><p>If $\Pi\ne 0$ but $det(\Pi)=0$,  that is <strong>Π</strong> has reduced rank, then $Y_t$ is a <strong>cointegrated process</strong>.</p>
+<blockquote>
+<p>协整检验的目的是决定一组非平稳序列的线性组合是否具有稳定的均衡关系</p>
+</blockquote>
 </li>
 <li><p>If $rank(\Pi)=r&lt;n$, then</p>
 <script type="math/tex; mode=display">
