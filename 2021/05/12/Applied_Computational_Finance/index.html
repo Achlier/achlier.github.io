@@ -1121,7 +1121,8 @@ x_n^h:=x^h(t_n^h),\ t_n^h:=nh,\ h=\frac1N</script><ul>
 <h4 id="Euler-Discretisation-for-BM"><a href="#Euler-Discretisation-for-BM" class="headerlink" title="Euler Discretisation for BM"></a>Euler Discretisation for BM</h4><p>with $h=\frac TN,t_n^h:=nh,\Delta W_n^h:=W(t_n^h)-W(t_{n-1}^h)$,  the Euler scheme for BM is given as</p>
 <script type="math/tex; mode=display">
 W_n^h:=W(t_n^h)=\Delta W_1^h+...+\Delta W_n^h</script><p>Note that $\Delta W_n^h$ are iid increments which are normally distributed $N(0,h)$</p>
-<h4 id="Euler-Method-for-SDEs"><a href="#Euler-Method-for-SDEs" class="headerlink" title="Euler Method for SDEs"></a>Euler Method for SDEs</h4><p>The Euler scheme for $X(t)$ is given as $X^h(0)=x_0$</p>
+<h4 id="Euler-Method-for-SDEs"><a href="#Euler-Method-for-SDEs" class="headerlink" title="Euler Method for SDEs"></a>Euler Method for SDEs</h4><script type="math/tex; mode=display">
+dX(t)=b(t,X(t))dt+\sigma(t,X(t))dW_t</script><p>The Euler scheme for $X(t)$ is given as $X^h(0)=x_0$</p>
 <script type="math/tex; mode=display">
 X_n^h:=X(t_n^h)=X_{n-1}^h+b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p>If we wish to price options based on <strong>the path of</strong> the SDE, for example, Asian option with price</p>
 <script type="math/tex; mode=display">
@@ -1282,6 +1283,92 @@ Y_i(\hat b_N):=Y_i-\hat b_N(X_i-\alpha_0)</script><p>Replacing $b$ with $\hat b_
 </ul>
 </li>
 </ul>
+<h1 id="Unit-4-1：Finite-difference-methods"><a href="#Unit-4-1：Finite-difference-methods" class="headerlink" title="Unit 4.1：Finite difference methods"></a>Unit 4.1：Finite difference methods</h1><h2 id="Unit-4-1：Introduction"><a href="#Unit-4-1：Introduction" class="headerlink" title="Unit 4.1：Introduction"></a>Unit 4.1：Introduction</h2><p>The finite difference method solves a partial differential equation on a discrete grid in time and space</p>
+<h4 id="Consider-a-general-equation-as"><a href="#Consider-a-general-equation-as" class="headerlink" title="Consider a general equation as"></a>Consider a general equation as</h4><script type="math/tex; mode=display">
+\partial_t V+b(x,t)\partial_x V+\frac12 a(x,t)\partial_x^2 V-r(x,t)V+f(x,t)=0</script><script type="math/tex; mode=display">
+V(x,T)=g(x),\ (x,t)\in \Omega\times[0,T)</script><ul>
+<li>$f$ is called the <strong>source term</strong></li>
+<li>$a, b, r,$ are assumed to be bounded and continuous</li>
+<li>$a$ is assumed to be nonnegative</li>
+</ul>
+<h4 id="The-Black-Scholes-equation-is-given-as"><a href="#The-Black-Scholes-equation-is-given-as" class="headerlink" title="The Black-Scholes equation is given as"></a>The Black-Scholes equation is given as</h4><script type="math/tex; mode=display">
+\partial_t V+xr\partial_x V+\frac12 \sigma^2x^2\partial_x^2 V-rV=0</script><script type="math/tex; mode=display">
+V(x,T)=g(x),\ (x,t)\in \mathbb R_+\times[0,T)</script><p>we note that</p>
+<script type="math/tex; mode=display">
+b(x,t)=rx,a(x,t)=\sigma^2x^2\ and\ r(x,t)=r</script><p>Change of variable</p>
+<script type="math/tex; mode=display">
+z=logx\ and\ v(z,t)=V(e^z,t)</script><script type="math/tex; mode=display">
+v_t=V_t,\ v_z=e^zV_x=xV_x,\ v_{zz}=e^{2z}V_{xx}+e^zV_x=x^2V_{xx}+xV_x</script><p>In the Black-Scholes equation, we then plug</p>
+<script type="math/tex; mode=display">
+xV_x=v_z,\ x^2V_{xx}=v_{zz}-v_z</script><p>The transformed Black-Scholes equation with bounded coefficients is then given as</p>
+<script type="math/tex; mode=display">
+v_t+(r-\frac12 \sigma^2)v_z+\frac12 \sigma^2v_{zz}-rv=0</script><script type="math/tex; mode=display">
+V(e^z,T)=g(e^z),\ (z,t)\in \mathbb R\times[0,T)</script><p>The above equation has bounded coefficients and is suitable to apply finite difference methods</p>
+<h2 id="Unit-4-2：Explicit-Scheme"><a href="#Unit-4-2：Explicit-Scheme" class="headerlink" title="Unit 4.2：Explicit Scheme"></a>Unit 4.2：Explicit Scheme</h2><p>Consider the equation</p>
+<script type="math/tex; mode=display">
+V_t+\frac12 a(x,t)V_{xx}+f(x,t)=0</script><script type="math/tex; mode=display">
+V(x,T)=g(x),\ (x,t)\in \Omega\times[0,T)</script><p>For positive integer N discretise the domain with time step size $h_0=\frac TN$ and space step size $h_1&gt;0$</p>
+<p>Denote by $v_j^k\approx V(jh_1,kh_0)$, $j\in \mathbb Z$, $k=0,1,…,N$</p>
+<p>Standard explicit finite difference scheme is written as</p>
+<script type="math/tex; mode=display">
+\frac{v_j^k-v_j^{k-1}}{h_0}+\frac12a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
+v_j^N=g_j</script><p>In the scheme, we define</p>
+<script type="math/tex; mode=display">
+a_j^k:=a(jh_1,kh_0),\ f_j^k:=f(jh_1,kh_0),\ g_j:=g(jh_1)</script><p>The ordered form of the equation is written as</p>
+<script type="math/tex; mode=display">
+v_j^{k-1}=(1-\frac{h_0}{h_1^2}a_j^k)v_j^k+\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+h_0f_j^k</script><p>The coefficients of the values at previous time step are all nonnegative if the following monotonicity condition holds:</p>
+<script type="math/tex; mode=display">
+\frac{h_0}{h_1^2}||a||_\infty\leq 1</script><h4 id="Example-Digital-Option"><a href="#Example-Digital-Option" class="headerlink" title="Example: Digital Option"></a>Example: Digital Option</h4><p>Consider the digital option with payoff $g(x)=1_{x&gt;0}(x)$. Suppose $f(x,t)=0$ and $a(x,t)=1$</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+v_j^{k-1}=\frac12(v_{j-1}^k+v_{j+1}^k),& if\ h_0=h_1^2\\
+v_j^{k-1}=\frac12v_j^k+\frac14(v_{j-1}^k+v_{j+1}^k),& if\ h_0=\frac12h_1^2\\
+\end{cases}</script><p>Suppose the spatial domain is taken as $[–1, 1]$ and $T = 1$. For the boundary condition</p>
+<script type="math/tex; mode=display">
+V(-1,t)=0,\ V(1,t)=1,\ t\in[0,T]</script><p>we solve the explicit scheme</p>
+<h2 id="Unit-4-3：Implicit-Scheme"><a href="#Unit-4-3：Implicit-Scheme" class="headerlink" title="Unit 4.3：Implicit Scheme"></a>Unit 4.3：Implicit Scheme</h2><p>For $j\in \mathbb Z$, $k=0,1,…,N$</p>
+<script type="math/tex; mode=display">
+\frac{v_j^{k+1}-v_j^k}{h_0}+\frac12a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
+v_j^N=g_j</script><p>the fixed-point form of the equation is written as</p>
+<script type="math/tex; mode=display">
+v_j^k=(1+\frac{h_0}{h_1^2}a_j^k)^{-1}(\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+v_j^{k+1}+h_0f_j^k)</script><h4 id="Family-of-theta-Schemes"><a href="#Family-of-theta-Schemes" class="headerlink" title="Family of $\theta$ Schemes"></a>Family of $\theta$ Schemes</h4><p>For $\theta\in [0, 1]$, consider the following scheme</p>
+<script type="math/tex; mode=display">
+\frac{v_j^{k+1}-v_j^k}{h_0}+\frac12\theta a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+\frac12(1-\theta) a_j^{k+1}\frac{v_{j+1}^{k+1}+v_{j-1}^{k+1}-2v_j^{k+1}}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
+v_j^N=g_j</script><p>The scheme is explicit if $\theta=0$, and implicit otherwise (standard implicit for $\theta=1$)</p>
+<p>The scheme is monotonic if</p>
+<script type="math/tex; mode=display">
+(1-\theta)\frac{h_0}{h_1^2}||a||_\infty\leq 1</script><h4 id="Application-Option-Pricing"><a href="#Application-Option-Pricing" class="headerlink" title="Application: Option Pricing"></a>Application: Option Pricing</h4><p>Consider the transformed Black-Scholes equation</p>
+<script type="math/tex; mode=display">
+v_t+\frac12 \sigma^2v_{xx}+(r-\frac12 \sigma^2)v_x-rv=0</script><script type="math/tex; mode=display">
+V(T,x)=(e^x-K)^+</script><p>Choose the domain $D=[0,T]\times[X_{min},X_{max}]$ with $-\infty&lt;X_{min}&lt;X_{max}&lt;\infty$</p>
+<p>Approximate $D$ with a uniform mesh</p>
+<script type="math/tex; mode=display">
+\mathscr D=\{(t^k,x_j):k=0,1,...,N,j=0,1,...,M\}</script><p>where $t^k=kh_0$ and $x_j=X_{min}+jh_1$ for $h_0=T/N$ and $h_1=(X_{max}-X_{min})/M$</p>
+<p>Denote $v(t^k,x_j)=v_j^k$. Then, we use the finite difference derivative approximation based on the $\theta$ scheme</p>
+<script type="math/tex; mode=display">
+\frac{\partial v}{\partial t}(t^k,x_j)\approx \frac{v_j^{k+1}-v_j^k}{h_0}</script><script type="math/tex; mode=display">
+\frac{\partial v}{\partial x}(t^k,x_j)\approx \theta\frac{v_{j+1}^k-v_j^k}{h_1}+(1-\theta)\frac{v_{j+1}^{k+1}-v_j^{k+1}}{h_1}</script><script type="math/tex; mode=display">
+\frac{\partial^2 v}{\partial x^2}(t^k,x_j)\approx \theta \frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+ (1-\theta) \frac{v_{j+1}^{k+1}+v_{j-1}^{k+1}-2v_j^{k+1}}{h_1^2}</script><p>where $\theta\in [0, 1]$ is a constant parameter.</p>
+<p>We also replace $v_j^k$ by $\theta v_j^k+(1-\theta)v_j^{k+1}$.  For $\theta=0.5$ the method corresponds to Crank-Nicholson method</p>
+<p>We can formulate a tridiagonal system at each time step $k = N, . . . , 0$ which can be solved by the well-known Thomas algorithm (MATLAB command: tridiag)</p>
+<script type="math/tex; mode=display">
+Av_k=b^{k+1}</script><p>with non-zero coefficients of the tridiagonal matrix $A = (a_{ij})$ given by</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&a_{0,0}=1,\ a_{0,1}=0,\\
+&a_{M,M-1}=0,\ a_{M,M}=1,\\
+&a_{i,i}=1+2\omega\theta+\kappa\theta+\rho\theta,\\
+&a_{i,i+1}=-\omega\theta-\kappa\theta,\\
+&a_{i-1,i}=-\omega\theta,\quad i=1,...,M-1
+\end{align}</script><p>The time dependent vector $b^{k+1}$ is given as:</p>
+<script type="math/tex; mode=display">
+b_0^{k+1}=v_0^{k+1},\ b_M^{k+1}=v_M^{k+1},</script><script type="math/tex; mode=display">
+\begin{align}
+b_i^{k+1}&=\omega(1-\theta)v_{i-1}^{k+1}+(1-2\omega(1-\theta)-\kappa(1-\theta)-\rho(1-\theta))v_i^{k+1}...\\
+&...+(\omega(1-\theta)+\kappa(1-\theta))v_{i+1}^{k+1}
+\end{align}</script><p>where $v_0^{k+1},v_M^{k+1}$ are given by the boundary conditions and the remaining constants are defined as below</p>
+<script type="math/tex; mode=display">
+\omega=\frac{h_0\sigma^2}{2h_1^2},\ \kappa=\frac{(r-\frac12\sigma^2)h_0}{h_1},\ \rho=rh_0</script><p>The $i$th coordinate of the vector $v^k$ is the approximation of the value $v(t^k,x_i)$</p>
 
             </div>
             <hr>

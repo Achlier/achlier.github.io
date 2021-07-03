@@ -993,15 +993,14 @@ B(L)\sigma_t^2=\omega+A(L)\epsilon_t^2</script><p>and</p>
 <h4 id="The-EGARCH-Exponential-GARCH-Models"><a href="#The-EGARCH-Exponential-GARCH-Models" class="headerlink" title="The EGARCH (Exponential GARCH) Models"></a>The EGARCH (Exponential GARCH) Models</h4><script type="math/tex; mode=display">
 ln(\sigma_t^2)=\omega+\sum_{i=1}^p\alpha_ig(\eta_{t-i})+\sum_{j=1}^q\beta_jln\sigma_{t-j}^2</script><p>where</p>
 <script type="math/tex; mode=display">
-g(\eta_{t-i})=\theta\eta_{t-i}+\zeta(|\eta_{t-i}|-\mathbb{E}|\eta_{t-i}|)</script><ul>
-<li><p>$\sigma_t^2$ will be positive (without imposing non-negativeness restrictions on the parameters)</p>
-</li>
-<li><p>The asymmetry property is taken into account through $\theta$.</p>
-</li>
-<li><p>The leverage effect will imply that $\theta&lt;0$.</p>
-</li>
-<li><p>Innovation of large modulus should increase the volatility, entailing that we expect</p>
-</li>
+g(\eta_{t-i})=\theta\eta_{t-i}+\zeta(|\eta_{t-i}|-\mathbb{E}|\eta_{t-i}|)</script><blockquote>
+<p>$\mathbb E|\eta|=\sqrt{2/\pi}$</p>
+</blockquote>
+<ul>
+<li>$\sigma_t^2$ will be positive (without imposing non-negativeness restrictions on the parameters)</li>
+<li>The asymmetry property is taken into account through $\theta$.</li>
+<li>The leverage effect will imply that $\theta&lt;0$.</li>
+<li>Innovation of large modulus should increase the volatility, entailing that we expect</li>
 </ul>
 <script type="math/tex; mode=display">
 -\zeta<\theta<\zeta,\ \alpha_i\ge0,\ \beta_j\ge0</script><p><strong>An Example</strong></p>
@@ -1013,7 +1012,8 @@ ln\sigma_t^2=\omega+\theta\eta_{t-1}</script><ul>
 </li>
 </ul>
 <p>Thus, we obtain the typical asymmetry property of financial time series.</p>
-<h4 id="The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models"><a href="#The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models" class="headerlink" title="The GJR-GARCH (Glosten, Jaganathan and Runkle) models"></a>The GJR-GARCH (Glosten, Jaganathan and Runkle) models</h4><script type="math/tex; mode=display">
+<h4 id="The-Threshold-GARCH-TGARCH-model"><a href="#The-Threshold-GARCH-TGARCH-model" class="headerlink" title="The Threshold GARCH (TGARCH) model"></a>The Threshold GARCH (TGARCH) model</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\alpha\epsilon^2_{t-1}+\gamma\epsilon^2_{t-1}1_{\{\epsilon_{t-1<0}\}}+\beta\sigma^2_{t-1}</script><h4 id="The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models"><a href="#The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models" class="headerlink" title="The GJR-GARCH (Glosten, Jaganathan and Runkle) models"></a>The GJR-GARCH (Glosten, Jaganathan and Runkle) models</h4><script type="math/tex; mode=display">
 \sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2+\sum_{i=1}^p\gamma_i\epsilon_{t-1}^21_{\epsilon_{t-1}<0}+\sum_{j=1}^q\beta_j\sigma_{t-j}^2</script><ul>
 <li><p>The asymmetry is accounted for through the $\gamma_i$</p>
 </li>
@@ -1328,6 +1328,160 @@ det[\Phi(z)]\ne 0,\ for |z|<1</script><p>Recall that</p>
 \Delta Y_t=\alpha\beta'Y_t+\sum_{j=1}^{p-1}\Phi_j^*\Delta Y_{t-j}+\epsilon_t</script><p>where $\beta’Y_t$ needs to be stationary!</p>
 </li>
 </ul>
+<h1 id="Unit-7：Cointegration"><a href="#Unit-7：Cointegration" class="headerlink" title="Unit 7：Cointegration"></a>Unit 7：Cointegration</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 8, Sections 8.3 - 8.11 (Essential)</li>
+<li>Appendix C (Essential)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks Chapter 8, Self-Study Questions 5,6,7</li>
+</ul>
+<h3 id="Definition-6"><a href="#Definition-6" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Cointegration"><a href="#Cointegration" class="headerlink" title="Cointegration"></a>Cointegration</h4><p>An n-variate time series {$X_t$} is called a cointegrated system of order ($d,b$), written {$X_t$} $\sim CI(d, b)$, if all the components are I($d$) and there exists a $n \times r(r &lt; n)$ matrix $\beta \ne 0$ such that $\beta ‘X_t \sim I(d − b)$, with $d \ge b &gt; 0$. The vectors $\beta_k, k = 1, . . . , r$ are called the cointegrating vectors.</p>
+<p>Examples of possible Cointegrating Relationships in finance:</p>
+<ul>
+<li>Spot and futures prices, spot and forward prices.</li>
+<li>Bid and ask prices.</li>
+<li>Ratio of relative prices and an exchange rate (law of one price) </li>
+<li>Equity prices and dividends</li>
+</ul>
+<blockquote>
+<p> Market forces arising from no arbitrage conditions should ensure an equilibrium relationship</p>
+</blockquote>
+<h4 id="The-Engle-Granger-Method（协整检验）"><a href="#The-Engle-Granger-Method（协整检验）" class="headerlink" title="The Engle-Granger Method（协整检验）"></a>The Engle-Granger Method（协整检验）</h4><p><a target="_blank" rel="noopener" href="https://www.pianshen.com/article/6716218462/">Link</a></p>
+<script type="math/tex; mode=display">
+X_{1t}=\mu+\gamma'X_{2t}+U_t</script><ul>
+<li>If the null is not rejected, $\beta=[1,-\gamma’]$ is not a cointegrating vector. (ADF Test)</li>
+</ul>
+<h4 id="Stock-prices-and-Dividends"><a href="#Stock-prices-and-Dividends" class="headerlink" title="Stock prices and Dividends"></a>Stock prices and Dividends</h4><p>The dividend-price ratio $\Lambda_t$ is usually measured as</p>
+<script type="math/tex; mode=display">
+\Lambda_t=\frac{D_t}{S_t}</script><ul>
+<li><p>$D_t$: the sum of dividends paid on the stock/index over the previous year</p>
+</li>
+<li><p>$S_t$:  the current price of the stock/ current level of the index</p>
+</li>
+</ul>
+<p>Hence,</p>
+<script type="math/tex; mode=display">
+\lambda_t=ln(D_t)-ln(S_t)=d_t-s_t</script><p>Assume $\lambda_t=\lambda+u_t$, with $u_t\sim I(0)$</p>
+<script type="math/tex; mode=display">
+d_t=s_t+\lambda+u_t</script><p>Let</p>
+<script type="math/tex; mode=display">
+\Delta s_t=\mu+v_t,\ v_t\sim I(0)</script><p>which can be rewritten as</p>
+<script type="math/tex; mode=display">
+s_t=\mu+s_{t-1}+v_t,\ v_t\sim I(0)</script><p>and we have</p>
+<script type="math/tex; mode=display">
+\Delta d_t=\mu-(d_{t-1}-s_{t-1}-\lambda)+\epsilon_t,\ \epsilon_t=u_t+v_t</script><p>This model can be generalized to</p>
+<script type="math/tex; mode=display">
+\Delta d_t=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)+\epsilon_t</script><ul>
+<li><p>known as an <strong>Error Correction Model</strong> (ECM)</p>
+</li>
+<li><p>In an ECM, the change in a variable depends on the deviations from some equilibrium relation</p>
+</li>
+</ul>
+<p>Let $x_t=(s_t,d_t)’$ and assume that</p>
+<script type="math/tex; mode=display">
+\mathbb E(\epsilon_t|x_{t-1})=0\ and\ \mathbb E(v_t|x_{t-1})=0</script><p>Then, </p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta s_t|x_{t-1})=\mu\ and\ \mathbb E(\Delta d_t|x_{t-1})=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)</script><p>Consider 3 situations:</p>
+<ol>
+<li><p>$d_{t-1}-s_{t-1}-\lambda=0$ (equilibrium)</p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta d_t|x_{t-1})=\mathbb E(\Delta s_t|x_{t-1})=\mu</script><p>where $\mu$ represent the growth rates of stock prices (and dividends) in the long-run.</p>
+</li>
+<li><p>$d_{t-1}-s_{t-1}-\lambda&gt;0$ (positive disequilibrium error)</p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta d_t|x_{t-1})=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)<\mu</script><p>If $\alpha&lt;0$, the model predicts that $d_t$ will grow more slowly than its long-run rate to restore the dividend-yield to its long-run mean.</p>
+</li>
+<li><p>$d_{t-1}-s_{t-1}-\lambda&lt;0$ (negative disequilibrium error)</p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta d_t|x_{t-1})=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)>\mu</script><p>If $\alpha&lt;0$, the model predicts that $d_t$ will grow faster thani ts long-run rate to restore the dividend-yield to its long-run mean.</p>
+</li>
+</ol>
+<h4 id="VARs-with-Integrated-Variables"><a href="#VARs-with-Integrated-Variables" class="headerlink" title="VARs with Integrated Variables"></a>VARs with Integrated Variables</h4><p>we have</p>
+<script type="math/tex; mode=display">
+X_t=\sum_{j=1}^p\Phi_jX_{t-j}+\epsilon_t</script><p>can be re-written as</p>
+<script type="math/tex; mode=display">
+\Delta X_t=\Pi X_{t-1}+\sum_{j=1}^{p-1}\Phi_j^*\Delta X_{t-j}+\epsilon_t</script><ul>
+<li><p>$\Phi_j^*=-\sum_{k=j+1}^p\Phi_k$ and $\Pi \equiv -\Phi(1)$</p>
+</li>
+<li><p>$\Pi$ is know as the long-run matrix</p>
+</li>
+<li><p>The representation is the multivariate counterpart of the ADF regression</p>
+</li>
+<li><p>If $det(\Pi) = 0$ then the $VAR(p)$ is said to have at least a unit root</p>
+</li>
+<li><p>If $det(\Pi) = 0$, then $rank(\Pi) = r &lt; n$.</p>
+</li>
+<li><p>If $r = 0$, then $\Pi = 0$ (n unit roots), and $\Delta X_t$ is a $VAR(p − 1)$.</p>
+</li>
+<li><p>If $0&lt; r &lt; n$, then</p>
+<script type="math/tex; mode=display">
+\Pi =\alpha\beta'</script></li>
+<li><p>$\alpha$ and $\beta$ are $(n \times r)$ matrices.</p>
+</li>
+<li><p>$\beta$ is know as cointegrating vectors</p>
+</li>
+<li><p>The system will contain only $(n − r)$ unit roots</p>
+</li>
+<li><p>we obtain the <strong>Vector Error Correction Model</strong> (VECM)</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\alpha\beta'Y_t+\sum_{j=1}^{p-1}\Phi_j^*\Delta Y_{t-j}+\epsilon_t</script></li>
+</ul>
+<p>Let $A$ a $(r \times r)$ non-singular matrix. Then,</p>
+<script type="math/tex; mode=display">
+\Pi = \alpha\beta'=(\alpha A)(A^{-1}\beta')</script><p>Let</p>
+<script type="math/tex; mode=display">
+\beta = \begin{bmatrix}\beta_1(r\times r)\\ \beta_2 (n\times r)\end{bmatrix}</script><p>and assume that $\beta_1$ is invertible. To identify the matrices, the following normalization is often imposed</p>
+<script type="math/tex; mode=display">
+\beta = \begin{bmatrix}I_r\\ \beta_2\beta_1^{-1}\end{bmatrix}</script><h4 id="Testing-for-Cointegrating"><a href="#Testing-for-Cointegrating" class="headerlink" title="Testing for Cointegrating"></a>Testing for Cointegrating</h4><p>Johansen (1988) proposed to estimated the model using the MLE, assuming the Gausssianity of {$\epsilon_t$}</p>
+<p>MLE estimation is based upon a known value of the cointegrating rank r (<strong>usually unknown</strong>).</p>
+<p>The <strong>maximum eigenvalue statistic</strong>, $λ_{max}$ has been proposed to the the hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:rank(\Pi)=r_0\ versus\ H_1:rank(\Pi)=r_0+1</script><p>The statistic $λ_{max}$ is constructed as follow:</p>
+<ul>
+<li><p>A positive semi-definite matrix $\Xi$ having the same rank of<br>$\Pi$ is defined. Let $\lambda_k\equiv\lambda_k(\Xi)$, $k = 1, . . . , n$. By definition</p>
+<script type="math/tex; mode=display">
+1>\lambda_1\ge\lambda_2\ge...\ge\lambda_r>0,\ \lambda_{r+1}=...=\lambda_n=0</script></li>
+<li><p>Obtain a consistent estimate $\hat{\Xi}$. Then $\lambda_k(\hat{\Xi})$ are consistent estimates of $\lambda_k, k = 1,…, n$</p>
+</li>
+<li><p>Test the null hypothesis $H_0 : −T ln(1 − \lambda_{r_0+1}) = 0$, for $r_0 = 0, …, n − 1$ until we fail to reject</p>
+</li>
+<li><p>Let $r^∗_0$ the value of $r_0$ for which the null hypothesis cannot<br>be rejected for the first time. Then, $\hat r = r^∗_0$</p>
+</li>
+</ul>
+<p>The <strong>trace statistic</strong> $λ_{trace}$ has been proposed to the the hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:rank(\Pi)=r_0\ versus\ H_1:r_0<rank(\Pi)\leq n</script><p>The statistic $λ_{trace}$ is constructed as</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\lambda_{trace}(r_0)=-T\sum_{k=r_0+1}^nln(1-\lambda_k),\ r_0=0,1,...,n-1</script></li>
+<li><p>Test the sequence of null hypotheses $H_0 : λ_{trace}(r_0) = 0$, from $r_0 = 0$ to $r_0 = n − 1$ until we fail to reject</p>
+</li>
+</ul>
+<blockquote>
+<p>$r_0$ 按顺序依次取</p>
+</blockquote>
+<h4 id="Forecasting-Causality-and-IRFs"><a href="#Forecasting-Causality-and-IRFs" class="headerlink" title="Forecasting, Causality and IRFs"></a>Forecasting, Causality and IRFs</h4><p><strong>Causality Testing in VECMs</strong></p>
+<p>Assume $n = 2$ and $X_t = (Y_t , Z_t)’$. The VECM taks the form</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\sum_{j=1}^{p-1}\phi_{11,j}^*\Delta Y_{t-j}+\sum_{j=1}^{p-1}\phi_{12,j}^*\Delta Z_{t-j}+\alpha_1(\beta_1Y_{t-1}+\beta_2Z_{t-1})+\epsilon_{1t}</script><script type="math/tex; mode=display">
+\Delta Z_t=\sum_{j=1}^{p-1}\phi_{21,j}^*\Delta Y_{t-j}+\sum_{j=1}^{p-1}\phi_{22,j}^*\Delta Z_{t-j}+\alpha_2(\beta_1Y_{t-1}+\beta_2Z_{t-1})+\epsilon_{2t}</script><p>where</p>
+<script type="math/tex; mode=display">
+\Phi_j^*=\begin{bmatrix}\phi_{11,j}^*&\phi_{12,j}^*\\\phi_{21,j}^*&\phi_{22,j}^*\end{bmatrix},\alpha=\begin{bmatrix}\alpha_1\\ \alpha_2\end{bmatrix},\beta=\begin{bmatrix}\beta_1\\ \beta_2\end{bmatrix}</script><p>The hypothesis that $Z$ does not Granger-cause $Y$ may be formalized as</p>
+<script type="math/tex; mode=display">
+H_0:\phi_{12,1}^*=\phi_{12,2}^*=...=\phi_{12,p-1}^*,\ \alpha_1=0</script><p>Testing the hypothesis is not straightforward.</p>
+<p>Alternative approaches (as the lag-augmented VAR) have been proposed.</p>
+<p><strong>Forecasting Integrated and Cointegrated systems</strong></p>
+<ul>
+<li><p>Forecasting can be discussed in the framework of the levels VAR representation.</p>
+</li>
+<li><p>A VECM may be rewritten in VAR form, or forecasting can be obtained directly from the VECM.</p>
+<p>If a variable enters the system in differenced form only, it is, of course still possible to generated forecasts of the levels. See Brooks, Rew and Ritson (2001), Section 4.</p>
+</li>
+</ul>
+<p><strong>Impulse Response Analysis</strong></p>
+<p>In principle, impulse response analysis in cointegrated systems can be conducted in the same way as for stationary systems.</p>
 
             </div>
             <hr>
