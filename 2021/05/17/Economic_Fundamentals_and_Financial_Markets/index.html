@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.8k 字
+      7.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      132
+      153
        分钟
     </span>
   
@@ -1295,6 +1295,137 @@ q_n^*(p_n)=\frac1N(\frac P{p_n})^{\frac1{1-\rho}}Y</script><ul>
 <li>But less downward sloping in $p_n$, the less substitutable the goods are (lower $\rho$)</li>
 <li>Lower as $N$ increases, higher as $Y$ increases</li>
 </ul>
+<h2 id="Unit-6-5：Optimization-Market-Shares-and-Profits-of-Intermediate-Goods-Producers"><a href="#Unit-6-5：Optimization-Market-Shares-and-Profits-of-Intermediate-Goods-Producers" class="headerlink" title="Unit 6.5：Optimization, Market Shares, and Profits of Intermediate Goods Producers"></a>Unit 6.5：Optimization, Market Shares, and Profits of Intermediate Goods Producers</h2><h3 id="Intermediate-goods-firm-optimization"><a href="#Intermediate-goods-firm-optimization" class="headerlink" title="Intermediate goods firm optimization"></a>Intermediate goods firm optimization</h3><p>Intermediate good firms maximise their own profits by choosing prices, $p_n$, taking $P,Y$ and $N$ as given, and taking into account the effect on the demand for their good, $q_n^*(p_n)$</p>
+<script type="math/tex; mode=display">
+\pi_n=p_nq_n^*(p_n)-q_n^*(p_n)C_n^1</script><p>Optimal price satisfies,</p>
+<script type="math/tex; mode=display">
+p_n^*=C_n^1-\frac{q_n^*}{\frac{\partial q_n^*}{\partial p_n}}</script><p>After some algebra (find $\frac{\partial q_n^*}{\partial p_n}$ first), we have the following:</p>
+<script type="math/tex; mode=display">
+p_n^*=\frac1 \rho C_n^1</script><p>Note:</p>
+<ul>
+<li>With $\rho\in (0,1)$ this implies some markup in the price over unit cost</li>
+<li>The lower is $\rho$, the less substitutable the goods, the higher the markups</li>
+</ul>
+<p>Recall that $C_n^1=\frac{1}{\theta_n}[\frac{r^\gamma w^{1-\gamma}}{\gamma^\gamma(1-\gamma)^{1-\gamma}}]$</p>
+<ul>
+<li>So price is decreasing in firm technology $\theta_n \to$ more productive firms will sell more</li>
+</ul>
+<h3 id="Aggregates"><a href="#Aggregates" class="headerlink" title="Aggregates"></a>Aggregates</h3><p>The final good can also be written in aggregate as a function of all the inputs (because of constant returns):</p>
+<script type="math/tex; mode=display">
+Y=\bar\theta\bar K^\gamma\bar L^{1-\gamma}</script><p>where $\bar K=\sum_{n=1}^N k_n$ and $\bar L=\sum_{n=1}^N l_n$ and where $\bar\theta$ is economy-wide average productivity</p>
+<p>We can also write down the aggregate price level as,</p>
+<script type="math/tex; mode=display">
+P=\frac1\rho \frac{\bar C}{\bar \theta}w\quad where\quad \bar C=(\frac rw)^\gamma[\frac1{\gamma^\gamma(1-\gamma)^{1-\gamma}}]</script><p>Note that we have the price of an intermediate good as,</p>
+<script type="math/tex; mode=display">
+p_n=\frac1\rho\frac{\bar C}{\theta_n}w</script><p>Both the aggregate price level and individual intermediate firm prices have similar structure</p>
+<ul>
+<li>But the intermediate good firm price can deviate from the aggregate price level</li>
+</ul>
+<p>A direct result is to look at market shares of intermediate good firms</p>
+<h3 id="Market-share-ms-of-firm-n"><a href="#Market-share-ms-of-firm-n" class="headerlink" title="Market share (ms) of firm n"></a>Market share (ms) of firm n</h3><script type="math/tex; mode=display">
+ms_n=\frac{p_nq_n}{PY}=\frac1N(\frac{\theta_n}{\bar\theta})^{\frac\rho{1-\rho}}=\frac1N(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script><ul>
+<li>$\sigma=\frac1{1-\rho}$ so $\sigma-1=\frac\rho{1-\rho}$</li>
+</ul>
+<p>Observations:</p>
+<ul>
+<li>A firm with average productivity ($\theta_n=\bar\theta$) has market share $ms_n=1/N$</li>
+<li>More productive firms have higher market share (since $\sigma&gt;1$)</li>
+<li>Greater productivety leads to higer market share if goods are more substitutable ($\sigma$ higher)</li>
+<li>A more monopolistic market ($\downarrow \sigma$) protects less productive firms from some competition</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><h4 id="Market-share-if-N-5"><a href="#Market-share-if-N-5" class="headerlink" title="Market share if N = 5"></a>Market share if N = 5</h4><p><img src="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/pic6-3.jpg" srcset="/img/loading.gif" alt></p>
+<h4 id="Market-share-if-N-20"><a href="#Market-share-if-N-20" class="headerlink" title="Market share if N = 20"></a>Market share if N = 20</h4><p><img src="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/pic6-4.jpg" srcset="/img/loading.gif" alt></p>
+<h3 id="Profit-of-firm-n"><a href="#Profit-of-firm-n" class="headerlink" title="Profit of firm n"></a>Profit of firm n</h3><p>Profit shares behave the same as market shares</p>
+<p>Let aggregate profit be,</p>
+<script type="math/tex; mode=display">
+\Pi=\sum_{n=1}^N\pi_n=\frac1\sigma PY</script><p>And firm n profit is aggregate times the market share,</p>
+<script type="math/tex; mode=display">
+\pi_n = ms_n·\Pi =\frac1\sigma\frac{PY}{N}(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script><p>What determines individual firm earnings?</p>
+<ul>
+<li>Macroeconomics: the size of nominal aggregate output (PY)</li>
+<li>Aggregate market structure: the more competitive ($\sigma$ higher), the less aggregate profit; the more firms, the less share of aggregate profit (N)</li>
+<li>Firm specifics: the more competitive ($\sigma$ higher), the more firms benefit from being productive relative to average ($\theta$)</li>
+</ul>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example:"></a>Example:</h3><h4 id="Firm-profits-if-N-5-and-PY-1"><a href="#Firm-profits-if-N-5-and-PY-1" class="headerlink" title="Firm profits if N = 5 and PY = 1"></a>Firm profits if N = 5 and PY = 1</h4><p><img src="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/pic6-5.jpg" srcset="/img/loading.gif" alt></p>
+<h2 id="Unit-6-4：Earnings-and-Firm-Valuation"><a href="#Unit-6-4：Earnings-and-Firm-Valuation" class="headerlink" title="Unit 6.4：Earnings and Firm Valuation"></a>Unit 6.4：Earnings and Firm Valuation</h2><h3 id="Earnings-of-firm-n"><a href="#Earnings-of-firm-n" class="headerlink" title="Earnings of firm n"></a>Earnings of firm n</h3><p>Now we have a better idea of what determines earnings, we can return to valuations based on that</p>
+<p>Now we have an oncome syream:</p>
+<script type="math/tex; mode=display">
+\pi_n(t) =\frac1\sigma\frac{P(t)Y(t)}{N(t)}(\frac{\theta_n(t)}{\bar\theta(t)})^{\sigma-1}\quad for\ t=1,2,...</script><p>Can we calculate PV based on this?</p>
+<h3 id="Firm-Valuation"><a href="#Firm-Valuation" class="headerlink" title="Firm Valuation"></a>Firm Valuation</h3><p>Consider discount factor $\beta=\frac1{1+r}\in(0,1)$, then</p>
+<script type="math/tex; mode=display">
+V_n(t)=\sum_{\tau=0}^\infty\beta^\tau\frac1\sigma E_t[\frac{P(t+\tau)Y(t+\tau)}{N(t+\tau)}(\frac{\theta_n(t+\tau)}{\bar\theta(t+\tau)})^{\sigma-1}]</script><p>where $E_t[·]$ are expectations formed at time t</p>
+<p>Suppose that macroeconomic and market factors are forecasted accurately, then uncertainty rests on expectations of firm productivity,</p>
+<script type="math/tex; mode=display">
+V_n(t)=\sum_{\tau=0}^\infty\beta^\tau\frac1\sigma \frac{P(t+\tau)Y(t+\tau)}{N(t+\tau)}E_t[(\frac{\theta_n(t+\tau)}{\bar\theta(t+\tau)})^{\sigma-1}]</script><p>Recall also that $Y(t)=\bar\theta\bar K(t)^\gamma\bar L(t)^{1-\gamma}$</p>
+<ul>
+<li>Business cycle: Positive shock to business cycle (higher $Y(t+\gamma)$ for some $\tau$) means higher firm valuation</li>
+<li>Uncertainty: Future productivity relative to market</li>
+<li>Future market structure: Entrants to market in future lower today’s present valuation<ul>
+<li>We would not normally think of $\sigma$ as a time-varying parameter</li>
+</ul>
+</li>
+<li>More monopolistic market reduces the potential future gains to being more productive</li>
+</ul>
+<h3 id="The-Long-Run"><a href="#The-Long-Run" class="headerlink" title="The Long Run"></a>The Long Run</h3><p>Excess profits attract new entrants</p>
+<ul>
+<li>$N(t)$ going up over time in the future</li>
+<li>With everything else the same, that lowers profits in future</li>
+<li>That means firm valuation is lower today</li>
+</ul>
+<p>There are still markups, since prices are not a function of N</p>
+<script type="math/tex; mode=display">
+p_n=\frac1\rho\frac1{\theta_n}[\frac{r^\gamma w^{1-\gamma}}{\gamma^\gamma(1-\gamma)^{1-\gamma}}]</script><p>From an efficiency perspective</p>
+<ul>
+<li>Prices are higher and output is lower than under perfect competition</li>
+<li>If prices were made to be lower, more consumption could increase</li>
+</ul>
+<p>Indicidual firm productivity still matters to valuations</p>
+<p>But as N goes up, so firm profits decline,</p>
+<script type="math/tex; mode=display">
+\pi_n=\frac1\sigma\frac{PY}N(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script><p>Both the monopolistic competitor and the perfect competitor make zero excess profit in the long-run</p>
+<h3 id="Innovation-and-Marketing"><a href="#Innovation-and-Marketing" class="headerlink" title="Innovation and Marketing"></a>Innovation and Marketing</h3><p>Innovation</p>
+<ul>
+<li>Firms can allocate profits to innovation, improving $\theta_n$</li>
+</ul>
+<p>Marketing and ‘non-price’ competition -attempts to shift demand curve and make it more inelastic</p>
+<ul>
+<li>The perception of innovation</li>
+<li>The appearance of difference between products<ul>
+<li>Reliability, style, safety, taste $\to$ products</li>
+</ul>
+</li>
+</ul>
+<p>Competition</p>
+<ul>
+<li>The structure of markets can fundamentally change with new technologies</li>
+<li>Disruption</li>
+<li>Creative destruction (‘Schumpeterian’ growth)</li>
+</ul>
+<h3 id="Omissions-and-Extensions"><a href="#Omissions-and-Extensions" class="headerlink" title="Omissions and Extensions"></a>Omissions and Extensions</h3><ol>
+<li>Firms only rented capital<ul>
+<li>If they own capital, stream of profits would relate to changes in value of capital</li>
+</ul>
+</li>
+<li>Labour market<ul>
+<li>We assumed a competitive labour market</li>
+<li>If workers are specialized, or if workers are unionized, then there is a monopsony issue</li>
+</ul>
+</li>
+<li>Government borrowing may compete with firms<ul>
+<li>We have seen previously how price of credit needed for expansion may be affected by crowding out</li>
+<li>Financial market distress also</li>
+</ul>
+</li>
+<li>Other costs<ul>
+<li>Fixed costs of operating, costst of innovation, regulatory restrictions,ets.</li>
+</ul>
+</li>
+<li>International<ul>
+<li>Trade, finance, foregin competition/ subsidies</li>
+<li>Networks and cartels</li>
+</ul>
+</li>
+</ol>
 
             </div>
             <hr>

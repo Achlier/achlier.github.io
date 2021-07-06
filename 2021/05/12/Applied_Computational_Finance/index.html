@@ -1331,7 +1331,7 @@ V(-1,t)=0,\ V(1,t)=1,\ t\in[0,T]</script><p>we solve the explicit scheme</p>
 \frac{v_j^{k+1}-v_j^k}{h_0}+\frac12a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
 v_j^N=g_j</script><p>the fixed-point form of the equation is written as</p>
 <script type="math/tex; mode=display">
-v_j^k=(1+\frac{h_0}{h_1^2}a_j^k)^{-1}(\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+v_j^{k+1}+h_0f_j^k)</script><h4 id="Family-of-theta-Schemes"><a href="#Family-of-theta-Schemes" class="headerlink" title="Family of $\theta$ Schemes"></a>Family of $\theta$ Schemes</h4><p>For $\theta\in [0, 1]$, consider the following scheme</p>
+v_j^k=(1+\frac{h_0}{h_1^2}a_j^k)^{-1}(\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+v_j^{k+1}+h_0f_j^k)</script><h2 id="Unit-4-4：Family-of-theta-Schemes"><a href="#Unit-4-4：Family-of-theta-Schemes" class="headerlink" title="Unit 4.4：Family of $\theta$ Schemes"></a>Unit 4.4：Family of $\theta$ Schemes</h2><p>For $\theta\in [0, 1]$, consider the following scheme</p>
 <script type="math/tex; mode=display">
 \frac{v_j^{k+1}-v_j^k}{h_0}+\frac12\theta a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+\frac12(1-\theta) a_j^{k+1}\frac{v_{j+1}^{k+1}+v_{j-1}^{k+1}-2v_j^{k+1}}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
 v_j^N=g_j</script><p>The scheme is explicit if $\theta=0$, and implicit otherwise (standard implicit for $\theta=1$)</p>
