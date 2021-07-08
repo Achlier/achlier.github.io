@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.8k 字
+      8.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      153
+      160
        分钟
     </span>
   
@@ -1281,8 +1281,11 @@ Y=[\frac1{N^{1-\rho}}((q_1)^\rho+(q_2)^\rho+...+(q_N)^\rho)]^{\frac1\rho}</scrip
 <li>For $\rho\to 1$, the $q_n$ are perfect substitutes (linear)</li>
 <li>For $\rho\to -\infty$, the $q_n$ are perfect complements (Leontief)</li>
 </ul>
+<blockquote>
+<p>substitutes 替代，complements 互补</p>
+</blockquote>
 <p>We focus on $\rho\in(0,1)$, where $q_n$ are substitutes (but not perfectly so)</p>
-<h4 id="Profit-Maximization-and-the-Demand-for-Intermediate-Goods"><a href="#Profit-Maximization-and-the-Demand-for-Intermediate-Goods" class="headerlink" title="Profit Maximization and the Demand for Intermediate Goods"></a>Profit Maximization and the Demand for Intermediate Goods</h4><p>Final good producers maximise their profits, given prices of intermediate goods and price of final output $P$,</p>
+<h4 id="Profit-Maximization-and-the-Demand-for-Intermediate-Goods"><a href="#Profit-Maximization-and-the-Demand-for-Intermediate-Goods" class="headerlink" title="Profit Maximization and the Demand for Intermediate Goods"></a>Profit Maximization and the Demand for Intermediate Goods</h4><p><strong>Final good producers</strong> maximise their profits, given prices of intermediate goods and price of final output $P$,</p>
 <script type="math/tex; mode=display">
 \max_{\{q_n\}}\Pi=PY-\sum_{n=1}^Np_nq_n</script><script type="math/tex; mode=display">
 \frac{\partial \Pi}{\partial q_n}=\frac P\rho[·]^{\frac1\rho-1}\frac\rho{N^{1-\rho}}q_n^{\rho-1}-p_n=0</script><script type="math/tex; mode=display">
@@ -1295,15 +1298,17 @@ q_n^*(p_n)=\frac1N(\frac P{p_n})^{\frac1{1-\rho}}Y</script><ul>
 <li>But less downward sloping in $p_n$, the less substitutable the goods are (lower $\rho$)</li>
 <li>Lower as $N$ increases, higher as $Y$ increases</li>
 </ul>
-<h2 id="Unit-6-5：Optimization-Market-Shares-and-Profits-of-Intermediate-Goods-Producers"><a href="#Unit-6-5：Optimization-Market-Shares-and-Profits-of-Intermediate-Goods-Producers" class="headerlink" title="Unit 6.5：Optimization, Market Shares, and Profits of Intermediate Goods Producers"></a>Unit 6.5：Optimization, Market Shares, and Profits of Intermediate Goods Producers</h2><h3 id="Intermediate-goods-firm-optimization"><a href="#Intermediate-goods-firm-optimization" class="headerlink" title="Intermediate goods firm optimization"></a>Intermediate goods firm optimization</h3><p>Intermediate good firms maximise their own profits by choosing prices, $p_n$, taking $P,Y$ and $N$ as given, and taking into account the effect on the demand for their good, $q_n^*(p_n)$</p>
+<h2 id="Unit-6-5：Optimization-Market-Shares-and-Profits-of-Intermediate-Goods-Producers"><a href="#Unit-6-5：Optimization-Market-Shares-and-Profits-of-Intermediate-Goods-Producers" class="headerlink" title="Unit 6.5：Optimization, Market Shares, and Profits of Intermediate Goods Producers"></a>Unit 6.5：Optimization, Market Shares, and Profits of Intermediate Goods Producers</h2><h3 id="Intermediate-goods-firm-optimization"><a href="#Intermediate-goods-firm-optimization" class="headerlink" title="Intermediate goods firm optimization"></a>Intermediate goods firm optimization</h3><p><strong>Intermediate good firms</strong> maximise their own profits by choosing prices, $p_n$, taking $P,Y$ and $N$ as given, and taking into account the effect on the demand for their good, $q_n^*(p_n)$</p>
 <script type="math/tex; mode=display">
 \pi_n=p_nq_n^*(p_n)-q_n^*(p_n)C_n^1</script><p>Optimal price satisfies,</p>
 <script type="math/tex; mode=display">
 p_n^*=C_n^1-\frac{q_n^*}{\frac{\partial q_n^*}{\partial p_n}}</script><p>After some algebra (find $\frac{\partial q_n^*}{\partial p_n}$ first), we have the following:</p>
 <script type="math/tex; mode=display">
+\frac{\partial q_n^*}{\partial p_n}=\frac{1}{N}P^{\frac1{1-\rho}} p_n^{\frac{2-\rho}{\rho-1}}Y(\frac1{\rho-1})</script><script type="math/tex; mode=display">
+\frac{q_n^*}{\frac{\partial q_n^*}{\partial p_n}}=(\rho-1)p_n</script><script type="math/tex; mode=display">
 p_n^*=\frac1 \rho C_n^1</script><p>Note:</p>
 <ul>
-<li>With $\rho\in (0,1)$ this implies some markup in the price over unit cost</li>
+<li>With $\rho\in (0,1)$ this implies some <strong>markup</strong> in the price over unit cost</li>
 <li>The lower is $\rho$, the less substitutable the goods, the higher the markups</li>
 </ul>
 <p>Recall that $C_n^1=\frac{1}{\theta_n}[\frac{r^\gamma w^{1-\gamma}}{\gamma^\gamma(1-\gamma)^{1-\gamma}}]$</p>
@@ -1333,6 +1338,9 @@ ms_n=\frac{p_nq_n}{PY}=\frac1N(\frac{\theta_n}{\bar\theta})^{\frac\rho{1-\rho}}=
 <li>Greater productivety leads to higer market share if goods are more substitutable ($\sigma$ higher)</li>
 <li>A more monopolistic market ($\downarrow \sigma$) protects less productive firms from some competition</li>
 </ul>
+<blockquote>
+<p>$\frac{\theta_n}{\bar\theta}$: relative productivety of firm</p>
+</blockquote>
 <h3 id="Example"><a href="#Example" class="headerlink" title="Example:"></a>Example:</h3><h4 id="Market-share-if-N-5"><a href="#Market-share-if-N-5" class="headerlink" title="Market share if N = 5"></a>Market share if N = 5</h4><p><img src="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/pic6-3.jpg" srcset="/img/loading.gif" alt></p>
 <h4 id="Market-share-if-N-20"><a href="#Market-share-if-N-20" class="headerlink" title="Market share if N = 20"></a>Market share if N = 20</h4><p><img src="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/pic6-4.jpg" srcset="/img/loading.gif" alt></p>
 <h3 id="Profit-of-firm-n"><a href="#Profit-of-firm-n" class="headerlink" title="Profit of firm n"></a>Profit of firm n</h3><p>Profit shares behave the same as market shares</p>
@@ -1342,11 +1350,14 @@ ms_n=\frac{p_nq_n}{PY}=\frac1N(\frac{\theta_n}{\bar\theta})^{\frac\rho{1-\rho}}=
 <script type="math/tex; mode=display">
 \pi_n = ms_n·\Pi =\frac1\sigma\frac{PY}{N}(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script><p>What determines individual firm earnings?</p>
 <ul>
-<li>Macroeconomics: the size of nominal aggregate output (PY)</li>
+<li>Macroeconomics: the size of nominal aggregate output (PY-GDP)</li>
 <li>Aggregate market structure: the more competitive ($\sigma$ higher), the less aggregate profit; the more firms, the less share of aggregate profit (N)</li>
 <li>Firm specifics: the more competitive ($\sigma$ higher), the more firms benefit from being productive relative to average ($\theta$)</li>
 </ul>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example:"></a>Example:</h3><h4 id="Firm-profits-if-N-5-and-PY-1"><a href="#Firm-profits-if-N-5-and-PY-1" class="headerlink" title="Firm profits if N = 5 and PY = 1"></a>Firm profits if N = 5 and PY = 1</h4><p><img src="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/pic6-5.jpg" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>当 $\rho&lt;0$ 时，需要等待其他人的生产同步</p>
+</blockquote>
 <h2 id="Unit-6-4：Earnings-and-Firm-Valuation"><a href="#Unit-6-4：Earnings-and-Firm-Valuation" class="headerlink" title="Unit 6.4：Earnings and Firm Valuation"></a>Unit 6.4：Earnings and Firm Valuation</h2><h3 id="Earnings-of-firm-n"><a href="#Earnings-of-firm-n" class="headerlink" title="Earnings of firm n"></a>Earnings of firm n</h3><p>Now we have a better idea of what determines earnings, we can return to valuations based on that</p>
 <p>Now we have an oncome syream:</p>
 <script type="math/tex; mode=display">
@@ -1380,7 +1391,7 @@ p_n=\frac1\rho\frac1{\theta_n}[\frac{r^\gamma w^{1-\gamma}}{\gamma^\gamma(1-\gam
 <li>If prices were made to be lower, more consumption could increase</li>
 </ul>
 <p>Indicidual firm productivity still matters to valuations</p>
-<p>But as N goes up, so firm profits decline,</p>
+<p><strong>But as N goes up, so firm profits decline,</strong></p>
 <script type="math/tex; mode=display">
 \pi_n=\frac1\sigma\frac{PY}N(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script><p>Both the monopolistic competitor and the perfect competitor make zero excess profit in the long-run</p>
 <h3 id="Innovation-and-Marketing"><a href="#Innovation-and-Marketing" class="headerlink" title="Innovation and Marketing"></a>Innovation and Marketing</h3><p>Innovation</p>
@@ -1426,7 +1437,72 @@ p_n=\frac1\rho\frac1{\theta_n}[\frac{r^\gamma w^{1-\gamma}}{\gamma^\gamma(1-\gam
 </ul>
 </li>
 </ol>
-
+<h2 id="Topic-6-总结"><a href="#Topic-6-总结" class="headerlink" title="Topic 6 总结"></a>Topic 6 总结</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><script type="math/tex; mode=display">
+q_n=\theta_nk_n^\gamma l_n^{1-\gamma}</script><ul>
+<li>Outputs: $q$</li>
+<li><p>Technological parameters: $\theta$</p>
+</li>
+<li><p>Capital: $k$</p>
+</li>
+<li><p>labour: $l$</p>
+</li>
+<li><p>The share spent on capital: $\gamma$</p>
+</li>
+<li><p>Price: $p$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+C(l_n,k_n)&=wl_n+rk_n\\
+&消去\ k_n\\
+C(q_n,l_n)&=wl_n+r(\frac{q_n}{\theta_n})^{\frac1\gamma}(l_n)^{\frac{\gamma-1}\gamma}\\
+&C对l求导取0\\
+l_n^*&=[\frac rw\frac{1-\gamma}\gamma]^\gamma(\frac{q_n}{\theta_n})\\
+&同样操作对k\\
+k_n^*&=[\frac wr\frac\gamma{1-\gamma}]^{1-\gamma}(\frac{q_n}{\theta_n})\\
+&返回原式\\
+C_n^*(q_n)&=(\frac{q_n}{\theta_n})[\frac{r^\gamma w^{1-\gamma}}{\gamma^\gamma(1-\gamma)^{1-\gamma}}]
+\end{align}</script><ul>
+<li>Cost of production: $C(l,k)$</li>
+<li>$w$：wage</li>
+<li>$r$：rate</li>
+</ul>
+<script type="math/tex; mode=display">
+Y=[\frac1{N^{1-\rho}}((q_1)^\rho+(q_2)^\rho+...+(q_N)^\rho)]^{\frac1\rho}</script><ul>
+<li><p>Final goods: $Y$</p>
+</li>
+<li><p>Elasticity of substitution: $\sigma=\frac1{1-\rho}$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+\max_{\{q_n\}}\Pi&=PY-\sum_{n=1}^Np_nq_n\\
+&\Pi对q求导取0\\
+q^*_n(p_n)&=\frac1{N}(\frac P{p_n})^{\frac1{1-\rho}}Y
+\end{align}</script><ul>
+<li><p>Final good producers profits: $\Pi$</p>
+</li>
+<li><p>Price of final output: $P$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+\max_{\{p_n\}}\pi_n&=p_nq_n^*(p_n)-q_n^*(p_n)C_n^1\\
+&\pi对p求导取0\\
+p_n^*&=\frac1 \rho C_n^1
+\end{align}</script><ul>
+<li>Intermediate good firms profits: $\pi$</li>
+</ul>
+<script type="math/tex; mode=display">
+Y=\bar\theta\bar K^\gamma\bar L^{1-\gamma}</script><script type="math/tex; mode=display">
+P=\frac1\rho \frac{\bar C}{\bar \theta}w\quad where\quad \bar C=(\frac rw)^\gamma[\frac1{\gamma^\gamma(1-\gamma)^{1-\gamma}}]</script><script type="math/tex; mode=display">
+p_n=\frac1\rho\frac{\bar C}{\theta_n}w</script><script type="math/tex; mode=display">
+ms_n=\frac{p_nq_n}{PY}=\frac1N(\frac{\theta_n}{\bar\theta})^{\frac\rho{1-\rho}}=\frac1N(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script><ul>
+<li>Market share: $ms$</li>
+</ul>
+<script type="math/tex; mode=display">
+\Pi=\sum_{n=1}^N\pi_n=\frac1\sigma PY</script><script type="math/tex; mode=display">
+\pi_n = ms_n·\Pi =\frac1\sigma\frac{PY}{N}(\frac{\theta_n}{\bar\theta})^{\sigma-1}</script>
             </div>
             <hr>
             <div>

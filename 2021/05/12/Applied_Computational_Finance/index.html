@@ -1283,7 +1283,7 @@ Y_i(\hat b_N):=Y_i-\hat b_N(X_i-\alpha_0)</script><p>Replacing $b$ with $\hat b_
 </ul>
 </li>
 </ul>
-<h1 id="Unit-4-1：Finite-difference-methods"><a href="#Unit-4-1：Finite-difference-methods" class="headerlink" title="Unit 4.1：Finite difference methods"></a>Unit 4.1：Finite difference methods</h1><h2 id="Unit-4-1：Introduction"><a href="#Unit-4-1：Introduction" class="headerlink" title="Unit 4.1：Introduction"></a>Unit 4.1：Introduction</h2><p>The finite difference method solves a partial differential equation on a discrete grid in time and space</p>
+<h1 id="Unit-4-1：Finite-difference-methods"><a href="#Unit-4-1：Finite-difference-methods" class="headerlink" title="Unit 4.1：Finite difference methods"></a>Unit 4.1：Finite difference methods</h1><h2 id="Unit-4-1-1：Introduction"><a href="#Unit-4-1-1：Introduction" class="headerlink" title="Unit 4.1.1：Introduction"></a>Unit 4.1.1：Introduction</h2><p>The finite difference method solves a partial differential equation on a discrete grid in time and space</p>
 <h4 id="Consider-a-general-equation-as"><a href="#Consider-a-general-equation-as" class="headerlink" title="Consider a general equation as"></a>Consider a general equation as</h4><script type="math/tex; mode=display">
 \partial_t V+b(x,t)\partial_x V+\frac12 a(x,t)\partial_x^2 V-r(x,t)V+f(x,t)=0</script><script type="math/tex; mode=display">
 V(x,T)=g(x),\ (x,t)\in \Omega\times[0,T)</script><ul>
@@ -1304,7 +1304,7 @@ xV_x=v_z,\ x^2V_{xx}=v_{zz}-v_z</script><p>The transformed Black-Scholes equatio
 <script type="math/tex; mode=display">
 v_t+(r-\frac12 \sigma^2)v_z+\frac12 \sigma^2v_{zz}-rv=0</script><script type="math/tex; mode=display">
 V(e^z,T)=g(e^z),\ (z,t)\in \mathbb R\times[0,T)</script><p>The above equation has bounded coefficients and is suitable to apply finite difference methods</p>
-<h2 id="Unit-4-2：Explicit-Scheme"><a href="#Unit-4-2：Explicit-Scheme" class="headerlink" title="Unit 4.2：Explicit Scheme"></a>Unit 4.2：Explicit Scheme</h2><p>Consider the equation</p>
+<h2 id="Unit-4-1-2：Explicit-Scheme"><a href="#Unit-4-1-2：Explicit-Scheme" class="headerlink" title="Unit 4.1.2：Explicit Scheme"></a>Unit 4.1.2：Explicit Scheme</h2><p>Consider the equation</p>
 <script type="math/tex; mode=display">
 V_t+\frac12 a(x,t)V_{xx}+f(x,t)=0</script><script type="math/tex; mode=display">
 V(x,T)=g(x),\ (x,t)\in \Omega\times[0,T)</script><p>For positive integer N discretise the domain with time step size $h_0=\frac TN$ and space step size $h_1&gt;0$</p>
@@ -1326,12 +1326,12 @@ v_j^{k-1}=\frac12v_j^k+\frac14(v_{j-1}^k+v_{j+1}^k),& if\ h_0=\frac12h_1^2\\
 \end{cases}</script><p>Suppose the spatial domain is taken as $[–1, 1]$ and $T = 1$. For the boundary condition</p>
 <script type="math/tex; mode=display">
 V(-1,t)=0,\ V(1,t)=1,\ t\in[0,T]</script><p>we solve the explicit scheme</p>
-<h2 id="Unit-4-3：Implicit-Scheme"><a href="#Unit-4-3：Implicit-Scheme" class="headerlink" title="Unit 4.3：Implicit Scheme"></a>Unit 4.3：Implicit Scheme</h2><p>For $j\in \mathbb Z$, $k=0,1,…,N$</p>
+<h2 id="Unit-4-1-3：Implicit-Scheme"><a href="#Unit-4-1-3：Implicit-Scheme" class="headerlink" title="Unit 4.1.3：Implicit Scheme"></a>Unit 4.1.3：Implicit Scheme</h2><p>For $j\in \mathbb Z$, $k=0,1,…,N$</p>
 <script type="math/tex; mode=display">
 \frac{v_j^{k+1}-v_j^k}{h_0}+\frac12a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
 v_j^N=g_j</script><p>the fixed-point form of the equation is written as</p>
 <script type="math/tex; mode=display">
-v_j^k=(1+\frac{h_0}{h_1^2}a_j^k)^{-1}(\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+v_j^{k+1}+h_0f_j^k)</script><h2 id="Unit-4-4：Family-of-theta-Schemes"><a href="#Unit-4-4：Family-of-theta-Schemes" class="headerlink" title="Unit 4.4：Family of $\theta$ Schemes"></a>Unit 4.4：Family of $\theta$ Schemes</h2><p>For $\theta\in [0, 1]$, consider the following scheme</p>
+v_j^k=(1+\frac{h_0}{h_1^2}a_j^k)^{-1}(\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+v_j^{k+1}+h_0f_j^k)</script><h1 id="Unit-4-1-4：Family-of-theta-Schemes"><a href="#Unit-4-1-4：Family-of-theta-Schemes" class="headerlink" title="Unit 4.1.4：Family of $\theta$ Schemes"></a>Unit 4.1.4：Family of $\theta$ Schemes</h1><p>For $\theta\in [0, 1]$, consider the following scheme</p>
 <script type="math/tex; mode=display">
 \frac{v_j^{k+1}-v_j^k}{h_0}+\frac12\theta a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+\frac12(1-\theta) a_j^{k+1}\frac{v_{j+1}^{k+1}+v_{j-1}^{k+1}-2v_j^{k+1}}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
 v_j^N=g_j</script><p>The scheme is explicit if $\theta=0$, and implicit otherwise (standard implicit for $\theta=1$)</p>
@@ -1369,6 +1369,89 @@ b_i^{k+1}&=\omega(1-\theta)v_{i-1}^{k+1}+(1-2\omega(1-\theta)-\kappa(1-\theta)-\
 \end{align}</script><p>where $v_0^{k+1},v_M^{k+1}$ are given by the boundary conditions and the remaining constants are defined as below</p>
 <script type="math/tex; mode=display">
 \omega=\frac{h_0\sigma^2}{2h_1^2},\ \kappa=\frac{(r-\frac12\sigma^2)h_0}{h_1},\ \rho=rh_0</script><p>The $i$th coordinate of the vector $v^k$ is the approximation of the value $v(t^k,x_i)$</p>
+<h1 id="Unit-4-2：Optimisation-methods-in-finance"><a href="#Unit-4-2：Optimisation-methods-in-finance" class="headerlink" title="Unit 4.2：Optimisation methods in finance"></a>Unit 4.2：Optimisation methods in finance</h1><h4 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h4><p>In finance, the parameters in stochastic models are estimated using the available market data. This procedure is called <strong>model calibration</strong></p>
+<p>Most calibration problems can be seen as either a <strong>root-finding procedure</strong> or as an <strong>optimisation problem</strong></p>
+<h4 id="Convex-Functions"><a href="#Convex-Functions" class="headerlink" title="Convex Functions"></a>Convex Functions</h4><p>Let $\mathscr U$ denote a convex set and let $f :\mathscr U \to \mathbb R$ be a function. Then, $f$ is convex if for all $u_1, u_2 \in \mathscr U$ , for all $\lambda \in [0, 1]$,</p>
+<script type="math/tex; mode=display">
+f(\lambda u_1+(1-\lambda)u_2)\leq\lambda f(u_1)+(1-\lambda)f(u_2)</script><p>Any local minimun of a convex function is also its global minimum</p>
+<p>If $w_1,…,w_n\ge0$ and $f_1,…,f_n$ are all convex, then $\sum_{i=1}^n w_if_i$ is also aconvex function</p>
+<p>If $f_1,…,f_n$ are convex, then $g(x):=max(f_1,…,f_n)$ is also a convex function</p>
+<h2 id="Unit-4-2-1：Newton’s-Method"><a href="#Unit-4-2-1：Newton’s-Method" class="headerlink" title="Unit 4.2.1：Newton’s Method"></a>Unit 4.2.1：Newton’s Method</h2><p>Basic approach:</p>
+<ul>
+<li>Approximate the function $f$ by its tangent at a given point</li>
+<li>The point at which the tangent crosses the x-axis is taken as an approximate solution to the equation $f (x) = 0$</li>
+<li>The process is repeated with the new point</li>
+</ul>
+<p>Given an initial guess $x_0$, a sequence of points is constructed using the recurrence relation</p>
+<script type="math/tex; mode=display">
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}</script><p>For the method to converge, we need, at least, that $|f′′| \leq K$ and the initial guess is close to the true solution</p>
+<h4 id="Example-Implied-Volatility"><a href="#Example-Implied-Volatility" class="headerlink" title="Example: Implied Volatility"></a>Example: Implied Volatility</h4><p>Consider $C(\sigma)$ as the call option price formula given strike $K$ and time to maturity $T$ with volatility $\sigma$ as the parameter</p>
+<p>Aim is to find the implied volatility for call option with market price $C_0$</p>
+<p>Given an initial guess $\sigma_0$, Newton’s method can be used to construct a sequence of points as</p>
+<script type="math/tex; mode=display">
+\sigma_{n+1}=\sigma_n-\frac{C(\sigma_n)-C_0}{\frac{\partial_\sigma C(\sigma_n)}{\partial \sigma}}</script><p>For error tolerance $\epsilon$, stop the iteration for some $n + 1$, when $|\sigma_{n+1} – \sigma_n| &lt; \epsilon$ (convergence)</p>
+<h2 id="Unit-4-2-2：Descent-Methods"><a href="#Unit-4-2-2：Descent-Methods" class="headerlink" title="Unit 4.2.2：Descent Methods"></a>Unit 4.2.2：Descent Methods</h2><p>To solve optimisation problems, Newton’s method cannot be used as it can guarantee only <strong>local convergence</strong> for a good initial guess</p>
+<p>In practice, to solve optimisation problems, we need methods with <strong>global convergence</strong>, that is convergence from an arbitrary initial guess (starting point)</p>
+<p>The overall idea of descent methods is to construct a sequence of points as</p>
+<script type="math/tex; mode=display">
+x_{n+1}=x_n+\mu_np_n</script><p>where $\mu_n$ is a non-increasing sequence of learning rate and $p_n$  is direction vector</p>
+<h3 id="Gradient-Descent-Method"><a href="#Gradient-Descent-Method" class="headerlink" title="Gradient Descent Method"></a>Gradient Descent Method</h3><p>For model parameter $u$ taking values in the space $\mathscr U$ , we consider the problem</p>
+<script type="math/tex; mode=display">
+\min_{u\in\mathscr U} J(u)</script><p>The sequence of points is constructed as</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n-\mu\Delta J(u_n)</script><p>where $\mu &gt; 0$ and $\Delta J(u_n)$ is the gradient of cost function evaluated at $u_n$</p>
+<p>$\mu$ has to be carefully chosen to ensure convergence of the method</p>
+<h3 id="Gradient-Descent-Method-with-Constraints"><a href="#Gradient-Descent-Method-with-Constraints" class="headerlink" title="Gradient Descent Method with Constraints"></a>Gradient Descent Method with Constraints</h3><p>Under some constraints on the parameters, we look to solve the problem</p>
+<script type="math/tex; mode=display">
+\min_{u\in K} J(u)</script><p>where $K$ is a closed convex subset of the parameter space $\mathscr U$</p>
+<p>For $\mu &gt; 0$, a sequence of points is constructed as</p>
+<script type="math/tex; mode=display">
+u_{n+1}=P_K(u_n-\mu\Delta J(u_n))</script><p>where $P_K(u)$ is the orthogonal projection of $u$ on $K$</p>
+<p>For $x \in \mathscr U$ , its orthogonal projection in $K$ is given by $x_K$ where</p>
+<script type="math/tex; mode=display">
+||x-x_K||=\min_{y\in K}||x-y||</script><h4 id="Penalisation-of-Constraints"><a href="#Penalisation-of-Constraints" class="headerlink" title="Penalisation of Constraints"></a>Penalisation of Constraints</h4><p>We can convert a minimisation problem with constraints into an optimisation problem without constraints</p>
+<p>The idea is to <strong>penalise</strong> the constraints and form a new unconstrained minimisation problem</p>
+<p>Consider the constrained minimisation problem with continuous convex cost function $J:\mathbb R^d\to\mathbb R$</p>
+<script type="math/tex; mode=display">
+\min_{F(u)\leq 0}J(u)</script><p>where $F : \mathbb R^d \to \mathbb R^M$ is a continuous convex function representing thec onstraints on parameter $u \in \mathbb R^d$</p>
+<p>An unconstrained problem is then given as</p>
+<script type="math/tex; mode=display">
+\min_{u\in\mathbb R^d}(J(u)+\frac1\epsilon\sum_{i=1}^M[\max(F_i(u),0)]^2)</script><p>where the constraint $F_i(u) \leq 0$ has been penalised</p>
+<p>The above problem can be solved using descent methods</p>
+<p>For small value of $\epsilon &gt; 0$, the solution of unconstrained problem approximates the solution of constrained problem</p>
+<h2 id="Unit-4-2-3：Stochastic-Gradient-Descent"><a href="#Unit-4-2-3：Stochastic-Gradient-Descent" class="headerlink" title="Unit 4.2.3：Stochastic Gradient Descent"></a>Unit 4.2.3：Stochastic Gradient Descent</h2><p>Unlike the gradient descent methods which are deterministic, stochastic gradient methods choose the direction of descent randomly</p>
+<p>Gradient descent methods perform well for convex cost functions whereas stochastic gradient descent methods can handle non-convex cost functions</p>
+<p>Consider the model parameter $\theta \in \mathbb R^d$</p>
+<p><strong>For example:</strong> </p>
+<p>consider the Heston’s stochastic volatility model</p>
+<script type="math/tex; mode=display">
+\frac{d S_t}{S_t}=rdt+\sqrt{v_t}dW_t</script><script type="math/tex; mode=display">
+dv_t=\kappa(\theta-v_t)dt+\delta\sqrt{v_t}dW_t',\ d\langle W,W'\rangle=\rho dt</script><p>The parameter vector $\theta = (\kappa,\theta,\delta,\rho)\in \mathbb R^4$</p>
+<p>Next, consider the cost function $J:\mathbb R^d\to\mathbb R$</p>
+<p><strong>For example:</strong></p>
+<p> Given market prices $P^{market}$ of call options with strike<br>$K_j, 1 \leq j \leq N$ and time to maturity $T_i, 1 \leq i \leq M$, the cost function for Heston’s model calibration can be written as</p>
+<script type="math/tex; mode=display">
+J(\theta;\{K\}_{j=1}^N,\{T\}_{i=1}^M)=\frac1{MN}\sum_{i=1}^M\sum_{j=1}^N(P^\theta(T_i,K_j)-P^{market}(T_i,K_j))^2</script><p>where $P^\theta$ is the call option price function under Heston’s model</p>
+<p>Unlike the gradient descent methods, which use the entire dataset $\{K\}^N_{j=1}$, $\{T\}^M_{i=1}$, to construct the points sequence, the stochastic gradient descent methods use only a fraction of the dataset to construct the sequence</p>
+<h4 id="Stochastic-Gradient-Descent-Algorithm"><a href="#Stochastic-Gradient-Descent-Algorithm" class="headerlink" title="Stochastic Gradient Descent Algorithm"></a>Stochastic Gradient Descent Algorithm</h4><p>Stochastic gradient descent (SGD) method constructs the sequence as</p>
+<script type="math/tex; mode=display">
+\theta_{n+1}=\theta_n-\mu\Delta_\theta J(\theta_n;K_j,T_i)</script><p>where $\mu &gt; 0$ is a positive scalar and the update is performed for a uniformly randomly chosen sample $K_j$ and $T_i$ from the dataset</p>
+<p>The SGD method updates frequently with a high variance which leads to a slower convergence</p>
+<p>On the other hand, due to high variance, the SGD method is able to better explore the parameter space and is able to jump to better local minima for non-convex cost functions</p>
+<h4 id="Mini-batch-Gradient-Descent"><a href="#Mini-batch-Gradient-Descent" class="headerlink" title="Mini-batch Gradient Descent"></a>Mini-batch Gradient Descent</h4><p>Mini-batch gradient descent algorithm randomly picks a sample from the dataset to compute the derivative of the cost function</p>
+<p>Uniformly randomly select m samples $(K_i,T_j)$ from the dataset $\{K\}^N_{j=1}$, $\{T\}^M_{i=1}$, and denote it by $\{X_i\}^m_{i=1}$ , called the mini-batch</p>
+<p>Compute the derivative of the cost function using the mini-batch, that is, compute $\Delta_\theta J(\theta;\{X_i\}^m_{i=1})$</p>
+<p>Construct the sequence using the recursion</p>
+<script type="math/tex; mode=display">
+\theta_{n+1}=\theta_n-\mu\Delta_\theta J(\theta_n;\{X_i\}_{i=1}^m)</script><p>Small batch sizes lead to noisy updates whereas large batch sizes require considerable computation time</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Stochastic gradient descent algorithms can be further improved using different statistical features. The most famous algorithms are</p>
+<ul>
+<li>AdaGrad</li>
+<li>AdaDelta</li>
+<li>AdaM</li>
+</ul>
+<p>The above variations of the stochastic gradient algorithm are mostly used for very large datasets</p>
+<p>For most model calibration purposes, mini-batch gradient descent method provides good performance</p>
 
             </div>
             <hr>
