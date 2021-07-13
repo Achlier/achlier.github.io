@@ -1482,7 +1482,7 @@ H_0:\phi_{12,1}^*=\phi_{12,2}^*=...=\phi_{12,p-1}^*,\ \alpha_1=0</script><p>Test
 </ul>
 <p><strong>Impulse Response Analysis</strong></p>
 <p>In principle, impulse response analysis in cointegrated systems can be conducted in the same way as for stationary systems.</p>
-<h1 id="Unit-8：Forecasts-Evaluation"><a href="#Unit-8：Forecasts-Evaluation" class="headerlink" title="Unit 8：Forecasts Evaluation"></a>Unit 8：Forecasts Evaluation</h1><p><strong>Reading</strong>：</p>
+<h1 id="Unit-8：Forecasts-Evaluation-Part-I"><a href="#Unit-8：Forecasts-Evaluation-Part-I" class="headerlink" title="Unit 8：Forecasts Evaluation (Part I)"></a>Unit 8：Forecasts Evaluation (Part I)</h1><p><strong>Reading</strong>：</p>
 <ul>
 <li>Brooks, Chapter 6, Section 6.10 (Essential)</li>
 <li>Diebold, Chapter 10 (Essential, Subsections 10.2.2 and 10.2.4 excluded )</li>
@@ -1662,6 +1662,168 @@ S_n=\frac{\hat P-\hat P_*}{\hat{\mathbb Var}(\hat P)-\hat{\mathbb Var}(\hat P_*)
 &...+4N^{-2}\hat P_y\hat P_f(1-\hat P_y)(1-\hat P_f)
 
 \end{align}</script></li>
+</ul>
+<h1 id="Unit-8：Forecasts-Evaluation-Part-II"><a href="#Unit-8：Forecasts-Evaluation-Part-II" class="headerlink" title="Unit 8：Forecasts Evaluation (Part II)"></a>Unit 8：Forecasts Evaluation (Part II)</h1><p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks Chapter 6, Self-Study Questions 11(d), 12(f).</li>
+<li>Diebold, Section 10.4, Exercises, Problems and Complements 1-3. The solutions can be found <a target="_blank" rel="noopener" href="https://www.sas.upenn.edu/~fdiebold/Teaching221/Fcst4Solns.pdf">here</a> (See Chapter 12, Exercises 1.2.6).</li>
+</ul>
+<h3 id="Definition-8"><a href="#Definition-8" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Evaluating-Volatility-Forecasts"><a href="#Evaluating-Volatility-Forecasts" class="headerlink" title="Evaluating Volatility Forecasts"></a>Evaluating Volatility Forecasts</h4><p>We can compute the forecasts $f_{t,1}^{\sigma^2}$ but we don’t observe $\sigma_{t+1}^2$</p>
+<p>If $\epsilon_t=\sigma_t\eta_t$, $\eta_t\sim iid(0,1)$, a popular proxy is $\epsilon_{t+1}^2$, because $\mathbb E(\epsilon_{t+1}^2|\Omega_t)=\sigma_{t+1}^2$.</p>
+<p>Assume we have generated the series of 1-step-ahead-point forecasts $\{f_{T+j,1}^{\sigma^2}\}_{j=1}^N$</p>
+<p>To simplify the notation we write</p>
+<script type="math/tex; mode=display">
+\{f_{T+j,1}^{\sigma^2}\}_{j=1}^N=\{f_{t,1}^{\sigma^2}\}_{t=1}^N=\{f_{1,1}^{\sigma^2},...,f_{N,1}^{\sigma^2}\}</script><p>For example, the MSE is computed as</p>
+<script type="math/tex; mode=display">
+MSE=\frac1N\sum_{t=1}^N(\epsilon_{t+1}^2-f_{t,1}^{\sigma^2})^2</script><p>$\epsilon_t^2$ is an unbiased proxy of $\sigma_t^2$</p>
+<p>Alternative volatility proxies have been proposed (see Section 9.18 Brooks).</p>
+<p>If  $\epsilon_t=\sigma_t\eta_t$, $\eta_t\sim NID(0,1)$, then</p>
+<script type="math/tex; mode=display">
+\frac{\epsilon_t^2}{\sigma_t^2}=\eta_t^2\sim \chi^2(1),\quad Pr(\eta_t^2\leq0.455)=\frac12</script><ul>
+<li>i.e. $\epsilon_t^2&lt;1/2\sigma_t^2$ more than fifty percent of the time.</li>
+</ul>
+<p>Even if one is willing to accept a proxy that is up to 50% different from $\sigma_t^2$ , $\epsilon_t^2$ would fulfil this condition only 25% of the time</p>
+<script type="math/tex; mode=display">
+Pr(\epsilon_t^2\in[\frac12\sigma_t^2,\frac32\sigma_t^2])=Pr(\eta_t^2\in[\frac12,\frac32])=0.2588</script><h4 id="Transforming-Volatility-Forecasts-into-Probability-Forecasts"><a href="#Transforming-Volatility-Forecasts-into-Probability-Forecasts" class="headerlink" title="Transforming Volatility Forecasts into Probability Forecasts"></a>Transforming Volatility Forecasts into Probability Forecasts</h4><p>Lopez (2001) proposed an alternative forecast evaluation framework.</p>
+<p>If $\epsilon_t=\sigma_t\eta_t$, $\eta_t\sim D(0,1)$, and $\sigma_t^2$ is a predictable function of $\Omega_{t-1}$, then</p>
+<script type="math/tex; mode=display">
+\epsilon_t|\Omega_{t-1}\sim D(0,\sigma_t^2)</script><p>volatility forecasts can be readily transformed into probability forecasts.</p>
+<p>Out-of-sample $P_{t|t-1}$ for $t = 1, . . . , N$ is the one-step-ahead probability forecast conditional on $\Omega_{t-1}$</p>
+<p><strong>Probability Forecasts</strong></p>
+<p>Let $Y_t=\mu_t+\epsilon_t$</p>
+<p>Suppose for example that a Central Bank is interested in forecasting whether the exchange rate ($Y_t$) will remain within a target zone</p>
+<p>In such a case, the event of interest is</p>
+<script type="math/tex; mode=display">
+Y_t\in[L_t,U_t]</script><p>where $L_t$ and $U_t$ are fixed by the Central Bank (forecast user).</p>
+<p>Assuming that D is continuous and $\mu_t$ and $\sigma_t$ are known</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Pr(L_t\leq Y_t\leq U_t)&=Pr(L_t-\mu_t\leq \epsilon_t\leq U_t-\mu_t)\\
+&=Pr(\frac{L_t-\mu_t}{\sigma_t}< \eta_t< \frac{U_t-\mu_t}{\sigma_t})\\
+&=Pr(l_t< \eta_t< u_t)=\int_{l_t}^{u_t}f(\eta_t)d\eta_t
+\end{align}</script><ul>
+<li>Out aim is to forecast $Pr (L_t \leq Y_t \leq U_t)$ at time $t − 1$.</li>
+</ul>
+<p>Then, the one-step-ahead probability forecast $P_t$ is computed as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+P_{t|t-1}&=Pr(\frac{L_t-\mu_{t|t-1}}{\sigma_{t|t-1}}< \eta_t< \frac{U_t-\mu_{t|t-1}}{\sigma_{t|t-1}})\\
+&=Pr(l_{t|t-1}< \eta_t< u_{t|t-1})=\int_{l_{t|t-1}}^{u_{t|t-1}}f(\eta_t)d\eta_t
+\end{align}</script><p><strong>Remark</strong></p>
+<ul>
+<li><p>To avoid cumbersome notation, we will use $X_{t|t-1}$ to denote the one-step-ahead forecast of a variable $X_t$ , conditional on $\Omega_{t-1}$.</p>
+</li>
+<li><p>As an example of probability forecast evaluation, we will consider the Brier score.</p>
+</li>
+<li>The Brier score is a rough analogue of the MSE for probability forecasts.</li>
+</ul>
+<p>Accuracy measures for probability forecasts are commonly called <strong>scores</strong>.</p>
+<p>The most common is the <strong>Brier quadratic probability score</strong></p>
+<script type="math/tex; mode=display">
+QPS=\frac1N\sum_{t=1}^N2(P_{t|t-1}-R_t)^2</script><ul>
+<li>where $R_t$ takes value one if the event occurs and zero otherwise.</li>
+</ul>
+<p>$QPS\in [0, 2]$ and smaller values indicate more accurate forecasts.</p>
+<h4 id="Evaluating-Interval-Forecasts"><a href="#Evaluating-Interval-Forecasts" class="headerlink" title="Evaluating Interval Forecasts"></a>Evaluating Interval Forecasts</h4><p>The Lopez approach to volatility forecast evaluation is based on time-varying probabilities assigned to fixed intervals.</p>
+<p>Alternatively, one may fix the probabilities and vary the widths of the intervals, as in the traditional confidence intervals construction.</p>
+<p>The objective is to construct a sequence of out-of-sample interval forecasts $\{[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\}_{t=1}^N$.</p>
+<p>The sequence of ex-ante forecast interval for time t made at time $t − 1$ have coverage probability $(1 − \alpha)$.</p>
+<p>We are going to consider the approach proposed by<br>Christoffensen (1998)</p>
+<p><strong>Defifinition 1 (Indicator variable)</strong></p>
+<p>The indicator variable It for a given interval forecast $[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]$ is defined as</p>
+<script type="math/tex; mode=display">
+I_t\begin{cases}1,&if\ Y_t\in[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\\0,&if\ Y_t\not\in[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\end{cases}</script><ul>
+<li>$I_t$ is a function of $Y_t$, so $I_t$ is a random variable</li>
+</ul>
+<p><strong>Defifinition 2 (Testing Criteria)</strong></p>
+<p>We say that the sequence of interval forecasts</p>
+<script type="math/tex; mode=display">
+\{[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\}_{t=1}^N</script><p>is efficient with respect to information set $\Omega_{t-1}$, if</p>
+<script type="math/tex; mode=display">
+\mathbb E(I_t|\Omega_{t-1})=1-\alpha,\quad \forall\ t</script><p>If $\Omega_{t−1} = \{I_{t−1}, I_{t−2}, . . . , I_1\}$, it can be shown that</p>
+<script type="math/tex; mode=display">
+\mathbb E(I_t| \Omega_{t−1}) =\mathbb E(I_t|I_{t−1}, I_{t−2}, . . . , I_1) = 1 − \alpha</script><p>is equivalent to</p>
+<script type="math/tex; mode=display">
+\{I_t\}\sim^{iid}Bern(1-\alpha)</script><p><strong>Defifinition 3 (Conditional coverage)</strong></p>
+<p>We say that a sequence of interval forecasts</p>
+<script type="math/tex; mode=display">
+\{[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\}_{t=1}^N</script><p>has correct conditional coverage if</p>
+<script type="math/tex; mode=display">
+I_t\sim^{iid}Bern(1-\alpha),\quad \forall\ t</script><p>Standard evaluation methods for interval forecasts compare the nominal coverage</p>
+<script type="math/tex; mode=display">
+N^{-1}\sum_{t=1}^NI_t</script><p>to the true coverage</p>
+<script type="math/tex; mode=display">
+\mathbb E(I_t)=1-\alpha</script><p>The interval forecast might be correct on average, but the conditional coverage might be characterized by clustered outliers.</p>
+<h4 id="LR-test-of-unconditional-coverage"><a href="#LR-test-of-unconditional-coverage" class="headerlink" title="LR test of unconditional coverage"></a>LR test of unconditional coverage</h4><p>Consider the indicator sequence $\{I_t\}^N_{t=1}$ constructed from a given interval forecast.</p>
+<p>To test the unconditional coverage, the hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:\mathbb E(I_t)=1-\alpha,\quad vs\quad H_1:\mathbb E(I_t)=\pi\ne 1-\alpha</script><p>should be tested, given independence</p>
+<p>Let $n_j$ be the number of observations for which $I_t = j$, $j = 0, 1$. By construction $n_0 + n_1 = N$.<br>The likelihood under the null hypothesis is</p>
+<script type="math/tex; mode=display">
+L(p_\alpha;I_1,I_2,...,I_N)=p_\alpha^{n_1}(1-p_\alpha)^{n_0}</script><p>with $p_\alpha=1-\alpha$, and under the alternative</p>
+<script type="math/tex; mode=display">
+L(\pi;I_1,I_2,...,I_N)=\pi^{n_1}(1-\pi)^{n_0}</script><p>Testing for unconditional coverage can be formulated as a likelihood ratio test,</p>
+<script type="math/tex; mode=display">
+LR_{uc}=-2ln[\frac{L(p_\alpha;I_1,...,I_N)}{L(\hat\pi;I_1,...,I_N)}]\sim^\alpha\chi^2(1)</script><p>where $\hat\pi = n_1/(n_0 + n_1)$ is the MLE of $\pi$</p>
+<ul>
+<li>The test has no power against the alternative that zeros and ones come clustered in a time-dependent fashion.</li>
+<li><p>Testing for correct unconditional coverage is insufficient when dynamics are present in the higher-order moment.</p>
+</li>
+<li><p>Interval should be narrow in tranquil times and wide in volatile times, so that occurrences of observations outside the interval forecast would be spread out over the sample and not come in clusters.</p>
+</li>
+<li><p>An interval that fails to account for higher-order dynamics may be correct on average, but in any given period it will have incorrect conditional coverage characterized by clustered outliers.</p>
+</li>
+</ul>
+<p>The two tests presented in the next</p>
+<h4 id="LR-test-of-independence"><a href="#LR-test-of-independence" class="headerlink" title="LR test of independence"></a>LR test of independence</h4><p>Recall that a sequence of interval forecasts has correct condition coverage if $\{I_t\} \sim^{iid} Bern(p_\alpha)$.</p>
+<p>The “independence part” will be tested against an explicit first-order Markov alternative.</p>
+<p>Consider a binary first-order Markov chain $\{I_t\}$, with transition probability matrix</p>
+<script type="math/tex; mode=display">
+\Pi=\begin{bmatrix}\pi_{00}&\pi_{01}\\\pi_{10}&\pi_{11}\end{bmatrix}=\begin{bmatrix}1-\pi_{01}&\pi_{01}\\1-\pi_{11}&\pi_{11}\end{bmatrix}</script><p>where $\pi_{ij}=Pr(I_t=j|I_{t-1}=i)$</p>
+<p>The likelihood function for this process is</p>
+<script type="math/tex; mode=display">
+L(\Pi;I_1,I_2,...,I_N)=(1-\pi_{01})^{n_{00}}\pi_{01}^{n_{01}}(1-\pi_{11})^{n_{10}}\pi_{11}^{n_{11}}</script><p>where $n_{ij}$ is the number of observations with value $i$ followed by $j$.</p>
+<p>The MLE(Maximum Likelihood Estimate) of $\Pi$ is</p>
+<script type="math/tex; mode=display">
+\hat\Pi=\begin{bmatrix}\frac{\pi_{00}}{n_{00}+n_{01}}&\frac{\pi_{01}}{n_{00}+n_{01}}\\\frac{\pi_{10}}{n_{10}+n_{11}}&\frac{\pi_{11}}{n_{10}+n_{11}}\end{bmatrix}</script><p>Under the null of independence, $\Pi$ simplifies to</p>
+<script type="math/tex; mode=display">
+\Pi_{ind}=\begin{bmatrix}1-\pi_{ind}&\pi_{ind}\\1-\pi_{ind}&\pi_{ind}\end{bmatrix}</script><p>The likelihood function under the null became</p>
+<script type="math/tex; mode=display">
+L(\Pi_{ind};I_1,I_2,...,I_N)=(1-\pi_{ind})^{n_{00}+n_{10}}\pi_{ind}^{n_{01}+n_{11}}</script><p>The MLE of $\pi$ is</p>
+<script type="math/tex; mode=display">
+\hat\pi_{ind}=\frac{n_{01}+n_{11}}{n_{00}+n_{11}+n_{10}+n_{01}}=\frac{n_1}{n_0+n_1}</script><p>The LR test of independence is</p>
+<script type="math/tex; mode=display">
+LR_{ind}=-2ln[\frac{L(\hat\Pi_{ind};I_1,...,I_N)}{L(\hat\Pi;I_1,...,I_N)}]\sim^\alpha\chi^2(1)</script><p>Next we will test jointly for independence and correct probability parameter $\pi_{ind}=p_\alpha$.</p>
+<p>Combining the two test we get a complete test for correct conditional coverage (cc).</p>
+<p><strong>The Joint Test of Coverage and Independence</strong></p>
+<p>The main idea is to test the null of unconditional coverage against the alternative of the independence test.</p>
+<p>Christoffersen (1998) defifine the test for correct</p>
+<script type="math/tex; mode=display">
+LR_{cc}=-2ln[\frac{L(p_\alpha;I_1,...,I_N)}{L(\hat\Pi;I_1,...,I_N)}]\sim^\alpha\chi^2(2)</script><p>If the likelihood is computed conditional to the first observation (as we did), then</p>
+<script type="math/tex; mode=display">
+LR_{cc}=LR_{uc}+LR_{ind}</script><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>Christoffersen (1998) evaluate the forecast methodology suggested by J.P. Morgan’s (1995) RiskMetrics using Exchange rates data for different countries.</p>
+<p>He considers the model</p>
+<script type="math/tex; mode=display">
+Y_{t+1}|\Omega_t\sim D(0,\sigma_{t+1}^2)</script><p>The RiskMetrics interval forecasts is tested against two peers.</p>
+<p>The interval forecast suggested by J.P Morgan is</p>
+<script type="math/tex; mode=display">
+[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]=[\Phi^{-1}(\frac\alpha2)\hat\sigma_{t+1|t},\Phi^{-1}(1-\frac\alpha2)\hat\sigma_{t+1|t}]</script><p>where</p>
+<script type="math/tex; mode=display">
+\hat\sigma_{t+1|t}^2=\sigma_{t+1}^2=\lambda\sigma_t^2+(1-\lambda)Y_t^2</script><p>Here $\lambda$ is fixed at 0.94</p>
+<p>The distribution $D(·)$ is Gaussian, and its c.d.f. is denoted by $\Phi(·)$.<br>Let $c_\alpha = \Phi^{−1} (\alpha)$, then $c_\alpha$ satisfies $P(Y_{t+1}/\sigma_{t+1}\leq c_\alpha)=\alpha$</p>
+<p>The first peer is constructed from an estimated GARCH(1,1) model with a Student’s t−innovation.</p>
+<p>If the Student’s t−distribution has 4 degrees of freedom with c.d.f. $\tau$ , for $\alpha = 95%$ we have $\tau^{-1} (\alpha/2) = −2.776$ and $\tau^{−1}(1 − \alpha/2) = 2.776$.</p>
+<script type="math/tex; mode=display">
+[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]=[-2.776\hat\sigma_{t+1|t},2.776\hat\sigma_{t+1|t}]</script><p>To compute the interval, the unknown parameters in $\hat\sigma_{t+1|t}^2$ need to be replaced by estimates.</p>
+<p>The second peer is a simple static forecast, constructed assuming that $D(·)$ is Gaussian.</p>
+<p>Let $F(·)$ the unconditional, time-invariant c.d.f. of $Y_{t+1}$</p>
+<script type="math/tex; mode=display">
+[L(\alpha),U(\alpha)]=[F^{-1}(\frac\alpha2),F^{-1}(1-\frac\alpha2)]</script><p>Comparing interval forecasting of daily exchange rates.</p>
+<ul>
+<li>Tests for UC, IND, CC across coverage rates and exchange rates.</li>
+<li>Nominal coverage rate.</li>
+<li>Average width of the interval prediction.</li>
+<li>See Christoffersen (1996) Section 5 for further details</li>
 </ul>
 
             </div>
