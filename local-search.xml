@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2022/05/21/hello-world/"/>
+    <url>/2022/05/21/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【定义】单时期离散时间模型</title>
+    <link href="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D_1/"/>
+    <url>/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D_1/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>基于《数理金融学引论—离散时间模型》；</p><p>第一部分笔记：单时期市场；</p></blockquote><span id="more"></span><ul><li>在有限样本空间 $\Omega$ 中，$\omega$ 为某一时间的一种可能状态，P($\omega_k$) 为状态 k 发生的概率。</li></ul><p>$$<br>\begin{aligned}<br>\Omega &#x3D; {\omega_1,\omega_2,…,\omega_K}\<br>P(\omega_k)&gt;0 \ , \ \sum_{k&#x3D;1}^K p(\omega_k)&#x3D;1<br>\end{aligned}<br>$$</p><ul><li>银行账户过程（Bank Account Process）B</li><li>价格过程（Price Process）S</li><li>交易策略（Trading Strategy）H</li></ul><p>$$<br>H_0 &#x3D; x-\sum_{i&#x3D;1}^{n}H_nS_n(0)<br>$$</p><ul><li>价值过程（Value Process）V</li></ul><p>$$<br>V_t \equiv H_0B_t + \sum_{n&#x3D;1}^N H_nS_n(t) \ , \ t &#x3D; 0,1<br>$$</p><ul><li>增益过程（Gains Process）G</li></ul><p>$$<br>\begin{aligned}<br>\Delta S_n &amp;\equiv S_n(1)-S_n(0)\<br>G &amp;\equiv V_1-V_0 \equiv H_0r + \sum_{n&#x3D;1}^N H_n \Delta S_n<br>\end{aligned}<br>$$</p><ul><li>折现价格过程（Discounted Price Process）S^*^</li></ul><p>$$<br>S_n^*(t) \equiv S_n(t)&#x2F;B_t \ , \ t &#x3D; 0,1<br>$$</p><ul><li>折现价值过程（Discounted Value Process）V^*^</li></ul><p>$$<br>V_t^* \equiv V_t&#x2F;B_t \equiv H_0 + \sum_{n&#x3D;1}^N H_nS_n^*(t) \ , \ t &#x3D; 0,1<br>$$</p><ul><li>折现增益过程（Discounted Gains Process）G^*^</li></ul><p>$$<br>\begin{aligned}<br>G^* &amp;\equiv V_1^*-V_0^* \equiv \sum_{n&#x3D;1}^N H_n \Delta S_n^<em>\<br>G^</em> &amp;\not\equiv G&#x2F;B_t  \ (\ V_0,V_1除的B_t不一样\ )<br>\end{aligned}<br>$$</p><ul><li>线性定价测度（Linear Pricing Measure）$\pi$</li></ul><p>$$<br>\begin{aligned}<br>V_0^* &amp;&#x3D; \sum_\omega \pi(\omega)V_1^*(\omega) &#x3D; \sum_\omega \pi(\omega)V_1(\omega)&#x2F;B_1(\omega)\<br>H_0 +&amp; \sum_{n&#x3D;1}^N H_nS_n^*(0) &#x3D; \sum_\omega \pi(\omega)[H_0 + \sum_{n&#x3D;1}^N H_nS_n^*(1)(\omega)]<br>\end{aligned}<br>$$</p><blockquote><p>为满足线性条件使$\sum_\omega \pi(\omega)&#x3D;1$ , 这样人们把 $\pi$ 解释成样本空间 $\Omega$ 上的一个概率测度</p></blockquote><p>$$<br>S_n^*(0) &#x3D; \sum_\omega \pi(\omega)S_n^*(1)(\omega)<br>$$</p><ul><li>风险中性概率测度（Risk Neutral Probability）Q</li></ul><p>$$<br>\begin{aligned}<br>&amp;Q(\omega)&gt;0 \ , \ E_Q[\Delta S_n^*]&#x3D;0\<br>E_Q[\Delta S_n^*] &#x3D; &amp;E_Q[S_n^*(1)-S_n^*(0)] &#x3D; E_Q[S_n^*(1)]-S_n^*(0)<br>\end{aligned}<br>$$</p><blockquote><p>与$\pi(\omega)$等价</p></blockquote><p>$$<br>\begin{aligned}<br>\mathbb{W} &amp;\equiv {X\in \mathbb{R}^K:X &#x3D; G^* 对于某一个交易策略H}\<br>\mathbb{A} &amp;\equiv {X\in \mathbb{R}^K:X \geqq0 ,X\not&#x3D;0 }\<br>\mathbb{W} \cap \mathbb{A}&amp;\not&#x3D; \empty \ :\mathbb{W}的非负象限\<br>\mathbb{W}^\perp &amp;\equiv {Y\in \mathbb{R}^K:X·Y&#x3D;0 \ 对于所有X\in \mathbb{W}}\<br>\mathbb{P}^+ &amp;\equiv {X\in \mathbb{R}^K:X_1+…+X_K&#x3D;1 ,X_1&gt;0,…,X_K&gt;0}<br>\end{aligned}<br>$$</p><p>![](hexo 数理金融_1&#x2F;pic1-1.jpg)</p><p>$$<br>\begin{aligned}<br>Q\in &amp;\mathbb{W}^\perp \cap \mathbb{P}^+\<br>Where \ E_Q[G^*]&amp;&#x3D;\sum_{n&#x3D;1}^NH_nE_Q[S_n^*]&#x3D;0<br>\end{aligned}<br>$$</p><ul><li>超平面分离定理（Separating hyperplane theorem）: 若 C , D为非空凸集，且  $C \cap D &#x3D; \empty$，则存在  $a \not&#x3D; 0\ ,\ b $ 使得<br>$$<br>\begin{aligned}<br>a^Tx&amp;\leqq b \ for \ x\in C\<br>a^Tx&amp;\geqq b \ for \ x\in D\<br>inf_{x\in D}a^Tx&amp;\geqq sup_{x\in C}a^Tx<br>\end{aligned}<br>$$</li></ul><blockquote><p>可推导当$\mathbb{W}\cap\mathbb{A} &#x3D; \empty$, 必有$\mathbb{W}^\perp\cap\mathbb{P}^+\not&#x3D;\empty$, 且$\mathbb{W}^\perp&#x3D;\lambda a$</p></blockquote><p>![](hexo 数理金融_1&#x2F;pic1-2.jpg)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Finance</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Financial Mathematics</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
