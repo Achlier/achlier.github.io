@@ -1,0 +1,803 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频； 考虑测度变换的知识进行推导；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【推导】Black Scholes Model 进阶版">
+<meta property="og:url" content="http://achlier.github.io/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频； 考虑测度变换的知识进行推导；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-16T12:25:21.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:42:05.760Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Black Scholes Model">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【推导】Black Scholes Model 进阶版 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【推导】Black Scholes Model 进阶版"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-06-16 20:25" pubdate>
+          June 16, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【推导】Black Scholes Model 进阶版</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于B站up Jerry Xu (Love小矫情Forever) 的视频；</p>
+<p>考虑测度变换的知识进行推导；</p>
+</blockquote>
+<span id="more"></span>
+<blockquote>
+<p>有朋友可能会问，这个在 $\mathbb P$ 测度下过程一样，为什么要转换测度？</p>
+<p>按照up主的解释，$\mathbb P$ 测度下的鞅是不存在的，只能转换到 $\mathbb Q$ 去求</p>
+<p>在 $\mathbb P$ 测度下考虑到期权必定存在非系统的风险，且此测度并非是风险中性，因此定价过程中会对风险进行补偿，鞅不存在。</p>
+</blockquote>
+<h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p>我们设 $S_t^*$ 是 $S_t$ 折现后的价值，其中 $S_t$ 存在于 $\mathbb P$ 测度下, 而折现后在 $\mathbb Q$ 测度下是鞅</p>
+<script type="math/tex; mode=display">
+S^*_t=S_te^{-rt}</script><script type="math/tex; mode=display">
+\begin{align}
+dS_t^*&=d(S_te^{-rt})=S_tde^{-rt}+e^{-rt}dS_t+dS_tde^{-rt}\\
+&=-re^{-rt}S_tdt+e^{-rt}(\mu S_tdt+\sigma S_tdW_t)\\
+&=(\mu-r)S_t^*dt+\sigma S_t^*dW_t
+\end{align}</script><p>因为 $\mu&gt;r$ 永远存在，所以在 $\mathbb P$ 测度下永远不可能得到鞅，因此要换测度</p>
+<h4 id="Novikov-condition"><a href="#Novikov-condition" class="headerlink" title="Novikov condition"></a>Novikov condition</h4><p>若 $\theta^2$ 可积，存在一个 process $M^\theta$</p>
+<script type="math/tex; mode=display">
+M_t^\theta=exp(-\int_0^t\theta_sdX_s-\frac12\int_0^t\theta_s^2ds)</script><p>是一个鞅</p>
+<h4 id="Girsanov‘s-Theorem"><a href="#Girsanov‘s-Theorem" class="headerlink" title="Girsanov‘s Theorem"></a>Girsanov‘s Theorem</h4><p>可以通过 Radon Nicodym 导数</p>
+<script type="math/tex; mode=display">
+\frac{d\mathbb Q}{d\mathbb P}=exp(-\int_0^t\theta_sdW_s-\frac12\int_0^t\theta_s^2ds)</script><p>得到在 $\mathbb Q$ 测度下的布朗运动</p>
+<script type="math/tex; mode=display">
+W_t^\mathbb Q=W_t+\int_0^t\theta(s)ds</script><script type="math/tex; mode=display">
+dW_t^\mathbb Q=dW_t+\theta_tdt</script><blockquote>
+<p>只有随机变量在不同概率测度下才会有影响</p>
+</blockquote>
+<p>详细见 <a href="https://achlier.github.io/2021/05/23/Change_of_Measure/">概率测度变换笔记</a></p>
+<p>得到替换后的在 $\mathbb Q$ 测度下的 $dS_t^*$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dS_t^*&=(\mu-r)S_t^*dt+\sigma S_t^*(dW_t^\mathbb Q-\theta_tdt)\\
+&=(\mu-r-\sigma\theta_t)S_t^*dt+\sigma S_t^*dW_t^\mathbb Q
+\end{align}</script><p>为了取鞅 $\theta_t=\frac{\mu-r}{\sigma}$，此时</p>
+<script type="math/tex; mode=display">
+dS_t^*=\sigma S_t^*dW_t^\mathbb Q</script><p>对于一个投资组合</p>
+<script type="math/tex; mode=display">
+dV_t=\phi_t^SdS_t+\phi_t^BdB_t,\quad B_t=B_0e^{rt}</script><script type="math/tex; mode=display">
+\begin{align}
+dV_t^*&=V_tde^{-rt}+e^{-rt}dV_t\\
+&=-re^{-rt}(\phi_t^SS_t+\phi_t^BB_t)dt+e^{-rt}(\phi_t^SdS_t+\phi_t^BdB_t)\\
+&=\phi_t^S(-re^{-rt}S_tdt+e^{-rt}dS_t)+\phi_t^B(-re^{-rt}B_tdt+e^{-rt}dB_t)\\
+&=\phi_t^S(S_tde^{-rt}+e^{-rt}dS_t)+\phi_t^B(-re^{-rt}B_tdt+e^{-rt}rB_tdt)\\
+&=\phi_t^SdS_te^{-rt}=\phi_t^SdS_t^*=\phi_t^S\sigma S_t^*dW_t^\mathbb Q
+\end{align}</script><p>也是一个 $\mathbb Q$ 鞅</p>
+<script type="math/tex; mode=display">
+\mathbb E^\mathbb Q[V_T^*|\mathscr{F}_t]=V_t^*</script><p>设 $G(S_T)$ 为期权到期日的收益，因为 $V_T$ 是一个复制期权的组合</p>
+<script type="math/tex; mode=display">
+\mathbb E^\mathbb Q[V_T^*|\mathscr{F}_t]=\mathbb E^\mathbb Q[G(S_T)e^{-rT}|\mathscr{F}_t]</script><p>最后能得到</p>
+<script type="math/tex; mode=display">
+V_t^*=\mathbb E^\mathbb Q[G(S_T)e^{-rT}|\mathscr{F}_t]</script><p><strong>初步的定价公式</strong></p>
+<script type="math/tex; mode=display">
+V_t=V_t^*e^{rt}=e^{-r(T-t)}\mathbb E^\mathbb Q[G(S_T)|\mathscr{F}_t]</script><h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p>已知对于看涨期权初步的定价公式</p>
+<script type="math/tex; mode=display">
+C=V_t^*e^{rt}=e^{-rT}\mathbb E^\mathbb Q[(S_T-K,0)^+]</script><p>引入示性函数 $\mathbb I$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C&=e^{-rT}\mathbb E^\mathbb Q[(S_T-k)\mathbb I_{\{S_T\ge K\}}]\\
+&=e^{-rT}(\mathbb E^\mathbb Q[S_T\mathbb I_{\{S_T\ge K\}}]-\mathbb E^\mathbb Q[k\mathbb I_{\{S_T\ge K\}}])
+\end{align}</script><p>Under $\mathbb Q$ with $\theta=\frac{\mu-r}\sigma$</p>
+<script type="math/tex; mode=display">
+dW_t=dW_t^\mathbb Q-\theta_tdt</script><script type="math/tex; mode=display">
+\begin{align}
+dS_t&=\mu S_tdt+\sigma S_t(dW_t^\mathbb Q-\theta_tdt)\\
+&=rS_tdt+\sigma S_tdW_t^\mathbb Q
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+S_t &= S_0exp((r - \frac{\sigma^2}{2})t +\sigma W_t^\mathbb Q)\\
+&= S_0exp((r - \frac{\sigma^2}{2})t +\sigma \epsilon\sqrt t)
+\end{align}</script><p>推导一个特性</p>
+<script type="math/tex; mode=display">
+\epsilon\sim N(0,1)\qquad m,\lambda,a\ constant</script><script type="math/tex; mode=display">
+\begin{align}
+&\mathbb E[e^{m+\lambda\epsilon}\mathbb I_{\{\epsilon\ge a\}}]\\
+=&\int_{-\infty}^\infty e^{m+\lambda x}\mathbb I_{\{x\ge a\}}\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
+=&\int_{a}^\infty e^{m+\lambda x}\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
+=&\frac1{\sqrt{2\pi}}\int_{a}^\infty e^{m+\lambda x-\frac{x^2}2}dx\\
+=&\frac1{\sqrt{2\pi}}\int_{a}^\infty e^{m-(\frac{x^2}2-\lambda x+\frac{\lambda^2}2)+\frac{\lambda^2}2}dx\\
+=&\frac1{\sqrt{2\pi}}\int_{a}^\infty e^{m-\frac{(x-\lambda)^2}{\sqrt{2}}+\frac{\lambda^2}2}dx\\
+=&\frac1{\sqrt{2\pi}}e^{m+\frac{\lambda^2}2}\int_{a}^\infty e^{-\frac{(x-\lambda)^2}{\sqrt{2}}}dx\\
+(set\ y=x-\lambda)=&\frac1{\sqrt{2\pi}}e^{m+\frac{\lambda^2}2}\int_{a-\lambda}^\infty e^{-\frac{y^2}{\sqrt{2}}}dy\\
+&=e^{m+\frac{\lambda^2}2}(N(\infty)-N(a-\lambda))\\
+&=e^{m+\frac{\lambda^2}2}(1-N(a-\lambda))
+\end{align}</script><p>With $N(x)+N(-x)=1$</p>
+<script type="math/tex; mode=display">
+\mathbb E[e^{m+\lambda\epsilon}\mathbb I_{\{\epsilon\ge a\}}]=e^{m+\frac{\lambda^2}2}N(\lambda-a)</script><h4 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h4><p>求第一项</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&e^{-rT}\mathbb E^\mathbb Q[S_T\mathbb I_{\{S_T\ge K\}}]\\
+=&e^{-rT}\mathbb E^\mathbb Q[S_0exp((r - \frac{\sigma^2}{2})T +\sigma \epsilon\sqrt T)\mathbb I_{\{S_0exp((r - \frac{\sigma^2}{2})T +\sigma \epsilon\sqrt T)\ge K\}}]\\
+=&e^{-rT}S_0e^{(r - \frac{\sigma^2}{2})T}\mathbb E^\mathbb Q[e^{\sigma \epsilon\sqrt T}\mathbb I_{\{\epsilon\ge \frac{ln(K/S_0)-(r - \frac{\sigma^2}{2})T}{\sigma\sqrt T}\}}]\\
+=&e^{-rT}S_0e^{(r - \frac{\sigma^2}{2})T}e^{\frac{\sigma^2T}2}N(\sigma\sqrt T- \frac{ln(K/S_0)-(r - \frac{\sigma^2}{2})T}{\sigma\sqrt T})\\
+=&S_0N(\frac{ln(S_0/K)+(r + \frac{\sigma^2}{2})T}{\sigma\sqrt T})=S_0N(d_1)\\
+\end{align}</script><p>或者可以再次用测度变换使得</p>
+<script type="math/tex; mode=display">
+\frac{d \tilde{\mathbb Q}}{d\mathbb Q}=e^{-\frac{\sigma^2}{2}t +\sigma W_t}</script><script type="math/tex; mode=display">
+\tilde W_t=W_t-\sigma t</script><script type="math/tex; mode=display">
+\begin{align}
+&e^{-rT}\mathbb E^\mathbb Q[S_T\mathbb I_{\{S_T\ge K\}}]\\
+=&e^{-rT}\mathbb E^\mathbb Q[S_0exp((r - \frac{\sigma^2}{2})T +\sigma W_T)\mathbb I_{\{S_0exp((r - \frac{\sigma^2}{2})T +\sigma W_T)\ge K\}}]\\
+=&S_0\mathbb E^\mathbb{\tilde Q}[\mathbb I_{\{S_0exp((r - \frac{\sigma^2}{2})T +\sigma\tilde W_T+\sigma^2T)\ge K\}}]\\
+=&S_0\mathbb E^\mathbb{\tilde Q}[\mathbb I_{\{-\frac{\tilde W_T}{\sqrt{T}}\leq \frac{ln(S_0/K)+(r + \frac{\sigma^2}{2})T}{\sigma\sqrt{T}}\}}]\\
+=&S_0\tilde{\mathbb Q}(-\frac{\tilde W_T}{\sqrt{T}}\leq \frac{ln(S_0/K)+(r + \frac{\sigma^2}{2})T}{\sigma\sqrt{T}})\\
+=&S_0N(\frac{ln(S_0/K)+(r + \frac{\sigma^2}{2})T}{\sigma\sqrt{T}})=S_0N(d_1)
+\end{align}</script><p>求第二项</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&e^{-rT}\mathbb E^\mathbb Q[K\mathbb I_{\{S_T\ge K\}}]\\
+=&Ke^{-rT}\mathbb E^\mathbb Q[\mathbb I_{\{\epsilon\ge \frac{ln(K/S_0)-(r - \frac{\sigma^2}{2})T}{\sigma\sqrt T}\}}]\\
+=&Ke^{-rT}\mathbb Q(\epsilon\ge \frac{ln(K/S_0)-(r - \frac{\sigma^2}{2})T}{\sigma\sqrt T})\\
+=&Ke^{-rT}N(\frac{ln(S_0/K)+(r - \frac{\sigma^2}{2})T}{\sigma\sqrt T})=e^{-rT}N(d_2)\\
+\end{align}</script>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Black-Scholes-Model/">#Black Scholes Model</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【推导】Black Scholes Model 进阶版</div>
+      <div>http://achlier.github.io/2021/06/16/Black_Scholes_Model推导_进阶版/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 16, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/17/Normal_Distribution_and_Ex4/" title="【笔记】Normal Distribution and Ex4">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Normal Distribution and Ex4</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/16/%E9%87%91%E8%9E%8D%E5%B7%A5%E7%A8%8B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%AC%94%E8%AE%B0/" title="【笔记】期权定价的零散笔记">
+                        <span class="hidden-mobile">【笔记】期权定价的零散笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

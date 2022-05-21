@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频《Poisson过程》； 为了跳变打铺垫；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Poisson Process">
+<meta property="og:url" content="http://achlier.github.io/2021/06/20/Poisson_Process/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频《Poisson过程》； 为了跳变打铺垫；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-20T12:17:20.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:36:32.588Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Poisson_Process">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【笔记】Poisson Process - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Poisson Process"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-06-20 20:17" pubdate>
+          June 20, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          135 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Poisson Process</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于B站up Jerry Xu (Love小矫情Forever) 的视频《Poisson过程》；</p>
+<p>为了跳变打铺垫；</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h2><p>If $\tau\sim Exp(\lambda)$</p>
+<script type="math/tex; mode=display">
+\ f_\tau(t)=\begin{cases}\lambda e^{-\lambda t}&t\ge 0\\0&t<0\end{cases}</script><script type="math/tex; mode=display">
+F_\tau(t)=\begin{cases}1-e^{-\lambda t}&t\ge0\\0&t<0\end{cases}</script><script type="math/tex; mode=display">
+\mathbb E\tau=\int_0^\infty tf_\tau(t)dt=\frac1\lambda</script><script type="math/tex; mode=display">
+\mathbb E\tau^2=\int_0^\infty t^2f\tau(t)dt=\frac2{\lambda^2}</script><script type="math/tex; mode=display">
+Var\tau=\frac1{\lambda^2}</script><blockquote>
+<p>分部积分</p>
+</blockquote>
+<ul>
+<li><p>Memorylessness</p>
+<p>$\mathbb P(\tau&gt;u)=\mathbb P(\tau&gt;u+v|\tau&gt;v)$</p>
+</li>
+</ul>
+<h2 id="泊松过程"><a href="#泊松过程" class="headerlink" title="泊松过程"></a>泊松过程</h2><ul>
+<li><p>$\{\tau_k\}_{k=1}^\infty$：Interarrival times</p>
+</li>
+<li><p>$S_n=\sum_{k=1}^n\tau_k$：Arrival times $\sim Gamma(n,\lambda)$</p>
+<script type="math/tex; mode=display">
+g_{S_n}(S)=\frac{(\lambda S)^{n-1}}{(n-1)!}\lambda e^{-\lambda S}</script></li>
+<li><p>$\lambda$：Intensity</p>
+</li>
+<li><p>$N(t)$：The number of jumps that occur at or before$\sim Poisson(\lambda t)$</p>
+<script type="math/tex; mode=display">
+\mathbb P(N(t)=k)=\frac{(\lambda t)^k}{k!}e^{-\lambda t}</script><ul>
+<li>$N(t_{j+1})-N(t_j)\sim Poi((t_{j+1}-t_j)\lambda)$ is stationary</li>
+<li>$\mathbb E[N(t)-N(s)]=\lambda(t-s)$</li>
+<li>$Var[N(t)-N(s)]=\lambda(t-s)$</li>
+</ul>
+</li>
+</ul>
+<h4 id="证明-S-n-密度函数（归纳法）"><a href="#证明-S-n-密度函数（归纳法）" class="headerlink" title="证明 $S_n$ 密度函数（归纳法）"></a>证明 $S_n$ 密度函数（归纳法）</h4><ol>
+<li><script type="math/tex; mode=display">
+S_1=\tau_1=\lambda e^{-\lambda t}\sim Gamma(1,\lambda)</script></li>
+<li><p>证明当 $S_k$ 符合时，$S_{k+1}$ 也符合</p>
+</li>
+</ol>
+<p>PDF：</p>
+<script type="math/tex; mode=display">
+g_{\tau_{k+1}}(u)=\lambda e^{-\lambda u}</script><script type="math/tex; mode=display">
+g_{S_k}=\frac{(\lambda S)^{k-1}}{(k-1)!}\lambda e^{-\lambda S}</script><p>Joint PDF：</p>
+<script type="math/tex; mode=display">
+g_{S_k\tau_{k+1}}(S,u)=g_{S_k}g_{\tau_{k+1}}(u)=\lambda e^{-\lambda u}\frac{(\lambda S)^{k-1}}{(k-1)!}\lambda e^{-\lambda S}</script><p>CDF：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+G_{S_{k+1}}(x)&=\mathbb P(S_{k+1}\leq x)=\mathbb P(S_k+\tau_{k+1}\leq x)\\
+&=\int\int_{s+u\leq x}\lambda e^{-\lambda u}\frac{(\lambda S)^{k-1}}{(k-1)!}\lambda e^{-\lambda S}dSdu\\
+&=\frac{(\lambda)^{k+1}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}dS\int_0^{x-S} e^{-\lambda u}du]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}dS[e^{-\lambda u}|^0_{x-S}]]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}(1-e^{\lambda(S-x)})dS]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}-e^{\lambda(S-x)}e^{-\lambda S}S^{k-1}dS]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}-e^{-\lambda x}S^{k-1}dS]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}dS-\frac1ke^{-\lambda x}S^k|_0^x]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[\int_0^x e^{-\lambda S}S^{k-1}dS-\frac{e^{-\lambda x}x^k}k]\\
+\end{align}</script><p>PDF：$S_{k+1}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+g_{S_{k+1}}(x)&=\frac d{dx}G_{S_{k+1}}(x)\\
+&=\frac{(\lambda)^{k}}{(k-1)!}[e^{-\lambda x}x^{k-1}-\frac{ke^{-\lambda x}x^{k-1}-\lambda e^{-\lambda x}x^k}k]\\
+&=\frac{(\lambda)^{k}}{(k-1)!}\frac{\lambda e^{-\lambda x}x^k}k\\
+&=\frac{(\lambda x)^{k}}{k!}\lambda e^{-\lambda x}\\
+\end{align}</script><p>结论成立</p>
+<h4 id="证明-N-t-的分布"><a href="#证明-N-t-的分布" class="headerlink" title="证明 $N(t)$ 的分布"></a>证明 $N(t)$ 的分布</h4><blockquote>
+<p>$N(t)\ge k\Rightarrow S_k\leq t$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb P(N(t)\ge k)&=\mathbb P(S_k\leq t)\\
+&=\int_0^t \frac{(\lambda S)^{k-1}}{(k-1)!}\lambda e^{-\lambda S} ds
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+\mathbb P(N(t)\ge k+1)&=\mathbb P(S_{k+1}\leq t)\\
+&=\int_0^t \frac{(\lambda S)^k}{k!}\lambda e^{-\lambda S} ds\\
+&=\frac{(\lambda)^k}{k!}\int_t^0 S^k de^{-\lambda S}\\
+&=\frac{(\lambda)^k}{k!}(S^ke^{-\lambda S}|_t^0-\int_t^0 kS^{k-1} e^{-\lambda S}dS)\\
+&=\frac{(\lambda)^k}{k!}(-t^ke^{-\lambda t}+k\int_0^t S^{k-1} e^{-\lambda S}dS)\\
+&=-\frac{(\lambda)^k}{k!}t^ke^{-\lambda t}+\frac{(\lambda)^k}{(k-1)!}\int_0^t S^{k-1} e^{-\lambda S}dS)\\
+\end{align}</script><script type="math/tex; mode=display">
+\mathbb P(N(t)=k)=\mathbb P(N(t)\ge k)-\mathbb P(N(t)\ge k+1)=\frac{(\lambda t)^k}{k!}e^{-\lambda t}</script><h3 id="Compensated-Poisson-Process"><a href="#Compensated-Poisson-Process" class="headerlink" title="Compensated Poisson Process"></a>Compensated Poisson Process</h3><blockquote>
+<p>转变成鞅</p>
+</blockquote>
+<ul>
+<li>$M(t)=N(t)-\lambda t$</li>
+</ul>
+<h4 id="证明鞅-s-lt-t"><a href="#证明鞅-s-lt-t" class="headerlink" title="证明鞅 (s&lt;t)"></a>证明鞅 (s&lt;t)</h4><script type="math/tex; mode=display">
+\begin{align}
+\mathbb E[M(t)|M(s)]&=\mathbb E[N(t)-\lambda t|\mathscr F(s)]\\
+&=\mathbb E[N(t)|\mathscr F(s)]-\lambda t\\
+&=\mathbb E[N(t)-N(s)+N(s)|\mathscr F(s)]-\lambda t\\
+&=\mathbb E[N(t)-N(s)|\mathscr F(s)]+\mathbb E[N(s)|\mathscr F(s)]-\lambda t\\
+&=\lambda (t-s)+N(s)-\lambda t\\
+&=N(s)-\lambda s=M(s)
+\end{align}</script><h3 id="Compound-Poisson-Process"><a href="#Compound-Poisson-Process" class="headerlink" title="Compound Poisson Process"></a>Compound Poisson Process</h3><blockquote>
+<p>跳了不确定的值</p>
+</blockquote>
+<ul>
+<li><p>$Q(t)=\sum_{i=1}^{N(t)}Y_i$：总跳变距离</p>
+<ul>
+<li><p>$N(t)\sim Poi(\lambda t)$</p>
+</li>
+<li><p>$Y_1,Y_2,…$ be a sequence of iid with mean $\beta$</p>
+</li>
+<li><p>$Q(t_{j+1})-Q(t_j)$ is stationary</p>
+<blockquote>
+<p>$Y_i$ 不影响时间轴上的随机性</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="求期望"><a href="#求期望" class="headerlink" title="求期望"></a>求期望</h4><blockquote>
+<p>期望迭代法则/全概率公式</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\mathbb E[Q(t)|N(t)=k]=k\beta</script><script type="math/tex; mode=display">
+\begin{align}
+\mathbb E[\mathbb E[Q(t)|W(t)]]&=\sum_{k=1}^\infty k\beta·\mathbb P(N(t)=k)\\
+&=\sum_{k=1}^\infty k\beta\frac{(\lambda t)^k}{k!}e^{-\lambda t}\\
+&=\sum_{k=1}^\infty \beta\frac{(\lambda t)^k}{(k-1)!}e^{-\lambda t}\\
+(l=k-1)&=\sum_{l=0}^\infty \beta\lambda t\frac{(\lambda t)^l}{l!}e^{-\lambda t}\\
+&=\beta\lambda t
+\end{align}</script><h4 id="如果-Y-i-为离散随机变量"><a href="#如果-Y-i-为离散随机变量" class="headerlink" title="如果 $Y_i$ 为离散随机变量"></a>如果 $Y_i$ 为离散随机变量</h4><blockquote>
+<p>$Y_i$ 只能取 M 个定值</p>
+</blockquote>
+<ul>
+<li>$Q(t)=\sum_{i=1}^{N(t)}Y_i$</li>
+<li>$N(t)=\sum_{m=1}^MN_m(t)$<ul>
+<li>$N_1,N_2…$ 所有的次数相和等于总次数</li>
+</ul>
+</li>
+<li>$Q(t)=\sum_{m=1}^MY_mN_m(t)$<ul>
+<li>$Y_1,Y_2…$所有距离乘对应次数相加之后等于总距离</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010164190/article/details/81043856">浅谈全概率公式和贝叶斯公式</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22996373">期望迭代法则具体指的是什么？</a></p>
+</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Poisson-Process/">#Poisson_Process</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Poisson Process</div>
+      <div>http://achlier.github.io/2021/06/20/Poisson_Process/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 20, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/27/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%8C%E5%8D%81%E4%BA%94%E8%AE%B2/" title="【课程】金融经济学二十五讲">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【课程】金融经济学二十五讲</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/20/Exercise_2/" title="【练习】BS Model and BS PDE">
+                        <span class="hidden-mobile">【练习】BS Model and BS PDE</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

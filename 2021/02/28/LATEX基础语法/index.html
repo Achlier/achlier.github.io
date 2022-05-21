@@ -1,0 +1,2432 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="用于方便查找的Latex语法表； Hexo有些Latex格式不好转化就忽略了；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】LATEX基础语法">
+<meta property="og:url" content="http://achlier.github.io/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="用于方便查找的Latex语法表； Hexo有些Latex格式不好转化就忽略了；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1.png">
+<meta property="og:image" content="http://achlier.github.io/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1-1.jpg">
+<meta property="article:published_time" content="2021-02-27T21:15:39.000Z">
+<meta property="article:modified_time" content="2022-05-12T10:09:12.611Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Latex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1.png">
+  
+  
+  
+  <title>【笔记】LATEX基础语法 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】LATEX基础语法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-28 05:15" pubdate>
+          February 28, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          137 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】LATEX基础语法</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>用于方便查找的Latex语法表；</p>
+<p>Hexo有些Latex格式不好转化就忽略了；</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><p><img src="/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1.png" srcset="/img/loading.gif" lazyload alt></p>
+<h2 id="字符上加帽子，横线和波浪线"><a href="#字符上加帽子，横线和波浪线" class="headerlink" title="字符上加帽子，横线和波浪线"></a>字符上加帽子，横线和波浪线</h2><p>加帽子 输入\hat  或 \widehat，如果正文用\^{Z}即可</p>
+<p>加横线 输入 \overline ，\bar</p>
+<p>加波浪线 输入 \widetilde, \tilde</p>
+<h2 id="箭头上面加字"><a href="#箭头上面加字" class="headerlink" title="箭头上面加字"></a>箭头上面加字</h2><p>（1）\stackrel{p}{\longrightarrow}</p>
+<p>（2）\xrightarrow{p}</p>
+<script type="math/tex; mode=display">
+\stackrel{p}{\longrightarrow}\quad \xrightarrow{p}</script><h2 id="符号加长"><a href="#符号加长" class="headerlink" title="符号加长"></a>符号加长</h2><p>（1）\left.\frac{dy}{dx}\right|_{x=0}</p>
+<p>（2）\frac{dy}{dx}\bigg|_{x=0}</p>
+<p><strong>\big，\bigg 区别示例</strong></p>
+<script type="math/tex; mode=display">
+|_{x=0}\quad\big|_{x=0}\quad\bigg|_{x=0}</script><h2 id="其它特殊符号"><a href="#其它特殊符号" class="headerlink" title="其它特殊符号"></a>其它特殊符号</h2><h3 id="声调"><a href="#声调" class="headerlink" title="声调"></a>声调</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\bar{x}</td>
+<td style="text-align:left">$\bar{x}$</td>
+<td style="text-align:left">\acute{\eta}</td>
+<td style="text-align:left">$\acute{\eta}$</td>
+<td style="text-align:left">\check{\alpha}</td>
+<td style="text-align:left">$\check{\alpha}$</td>
+</tr>
+<tr>
+<td style="text-align:left">\grave{\eta}</td>
+<td style="text-align:left">$\grave{\eta}$</td>
+<td style="text-align:left">\breve{a}</td>
+<td style="text-align:left">$\breve{a}$</td>
+<td style="text-align:left">\ddot{y}</td>
+<td style="text-align:left">$\ddot{y}$</td>
+</tr>
+<tr>
+<td style="text-align:left">\dot{x}</td>
+<td style="text-align:left">$\dot{x}$</td>
+<td style="text-align:left">\hat{\alpha}</td>
+<td style="text-align:left">$\hat{\alpha}$</td>
+<td style="text-align:left">\tilde{\iota}</td>
+<td style="text-align:left">$\tilde{\iota}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\sin\theta</td>
+<td style="text-align:left">$\sin\theta$</td>
+</tr>
+<tr>
+<td style="text-align:left">\cos\theta</td>
+<td style="text-align:left">$\cos\theta$</td>
+</tr>
+<tr>
+<td style="text-align:left">\tan\theta</td>
+<td style="text-align:left">$\tan\theta$</td>
+</tr>
+<tr>
+<td style="text-align:left">\arcsin\frac{L}{r}</td>
+<td style="text-align:left">$\arcsin\frac{L}{r}$</td>
+</tr>
+<tr>
+<td style="text-align:left">\arccos\frac{T}{r}</td>
+<td style="text-align:left">$\arccos\frac{T}{r}$</td>
+</tr>
+<tr>
+<td style="text-align:left">\arctan\frac{L}{T}</td>
+<td style="text-align:left">$\arctan\frac{L}{T}$</td>
+</tr>
+<tr>
+<td style="text-align:left">\sinh g</td>
+<td style="text-align:left">$\sinh g$</td>
+</tr>
+<tr>
+<td style="text-align:left">\cosh h</td>
+<td style="text-align:left">$\cosh h$</td>
+</tr>
+<tr>
+<td style="text-align:left">\tanh i</td>
+<td style="text-align:left">$\tanh i$</td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname{sh}j</td>
+<td style="text-align:left">$\operatorname{sh}j$</td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname{argsh}k</td>
+<td style="text-align:left">$\operatorname{argsh}k$</td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname{ch}h</td>
+<td style="text-align:left">$\operatorname{ch}h$</td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname{argch}l</td>
+<td style="text-align:left">$\operatorname{argch}l$</td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname{th}i</td>
+<td style="text-align:left">$\operatorname{th}i$</td>
+</tr>
+<tr>
+<td style="text-align:left">\operatorname{argth}m</td>
+<td style="text-align:left">$\operatorname{argth}m$</td>
+</tr>
+<tr>
+<td style="text-align:left">k’(x)=\lim_{\Delta x\to 0}\frac{k(x)-k(x-\Delta x)}{\Delta x}</td>
+<td style="text-align:left">$k’(x)=\lim_{\Delta x\to 0}\frac{k(x)-k(x-\Delta x)}{\Delta x}$</td>
+</tr>
+<tr>
+<td style="text-align:left">\limsup S</td>
+<td style="text-align:left">$\limsup S$</td>
+</tr>
+<tr>
+<td style="text-align:left">\liminf I</td>
+<td style="text-align:left">$\liminf I$</td>
+</tr>
+<tr>
+<td style="text-align:left">\max H</td>
+<td style="text-align:left">$\max H$</td>
+</tr>
+<tr>
+<td style="text-align:left">\min L</td>
+<td style="text-align:left">$\min L$</td>
+</tr>
+<tr>
+<td style="text-align:left">\inf s</td>
+<td style="text-align:left">$\inf s$</td>
+</tr>
+<tr>
+<td style="text-align:left">\sup t</td>
+<td style="text-align:left">$\sup t$</td>
+</tr>
+<tr>
+<td style="text-align:left">\exp!t</td>
+<td style="text-align:left">$\exp!t$</td>
+</tr>
+<tr>
+<td style="text-align:left">\ln X</td>
+<td style="text-align:left">$\ln X$</td>
+</tr>
+<tr>
+<td style="text-align:left">\lg X</td>
+<td style="text-align:left">$\lg X$</td>
+</tr>
+<tr>
+<td style="text-align:left">\log X</td>
+<td style="text-align:left">$\log X$</td>
+</tr>
+<tr>
+<td style="text-align:left">\log_\alpha X</td>
+<td style="text-align:left">$\log_\alpha X$</td>
+</tr>
+<tr>
+<td style="text-align:left">\ker x</td>
+<td style="text-align:left">$\ker x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\deg x</td>
+<td style="text-align:left">$\deg x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\gcd(T,U,V,W,X)</td>
+<td style="text-align:left">$\gcd(T,U,V,W,X)$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Pr x</td>
+<td style="text-align:left">$\Pr x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\det x</td>
+<td style="text-align:left">$\det x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\hom x</td>
+<td style="text-align:left">$\hom x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\arg x</td>
+<td style="text-align:left">$\arg x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\dim x</td>
+<td style="text-align:left">$\dim x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\lim_{t\to n}T</td>
+<td style="text-align:left">$\lim_{t\to n}T$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\pmod{m}</td>
+<td style="text-align:left">$\pmod{m}$</td>
+<td style="text-align:left">a \bmod b</td>
+<td style="text-align:left">$a \bmod b$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="微分"><a href="#微分" class="headerlink" title="微分"></a>微分</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\nabla</td>
+<td style="text-align:left">$\nabla$</td>
+<td style="text-align:left">\partial x</td>
+<td style="text-align:left">$\partial x$</td>
+<td style="text-align:left">\mathrm{d}x</td>
+<td style="text-align:left">$\mathrm{d}x$</td>
+</tr>
+<tr>
+<td style="text-align:left">\dot x</td>
+<td style="text-align:left">$\dot x$</td>
+<td style="text-align:left">\ddot y</td>
+<td style="text-align:left">$\ddot y$</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\forall</td>
+<td style="text-align:left">$\forall$</td>
+<td style="text-align:left">\exists</td>
+<td style="text-align:left">$\exists$</td>
+<td style="text-align:left">\empty</td>
+<td style="text-align:left">$\empty$</td>
+<td style="text-align:left">\emptyset</td>
+<td style="text-align:left">$\emptyset$</td>
+<td style="text-align:left">\varnothing</td>
+<td style="text-align:left">$\varnothing$</td>
+</tr>
+<tr>
+<td style="text-align:left">\in</td>
+<td style="text-align:left">$\in$</td>
+<td style="text-align:left">\ni</td>
+<td style="text-align:left">$\ni$</td>
+<td style="text-align:left">\not\in</td>
+<td style="text-align:left">$\not\in$</td>
+<td style="text-align:left">\notin</td>
+<td style="text-align:left">$\notin$</td>
+<td style="text-align:left">\subset</td>
+<td style="text-align:left">$\subset$</td>
+</tr>
+<tr>
+<td style="text-align:left">\subseteq</td>
+<td style="text-align:left">$\subseteq$</td>
+<td style="text-align:left">\supset</td>
+<td style="text-align:left">$\supset$</td>
+<td style="text-align:left">\supseteq</td>
+<td style="text-align:left">$\supseteq$</td>
+<td style="text-align:left">\cap</td>
+<td style="text-align:left">$\cap$</td>
+<td style="text-align:left">\bigcap</td>
+<td style="text-align:left">$\bigcap$</td>
+</tr>
+<tr>
+<td style="text-align:left">\cup</td>
+<td style="text-align:left">$\cup$</td>
+<td style="text-align:left">\bigcup</td>
+<td style="text-align:left">$\bigcup$</td>
+<td style="text-align:left">\biguplus</td>
+<td style="text-align:left">$\biguplus$</td>
+<td style="text-align:left">\sqsubset</td>
+<td style="text-align:left">$\sqsubset$</td>
+<td style="text-align:left">\sqsubseteq</td>
+<td style="text-align:left">$\sqsubseteq$</td>
+</tr>
+<tr>
+<td style="text-align:left">\sqsupset</td>
+<td style="text-align:left">$\sqsupset$</td>
+<td style="text-align:left">\sqsupseteq</td>
+<td style="text-align:left">$\sqsupseteq$</td>
+<td style="text-align:left">\sqcap</td>
+<td style="text-align:left">$\sqcap$</td>
+<td style="text-align:left">\sqcup</td>
+<td style="text-align:left">$\sqcup$</td>
+<td style="text-align:left">\bigsqcup</td>
+<td style="text-align:left">$\bigsqcup$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">p</td>
+<td style="text-align:left">$p$</td>
+<td style="text-align:left">\land</td>
+<td style="text-align:left">$\land$</td>
+<td style="text-align:left">\wedge</td>
+<td style="text-align:left">$\wedge$</td>
+<td style="text-align:left">\bigwedge</td>
+<td style="text-align:left">$\bigwedge$</td>
+</tr>
+<tr>
+<td style="text-align:left">\bar{q} \to p</td>
+<td style="text-align:left">$\bar{q} \to p$</td>
+<td style="text-align:left">\lor</td>
+<td style="text-align:left">$\lor$</td>
+<td style="text-align:left">\vee</td>
+<td style="text-align:left">$\vee$</td>
+<td style="text-align:left">\bigvee</td>
+<td style="text-align:left">$\bigvee$</td>
+</tr>
+<tr>
+<td style="text-align:left">\lnot</td>
+<td style="text-align:left">$\lnot$</td>
+<td style="text-align:left">\neg q</td>
+<td style="text-align:left">$\neg q$</td>
+<td style="text-align:left">\setminus</td>
+<td style="text-align:left">$\setminus$</td>
+<td style="text-align:left">\smallsetminus</td>
+<td style="text-align:left">$\smallsetminus$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="根号"><a href="#根号" class="headerlink" title="根号"></a>根号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\sqrt{3}</td>
+<td style="text-align:left">$\sqrt{3}$</td>
+<td style="text-align:left">\sqrt[n]{3}</td>
+<td style="text-align:left">$\sqrt[n]{3}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="关系符号"><a href="#关系符号" class="headerlink" title="关系符号"></a>关系符号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\Delta ABC\sim\Delta XYZ</td>
+<td style="text-align:left">$\Delta ABC\sim\Delta XYZ$</td>
+</tr>
+<tr>
+<td style="text-align:left">\sqrt{3}\approx1.732050808\ldots</td>
+<td style="text-align:left">$\sqrt{3}\approx1.732050808\ldots$</td>
+</tr>
+<tr>
+<td style="text-align:left">\simeq</td>
+<td style="text-align:left">$\simeq$</td>
+</tr>
+<tr>
+<td style="text-align:left">\cong</td>
+<td style="text-align:left">$\cong$</td>
+</tr>
+<tr>
+<td style="text-align:left">\dot=</td>
+<td style="text-align:left">$\dot=$</td>
+</tr>
+<tr>
+<td style="text-align:left">\ggg</td>
+<td style="text-align:left">$\ggg$</td>
+</tr>
+<tr>
+<td style="text-align:left">\gg</td>
+<td style="text-align:left">$\gg$</td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">$&gt;$</td>
+</tr>
+<tr>
+<td style="text-align:left">\ge</td>
+<td style="text-align:left">$\ge$</td>
+</tr>
+<tr>
+<td style="text-align:left">\geqq</td>
+<td style="text-align:left">$\geqq$</td>
+</tr>
+<tr>
+<td style="text-align:left">=</td>
+<td style="text-align:left">$=$</td>
+</tr>
+<tr>
+<td style="text-align:left">\leq</td>
+<td style="text-align:left">$\leq$</td>
+</tr>
+<tr>
+<td style="text-align:left">\leqq</td>
+<td style="text-align:left">$\leqq$</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">$&lt;$</td>
+</tr>
+<tr>
+<td style="text-align:left">\ll</td>
+<td style="text-align:left">$\ll$</td>
+</tr>
+<tr>
+<td style="text-align:left">\lll</td>
+<td style="text-align:left">$\lll$</td>
+</tr>
+<tr>
+<td style="text-align:left">(x-y)^2\equiv(-x+y)^2\equiv x^2-2xy+y^2</td>
+<td style="text-align:left">$(x-y)^2\equiv(-x+y)^2\equiv x^2-2xy+y^2$</td>
+</tr>
+<tr>
+<td style="text-align:left">x\not\equiv N</td>
+<td style="text-align:left">$x\not\equiv N$</td>
+</tr>
+<tr>
+<td style="text-align:left">x\ne A</td>
+<td style="text-align:left">$x\ne A$</td>
+</tr>
+<tr>
+<td style="text-align:left">x\neq C</td>
+<td style="text-align:left">$x\neq C$</td>
+</tr>
+<tr>
+<td style="text-align:left">t\propto v</td>
+<td style="text-align:left">$t\propto v$</td>
+</tr>
+<tr>
+<td style="text-align:left">\pm</td>
+<td style="text-align:left">$\pm$</td>
+</tr>
+<tr>
+<td style="text-align:left">\mp</td>
+<td style="text-align:left">$\mp$</td>
+</tr>
+<tr>
+<td style="text-align:left">\succeq</td>
+<td style="text-align:left">$\succeq$</td>
+</tr>
+<tr>
+<td style="text-align:left">\triangleq</td>
+<td style="text-align:left">$\triangleq$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;align&#125;<br><span class="hljs-keyword">\because</span><span class="hljs-keyword">\begin</span>&#123;cases&#125;<br><span class="hljs-keyword">\acute</span>&#123;a&#125;x<span class="hljs-built_in">^</span>2+bx<span class="hljs-built_in">^</span>2+c<span class="hljs-keyword">\gtrless</span>0<span class="hljs-keyword">\gtrless</span><span class="hljs-keyword">\grave</span>&#123;a&#125;x<span class="hljs-built_in">^</span>2+bx<span class="hljs-built_in">^</span>2+c<span class="hljs-keyword">\\</span><br><span class="hljs-keyword">\acute</span>&#123;a&#125;&gt;0&gt;<span class="hljs-keyword">\grave</span>&#123;a&#125;<br><span class="hljs-keyword">\end</span>&#123;cases&#125;<span class="hljs-keyword">\\</span><br><span class="hljs-keyword">\therefore</span><span class="hljs-keyword">\frac</span>&#123;-b<span class="hljs-keyword">\pm</span><span class="hljs-keyword">\sqrt</span>&#123;b<span class="hljs-built_in">^</span>2-4<span class="hljs-keyword">\acute</span>&#123;a&#125;c&#125;&#125;&#123;2<span class="hljs-keyword">\acute</span>&#123;a&#125;&#125;&#123;&#125;<span class="hljs-built_in">_</span><span class="hljs-keyword">\lessgtr</span><span class="hljs-built_in">^</span><span class="hljs-keyword">\gtrless</span> x<span class="hljs-built_in">_</span><span class="hljs-keyword">\lessgtr</span><span class="hljs-built_in">^</span><span class="hljs-keyword">\gtrless</span><span class="hljs-keyword">\frac</span>&#123;-b<span class="hljs-keyword">\pm</span><span class="hljs-keyword">\sqrt</span>&#123;b<span class="hljs-built_in">^</span>2-4<span class="hljs-keyword">\grave</span>&#123;a&#125;c&#125;&#125;&#123;2<span class="hljs-keyword">\grave</span>&#123;a&#125;&#125;<br><span class="hljs-keyword">\end</span>&#123;align&#125;<br></code></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{align}
+\because\begin{cases}
+\acute{a}x^2+bx^2+c\gtrless0\gtrless\grave{a}x^2+bx^2+c\\
+\acute{a}>0>\grave{a}
+\end{cases}\\
+\therefore\frac{-b\pm\sqrt{b^2-4\acute{a}c}}{2\acute{a}}{}_\lessgtr^\gtrless x_\lessgtr^\gtrless\frac{-b\pm\sqrt{b^2-4\grave{a}c}}{2\grave{a}}
+\end{align}</script><h3 id="几何符号"><a href="#几何符号" class="headerlink" title="几何符号"></a>几何符号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特征</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">菱形</td>
+<td style="text-align:left">\Diamond</td>
+<td style="text-align:left">$\Diamond$</td>
+</tr>
+<tr>
+<td style="text-align:left">正方形</td>
+<td style="text-align:left">\Box</td>
+<td style="text-align:left">$\Box$</td>
+</tr>
+<tr>
+<td style="text-align:left">Delta</td>
+<td style="text-align:left">\Delta</td>
+<td style="text-align:left">$\Delta$</td>
+</tr>
+<tr>
+<td style="text-align:left">三角形</td>
+<td style="text-align:left">\triangle</td>
+<td style="text-align:left">$\triangle$</td>
+</tr>
+<tr>
+<td style="text-align:left">角名</td>
+<td style="text-align:left">\angle\Alpha\Beta\Gamma</td>
+<td style="text-align:left">$\angle\Alpha\Beta\Gamma$</td>
+</tr>
+<tr>
+<td style="text-align:left">角度</td>
+<td style="text-align:left">sin\frac{\pi}{3}=sin60^{\operatorname{\omicron}}=\frac{\sqrt{3}}{2}</td>
+<td style="text-align:left">$sin\frac{\pi}{3}=sin60^{\operatorname{\omicron}}=\frac{\sqrt{3}}{2}$</td>
+</tr>
+<tr>
+<td style="text-align:left">垂直</td>
+<td style="text-align:left">\perp</td>
+<td style="text-align:left">$\perp$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="箭头符号"><a href="#箭头符号" class="headerlink" title="箭头符号"></a>箭头符号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\leftarrow</td>
+<td style="text-align:left">$\leftarrow$</td>
+<td style="text-align:left">\gets</td>
+<td style="text-align:left">$\gets$</td>
+<td style="text-align:left">\longleftarrow</td>
+<td style="text-align:left">$\longleftarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\rightarrow</td>
+<td style="text-align:left">$\rightarrow$</td>
+<td style="text-align:left">\to</td>
+<td style="text-align:left">$\to$</td>
+<td style="text-align:left">\longrightarrow</td>
+<td style="text-align:left">$\longrightarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\mapsto</td>
+<td style="text-align:left">$\mapsto$</td>
+<td style="text-align:left">\longmapsto</td>
+<td style="text-align:left">$\longmapsto$</td>
+<td style="text-align:left">\hookrightarrow</td>
+<td style="text-align:left">$\hookrightarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\nearrow</td>
+<td style="text-align:left">$\nearrow$</td>
+<td style="text-align:left">\nwarrow</td>
+<td style="text-align:left">$\nwarrow$</td>
+<td style="text-align:left">\uparrow</td>
+<td style="text-align:left">$\uparrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\searrow</td>
+<td style="text-align:left">$\searrow$</td>
+<td style="text-align:left">\swarrow</td>
+<td style="text-align:left">$\swarrow$</td>
+<td style="text-align:left">\downarrow</td>
+<td style="text-align:left">$\downarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\leftrightarrow</td>
+<td style="text-align:left">$\leftrightarrow$</td>
+<td style="text-align:left">\updownarrow</td>
+<td style="text-align:left">$\updownarrow$</td>
+<td style="text-align:left">\nleftrightarrow</td>
+<td style="text-align:left">$\nleftrightarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\rightrightarrows</td>
+<td style="text-align:left">$\rightrightarrows$</td>
+<td style="text-align:left">\rightleftarrows</td>
+<td style="text-align:left">$\rightleftarrows$</td>
+<td style="text-align:left">\downdownarrows</td>
+<td style="text-align:left">$\downdownarrows$</td>
+</tr>
+<tr>
+<td style="text-align:left">\dashrightarrow</td>
+<td style="text-align:left">$\dashrightarrow$</td>
+<td style="text-align:left">\circlearrowleft</td>
+<td style="text-align:left">$\circlearrowleft$</td>
+<td style="text-align:left">\multimap</td>
+<td style="text-align:left">$\multimap$</td>
+</tr>
+<tr>
+<td style="text-align:left">\twoheadleftarrow</td>
+<td style="text-align:left">$\twoheadleftarrow$</td>
+<td style="text-align:left">\leftarrowtail</td>
+<td style="text-align:left">$\leftarrowtail$</td>
+<td style="text-align:left">\looparrowleft</td>
+<td style="text-align:left">$\looparrowleft$</td>
+</tr>
+<tr>
+<td style="text-align:left">\curvearrowleft</td>
+<td style="text-align:left">$\curvearrowleft$</td>
+<td style="text-align:left">\Lsh</td>
+<td style="text-align:left">$\Lsh$</td>
+<td style="text-align:left">\leftrightsquigarrow</td>
+<td style="text-align:left">$\leftrightsquigarrow$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\rightharpoonup</td>
+<td style="text-align:left">$\rightharpoonup$</td>
+<td style="text-align:left">\rightharpoondown</td>
+<td style="text-align:left">$\rightharpoondown$</td>
+</tr>
+<tr>
+<td style="text-align:left">\leftharpoonup</td>
+<td style="text-align:left">$\leftharpoonup$</td>
+<td style="text-align:left">\leftharpoondown</td>
+<td style="text-align:left">$\leftharpoondown$</td>
+</tr>
+<tr>
+<td style="text-align:left">\upharpoonleft</td>
+<td style="text-align:left">$\upharpoonleft$</td>
+<td style="text-align:left">\upharpoonright</td>
+<td style="text-align:left">$\upharpoonright$</td>
+</tr>
+<tr>
+<td style="text-align:left">\downharpoonleft</td>
+<td style="text-align:left">$\downharpoonleft$</td>
+<td style="text-align:left">\downharpoonright</td>
+<td style="text-align:left">$\downharpoonright$</td>
+</tr>
+<tr>
+<td style="text-align:left">\\rightleftharpoons</td>
+<td style="text-align:left">$\rightleftharpoons$</td>
+<td style="text-align:left">\leftrightharpoons</td>
+<td style="text-align:left">$\leftrightharpoons$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\Leftarrow</td>
+<td style="text-align:left">$\Leftarrow$</td>
+<td style="text-align:left">\Rightarrow</td>
+<td style="text-align:left">$\Rightarrow$</td>
+<td style="text-align:left">\Leftrightarrow</td>
+<td style="text-align:left">$\Leftrightarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Longleftarrow</td>
+<td style="text-align:left">$\Longleftarrow$</td>
+<td style="text-align:left">\Longrightarrow</td>
+<td style="text-align:left">$\Longrightarrow$</td>
+<td style="text-align:left">\Longleftrightarrow (or \iff)</td>
+<td style="text-align:left">$\Longleftrightarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Uparrow</td>
+<td style="text-align:left">$\Uparrow$</td>
+<td style="text-align:left">\Downarrow</td>
+<td style="text-align:left">$\Downarrow$</td>
+<td style="text-align:left">\Updownarrow</td>
+<td style="text-align:left">$\Updownarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">\nLeftarrow</td>
+<td style="text-align:left">$\nLeftarrow$</td>
+<td style="text-align:left">\nLeftrightarrow</td>
+<td style="text-align:left">$\nLeftrightarrow$</td>
+<td style="text-align:left">\Lleftarrow</td>
+<td style="text-align:left">$\Lleftarrow$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\eth</td>
+<td style="text-align:left">$\eth$</td>
+<td style="text-align:left">\S</td>
+<td style="text-align:left">$\S$</td>
+<td style="text-align:left">\P</td>
+<td style="text-align:left">$\P$</td>
+<td style="text-align:left">\%</td>
+<td style="text-align:left">$\%$</td>
+<td style="text-align:left">\dagger</td>
+<td style="text-align:left">$\dagger$</td>
+<td style="text-align:left">\ddagger</td>
+<td style="text-align:left">$\ddagger$</td>
+</tr>
+<tr>
+<td style="text-align:left">\star</td>
+<td style="text-align:left">$\star$</td>
+<td style="text-align:left">*</td>
+<td style="text-align:left">$*$</td>
+<td style="text-align:left">\ldots</td>
+<td style="text-align:left">$\ldots$</td>
+<td style="text-align:left">\smile</td>
+<td style="text-align:left">$\smile$</td>
+<td style="text-align:left">\frown</td>
+<td style="text-align:left">$\frown$</td>
+<td style="text-align:left">\wr</td>
+<td style="text-align:left">$\wr$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\oplus</td>
+<td style="text-align:left">$\oplus$</td>
+<td style="text-align:left">\bigoplus</td>
+<td style="text-align:left">$\bigoplus$</td>
+<td style="text-align:left">\otimes</td>
+<td style="text-align:left">$\otimes$</td>
+</tr>
+<tr>
+<td style="text-align:left">\bigotimes</td>
+<td style="text-align:left">$\bigotimes$</td>
+<td style="text-align:left">\times</td>
+<td style="text-align:left">$\times$</td>
+<td style="text-align:left">\cdot</td>
+<td style="text-align:left">$\cdot$</td>
+</tr>
+<tr>
+<td style="text-align:left">\div</td>
+<td style="text-align:left">$\div$</td>
+<td style="text-align:left">\circ</td>
+<td style="text-align:left">$\circ$</td>
+<td style="text-align:left">\bullet</td>
+<td style="text-align:left">$\bullet$</td>
+</tr>
+<tr>
+<td style="text-align:left">\bigodot</td>
+<td style="text-align:left">$\bigodot$</td>
+<td style="text-align:left">\boxtimes</td>
+<td style="text-align:left">$\boxtimes$</td>
+<td style="text-align:left">\boxplus</td>
+<td style="text-align:left">$\boxplus$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\triangleleft</td>
+<td style="text-align:left">$\triangleleft$</td>
+<td style="text-align:left">\triangleright</td>
+<td style="text-align:left">$\triangleright$</td>
+<td style="text-align:left">\infty</td>
+<td style="text-align:left">$\infty$</td>
+<td style="text-align:left">\bot</td>
+<td style="text-align:left">$\bot$</td>
+</tr>
+<tr>
+<td style="text-align:left">\top</td>
+<td style="text-align:left">$\top$</td>
+<td style="text-align:left">\vdash</td>
+<td style="text-align:left">$\vdash$</td>
+<td style="text-align:left">\vDash</td>
+<td style="text-align:left">$\vDash$</td>
+<td style="text-align:left">\Vdash</td>
+<td style="text-align:left">$\Vdash$</td>
+</tr>
+<tr>
+<td style="text-align:left">\models</td>
+<td style="text-align:left">$\models$</td>
+<td style="text-align:left">\lVert</td>
+<td style="text-align:left">$\lVert$</td>
+<td style="text-align:left">\rVert</td>
+<td style="text-align:left">$\rVert$</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\imath</td>
+<td style="text-align:left">$\imath$</td>
+<td style="text-align:left">\hbar</td>
+<td style="text-align:left">$\hbar$</td>
+<td style="text-align:left">\ell</td>
+<td style="text-align:left">$\ell$</td>
+</tr>
+<tr>
+<td style="text-align:left">\mho</td>
+<td style="text-align:left">$\mho$</td>
+<td style="text-align:left">\Finv</td>
+<td style="text-align:left">$\Finv$</td>
+<td style="text-align:left">\Re</td>
+<td style="text-align:left">$\Re$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Im</td>
+<td style="text-align:left">$\Im$</td>
+<td style="text-align:left">\wp</td>
+<td style="text-align:left">$\wp$</td>
+<td style="text-align:left">\complement</td>
+<td style="text-align:left">$\complement$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\diamondsuit</td>
+<td style="text-align:left">$\diamondsuit$</td>
+<td style="text-align:left">\heartsuit</td>
+<td style="text-align:left">$\heartsuit$</td>
+<td style="text-align:left">\clubsuit</td>
+<td style="text-align:left">$\clubsuit$</td>
+<td style="text-align:left">\spadesuit</td>
+<td style="text-align:left">$\spadesuit$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Game</td>
+<td style="text-align:left">$\Game$</td>
+<td style="text-align:left">\flat</td>
+<td style="text-align:left">$\flat$</td>
+<td style="text-align:left">\natural</td>
+<td style="text-align:left">$\natural$</td>
+<td style="text-align:left">\sharp</td>
+<td style="text-align:left">$\sharp$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="上标、下标及积分等"><a href="#上标、下标及积分等" class="headerlink" title="上标、下标及积分等"></a>上标、下标及积分等</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">上标</td>
+<td style="text-align:left">a^2</td>
+<td style="text-align:left">$a^2$</td>
+</tr>
+<tr>
+<td style="text-align:left">下标</td>
+<td style="text-align:left">a_2</td>
+<td style="text-align:left">$a_2$</td>
+</tr>
+<tr>
+<td style="text-align:left">组合</td>
+<td style="text-align:left">a^{2+2}</td>
+<td style="text-align:left">$a^{2+2}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">a_{i,j}</td>
+<td style="text-align:left">$a_{i,j}$</td>
+</tr>
+<tr>
+<td style="text-align:left">结合上下标</td>
+<td style="text-align:left">x_2^3</td>
+<td style="text-align:left">$x_2^3$</td>
+</tr>
+<tr>
+<td style="text-align:left">前置上下标</td>
+<td style="text-align:left">{}_1^2!X_3^4</td>
+<td style="text-align:left">${}_1^2!X_3^4$</td>
+</tr>
+<tr>
+<td style="text-align:left">导数 （<strong>HTML</strong>）</td>
+<td style="text-align:left">x’</td>
+<td style="text-align:left">$x’$</td>
+</tr>
+<tr>
+<td style="text-align:left">导数 （<strong>PNG</strong>）</td>
+<td style="text-align:left">x^\prime</td>
+<td style="text-align:left">$x^\prime$</td>
+</tr>
+<tr>
+<td style="text-align:left">导数 （<strong>错误</strong>）</td>
+<td style="text-align:left">x\prime</td>
+<td style="text-align:left">$x\prime$</td>
+</tr>
+<tr>
+<td style="text-align:left">导数点</td>
+<td style="text-align:left">\dot{x}</td>
+<td style="text-align:left">$\dot{x}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">\ddot{y}</td>
+<td style="text-align:left">$\ddot{y}$</td>
+</tr>
+<tr>
+<td style="text-align:left">向量</td>
+<td style="text-align:left">\vec{c}</td>
+<td style="text-align:left">$\vec{c}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">\overleftarrow{a b}</td>
+<td style="text-align:left">$\overleftarrow{a b}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">\overrightarrow{c d}</td>
+<td style="text-align:left">$\overrightarrow{c d}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">\widehat{e f g}</td>
+<td style="text-align:left">$\widehat{e f g}$</td>
+</tr>
+<tr>
+<td style="text-align:left">上弧</td>
+<td style="text-align:left">\overset{\frown} {AB}</td>
+<td style="text-align:left">$\overset{\frown} {AB}$</td>
+</tr>
+<tr>
+<td style="text-align:left">上划线</td>
+<td style="text-align:left">\overline{h i j}</td>
+<td style="text-align:left">$\overline{h i j}$</td>
+</tr>
+<tr>
+<td style="text-align:left">下划线</td>
+<td style="text-align:left">\underline{k l m}</td>
+<td style="text-align:left">$\underline{k l m}$</td>
+</tr>
+<tr>
+<td style="text-align:left">上括号</td>
+<td style="text-align:left">\overbrace{1+2+\cdots+100}</td>
+<td style="text-align:left">$\overbrace{1+2+\cdots+100}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} 5050 \ \overbrace{ 1+2+\cdots+100 } \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} 5050 \ \overbrace{ 1+2+\cdots+100 } \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">下括号</td>
+<td style="text-align:left">\underbrace{a+b+\cdots+z}</td>
+<td style="text-align:left">$\underbrace{a+b+\cdots+z}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} \underbrace{ a+b+\cdots+z } \ 26 \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} \underbrace{ a+b+\cdots+z } \ 26 \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">求和</td>
+<td style="text-align:left">\sum_{k=1}^N k^2</td>
+<td style="text-align:left">$\sum_{k=1}^N k^2$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} \sum_{k=1}^N k^2 \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} \sum_{k=1}^N k^2 \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">求积</td>
+<td style="text-align:left">\prod_{i=1}^N x_i</td>
+<td style="text-align:left">$\prod_{i=1}^N x_i$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} \prod_{i=1}^N x_i \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} \prod_{i=1}^N x_i \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">上积</td>
+<td style="text-align:left">\coprod_{i=1}^N x_i</td>
+<td style="text-align:left">$\coprod_{i=1}^N x_i$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} \coprod_{i=1}^N x_i \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} \coprod_{i=1}^N x_i \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">极限</td>
+<td style="text-align:left">\lim_{n \to \infty}x_n</td>
+<td style="text-align:left">$\lim_{n \to \infty}x_n$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} \lim_{n \to \infty}x_n \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} \lim_{n \to \infty}x_n \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">积分</td>
+<td style="text-align:left">\int_{-N}^{N} e^x\, dx</td>
+<td style="text-align:left">$\int_{-N}^{N} e^x\, dx$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{matrix} \int_{-N}^{N} e^x\, dx \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} \int_{-N}^{N} e^x\, dx \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left">双重积分</td>
+<td style="text-align:left">\iint_{D}^{W} \, dx\,dy</td>
+<td style="text-align:left">$\iint_{D}^{W} \, dx\,dy$</td>
+</tr>
+<tr>
+<td style="text-align:left">三重积分</td>
+<td style="text-align:left">\iiint_{E}^{V} \, dx\,dy\,dz</td>
+<td style="text-align:left">$\iiint_{E}^{V} \, dx\,dy\,dz$</td>
+</tr>
+<tr>
+<td style="text-align:left">四重积分</td>
+<td style="text-align:left">\iiiint_{F}^{U} \, dx\,dy\,dz\,dt</td>
+<td style="text-align:left">$\iiiint_{F}^{U} \, dx\,dy\,dz\,dt$</td>
+</tr>
+<tr>
+<td style="text-align:left">闭合的曲线,曲面积分</td>
+<td style="text-align:left">\oint_{C} x^3\, dx + 4y^2\, dy</td>
+<td style="text-align:left">$\oint_{C} x^3\, dx + 4y^2\, dy$</td>
+</tr>
+<tr>
+<td style="text-align:left">交集</td>
+<td style="text-align:left">\bigcap_1^{n} p</td>
+<td style="text-align:left">$\bigcap_1^{n} p$</td>
+</tr>
+<tr>
+<td style="text-align:left">并集</td>
+<td style="text-align:left">\bigcup_1^{k} p</td>
+<td style="text-align:left">$\bigcup_1^{k} p$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="分数、矩阵和多行列式"><a href="#分数、矩阵和多行列式" class="headerlink" title="分数、矩阵和多行列式"></a>分数、矩阵和多行列式</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">分数</td>
+<td style="text-align:left">\frac{2}{4}=0.5</td>
+<td style="text-align:left">$\frac{2}{4}=0.5$</td>
+</tr>
+<tr>
+<td style="text-align:left">小型分数</td>
+<td style="text-align:left">\tfrac{2}{4} = 0.5</td>
+<td style="text-align:left">$\tfrac{2}{4} = 0.5$</td>
+</tr>
+<tr>
+<td style="text-align:left">大型分数（嵌套）</td>
+<td style="text-align:left">\cfrac{2}{c + \cfrac{2}{d + \cfrac{2}{4}}} = a</td>
+<td style="text-align:left">$\cfrac{2}{c + \cfrac{2}{d + \cfrac{2}{4}}} = a$</td>
+</tr>
+<tr>
+<td style="text-align:left">大型分数（不嵌套）</td>
+<td style="text-align:left">\dfrac{2}{4} = 0.5 \qquad \dfrac{2}{c + \dfrac{2}{d + \dfrac{2}{4}}} = a</td>
+<td style="text-align:left">$\dfrac{2}{4} = 0.5 \qquad \dfrac{2}{c + \dfrac{2}{d + \dfrac{2}{4}}} = a$</td>
+</tr>
+<tr>
+<td style="text-align:left">二项式系数</td>
+<td style="text-align:left">\dbinom{n}{r}=\binom{n}{n-r}=C^n_r=C^n_{n-r}</td>
+<td style="text-align:left">$\dbinom{n}{r}=\binom{n}{n-r}=C^n_r=C^n_{n-r}$</td>
+</tr>
+<tr>
+<td style="text-align:left">小型二项式系数</td>
+<td style="text-align:left">\tbinom{n}{r}=\tbinom{n}{n-r}=C^n_r=C^n_{n-r}</td>
+<td style="text-align:left">$\tbinom{n}{r}=\tbinom{n}{n-r}=C^n_r=C^n_{n-r}$</td>
+</tr>
+<tr>
+<td style="text-align:left">大型二项式系数</td>
+<td style="text-align:left">\binom{n}{r}=\dbinom{n}{n-r}=C^n_r=C^n_{n-r}</td>
+<td style="text-align:left">$\binom{n}{r}=\dbinom{n}{n-r}=C^n_r=C^n_{n-r}$</td>
+</tr>
+<tr>
+<td style="text-align:left">矩阵</td>
+<td style="text-align:left"> begin{matrix} x &amp; y \ z &amp; v \end{matrix}</td>
+<td style="text-align:left">$\begin{matrix} x &amp; y \ z &amp; v \end{matrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{vmatrix} x &amp; y \ z &amp; v \end{vmatrix}</td>
+<td style="text-align:left">$\begin{vmatrix} x &amp; y \ z &amp; v \end{vmatrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{Vmatrix} x &amp; y \ z &amp; v \end{Vmatrix}</td>
+<td style="text-align:left">$\begin{Vmatrix} x &amp; y \ z &amp; v \end{Vmatrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{bmatrix} 0 &amp; \cdots &amp; 0 \ \vdots &amp; \ddots &amp; \vdots \ 0 &amp; \cdots &amp; 0 \end{bmatrix}</td>
+<td style="text-align:left">$\begin{bmatrix} 0 &amp; \cdots &amp; 0 \ \vdots &amp; \ddots &amp; \vdots \ 0 &amp; \cdots &amp; 0 \end{bmatrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{Bmatrix} x &amp; y \ z &amp; v \end{Bmatrix}</td>
+<td style="text-align:left">$\begin{Bmatrix} x &amp; y \ z &amp; v \end{Bmatrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{pmatrix} x &amp; y \ z &amp; v \end{pmatrix}</td>
+<td style="text-align:left">$\begin{pmatrix} x &amp; y \ z &amp; v \end{pmatrix}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> bigl(  begin{smallmatrix} a&amp;b\ c&amp;d \end{smallmatrix} \bigr)</td>
+<td style="text-align:left">$\bigl( \begin{smallmatrix} a&amp;b\ c&amp;d \end{smallmatrix} \bigr)$</td>
+</tr>
+<tr>
+<td style="text-align:left">条件定义</td>
+<td style="text-align:left">f(n) =  begin{cases} n/2, &amp; \mbox{if }n\mbox{ is even} \ 3n+1, &amp; \mbox{if }n\mbox{ is odd} \end{cases}</td>
+<td style="text-align:left">$f(n) = \begin{cases} n/2, &amp; \mbox{if }n\mbox{ is even} \ 3n+1, &amp; \mbox{if }n\mbox{ is odd} \end{cases}$</td>
+</tr>
+<tr>
+<td style="text-align:left">多行等式</td>
+<td style="text-align:left"> begin{align} f(x) &amp; = (m+n)^2 \ &amp; = m^ 2+2mn+n^2 \ \end{align}</td>
+<td style="text-align:left">$\begin{align} f(x) &amp; = (m+n)^2 \ &amp; = m^2+2mn+n^2 \ \end{align}$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"> begin{alignat}{2} f(x) &amp; = (m-n)^2 \ f(x) &amp; = (-m+n)^2 \ &amp; = m^ 2-2mn+n^2 \ \end{alignat}</td>
+<td style="text-align:left">$\begin{alignat}{2} f(x) &amp; = (m-n)^2 \ f(x) &amp; = (-m+n)^2 \ &amp; = m^2-2mn+n^2 \ \end{alignat}$</td>
+</tr>
+<tr>
+<td style="text-align:left">多行等式（左对齐）</td>
+<td style="text-align:left"> begin{array}{lcl} z &amp; = &amp; a \ f(x,y,z) &amp; = &amp; x + y + z \end{array}</td>
+<td style="text-align:left">$\begin{array}{lcl} z &amp; = &amp; a \ f(x,y,z) &amp; = &amp; x + y + z \end{array}$</td>
+</tr>
+<tr>
+<td style="text-align:left">多行等式（右对齐）</td>
+<td style="text-align:left"> begin{array}{lcr} z &amp; = &amp; a \ f(x,y,z) &amp; = &amp; x + y + z \end{array}</td>
+<td style="text-align:left">$\begin{array}{lcr} z &amp; = &amp; a \ f(x,y,z) &amp; = &amp; x + y + z \end{array}$</td>
+</tr>
+<tr>
+<td style="text-align:left">方程组</td>
+<td style="text-align:left"> begin{cases} 3x + 5y + z \ 7x - 2y + 4z \ -6x + 3y + 2z \end{cases}</td>
+<td style="text-align:left">$\begin{cases} 3x + 5y + z \ 7x - 2y + 4z \ -6x + 3y + 2z \end{cases}$</td>
+</tr>
+<tr>
+<td style="text-align:left">数组</td>
+<td style="text-align:left"> begin{array}{lclcllcl} a &amp; b &amp; S \ \hline 0&amp;0&amp;1\ 0&amp;1&amp;1\ 1&amp;0&amp;1\ 1&amp;1&amp;0\ \end{array}</td>
+<td style="text-align:left">$\begin{array}{lclcllcl} a &amp; b &amp; S \ \hline 0&amp;0&amp;1\ 0&amp;1&amp;1\ 1&amp;0&amp;1\ 1&amp;1&amp;0\ \end{array}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><h3 id="希腊字母-1"><a href="#希腊字母-1" class="headerlink" title="希腊字母"></a>希腊字母</h3><p>斜体小写希腊字母一般用于在方程中显示变量。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">正体希腊字母</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">特征</td>
+<td style="text-align:left">效果</td>
+</tr>
+<tr>
+<td style="text-align:left">\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta</td>
+<td style="text-align:left">$\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi</td>
+<td style="text-align:left">$\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega</td>
+<td style="text-align:left">$\Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega$</td>
+</tr>
+<tr>
+<td style="text-align:left">\alpha \beta \gamma \delta \epsilon \zeta \eta \theta</td>
+<td style="text-align:left">$\alpha \beta \gamma \delta \epsilon \zeta \eta \theta$</td>
+</tr>
+<tr>
+<td style="text-align:left">\iota \kappa\varkappa \lambda \mu \nu \xi \omicron \pi</td>
+<td style="text-align:left">$\iota \kappa\varkappa \lambda \mu \nu \xi \omicron \pi$</td>
+</tr>
+<tr>
+<td style="text-align:left">\rho \sigma \tau \upsilon \phi \chi \psi \omega</td>
+<td style="text-align:left">$\rho \sigma \tau \upsilon \phi \chi \psi \omega$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Epsilon\epsilon\varepsilon</td>
+<td style="text-align:left">$\Epsilon\epsilon\varepsilon$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Theta\theta\vartheta</td>
+<td style="text-align:left">$\Theta\theta\vartheta$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Kappa\kappa\varkappa</td>
+<td style="text-align:left">$\Kappa\kappa\varkappa$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Pi\pi\varpi</td>
+<td style="text-align:left">$\Pi\pi\varpi$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Rho\rho\varrho</td>
+<td style="text-align:left">$\Rho\rho\varrho$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Sigma\sigma\varsigma</td>
+<td style="text-align:left">$\Sigma\sigma\varsigma$</td>
+</tr>
+<tr>
+<td style="text-align:left">\Phi\phi\varphi</td>
+<td style="text-align:left">$\Phi\phi\varphi$</td>
+</tr>
+<tr>
+<td style="text-align:left">\digamma</td>
+<td style="text-align:left">$\digamma$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="黑板粗体"><a href="#黑板粗体" class="headerlink" title="黑板粗体"></a>黑板粗体</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathbb</span>&#123;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#125;<br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$</p>
+<p>黑板粗体（Blackboard bold）一般用于表示数学和物理学中的向量或集合的符号。</p>
+<h3 id="正粗体"><a href="#正粗体" class="headerlink" title="正粗体"></a>正粗体</h3><p>语法1</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathbf</span>&#123;012…abc…ABC…&#125;<br></code></pre></td></tr></table></figure>
+<p>效果1</p>
+<p>$\mathbf{012…abc…ABC…}$</p>
+<p>语法2</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\boldsymbol</span>&#123;012…abc…ABC…<span class="hljs-keyword">\alpha</span> <span class="hljs-keyword">\beta</span> <span class="hljs-keyword">\gamma</span>…&#125;<br></code></pre></td></tr></table></figure>
+<p>效果2</p>
+<p>$\boldsymbol{012…abc…ABC…\alpha \beta \gamma…}$</p>
+<p>备注</p>
+<p>使用<code>\boldsymbol&#123;&#125;</code>可以加粗所有合法的符号。</p>
+<h3 id="斜体数字"><a href="#斜体数字" class="headerlink" title="斜体数字"></a>斜体数字</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathit</span>&#123;0123456789&#125;<br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\mathit{0123456789}$</p>
+<h3 id="罗马体"><a href="#罗马体" class="headerlink" title="罗马体"></a>罗马体</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathrm</span>&#123;012…abc…ABC…&#125;或<span class="hljs-keyword">\mbox</span>&#123;&#125;或<span class="hljs-keyword">\operatorname</span>&#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\mathrm{012…abc…ABC…}$</p>
+<h3 id="花体"><a href="#花体" class="headerlink" title="花体"></a>花体</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathscr</span>&#123;012…abc…ABC…&#125;<br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\mathscr{012…abc…ABC…}$</p>
+<h3 id="哥特体"><a href="#哥特体" class="headerlink" title="哥特体"></a>哥特体</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathfrak</span>&#123;012…abc…ABC…&#125;<br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\mathfrak{012…abc…ABC…}$</p>
+<h3 id="手写体"><a href="#手写体" class="headerlink" title="手写体"></a>手写体</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\mathcal</span>&#123;ABC…&#125;<br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\mathcal{ABC…}$</p>
+<h3 id="希伯来字母"><a href="#希伯来字母" class="headerlink" title="希伯来字母"></a>希伯来字母</h3><p>语法</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\aleph</span><span class="hljs-keyword">\beth</span><span class="hljs-keyword">\gimel</span><span class="hljs-keyword">\daleth</span><br></code></pre></td></tr></table></figure>
+<p>效果</p>
+<p>$\aleph\beth\gimel\daleth$</p>
+<h2 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">不好看</td>
+<td style="text-align:left">( \frac{1}{2} )</td>
+<td style="text-align:left">$\frac{1}{2}$</td>
+</tr>
+<tr>
+<td style="text-align:left">好看了</td>
+<td style="text-align:left">\left( \frac{1}{2} \right)</td>
+<td style="text-align:left">$\left( \frac{1}{2} \right)$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>您可以使用 <code>\left</code> 和 <code>\right</code> 来显示不同的括号：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">圆括号，小括号</td>
+<td style="text-align:left">\left<strong>(</strong> \frac{a}{b} \right<strong>)</strong></td>
+<td style="text-align:left">$\left( \frac{a}{b} \right)$</td>
+</tr>
+<tr>
+<td style="text-align:left">方括号，中括号</td>
+<td style="text-align:left">\left<strong>[</strong> \frac{a}{b} \right<strong>]</strong></td>
+<td style="text-align:left">$\left[ \frac{a}{b} \right]$</td>
+</tr>
+<tr>
+<td style="text-align:left">花括号，大括号</td>
+<td style="text-align:left">\left<strong>\{</strong> \frac{a}{b} \right<strong>\}</strong></td>
+<td style="text-align:left">$\left\{ \frac{a}{b} \right\}$</td>
+</tr>
+<tr>
+<td style="text-align:left">角括号</td>
+<td style="text-align:left">\left <strong>\langle</strong> \frac{a}{b} \right <strong>\rangle</strong></td>
+<td style="text-align:left">$\left \langle \frac{a}{b} \right \rangle$</td>
+</tr>
+<tr>
+<td style="text-align:left">单竖线，绝对值</td>
+<td style="text-align:left">\left<strong>l</strong> \frac{a}{b} \right<strong>l</strong></td>
+<td style="text-align:left"><img src="/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></td>
+</tr>
+<tr>
+<td style="text-align:left">双竖线，范</td>
+<td style="text-align:left">\left <strong>\l</strong> \frac{a}{b} \right <strong>\l</strong></td>
+<td style="text-align:left"><img src="/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1-3.jpg" srcset="/img/loading.gif" lazyload alt></td>
+</tr>
+<tr>
+<td style="text-align:left">取整函数</td>
+<td style="text-align:left">\left <strong>\lfloor</strong> \frac{a}{b} \right <strong>\rfloor</strong></td>
+<td style="text-align:left">$\left \lfloor \frac{a}{b} \right \rfloor$</td>
+</tr>
+<tr>
+<td style="text-align:left">取顶函数</td>
+<td style="text-align:left">\left <strong>\lceil</strong> \frac{c}{d} \right <strong>\rceil</strong></td>
+<td style="text-align:left">$\left \lceil \frac{c}{d} \right \rceil$</td>
+</tr>
+<tr>
+<td style="text-align:left">斜线与反斜线</td>
+<td style="text-align:left">\left <strong>/</strong> \frac{a}{b} \right <strong>\backslash</strong></td>
+<td style="text-align:left">$\left / \frac{a}{b} \right \backslash$</td>
+</tr>
+<tr>
+<td style="text-align:left">上下箭头</td>
+<td style="text-align:left">\left <strong>\uparrow</strong> \frac{a}{b} \right <strong>\downarrow</strong></td>
+<td style="text-align:left">$\left \uparrow \frac{a}{b} \right \downarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">\left <strong>\Uparrow</strong> \frac{a}{b} \right <strong>\Downarrow</strong></td>
+<td style="text-align:left">$\left \Uparrow \frac{a}{b} \right \Downarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">\left <strong>\updownarrow</strong> \frac{a}{b} \right <strong>\Updownarrow</strong></td>
+<td style="text-align:left">$\left \updownarrow \frac{a}{b} \right \Updownarrow$</td>
+</tr>
+<tr>
+<td style="text-align:left">混合括号</td>
+<td style="text-align:left">\left [ 0,1 \right ) \left \langle \psi \right l</td>
+<td style="text-align:left"><img src="/2021/02/28/LATEX%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></td>
+</tr>
+<tr>
+<td style="text-align:left">单左括号</td>
+<td style="text-align:left">\left \{ \frac{a}{b} <strong>\right .</strong></td>
+<td style="text-align:left">$\left \{ \frac{a}{b} \right .$</td>
+</tr>
+<tr>
+<td style="text-align:left">单右括号</td>
+<td style="text-align:left"><strong>\left .</strong> \frac{a}{b} \right \}</td>
+<td style="text-align:left">$\left . \frac{a}{b} \right \}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>备注：</p>
+<ul>
+<li>可以使用 <code>\big, \Big, \bigg, \Bigg</code> 控制括号的大小，比如代码</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\Bigg</span> ( <span class="hljs-keyword">\bigg</span> [ <span class="hljs-keyword">\Big</span> <span class="hljs-keyword">\&#123;</span> <span class="hljs-keyword">\big</span> <span class="hljs-keyword">\langle</span> <span class="hljs-keyword">\left</span> | <span class="hljs-keyword">\|</span> <span class="hljs-keyword">\frac</span>&#123;a&#125;&#123;b&#125; <span class="hljs-keyword">\|</span> <span class="hljs-keyword">\right</span> | <span class="hljs-keyword">\big</span> <span class="hljs-keyword">\rangle</span> <span class="hljs-keyword">\Big</span> <span class="hljs-keyword">\&#125;</span> <span class="hljs-keyword">\bigg</span> ] <span class="hljs-keyword">\Bigg</span> )<br></code></pre></td></tr></table></figure>
+<p>显示︰</p>
+<script type="math/tex; mode=display">
+\Bigg ( \bigg [ \Big \{ \big \langle \left | \| \frac{a}{b} \| \right | \big\rangle \Big \} \bigg ] \Bigg )</script><h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><p>注意TEX能够自动处理大多数的空格，但是您有时候需要自己来控制。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">显示</th>
+<th style="text-align:left">宽度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2个quad空格</td>
+<td style="text-align:left">\alpha\qquad\beta</td>
+<td style="text-align:left">$\alpha\qquad\beta$</td>
+<td style="text-align:left">$2m$</td>
+</tr>
+<tr>
+<td style="text-align:left">quad空格</td>
+<td style="text-align:left">\alpha\quad\beta</td>
+<td style="text-align:left">$\alpha\quad\beta$</td>
+<td style="text-align:left">$m$</td>
+</tr>
+<tr>
+<td style="text-align:left">大空格</td>
+<td style="text-align:left">\alpha \beta</td>
+<td style="text-align:left">$\alpha \beta$</td>
+<td style="text-align:left">$\frac{m}{3}$</td>
+</tr>
+<tr>
+<td style="text-align:left">中等空格</td>
+<td style="text-align:left">\alpha\;\beta</td>
+<td style="text-align:left">$\alpha\;\beta$</td>
+<td style="text-align:left">$\frac{2m}{7}$</td>
+</tr>
+<tr>
+<td style="text-align:left">小空格</td>
+<td style="text-align:left">\alpha\,\beta</td>
+<td style="text-align:left">$\alpha\,\beta$</td>
+<td style="text-align:left">$\frac{m}{6}$</td>
+</tr>
+<tr>
+<td style="text-align:left">没有空格</td>
+<td style="text-align:left">\alpha\beta</td>
+<td style="text-align:left">$\alpha\beta$</td>
+<td style="text-align:left">$0$</td>
+</tr>
+<tr>
+<td style="text-align:left">紧贴</td>
+<td style="text-align:left">\alpha!\beta</td>
+<td style="text-align:left">$\alpha!\beta$</td>
+<td style="text-align:left">$\frac{m}{6}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><p>语法</p>
+<ul>
+<li>字体颜色︰<code>&#123;\color&#123;色调&#125;表达式&#125;</code></li>
+<li>背景颜色︰<code>&#123;\pagecolor&#123;色调&#125;表达式&#125;</code></li>
+</ul>
+<p>支援色调表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>${\color{Apricot}Apricot}$</th>
+<th>${\color{Aquamarine}Aquamarine}$</th>
+<th>${\color{Bittersweet}Bittersweet}$</th>
+<th>${\color{Black}Black}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${\color{Blue}Blue}$</td>
+<td>${\color{BlueGreen}BlueGreen}$</td>
+<td>${\color{BlueViolet}BlueViolet}$</td>
+<td>${\color{BrickRed}BrickRed}$</td>
+</tr>
+<tr>
+<td>${\color{Brown}Brown}$</td>
+<td>${\color{BurntOrange}BurntOrange}$</td>
+<td>${\color{CadetBlue}CadetBlue}$</td>
+<td>${\color{CarnationPink}CarnationPink}$</td>
+</tr>
+<tr>
+<td>${\color{Cerulean}Cerulean}$</td>
+<td>${\color{CornflowerBlue}CornflowerBlue}$</td>
+<td>${\color{Cyan}Cyan}$</td>
+<td>${\color{Dandelion}Dandelion}$</td>
+</tr>
+<tr>
+<td>${\color{DarkOrchid}DarkOrchid}$</td>
+<td>${\color{Emerald}Emerald}$</td>
+<td>${\color{ForestGreen}ForestGreen}$</td>
+<td>${\color{Fuchsia}Fuchsia}$</td>
+</tr>
+<tr>
+<td>${\color{Goldenrod}Goldenrod}$</td>
+<td>${\color{Gray}Gray}$</td>
+<td>${\color{Green}Green}$</td>
+<td>${\color{GreenYellow}GreenYellow}$</td>
+</tr>
+<tr>
+<td>${\color{JungleGreen}JungleGreen}$</td>
+<td>${\color{Lavender}Lavender}$</td>
+<td>${\color{LimeGreen}LimeGreen}$</td>
+<td>${\color{Magenta}Magenta}$</td>
+</tr>
+<tr>
+<td>${\color{Mahogany}Mahogany}$</td>
+<td>${\color{Maroon}Maroon}$</td>
+<td>${\color{Melon}Melon}$</td>
+<td>${\color{MidnightBlue}MidnightBlue}$</td>
+</tr>
+<tr>
+<td>${\color{Mulberry}Mulberry}$</td>
+<td>${\color{NavyBlue}NavyBlue}$</td>
+<td>${\color{OliveGreen}OliveGreen}$</td>
+<td>${\color{Orange}Orange}$</td>
+</tr>
+<tr>
+<td>${\color{OrangeRed}OrangeRed}$</td>
+<td>${\color{Orchid}Orchid}$</td>
+<td>${\color{Peach}Peach}$</td>
+<td>${\color{Periwinkle}Periwinkle}$</td>
+</tr>
+<tr>
+<td>${\color{PineGreen}PineGreen}$</td>
+<td>${\color{Plum}Plum}$</td>
+<td>${\color{ProcessBlue}ProcessBlue}$</td>
+<td>${\color{Purple}Purple}$</td>
+</tr>
+<tr>
+<td>${\color{RawSienna}RawSienna}$</td>
+<td>${\color{Red}Red}$</td>
+<td>${\color{RedOrange}RedOrange}$</td>
+<td>${\color{RedViolet}RedViolet}$</td>
+</tr>
+<tr>
+<td>${\color{Rhodamine}Rhodamine}$</td>
+<td>${\color{RoyalBlue}RoyalBlue}$</td>
+<td>${\color{RoyalPurple}RoyalPurple}$</td>
+<td>${\color{RubineRed}RubineRed}$</td>
+</tr>
+<tr>
+<td>${\color{Salmon}Salmon}$</td>
+<td>${\color{SeaGreen}SeaGreen}$</td>
+<td>${\color{Sepia}Sepia}$</td>
+<td>${\color{SkyBlue}SkyBlue}$</td>
+</tr>
+<tr>
+<td>${\color{SpringGreen}SpringGreen}$</td>
+<td>${\color{Tan}Tan}$</td>
+<td>${\color{TealBlue}TealBlue}$</td>
+<td>${\color{Thistle}Thistle}$</td>
+</tr>
+<tr>
+<td>${\color{Turquoise}Turquoise}$</td>
+<td>${\color{Violet}Violet}$</td>
+<td>${\color{VioletRed}VioletRed}$</td>
+<td>${\color{White}White}$</td>
+</tr>
+<tr>
+<td>${\color{WildStrawberry}WildStrawberry}$</td>
+<td>${\color{Yellow}Yellow}$</td>
+<td>${\color{YellowGreen}YellowGreen}$</td>
+<td>${\color{YellowOrange}YellowOrange}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注︰输入时第一个字母必需以大写输入，如<code>\color&#123;OliveGreen&#125;</code></p>
+<p>例子</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex">- &#123;<span class="hljs-keyword">\color</span>&#123;Blue&#125;x<span class="hljs-built_in">^</span>2&#125;+&#123;<span class="hljs-keyword">\color</span>&#123;Brown&#125;2x&#125; - &#123;<span class="hljs-keyword">\color</span>&#123;OliveGreen&#125;1&#125;<br><br>- x<span class="hljs-built_in">_</span>&#123;<span class="hljs-keyword">\color</span>&#123;Maroon&#125;1,2&#125;=<span class="hljs-keyword">\frac</span>&#123;-b<span class="hljs-keyword">\pm</span><span class="hljs-keyword">\sqrt</span>&#123;&#123;<span class="hljs-keyword">\color</span>&#123;Maroon&#125;b<span class="hljs-built_in">^</span>2-4ac&#125;&#125;&#125;&#123;2a&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="小型数学公式"><a href="#小型数学公式" class="headerlink" title="小型数学公式"></a>小型数学公式</h2><p>当要把分数等公式放进文字中的时候，我们需要使用小型的数学公式。</p>
+<p>可以使用：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\begin</span>&#123;smallmatrix&#125;...<span class="hljs-keyword">\end</span>&#123;smallmatrix&#125;<br></code></pre></td></tr></table></figure>
+<p>或直接使用<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/Template:Smallmath">Smallmath</a>模板。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">&#123;&#123;Smallmath|f= f(x)=5+<span class="hljs-keyword">\frac</span>&#123;1&#125;&#123;5&#125; &#125;&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="强制使用PNG"><a href="#强制使用PNG" class="headerlink" title="强制使用PNG"></a>强制使用PNG</h2><p>若你需要强制输出一个PNG图的数学公式的话，你可于公式的最后加上 <code>\,</code>（小空格，但于公式的最后是不会显示出来）。</p>
+<p>输入 <code>2x=1 \,</code>的话以PNG图输出。</p>
+<p>你也可以使用 <code>\,\!</code>，这个亦能强制使用PNG图像。</p>
+<p>阅读更多︰<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Help:Displaying_a_formula#Forced_PNG_rendering">Help:Displaying a formula#Forced PNG rendering</a></p>
+<h2 id="免费Latex识别-图片转换器"><a href="#免费Latex识别-图片转换器" class="headerlink" title="免费Latex识别+图片转换器"></a>免费Latex识别+图片转换器</h2><p><a target="_blank" rel="noopener" href="https://latexlive.com/help">https://latexlive.com/help</a></p>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17528659/article/details/82152530">夕若幽兰的Blog</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://anorien.csc.warwick.ac.uk/mirrors/CTAN/info/symbols/comprehensive/symbols-a4.pdf">官方Symbol List</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zgj926503/article/details/52757631/">Zhao-Pace的CSDN</a></p>
+</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Latex/">#Latex</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】LATEX基础语法</div>
+      <div>http://achlier.github.io/2021/02/28/LATEX基础语法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 28, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/05/Option_Greeks/" title="【笔记】Option Greeks">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Option Greeks</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/28/Black_Scholes_Model%E6%8E%A8%E5%AF%BC/" title="【推导】Black Scholes Model">
+                        <span class="hidden-mobile">【推导】Black Scholes Model</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

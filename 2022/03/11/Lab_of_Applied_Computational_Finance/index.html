@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于格拉斯哥ECON5065中Lab的代码的笔记；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【代码】Lab of Applied Computational Finance">
+<meta property="og:url" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于格拉斯哥ECON5065中Lab的代码的笔记；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic2-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic2-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic4-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic9-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic9-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic10-1.jpg">
+<meta property="article:published_time" content="2022-03-11T07:58:30.000Z">
+<meta property="article:modified_time" content="2022-03-13T15:17:33.733Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Matlab">
+<meta property="article:tag" content="Option Pricing">
+<meta property="article:tag" content="Black Scholes Model">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/pic2-1.jpg">
+  
+  
+  
+  <title>【代码】Lab of Applied Computational Finance - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【代码】Lab of Applied Computational Finance"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-11 15:58" pubdate>
+          March 11, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          22k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          186 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【代码】Lab of Applied Computational Finance</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于格拉斯哥ECON5065中Lab的代码的笔记；</p>
+</blockquote>
+<span id="more"></span>
+<p>如果需要代码与数据可以在 <a target="_blank" rel="noopener" href="https://github.com/Achlier/CodeAndData/tree/main/Applied%20Computational%20Finance%20Lab">本人Github页面</a> 上找到</p>
+<h2 id="Week-2-Newton’s-method-to-compute-implied-volatility"><a href="#Week-2-Newton’s-method-to-compute-implied-volatility" class="headerlink" title="Week 2: Newton’s method to compute implied volatility"></a>Week 2: Newton’s method to compute implied volatility</h2><p>此部分对应于笔记中的 <a href="https://achlier.github.io/2021/05/12/Applied_Computational_Finance/#Unit-1-5：Implied-Volatility">Unit 1.5</a> 。首先，我们用牛顿法对 implied volatility 进行估计，然后将结果画成 implied volatility surface，并与 Matlab 自带的求解 implied volatility 的公式 blsimpv 比较。期权数据来自于 Yahoo Finance。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">vol</span>=<span class="hljs-title">newtoniv</span><span class="hljs-params">(S,K,r,T,price,callput)</span></span><br><span class="hljs-comment">% S is stock price, </span><br><span class="hljs-comment">% K is strike price,  </span><br><span class="hljs-comment">% r is free interest rate, </span><br><span class="hljs-comment">% T is time to maturity, </span><br><span class="hljs-comment">% price is market option price,</span><br><span class="hljs-comment">% callput is 1 if call 0 if put</span><br><br>vol     = <span class="hljs-number">1.0</span>; <span class="hljs-comment">% initial value of implied volatility</span><br>sigma   = vol+<span class="hljs-number">0.1</span>; <span class="hljs-comment">% sigma is volatility in BS model</span><br>maxiter = <span class="hljs-number">20</span>;<br>tol     = <span class="hljs-number">1e-4</span>;<br>iter    = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">% newton-raphson method</span><br><span class="hljs-keyword">while</span> <span class="hljs-built_in">abs</span>(sigma-vol)&gt;tol || iter &lt; maxiter <span class="hljs-comment">% precision of result</span><br>    sigma = vol;<br>    d1    = (<span class="hljs-built_in">log</span>(S/K)+(r+sigma^<span class="hljs-number">2</span>/<span class="hljs-number">2</span>)*T)/(sigma*<span class="hljs-built_in">sqrt</span>(T));<br>    d2    = d1-sigma*<span class="hljs-built_in">sqrt</span>(T);<br>    <span class="hljs-keyword">if</span> callput == <span class="hljs-number">1</span><br>        cp = S*normcdf(d1)-K*<span class="hljs-built_in">exp</span>(-r*T)*normcdf(d2);   <span class="hljs-comment">%European call option price under BS model</span><br>    <span class="hljs-keyword">else</span><br>        cp = K*<span class="hljs-built_in">exp</span>(-r*T)*normcdf(-d2) - S*normcdf(-d1);   <span class="hljs-comment">%European put option price under BS model</span><br>    <span class="hljs-keyword">end</span><br>    vega   = S*<span class="hljs-built_in">sqrt</span>(T)*normpdf(d1);<span class="hljs-comment">% call/put vega</span><br>    fsigma = cp-price;<br>    vol    = sigma-fsigma/vega;<span class="hljs-comment">% 期权对 sigma 的偏导即 vega</span><br>    iter   = iter + <span class="hljs-number">1</span>;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\sigma_{k+1} = \sigma_k - \frac{C(t,T, \sigma_k,K)-C^{obs}(t)}{\frac{\partial}{\partial \sigma}C(t,T, \sigma_k,K)}</script><p>在验证的过程中，使用 Matlab 公式 blsimpv - Black-Scholes implied volatility</p>
+<blockquote>
+<p>This MATLAB function using a Black-Scholes model computes the implied volatilityof an underlying asset from the market value of European call and put options.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;Volatility = blsimpv(Price,Strike,Rate,Time,Value)<br></code></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs matlab">S=<span class="hljs-number">260.05</span>;<span class="hljs-comment">% stock price</span><br>r=<span class="hljs-number">0.02</span>; <span class="hljs-comment">% interest rate</span><br>T=[<span class="hljs-number">4</span>/<span class="hljs-number">365</span>,<span class="hljs-number">11</span>/<span class="hljs-number">365</span>,<span class="hljs-number">18</span>/<span class="hljs-number">365</span>,<span class="hljs-number">25</span>/<span class="hljs-number">365</span>,<span class="hljs-number">32</span>/<span class="hljs-number">365</span>]; <span class="hljs-comment">% time maturity</span><br>K=[<span class="hljs-number">250</span>,<span class="hljs-number">252.5</span>,<span class="hljs-number">255</span>,<span class="hljs-number">257.5</span>,<span class="hljs-number">260</span>,<span class="hljs-number">262.5</span>,<span class="hljs-number">265</span>,<span class="hljs-number">267.5</span>,<span class="hljs-number">270</span>];<span class="hljs-comment">%strike price</span><br>C=[ <span class="hljs-number">10.4</span> <span class="hljs-number">7.73</span> <span class="hljs-number">5.8</span> <span class="hljs-number">3.8</span> <span class="hljs-number">2.3</span> <span class="hljs-number">1.19</span> <span class="hljs-number">0.55</span> <span class="hljs-number">0.25</span> <span class="hljs-number">0.12</span>;<br>    <span class="hljs-number">10.24</span> <span class="hljs-number">8.69</span> <span class="hljs-number">6.6</span> <span class="hljs-number">4.85</span> <span class="hljs-number">3.3</span> <span class="hljs-number">2.2</span> <span class="hljs-number">1.29</span> <span class="hljs-number">0.81</span> <span class="hljs-number">0.46</span>;<br>    <span class="hljs-number">10.9</span> <span class="hljs-number">8.23</span> <span class="hljs-number">6.4</span> <span class="hljs-number">4.65</span> <span class="hljs-number">3.42</span> <span class="hljs-number">2.45</span> <span class="hljs-number">1.72</span> <span class="hljs-number">1.11</span> <span class="hljs-number">0.75</span>;<br>    <span class="hljs-number">12</span> <span class="hljs-number">9.89</span> <span class="hljs-number">7.95</span> <span class="hljs-number">6.4</span> <span class="hljs-number">4.9</span> <span class="hljs-number">3.84</span> <span class="hljs-number">2.52</span> <span class="hljs-number">1.8</span> <span class="hljs-number">1.4</span>;<br>    <span class="hljs-number">11.57</span> <span class="hljs-number">10.83</span>	<span class="hljs-number">8.02</span> <span class="hljs-number">7.26</span> <span class="hljs-number">5.7</span> <span class="hljs-number">4.1</span> <span class="hljs-number">3.55</span> <span class="hljs-number">2.54</span> <span class="hljs-number">1.97</span>;];<span class="hljs-comment">%prices for different maturities in rows</span><br>volatility=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">5</span>,<span class="hljs-number">9</span>);<br><span class="hljs-comment">% plot implied volatility surface</span><br>[x,y]=<span class="hljs-built_in">meshgrid</span>(K,T);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">5</span>  <br>   <span class="hljs-keyword">for</span>  <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-number">9</span><br>     volatility(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>)=blsimpv(S,K(<span class="hljs-built_in">j</span>),r,T(<span class="hljs-built_in">i</span>),C(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>));<br>   <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>surf(x,y,volatility)<br></code></pre></td></tr></table></figure>
+<p><img src="/2022/03/11/Lab_of_Applied_Computational_Finance/pic2-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">5</span>  <br>   <span class="hljs-keyword">for</span>  <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-number">9</span><br>     volatility(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>)=newtoniv(S,K(<span class="hljs-built_in">j</span>),r,T(<span class="hljs-built_in">i</span>),C(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>),<span class="hljs-number">1</span>);<br>   <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>surf(x,y,volatility)<br></code></pre></td></tr></table></figure>
+<p><img src="/2022/03/11/Lab_of_Applied_Computational_Finance/pic2-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>我们可以发现结果是很相似的</p>
+<h2 id="Week-3-Delta-hedging-in-the-Black-Scholes-model"><a href="#Week-3-Delta-hedging-in-the-Black-Scholes-model" class="headerlink" title="Week 3: Delta-hedging in the Black-Scholes model"></a>Week 3: Delta-hedging in the Black-Scholes model</h2><p>此部分主要计算采用 Delta 对冲后的策略价值。首先我们引入股票价格的增长公式</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ST</span>=<span class="hljs-title">BSpath</span><span class="hljs-params">(S0,mu,sigma,T,n,N)</span></span><br><span class="hljs-comment">% S0 is the initial stock price, </span><br><span class="hljs-comment">% K is strike price,  </span><br><span class="hljs-comment">% r is free interest rate, </span><br><span class="hljs-comment">% T is time to maturity, </span><br><span class="hljs-comment">% n is the number of time discretisation steps,</span><br><span class="hljs-comment">% N is the sample size</span><br><span class="hljs-comment">% mu is the asset&#x27;s rate of return </span><br><span class="hljs-comment">% sigma is the asset&#x27;s volatility</span><br><br>nstep = power(<span class="hljs-number">2</span>,n); <span class="hljs-comment">% 步数</span><br>delt = T/nstep; <span class="hljs-comment">% 每步时间间隔</span><br>const = <span class="hljs-built_in">ones</span>(N,nstep+<span class="hljs-number">1</span>)*(mu - <span class="hljs-number">0.5</span>*sigma*sigma)*delt; <span class="hljs-comment">% 计算 s（t+1）时固定增长量</span><br>BMval = normrnd(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,[N,nstep+<span class="hljs-number">1</span>]); <span class="hljs-comment">% Brownian Motion Value/Matrix</span><br>BMval(<span class="hljs-number">1</span>:N,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>const(<span class="hljs-number">1</span>:N,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>incr = const + sigma*<span class="hljs-built_in">sqrt</span>(delt)*BMval;<br>ST = S0*cumprod(<span class="hljs-built_in">exp</span>(incr));<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>其中 cumprod 输出的是累计乘积的值</p>
+<blockquote>
+<p>cumprod([1 2 3])</p>
+<p>ans =</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>因此 BSpath 输出的是股票波动的路径。我们在此基础上建立对冲资产组合的路径。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[X,PNL]</span>=<span class="hljs-title">deltahedge</span><span class="hljs-params">(S0,K,r,mu,sigma,T,n,N)</span></span><br><span class="hljs-comment">% S0 is the initial stock price, </span><br><span class="hljs-comment">% K is strike price,  </span><br><span class="hljs-comment">% r is free interest rate, </span><br><span class="hljs-comment">% T is time to maturity, </span><br><span class="hljs-comment">% n is the number of time discretisation steps,</span><br><span class="hljs-comment">% N is the sample size</span><br><span class="hljs-comment">% mu is the asset&#x27;s rate of return </span><br><span class="hljs-comment">% sigma is the asset&#x27;s volatility</span><br><br>strike = K;<br>nstep = power(<span class="hljs-number">2</span>,n); <span class="hljs-comment">% number of time steps</span><br>delt = T/nstep;<span class="hljs-comment">% time step size</span><br>tstep = <span class="hljs-built_in">linspace</span>(<span class="hljs-number">0</span>,T,nstep+<span class="hljs-number">1</span>);<br>const = <span class="hljs-built_in">ones</span>(N,nstep+<span class="hljs-number">1</span>)*(mu - <span class="hljs-number">0.5</span>*sigma*sigma)*delt;<br>BMval = normrnd(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,[N,nstep+<span class="hljs-number">1</span>]); <span class="hljs-comment">% Brownian motion increments</span><br>BMval(<span class="hljs-number">1</span>:N,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>const(<span class="hljs-number">1</span>:N,<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>incr = const + sigma*<span class="hljs-built_in">sqrt</span>(delt)*BMval;<br>ST = S0*cumprod(<span class="hljs-built_in">exp</span>(incr),<span class="hljs-number">2</span>);<br><span class="hljs-comment">% Compute delta at each readjustment time</span><br>tt = T-tstep(<span class="hljs-number">1</span>:nstep); <span class="hljs-comment">% 剩余时间</span><br>X = <span class="hljs-built_in">zeros</span>(N,<span class="hljs-built_in">length</span>(K)); <span class="hljs-comment">% final value of the self-financing portfolio</span><br>PNL = <span class="hljs-built_in">zeros</span>(N,<span class="hljs-built_in">length</span>(K)); <span class="hljs-comment">% Profit and loss over Monte Carlo sample paths</span><br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:N<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(K)<br>        price = blsprice(S0,strike(<span class="hljs-built_in">j</span>),r,T,sigma); <span class="hljs-comment">% Black-Scholes call price</span><br>        d1 = (<span class="hljs-built_in">log</span>(ST(<span class="hljs-built_in">i</span>,<span class="hljs-number">1</span>:nstep)./(strike(<span class="hljs-built_in">j</span>)*<span class="hljs-built_in">exp</span>(-r*tt))) + <span class="hljs-number">0.5</span>*sigma*sigma*tt)./(sigma*<span class="hljs-built_in">sqrt</span>(tt));<br>        delta = normcdf(d1); <span class="hljs-comment">% 每时期对冲需要的股票数</span><br>        temp = ST(<span class="hljs-built_in">i</span>,<span class="hljs-number">2</span>:nstep+<span class="hljs-number">1</span>).*<span class="hljs-built_in">exp</span>(-r*tstep(<span class="hljs-number">2</span>:nstep+<span class="hljs-number">1</span>)) - ST(<span class="hljs-built_in">i</span>,<span class="hljs-number">1</span>:nstep).*<span class="hljs-built_in">exp</span>(-r*tstep(<span class="hljs-number">1</span>:nstep)); <span class="hljs-comment">% 每时期持有一单位股票收益</span><br>        chng = delta.*temp;<br>        X(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>) = <span class="hljs-built_in">exp</span>(r*T)*(price +sum(chng));<br>        PNL(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>) = <span class="hljs-built_in">exp</span>(-r*T)*(X(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>) - <span class="hljs-built_in">max</span>(ST(<span class="hljs-built_in">i</span>,nstep+<span class="hljs-number">1</span>)-strike(<span class="hljs-built_in">j</span>),<span class="hljs-number">0</span>));<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs matlab">S0 = <span class="hljs-number">100</span>; <span class="hljs-comment">%Starting price</span><br>r = <span class="hljs-number">0.05</span>; <span class="hljs-comment">%interest rate</span><br>T = <span class="hljs-number">1</span>; <span class="hljs-comment">%call option maturity</span><br>n = <span class="hljs-number">5</span>; <span class="hljs-comment">%exponent in the number of time steps</span><br>N = <span class="hljs-number">1000</span>; <span class="hljs-comment">%number of Monte Carlo sample paths</span><br>mu = <span class="hljs-number">0.02</span>; <span class="hljs-comment">%asset return</span><br>sigma = <span class="hljs-number">0.2</span>; <span class="hljs-comment">%volatility parameter</span><br>K = <span class="hljs-number">80</span>; <span class="hljs-comment">%option strike</span><br><br>[X,PNL]=deltahedge(S0,K,r,mu,sigma,T,n,N);<br><span class="hljs-built_in">mean</span>(PNL)<br>var(PNL)<br></code></pre></td></tr></table></figure>
+<p>如果将 n 从 5 增长到 8/10。Mean 和 Var 将由下表所示</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>n =</th>
+<th>5</th>
+<th>8</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean</td>
+<td>0.01219</td>
+<td>0.00385</td>
+<td>0.00122</td>
+</tr>
+<tr>
+<td>Var</td>
+<td>0.31075</td>
+<td>0.04385</td>
+<td>0.01038</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>从中我们可以发现，收益的均值随着对冲的频率增加而减少，但是波动也随之减少。另外，虽然我们的结果显示收益大多为正数，但是在我们的代码中并没考虑到交易成本这一问题，在现实的交易中，频繁的交易可能会带来大量的手续费。因此，在动态对冲中，过于频繁地调整组合也不一定是一件好事。</p>
+<h2 id="Week-4-Pricing-European-options-in-Heston‘s-model-using-inverse-Fourier-transform"><a href="#Week-4-Pricing-European-options-in-Heston‘s-model-using-inverse-Fourier-transform" class="headerlink" title="Week 4: Pricing European options in Heston‘s model using inverse Fourier transform"></a>Week 4: Pricing European options in Heston‘s model using inverse Fourier transform</h2><p>此部分对应于笔记中的 <a href="https://achlier.github.io/2021/05/12/Applied_Computational_Finance/#Unit-2-9：The-Heston-Model">Unit 2.9</a> 。普通定价模型中将风险定义为一个常量，而Heston’s Stochastic Volatility Model 则将其定义为一个随时间变换的值。并且 sigma 的值是 mean-reversion 的。如果它偏离了 mean 会有一种力量把它纠正回原点的方向。</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+\begin{align}
+&d\sigma_t^2=k(\theta-\sigma_t^2)dt+\delta\sigma_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt\\
+or,\ &dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t,\ with\ v_t=\sigma_t^2
+\end{align}</script><p>解出定价公式需要用到 <a href="https://achlier.github.io/2021/05/30/Fourier_Transform/">Fourier transform</a> 的知识，但这在我们的课程中并不做要求。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">call</span> = <span class="hljs-title">HestonCallQuad</span><span class="hljs-params">(kappa,theta,sigma,rho,v0,r,T,s0,K)</span></span><br>warning off;<br>call = s0*HestonP(kappa,theta,sigma,rho,v0,r,T,s0,K,<span class="hljs-number">1</span>) - ...<br>K*<span class="hljs-built_in">exp</span>(-r*T)*HestonP(kappa,theta,sigma,rho,v0,r,T,s0,K,<span class="hljs-number">2</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ret</span> = <span class="hljs-title">HestonP</span><span class="hljs-params">(kappa,theta,sigma,rho,v0,r,T,s0,K,type)</span></span><br>ret = <span class="hljs-number">0.5</span> + <span class="hljs-number">1</span>/<span class="hljs-built_in">pi</span>*quadl(@HestonPIntegrand,<span class="hljs-number">0</span>,<span class="hljs-number">100</span>,[],[],kappa, ...<br>theta,sigma,rho,v0,r,T,s0,K,<span class="hljs-built_in">type</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ret</span> = <span class="hljs-title">HestonPIntegrand</span><span class="hljs-params">(phi,kappa,theta,sigma,rho, ...</span></span><br><span class="hljs-params"><span class="hljs-function">v0,r,T,s0,K,type)</span></span><br>ret = <span class="hljs-built_in">real</span>(<span class="hljs-built_in">exp</span>(<span class="hljs-number">-1</span><span class="hljs-built_in">i</span>*phi*<span class="hljs-built_in">log</span>(K)).*Hestf(phi,kappa,theta,sigma, ...<br>rho,v0,r,T,s0,<span class="hljs-built_in">type</span>)./(<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*phi));<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span> = <span class="hljs-title">Hestf</span><span class="hljs-params">(phi,kappa,theta,sigma,rho,v0,r,T,s0,type)</span></span><br><span class="hljs-keyword">if</span> <span class="hljs-built_in">type</span> == <span class="hljs-number">1</span><br>u = <span class="hljs-number">0.5</span>;<br>b = kappa - rho*sigma;<br><span class="hljs-keyword">else</span><br>u = <span class="hljs-number">-0.5</span>;<br>b = kappa;<br><span class="hljs-keyword">end</span><br>a = kappa*theta; x = <span class="hljs-built_in">log</span>(s0);<br>d = <span class="hljs-built_in">sqrt</span>((rho*sigma*phi.*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>-b).^<span class="hljs-number">2</span>-sigma^<span class="hljs-number">2</span>*(<span class="hljs-number">2</span>*u*phi.*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>-phi.^<span class="hljs-number">2</span>));<br>g = (b-rho*sigma*phi*<span class="hljs-number">1</span><span class="hljs-built_in">i</span> + d)./(b-rho*sigma*phi*<span class="hljs-number">1</span><span class="hljs-built_in">i</span> - d);<br>C = r*phi.*<span class="hljs-number">1</span><span class="hljs-built_in">i</span>*T + a/sigma^<span class="hljs-number">2.</span>*((b- rho*sigma*phi*<span class="hljs-number">1</span><span class="hljs-built_in">i</span> + d)*T - ...<br><span class="hljs-number">2</span>*<span class="hljs-built_in">log</span>((<span class="hljs-number">1</span>-g.*<span class="hljs-built_in">exp</span>(d*T))./(<span class="hljs-number">1</span>-g)));<br>D = (b-rho*sigma*phi*<span class="hljs-number">1</span><span class="hljs-built_in">i</span> + d)./sigma^<span class="hljs-number">2.</span>*((<span class="hljs-number">1</span>-<span class="hljs-built_in">exp</span>(d*T))./ ...<br>(<span class="hljs-number">1</span>-g.*<span class="hljs-built_in">exp</span>(d*T)));<br>f = <span class="hljs-built_in">exp</span>(C + D*v0 + <span class="hljs-number">1</span><span class="hljs-built_in">i</span>*phi*x);<br></code></pre></td></tr></table></figure>
+<p>Matlab 强大的数学运算功能提供了我们一个非常方便的工具来运算解，使用 quadl 来进行数值积分大大减少了我们的负担。但值得注意的是，quadl 进行的运算是以矩阵的形式，因此进行积分的公式需要兼容矩阵运算的格式。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% initialization of parameters for Heston model</span><br>s0=<span class="hljs-number">100</span>;<span class="hljs-comment">% stock price</span><br>r=<span class="hljs-number">0.02</span>; <span class="hljs-comment">% interest rate</span><br>kappa=<span class="hljs-number">5</span>; <span class="hljs-comment">% speed of mean reversion</span><br>theta=<span class="hljs-number">0.04</span>;<span class="hljs-comment">% long term mean</span><br>sigma=<span class="hljs-number">0.5</span>; <span class="hljs-comment">% volatility of volatility</span><br>rho=<span class="hljs-number">-0.7</span>;<br>v0=<span class="hljs-number">0.5</span>;<span class="hljs-comment">% initial variance</span><br>T=[<span class="hljs-number">0.2</span>,<span class="hljs-number">0.4</span>,<span class="hljs-number">0.6</span>,<span class="hljs-number">0.8</span>,<span class="hljs-number">1</span>]; <span class="hljs-comment">% time maturity</span><br>K=[<span class="hljs-number">80</span>,<span class="hljs-number">90</span>,<span class="hljs-number">100</span>,<span class="hljs-number">110</span>,<span class="hljs-number">120</span>]; <span class="hljs-comment">% strike price</span><br><br>C=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">5</span><br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-number">5</span><br>        C(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>)=HestonCallQuad(kappa,theta,sigma,rho,v0,r,T(<span class="hljs-built_in">i</span>),s0,K(<span class="hljs-built_in">j</span>)); <span class="hljs-comment">% European call option price under Heston model</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br><br>volatility=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>);<br><span class="hljs-comment">% plot implied volatility surface</span><br>[x,y]=<span class="hljs-built_in">meshgrid</span>(T,K);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>:<span class="hljs-number">5</span><br>   <span class="hljs-keyword">for</span>  <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:<span class="hljs-number">5</span><br>     volatility(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>)=blsimpv(s0,K(<span class="hljs-built_in">j</span>),r,T(<span class="hljs-built_in">i</span>),C(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>));<br>   <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>surf(x,y,volatility)<br></code></pre></td></tr></table></figure>
+<p><img src="/2022/03/11/Lab_of_Applied_Computational_Finance/pic4-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>如果将 sigma=0.5 代入 Heston’s Model 求出的值重新用 blsimpv 求 volatility。我们可以从图中发现，结果确实是围绕在 0.5 附近的。</p>
+<h2 id="Week-5-Calibration-of-Heston’s-model-to-market-data"><a href="#Week-5-Calibration-of-Heston’s-model-to-market-data" class="headerlink" title="Week 5: Calibration of Heston’s model to market data"></a>Week 5: Calibration of Heston’s model to market data</h2><p>但实际上 Heston’s model 的准确度非常依赖它的系数与波动率初始值 （$\kappa,\theta,\sigma,\rho,v_0$）。因此，在运用模型之前还需要运用 lsqnonlin 对模型的系数进行训练。如果令 $\Theta = (\kappa,\theta,\sigma,\rho,v_0)$，优化函数则是</p>
+<script type="math/tex; mode=display">
+\min_{\Theta}\sum_{i,j}w_{i,j}(P^{model(\Theta)}(T_i,K_j)-P^{market}(T_i,k_j))^2</script><script type="math/tex; mode=display">
+w_{ij}=\frac1{|P^{market,bid}(T_i,K_j)-P^{market,ask}(T_i,K_j)|}</script><script type="math/tex; mode=display">
+P^{market}(T_i,k_j)=\frac{P^{market,bid}(T_i,K_j)+P^{market,ask}(T_i,K_j)}2</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ret</span> = <span class="hljs-title">HestonDifferences</span><span class="hljs-params">(input)</span></span><br><span class="hljs-keyword">global</span> NoOfOptions;<br><span class="hljs-keyword">global</span> OptionData;<br><span class="hljs-keyword">global</span> NoOfIterations;<br><span class="hljs-keyword">global</span> PriceDifference;<br>NoOfIterations = NoOfIterations + <span class="hljs-number">1</span>;<br><span class="hljs-comment">%counts the no of iterations run to calibrate model</span><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:NoOfOptions<br>PriceDifference(<span class="hljs-built_in">i</span>) = (OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">5</span>)-HestonCallQuad( ...<br>(input(<span class="hljs-number">1</span>)+input(<span class="hljs-number">3</span>)^<span class="hljs-number">2</span>)/(<span class="hljs-number">2</span>*input(<span class="hljs-number">2</span>)),input(<span class="hljs-number">2</span>),input(<span class="hljs-number">3</span>),input(<span class="hljs-number">4</span>),input(<span class="hljs-number">5</span>), ...<br>OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">1</span>),OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">2</span>),OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">3</span>),OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">4</span>)))...<br>/<span class="hljs-built_in">sqrt</span>((<span class="hljs-built_in">abs</span>(OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">6</span>)- OptionData(<span class="hljs-built_in">i</span>,<span class="hljs-number">7</span>))));<br><span class="hljs-comment">%Option Value-Estimated Value(4个系数，4个已知)</span><br><span class="hljs-comment">%kappa=(?+sigma^2)/2theta,theta,sigma,rho,v0,r,T,s0,K</span><br><span class="hljs-comment">%sqrt((abs(OptionData(i,6)-OptionData(i,7))))-&gt; w_ij (weight)</span><br><span class="hljs-keyword">end</span><br>ret = PriceDifference&#x27;;<br></code></pre></td></tr></table></figure>
+<p>因为要求 $\kappa &gt; \sigma^2/2\theta$ ，input(1) 需要大于0</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clear;<br><span class="hljs-keyword">global</span> OptionData;<br><span class="hljs-keyword">global</span> NoOfOptions;<br><span class="hljs-keyword">global</span> NoOfIterations;<br><span class="hljs-keyword">global</span> PriceDifference;<br>NoOfIterations = <span class="hljs-number">0</span>;<br>load OptionData.m ;<br><span class="hljs-comment">%OptionData = [r,T,S0,K,Option Value,bid,offer]</span><br>Size = <span class="hljs-built_in">size</span>(OptionData);<br>NoOfOptions = Size(<span class="hljs-number">1</span>);<br><span class="hljs-comment">%input sequence in initial vectors [2*kappa*theta - sigma^2,theta,sigma,rho,v0]</span><br><span class="hljs-comment">%x0 = [0.05 0.05 0.5 -0.5 0.15];</span><br>x0 = [<span class="hljs-number">0.5</span> <span class="hljs-number">0.1</span> <span class="hljs-number">1.3</span> <span class="hljs-number">-0.75</span> <span class="hljs-number">0.2</span>]; <span class="hljs-comment">% 系数训练初始值</span><br>lb = [<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">-1</span> <span class="hljs-number">0</span>]; <span class="hljs-comment">% 系数训练最小值</span><br>ub = [<span class="hljs-number">20</span> <span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>]; <span class="hljs-comment">% 系数训练最大值</span><br>options = optimset(<span class="hljs-string">&#x27;MaxFunEvals&#x27;</span>,<span class="hljs-number">20000</span>);<br><span class="hljs-comment">%sets the max no. of iteration to 20000 so that termination doesn&#x27;t take place early.</span><br>tic;<br>Calibration = lsqnonlin(@HestonDifferences,x0,lb,ub);<br>toc;<br>Solution = [(Calibration(<span class="hljs-number">1</span>)+Calibration(<span class="hljs-number">3</span>)^<span class="hljs-number">2</span>)/(<span class="hljs-number">2</span>*Calibration(<span class="hljs-number">2</span>)), Calibration(<span class="hljs-number">2</span>:<span class="hljs-number">5</span>)];<br><span class="hljs-comment">%output sequence in Solution = [kappa,theta,sigma,rho,v0]</span><br></code></pre></td></tr></table></figure>
+<h2 id="Week-6-Pricing-of-European-option-in-Heston’s-model-using-the-Monte-Carlo-method"><a href="#Week-6-Pricing-of-European-option-in-Heston’s-model-using-the-Monte-Carlo-method" class="headerlink" title="Week 6: Pricing of European option in Heston’s model using the Monte Carlo method"></a>Week 6: Pricing of European option in Heston’s model using the Monte Carlo method</h2><p>此部分对应于笔记中的 <a href="https://achlier.github.io/2021/05/12/Applied_Computational_Finance/#Unit-3-1：Monte-Carlo-methods">Unit 3.1</a> 。蒙特卡洛部分要使用 Euler-Maruyama 和 Milstein schemes 两种方法来运算，并且对比。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% European call option under Heston model with Euler-Maruyama-Method and Milstein method</span><br>clear all;<br>M = <span class="hljs-number">50000</span>; <span class="hljs-comment">% number of paths</span><br>N = <span class="hljs-number">100</span>;<span class="hljs-comment">% number of time steps</span><br>T = <span class="hljs-number">1</span>;<span class="hljs-comment">% maturity</span><br>h = T/N;<span class="hljs-comment">%delta t</span><br>S0 = <span class="hljs-number">100</span>; <br>sigma20 = <span class="hljs-number">0.0625</span>; <span class="hljs-comment">%variance at t=0</span><br>K=<span class="hljs-number">100</span>; <span class="hljs-comment">% strike</span><br>kappa = <span class="hljs-number">2</span>;<br>theta = <span class="hljs-number">0.4</span>;<br>nu = <span class="hljs-number">0.2</span>;<br>rho = <span class="hljs-number">-0.7</span>;<br>r=<span class="hljs-number">0.02</span>;<br><br><span class="hljs-comment">% two dimensional Brownian motion</span><br>dW1 = <span class="hljs-built_in">randn</span>(M,N+<span class="hljs-number">1</span>)*<span class="hljs-built_in">sqrt</span>(h);<br>dW2 = rho*dW1 + <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>-rho^<span class="hljs-number">2</span>)*<span class="hljs-built_in">randn</span>(M,N+<span class="hljs-number">1</span>)*<span class="hljs-built_in">sqrt</span>(h);<br></code></pre></td></tr></table></figure>
+<p>Euler Maruyama method 的主要公式是</p>
+<script type="math/tex; mode=display">
+dX(t)=b(t,X(t))dt+\sigma(t,X(t))dW_t</script><script type="math/tex; mode=display">
+X_n^h:=X(t_n^h)=X_{n-1}^h+b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p>其中 </p>
+<script type="math/tex; mode=display">
+b(t,X(t))\Rightarrow k(\theta-\sigma_t^2)dt\quad \sigma(t,X(t))\Rightarrow\delta\sigma_tdW'_t</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% Initialisation of stock price and volatility for Euler Maruyama method</span><br>S = S0*<span class="hljs-built_in">ones</span>(M,N+<span class="hljs-number">1</span>);<br>sigma2 = sigma20*<span class="hljs-built_in">ones</span>(M,N+<span class="hljs-number">1</span>);<br><br><span class="hljs-comment">% Solution of the SDE-System with Euler-Maruyama-Method</span><br><span class="hljs-comment">% <span class="hljs-doctag">NOTE:</span> we don&#x27;t need to store the entire simulation path to compute the </span><br><span class="hljs-comment">%European option payoff!</span><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:N<br>    sigma2(:,<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>) = sigma2(:,<span class="hljs-built_in">i</span>) + kappa*(theta-sigma2(:,<span class="hljs-built_in">i</span>))*h ...<br>        + nu*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">abs</span>(sigma2(:,<span class="hljs-built_in">i</span>))).*dW2(:,<span class="hljs-built_in">i</span>);<br>    S(:,<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>) = S(:,<span class="hljs-built_in">i</span>).*(<span class="hljs-number">1</span> + r*h + <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">abs</span>(sigma2(:,<span class="hljs-built_in">i</span>))).*dW1(:,<span class="hljs-built_in">i</span>));<br><span class="hljs-keyword">end</span><br><br>payoff = <span class="hljs-built_in">exp</span>(-r*T)*<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,S(:,<span class="hljs-keyword">end</span>)-K);<br>stdpayoff = std(payoff);<br>V = <span class="hljs-built_in">mean</span>(payoff)<br>Vleft = V - <span class="hljs-number">1.96</span>*stdpayoff/<span class="hljs-built_in">sqrt</span>(M)<br>Vright = V + <span class="hljs-number">1.96</span>*stdpayoff/<span class="hljs-built_in">sqrt</span>(M)<br></code></pre></td></tr></table></figure>
+<p>Milstein Scheme 的主要公式是</p>
+<script type="math/tex; mode=display">
+X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma\sigma_t((\Delta W_n^h)^2-h)</script><p>其中</p>
+<script type="math/tex; mode=display">
+\partial_x\sigma\Rightarrow \partial_{\sigma^2}\delta\sigma_t=\frac\delta{2\sigma_t}</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">% Initialisation of stock price and volatility for Milstein method</span><br>S1 = S0*<span class="hljs-built_in">ones</span>(M,N+<span class="hljs-number">1</span>);<br>sigma3 = sigma20*<span class="hljs-built_in">ones</span>(M,N+<span class="hljs-number">1</span>);<br><span class="hljs-comment">% Solution of the Milstein method</span><br><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:N<br>    sigma3(:,<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>) = sigma3(:,<span class="hljs-built_in">i</span>) + kappa*(theta-sigma3(:,<span class="hljs-built_in">i</span>))*h ...<br>        + nu*<span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">abs</span>(sigma3(:,<span class="hljs-built_in">i</span>))).*dW2(:,<span class="hljs-built_in">i</span>)+<span class="hljs-number">1</span>/<span class="hljs-number">4</span>*nu.*(dW2(:,<span class="hljs-built_in">i</span>).^<span class="hljs-number">2</span>-h);<br>    S1(:,<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>) = S1(:,<span class="hljs-built_in">i</span>).*(<span class="hljs-number">1</span> + r*h + <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">abs</span>(sigma3(:,<span class="hljs-built_in">i</span>))).*dW1(:,<span class="hljs-built_in">i</span>))+<span class="hljs-number">1</span>/<span class="hljs-number">2</span>*sigma3(:,<span class="hljs-built_in">i</span>).*S1(:,<span class="hljs-built_in">i</span>).*(dW1(:,<span class="hljs-built_in">i</span>).^<span class="hljs-number">2</span>-h);<br><span class="hljs-keyword">end</span><br><br>payoff1 = <span class="hljs-built_in">exp</span>(-r*T)*<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,S1(:,<span class="hljs-keyword">end</span>)-K);<br>stdpayoff1 = std(payoff1);<br>V1 = <span class="hljs-built_in">mean</span>(payoff1)<br>V1left = V1 - <span class="hljs-number">1.96</span>*stdpayoff1/<span class="hljs-built_in">sqrt</span>(M)<br>V1right = V1 + <span class="hljs-number">1.96</span>*stdpayoff1/<span class="hljs-built_in">sqrt</span>(M)<br></code></pre></td></tr></table></figure>
+<p>运算的结果，可以与前面的 HestonCallQuad 进行确认</p>
+<h2 id="Week-7-Variance-reduction-method-in-the-Black-Scholes-model-for-Asian-option-pricing"><a href="#Week-7-Variance-reduction-method-in-the-Black-Scholes-model-for-Asian-option-pricing" class="headerlink" title="Week 7: Variance reduction method in the Black-Scholes model for Asian option pricing"></a>Week 7: Variance reduction method in the Black-Scholes model for Asian option pricing</h2><p>此部分对应笔记中的 <a href="https://achlier.github.io/2021/05/12/Applied_Computational_Finance/#Control-Variates">Unit 3.2.1</a>。我们想要预测 Arithmetic average Asian call option 的价格，同时将 Geometric average Asian option 作为 control variate 来降低预测值的 VAR。在代码中使用的 Geometric Asian option 的定价方程参考于 Nielsen 的论文《Pricing Asian Options》^[1]^。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[Pasian_cv,CIasian_cv,Pasian,CIasian,Pgm,CIgm,Pgeo]</span> = <span class="hljs-title">asiancall_cv</span><span class="hljs-params">(S0,K,r,sigma,T,n,N,b)</span></span><br>dt= T/n;<br>R = <span class="hljs-built_in">exp</span>(-r*T);<br>m = (r - sigma^<span class="hljs-number">2</span>/<span class="hljs-number">2</span>)*dt;<br>s = sigma*<span class="hljs-built_in">sqrt</span>(dt);<br>Vcall = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,N);<br>Vgmcall = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,N);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span> = <span class="hljs-number">1</span>:N<br>    Z= m+s*<span class="hljs-built_in">randn</span>(<span class="hljs-number">1</span>,n);<br>    S = cumsum([<span class="hljs-built_in">log</span>(S0), Z],<span class="hljs-number">2</span>);<br>    Vcall(<span class="hljs-built_in">j</span>) = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">mean</span>(<span class="hljs-built_in">exp</span>(S))-K,<span class="hljs-number">0</span>); <span class="hljs-comment">% Arithmetic average</span><br>    Vgmcall(<span class="hljs-built_in">j</span>) = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">exp</span>(<span class="hljs-built_in">mean</span>(S))-K,<span class="hljs-number">0</span>); <span class="hljs-comment">% Geometric average</span><br><span class="hljs-keyword">end</span><br>Pasian = <span class="hljs-built_in">mean</span>(R*Vcall); <br>CIasian = std(R*Vcall)/<span class="hljs-built_in">sqrt</span>(N);<br>Pgm = <span class="hljs-built_in">mean</span>(R*Vgmcall);<br>CIgm = std(R*Vgmcall)/<span class="hljs-built_in">sqrt</span>(N);<br><br>sigmaG = sigma*<span class="hljs-built_in">sqrt</span>(dt*(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>)*(n+<span class="hljs-number">1</span>)/(<span class="hljs-number">6</span>*n));<br>muG = <span class="hljs-built_in">log</span>(S0) + <span class="hljs-number">1</span>/<span class="hljs-number">2</span>*(r-sigma^<span class="hljs-number">2</span>/<span class="hljs-number">2</span>)*(T+dt);<br>d1 = (muG -<span class="hljs-built_in">log</span>(K) + sigmaG^<span class="hljs-number">2</span>)/sigmaG;<br>d2 = d1 - sigmaG;<br>Pgeo = R*(<span class="hljs-built_in">exp</span>(muG+<span class="hljs-number">0.5</span>*sigmaG^<span class="hljs-number">2</span>)*normcdf(d1) - K*normcdf(d2)); <span class="hljs-comment">% the price of Geometric Asian option</span><br><br>Pasian_cv = R*Vcall - b*(R*Vgmcall-Pgeo);<br>CIasian_cv = std(Pasian_cv)/<span class="hljs-built_in">sqrt</span>(N);<br>Pasian_cv = <span class="hljs-built_in">mean</span>(Pasian_cv);<br><br></code></pre></td></tr></table></figure>
+<p>Variance reduction 主要的部分是</p>
+<script type="math/tex; mode=display">
+Y_i(\hat b_N):=Y_i-\hat b_N(X_i-\alpha_0)</script><ul>
+<li><p>$\alpha_0$ ：Pgeo</p>
+</li>
+<li><p>变量 $\hat b_N$ 的值是一个固定的数，需要预先拟合出来。</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+b^*=\frac{Cov(X,Y)}{Var(X)}</script><blockquote>
+<p>[1] Nielsen, L. Pricing Asian Options. Master of Science Dissertation, University of Aarhus</p>
+</blockquote>
+<h2 id="Week-8-Finite-difference-method-to-solve-the-Black-Scholes-PDE"><a href="#Week-8-Finite-difference-method-to-solve-the-Black-Scholes-PDE" class="headerlink" title="Week 8: Finite difference method to solve the Black-Scholes PDE"></a>Week 8: Finite difference method to solve the Black-Scholes PDE</h2><p>此部分对应笔记中的 <a href="https://achlier.github.io/2021/05/12/Applied_Computational_Finance/#Unit-4-1：Finite-difference-methods">Unit 4.1</a> 。代码只包括 Explicit Scheme 的部分，对于 Implicit Scheme 的部分需要用到 c 语言编写的程序 thomas，暂时没有进行详细的阅读，就不放在笔记中了。更多相关知识也可以搜索数值分析课程进行学习。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clear all<br>close all<br><br>J=<span class="hljs-number">1000</span>;<br>S0=<span class="hljs-number">17</span>;<br><span class="hljs-comment">% time steps to ensure numerical convergence</span><br>N = J^<span class="hljs-number">2</span>;<br>K = <span class="hljs-number">15</span>;<br>logstrk = <span class="hljs-built_in">log</span>(K);<br>T=<span class="hljs-number">0.3041</span>;<br>r=<span class="hljs-number">0.03</span>;<br>sigma = <span class="hljs-number">0.25</span>;<br>mu = r - <span class="hljs-number">0.5</span>*sigma^<span class="hljs-number">2</span>;<br>xmin = <span class="hljs-built_in">log</span>(<span class="hljs-number">10e-6</span>);<br>xmax = <span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>*K);<br>dx=(xmax-xmin)/J; <br>x=[xmin:dx:xmax]&#x27;; <span class="hljs-comment">%length = J+1</span><br>dt=T/N;<br><br>V=<span class="hljs-built_in">max</span>(<span class="hljs-number">0</span>,<span class="hljs-built_in">exp</span>(x)-K);<br>Vold=V;<br>const1 = <span class="hljs-number">1</span> - sigma^<span class="hljs-number">2</span>*dt/dx^<span class="hljs-number">2</span>;<br>const2 = <span class="hljs-number">0.5</span>*sigma^<span class="hljs-number">2</span>*dt/dx^<span class="hljs-number">2</span>;<br>const3 = <span class="hljs-number">0.5</span>*mu*dt/dx;<br><br><span class="hljs-keyword">for</span> n=<span class="hljs-number">1</span>:N <br>    <span class="hljs-comment">%boundary condition at x = xmin  </span><br>    V(<span class="hljs-number">1</span>)=<span class="hljs-number">0</span>;  <br>        <br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">2</span>:J <span class="hljs-comment">%in the interior</span><br>        V(<span class="hljs-built_in">j</span>)= Vold(<span class="hljs-built_in">j</span>)*const1 + Vold(<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>)*(const2+const3) + Vold(<span class="hljs-built_in">j</span><span class="hljs-number">-1</span>)*(const2-const3) - r*dt*Vold(<span class="hljs-built_in">j</span>);<br>    <span class="hljs-keyword">end</span><br>    <br>    <span class="hljs-comment">%boundary condition at x = xmax</span><br>    V(J+<span class="hljs-number">1</span>)= <span class="hljs-built_in">exp</span>(xmax)-K;<br>    <br>    Vold=V;<br><span class="hljs-keyword">end</span><br><br>V_Final = interp1(x, V, <span class="hljs-built_in">log</span>(S0));<br><br><span class="hljs-built_in">figure</span>(<span class="hljs-number">1</span>)<br>clf<br><span class="hljs-built_in">plot</span>(<span class="hljs-built_in">exp</span>(x),V)<br>xlabel(<span class="hljs-string">&#x27;asset price&#x27;</span>)<br>ylabel(<span class="hljs-string">&#x27;call price&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="Week-9-Finite-difference-method-to-solve-the-Heston-model-PDE"><a href="#Week-9-Finite-difference-method-to-solve-the-Heston-model-PDE" class="headerlink" title="Week 9: Finite difference method to solve the Heston model PDE"></a>Week 9: Finite difference method to solve the Heston model PDE</h2><p>本章代码是根据 Sensen Lin 的论文 《Finite Difference Schemes for Heston Model》^[2]^。其中定义 Heston model</p>
+<script type="math/tex; mode=display">
+d S=\mu S d t+\sqrt{v(t)} S d z_{1}(t)</script><script type="math/tex; mode=display">
+d v(t)=\kappa[\theta-v(t)] d t+\delta\sqrt{v(t)} d z_{2}(t)</script><p>那么期权合约 C 服从 partial differential equation</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{1}{2} v S^{2} \frac{\partial^{2} C}{\partial S^{2}}+\rho \delta v S \frac{\partial^{2} C}{\partial S \partial v}+\frac{1}{2} \delta^{2} v \frac{\partial^{2} C}{\partial v^{2}}+r S \frac{\partial C}{\partial S} \\
++\kappa(\theta-v(t))\frac{\partial C}{\partial v}-r C+\frac{\partial C}{\partial t} & = 0
+\end{align}</script><p> 其边界条件为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&C(s, v, T) = \max (0, s-K) \\
+&C(0, v, T) = 0 \\
+&C(s, \infty, t) = s\\
+&\frac{\partial C}{\partial s}(\infty, v, t) = 1 \\
+&r s \frac{\partial C}{\partial s}(s, 0, t)+\kappa \theta\frac{\partial C}{\partial v}(s, 0, t)-r C(s, 0, t)+\frac{\partial C}{\partial t}(s, 0, t) = 0
+\end{align}</script><p>公式中的偏导部分可以变换为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\frac{\partial C}{\partial S}(i\Delta s,j\Delta v) \approx \frac{C_{i+1, j}-C_{i-1, j}}{2 \Delta s} \\
+&\frac{\partial C}{\partial v}(i\Delta s,j\Delta v) \approx \frac{C_{i, j+1}-C_{i, j-1}}{2 \Delta v} \\
+&\frac{\partial^{2} C}{\partial S^{2}}(i\Delta s,j\Delta v) \approx \frac{C_{i+1, j}-2 C_{i, j}+C_{i-1, j}}{(\Delta s)^{2}} \\
+&\frac{\partial^{2} C}{\partial v^{2}}(i\Delta s,j\Delta v) \approx \frac{C_{i, j+1}-2 C_{i, j}+C_{i, j-1}}{(\Delta v)^{2}} \\
+&\frac{\partial^{2} C}{\partial S \partial v}(i\Delta s,j\Delta v) \approx \frac{C_{i+1, j+1}+C_{i-1, j-1}-C_{i-1, j+1}-C_{i+1, j-1}}{4 \Delta s \Delta v}
+\end{align}</script><p>代入原式则变换为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\frac{c_{i, j}^{n+1}-c_{i, j}^{n}}{\Delta t} = \left[\left(s_{i}\right)^{2} v_{j} \frac{c_{i+1, j}-2 c_{i, j}+c_{i-1, j}}{2(\Delta s)^{2}}+\rho \delta s_{i} v_{j} \frac{c_{i+1, j+1}+c_{i-1, j-1}-c_{i-1, j+1}-c_{i+1, j-1}}{4 \Delta s \Delta v}\right. \\
+&\left.+\delta^{2} v_{j} \frac{c_{i, j+1}-2 c_{i, j}+c_{i, j-1}}{2(\Delta v)^{2}}+r s_{i} \frac{c_{i+1, j}-c_{i-1, j}}{2 \Delta s}+\kappa\left(\theta-v_{j}\right) \frac{c_{i, j+1}-c_{i, j-1}}{2 \Delta v}-r c_{i, j}\right]^{n}
+\end{align}</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Un</span>=<span class="hljs-title">hestonPDEprice</span><span class="hljs-params">(kappa,theta,delta,rho,T,dt,K,Y,I,J)</span></span><br>    <span class="hljs-comment">%hestonPDEprice(1.15,0.10,0.2,-0.4,4/52,4/(52*4000),40,1.0,80,40)</span><br>    nt=<span class="hljs-built_in">ceil</span>(T/dt);<br>    xmin = <span class="hljs-built_in">log</span>(<span class="hljs-number">1e-2</span>);<br>	xmax = <span class="hljs-built_in">log</span>(<span class="hljs-number">2.0</span>*K);<br>    ymin = <span class="hljs-number">0</span>;<br>    ymax = Y*<span class="hljs-number">1.2</span>;<br>    dx = (xmax-xmin)/I; <span class="hljs-comment">%step length of x</span><br>    dx2 = dx*dx;<br>    dy = Y/J; <span class="hljs-comment">%step length of y</span><br>    dy2 = dy*dy;<br>    xvalue = xmin:dx:xmax; <span class="hljs-comment">%grid of x values</span><br>    yvalue = ymin:dy:ymax; <span class="hljs-comment">%grid of y values</span><br>    nx = <span class="hljs-built_in">length</span>(xvalue)<span class="hljs-number">-1</span>; <span class="hljs-comment">%number of entries in x axis - 1</span><br>    ny = <span class="hljs-built_in">length</span>(yvalue)<span class="hljs-number">-1</span>; <span class="hljs-comment">%number of entries in y axis - 1</span><br>    temp = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">exp</span>(xvalue)-K,<span class="hljs-number">0</span>); <span class="hljs-comment">%European call payoff: terminal condition</span><br>    uinitial = temp&#x27;*<span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,ny+<span class="hljs-number">1</span>); <span class="hljs-comment">%x in row i, vol in col j</span><br>    U = uinitial; <span class="hljs-comment">% u in dimension of (nx+1)*(ny+1)</span><br>    <span class="hljs-keyword">for</span> n=<span class="hljs-number">1</span>:nt<br>        <span class="hljs-comment">%interior elements in cross derivative</span><br>        Upp = U(<span class="hljs-number">3</span>:nx+<span class="hljs-number">1</span>,<span class="hljs-number">3</span>:ny+<span class="hljs-number">1</span>); <span class="hljs-comment">%+1 in x, +1 in y</span><br>        Umm = U(<span class="hljs-number">1</span>:nx<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:ny<span class="hljs-number">-1</span>); <span class="hljs-comment">%-1 in x, -1 in y</span><br>        Ump = U(<span class="hljs-number">1</span>:nx<span class="hljs-number">-1</span>,<span class="hljs-number">3</span>:ny+<span class="hljs-number">1</span>); <span class="hljs-comment">%-1 in x, +1 in y</span><br>        Upm = U(<span class="hljs-number">3</span>:nx+<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:ny<span class="hljs-number">-1</span>); <span class="hljs-comment">%+1 in x, -1 in y</span><br>        Uxy = Upp+Umm-Ump-Upm;<br>        G0t = (rho*delta*dt/(<span class="hljs-number">4</span>*dx*dy))*<span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,nx+<span class="hljs-number">1</span>)&#x27;*yvalue;<br>        G0 = G0t(<span class="hljs-number">2</span>:nx,<span class="hljs-number">2</span>:ny);        <br>        U1t = G0.*Uxy;<br>        U1 = [<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,ny+<span class="hljs-number">1</span>);<span class="hljs-built_in">zeros</span>(nx<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>) U1t <span class="hljs-built_in">zeros</span>(nx<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>);<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,ny+<span class="hljs-number">1</span>)];<span class="hljs-comment">% pad with zeros at the edge of domain</span><br>        <span class="hljs-comment">% dsdv 项以及其前面的系数</span><br>        <br>        <span class="hljs-comment">% elements in X direction</span><br>        C1 = <span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,nx<span class="hljs-number">-1</span>)*(<span class="hljs-number">0.5</span>/dx2 + <span class="hljs-number">0.25</span>/dx);<br>        C1 = [C1&#x27;;<span class="hljs-number">0</span>;<span class="hljs-number">0</span>];<br>        A1 = -<span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,nx<span class="hljs-number">-1</span>)/dx2; <br>        A1 = [<span class="hljs-number">0</span>;A1&#x27;;<span class="hljs-number">0</span>];<br>        E1 = <span class="hljs-built_in">ones</span>(<span class="hljs-number">1</span>,nx<span class="hljs-number">-1</span>)*(<span class="hljs-number">0.5</span>/dx2 - <span class="hljs-number">0.25</span>/dx);<br>        E1 = [<span class="hljs-number">0</span>;<span class="hljs-number">0</span>;E1&#x27;];<br>        <span class="hljs-comment">%sparse matrix with A1 on the diagonal, C1 one below &amp; D1 one above</span><br>        B = spdiags([C1 A1 E1],[<span class="hljs-number">-1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>],nx+<span class="hljs-number">1</span>,nx+<span class="hljs-number">1</span>); <br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">2</span>:ny<br>            A = U(:,<span class="hljs-built_in">j</span>);<br>            G1 = dt*yvalue(<span class="hljs-built_in">j</span>)*B;<br>            U2t = G1*A; <span class="hljs-comment">% the interior elements along the j-th sub-vector.</span><br>            U2t(nx+<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>; <br>            U2t(<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">j</span>==<span class="hljs-number">2</span><br>                U2 = U2t;<br>            <span class="hljs-keyword">else</span><br>                U2 = [U2 U2t]; <span class="hljs-comment">% arrange in columns</span><br>                <span class="hljs-comment">% ds,(ds)^2项以及前面的系数</span><br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        U2 = [<span class="hljs-built_in">zeros</span>(nx+<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) U2 <span class="hljs-built_in">zeros</span>(nx+<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)]; <span class="hljs-comment">%pad with zeros in the first and last columns</span><br>        <span class="hljs-comment">%</span><br>        <span class="hljs-comment">% elements in Y direction</span><br>        E1 = <span class="hljs-number">0.5</span>*delta^<span class="hljs-number">2</span>*yvalue(<span class="hljs-number">2</span>:ny)/dy2 - <span class="hljs-number">0.5</span>*kappa*(theta-yvalue(<span class="hljs-number">2</span>:ny))/dy;<br>        E1 = [E1&#x27;;<span class="hljs-number">0</span>;<span class="hljs-number">0</span>];<br>        A1 = -delta^<span class="hljs-number">2</span>*yvalue(<span class="hljs-number">2</span>:ny)/dy2;<br>        A1 = [<span class="hljs-number">0</span>;A1&#x27;;<span class="hljs-number">0</span>];<br>        F1 = <span class="hljs-number">0.5</span>*delta^<span class="hljs-number">2</span>*yvalue(<span class="hljs-number">2</span>:ny)/dy2 + <span class="hljs-number">0.5</span>*kappa*(theta-yvalue(<span class="hljs-number">2</span>:ny))/dy;<br>        F1 = [<span class="hljs-number">0</span>;<span class="hljs-number">0</span>;F1&#x27;];<br>        D = spdiags([E1 A1 F1],[<span class="hljs-number">-1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>],ny+<span class="hljs-number">1</span>,ny+<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">2</span>:nx<br>            A = U(<span class="hljs-built_in">i</span>,:)&#x27;;<br>            U3t = dt*D*A;<br>            U3t(<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>            U3t(ny+<span class="hljs-number">1</span>) = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">i</span>==<span class="hljs-number">2</span><br>                U3 = U3t&#x27;;<br>            <span class="hljs-keyword">else</span><br>                U3 = [U3; U3t&#x27;];<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        U3 = [<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,ny+<span class="hljs-number">1</span>);U3;<span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>,ny+<span class="hljs-number">1</span>)];<br>        <span class="hljs-comment">% dv,(dv)^2项以及前面的系数</span><br>        Uy = U(:,<span class="hljs-number">1</span>); <span class="hljs-comment">% the first column of the previous U</span><br>        U = U + U1 + U2 + U3 ;<br>        <span class="hljs-comment">% 代入边界条件</span><br>        U(<span class="hljs-number">1</span>,:) = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">1</span>, ny+<span class="hljs-number">1</span>); <span class="hljs-comment">%when x = xmin</span><br>        U(:,ny+<span class="hljs-number">1</span>) = <span class="hljs-built_in">exp</span>(xvalue)&#x27;; <span class="hljs-comment">%when y = ymax</span><br>        <span class="hljs-comment">% elements where y=0</span><br>        <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">2</span>:nx<br>            U(<span class="hljs-built_in">i</span>,<span class="hljs-number">1</span>)=(Uy(<span class="hljs-built_in">i</span>)+kappa*theta*dt*U(<span class="hljs-built_in">i</span>,<span class="hljs-number">2</span>)/dy)/(<span class="hljs-number">1</span>+kappa*theta*dt/dy);<br>        <span class="hljs-keyword">end</span><br>        U(nx+<span class="hljs-number">1</span>,<span class="hljs-number">2</span>:ny) = <span class="hljs-built_in">exp</span>(xvalue(nx+<span class="hljs-number">1</span>))- K;<span class="hljs-comment">%when x = xmax</span><br>        <span class="hljs-comment">%U(nx+1,2:ny) = (2*dx*exp(xvalue(nx+1))+4*U(nx,2:ny)-U(nx-1,2:ny))/3;</span><br>    <span class="hljs-keyword">end</span><br>    Un = U(<span class="hljs-number">1</span>:I+<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:J+<span class="hljs-number">1</span>);<br>    <br><span class="hljs-comment">%     p0 = zeros(nx+1,ny+1);    </span><br><span class="hljs-comment">%     for i=1:nx+1</span><br><span class="hljs-comment">%         for j=1:ny+1            </span><br><span class="hljs-comment">%             p0(i,j) = HestonCallQuad(kappa,theta,delta,rho,yvalue(j),0,T,exp(xvalue(i)),K);</span><br><span class="hljs-comment">%         end</span><br><span class="hljs-comment">%     end</span><br><span class="hljs-comment">%     p = p0(1:I+1,1:J+1);</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>以上代码是以 log(S) 为纵轴方向指标变换的，因此与文章中的代码有些不同。</p>
+<p>其中矩阵 B 的样式为</p>
+<p><img src="/2022/03/11/Lab_of_Applied_Computational_Finance/pic9-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>矩阵 D 的样式为</p>
+<p><img src="/2022/03/11/Lab_of_Applied_Computational_Finance/pic9-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<blockquote>
+<p>[2] Lin, S. (2008). Finite Difference Schemes for Heston Model. Master of Mathematical and Computational Finance Dissertation, University of Oxford</p>
+</blockquote>
+<h2 id="Week-10-Calibration-of-Dupire’s-model-to-market-data"><a href="#Week-10-Calibration-of-Dupire’s-model-to-market-data" class="headerlink" title="Week 10: Calibration of Dupire’s model to market data"></a>Week 10: Calibration of Dupire’s model to market data</h2><p>此部分对应笔记中的 <a href="https://achlier.github.io/2021/05/12/Applied_Computational_Finance/#Unit-2：Advanced-stochastic-models-and-their-calibration">Unit 2</a> 。主要运用两种方法来预测local volatility。 第一种是Dupire’s model 的原始公式，公式中参考的是 $q=0$ 的格式</p>
+<script type="math/tex; mode=display">
+\sigma^2(T,K)=2\frac{C_T(T,K)+rKC_K(T,K)}{K^2C_{KK}(T,K)}</script><p>第二种方法是 Dupire’s model 的变换形式， 其中 $I(T,K)$ 是从 Black-Scholes 中逆向推导过来的 implied volatilities。</p>
+<script type="math/tex; mode=display">
+\sigma^2(T,K)=\frac{\frac IT+2I_T+2rKI_K}{K^2(\frac1{K^2IT}+2\frac{d_+}{KI\sqrt{T}}I_K+\frac{d_+d_-}{I}I_K^2+I_{KK})}</script><p>如果运用第一种方法，需要使用大量数据进行偏导取值的趋近计算</p>
+<p><img src="/2022/03/11/Lab_of_Applied_Computational_Finance/pic10-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%In the data provided, there are non-zero call option prices for 0 maturity.</span><br><span class="hljs-comment">%In order to do the calculations, drop the values corresponding to 0 maturity. </span><br>T = <span class="hljs-number">0.9</span>;<br>n = <span class="hljs-number">8</span>;<br>num_step = <span class="hljs-number">2</span>^n;<br>S0 = <span class="hljs-number">100</span>;<br>r = <span class="hljs-number">0.0</span>;<br>dt = T/num_step;<br>dK = <span class="hljs-number">0.1</span>;<br>MaxCounter = <span class="hljs-number">100</span>; <span class="hljs-comment">%number of maximum iterations for implied vol inversion</span><br>MaxVolLevel = <span class="hljs-number">6.0</span>;<br>N = <span class="hljs-number">1000</span>; <span class="hljs-comment">%number of Monte Carlo sample paths</span><br>        <br>strk = load(<span class="hljs-string">&#x27;strikes.txt&#x27;</span>); <span class="hljs-comment">%strike vector length 401</span><br>mat = load(<span class="hljs-string">&#x27;maturities.txt&#x27;</span>); <span class="hljs-comment">%maturity vector length 257</span><br>mat = mat(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span>); <span class="hljs-comment">%remove the maturity 0 entry</span><br>pr = load(<span class="hljs-string">&#x27;optionprices.txt&#x27;</span>); <span class="hljs-comment">%price is STRK * MAT </span><br>pr = pr(:,<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span>);<span class="hljs-comment">%remove the prices corresponding to maturity 0</span><br><span class="hljs-comment">%     </span><br>pr_T = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(pr));<br>pr_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>) = (pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">3</span>:<span class="hljs-keyword">end</span>)-pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-2</span>))/(<span class="hljs-number">2</span>*dt);<br>pr_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>) = (pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">2</span>)-pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>))/dt;<br>pr_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-keyword">end</span>) = (pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-keyword">end</span>)-pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>))/dt;<br><span class="hljs-comment">%</span><br>pr_K = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(pr));<br>pr_K(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (pr(<span class="hljs-number">3</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-pr(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/(<span class="hljs-number">2</span>*dK);<br>pr_K(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (pr(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-pr(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br>pr_K(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (pr(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-pr(<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br><br>pr_KK = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(pr));<br>pr_KK(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (pr_K(<span class="hljs-number">3</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-pr_K(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/(<span class="hljs-number">2</span>*dK);<br>pr_KK(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (pr_K(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-pr_K(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br>pr_KK(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (pr_K(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-pr_K(<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br><br>volsq1 = <span class="hljs-number">2.0</span>*(pr_T./(strk.^<span class="hljs-number">2.</span>*pr_KK)); <span class="hljs-comment">%Vol estimate from Dupire formula</span><br></code></pre></td></tr></table></figure>
+<p>进行第二种方法的计算需要先求得 implied volatilities</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callprice</span> = <span class="hljs-title">CallBS</span><span class="hljs-params">(S0,K,vol,T,r)</span> %<span class="hljs-title">Black</span>-<span class="hljs-title">Scholes</span> <span class="hljs-title">call</span> <span class="hljs-title">price</span> <span class="hljs-title">formula</span></span><br>matlen = <span class="hljs-built_in">length</span>(T);<br>callprice = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(vol));<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:matlen<br>    d1 = (<span class="hljs-built_in">log</span>(S0./K) + (r+<span class="hljs-number">0.5</span>*vol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).^<span class="hljs-number">2</span>)*T(<span class="hljs-built_in">i</span>))./(vol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)*T(<span class="hljs-built_in">i</span>)^<span class="hljs-number">0.5</span>);<br>    d2 = d1 - vol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)*T(<span class="hljs-built_in">i</span>)^<span class="hljs-number">0.5</span>;<br>    callprice(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) = S0*normcdf(d1)-K*<span class="hljs-built_in">exp</span>(-r*T(<span class="hljs-built_in">i</span>)).*normcdf(d2);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">impvol</span> =  <span class="hljs-title">ImpVol</span><span class="hljs-params">(Price,Strike,Maturity,S0,r,MaxIter,MaxVolLevel)</span> %<span class="hljs-title">function</span> <span class="hljs-title">to</span> <span class="hljs-title">find</span> <span class="hljs-title">implied</span> <span class="hljs-title">vol</span></span><br><br>volmin = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(Price));<br>volmax = MaxVolLevel*<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">size</span>(Price));<br>vol = <span class="hljs-number">0.5</span>*MaxVolLevel*<span class="hljs-built_in">ones</span>(<span class="hljs-built_in">size</span>(Price));<br>counter = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> counter &lt; MaxIter <span class="hljs-comment">% 由二分法进行运算</span><br>    CBSImp = CallBS(S0,Strike,vol,Maturity,r);<br>    temp1 = (CBSImp&lt;=Price);<br>    temp2 = (CBSImp&gt;Price);<br>    volmin = temp1.* vol + temp2.*volmin;<br>    volmax =  (CBSImp&lt;Price).* volmax + (CBSImp&gt;=Price).* vol;<br>    vol = (volmin + volmax)/<span class="hljs-number">2.0</span>;<br>    counter = counter + <span class="hljs-number">1</span>;<br><span class="hljs-keyword">end</span><br>impvol = vol;<br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">ivol = ImpVol(pr,strk,mat,S0,<span class="hljs-number">0</span>,MaxCounter,MaxVolLevel);<br></code></pre></td></tr></table></figure>
+<p>我们采用相同的方法来对 implied volatilities 的偏导进行运算。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs matlab">ivol_T = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br>ivol_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>) = (ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">3</span>:<span class="hljs-keyword">end</span>)-ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-2</span>))/(<span class="hljs-number">2</span>*dt);<br>ivol_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>) = (ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">2</span>)-ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>))/dt;<br>ivol_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-keyword">end</span>) = (ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-keyword">end</span>)-ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>))/dt;<br><br>ivol_K = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br>ivol_K(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (ivol(<span class="hljs-number">3</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/(<span class="hljs-number">2</span>*dK);<br>ivol_K(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (ivol(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-ivol(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br>ivol_K(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (ivol(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-ivol(<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br><br>ivol_KK = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br>ivol_KK(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (ivol_K(<span class="hljs-number">3</span>:<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-ivol_K(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span><span class="hljs-number">-2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/(<span class="hljs-number">2</span>*dK);<br>ivol_KK(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (ivol_K(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-ivol_K(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br>ivol_KK(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>) = (ivol_K(<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>)-ivol_K(<span class="hljs-keyword">end</span><span class="hljs-number">-1</span>,<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>))/dK;<br><span class="hljs-comment">% </span><br>D1 = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br>D2 = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br>num = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br>den = <span class="hljs-built_in">zeros</span>(<span class="hljs-built_in">size</span>(ivol));<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-built_in">length</span>(mat)<br>    D1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) = (<span class="hljs-built_in">log</span>(S0./strk) + (r+<span class="hljs-number">0.5</span>*ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).^<span class="hljs-number">2</span>)*mat(<span class="hljs-built_in">i</span>))./(ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)*mat(<span class="hljs-built_in">i</span>)^<span class="hljs-number">0.5</span>);<br>    D2(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) = D1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) - ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)*mat(<span class="hljs-built_in">i</span>)^<span class="hljs-number">0.5</span>;<br>    num(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) = ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)/mat(<span class="hljs-built_in">i</span>) + <span class="hljs-number">2.0</span>*ivol_T(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) + <span class="hljs-number">2</span>*r*strk.*ivol_K(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>);<br>    den(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) = strk.^<span class="hljs-number">2.</span>*(<span class="hljs-number">1.</span>/(strk.^<span class="hljs-number">2.</span>*ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)*mat(<span class="hljs-built_in">i</span>)) + <span class="hljs-number">2.0</span>*D1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).*ivol_K(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)./(strk.*ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>)*mat(<span class="hljs-built_in">i</span>)^<span class="hljs-number">0.5</span>)... <br>    + D1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).*D2(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).*ivol_K(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).^<span class="hljs-number">2.</span>/ivol(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>) + ivol_KK(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>));<br><span class="hljs-keyword">end</span><br>volsq2 = num./den;<br></code></pre></td></tr></table></figure>
+<p>求得结果后我们也可以使用线性插值来进行对 volatility 的预测，注意，K 最小只能到 80</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">interpvol</span> = <span class="hljs-title">LinInter</span><span class="hljs-params">(price,strk,VolEst,ixt,dK)</span> %<span class="hljs-title">linear</span> <span class="hljs-title">interpolation</span> <span class="hljs-title">for</span> <span class="hljs-title">the</span> <span class="hljs-title">volatility</span></span><br>    strk_cls = <span class="hljs-built_in">find</span>(price &lt;= strk);<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isempty</span>(strk_cls)<span class="hljs-comment">% no value of vol estimate exists</span><br>        tempx = <span class="hljs-built_in">length</span>(strk);<br>        temp = VolEst(tempx,ixt);<br>    <span class="hljs-keyword">elseif</span> strk_cls(<span class="hljs-number">1</span>) == <span class="hljs-number">80</span> <span class="hljs-comment">%this is the minimum entry in the strike array</span><br>        tempx = <span class="hljs-number">1</span>;<br>        temp = VolEst(tempx,ixt);<br>    <span class="hljs-keyword">else</span> <span class="hljs-comment">%linearly interpolate</span><br>        strk1 = strk(strk_cls(<span class="hljs-number">1</span>));<br>        strk2 = strk(strk_cls(<span class="hljs-number">1</span>)<span class="hljs-number">-1</span>);        <br>        temp = (VolEst(strk_cls(<span class="hljs-number">1</span>)<span class="hljs-number">-1</span>,ixt)*(price-strk1)+VolEst(strk_cls(<span class="hljs-number">1</span>),ixt)*(strk2 - price))/dK;<br>    <span class="hljs-keyword">end</span><br> interpvol = temp;<br></code></pre></td></tr></table></figure>
+<p>验证结果时，我们可以通过 蒙特卡洛模拟计算 $\hat C(T_i,K_j):=\mathbb E[(\hat S(T_i)-K_j)^+]$ 并与实际值比较</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[pr_Euler1,pr_Euler2]</span>= <span class="hljs-title">EulerPath</span><span class="hljs-params">(VolEst1,VolEst2,strk,mat,S0,dK,dt,N)</span></span><br>matlen = <span class="hljs-built_in">length</span>(mat);<br>BM = normrnd(<span class="hljs-number">0.0</span>,<span class="hljs-number">1.0</span>,[N,matlen+<span class="hljs-number">1</span>])*dt^<span class="hljs-number">0.5</span>;<br>pr_Euler1 = <span class="hljs-built_in">ones</span>(N,matlen+<span class="hljs-number">1</span>)*S0;<br>pr_Euler2 = <span class="hljs-built_in">ones</span>(N,matlen+<span class="hljs-number">1</span>)*S0;<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> =<span class="hljs-number">1</span>:matlen<br>    estvol1 = <span class="hljs-built_in">zeros</span>(N);<br>    estvol2 = <span class="hljs-built_in">zeros</span>(N);<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=<span class="hljs-number">1</span>:N<br>        estvol1(<span class="hljs-built_in">j</span>) = LinInter(pr_Euler1(<span class="hljs-built_in">j</span>,<span class="hljs-built_in">i</span>),strk,VolEst1,<span class="hljs-built_in">i</span>,dK);<br>        estvol2(<span class="hljs-built_in">j</span>) = LinInter(pr_Euler2(<span class="hljs-built_in">j</span>,<span class="hljs-built_in">i</span>),strk,VolEst2,<span class="hljs-built_in">i</span>,dK);<br>    <span class="hljs-keyword">end</span><br>    pr_Euler1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>) = pr_Euler1(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).*(<span class="hljs-number">1</span>+<span class="hljs-built_in">max</span>(estvol1,<span class="hljs-number">0.0</span>)^<span class="hljs-number">0.5</span>*BM(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>));<br>    pr_Euler2(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>) = pr_Euler2(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>).*(<span class="hljs-number">1</span>+<span class="hljs-built_in">max</span>(estvol2,<span class="hljs-number">0.0</span>)^<span class="hljs-number">0.5</span>*BM(<span class="hljs-number">1</span>:<span class="hljs-keyword">end</span>,<span class="hljs-built_in">i</span>));        <br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Matlab/">#Matlab</a>
+      
+        <a href="/tags/Option-Pricing/">#Option Pricing</a>
+      
+        <a href="/tags/Black-Scholes-Model/">#Black Scholes Model</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【代码】Lab of Applied Computational Finance</div>
+      <div>http://achlier.github.io/2022/03/11/Lab_of_Applied_Computational_Finance/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 11, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/13/Numerical_Analysis/" title="【代码】Numerical_Analysis">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【代码】Numerical_Analysis</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/11/Recommender-System_Social-RS/" title="【笔记】Recommender System:Social RS">
+                        <span class="hidden-mobile">【笔记】Recommender System:Social RS</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

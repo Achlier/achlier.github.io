@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于 知乎 埃格先生 的文章的笔记; 对 Ito公式 进行了有逻辑的推导，很适合初学者学习;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Ito Integral">
+<meta property="og:url" content="http://achlier.github.io/2021/06/11/Ito_Integral/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于 知乎 埃格先生 的文章的笔记; 对 Ito公式 进行了有逻辑的推导，很适合初学者学习;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-10T18:58:53.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:38:22.028Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Ito Integral">
+<meta property="article:tag" content="Stochastic Process">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【笔记】Ito Integral - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Ito Integral"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-06-11 02:58" pubdate>
+          June 11, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          639 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Ito Integral</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于 知乎 埃格先生 的文章的笔记;</p>
+<p>对 Ito公式 进行了有逻辑的推导，很适合初学者学习;</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Ito-积分"><a href="#Ito-积分" class="headerlink" title="Ito 积分"></a>Ito 积分</h2><p>在时间 [$T_0,T$], 布朗运动 {$W_t$}$_{t\in[T_0,T]}$. 将时间分成 $N$段, 所以有 $\Delta t=(T-T_0)/N$. 定义 $W_j=w_1+w_2+…+w_j$, 其中 $\omega_i=\xi_i\sqrt{\Delta t}$. {$\xi_i$} 是一列独立同分布的随机变量，它们的均值为 0, 方差为 1,  且满足如下伯努利分布：$P(\xi_i=1)=P(\xi_i=-1)=\frac{1}{2}$</p>
+<p>有 $W(t)-W(s)\sim N(0,t-s)$</p>
+<p>Ito 积分一般写为</p>
+<script type="math/tex; mode=display">
+\int_{T_0}^Tf_tdW_t</script><p>接下来我们采用如下的固定范式来讨论：</p>
+<ol>
+<li>固定 $N$</li>
+<li>令 $N\to\infty$</li>
+</ol>
+<h4 id="随机徘徊的离散-Ito-积分"><a href="#随机徘徊的离散-Ito-积分" class="headerlink" title="随机徘徊的离散 Ito 积分"></a>随机徘徊的离散 Ito 积分</h4><p>设 {$f_j$}$_{j=0}^N$ 对 {$W_j$}$_{j=0}^N$ 适应, 我们定义其离散 Ito 积分 $I_W[f]$ 是如下随机变量:</p>
+<script type="math/tex; mode=display">
+I_W[f]=\sum_{i=0}^{N-1}f_i(W_{i+1}-W_i)=\sum_{i=0}^{N-1}f_iw_{i+1}</script><p>例如，取 $f_j=W_j$</p>
+<script type="math/tex; mode=display">
+\omega_i^2=(\xi_i\sqrt{\Delta t})^2=\Delta t</script><script type="math/tex; mode=display">
+\begin{align}
+I_W[f]&=\sum_{i=0}^{N-1}W_iw_{i+1}=\sum_{i=1}^{N}(\sum_{j=0}^{i-1}w_j)w_i=\sum_{j<i\leq N}w_iw_j\\
+&=\frac{1}{2}(\sum_{i=1}^{N}w_i)^2-\frac{1}{2}\sum_{i=1}^{N}w_i^2=\frac{1}{2}W_N^2-\frac{T-T_0}{2}
+\end{align}</script><p>$I_W[f]$ 具有如下性质：</p>
+<ol>
+<li><p>$\mathbb{E}I_W[f]=0$</p>
+<blockquote>
+<p>用 Tower property 证鞅，然后 $I_W$[$f$]$(0)=0$</p>
+</blockquote>
+</li>
+<li><p>$\mathbb{E}(I_W[f])^2=\mathbb{E}[f_t^2]\mathbb E[(W_{t+1}-W_t)^2]=\mathbb{E}$[$f_t^2$]$(T-T_0)=\mathbb{E}(\frac{T-T_0}{N}\sum_{i=0}^{N-1}f_i^2)$</p>
+</li>
+</ol>
+<h4 id="连续时间的-Ito-积分"><a href="#连续时间的-Ito-积分" class="headerlink" title="连续时间的 Ito 积分"></a>连续时间的 Ito 积分</h4><script type="math/tex; mode=display">
+I_W[f]=\int_{T_0}^Tf_tdW_t</script><p>取 $f_j=W_j$</p>
+<script type="math/tex; mode=display">
+\int_{T_0}^TW_tdW_t=\frac{1}{2}W_T^2-\frac{T-T_0}{2}</script><blockquote>
+<p>如果 $W_{T_0}\ne 0$, 则多一项 $-W_{T_0}^2/2$</p>
+<p>这题也可以用另一个角度解</p>
+</blockquote>
+<script type="math/tex; mode=display">
+f(t,x)=\frac12 x^2,\ f_t(t,x)=0,\ f_x(t,x)=x,\ f_{xx}(t,x)=1</script><script type="math/tex; mode=display">
+df(t,x)=W(t)dW(t)+\frac12dt</script><p>求积分</p>
+<script type="math/tex; mode=display">
+\frac12 W(T)^2=\int_0^TW(t)dW(t)+\frac12\int_0^Tdt=\int_0^TW(t)dW(t)+\frac12T</script><blockquote>
+<p>又或者利用特性</p>
+</blockquote>
+<script type="math/tex; mode=display">
+E[\int_{T_0}^TW_tdW_t]=0</script><script type="math/tex; mode=display">
+VAR=E[(\int_{T_0}^TW_tdW_t)^2]=E[\int_{T_0}^TW_t^2dt]=\int_0^Ttdt=T^2/2</script><blockquote>
+<p>相比于普通的积分 $\int_0^Tf(t)df(t) = \frac12f(T)^2$, 伊藤积分是取左值求积分的，如果采用取中值求积分（Stratonovich）</p>
+</blockquote>
+<p>$I_W[f]$ 具有如下性质：</p>
+<ol>
+<li>$\mathbb{E}\int_{T_0}^Tf_tdW_t=0$</li>
+<li>$\mathbb{E}(\int_{T_0}^Tf_tdW_t)^2=\mathbb{E}\int_{T_0}^Tf_t^2dt$<ul>
+<li>Ito Isometry</li>
+</ul>
+</li>
+<li>$[I_W[f],I_W[f]]_T=\int_0^Tf^2(t)dt$<ul>
+<li>$dI_W[f]dI_W[f]=f^2(t)dt$</li>
+</ul>
+</li>
+</ol>
+<h3 id="随机差分方程的等价的离散积分形式及其连续极限"><a href="#随机差分方程的等价的离散积分形式及其连续极限" class="headerlink" title="随机差分方程的等价的离散积分形式及其连续极限"></a>随机差分方程的等价的离散积分形式及其连续极限</h3><script type="math/tex; mode=display">
+\begin{align}
+X_{j+1}&\approx X_j+b_j\Delta t+\sigma_j\omega_{j+1}\\
+&= X_j+ \underbrace{b_j\Delta t}+\underbrace{\sigma_j\xi_{j+1}\sqrt{\Delta t}}\\
+&\qquad\quad\ 确定运动 \quad\ 随机运动
+\end{align}</script><blockquote>
+<p>第一步省略了一个 $o(\Delta t)$</p>
+</blockquote>
+<h4 id="离散积分"><a href="#离散积分" class="headerlink" title="离散积分"></a>离散积分</h4><script type="math/tex; mode=display">
+X_n=X_0+\Delta t\sum_{j=0}^{n-1} b_j+\sum_{j=0}^{n-1} w_{j+1}\sigma_j</script><h4 id="连续积分"><a href="#连续积分" class="headerlink" title="连续积分"></a>连续积分</h4><script type="math/tex; mode=display">
+X(t)=X(0)+\int_0^t b(s)ds+\int_0^t\sigma(s)dW(s)</script><h4 id="Ito-公式"><a href="#Ito-公式" class="headerlink" title="Ito 公式"></a>Ito 公式</h4><p>做 Taylor 二阶展开, 将超过 $o(\Delta t) $的部分省略, 其中包含二阶以上导($X_{n+1}-X_n$ 是一个 $o(\sqrt{\Delta t})$ 的量)与一部分二阶导 ($\Delta t$ 超过一次的)</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f(X_{n+1})&=f(X_n)+f'(X_n)·(X_{n+1}-X_n)+\frac{f''(X_n)}{2}·(X_{n+1}-X_n)^2+o(\Delta t)^{3/2}\\
+&=f(X_n)+f'(X_n)·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})+\frac{f''(X_n)}{2}·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})^2\\
+&=f(X_n)+f'(X_n)·(b_n\Delta t+\sigma_n\xi_{n+1}\sqrt{\Delta t})+\frac{f''(X_n)}{2}·\sigma_n^2\xi_{n+1}^2\Delta t\\
+\end{align}</script><p>$\xi_{n+1}^2$ 在 almost surely (a.s.) 的意义下等于 1, 整理上式得到</p>
+<script type="math/tex; mode=display">
+f(X_{n+1})-f(X_n)=f'(X_n)\sigma_n\xi_{n+1}\sqrt{\Delta t}+(f'(X_n)·b_n+\frac{f''(X_n)·\sigma_n^2}{2})\Delta t</script><p>也可以写成离散积分的形式</p>
+<script type="math/tex; mode=display">
+f(X_n)=X_0+\sum_{j=0}^{n-1}f'(X_j)\sigma_jw_{j+1}+\sum_{j=0}^{n-1}(f'(X_j)·b_j+\frac{f''(X_j)·\sigma_j^2}{2})\Delta t</script><p>对应于连续的形式</p>
+<script type="math/tex; mode=display">
+f(X(t))=X(0)+\int_0^tf'(X(s))\sigma(s)dw(s)+\int_0^t(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><p>上述公式被称为<strong>Ito公式</strong>，简记为</p>
+<script type="math/tex; mode=display">
+df(X(t))=f'(X(s))\sigma(s)dw(s)+(f'(X(s))·b(s)+\frac{f''(X(s))·\sigma(s)^2}{2})ds</script><h4 id="随机差分方程"><a href="#随机差分方程" class="headerlink" title="随机差分方程"></a>随机差分方程</h4><script type="math/tex; mode=display">
+X_{j+1}-X_j=s(X_j,t)w_{j+1}+m(X_j,t)\Delta t</script><h4 id="随机微分方程"><a href="#随机微分方程" class="headerlink" title="随机微分方程"></a>随机微分方程</h4><script type="math/tex; mode=display">
+dX(t)=\sigma(X(t),t)dW(t)+m(X(t),t)dt</script><h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><p><strong>（Vasicek Model）Interest rate stochastic differential equation</strong></p>
+<script type="math/tex; mode=display">
+dR(t)=(\alpha-\beta R(t))dt+\sigma dW(t)</script><p>有一个 mean reversion 的特点，均值为 $\frac\alpha\beta$</p>
+<script type="math/tex; mode=display">
+f(t,x)=e^{\beta t}x,\ f_t=x\beta e^{\beta t},\ f_x=e^{\beta t},\ f_{xx}=0</script><script type="math/tex; mode=display">
+\begin{align}
+d(e^{\beta t}R(t))=df(t,R(t))&=x\beta e^{\beta t}dt+e^{\beta t}dR(t)\\
+&=R(t)\beta e^{\beta t}dt+e^{\beta t}((\alpha-\beta R(t))dt+\sigma dW(t))\\
+&=e^{\beta t}\alpha dt+e^{\beta t}\sigma dW(t)
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+e^{\beta T}R(T)&=R(0)+\int_0^Te^{\beta t}\alpha dt+\int_0^Te^{\beta t}\sigma dW(t)\\
+R(T)&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta[e^{\beta t}|_0^T]+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
+&=e^{-\beta T}R(0)+e^{-\beta T}\frac\alpha\beta(e^{\beta T}-1)+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
+&=e^{-\beta T}R(0)+\frac\alpha\beta(1-e^{-\beta T})+\int_0^Te^{-\beta(T-t)}\sigma dW(t)\\
+\end{align}</script><p><strong>特性</strong></p>
+<script type="math/tex; mode=display">
+\mathbb E[R(t)]=e^{-\beta t}R(0)+\frac\alpha\beta(1-e^{-\beta t})</script><p>If $t\to\infty$, then $\mathbb E[R(t)]\to \frac\alpha\beta$</p>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/wei-zhi-3-47">埃格先生</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC4y1a7XY">Ito积分练习题(Part 2)</a></p>
+</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Ito-Integral/">#Ito Integral</a>
+      
+        <a href="/tags/Stochastic-Process/">#Stochastic Process</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Ito Integral</div>
+      <div>http://achlier.github.io/2021/06/11/Ito_Integral/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 11, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/12/%E9%87%91%E8%89%B2%E9%95%BF%E5%BB%8A/" title="【金色长廊】">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【金色长廊】</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/30/Fourier_Transform/" title="【笔记】Fourier Transform">
+                        <span class="hidden-mobile">【笔记】Fourier Transform</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

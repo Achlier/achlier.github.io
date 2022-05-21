@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="对Matlab金融工具箱内的Portfolio_Optimization_Example代码的阅读笔记； 【Example】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【代码】Financial Toolbox:Portfolio Optimization">
+<meta property="og:url" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="对Matlab金融工具箱内的Portfolio_Optimization_Example代码的阅读笔记； 【Example】">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig4.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig6.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig7.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig8.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig9.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig5.jpg">
+<meta property="article:published_time" content="2021-03-11T07:18:14.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:39:10.983Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Matlab">
+<meta property="article:tag" content="Portfolio Optimization">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig1.jpg">
+  
+  
+  
+  <title>【代码】Financial Toolbox:Portfolio Optimization - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【代码】Financial Toolbox:Portfolio Optimization"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-11 15:18" pubdate>
+          March 11, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【代码】Financial Toolbox:Portfolio Optimization</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>对Matlab金融工具箱内的Portfolio_Optimization_Example代码的阅读笔记；</p>
+<p>【Example】</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="打开文档"><a href="#打开文档" class="headerlink" title="打开文档"></a>打开文档</h3><p>打开Matlab，在command中输入：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">openExample(<span class="hljs-string">&#x27;finance/portfolioexamples&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>可打开文档</p>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">load BlueChipStockMoments <span class="hljs-comment">% 加载官方给的example</span><br><br>mret = MarketMean; <span class="hljs-comment">% mret = market_return</span><br>mrsk = <span class="hljs-built_in">sqrt</span>(MarketVar); <span class="hljs-comment">% mrsk = market_risk</span><br>cret = CashMean; <span class="hljs-comment">% cret = cash_return</span><br>crsk = <span class="hljs-built_in">sqrt</span>(CashVar); <span class="hljs-comment">% cret = cash_risk</span><br></code></pre></td></tr></table></figure>
+<h3 id="初始化一个Portfolio对象"><a href="#初始化一个Portfolio对象" class="headerlink" title="初始化一个Portfolio对象"></a>初始化一个Portfolio对象</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab">p = Portfolio(<span class="hljs-string">&#x27;AssetList&#x27;</span>,AssetList,<span class="hljs-string">&#x27;RiskFreeRate&#x27;</span>,CashMean);<br>p = setAssetMoments(p,AssetMean,AssetCovar); <span class="hljs-comment">% 加载数据</span><br><span class="hljs-comment">% [m, cov] = getAssetMoments(p); % 提取数据</span><br></code></pre></td></tr></table></figure>
+<p><strong>AssetList</strong>：Asset名称的List，如果自己导入data，可采用：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">data = <span class="hljs-built_in">readtable</span>(<span class="hljs-string">&#x27;data.xlsx&#x27;</span>);<br>AssetList = data.Properties.VariableNames&#x27;;<br></code></pre></td></tr></table></figure>
+<h4 id="【可选步骤】"><a href="#【可选步骤】" class="headerlink" title="【可选步骤】"></a>【可选步骤】</h4><h5 id="1-初始化一个-equal-weight-portfolio"><a href="#1-初始化一个-equal-weight-portfolio" class="headerlink" title="1.初始化一个 equal-weight portfolio"></a>1.初始化一个 equal-weight portfolio</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">p = setInitPort(p,<span class="hljs-number">1</span>/p.NumAssets); <br>[ersk,eret] = estimatePortMoments(p,p.InitPort); <span class="hljs-comment">% 给出对应的equal-weight risk，return</span><br></code></pre></td></tr></table></figure>
+<h5 id="2-画一个所有Asset在risk-return上的分布图"><a href="#2-画一个所有Asset在risk-return上的分布图" class="headerlink" title="2.画一个所有Asset在risk-return上的分布图"></a>2.画一个所有Asset在risk-return上的分布图</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clf; <span class="hljs-comment">% 删除所有figure</span><br>portfolioexamples_plot(<span class="hljs-string">&#x27;Asset Risks and Returns&#x27;</span>, ... <span class="hljs-comment">% title</span><br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, mrsk, mret, &#123;<span class="hljs-string">&#x27;Market&#x27;</span>&#125;&#125;, ... <span class="hljs-comment">% 点状图，x坐标，y坐标，名称</span><br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, crsk, cret, &#123;<span class="hljs-string">&#x27;Cash&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, ersk, eret, &#123;<span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;); <br>	<span class="hljs-comment">% diag取对角矩阵；‘.r’图形样式</span><br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="在各种约束下的投资组合优化"><a href="#在各种约束下的投资组合优化" class="headerlink" title="在各种约束下的投资组合优化"></a>在各种约束下的投资组合优化</h3><h4 id="1-初始化一个long-only-portfolios"><a href="#1-初始化一个long-only-portfolios" class="headerlink" title="1.初始化一个long only portfolios"></a>1.初始化一个long only portfolios</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs matlab">p = setDefaultConstraints(p);<br><br>pwgt = estimateFrontier(p,<span class="hljs-number">20</span>); <span class="hljs-comment">% 为Frontier输出weight，第二个值确定个数</span><br>[prsk,pret] = estimatePortMoments(p,pwgt); <span class="hljs-comment">% 输出对应risk和return</span><br><span class="hljs-comment">% 或者直接使用 plotFrontier(p,20);</span><br><br><span class="hljs-comment">% Plot efficient frontier</span><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="2-初始化一个portfolios-with-budget-constraint"><a href="#2-初始化一个portfolios-with-budget-constraint" class="headerlink" title="2.初始化一个portfolios with budget constraint"></a>2.初始化一个portfolios with budget constraint</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs matlab">q = setBudget(p, <span class="hljs-number">0</span>, <span class="hljs-number">0.8</span>); <span class="hljs-comment">% cash in [0,80%]</span><br><br>qwgt = estimateFrontier(q,<span class="hljs-number">20</span>);<br>[qrsk,qret] = estimatePortMoments(q,qwgt);<br><br><span class="hljs-comment">% Plot efficient frontier with tangent line (0 to 0.8 cash)</span><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier with Tangent Line&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, qrsk, qret, [], <span class="hljs-string">&#x27;r&#x27;</span>, <span class="hljs-number">0.5</span>&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig4.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="3-初始化一个portfolios其交易包含Transactions-Costs"><a href="#3-初始化一个portfolios其交易包含Transactions-Costs" class="headerlink" title="3.初始化一个portfolios其交易包含Transactions Costs"></a>3.初始化一个portfolios其交易包含Transactions Costs</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs matlab">BuyCost = <span class="hljs-number">0.0020</span>;<br>SellCost = <span class="hljs-number">0.0020</span>;<br><br>q = setCosts(p,BuyCost,SellCost);<br><br>qwgt = estimateFrontier(q,<span class="hljs-number">20</span>);<br>[qrsk,qret] = estimatePortMoments(q,qwgt);<br><br><span class="hljs-comment">% Plot efficient frontiers with gross and net returns</span><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier with and without Transaction Costs&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret, &#123;<span class="hljs-string">&#x27;Gross&#x27;</span>&#125;, <span class="hljs-string">&#x27;:b&#x27;</span>&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, qrsk, qret, &#123;<span class="hljs-string">&#x27;Net&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig6.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="4-初始化一个portfolios其交易加入了Turnover-Constraint"><a href="#4-初始化一个portfolios其交易加入了Turnover-Constraint" class="headerlink" title="4.初始化一个portfolios其交易加入了Turnover Constraint"></a>4.初始化一个portfolios其交易加入了Turnover Constraint</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab">BuyCost = <span class="hljs-number">0.0020</span>;<br>SellCost = <span class="hljs-number">0.0020</span>;<br>Turnover = <span class="hljs-number">0.2</span>;<br><br>q = setCosts(p, BuyCost,SellCost);<br>q = setTurnover(q,Turnover);<br><br>[qwgt,qbuy,qsell] = estimateFrontier(q,<span class="hljs-number">20</span>);<br>[qrsk,qret] = estimatePortMoments(q,qwgt);<br><br><span class="hljs-comment">% Plot efficient frontier with turnover constraint</span><br><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier with Turnover Constraint&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret, &#123;<span class="hljs-string">&#x27;Unconstrained&#x27;</span>&#125;, <span class="hljs-string">&#x27;:b&#x27;</span>&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, qrsk, qret, &#123;sprintf(<span class="hljs-string">&#x27;%g%% Turnover&#x27;</span>, <span class="hljs-number">100</span>*Turnover)&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br>displaySumOfTransactions(Turnover, qbuy, qsell)<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig7.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="5-依照最大夏普比率得到最优组合"><a href="#5-依照最大夏普比率得到最优组合" class="headerlink" title="5.依照最大夏普比率得到最优组合"></a>5.依照最大夏普比率得到最优组合</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs matlab">p = setInitPort(p, <span class="hljs-number">0</span>);<br><br>swgt = estimateMaxSharpeRatio(p);<br>[srsk,sret] = estimatePortMoments(p,swgt);<br><br><span class="hljs-comment">% Plot efficient frontier with portfolio that attains maximum Sharpe ratio</span><br><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier with Maximum Sharpe Ratio Portfolio&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, srsk, sret, &#123;<span class="hljs-string">&#x27;Sharpe&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig8.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="并与切线结合"><a href="#并与切线结合" class="headerlink" title="并与切线结合"></a>并与切线结合</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs matlab">q = setBudget(p, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);<br><br>qwgt = estimateFrontier(q,<span class="hljs-number">20</span>);<br>[qrsk,qret] = estimatePortMoments(q,qwgt);<br><br><span class="hljs-comment">% Plot that shows Sharpe ratio portfolio is the tangency portfolio</span><br><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier with Maximum Sharpe Ratio Portfolio&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, qrsk, qret, [], [], <span class="hljs-number">1</span>&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, srsk, sret, &#123;<span class="hljs-string">&#x27;Sharpe&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig9.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h5 id="1-获得risk和return的范围"><a href="#1-获得risk和return的范围" class="headerlink" title="1.获得risk和return的范围"></a>1.获得risk和return的范围</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs matlab">[rsk,ret] = estimatePortMoments(p,estimateFrontierLimits(p));<br><br>display(rsk);<br>display(ret);<br></code></pre></td></tr></table></figure>
+<h5 id="2-利用固定return或risk得到值"><a href="#2-利用固定return或risk得到值" class="headerlink" title="2.利用固定return或risk得到值"></a>2.利用固定return或risk得到值</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab">TargetReturn = <span class="hljs-number">0.20</span>;<br>TargetRisk = <span class="hljs-number">0.15</span>;<br><br>awgt = estimateFrontierByReturn(p,TargetReturn/<span class="hljs-number">12</span>); <span class="hljs-comment">% 按月度数据/12</span><br>[arsk,aret] = estimatePortMoments(p,awgt);<br><br>bwgt = estimateFrontierByRisk(p,TargetRisk/<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">12</span>));<br>[brsk,bret] = estimatePortMoments(p,bwgt);<br><br><span class="hljs-comment">% Plot efficient frontier with targeted portfolios</span><br>clf;<br>portfolioexamples_plot(<span class="hljs-string">&#x27;Efficient Frontier with Targeted Portfolios&#x27;</span>, ...<br>	&#123;<span class="hljs-string">&#x27;line&#x27;</span>, prsk, pret&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, [mrsk, crsk, ersk], [mret, cret, eret], &#123;<span class="hljs-string">&#x27;Market&#x27;</span>, <span class="hljs-string">&#x27;Cash&#x27;</span>, <span class="hljs-string">&#x27;Equal&#x27;</span>&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, arsk, aret, &#123;sprintf(<span class="hljs-string">&#x27;%g%% Return&#x27;</span>,<span class="hljs-number">100</span>*TargetReturn)&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, brsk, bret, &#123;sprintf(<span class="hljs-string">&#x27;%g%% Risk&#x27;</span>,<span class="hljs-number">100</span>*TargetRisk)&#125;&#125;, ...<br>	&#123;<span class="hljs-string">&#x27;scatter&#x27;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-built_in">diag</span>(p.AssetCovar)), p.AssetMean, p.AssetList, <span class="hljs-string">&#x27;.r&#x27;</span>&#125;);<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/03/11/Financial_Toolbox-Portfolio_Optimization/fig5.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="3-显示portfolio的包含的Assets和weight占比"><a href="#3-显示portfolio的包含的Assets和weight占比" class="headerlink" title="3.显示portfolio的包含的Assets和weight占比"></a>3.显示portfolio的包含的Assets和weight占比</h5><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">aBlotter = dataset(&#123;<span class="hljs-number">100</span>*awgt(awgt &gt; <span class="hljs-number">0</span>),<span class="hljs-string">&#x27;Weight&#x27;</span>&#125;, <span class="hljs-string">&#x27;obsnames&#x27;</span>, p.AssetList(awgt &gt; <span class="hljs-number">0</span>));<br><br>displayPortfolio(sprintf(<span class="hljs-string">&#x27;Portfolio with %g%% Target Return&#x27;</span>, <span class="hljs-number">100</span>*TargetReturn), aBlotter, <span class="hljs-built_in">false</span>);<br><br>bBlotter = dataset(&#123;<span class="hljs-number">100</span>*bwgt(bwgt &gt; <span class="hljs-number">0</span>),<span class="hljs-string">&#x27;Weight&#x27;</span>&#125;, <span class="hljs-string">&#x27;obsnames&#x27;</span>, p.AssetList(bwgt &gt; <span class="hljs-number">0</span>));<br><br>displayPortfolio(sprintf(<span class="hljs-string">&#x27;Portfolio with %g%% Target Risk&#x27;</span>, <span class="hljs-number">100</span>*TargetRisk), bBlotter, <span class="hljs-built_in">false</span>);<br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/finance/portfolio-optimization-examples.html"><strong>MathWork</strong> - Help Center</a></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Matlab/">#Matlab</a>
+      
+        <a href="/tags/Portfolio-Optimization/">#Portfolio Optimization</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【代码】Financial Toolbox:Portfolio Optimization</div>
+      <div>http://achlier.github.io/2021/03/11/Financial_Toolbox-Portfolio_Optimization/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 11, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/14/Feynman-Kac_To_Black-Scholes-PDE/" title="【推导】Feynman-Kac To Black-Scholes-PDE">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【推导】Feynman-Kac To Black-Scholes-PDE</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/05/Option_Greeks/" title="【笔记】Option Greeks">
+                        <span class="hidden-mobile">【笔记】Option Greeks</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

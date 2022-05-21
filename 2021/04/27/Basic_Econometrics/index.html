@@ -1,0 +1,1337 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于格拉斯哥ECON5002的笔记；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】Basic Econometrics">
+<meta property="og:url" content="http://achlier.github.io/2021/04/27/Basic_Econometrics/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于格拉斯哥ECON5002的笔记；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/04/27/Basic_Econometrics/pic1-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/27/Basic_Econometrics/pic1-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/27/Basic_Econometrics/pic1-3.jpg">
+<meta property="article:published_time" content="2021-04-27T12:49:44.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:42:29.995Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Regression Analysis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/04/27/Basic_Econometrics/pic1-1.jpg">
+  
+  
+  
+  <title>【课程】Basic Econometrics - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】Basic Econometrics"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-27 20:49" pubdate>
+          April 27, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          112 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】Basic Econometrics</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于格拉斯哥ECON5002的笔记；</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h1><p>This course introduces modern econometrics, focusing on regression analysis. The goal is to learn enough theory and get enough practice to be able to read journal articles and for conducting basic empirical research.</p>
+<h2 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h2><p>The aim of this course is to introduce modern econometrics. The goal is to learn enough theory and get enough practice to be able to read journal articles and for conducting basic empirical research. The emphasis is on applying econometrics to real-world problems. However, a solid understanding of the reviewed inference procedures will require rudiments of probability theory and statistics, and the ability to prove few basic results. The course focuses on <strong>regression analysis</strong> with <strong>cross-section data</strong>, under the familiar assumption of <strong>random sampling</strong>. This setting simplifies the exposition of the main results, requiring assumptions that are relatively straightforward yet realistic. The analysis of <strong>time series data</strong> is postponed to the last part of the course. This allows highlighting potential pitfalls that do not arise with cross-sectional data. Empirical exercises will be solved during computer lab sessions using an econometric software package.</p>
+<h2 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h2><p>By the end of the course, students should be able to:</p>
+<ol>
+<li><p>Derive some of the <strong>fundamental numerical and statistical properties</strong> of the OLS estimator.</p>
+</li>
+<li><p>Critically <strong>interpret a regression output</strong> to answer a given research question.</p>
+</li>
+<li><p>Critically <strong>evaluate the assumptions</strong> of the classical linear regression model and the ways they can be modified and with what effects.</p>
+</li>
+<li><p>Translate an economic argument into a <strong>formal testable hypothesis</strong> within a multiple regression model and implement the appropriate testing procedure.</p>
+</li>
+<li><p>Select the appropriate econometric tools and apply them to implement an empirical analysis using an <strong>econometric/statistical software package</strong>.</p>
+</li>
+<li><p>Communicate effectively, using appropriate <strong>technical terms</strong>.</p>
+</li>
+<li><p>Work <strong>collaboratively</strong> in a group to produce a combined output, by liaising with other class members, allocating tasks and co-ordinating</p>
+</li>
+</ol>
+<h1 id="Unit-1：Introduction"><a href="#Unit-1：Introduction" class="headerlink" title="Unit 1：Introduction"></a>Unit 1：Introduction</h1><p><strong>Reading</strong>: Wooldridge, 7th Edition: Chapter 1</p>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Ceteris Paribus</strong>: Other factors being equal.</p>
+<h3 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li><u>Income</u>(x) has a causal effect on <u>consumption</u>(y).</li>
+<li>A data set that consists of a variety of other units, taken at a given point in time, is called a(n) <u>cross-sectional data set</u>.</li>
+</ol>
+<h1 id="Unit-2：Regression-Analysis-Estimation"><a href="#Unit-2：Regression-Analysis-Estimation" class="headerlink" title="Unit 2：Regression Analysis: Estimation"></a>Unit 2：Regression Analysis: Estimation</h1><h2 id="Unit-2-1：The-Simple-Regression-Model"><a href="#Unit-2-1：The-Simple-Regression-Model" class="headerlink" title="Unit 2.1：The Simple Regression Model"></a>Unit 2.1：The Simple Regression Model</h2><p><strong>Reading</strong>: Wooldridge, 7th Edition: Chapter 2, including Appendix 2A</p>
+<p><strong>Additional (Optional) Reading</strong>: Hansen (2020), Sections 2.1-2.9, 2.11, 2.14 and 2.15.</p>
+<h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Terminology for Simple Regression</strong>:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><em>Y</em></th>
+<th><em>X</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dependent variable</td>
+<td>Independent variable</td>
+</tr>
+<tr>
+<td>Explained variable</td>
+<td>Explanatory variable</td>
+</tr>
+<tr>
+<td>Response variable</td>
+<td>Control variable</td>
+</tr>
+<tr>
+<td>Predicted variable</td>
+<td>Predictor variable</td>
+</tr>
+<tr>
+<td>Regressand</td>
+<td>Regressor</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Simple Linear Regression Model</strong>:</p>
+<script type="math/tex; mode=display">
+y = \beta_0 + \beta_1x+u</script><ul>
+<li><strong>intercept parameter</strong>: $\beta_0$</li>
+<li><strong>slope parameter</strong>: $\beta_1$</li>
+<li><p><strong>error term</strong>: $u$</p>
+<p><strong>population regression function (PRF)</strong>:</p>
+<script type="math/tex; mode=display">
+E(y|x)=\beta_0+\beta_1x</script><p><strong>The Ordinary Least Squares (OLS) Estimator</strong>:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\hat{\beta}_0 = \bar{y}-\hat{\beta}_1\bar{x}\\
+\hat{\beta}_1 = \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}=\frac{\hat{Cov}(x,y)}{\hat{Var}(x)}
+\end{cases}</script><p><strong>OLS regression line/Sample Regression Function (SRF)</strong>:</p>
+<script type="math/tex; mode=display">
+\hat{y}_i = \hat{\beta}_0+\hat{\beta}_1x_i</script><p><strong>Residuals</strong>: </p>
+<script type="math/tex; mode=display">
+\hat{u}_i = y_i - \hat{y}_i</script><p><img src="/2021/04/27/Basic_Econometrics/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+</ul>
+<p><strong>Algebraic Properties of OLS statistics</strong>:</p>
+<ol>
+<li>$\sum_{i=1}^n\hat{u}_i=0$</li>
+<li>$\sum_{i=1}^n\hat{u}_ix_i=0$</li>
+<li>$\bar{y}=\hat{\beta}_0+\hat{\beta}_1\bar{x}$</li>
+<li>$\sum_{i=1}^n\hat{y}_i\hat{u}_i=0$</li>
+<li>$\bar{y}=\frac{1}{n}\sum_{i=1}^n\hat{y}_i$</li>
+</ol>
+<p><strong>Measures of Variation</strong>:</p>
+<ul>
+<li>SST = $\sum_{i=1}^n(y_i-\bar{y})^2$<ul>
+<li><strong>total sum of squares</strong></li>
+</ul>
+</li>
+<li>SSE = $\sum_{i=1}^n(\hat{y}_i-\bar{y})^2$=$\sum_{i=1}^n\hat{\beta}_1^2(x_i-\bar{x})^2$<ul>
+<li><strong>explained sum of squares</strong></li>
+</ul>
+</li>
+<li>SSR = $\sum_{i=1}^n\hat{u}_i^2$<ul>
+<li><strong>residual sum of squares</strong></li>
+</ul>
+</li>
+<li>SST = SSR+ SSR</li>
+<li>$R^2$ = $\frac{SSE}{SST}$ = $1-\frac{SSR}{SST}$, $0\leq R^2 \leq 1$<ul>
+<li><strong>coefficient of determination</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>Summary of Functional Forms Involving Logarithms</strong>:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dependent Variable</th>
+<th>Independent Variable</th>
+<th>Interpretation of $\beta_1$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level-level</td>
+<td>y</td>
+<td>x</td>
+<td>$\Delta y=\beta_1\Delta x$</td>
+</tr>
+<tr>
+<td>Level-log</td>
+<td>y</td>
+<td>log(x)</td>
+<td>$\Delta y=(\beta_1/100)\%\Delta x$</td>
+</tr>
+<tr>
+<td>Log-level</td>
+<td>log(y)</td>
+<td>x</td>
+<td>$\%\Delta y=100\beta_1\Delta x$</td>
+</tr>
+<tr>
+<td>Log-log</td>
+<td>log(y)</td>
+<td>log(x)</td>
+<td>$\%\Delta y=\beta_1\%\Delta x$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Unbiasedness-of-OLS"><a href="#Unbiasedness-of-OLS" class="headerlink" title="Unbiasedness of OLS:"></a>Unbiasedness of OLS:</h4><ul>
+<li><strong>Assumption SLR.1</strong> (linearity in the parameters)</li>
+</ul>
+<p>The random variables $(y_1,x_i)$ satisfy the linear regression equation</p>
+<script type="math/tex; mode=display">
+y_i=\beta_0+\beta_1x_i+u_i</script><ul>
+<li><strong>Assumption SLR.2</strong> (random sampling)</li>
+<li><strong>Assumption SLR.3</strong> (sample variation in <em>x</em>)</li>
+</ul>
+<script type="math/tex; mode=display">
+0<Var(x_i)<\infty</script><ul>
+<li><strong>Assumption SLR.4</strong> (Zero Conditional Mean)<ul>
+<li>$u_i uncorrelate with x$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+E(u_i|x_i)=0</script><ul>
+<li>Assumption SLR.2 and SLR.4 imply that the <strong>(Population) Regression Function</strong> is linear.</li>
+<li>Under Assumption SLR.1-SLR.4</li>
+</ul>
+<script type="math/tex; mode=display">
+E(\hat{\beta}_0)=\beta_0,\ and\ \ E(\hat{\beta}_1)=\beta_1</script><h4 id="Variances-of-the-OLS-estimators"><a href="#Variances-of-the-OLS-estimators" class="headerlink" title="Variances of the OLS estimators:"></a>Variances of the OLS estimators:</h4><ul>
+<li><strong>Assumption SLR.5</strong> (homoskedasticity)</li>
+</ul>
+<script type="math/tex; mode=display">
+Var(u_i|x_i) = \sigma^2</script><ul>
+<li>Under Assumptions SLR.1-SLR.5</li>
+</ul>
+<script type="math/tex; mode=display">
+Var(\hat{\beta}_1|x)=\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}=\frac{\sigma^2}{SST_x}</script><script type="math/tex; mode=display">
+Var(\hat{\beta}_0|x)=\frac{\sigma^2n^{-1}\sum_{i=1}^nx_i^2}{\sum_{i=1}^n(x_i-\bar{x})^2}</script><script type="math/tex; mode=display">
+E(\hat{\sigma}^2)=\sigma^2,\ \ \hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{u}_i^2}{n-2}</script><p><strong>Not robust</strong>: The expectation is sensitive to perturbation in the tails of the distribution.</p>
+<p><strong>y on x</strong></p>
+<h3 id="Quiz-1"><a href="#Quiz-1" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>when the regression equation passes through the origin. $y_i=\beta_1x_i+u_i$<ul>
+<li>$\beta_1 = \frac{\sum_{i=1}^nx_iy_i}{\sum_{i=1}^nx_i^2}$</li>
+</ul>
+</li>
+<li>The observed values of $x$ span a wide range $\to$ SLR.3</li>
+</ol>
+<h2 id="Unit-2-1：The-Multiple-Regression-Model"><a href="#Unit-2-1：The-Multiple-Regression-Model" class="headerlink" title="Unit 2.1：The Multiple Regression Model"></a>Unit 2.1：The Multiple Regression Model</h2><p><strong>Reading</strong>: Wooldridge, 7th Edition: Chapter 3, including Appendix 3A. Chapter 6, Sections 6.1-6.3.</p>
+<p><strong>Additional Reading</strong>: Hansen (2020), Section 2.30</p>
+<h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Multiple Linear Regression Model</strong>:</p>
+<script type="math/tex; mode=display">
+y = \beta_0 + \beta_1x_1+\beta_2x_2+...+\beta_kx_k+u</script><ul>
+<li><strong>intercept parameter</strong>: $\beta_0$</li>
+<li><strong>slope parameter</strong>: $\beta_1,…,\beta_k$</li>
+</ul>
+<h4 id="Unbiasedness-of-OLS-1"><a href="#Unbiasedness-of-OLS-1" class="headerlink" title="Unbiasedness of OLS:"></a>Unbiasedness of OLS:</h4><ul>
+<li><p><strong>Assumption MLR.1</strong> (Linear in Parameters)</p>
+</li>
+<li><p><strong>Assumption MLR.2</strong> (Random Sampling)</p>
+</li>
+<li><strong>Assumption MLR.3</strong> (No Perfect Collinearity)</li>
+</ul>
+<p>In the sample (and in the population), none of the explanatory variables is constant, and there are <strong>no exact linear relationships</strong> among them.</p>
+<ul>
+<li><strong>Assumption MLR.4</strong> (Zero Conditional Mean)</li>
+</ul>
+<script type="math/tex; mode=display">
+E(u_i|x_{1i},x_{2i},...,x_{ki})=0</script><ul>
+<li>Under Assumption MLR.1-MLR.4</li>
+</ul>
+<script type="math/tex; mode=display">
+E(\hat{\beta}_j)=\beta_j, \ \ for\ j = 0,1,...,k</script><p><strong>Omitted Variable Bias:</strong></p>
+<p>We should have estimated</p>
+<script type="math/tex; mode=display">
+\hat{y} = \hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2</script><p>but we estimate</p>
+<script type="math/tex; mode=display">
+\tilde{y} = \tilde{\beta}_0+\tilde{\beta}_1x_1</script><p>Recall that</p>
+<script type="math/tex; mode=display">
+\hat{x}_2 = \tilde{\delta}_0+\tilde{\delta}_1x_1</script><script type="math/tex; mode=display">
+\hat{y} = \hat{\beta}_0+\hat{\beta}_2\tilde{\delta}_0+(\hat{\beta}_1+\hat{\beta}_2\tilde{\delta}_1)x_1+\epsilon</script><script type="math/tex; mode=display">
+\tilde{\beta}_1 =\hat{\beta}_1+\hat{\beta}_2\tilde{\delta}_1</script><p>Bias $(\tilde{\beta}_1|x)$=$\beta_2\tilde{\delta}_1$</p>
+<p>if $ n \to \infty$, bias will approach $\frac{Cov(x_{1i},x_{2i})}{Var(x_{1i})}\beta_2$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$Corr(x_1,x_2)&gt;0$</th>
+<th>$Corr(x_1,x_2)&lt;0$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\beta_2&gt;0$</td>
+<td>Positive bias</td>
+<td>Negative bias</td>
+</tr>
+<tr>
+<td>$\beta_2&lt;0$</td>
+<td>Negative bias</td>
+<td>Positive bias</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Variance-of-the-OLS-Estimators"><a href="#Variance-of-the-OLS-Estimators" class="headerlink" title="Variance of the OLS Estimators:"></a>Variance of the OLS Estimators:</h4><ul>
+<li><strong>Assumption MLR.5</strong> (Homoskedasticity)</li>
+</ul>
+<script type="math/tex; mode=display">
+Var(u_i|x_{1i},x_{2i},...,x_{ki})=Var(u_i)=\sigma^2</script><ul>
+<li><p>Assumptions MLR.1 through MLR.5 are called the <strong>Gauss Markov assumptions</strong>.</p>
+</li>
+<li><p>Under Assumptions MLR.1 to MLR.5</p>
+<ul>
+<li>$SST_j = \sum_{i=1}^n(x_{ij}-\bar{x}_j)^2$</li>
+<li>$R_j^2$ is the $R^2$ of the regression</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+Var(\hat{\beta}_j|x)=\frac{\sigma^2}{SST_j(1-R_j^2)},\ \ j=1,2,...,k</script><ul>
+<li>As $R_j^2 \to 1$, $Var(\hat{\beta}_j) \to \infty$  (the estimate of $\beta_j$ is not precise).</li>
+<li>Under the Gauss-Markov assumptions (MLR.1 through MLR.5)<ul>
+<li><strong>standard deviation</strong>: $\sigma$; <strong>standard error</strong>: $\hat{\sigma}$ </li>
+<li>The square root of $\hat{\sigma}^2$,$\hat{\sigma}$, is reported by all regression packages (<strong>standard error of the regression</strong>, or <strong>RMSE</strong>).</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\hat{\sigma}^2 = (n-k-1)^{-1}\sum_{i=1}^n\hat{u}_i^2 = SSR/df</script><ul>
+<li>Under Assumptions MLR.1 through MLR.5<ul>
+<li>the OLS estimators are the <strong>best linear unbiased estimators (BLUEs)</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>Variances in Misspecified Models</strong>:</p>
+<p>We run the misspecified and the correctly specified regressions</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\tilde{y} &= \tilde{\beta}_0+\tilde{\beta}_1x_1\\
+\hat{y} &= \hat{\beta}_0+\hat{\beta}_1x_1+\hat{\beta}_2x_2
+\end{align}</script><p>Whenever $x_{1i}$ and $x_{2i}$ are correlated, $R_1^2 &gt; 0$, and</p>
+<script type="math/tex; mode=display">
+Var(\tilde{\beta}_1|x)=\frac{\sigma^2}{SST_1}<\frac{\sigma^2}{SST_1(1-R_1^2)}<Var(\hat{\beta}_1|x)</script><ul>
+<li>we can in fact get an estimator with a smaller variance, even though it is biased.</li>
+</ul>
+<p><strong>Adjusted <em>R</em>-Squared</strong>:</p>
+<script type="math/tex; mode=display">
+\bar{R}^2 = 1-\frac{[SSR/(n-k-1)]}{[SST/(n-1)]} = 1-\frac{\hat{\sigma}^2}{\hat{\sigma}_y^2}</script><h3 id="Quiz-2"><a href="#Quiz-2" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>Exclusion of a relevant variable from a multiple linear regression model leads to the problem of <u>misspecification of the model</u>.</li>
+<li>An explanatory variable is said to be <u>endogenous</u> if it is correlated with the error term.</li>
+</ol>
+<h1 id="Unit-3：Regression-Analysis-Inference"><a href="#Unit-3：Regression-Analysis-Inference" class="headerlink" title="Unit 3：Regression Analysis: Inference"></a>Unit 3：Regression Analysis: Inference</h1><h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Normal-distribution-in-a-nutshell"><a href="#Normal-distribution-in-a-nutshell" class="headerlink" title="Normal distribution in a nutshell"></a>Normal distribution in a nutshell</h4><p>If $x\sim N(\mu,\sigma^2)$, then​</p>
+<script type="math/tex; mode=display">
+Z = \frac{X-\mu}{\sigma}\sim N(0,1)</script><ul>
+<li><strong>Assumption MLR.6 (Normality of error terms)</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+u_i \sim N(0,\sigma^2)\ \ u_i\ independent\ of\ x_{1i},x_{2i},...,x_{ik}</script><ul>
+<li>Under assumptions MLR.1 – MLR.6: <strong>Classical Linear Regression Model (CLRM) assumptions</strong><ul>
+<li>with estimated standard deviation</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{\hat{\beta}_j-\beta_j}{se(\hat{\beta}_j)} \sim t_{n-k-1}</script><p>Note: The t-distribution is close to the standard normal distribution if n-k-1 is large.</p>
+<p><strong>Null hypothesis</strong>:</p>
+<script type="math/tex; mode=display">
+H_0:\beta_j = 0\ \ against\ \ H_1:\beta_j>0</script><script type="math/tex; mode=display">
+Reject\ if\ t_{\hat{\beta}_j}>c_a\ \ ,\ \ where\ Pr(t>c_a = \alpha)</script><p> <strong>Statistically Significant</strong>:</p>
+<p><img src="/2021/04/27/Basic_Econometrics/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><strong>Confidence Intervals</strong>:</p>
+<p>The $\alpha\%$ confidence interval for $\beta_j$ is of the form</p>
+<script type="math/tex; mode=display">
+\hat{\beta_j}\pm c_a·se(\hat{\beta}_j) = 1-\alpha\ Confidence\ level</script><ul>
+<li>$c_{0.01}=2.576,c_{0.05}=1.96,c_{0.10}=1.645$</li>
+<li>The effect is significantly different from zero if zero is outside the interval.</li>
+<li>It is not statistically significant if zero lies in the interval.</li>
+</ul>
+<p><strong>The difference between the estimates</strong>:</p>
+<ol>
+<li>$t = \frac{\hat{\beta}_1-\hat{\beta}_2}{se(\hat{\beta}_1-\hat{\beta}_2)}$</li>
+<li>Or Define $\theta_1 = \beta_1-\beta_2$ and test $H_0:\theta_1=0$</li>
+</ol>
+<p><img src="/2021/04/27/Basic_Econometrics/pic1-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><strong>The F-test</strong>:</p>
+<script type="math/tex; mode=display">
+H_0:\beta_2=\beta_3=0</script><script type="math/tex; mode=display">
+F = \frac{(SSR_r-SSR_{ur})/q}{SSR_{ur}/(n-k-1)}\sim F_{q,n-k-1}</script><p>$R^2$ <strong>form of the F –statistic</strong>:</p>
+<script type="math/tex; mode=display">
+SSR_r = (1-R^2_r)SST,\ \ \ SSR_{ur} = (1-R^2_{ur})SST</script><script type="math/tex; mode=display">
+F = \frac{(R^2_{ur}-R^2_r)/q}{(1-R^2_{ur})/(n-k-1)}\sim F_{q,n-k-1}</script><p><strong>Test of overall significance of a regression</strong>:</p>
+<script type="math/tex; mode=display">
+H_0:\beta_1=\beta_2=...=\beta_k=0</script><script type="math/tex; mode=display">
+F = \frac{R^2/k}{(1-R^2)/(n-k-1)}\sim F_{k,n-k-1}</script><p><strong>Testing general linear restrictions with the F-test</strong>:</p>
+<script type="math/tex; mode=display">
+H_0:\beta_1=1,\beta_2=...=\beta_k=0</script><script type="math/tex; mode=display">
+x_i = y_i-x_{1i},\ \ SSR_r = \sum_{i=1}^n(x_i-\bar{x})^2</script><h3 id="Quiz-3"><a href="#Quiz-3" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>The significance level of a test is: <u>the probability of rejecting the null hypothesis when it is true.</u></li>
+<li>central limit theorem (CLT) </li>
+<li>A <strong>restricted model</strong> will always have <strong>fewer parameters</strong> than its unrestricted model./ <strong>Degrees of freedom</strong> of a <strong>restricted model</strong> is always <strong>more than</strong> the degrees of freedom of an unrestricted model.</li>
+<li>The ordinary least square estimators have the smallest variance among all the unbiased estimators.</li>
+</ol>
+<h1 id="Unit-4：Regression-Analysis-with-Qualitative-Information"><a href="#Unit-4：Regression-Analysis-with-Qualitative-Information" class="headerlink" title="Unit 4：Regression Analysis with Qualitative Information"></a>Unit 4：Regression Analysis with Qualitative Information</h1><h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Dummy variable trap</strong> (perfect collinearity) :</p>
+<p>When using dummy variables, one category always has to be omitted</p>
+<p><strong>Benchmark group</strong></p>
+<p><strong>Chow test</strong>:</p>
+<ul>
+<li>$H_0$: equality of regression functions across two groups.</li>
+</ul>
+<script type="math/tex; mode=display">
+F = \frac{(SSR-(SSR_1+SSR_2)/k+1}{SSR_1+SSR_2/[n-2(k+1)]}</script><p>We can allow for an intercept difference between the groups, and then test for slope difference. Replace $SSR_p$ in Chow F-stat with the residuals from a regression with a dummy.</p>
+<h3 id="Quiz-4"><a href="#Quiz-4" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>In a self-selection problem, the explanatory variables can be: <u>endogenous.</u></li>
+<li>Which of the following Gauss-Markov assumptions is violated by the <strong>linear probability model (LPM)</strong>?<ul>
+<li>The assumption of constant variance of the error term.</li>
+<li>$Var(y|x)=p(x)[1-p(x)]$</li>
+</ul>
+</li>
+<li>Which of the following problems can arise in policy analysis and program evaluation using a multiple linear regression model?<ul>
+<li>The model can produce predicted probabilities that are less than zero and greater than one.</li>
+</ul>
+</li>
+<li>A problem that often arises in policy and program evaluation is that individuals (or firms or cities) choose whether or not to participate in certain behaviors or programs and their choice depends on several other factors. It is not possible to control for these factors while examining the effect of the programs.</li>
+</ol>
+<h1 id="Unit-5：Heteroskedasticity"><a href="#Unit-5：Heteroskedasticity" class="headerlink" title="Unit 5：Heteroskedasticity"></a>Unit 5：Heteroskedasticity</h1><h3 id="Definition-5"><a href="#Definition-5" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Heteroscedasticity</strong>: MLR.5 is violated.</p>
+<h4 id="Testing-for-heteroscedasticity"><a href="#Testing-for-heteroscedasticity" class="headerlink" title="Testing for heteroscedasticity:"></a>Testing for heteroscedasticity:</h4><p><strong>Breusch-Pagan test</strong>:</p>
+<script type="math/tex; mode=display">
+\hat{u}^2 = \delta_0+\delta_1x_1+...+\delta_kx_k+error</script><script type="math/tex; mode=display">
+H_0:\delta_1=\delta_2=...=\delta_k=0</script><script type="math/tex; mode=display">
+F = \frac{R^2_{\hat{u}^2}/k}{(1-R^2_{\hat{u}^2})/(n-k-1)}\sim F_{k,n-k-1}</script><script type="math/tex; mode=display">
+LM = n·R^2_{\hat{u}^2} \sim \chi_k^2</script><p><strong>White test</strong>:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat{u}^2 &= \delta_0+\delta_1x_1+\delta_2x_2+\delta_3x_3\\
+&+\delta_4x_1^2+\delta_5x_2^2+\delta_6x_3^2\\
+&+\delta_7x_1x_2+\delta_8x_2x_3+\delta_9x_1x_3+error
+\end{align}</script><script type="math/tex; mode=display">
+H_0:\delta_1=\delta_2=...=\delta_9=0</script><script type="math/tex; mode=display">
+LM = n·R^2_{\hat{u}^2} \sim \chi_9^2</script><p><strong>Alternative form of the White test</strong>:</p>
+<script type="math/tex; mode=display">
+\hat{u}^2 = \delta_0+\delta_1\hat{y}_1+\delta_2\hat{y}_2+error</script><script type="math/tex; mode=display">
+H_0:\delta_1=\delta_2=0</script><script type="math/tex; mode=display">
+LM = n·R^2_{\hat{u}^2} \sim \chi_2^2</script><h4 id="Weighted-least-squares-estimation"><a href="#Weighted-least-squares-estimation" class="headerlink" title="Weighted least squares estimation:"></a>Weighted least squares estimation:</h4><script type="math/tex; mode=display">
+Var(u_i|x_i)=\sigma^2h(x_i),h(x_i)=h_i>0</script><p>The functional form of the heteroscedasticity is known</p>
+<p>set $w_i=\frac{1}{\sqrt{h_i}}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+y_i&=\beta_0+\beta_1x_{i1}+\beta_2x_{i2}+...+\beta_kx_{ik}+u_i\\
+w_iy_i&=w_i\beta_0+w_i\beta_1x_{i1}+w_i\beta_2x_{i2}+...+w_i\beta_kx_{ik}+w_iu_i\\
+y_i^* &=\beta_0x_{i0}^*+\beta_1x_{i1}^*+\beta_2x_{i2}^*+...+\beta_kx_{ik}^*+u_i^*
+\end{align}</script><p>where</p>
+<script type="math/tex; mode=display">
+E(u_i^{*2}|x_i)=\sigma^2</script><p>Observations with a large variance are less informative than observations with small variance and therefore should get less weight</p>
+<p><strong>Important special case of heteroscedasticity</strong>:</p>
+<p>If the observations are reported as averages at the city/county/state/country/firm level, they should be weighted by the size of the unit. $\sigma^2/m_i$</p>
+<p><strong>Unknown heteroscedasticity function (feasible GLS)</strong> :</p>
+<script type="math/tex; mode=display">
+Var(u|x)=\sigma^2exp(\delta_0+\delta_1x_1+...+\delta_kx_k)=\sigma^2h(x)</script><script type="math/tex; mode=display">
+\begin{align}
+u^2&=\sigma^2exp(\delta_0+\delta_1x_1+...+\delta_kx_k)·v\\
+log(u^2)&=\alpha_0+\delta_1x_1+...+\delta_kx_k+e\\
+\Rightarrow \hat{h}_i &= exp(\hat{\alpha}_0+\hat{\delta}_1x_1+...+\hat{\delta}_kx_k)
+\end{align}</script><p><strong>White’s Heteroscedasticity-robust standard variance</strong>:</p>
+<script type="math/tex; mode=display">
+\hat{Var(\hat{\beta}_1)}_{HC}=\frac{\sum_{i=1}^n(x_1-\bar{x})\hat{u}_i^2}{[\sum_{i=1}^n(x_1-\bar{x})^2]^2}</script><h3 id="Quiz-5"><a href="#Quiz-5" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>A test for <strong>heteroskedasticty</strong> can be significant if<ul>
+<li>the functional form of the regression model is misspecified</li>
+<li>Breusch-Pagan test/White test results in a small <em>p-</em>value</li>
+</ul>
+</li>
+<li>The generalized least square (GLS) is an efficient procedure that weights each squared residual by the:<ul>
+<li>inverse of the conditional variance of $u_i$ given $x_i$.</li>
+</ul>
+</li>
+<li>The heteroskedasticity-robust <u><em>F</em> statistic</u> is also called the heteroskedastcity-robust Wald statistic.</li>
+<li>The linear probability model contains heteroskedasticity unless <u>all the slope parameters are zero</u>.</li>
+<li>The heteroskedasticity-robust <em>t</em> statistics are justified only if the sample size is large.</li>
+<li>In weighted least squares estimation, <strong>less weight</strong> is given to observations with a <strong>higher error variance</strong>.</li>
+<li>The WLS method fails if $\hat{h}_i$ is negative or zero for any observation.</li>
+<li><u>The Hausman test</u> is used to compare the Ordinary Least Squares (OLS) estimates and the Weighted Least Squares (WLS) estimates.</li>
+<li><strong>Multicollinearity</strong> among the independent variables in a linear regression model causes the <strong>heteroskedasticity-robust standard errors to be large</strong>.</li>
+<li>The interpretation of goodness-of-fit ($R^2$) measures is unaffected by the presence of heteroskedasticty.</li>
+</ol>
+<h1 id="Unit-6：Regression-Analysis-with-Time-Series-Data"><a href="#Unit-6：Regression-Analysis-with-Time-Series-Data" class="headerlink" title="Unit 6：Regression Analysis with Time Series Data"></a>Unit 6：Regression Analysis with Time Series Data</h1><p><strong>Reading</strong>: Wooldridge 7th Edition Chapter 10: Basic Regression Analysis with the Time Series</p>
+<h3 id="Definition-6"><a href="#Definition-6" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Finite distributed lag models</strong>:</p>
+<p>In finite distributed lag models, the explanatory variables are allowed to influence the dependent variable with a time lag</p>
+<h4 id="Finite-sample-properties-of-OLS-under-classical-assumptions"><a href="#Finite-sample-properties-of-OLS-under-classical-assumptions" class="headerlink" title="Finite sample properties of OLS under classical assumptions:"></a><strong>Finite sample properties of OLS under classical assumptions</strong>:</h4><ul>
+<li><strong>Assumption TS.1 (Linear in parameters)</strong></li>
+<li><strong>Assumption TS.2 (No perfect collinearity)</strong></li>
+<li><strong>Assumption TS.3 (Zero conditional mean)</strong><ul>
+<li>(Contemporaneous) Exogeneity is not enough to ensure unbiasdness.</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+X = \begin{pmatrix}x_{11}&x_{12}&...&x_{1k}\\...&...&...&...\\
+x_{t1}&x_{t2}&...&x_{tk}\\...&...&...&...\\
+x_{n1}&x_{n2}&...&x_{nk}\\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+\begin{align}
+Exogeneity&:\ E(u_t|x_t)=0\\
+Strict\ exogeneity&:\ E(u_t|X)=0
+\end{align}</script><ul>
+<li><p>Unbiasedness of OLS</p>
+<ul>
+<li>TS.1-TS.3 $\Rightarrow$ $E(\hat{\beta}_j)=\beta_j,  j=0,1,…,k$</li>
+</ul>
+</li>
+<li><p><strong>Assumption TS.4 (Homoscedasticity)</strong></p>
+<ul>
+<li>$Var(u_t|X)=Var(u_t)=\sigma^2$</li>
+</ul>
+</li>
+<li><p><strong>Assumption TS.5 (No serial correlation)</strong></p>
+<ul>
+<li>$Corr(u_t,u_s|X)=0, t\neq s$</li>
+<li>Three types of correlation: <ol>
+<li>$Corr(x_{jt},x_{hs})$</li>
+<li>$Corr(x_{jt},xu{t})$</li>
+<li>$Corr(u_{t},u_{s})$</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>OLS sampling variances</p>
+<ul>
+<li>TS.1-TS.5 $\Rightarrow$ $Var(\hat{\beta}_j|X)=\frac{\sigma^2}{SST_j(1-R_j^2)},  j=0,1,…,k$$</li>
+</ul>
+</li>
+<li><p>Unbiased estimation of the error variance</p>
+<ul>
+<li>TS.1-TS.5 $\Rightarrow$ $E(\hat{\sigma}^2)=\sigma^2$</li>
+</ul>
+</li>
+<li><p>Gauss-Markov Theorem:</p>
+<ul>
+<li>Under assumptions TS.1 – TS.5, the OLS estimators have the minimal variance of all linear unbiased estimators of the regression coefficients</li>
+</ul>
+</li>
+<li><p><strong>Assumption TS.6 (Normality)</strong></p>
+<ul>
+<li>$u_t\sim iid N(0,\sigma^2)$ independent of $X$</li>
+</ul>
+</li>
+<li><p>Normal sampling distributions</p>
+<ul>
+<li>Under assumptions TS.1 – TS.6, the OLS estimators have the usual normal distribution (conditional on $X$ ). The usual F- and t-tests are valid. </li>
+</ul>
+</li>
+</ul>
+<p><strong>Modelling a linear time trend</strong>:</p>
+<script type="math/tex; mode=display">
+y_t = \alpha_0+\alpha_1t+e_t</script><p><strong>Modelling an exponential time trend</strong>:</p>
+<script type="math/tex; mode=display">
+log(y_t) = \alpha_0+\alpha_1t+e_t</script><h3 id="Quiz-6"><a href="#Quiz-6" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>a static model is <strong>postulated</strong> when a change in z at time t is believed to have an <strong>immediate effect</strong> on y</li>
+<li>Adding a time trend can make an explanatory variable more significant if: the dependent and independent variables have different kinds of trends, but movement in the independent variable about its trend line causes movement in the dependent variable away from its trend line.</li>
+<li>Time series regression is based on the assumption that no independent variable is constant nor a perfect linear combination of the others.</li>
+<li>Which of the following assumption for time series analysis does not hold?<ul>
+<li>No serial correlation</li>
+</ul>
+</li>
+<li>One of the assumptions of time series regression is that there should be no serial correlation in the concerned series.</li>
+<li>Cross-sectional regression <strong>rules out perfect collinearity</strong> among the regressors.</li>
+<li>When a series has the <strong>same average growth rate</strong> from period to period, it can be approximated with an exponential trend.</li>
+<li>Price indexes are necessary for turning a time series measured in nominal value into real value.</li>
+</ol>
+<h1 id="Unit-7：Further-Issues-Using-OLS-with-Time-Series-Data"><a href="#Unit-7：Further-Issues-Using-OLS-with-Time-Series-Data" class="headerlink" title="Unit 7：Further Issues Using OLS with Time Series Data"></a>Unit 7：Further Issues Using OLS with Time Series Data</h1><p><strong>Reading</strong>: Wooldridge 7th Edition Chapter 11: Further Issues in Using OLS with Time Series Data</p>
+<h3 id="Definition-7"><a href="#Definition-7" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Stationary stochastic processes</strong>:</p>
+<p>A stochastic $\{x_t:t=1,2…\}$ process is <strong>stationary</strong>, if for every collection of indices  $1\leq t_1\leq t_2\leq…\leq t_m$the joint distribution of $(x_{t_1},x_{t_2},…,x_{t_m})$ , is the same as that of  $(x_{t_1+h},x_{t_2+h},…,x_{t_m+h})$ for all integers $h\ge1$.</p>
+<p><strong>Covariance stationary processes</strong>:</p>
+<p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>covariance stationary</strong>, if its  expected value, its variance, and its covariances are constant over time:</p>
+<ol>
+<li>$E(x_t)=\mu$</li>
+<li>$Var(x_t)=\sigma^2$</li>
+<li>$Cov(x_t,x_{t+h})=f(h)$</li>
+</ol>
+<p><strong>asymptotically uncorrelated</strong>：</p>
+<p>when $h \to \infty,  cov(x_t,x_{t+h}) \to 0$</p>
+<p><strong>Weakly dependent time series</strong>：</p>
+<p>A stochastic process $\{x_t:t=1,2…\}$ is <strong>weakly dependent</strong> , if $x_t$ is “almost independent” of $x_{t+h}$ if $h$ grows to infinity (for all $t$).</p>
+<p><strong>Moving average process of order one (MA(1))</strong>:</p>
+<script type="math/tex; mode=display">
+x_t=e_t+\alpha_1e_{t-1}</script><p><strong>Autoregressive process of order one (AR(1))</strong>:</p>
+<script type="math/tex; mode=display">
+y_t=\rho_1y_{t-1}+e_t \Rightarrow Corr(y_t,y_{t+h})=\rho_1^h</script><h4 id="Asymptotic-properties-of-OLS"><a href="#Asymptotic-properties-of-OLS" class="headerlink" title="Asymptotic properties of OLS:"></a>Asymptotic properties of OLS:</h4><ul>
+<li><strong>Assumption TS.1‘ (Linear in parameters)</strong> <ul>
+<li>now the dependent and independent variables are assumed to be stationary and weakly dependent</li>
+<li>Trend-stationary processes also satisfy assumption TS.1‘</li>
+</ul>
+</li>
+<li><strong>Assumption TS.2‘ (No perfect collinearity)</strong></li>
+<li><p><strong>Assumption TS.3‘ (Zero conditional mean)</strong> </p>
+<ul>
+<li>Now the explanatory variables are assumed to be only contemporaneously exogenous rather than strictly exogenous</li>
+</ul>
+</li>
+<li><p>Consistency of OLS：</p>
+<ul>
+<li>TS.1‘-TS.3’ $\Rightarrow$ $plim\hat{\beta}_j=\beta_j,  j=0,1,…,k$</li>
+</ul>
+</li>
+<li><p><strong>Assumption TS.4‘ (Homoscedasticity)</strong></p>
+<ul>
+<li>$Var(u_t|x_t)=Var(u_t)=\sigma^2$</li>
+</ul>
+</li>
+<li><p><strong>Assumption TS.5‘ (No serial correlation)</strong></p>
+<ul>
+<li>$Corr(u_t,u_s|x_t,x_s)=0, t\neq s$</li>
+</ul>
+</li>
+<li><p>Asymptotic normality of OLS:</p>
+<ul>
+<li>Under assumptions TS.1‘ – TS.5‘, the OLS estimators are asymptotically normally distributed. Further, the usual OLS standard errors, t-statistics and F-statistics are asymptotically valid</li>
+</ul>
+</li>
+</ul>
+<h3 id="Random-walks"><a href="#Random-walks" class="headerlink" title="Random walks"></a>Random walks</h3><script type="math/tex; mode=display">
+y_t = y_{t-1}+e_t</script><ul>
+<li>$E(y_t)=E(y_0)$</li>
+<li>$Var(y_t)=\sigma_e^2t$</li>
+<li>$Corr(y,y_{t+h}) = \sqrt{t/(t+h)}$</li>
+</ul>
+<p><strong>I(1) processes</strong>:</p>
+<script type="math/tex; mode=display">
+y_t=y_{t-1}+e_t \Rightarrow \Delta y_t=y_t-y_{t-1}=e_t</script><h4 id="Testing-for-serial-correlation"><a href="#Testing-for-serial-correlation" class="headerlink" title="Testing for serial correlation"></a>Testing for serial correlation</h4><p><strong>Testing for AR(1) with strictly exog. regressors</strong> :</p>
+<script type="math/tex; mode=display">
+H_0:\rho=0\ in\ \hat{u}_t=\rho\hat{u}_{t-1}+error</script><p><strong>Durbin-Watson test under classical assumptions</strong>:</p>
+<script type="math/tex; mode=display">
+DW = \sum_{t=2}^n(\hat{u}_t-\hat{u}_{t-1})^2/\sum_{t=2}^n\hat{u}_t^2 \approx 2(1-\hat{\rho})</script><ul>
+<li>$H_0 : \rho = 0$</li>
+<li>Reject if $DW<d_L$, accept if $dw> d_U$, else the test is inconclusive.</d_L$,></li>
+</ul>
+<p>When strictly exogeneity does not hold, t-test and DW test are not valid</p>
+<p><strong>Testing for AR(1) with general regressors</strong>:</p>
+<script type="math/tex; mode=display">
+\hat{u}_t=\alpha_0+\alpha_1x_{t1}+...+\alpha_kx_{tk}+\rho\hat{u}_{t-1}+error</script><ul>
+<li>$H_0:\rho = 0$</li>
+</ul>
+<p><strong>General Breusch-Godfrey test for AR(q)</strong>:</p>
+<script type="math/tex; mode=display">
+\hat{u}_t=\alpha_0+\alpha_1x_{t1}+...+\alpha_kx_{tk}+\rho\hat{u}_{t-1}+...+\rho_q\hat{u}_{t-q}+...</script><ul>
+<li>$H_0:\rho_1=…=\rho_k = 0$</li>
+</ul>
+<h4 id="Correcting-for-serial-correlation"><a href="#Correcting-for-serial-correlation" class="headerlink" title="Correcting for serial correlation"></a><strong>Correcting for serial correlation</strong></h4><p><strong>with strictly exog. regressors</strong>:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+y_t &= \beta_0+\beta_1x_t+u_t\\
+\rho y_{t-1} &= \rho\beta_0+\rho\beta_1x_{t-1}+\rho u_{t-1}\\
+\Rightarrow y_t-\rho y_t &= \beta_0(1-\rho)+\beta_1(x_t-\rho x_{t-1})+u_t-\rho u_{t-1}
+\end{align}</script><script type="math/tex; mode=display">
+u_t=\rho u_{t-1}+e_t \Rightarrow u_t-\rho u_{t-1}=e_t</script><p><strong>Newey-West formula</strong>:</p>
+<ul>
+<li>$\hat{\alpha}_t=\hat{r}_t\hat{u}_t$</li>
+</ul>
+<script type="math/tex; mode=display">
+\hat{v}=\sum_{t=1}^n\hat{a}_t^2+2\sum_{h=1}^g[1-h/(g+1)](\sum_{t=h+1}^n\hat{a}_t\hat{a}_{t-h})</script><ul>
+<li><p>The integer g controls how much serial correlation is allowed:</p>
+<ul>
+<li>g=2: $\hat{v}=\sum_{t=1}^n\hat{a}_t^2+\sum_{t=2}^n\hat{a}_t\hat{a}_{t-1}$</li>
+<li>g=3: <script type="math/tex">\hat{v}=\sum_{t=1}^n\hat{a}_t^2+(4/3)\sum_{t=2}^n\hat{a}_t\hat{a}_{t-1}+(2/3)\sum_{t=3}^n\hat{a}_t\hat{a}_{t-2}</script></li>
+</ul>
+</li>
+<li><p>Serial correlation-robust standard errors:</p>
+<ul>
+<li>$se(\hat{\beta}_j)=[“se(\hat{\beta}_j)/\hat{\sigma}”]^2\sqrt{\hat{v}}$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Quiz-7"><a href="#Quiz-7" class="headerlink" title="Quiz:"></a>Quiz:</h3><ol>
+<li>Which of the following is a strong assumption for static and finite distributed lag models?<ul>
+<li><strong>Dynamic completeness</strong></li>
+<li>$E(y_t|x_t,y_{t-1},x_{t-1},…)=E(y_t|x_t)$</li>
+<li>The problem of serial correlation does not exist in dynamically complete models.</li>
+</ul>
+</li>
+<li><strong>sequentially exogenous</strong><ul>
+<li>$E(u_t|x_t,x_{t-1},…)=E(u_t)=0$</li>
+</ul>
+</li>
+<li>A model with a lagged dependent variable cannot satisfy the strict exogeneity assumption.</li>
+<li>A random walk process is not stationary.</li>
+<li>Covariance stationarity focuses only on the first two moments of a stochastic process.</li>
+<li>Under adaptive expectations, the expected current value of a variable adapts to a recently observed value of the variable.</li>
+<li>A smaller standard error means: <u>a larger t statistic.</u></li>
+<li>Consistency of FGLS requires $u_t$ to be uncorrelated with $x_{t-1}$,$x_t$, and$x_{t+1}$</li>
+<li><strong>Prais-Winsten estimation</strong> is an example of FGLS estimation.<ul>
+<li>Prais-Winsten standard errors account for serial correlation, whereas OLS estimations do not.</li>
+</ul>
+</li>
+<li><strong>Breusch-Godfrey test</strong> can be used to check for second order serial correlation.</li>
+<li>The <strong>SC-robust standard errors</strong> work better after quasi-differencing a time series that is expected to be serially correlated.</li>
+<li>Consistency of feasible generalized least square estimators requires the error term to be uncorrelated with lags of the explanatory variable. Correlation will lead to inconsistent estimates.</li>
+<li>The <strong>Cochrane-Orcutt</strong> and <strong>Prais-Winsten</strong> methods are iterative methods of feasible generalized least square (FGLS) estimation.</li>
+<li>The serial correlation-robust standard errors are typically larger than the usual OLS standard errors when there is serial correlation.</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Econometrics/" class="category-chain-item">Econometrics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Regression-Analysis/">#Regression Analysis</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】Basic Econometrics</div>
+      <div>http://achlier.github.io/2021/04/27/Basic_Econometrics/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 27, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/30/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%96%B9%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0/" title="【笔记】一元线性回归方程中的回归系数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】一元线性回归方程中的回归系数</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/25/Mathematical_Finance/" title="【课程】Mathematical Finance">
+                        <span class="hidden-mobile">【课程】Mathematical Finance</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

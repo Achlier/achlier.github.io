@@ -1,0 +1,2309 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于格拉斯哥ECON5022的笔记；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】Modelling and Forecasting Financial Markets">
+<meta property="og:url" content="http://achlier.github.io/2021/05/18/Modelling_and_Forecasting_Financial_Markets/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于格拉斯哥ECON5022的笔记；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-17T18:39:31.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:37:41.481Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Time Series">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【课程】Modelling and Forecasting Financial Markets - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】Modelling and Forecasting Financial Markets"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-18 02:39" pubdate>
+          May 18, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】Modelling and Forecasting Financial Markets</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于格拉斯哥ECON5022的笔记；</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h1><p>The course offers an introduction to modelling and forecasting financial time series. The first part of the course will be mainly devoted to analysing univariate models for the conditional mean and the conditional variance (<strong>ARMA and GARCH models</strong>). These models will be used to produce forecasts. Additional topics, e.g. <strong>multiple time series analysis and nonlinear models</strong> may be discussed, if time allows. In the second part of the course will discuss forecasts evaluation, aimed to <strong>monitor and improve forecast performances</strong>. The course will be complemented by practical session using statistical or econometric software.</p>
+<h1 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h1><p>The main aims of the course are to introduce the basic models widely used to analyse and forecast <strong>financial time series</strong>, and to evaluate the forecast produced using these models.</p>
+<h1 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h1><p>By the end of this course, students will be able to:</p>
+<ol>
+<li><strong>Select and fit</strong> the appropriate model to analyse financial time series.</li>
+<li><strong>Derive the main properties</strong> of the models used to analyse and forecast financial time series.</li>
+<li><strong>Produce optimal forecasts</strong> for a given information set and forecast horizon.</li>
+<li><strong>Evaluate</strong> critically the forecasts.</li>
+<li><strong>Model and predict</strong> financial time series using statistical/econometric software.</li>
+<li><strong>Work collaboratively</strong> in a group to produce a combined output, by liaising with other class members, allocating tasks and co-ordinating.</li>
+</ol>
+<h1 id="Unit-1：Time-Series-and-Their-Features"><a href="#Unit-1：Time-Series-and-Their-Features" class="headerlink" title="Unit 1：Time Series and Their Features"></a>Unit 1：Time Series and Their Features</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 2, Section 2.7 (Essential)</li>
+<li>Brooks, Chapter 6, Sections 6.1-6.2 (Essential)</li>
+</ul>
+<p>Students are supposed to be familiar with the topics covered in the sections below:</p>
+<ul>
+<li>Brooks, Chapter 1, Sections 1.5-1.6.</li>
+<li>Brooks, Chapter 2, Section 2.1-2.5.</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 1, Self-Study Questions 6, 10, 23.</li>
+<li>Brooks, Chapter 2, Self-Study Questions 1-6, 9.</li>
+</ul>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h3><p>Most financial studies involves returns, instead of prices, of assets</p>
+<ul>
+<li>Return of an asset is a scale-free summary of an investment opportunity.</li>
+<li>Return series are easier to handle than prices because of the more attractive statistical properties.</li>
+</ul>
+<h4 id="Time-Series-Data"><a href="#Time-Series-Data" class="headerlink" title="Time Series Data"></a>Time Series Data</h4><ol>
+<li>The term <strong>time series</strong> is used to mean both the data $\{x_t\}$ and the process $\{X_t\}$ of which it is a realization.</li>
+<li>$\{x_t\}$ and $\{X_t\}$ are the shorthand notations for $\{x_t , t \in T_0\}$ and $\{X_t , t \in T_0\}$ when it is not necessary to specify $\mathbb{T}_0$ where $\mathbb{T}_0$ is a discrete set..</li>
+</ol>
+<p><strong>Mean function</strong></p>
+<script type="math/tex; mode=display">
+\mu(t)\equiv\mathbb{E}X_t</script><p><strong>covariance function</strong></p>
+<script type="math/tex; mode=display">
+\gamma(t,s)\equiv\mathbb{Cov}(X_t,X_s)=\mathbb{E}[(X_t-\mu(t))(X_s-\mu(s))]</script><p><strong>Strict Stationarity</strong>：</p>
+<p>The process is said to be strictly stationary if thejoint distribution of $(X_{t_1}, X_{t_2}, . . .X_{t_n})’$ and $(X_{t_1+h}, X_{t_2+h}, . . .X_{t_n+h})’$ are the same for all the positive integers $n$ and for all $t_1, t_2, . . . , t_n$</p>
+<p><strong>Weak Stationarity</strong>：</p>
+<ol>
+<li>$\mathbb{E}|X_t|^2&lt;\infty$,</li>
+<li>$\mu(t)=\mu   \forall t \in \mathbb{Z}$</li>
+<li>$\gamma(t+h,t)=\gamma(h)  \forall t\in\mathbb{Z},h\in\mathbb{N}$</li>
+</ol>
+<p><strong>Autocovariance function (ACVF)</strong></p>
+<script type="math/tex; mode=display">
+\gamma(h)\equiv\mathbb{Cov}(X_{t+h},X_h)</script><p><strong>Autocorrelation function (ACF)</strong> </p>
+<script type="math/tex; mode=display">
+\rho(h)\equiv\frac{\gamma(h)}{\gamma(0)}=\mathbb{Corr}(X_{t+h},X_h)=\frac{\mathbb{Cov}(X_{t+h},X_h)}{\sqrt{\mathbb{Var}(X_{t})}\sqrt{\mathbb{Var}(X_{t+h})}}</script><p>A weakly stationary time series $\{X_t\}$ is <strong>not serially autocorrelated</strong> if $\rho(h) = 0$ for all $h &gt; 0$.</p>
+<p>For a given sample $\{x_t\}$</p>
+<script type="math/tex; mode=display">
+\rho(h)=\frac{\sum_{t=h+1}^T(x_t-\bar{x})(x_{t-h}-\bar{x})}{\sum_{t=h+1}^T(x_t-\bar{x})^2}</script><p>If $\{X_t\}$ is a sequence of independent and identically distributed (iid) random variables satisfying $\mathbb{E}|X_t|^2&lt;\infty$</p>
+<script type="math/tex; mode=display">
+\hat{\rho}(h)\sim N(0,1/T)</script><p>The interval $[-\frac{1.96}{\sqrt{T}},\frac{1.96}{\sqrt{T}}]$ is the 95% non-rejection region for the null $\rho(h) = 0$. We can use the confidence interval to test individual ACFs.</p>
+<p><strong>Box and Pierce (1970)</strong> proposed the statistic</p>
+<script type="math/tex; mode=display">
+Q^*(m)\equiv T\sum_{h=1}^m\hat{\rho}^2(h)</script><p>as a test static for $H_0 : \rho(1) = · · · = \rho(m) = 0$ versus $H_1 : \rho(h) \not= 0$ for some $k \in \{1, . . . , m\}$. The null is rejected if $Q^∗ (m)$ lies in the upper tail of $\chi^2 (m)$.</p>
+<p><strong>Ljung and Box (1978)</strong> modified the statistic to improve the small sample properties of the test</p>
+<script type="math/tex; mode=display">
+Q^*(m)\equiv T(T+2)\sum_{h=1}^m\frac{\hat{\rho}^2(h)}{T-h}\sim \chi^2 (m)</script><h3 id="Self-Study-Questions："><a href="#Self-Study-Questions：" class="headerlink" title="Self-Study Questions："></a>Self-Study Questions：</h3><p>【<strong>CHP 2：Q5</strong>】<strong>Which is a more useful measure of central tendency for stock returns − the arithmetic mean or the geometric mean? Explain your answer.</strong></p>
+<script type="math/tex; mode=display">
+Arithmetic\ Mean:\frac1N\sum_{i=1}^N r_i</script><script type="math/tex; mode=display">
+Geometric\ Mean:\prod_{i=1}^N (1+r_i)^{1/N}-1</script><p>The geometric return is always <strong>less than</strong> or equal to the arithmetic return, and so the geometric return is a downward-biased predictor of future performance. </p>
+<p>If the objective is to summarise <strong>historical performance</strong>, <strong>the geometric mean</strong> is more appropriate, but if we want to <strong>forecast future returns</strong>, <strong>the arithmetic mean</strong> is the one to use.</p>
+<p>【<strong>CHP 2：Q10</strong>】<strong>Real Return (Simple Return -Inflation)</strong></p>
+<h1 id="Unit-2：Linear-Models-for-Stationary-Time-Series"><a href="#Unit-2：Linear-Models-for-Stationary-Time-Series" class="headerlink" title="Unit 2：Linear Models for Stationary Time Series"></a>Unit 2：Linear Models for Stationary Time Series</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Sections 6.1-6.8 (Essential)</li>
+<li>Diebold, Chapter 6, Sections 6.1-6.6 (Recommended)</li>
+<li>Diebold, Chapter 7, Sections 7.1-7.2 (Recommended)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Self-Study Questions 1-9</li>
+</ul>
+<h3 id="Definition-1"><a href="#Definition-1" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="White-noise"><a href="#White-noise" class="headerlink" title="White noise"></a>White noise</h4><ul>
+<li>mean 0 and variance $\sigma^2$, $\epsilon_t\sim WN(0,\sigma^2)$</li>
+<li>$\gamma(h)=\begin{cases}\sigma^2&amp;if h= 0\ 0&amp;if h\ne 0 \end{cases}$</li>
+<li>If iid $\to$ a <em>strong</em> white noise</li>
+</ul>
+<h4 id="Moving-Average-Models-MA"><a href="#Moving-Average-Models-MA" class="headerlink" title="Moving Average Models (MA)"></a>Moving Average Models (MA)</h4><ul>
+<li><p>$X_t = \epsilon_t+\theta_1\epsilon_{t-1}+\theta_2\epsilon_{t-2}…, \epsilon_t\sim WN(0,\sigma^2)$</p>
+</li>
+<li><p>$\gamma(h)=\begin{cases}\sigma^2(\theta_h+\sum_{j=1}^{q-h}\theta_{h+j}\theta_j)&amp;0\leq h\leq q\\0&amp;h&gt;q\end{cases}$</p>
+</li>
+<li>MA(q) Test by ACF</li>
+</ul>
+<p><strong>MA(1)</strong></p>
+<ul>
+<li>$X_t=\mu+\epsilon_t+\theta\epsilon_{t-1}$</li>
+<li>For $Y_{t-k}=X_{t-k}-\mu=\epsilon_{t-k}+\theta\epsilon_{t-k-1}$</li>
+</ul>
+<p>By backward substitution</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Y_t&=\theta\epsilon_{t-1}+\epsilon_{t}\\
+&=\theta(Y_{t-1}+\theta\epsilon_{t-2})+\epsilon_{t}\\
+
+&=...\\
+&=\sum_{j=1}^{k-1}\theta^jY_{t-j}+\epsilon_t+\theta^k\epsilon_{t-k}
+\end{align}</script><ul>
+<li>If $k\to\infty and |\theta_1|&lt;1$,  $Y_t=\sum_{j=1}^\infty\theta^jY_{t-j}+\epsilon_t$</li>
+</ul>
+<h4 id="Autoregressive-Models-AR"><a href="#Autoregressive-Models-AR" class="headerlink" title="Autoregressive Models (AR)"></a>Autoregressive Models (AR)</h4><ul>
+<li>$X_t = \phi_0+\phi_1X_{t-1}+\phi_2X_{t-2}…+\epsilon_t, \epsilon_t\sim WN(0,\sigma^2)$</li>
+<li>AR(p) Test by PACF</li>
+</ul>
+<p><strong>AR(1)</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+X_t &= \phi_0+\phi_1X_{t-1}+\epsilon_t\\
+&=\phi_0+\phi_1(\phi_0+\phi_1X_{t-2}+\epsilon_{t-1})+\epsilon_t\\
+&=...\\
+&=\underbrace{\phi_0\sum_{j=0}^{k-1}\phi_1^j}+\phi_1^kX_{t-k}+\sum_{j=0}^{k-1}\phi_1^j\epsilon_{t-j}\\
+\phi_0&\frac{1-\phi_1^k}{1-\phi_1}=\mu(1-\phi_1^k)
+\end{align}</script><blockquote>
+<p>Summation for geometric sequence：$S_n=a_1+…+a_n=a_1\frac{1-q^n}{1-q}$</p>
+</blockquote>
+<p>we obtain</p>
+<script type="math/tex; mode=display">
+(X_t-\mu)=\phi_1^k(X_{t-k}-\mu)+\sum_{j=0}^{k-1}\phi_1^j\epsilon_{t-j},\ \mu\equiv\frac{\phi_0}{1-\phi_1}</script><ul>
+<li>If $k\to\infty and |\phi_1|&lt;1$,  $X_t=\mu+\sum_{j=0}^\infty\phi_1^j\epsilon_{t-j}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}(X_t)=\mu=\frac{\phi_0}{1-\phi_1}</script><script type="math/tex; mode=display">
+\mathbb{Var}(X_t)=\sigma^2\sum_{j=0}^\infty\phi_1^{2j}=\frac{\sigma^2}{1-\phi_1^2}</script><script type="math/tex; mode=display">
+\begin{align}
+\mathbb{Cov}(X_t,X_{t-h})&=\mathbb{E}[(X_t-\mu)(X_{t-h}-\mu)]\\
+&=\mathbb{E}[(\sum_{k=0}^{h-1}\phi_1^k\epsilon_{t-k}+\sum_{k=h}^\infty\phi_1^k\epsilon_{t-k})(\sum_{j=0}^\infty\phi_1^j\epsilon_{t-h-j})]\\
+&=\mathbb{E}[\phi_1^h(\sum_{k=0}^\infty\phi_1^k\epsilon_{t-h-k})(\sum_{j=0}^\infty\phi_1^j\epsilon_{t-h-j})]\\
+&=\phi_1^h\sigma^2\sum_{j=0}^\infty\phi_1^{2j}=\phi_1^h\mathbb{Var}(X_t)
+\end{align}</script><script type="math/tex; mode=display">
+\mathbb{Corr}(X_t,X_{t-h})=\phi_1^h</script><h4 id="Yule-Walker"><a href="#Yule-Walker" class="headerlink" title="Yule-Walker"></a>Yule-Walker</h4><p>For AR(p) we have</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+Y_t\\Y_{t+1}\\...\\Y_{t+n}
+\end{bmatrix}
+=
+\begin{bmatrix}
+Y_{t-1}&Y_{t-2}&...&Y_{t-p}\\
+Y_{t}&Y_{t-1}&...&Y_{t+1-p}\\
+...&...&...&...\\
+Y_{t+n-1}&Y_{t+n-2}&...&Y_{t+n-p}
+\end{bmatrix}
+\begin{bmatrix}
+\phi_1\\ \phi_2\\...\\ \phi_p
+\end{bmatrix}
++
+\begin{bmatrix}
+\epsilon_t\\ \epsilon_{t+1}\\...\\ \epsilon_{t+n}
+\end{bmatrix}</script><p>Times $Y_{t-1}$ at both side and taking $\mathbb{E}$, with $\mathbb{E}(Y_t)=0$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(Y_tY_{t-1})=\gamma(1)=\sum_{j=1}^p\gamma_{j-1}\phi_j</script><p><strong>Linear projection</strong> of $X$ onto $\{1, z_1, . . . , z_n\}$</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[X|1, z_1,..., z_n]=\sum_{j=0}^na_jz_j,\ z_0=1</script><p>where $a_0, . . . , a_n$ satisfy</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[(X-\sum_{j=0}^na_jz_j)z_j]=0,\ i=0,1,...,n</script><blockquote>
+<p>同等于OLS中$\sum_{i=1}^n\hat{u}_ix_i=0$, 此处是$z_j$对$X$的回归</p>
+</blockquote>
+<p><strong>Partial Autocorrelation Function (PACF)</strong></p>
+<ul>
+<li>$\alpha(0)\equiv 1$</li>
+<li>$\alpha(1)\equiv\rho(1)=\mathbb{Corr}(X_2,X_1)$</li>
+<li>$\alpha(2)=\mathbb{Corr}(e_2,e_1)=\frac{\rho(2)-\rho^2(1)}{1-\rho^2(1)}$</li>
+<li>$\alpha(h)\equiv\mathbb{Corr}(e_{h+1},e_1), h&gt;1$<ul>
+<li>$e_{h+1}=X_{h+1}-\mathscr{P}[X_{h+1}|1, X_2,…, X_h]$</li>
+<li>$e_{1}=X_{1}-\mathscr{P}[X_1|1, X_2,…, X_h]$</li>
+</ul>
+</li>
+<li>$\alpha(h)=\phi_{hh}$<ul>
+<li>$\mathscr{P}[X_{h+1}|1, X_1,…, X_h]=\phi_{h0}+\phi_{h1}X_h+…+\phi_{hh}X_1$</li>
+<li>$\alpha=\Gamma_p^{-1}\gamma(p)$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\alpha(1)\\ \alpha(2)\\...\\ \alpha(p)
+\end{bmatrix}
+=
+\begin{bmatrix}
+\gamma(0)&\gamma(1)&...&\gamma(p-1)\\
+\gamma(1)&\gamma(2)&...&\gamma(p-2)\\
+...&...&...&...\\
+\gamma(p-1)&\gamma(p-2)&...&\gamma(0)
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+\gamma(1)\\ \gamma(2)\\...\\ \gamma(p)
+\end{bmatrix}</script><p><strong>If ACF and PACF are both declining geometrically $\to$ ARMA(1,1)</strong></p>
+<p><strong>Box and Jenkins (1976) suggest the following approach:</strong></p>
+<ul>
+<li>Identification</li>
+<li>Estimation</li>
+<li>Diagnostic Checking</li>
+</ul>
+<h4 id="Information-criteria"><a href="#Information-criteria" class="headerlink" title="Information criteria"></a>Information criteria</h4><p>The residuals satisfy the equation ARMA(p,q)</p>
+<script type="math/tex; mode=display">
+e_t=X_t-\hat{\phi}_0-\hat{\phi}_1X_{t-1}-...-\hat{\phi}_pX_{t-p}-\hat{\theta}_1e_{t-1}-...-\hat{\theta}_qe_{t-q}</script><p>Let $k=p+q+1$.  The information criteria are often written as</p>
+<ul>
+<li>AIC = $ln(\hat{\sigma}^2)+2\frac{k}{T}$</li>
+<li>SBIC =  $ln(\hat{\sigma}^2)+\frac{k}{T}ln(T)$​</li>
+<li>HQIC = $ln(\hat{\sigma}^2)+\frac{2k}{T}ln(ln(T))$​​</li>
+</ul>
+<p>where $\hat{\sigma}^2=T^{-1}\sum_{t=1}^Te_t^2$</p>
+<p>Select p,q to minimize the information criteria.</p>
+<p><strong>lag operator</strong> $L$</p>
+<ul>
+<li><p>$L^kX_t=X_{t-k}$</p>
+</li>
+<li><p>The AR(p) process can be rewritten as</p>
+<ul>
+<li>$\Phi(L)X_t=\phi_0+\epsilon, \Phi(L)=1-\phi_1L-\phi_2L^2-…-\phi_pL^p$</li>
+</ul>
+</li>
+<li>The solutions of the equation $\Phi(z)=0$ are called the roots of the polynomial.</li>
+</ul>
+<h4 id="Stationarity-of-an-AR-p-process"><a href="#Stationarity-of-an-AR-p-process" class="headerlink" title="Stationarity of an AR(p) process"></a><strong>Stationarity of an AR(p) process</strong></h4><p>If $\Phi(z)\ne 0$ for $|Z|\leq 1$, then $\{X_t\}$  is stationary and causal, and the following <strong>causal</strong> representation</p>
+<script type="math/tex; mode=display">
+X_t=\mu+\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1</script><p>where</p>
+<ul>
+<li>$\mu = \frac{\phi_0}{\Phi(1)}$</li>
+<li>$\Psi(z)=1+\psi_1z+\psi_2z^2+…=\Phi^{-1}(z)=1/\Phi(z)$</li>
+<li>For AR(1), $\psi_j=\phi^j$ by Taylor Expansion</li>
+<li>For AR(2), $\psi_0=1,\psi_1=\phi_1,\psi_j=\phi_1\psi_{j-1}+\phi_2\psi_{j-2}$</li>
+</ul>
+<p><strong>Stationarity only need $|Z|\ne 1$, So we can find the stationary solution of AR(1) with $|\phi|&gt;1$</strong></p>
+<script type="math/tex; mode=display">
+Y_t=\phi Y_{t-1}+\epsilon_t</script><p>Equation can be rewritten as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(1-\phi L)Y_t&=\epsilon_t\\
+-(\phi L)^{-1}(1-\phi L)Y_t&=-(\phi L)^{-1}\epsilon_t\\
+(1-\phi^{-1} L^{-1})Y_t&=-(\phi L)^{-1}\epsilon_t
+\end{align}</script><p>we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Y_t&=-(1-\phi^{-1} L^{-1})^{-1}(\phi L)^{-1}\epsilon_t\\
+&=-[\sum_{j=0}^\infty\phi^{-j} L^{-j}](\phi L)^{-1}\epsilon_t\\
+&=-[\sum_{j=1}^\infty\phi^{-j} L^{-j}]\epsilon_t\\
+&=-\sum_{j=1}^\infty\phi^{-j}\epsilon_{t+j}
+\end{align}</script><h4 id="ARMA-models"><a href="#ARMA-models" class="headerlink" title="ARMA models"></a>ARMA models</h4><p><strong>Autocorrelation Function</strong></p>
+<script type="math/tex; mode=display">
+\rho(h)=\begin{cases}
+\frac{(1-\phi_1\theta_1)(\phi_1-\theta_1)}{1+\theta_1^2-2\phi_1\theta_1}&h=1\\
+\rho_1\phi_1^{k-1}&h>1
+\end{cases}</script><p><strong>Causal Processes</strong></p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \psi_0=1,\ \sum_{j=0}^\infty|\psi_j|<\infty</script><p><strong>Invertible Processes</strong></p>
+<script type="math/tex; mode=display">
+\epsilon_t=\sum_{j=0}^\infty\pi_jY_{t-j},\ \pi_0=1,\ \sum_{j=0}^\infty|\pi_j|<\infty</script><p>We have</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\Theta(L)\epsilon_t</script><p>where</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\Phi(z)&=1-\phi_1z-\phi_2z^2-...-\phi_pz^p\\
+\Theta(z)&=1+\theta_1z+\theta_2z^2+...+\theta_qz^q
+\end{align}</script><ol>
+<li><p>$\{Y_t\}$ is stationary and causal if and only if</p>
+<p>$\Phi(z)\ne 0 for all |z|\leq1$</p>
+<p>and the coefficients are determined by the relationship</p>
+<p>$\Psi(z)=\sum_{j=0}^\infty\psi_jz^j=\frac{\Theta(z)}{\Phi(z)}$</p>
+</li>
+<li><p>$\{Y_t\}$ is invertible if and only if</p>
+<p>$\Theta(z)\ne 0 for all |z|\leq1$</p>
+<p>and the coefficients are determined by the relationship</p>
+<p>$\Pi(z)=\sum_{j=0}^\infty\pi_jz^j=\frac{\Phi(z)}{\Theta(z)}$</p>
+</li>
+<li><p>The ARMA(p,q) models is often preferred for parsimony reasons:</p>
+<p>$\frac{\Theta(z)}{\Phi(z)}=1+\sum_{j=1}^\infty\psi_j^{(p,q)}z^j$</p>
+</li>
+</ol>
+<blockquote>
+<p>$z=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$</p>
+</blockquote>
+<p><strong>On the representation of ARMA processes</strong></p>
+<p>We have $\Psi(z)=\frac{\Theta(z)}{\Phi(z)}$</p>
+<p>Rewrite as $\Psi(z)\Phi(z)=\Theta(z)$ with $\phi_0=\theta_0=1$, i.e.</p>
+<script type="math/tex; mode=display">
+\sum_{j=0}^\infty\psi_jz^j(1-\sum_{i=1}^p\phi_iz^i)=1+\sum_{k=1}^q\theta_kz^k</script><p>Evaluating at $z=0$, we find $\psi_0=1$</p>
+<p>Taking first derivative</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\sum_{j=1}^\infty j\psi_jz^{j-1}-\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=0}^\infty\psi_jz^j\\
+&-\sum_{i=1}^p\phi_iz^i\sum_{j=1}^\infty j\psi_jz^{j-1}=\sum_{k=1}^qk\theta_kz^{k-1}
+\end{align}</script><p>Evaluating at $z=0$, we find $\psi_1-\phi_1\psi_0=\theta_1$, so $\psi_1=\phi_1+\theta_1$</p>
+<p>Taking first derivative again</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}-\sum_{i=2}^pi(i-1)\phi_iz^{i-2}\sum_{j=0}^\infty\psi_jz^j\\
+&-2\sum_{i=1}^pi\phi_iz^{i-1}\sum_{j=1}^\infty j\psi_jz^{j-1}-\sum_{i=1}^p\phi_iz^i\sum_{j=2}^\infty j(j-1)\psi_jz^{j-2}\\
+&=\sum_{k=2}^qk(k-1)\theta_kz^{k-2}
+\end{align}</script><p>Evaluating at $z=0$, we find $2\psi_2-2\phi_2-2\phi_1\psi_1=2\theta_2$, so $\psi_2=\theta_2+\phi_2+\phi_1^2+\phi_1\theta_1$</p>
+<p>Repeating the step above, we can find</p>
+<script type="math/tex; mode=display">
+\psi_j=\theta_j+\sum_{0< k\leq j}\phi_k\psi_{j-k},\ 0\leq j< max(p,q+1)</script><script type="math/tex; mode=display">
+\psi_j=\sum_{0< k\leq p}\phi_k\psi_{j-k},\ j\ge max(p,q+1)</script><h3 id="Lab："><a href="#Lab：" class="headerlink" title="Lab："></a>Lab：</h3><p>ACF/PACF Confident interval $\pm 1.96/\sqrt{T}$</p>
+<p>Persistent : How long the shock will die out. ( long when $\theta \to 1$)</p>
+<h3 id="Self-Study-Questions：-1"><a href="#Self-Study-Questions：-1" class="headerlink" title="Self-Study Questions："></a>Self-Study Questions：</h3><p>【<strong>CHP 6：Q8</strong>】<strong>Comment on ‘Given that the objective of any econometric modelling exercise is to find the model that most closely ‘fits’ the data, then adding more lags to an ARMA model will almost invariably lead to a better fit. Therefore a large model is best because it will fit the data more closely.’</strong></p>
+<p>In most financial series, there is a substantial amount of <strong>‘noise’</strong>. This can be interpreted as a number of random events that are unlikely to be repeated in any forecastable way. We want to fit a model to the data which will be able to <strong>‘generalise’</strong>. In other words, we want a model which fits to features of the data which will be replicated in future; we do not want to fit to sample-specific noise.</p>
+<p>This is why we need the concept of <strong>‘parsimony’</strong> – fitting the smallest possible model to the data. Otherwise we may get a great fit to the data in the sample, but any use of the model for forecasts could yield terrible results. </p>
+<p>Another important point is that the larger the number of estimated parameters (i.e., the more variables we have), then the smaller will be the number of <strong>degrees of freedom</strong>, and this will imply that coefficient standard errors will be larger than they would otherwise have been. This could lead to a <strong>loss of power in hypothesis tests</strong>, and variables that would otherwise have been significant are now insignificant.</p>
+<p>【<strong>CHP 6：Q9</strong>】<strong>You obtain the following sample autocorrelations and partial autocorrelations for a sample of 100 observations from actual data:</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Lag</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>acf</td>
+<td>0.420</td>
+<td>0.104</td>
+<td>0.032</td>
+<td>−0.206</td>
+<td>−0.138</td>
+<td>0.042</td>
+</tr>
+<tr>
+<td>pacf</td>
+<td>0.632</td>
+<td>0.381</td>
+<td>0.268</td>
+<td>0.199</td>
+<td>0.205</td>
+<td>0.101</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>MA(1), the significant lag 4 acf is a typical wrinkle that one might expect with real data and should probably be ignored.</p>
+<p><strong>Use the Ljung–Box Q* test to determine whether the first three autocorrelation coefficients taken together are jointly  significantly different from zero.</strong> </p>
+<script type="math/tex; mode=display">
+Q^*=100\times 102\times[\frac{0.420^2}{100-1}+\frac{0.104^2}{100-2}+\frac{0.032^2}{100-3}]</script><h1 id="Unit-3：Forecasting-with-ARMA-models"><a href="#Unit-3：Forecasting-with-ARMA-models" class="headerlink" title="Unit 3：Forecasting with ARMA models"></a>Unit 3：Forecasting with ARMA models</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Sections 6.10.1 - 6.10.8 (Essential)</li>
+<li>Diebold, Chapter 6, Sections 6.7, 6.8, 7.3-7.5 (Essential)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Self-Study Questions 10(a)-(b); 11(a)-(c); 12(a)-(e).</li>
+</ul>
+<h3 id="Definition-2"><a href="#Definition-2" class="headerlink" title="Definition:"></a>Definition:</h3><ul>
+<li>h : forecast horizon</li>
+<li>Univariate information set : $\Omega_T \equiv\{X_t,t\leq T\}$</li>
+<li>The definition of the forecast horizon implies that we are dealing with out of sample forecasts</li>
+</ul>
+<h4 id="Forecast-types"><a href="#Forecast-types" class="headerlink" title="Forecast types"></a>Forecast types</h4><ol>
+<li>Point Forecast: A single number.</li>
+<li>Interval Forecast: A range of values in which we expect the realized value of the series to fall with a given probability. The length of the interval depends on the uncertainty surrounding the point forecast.</li>
+<li>Density Forecast: The conditional probability distribution of the series at a give forecast horizon.</li>
+</ol>
+<h4 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h4><ul>
+<li>$\{X_t\}^T_{t=1}$ : Series</li>
+<li>Point forecast : $f_{T,h}=\mathbb{E}(X_{T+h}|\Omega_T)$ </li>
+<li>Forecast error : $e_{T,h}\equiv X_{T+h}-f_{T,h}$</li>
+<li>Mean Squared Error (MSE) : $\mathbb{E}[e_{T,h}]^2$</li>
+<li>$\mathbb{E}[X_{T+h}-\mathbb{E}(X_{T+h}|\Omega_T )]\leq \mathbb{E}[e_{T,h}]^2$</li>
+<li>Loss function : $l(e_{T,h})$</li>
+</ul>
+<p>We will consider $Y_t=X_t-\mu, \mathbb{E}(Y_t)=0$</p>
+<h4 id="Forecasting-based-on-lagged-epsilon-’s"><a href="#Forecasting-based-on-lagged-epsilon-’s" class="headerlink" title="Forecasting based on lagged $\epsilon$’s"></a>Forecasting based on lagged $\epsilon$’s</h4><p>Consider a stationary process $\{Y_t\}$ with Wold representation</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\psi_j\epsilon_{t-j},\ \epsilon_t\sim WN(0,\sigma^2)</script><p>with $\psi_0=1$ and $\sum_{j=0}^\infty \psi_j^2&lt;\infty$</p>
+<script type="math/tex; mode=display">
+Y_{T+h}=\sum_{j=0}^\infty\psi_j\epsilon_{T+h-j}</script><p>Recall that for $f_{T,h}=\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]=\sum_{j=0}^\infty\beta_j\epsilon_{T-j}$</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\mathbb{E}[(Y_{T+h}-f_{T,h})\epsilon_{T}]\\ \mathbb{E}[(Y_{T+h}-f_{T,h})\epsilon_{T-1}]\\...
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathbb{E}[(\psi_h-\beta_0)\epsilon_{T}^2]\\ \mathbb{E}[(\psi_{h+1}-\beta_1)\epsilon_{T-1}^2]\\...
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\0\\...
+\end{bmatrix}</script><p>So $\psi_h=\beta_0,\psi_{h+1}=\beta_1,….$</p>
+<p>The optimal linear forecast takes the form</p>
+<script type="math/tex; mode=display">
+f_{T,h}=\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]=\sum_{j=0}^\infty\psi_{j+h}\epsilon_{T-j}</script><p>The forecast error takes the form</p>
+<script type="math/tex; mode=display">
+\begin{align}
+e_{T,h} &= Y_{T+h}-\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]\\
+&=\epsilon_{T+h}+\psi_1\epsilon_{T+h-1}+...+\psi_{h-1}\epsilon_{T+1}\\
+&=\sum_{j=0}^{h-1}\psi_j\epsilon_{T+h-j}
+\end{align}</script><p>with $\mathbb{E}(e_{T,h})=0$ and $\mathbb{Cov}(e_{T,h},\epsilon_j)=0 for j\leq T$</p>
+<p>We also note that $e_{T,h}\sim MA(h-1)$ process, and</p>
+<script type="math/tex; mode=display">
+\mathbb{Var}(e_{T,h})=\sigma^2(1+\psi^2_1+\psi^2_2+...+\psi^2_{h-1})</script><p>that is, the MSE (risk) approaches to $\mathbb{Var}(Y_t)$ when $h \to \infty$</p>
+<p>$Y_t$ can be rewritten as ,$Y_t=\Psi(L)\epsilon_t$ with</p>
+<script type="math/tex; mode=display">
+\Psi(L)=\sum_{j=0}^\infty\psi_jL^j</script><p>Divide $\Psi(L)$ by $L^h$</p>
+<script type="math/tex; mode=display">
+\frac{\Psi(L)}{L^h}=L^{-h}+\psi_1L^{1-h}+\psi_2L^{2-h}+...+\psi_{h-1}L^{-1}+\psi_h+\psi_{h+1}L+...</script><p>The annihilation operator $[·]_+$ replace the negative powers of L with a zero,</p>
+<script type="math/tex; mode=display">
+[\frac{\Psi(L)}{L^h}]_+\equiv \psi_h+\psi_{h+1}L+\psi_{h+2}L^2+...</script><p>Then, optimal linear forecast can be rewritten as</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+h}|\epsilon_j,j\leq T]=\sum_{j=0}^\infty\psi_{j+h}\epsilon_{T-j}=[\frac{\Psi(L)}{L^h}]_+\epsilon_T</script><h4 id="Forecasting-based-on-lagged-Y-t-’s"><a href="#Forecasting-based-on-lagged-Y-t-’s" class="headerlink" title="Forecasting based on lagged $Y_t$’s"></a>Forecasting based on lagged $Y_t$’s</h4><p>If $Y_t$ admits the $AR(\infty)$ representation</p>
+<script type="math/tex; mode=display">
+\alpha(L)Y_t=\epsilon_t,\ \alpha(L)=\Psi^{-1}(L)</script><p>we can obtain the forecast of $Y_{T+h}$ as a function of $\Omega_T$</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+h}|Y_j,j\leq T]=\mathscr{P}[Y_{T+h}|\Omega_T]=[\frac{\Psi(L)}{L^h}]_+\alpha(L)Y_T</script><p>known as <strong>Wiener-Kolmogorov prediction formula</strong>.</p>
+<h4 id="Forecasting-an-AR-1-process"><a href="#Forecasting-an-AR-1-process" class="headerlink" title="Forecasting an AR(1) process"></a>Forecasting an AR(1) process</h4><script type="math/tex; mode=display">
+Y_t=\phi_1Y_{t-1}+\epsilon_t,\ |\phi_1|<1</script><p>1-step-ahead forecast :</p>
+<script type="math/tex; mode=display">
+f_{T,1}=\mathscr{P}[Y_{T+1}|\Omega_T]=\phi_1Y_T</script><p>2-step-ahead forecast:</p>
+<script type="math/tex; mode=display">
+f_{T,2}=\mathscr{P}[Y_{T+2}|\Omega_T]=\mathscr{P}[\phi_1Y_{T+1}+\epsilon_{T+2}|\Omega_T]=\phi_1\mathscr{P}[Y_{T+1}|\Omega_T]=\phi_1^2Y_T</script><p>h-step-ahead forecast:</p>
+<script type="math/tex; mode=display">
+f_{T,h}=\mathscr{P}[Y_{T+h}|\Omega_T]=\phi_1^hY_T</script><p>We refer to this approach as the <strong>chain rule of forecasting</strong></p>
+<p>Noting that</p>
+<script type="math/tex; mode=display">
+\Psi(L)=(1-\phi_1L)^{-1}=1+\phi_1L+\phi_1^2L^2+...</script><p>we have</p>
+<script type="math/tex; mode=display">
+[\frac{\Psi(L)}{L^h}]_+=\phi_1^h+\phi_1^{h+1}L+\phi_1^{h+2}L^2+...=\frac{\phi_1^{h}}{1-\phi_1L}</script><p>Hence, using the Wiener-Kolmogorov prediction formula</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+h}|\Omega_T]=[\frac{\Psi(L)}{L^h}]_+(1-\phi_1L)Y_T=\phi_1^hY_T</script><script type="math/tex; mode=display">
+e_{T,h} = Y_{T+h}-\mathscr{P}[Y_{T+h}|\Omega_T]=\sum_{j=0}^{h-1}\psi_j\epsilon_{T+h-j},\ with\ \psi_j=\phi^j</script><h4 id="Forecasting-an-AR-2-process"><a href="#Forecasting-an-AR-2-process" class="headerlink" title="Forecasting an AR(2) process"></a>Forecasting an AR(2) process</h4><script type="math/tex; mode=display">
+Y_T=\phi_1Y_{T-1}+\phi_2T_{T-2}+\epsilon_T</script><p>By backward substitution we get</p>
+<script type="math/tex; mode=display">
+Y_{T+2}=\epsilon_{T+2}+\phi_1\epsilon_{T+1}+(\phi_1^2+\phi_2)Y_t+\phi_1\phi_2Y_{T-1}</script><p>The Wiener-Kolmogorov prediction formula gives</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+2}|\Omega_T]=(\phi_1^2+\phi_2)Y_t+\phi_1\phi_2Y_{T-1}</script><p>The same result can be obtained using the chain rule</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\mathscr{P}[Y_{T+2}|\Omega_T]\\
+&=\phi_1\mathscr{P}[Y_{T+1}|\Omega_T]+\phi_2\mathscr{P}[Y_{T}|\Omega_T]+\mathscr{P}[\epsilon_{T+2}|\Omega_T]\\
+&=\phi_1(\phi_1Y_T+\phi_2Y_{T-1})+\phi_2Y_T+0\\
+&=(\phi_1^2+\phi_2)Y_t+\phi_1\phi_2Y_{T-1}
+\end{align}</script><h4 id="Forecasting-an-MA-1-process"><a href="#Forecasting-an-MA-1-process" class="headerlink" title="Forecasting an MA(1) process"></a>Forecasting an MA(1) process</h4><script type="math/tex; mode=display">
+Y_T=(1+\theta L)\epsilon_T</script><p>Note that</p>
+<script type="math/tex; mode=display">
+[\frac{(1+\theta L)}{L^h}]_+=\begin{cases}\theta&if\ h=1\\ 0&if\ h>1\end{cases}</script><p>Hence,</p>
+<script type="math/tex; mode=display">
+\mathscr{P}[Y_{T+1}|\epsilon_T]=\theta\epsilon_T,\ \mathscr{P}[Y_{T+1}|\Omega_T] = \frac{\theta}{1+\theta L}Y_T</script><p>and view $\theta\epsilon_T$ as the outcome of the infifinite recursion</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\epsilon_T&=Y_T-\theta\epsilon_{T-1}=Y_T-\theta Y_{T-1}+\theta^2\epsilon_{T-2}=...\\
+&=(\sum_{j=0}^{m-1}\theta^jY_{T-j}+\theta^m\epsilon_{T-m})
+\end{align}</script><h4 id="Interval-and-Density-forecasts"><a href="#Interval-and-Density-forecasts" class="headerlink" title="Interval and Density forecasts"></a>Interval and Density forecasts</h4><p>Let $\{Y_t\}$</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\Theta(L)\epsilon_t,\ \epsilon_t\sim N(0,\sigma^2)</script><p>be a stationary and invertible Gaussian ARMA process. Then,</p>
+<script type="math/tex; mode=display">
+Y_t=\Psi(L)\epsilon_t \sim N(0,\sigma^2\sum_{j=0}^\infty\psi_j^2)</script><p>By construction,</p>
+<script type="math/tex; mode=display">
+Y_{T+h}=f_{T,h}+e_{T,h},\ with\ e_{T,h}=\sum_{j=0}^{h-1}\psi_j\epsilon_{T+h-j}</script><p>The 95% h-step-ahead interval forecast is</p>
+<script type="math/tex; mode=display">
+f_{T,h}\pm 1.96\sqrt{\mathbb{Var}(e_{T,h})}</script><p>The h-step-ahead density forecast is $N(f_{T,h},\mathbb{Var}(e_{T,h}))$</p>
+<h4 id="Making-the-forecasts-operational"><a href="#Making-the-forecasts-operational" class="headerlink" title="Making the forecasts operational"></a>Making the forecasts operational</h4><ul>
+<li>For forecasting an <strong>AR(p) process</strong>, an optimal <strong>h−step-ahead forecast</strong> based on $\Omega_T$ make uses only of the p most recent values $\{Y_T , Y_{T −1}, . . . , Y_{T −p+1}\}$.</li>
+<li>For an <strong>MA or ARMA process</strong> we would need to know $\Omega_T$<br>to use the <strong>Wiener-Kolmogorov prediction formula</strong>.</li>
+</ul>
+<p><strong>In MA(1) Process, if we assume $\theta$ is not observable</strong></p>
+<p>We replace the optimal linear forecast $f_{T,1}=\theta\epsilon_T$ with $\hat{f}_{T,1}=\hat\theta\epsilon_T$</p>
+<p>The forecast error will take the form</p>
+<script type="math/tex; mode=display">
+\hat{e}_{T,1}\equiv Y_{T+1}-\hat{f}_{T,1}=e_{T,1}+(\theta-\hat\theta)\epsilon_T</script><p>$\mathbb{Var}(\hat{e}_{T,1})$ will also account for the variability of $\hat\theta$</p>
+<p><strong>MSE</strong></p>
+<script type="math/tex; mode=display">
+\frac1{T-(T_1-1)}\sum_{t=T_1}^T(y_{t+s}-f_{t,s})^2</script><p><strong>MAE</strong></p>
+<script type="math/tex; mode=display">
+\frac1{T-(T_1-1)}\sum_{t=T_1}^T|y_{t+s}-f_{t,s}|</script><h3 id="Lab"><a href="#Lab" class="headerlink" title="Lab :"></a>Lab :</h3><script type="math/tex; mode=display">
+(1+\phi L)(1-\phi L)=1-\phi^2L^2</script><script type="math/tex; mode=display">
+(1+\phi L)(1-\phi L + \phi^2 L^2) = 1-\phi^3L^3</script><script type="math/tex; mode=display">
+(1+\phi L)(1-\phi L + \phi^2 L^2 - \phi^3 L^3) = 1-\phi^4L^4</script><script type="math/tex; mode=display">
+(1+\phi L)^{-1}=\sum_{j=0}^\infty(-\phi)^jL^j</script><p>or</p>
+<script type="math/tex; mode=display">
+[1+L+L^2+...+L^{t-1}](1-L)=1-L^t</script><h3 id="Self-Study-Questions：-2"><a href="#Self-Study-Questions：-2" class="headerlink" title="Self-Study Questions："></a>Self-Study Questions：</h3><p>【<strong>CHP 6：Q12.a</strong>】Macroeconomic explanatory variables 对比 financial data 的劣势是，它通常是 on a quarterly or at best monthly basis. 频率低.</p>
+<p>【<strong>CHP 6：Q12.c</strong>】如果一个模型 Pacf 联合显著不为 0，但是 Pacf 中并没有明显的截断，且 Acf 中存在明显的截断，那么可能这个现实数据并不属于 ARMA family，但我们依旧要尝试寻找最优模型.</p>
+<h1 id="Unit-4：ARIMA-models-for-nonstationary-time-series"><a href="#Unit-4：ARIMA-models-for-nonstationary-time-series" class="headerlink" title="Unit 4：ARIMA models for nonstationary time series"></a>Unit 4：ARIMA models for nonstationary time series</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 8, Sub-sections 8.1.1 - 8.1.4 (Essential)</li>
+<li>Brooks, Chapter 8, Sub-sections 8.1.5-8.1.7, Section 8.2(Further)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 8, Self-Study Questions 1-3.</li>
+</ul>
+<h3 id="Definition-3"><a href="#Definition-3" class="headerlink" title="Definition:"></a>Definition:</h3><p>To deal with such <strong>nonstationarity</strong> we begin characterizing a time series as</p>
+<script type="math/tex; mode=display">
+X_t=\mu_t+U_t</script><ul>
+<li>$U_t$：a zero-mean stationary process</li>
+<li>$\mu_t=\sum_{j=0}^m\beta_jt^m$：such trend is said to be <strong>deterministic</strong>.</li>
+</ul>
+<p>The deterministic trend can either be estimated or be removed by transformation</p>
+<p>If $m=1, U_t=\epsilon_t, X_t=\beta_0+\beta_1t+\epsilon_t$</p>
+<script type="math/tex; mode=display">
+\Delta X_t=\beta_1+\Delta\epsilon_t,\ \Delta\equiv(1-L)</script><p>The MA process $\Delta\epsilon_t$ is stationary but not invertible</p>
+<p><strong>Stochastic Trends</strong></p>
+<ul>
+<li><p>Increasing trends alternates to decreasing trends</p>
+</li>
+<li><p>A process which is not stationary in mean could be modelled as an ARMA where $\Phi(z)=0$ for $|z| \leq 1$.</p>
+</li>
+<li>These processes are characterized by stochastic trends. More later (<strong>Beveridge-Nelson Decomposition</strong>)</li>
+</ul>
+<h4 id="Random-Walk"><a href="#Random-Walk" class="headerlink" title="Random Walk"></a>Random Walk</h4><script type="math/tex; mode=display">
+X_t=X_{t-1}+\epsilon_t</script><p>The representation</p>
+<script type="math/tex; mode=display">
+X_t=X_0+\sum_{j=1}^t\epsilon_j</script><ul>
+<li>$X_0\in\mathbb{R}$ denotes the initial value</li>
+</ul>
+<p>The “memory” of the process is non-decreasing</p>
+<script type="math/tex; mode=display">
+\mathbb{Cov}(X_t,X_{t+h})=\sigma^2t,\ \mathbb{Corr}(X_t,X_{t+h})=\frac{t}{\sqrt{t}\sqrt{t+h}}</script><ul>
+<li>For $t$ large compared to $h$, $\mathbb{Corr}(X_t , X_t+h)\simeq 1$.</li>
+</ul>
+<p>The 1-step ahead forecast of model (1) is</p>
+<script type="math/tex; mode=display">
+f_{T,1}=\mathbb{E}(X_T+\epsilon_{T+1}|X_T,...,X_0)=X_T</script><ul>
+<li>Similarly, $f_{T,2}=X_T$</li>
+</ul>
+<p>The h−step ahead forecast error is</p>
+<script type="math/tex; mode=display">
+e_{T,h}=X_{T+h}-f_{T,h}=\epsilon_{T+h}+\epsilon_{T+h-1}+...+\epsilon_{T+1}</script><ul>
+<li>so that $\mathbb{Var}[e_{T,h}]=h\sigma^2$,  which diverges to $\infty$ when $h\to\infty$.</li>
+</ul>
+<h4 id="Random-Walk-with-Drift"><a href="#Random-Walk-with-Drift" class="headerlink" title="Random Walk with Drift"></a>Random Walk with Drift</h4><p>If $X_t$ denotes the log price of a stock, the random walk hypothesis entails that</p>
+<script type="math/tex; mode=display">
+\Delta X_t=X_t-X_{t-1}=\epsilon_t,\ \Delta\equiv(1-L)</script><p>If $\Delta X_t=\mu+\epsilon_t$, then</p>
+<script type="math/tex; mode=display">
+X_t=\mu t+X_0+\sum_{j=1}^t\epsilon_j</script><ul>
+<li>$\{X_t\}$ is said to be <strong>random walk with drift</strong></li>
+</ul>
+<h4 id="Unit-root-processes"><a href="#Unit-root-processes" class="headerlink" title="Unit root processes"></a>Unit root processes</h4><p>The random walk can be represented as</p>
+<script type="math/tex; mode=display">
+\Delta X_t=\epsilon_t</script><ul>
+<li>Because $\Delta=(1-L)$, the root of the characteristic equation is one</li>
+</ul>
+<p>Consider the more general example</p>
+<script type="math/tex; mode=display">
+X_t=0.75X_{t-1}+0.25X_{t-2}+\epsilon_t+0.4_{t-1}</script><p>The lag polynomial can be factorized as</p>
+<script type="math/tex; mode=display">
+(1-0.75L-0.25L^2)=(1+0.25L)(1-L)</script><p>The process $\{\Delta X_t\}$ satisfying</p>
+<script type="math/tex; mode=display">
+\Delta X_t=-0.25\Delta X_{t-1}+\epsilon_t+0.4_{t-1}</script><h4 id="Integrated-processes"><a href="#Integrated-processes" class="headerlink" title="Integrated processes"></a>Integrated processes</h4><p>A time series $\{X_t\}$is said to be integrated of order $d$, written $X_t\sim I(d)$, if $\Delta^dX_t$ is $I(0)$ </p>
+<ul>
+<li>$\{X_t\}\sim I(d)$ is sometimes said <strong>difference stationary</strong></li>
+</ul>
+<h4 id="Stochastic-processes-integrated-of-order-0"><a href="#Stochastic-processes-integrated-of-order-0" class="headerlink" title="Stochastic processes integrated of order 0"></a>Stochastic processes integrated of order 0</h4><p>A time series satisfying $X_t-\mathbb{E}(X_t)=\sum_{j=0}^\infty\psi_j\epsilon_{t-j}$ is said to be integrated of order zero, if</p>
+<script type="math/tex; mode=display">
+\sum_{j=0}^\infty|\psi_j|z^j<\infty,\ for|z|\leq 1\ and\ \Psi(1)=\sum_{j=0}^\infty\psi_j\ne 0</script><p>Let $|\theta|&lt;1$</p>
+<ul>
+<li>If $X_t=X_{t-1}+\epsilon_t-\theta\epsilon_{t-1}$, then $\Delta X_t=(1-\theta L)\epsilon_t$ and</li>
+</ul>
+<script type="math/tex; mode=display">
+\Psi(Z)=(1-\theta z)\ne 0,\ for |z|\leq 1</script><p>Hence, $\Delta X_t$ is an $I(0)$ process</p>
+<ul>
+<li>If $X_t=\epsilon_t-\theta\epsilon_{t-1}$, then $\Delta X_t=(1-L)(1-\theta L)\epsilon_t$ and</li>
+</ul>
+<script type="math/tex; mode=display">
+\Psi(Z)=(1-z)(1-\theta z)= 0,\ for |z|\leq 1</script><p>Hence, $\Delta X_t$ is not an $I(0)$ process</p>
+<h4 id="ARIMA-p-d-q-process"><a href="#ARIMA-p-d-q-process" class="headerlink" title="ARIMA(p,d,q) process"></a>ARIMA(p,d,q) process</h4><p>A time series $\{X_t\}$ is called an ARIMA process of order (p,d,q), written $\{X_t\}\sim ARIMA(b,d,q)$, if</p>
+<script type="math/tex; mode=display">
+\Phi(L)(\Delta^dX_t-\mu)=\Theta(L)\epsilon_t</script><p>is a stationary and invertible ARMA(p,q) process.</p>
+<h4 id="The-Beveridge-Nelson-Decomposition"><a href="#The-Beveridge-Nelson-Decomposition" class="headerlink" title="The Beveridge-Nelson Decomposition"></a>The Beveridge-Nelson Decomposition</h4><p>Let $X_T$ be an ARIMA(p,1,q) and $\Psi(L)\equiv\Phi^{-1}(L)\Theta(L)$. Then,</p>
+<script type="math/tex; mode=display">
+X_t=\mu t+\Psi(1)\sum_{j=1}^t\epsilon_j+\Psi^*(L)\epsilon_t+k_0</script><p>where</p>
+<ul>
+<li>$\mu t$ is the deterministic (linear) trend</li>
+<li>$\Psi(1)\sum_{j=1}^t\epsilon_j$ is the stochastic trend</li>
+<li>$\Psi^\star(L)=\sum_{j=0}^\infty\psi_j^\star L^j$, $\psi_j^*=-\sum_{k=j+1}^\infty\psi_k$</li>
+<li>$k_0$ denotes the initial condition</li>
+</ul>
+<script type="math/tex; mode=display">
+X_t=\mu t+\epsilon_t+(1+\psi_1)\epsilon_{t-1}+(1+\psi_1+\psi_2)\epsilon_{t-2}+....+k_0</script><script type="math/tex; mode=display">
+X_{t-1}=\mu(t-1)+\epsilon_{t-1}+(1+\psi_1)\epsilon_{t-2}+(1+\psi_1+\psi_2)\epsilon_{t-3}+....+k_0</script><script type="math/tex; mode=display">
+X_t-X_{t-1}=\mu+\epsilon_t+\psi_1\epsilon_{t-1}+\psi_2\epsilon_{t-2}+....</script><h4 id="Characteristics-of-I-0-processes"><a href="#Characteristics-of-I-0-processes" class="headerlink" title="Characteristics of I(0) processes"></a>Characteristics of I(0) processes</h4><ul>
+<li>$\mathbb{Var}(X_t)$ is finite and does not depended on <em>t</em>.</li>
+<li>The innovation $\epsilon_t$ has a temporary effect on $X_t$.</li>
+<li>The expected length of time between crossing of $\mu$ is finite, so that $X_t$ fluctuates around its mean $\mu$.</li>
+<li>The autocorrelation $\rho(h)$ decreases in magnitude for large enough $h$, so their sum is finite.</li>
+</ul>
+<h4 id="Characteristics-of-I-1-processes"><a href="#Characteristics-of-I-1-processes" class="headerlink" title="Characteristics of I(1) processes"></a>Characteristics of I(1) processes</h4><ul>
+<li>$\mathbb{Var}(X_t)$ goes to infinite as $t$ goes to infinity.</li>
+<li>The innovation $\epsilon_t$ has a permanent effect on $X_t$.</li>
+<li>The process is not mean-reverting.</li>
+<li>The autocorrelation $\rho(h)\to 1$ for all $h$ as $t\to\infty$.</li>
+</ul>
+<h4 id="Unit-roots-testing"><a href="#Unit-roots-testing" class="headerlink" title="Unit roots testing"></a>Unit roots testing</h4><p><strong>Dickey Fuller Test</strong></p>
+<p>Main idea: test of $\phi=1$ in the regression model</p>
+<script type="math/tex; mode=display">
+X_t=\phi X_{t-1}+\epsilon_t</script><p>against the one-sided alternative $\phi&lt;1$.</p>
+<p>If we rewrite the regression model as</p>
+<script type="math/tex; mode=display">
+\Delta X_t=\lambda X_{t-1}+\epsilon_t</script><p>and assume that $|\phi|\leq1$ ($|\phi|&gt;1$ ruled out),</p>
+<script type="math/tex; mode=display">
+\lambda=0\ if\ \phi=1,\ -2<\lambda<0\ otherwise</script><p>We can test the familiar hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:\lambda=0\ vs\ H_1:\lambda<0</script><p>The standard t-test for statistically significance based on</p>
+<script type="math/tex; mode=display">
+t_\lambda=\frac{\hat\lambda}{\sqrt{\hat{\mathbb{Var}}(\hat\lambda)}},\ \hat\lambda=\frac{\sum_{t=2}^n\Delta X_tX_{t-1}}{\sum_{t=1}^nX_t^2}</script><p><strong>The Augmented Dickey Fuller (ADF) Test</strong></p>
+<p>The tests above are only valid if $\{\epsilon_t\}\sim WN(0,\sigma^2)$ An “overly parsimonious” specifification will result in autocorrelated errors.</p>
+<p>If $Y_t$ satisfies $(1-\sum_{j=1}^p\phi_jL^p)X_t=\epsilon_t$, the following <strong>always</strong> holds:</p>
+<script type="math/tex; mode=display">
+\Delta X_t=\lambda X_{t-1}+\sum_{j=1}^{p-1}\phi_j^*\Delta X_{t-j}+\epsilon_t</script><p>where $\lambda=1-\phi_1-…-\phi_p, \phi_j^*=-\sum_{i=j+1}^p\phi_i$</p>
+<ul>
+<li>P should large enough to ensure $\epsilon_t$ is White noise</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>If we have</p>
+<script type="math/tex; mode=display">
+X_t=\phi_1X_{t-1}+\phi_2X_{t-2}+\phi_3X_{t-3}+\epsilon</script><p>This series is I(1) if $(1-\phi_1-\phi_2-\phi_3)=0$</p>
+<p>We construct the function</p>
+<script type="math/tex; mode=display">
+\begin{align}
+X_t-X_{t-1}&=(\phi_1-1)X_{t-1}+\phi_2X_{t-2}+\phi_3X_{t-3}+\epsilon_t\\
+&=(\phi_1+\phi_2-1)X_{t-1}+\phi_2(X_{t-2}-X_{t-1})+\phi_3X_{t-3}+\epsilon_t\\
+&=(\phi_1+\phi_2+\phi_3-1)X_{t-1}+\phi_2(X_{t-2}-X_{t-1})-\phi_3X_{t-1}+\phi_3X_{t-3}+\epsilon_t\\
+&=(\phi_1+\phi_2+\phi_3-1)X_{t-1}+\phi_2(X_{t-2}-X_{t-1})+\phi_3(X_{t-2}-X_{t-1})+\phi_3(X_{t-3}-X_{t-2})+\epsilon_t\\
+&=(\phi_1+\phi_2+\phi_3-1)X_{t-1}+(\phi_2+\phi_3)(X_{t-2}-X_{t-1})+\phi_3(X_{t-3}-X_{t-2})+\epsilon_t
+\end{align}</script><p><strong>Problems with Unit Root tests</strong></p>
+<ul>
+<li>Reject $I(1)$ null too often when is true, if $\Delta Y_t$ is an ARMA(p,q) with large and negative MA component.</li>
+<li>Low power against $I(0)$ alternatives that are close to being $I(1)$ .</li>
+<li>Fail to reject $I(1)$ when $Y_t$ is $I(0)$ around a trend function with a break.</li>
+</ul>
+<h3 id="Self-Study-Questions：-3"><a href="#Self-Study-Questions：-3" class="headerlink" title="Self-Study Questions："></a>Self-Study Questions：</h3><p>【<strong>CHP 8：Q1.b</strong>】<strong>Why is it in general important to test for non-stationarity in time series data before attempting to build an empirical model?</strong></p>
+<p>If two series are non-stationary, we may experience the problem of <strong>‘spurious’ regression</strong>. This occurs when we regress one non-stationary variable on a completely unrelated non-stationary variable, but yield a reasonably high value of R2, apparently indicating that the model fits well.</p>
+<p>Most importantly therefore, we are not able to perform any <strong>hypothesis tests</strong> in models which inappropriately use non-stationary data since the test statistics will no longer follow the distributions which we assumed they would (e.g.,  t or F), so any inferences we make are likely to be invalid.</p>
+<h1 id="Unit-5：Conditional-Heteroskedasticity"><a href="#Unit-5：Conditional-Heteroskedasticity" class="headerlink" title="Unit 5：Conditional Heteroskedasticity"></a>Unit 5：Conditional Heteroskedasticity</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 9, Sections 9.1-9.8, 9.10-9.14 (Essential)</li>
+<li>Diebold, Chapter 8 (Recommended)</li>
+<li>Robert Engle (2001), <a target="_blank" rel="noopener" href="http://www.cmat.edu.uy/~mordecki/hk/engle.pdf">GARCH 101: The Use of ARCH/GARCH Models in Applied Econometrics</a> (Further)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 9, Self-Study Questions, Question 1 (except (f)), Question 3(a) and Question 5</li>
+</ul>
+<h3 id="Definition-4"><a href="#Definition-4" class="headerlink" title="Definition:"></a>Definition:</h3><blockquote>
+<p>Jarque-Bera统计量，是用来检验一组样本是否能够认为来自正态总体的一种方法</p>
+</blockquote>
+<h4 id="Volatility-models"><a href="#Volatility-models" class="headerlink" title="Volatility models"></a>Volatility models</h4><script type="math/tex; mode=display">
+\mathbb{Var}(r_t|\Omega_{t-1})\equiv \sigma_t^2\ne const</script><p>Let $\mathbb{E}(r_t|\Omega_{t-1})\equiv \mu_t$ and define $\epsilon_t\equiv r_t-\mu_t$</p>
+<script type="math/tex; mode=display">
+r_t=\mu_t+\epsilon_t,\ \epsilon_t=\sigma_t\eta_t</script><p>where $\sigma_t$ is deterministic function of $\Omega_{t-1}$, $\sigma_t&gt;0$, {$\eta_t$} <strong>is i.i.d.(0,1)</strong>, $\sigma_t\in\Omega_{t-1}, \eta_t\perp \Omega_{t-1}$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(\epsilon_t|\Omega_{t-1})=\mathbb{E}(\sigma_t\eta_t|\Omega_{t-1})=\sigma_t\mathbb{E}(\eta_t|\Omega_{t-1})=\sigma_t\times 0</script><script type="math/tex; mode=display">
+\mathbb{Var}(\epsilon_t|\Omega_{t-1})=\mathbb{E}(\epsilon_t^2|\Omega_{t-1})=\mathbb{E}(\sigma_t^2\eta_t^2|\Omega_{t-1})=\sigma_t^2\mathbb{E}(\eta_t^2|\Omega_{t-1})=\sigma_t^2\times 1</script><p>So with $\eta_t\sim N(0,1)$, $\epsilon_t|\Omega_{t-1}\sim N(0,\sigma_t^2)$</p>
+<blockquote>
+<p>此时$\epsilon_t$随时间变换，$\sigma_s^2$越大，正态分布越扁</p>
+</blockquote>
+<p><strong>Thickness of the tails is measured by the kurtosis</strong></p>
+<blockquote>
+<p>峰度反映了峰部的尖度</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathcal{K}_\epsilon &\equiv \frac{\mathbb{E}[\epsilon_t-\mathbb{E}(\epsilon_t)]^4}{[\mathbb{Var}(\epsilon_t)]^2}
+=\frac{\mathbb{E}[\mathbb{E}(\epsilon_t^4|\Omega_{t-1})]}{\mathbb{E}[\mathbb{E}(\epsilon_t^2|\Omega_{t-1})]^2}\\
+&=\frac{\mathbb{E}[\mathbb{E}(\sigma_t^4\eta_t^4|\Omega_{t-1})]}{\mathbb{E}[\mathbb{E}(\sigma_t^2\eta_t^2|\Omega_{t-1})]^2}
+=\frac{\mathbb{E}[\sigma_t^4\mathbb{E}(\eta_t^4|\Omega_{t-1})]}{\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2|\Omega_{t-1})]^2}\\
+&=\frac{\mathbb{E}[\sigma_t^4\mathbb{E}(\eta_t^4)]}{\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2)]^2}=\frac{\mathbb{E}[\sigma_t^4]}{\mathbb{E}[\sigma_t^2]^2}\mathcal{K}_\eta=(1+\frac{\mathbb{Var}(\sigma_t^2)}{\mathbb{E}[\sigma_t^2]^2})\mathcal{K}_\eta
+\end{align}</script><p>If $\sigma_t^2=\sigma^2$, then $\mathcal{K}_\epsilon=\mathcal{K}_\eta$</p>
+<blockquote>
+<p>正态分布峰度为3, 如果残差图峰度过高，就表示存在异方差</p>
+</blockquote>
+<p>Fat-tails can be modelled by a <strong>leptokurtic</strong>（尖峰厚尾） distribution of {$\eta_t$} and/or variability of {$\sigma_t^2$}</p>
+<h4 id="The-ARCH-p-models"><a href="#The-ARCH-p-models" class="headerlink" title="The ARCH(p) models"></a>The ARCH(p) models</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2,\ \omega>0,\ \alpha_i\ge0\ \forall i</script><ul>
+<li>$\mathbb{E}(\epsilon_t|\Omega_{t-1})=\sigma_t\mathbb{E}(\eta_t|\Omega_{t-1})=0$, implying that, for $s\ne t$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}(\epsilon_t)=0,\ \mathbb{Cov}(\epsilon_t,\epsilon_s)=\mathbb{E}(\epsilon_t\epsilon_s)=0</script><ul>
+<li>$\epsilon_t,\epsilon_s$ are uncorrelated, but NOT independent!</li>
+<li>$\mathbb{Var}(\epsilon_t|\Omega_{t-1})=\sigma_t^2\mathbb{E}(\eta_t^2|\Omega_{t-1})=\sigma_t^2$</li>
+</ul>
+<h4 id="Volatility-Clustering-波动聚类"><a href="#Volatility-Clustering-波动聚类" class="headerlink" title="Volatility Clustering (波动聚类)"></a>Volatility Clustering (波动聚类)</h4><ul>
+<li>Large past squared shocks $\epsilon_{t-i}^2(i&gt;0)$imply a large conditional variance $\sigma_t^2$ for $\epsilon_t$</li>
+<li>The magnitude of the noise is a function of its past value</li>
+<li>$\mathbb{Var}(\sigma_t^2)\ne 0$, then implies that $\mathcal{K}_\epsilon&gt;\mathcal{K}_\eta$ (Excess Kurtosis)</li>
+</ul>
+<h4 id="ARCH-1"><a href="#ARCH-1" class="headerlink" title="ARCH(1)"></a>ARCH(1)</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\alpha\epsilon_{t-1}^2=\omega+(\alpha\eta_{t-1}^2)\sigma_{t-1}^2</script><script type="math/tex; mode=display">
+\epsilon_t^2=\omega+\alpha\epsilon_{t-1}^2+v_t,\ v_t=\epsilon_t^2-\sigma_t^2</script><p>With $\omega,\alpha&gt;0$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}(v_t|\Omega_{t-1})=\mathbb{E}[\sigma_t^2\mathbb{E}(\eta_t^2-1|\Omega_{t-1})]=0</script><blockquote>
+<p>$v_t=\epsilon_t^2-\sigma_t^2=\sigma_t^2(\eta_t^2-1)$</p>
+</blockquote>
+<p>for $\alpha&lt;1$</p>
+<script type="math/tex; mode=display">
+\mathbb{Var}(\epsilon_t)=\mathbb{E}(\epsilon_t^2)=\frac{\omega}{1-\alpha}+\mathbb{E}[\sum_{j=0}^\infty\alpha^jv_{t-j}]=\frac{\omega}{1-\alpha}</script><p>If $\alpha&lt;1$, then $\epsilon_t$ is weakly stationary.</p>
+<script type="math/tex; mode=display">
+\mathbb{Var}(v_t)=\mathbb{E}[\sigma_t^4\mathbb{E}[(\eta_t^2-1)^2|\Omega_{t-1}]]</script><h4 id="The-GARCH-p-q-models"><a href="#The-GARCH-p-q-models" class="headerlink" title="The GARCH(p,q) models"></a>The GARCH(p,q) models</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2+\sum_{j=1}^q\beta_j\sigma_{t-j}^2,\ \omega>0,\ \alpha_i\ge0,\ \beta_i\ge0\ \forall i</script><p>Let</p>
+<script type="math/tex; mode=display">
+A(z)=\sum_{i=1}^p\alpha_iz^i,\ \ B(z)=1-\sum_{j=1}^q\beta_jz^j</script><p>Then</p>
+<script type="math/tex; mode=display">
+B(L)\sigma_t^2=\omega+A(L)\epsilon_t^2</script><p>and</p>
+<script type="math/tex; mode=display">
+\sigma_t^2=\phi_0+\sum_{i=1}^\infty\phi_i\epsilon_{t-i}^2,\ \phi_0=\frac{\omega}{B(1)},\ \sum_{i=1}^\infty\phi_iz^i=\frac{A(z)}{B(z)}</script><p><strong>ARMA representation of GARCH</strong></p>
+<p>The original equation can be rewritten as</p>
+<script type="math/tex; mode=display">
+\epsilon_t^2=\omega+\sum_{i=1}^{max(p,q)}(\alpha_i+\beta_i)\epsilon_{t-i}^2+v_t-\sum_{j=1}^q\beta_jv_{t-j}</script><ul>
+<li>using the convention $\alpha_i=0 (\beta_i=0)$ if $i&gt;p(i&gt;q)$</li>
+</ul>
+<blockquote>
+<p>把 $\sigma_t$ 的部分替换成了 $v_t$</p>
+</blockquote>
+<p>Bollerslev (1986), Theorem 1, shows that if</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^p\alpha_i+\sum_{j=1}^q\beta_j<1</script><p>then $\epsilon_t$ is weakly stationary, and {$\epsilon_t^2$} $\sim$ ARMA(max(p,q),q)</p>
+<p><strong>GARCH(1,1)</strong> </p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sigma_t^2&=\omega+\alpha\epsilon_{t-1}^2+\beta \sigma_{t-1}^2\\
+\epsilon_t^2&=\omega+\alpha\epsilon_{t-1}^2+\beta \sigma_{t-1}^2+v_t\\
+&=\omega+(\alpha+\beta)\epsilon_{t-1}^2-\beta(\epsilon_{t-1}^2-\sigma_{t-1}^2)+v_t\\
+&=\omega+(\alpha+\beta)\epsilon_{t-1}^2-\beta v_{t-1}^2+v_t
+\end{align}</script><script type="math/tex; mode=display">
+\mathbb{E}(\epsilon_t^2)=\frac{\omega}{1-\alpha-\beta}=\sigma^2</script><p>and the autocorrelation function of $\epsilon_t^2$ is</p>
+<script type="math/tex; mode=display">
+\rho(h)=\begin{cases}
+\frac{\alpha(1-\beta(\alpha+\beta))}{1-(\alpha+\beta)^2+\alpha^2}=\alpha+\frac{\alpha^2\beta}{1-2\alpha\beta-\beta^2}&for\ h=1\\
+\rho(1)(\alpha+\beta)^{h-1}&for\ h>1
+\end{cases}</script><p>GARCH models are often estimated using the maximum likelihood estimator based on the Gaussian Likelihood (GMLE)</p>
+<ul>
+<li>If $\eta_t\sim NID(0,1)$, then $\epsilon_t|\Omega_{t-1}\sim N(0,\sigma_t^2)$</li>
+</ul>
+<p><strong>Specification strategy for GARCH models</strong></p>
+<p>“Specific-to-general” approach</p>
+<ol>
+<li><p>Specify an adequate model for the $\mu_t=\mathbb{E}(r_t,\Omega_{t-1})$.</p>
+</li>
+<li><p>Test for the presence of conditional heteroskedasticity;</p>
+</li>
+<li><p>Select p,q and estimate GARCH models (use IC);</p>
+</li>
+<li><p>Evaluate the model by misspecifification tests, e.g. $\epsilon_t/\hat\sigma_t$should behave like a i.i.d. sequence.</p>
+</li>
+<li><p>Estimate a more suitable GARCH model (if necessary);</p>
+</li>
+</ol>
+<h4 id="Extensions-of-the-GARCH-models"><a href="#Extensions-of-the-GARCH-models" class="headerlink" title="Extensions of the GARCH models"></a>Extensions of the GARCH models</h4><p>Drawbacks of GARCH(p,q) Models:</p>
+<ul>
+<li><p>Non-negativity constraints may be violated.</p>
+</li>
+<li><p>Symmetric response to past shocks.</p>
+</li>
+</ul>
+<h4 id="The-leverage-effect"><a href="#The-leverage-effect" class="headerlink" title="The leverage effect"></a>The leverage effect</h4><blockquote>
+<p>价格大幅度下降后往往会有同样幅度价格上升的倾向</p>
+</blockquote>
+<ul>
+<li>Negative shocks appear to contribute more to stock market volatility than do positive shocks. (stylized fact )</li>
+<li>A negative shock to the market value of equity increases the debt/equity ratio (other things the same), increasing leverage.</li>
+<li>The asymmetric response of the volatility to past shocks is known as <strong>leverage effect</strong>.</li>
+</ul>
+<h4 id="The-EGARCH-Exponential-GARCH-Models"><a href="#The-EGARCH-Exponential-GARCH-Models" class="headerlink" title="The EGARCH (Exponential GARCH) Models"></a>The EGARCH (Exponential GARCH) Models</h4><script type="math/tex; mode=display">
+ln(\sigma_t^2)=\omega+\sum_{i=1}^p\alpha_ig(\eta_{t-i})+\sum_{j=1}^q\beta_jln\sigma_{t-j}^2</script><p>where</p>
+<script type="math/tex; mode=display">
+g(\eta_{t-i})=\theta\eta_{t-i}+\zeta(|\eta_{t-i}|-\mathbb{E}|\eta_{t-i}|)</script><blockquote>
+<p>$\mathbb E|\eta|=\sqrt{2/\pi}$</p>
+</blockquote>
+<ul>
+<li>$\sigma_t^2$ will be positive (without imposing non-negativeness restrictions on the parameters)</li>
+<li>The asymmetry property is taken into account through $\theta$.</li>
+<li>The leverage effect will imply that $\theta&lt;0$.</li>
+<li>Innovation of large modulus should increase the volatility, entailing that we expect</li>
+</ul>
+<script type="math/tex; mode=display">
+-\zeta<\theta<\zeta,\ \alpha_i\ge0,\ \beta_j\ge0</script><p><strong>An Example</strong></p>
+<script type="math/tex; mode=display">
+ln\sigma_t^2=\omega+\theta\eta_{t-1}</script><ul>
+<li><p>If $\eta_{t-1}&lt;0(i.e.\epsilon_{t-1}&lt;0)$, the variable $ln(\sigma_t^2)$ will be larger than its mean $\omega$.</p>
+</li>
+<li><p>If $\eta_{t-1}&gt;0(i.e.\epsilon_{t-1}&gt;0)$, the variable $ln(\sigma_t^2)$ will be smaller than its mean $\omega$.</p>
+</li>
+</ul>
+<p>Thus, we obtain the typical asymmetry property of financial time series.</p>
+<h4 id="The-Threshold-GARCH-TGARCH-model"><a href="#The-Threshold-GARCH-TGARCH-model" class="headerlink" title="The Threshold GARCH (TGARCH) model"></a>The Threshold GARCH (TGARCH) model</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\alpha\epsilon^2_{t-1}+\gamma\epsilon^2_{t-1}1_{\{\epsilon_{t-1<0}\}}+\beta\sigma^2_{t-1}</script><h4 id="The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models"><a href="#The-GJR-GARCH-Glosten-Jaganathan-and-Runkle-models" class="headerlink" title="The GJR-GARCH (Glosten, Jaganathan and Runkle) models"></a>The GJR-GARCH (Glosten, Jaganathan and Runkle) models</h4><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\sum_{i=1}^p\alpha_i\epsilon_{t-i}^2+\sum_{i=1}^p\gamma_i\epsilon_{t-1}^21_{\epsilon_{t-1}<0}+\sum_{j=1}^q\beta_j\sigma_{t-j}^2</script><ul>
+<li><p>The asymmetry is accounted for through the $\gamma_i$</p>
+</li>
+<li><p>$\omega&gt;0,(\alpha_i+\gamma_i)\ge0,\beta_j\ge0$  are sufficient for $\sigma_t^2&gt;0$</p>
+</li>
+</ul>
+<h4 id="News-Impact-Curves-NIC"><a href="#News-Impact-Curves-NIC" class="headerlink" title="News Impact Curves (NIC)"></a>News Impact Curves (NIC)</h4><ul>
+<li>The news impact curve plots $\sigma_t^2$ against $\epsilon_{t-1}$, setting $\sigma_{t-h}^2=\sigma^2$, for $h&gt;0$</li>
+</ul>
+<h4 id="Forecasting"><a href="#Forecasting" class="headerlink" title="Forecasting"></a>Forecasting</h4><p>Consider the AR(1)-GARCH(1,1) model</p>
+<script type="math/tex; mode=display">
+X_t=\phi X_{t-1}+\epsilon_t</script><script type="math/tex; mode=display">
+\epsilon_t=\sigma_t\eta_t</script><script type="math/tex; mode=display">
+\sigma_t^2=\omega+\alpha\epsilon_{t-1}^2+\beta\sigma_{t-1}^2</script><p>with $\omega&gt;0,\alpha,\beta\ge0,\alpha+\beta&lt;1,|\phi|&lt;1$</p>
+<p>Recall that $f_{T,h}=\phi^hX_T$</p>
+<script type="math/tex; mode=display">
+e_{T+h}=\sum_{j=1}^h\phi^{h-j}\epsilon_{T+j}</script><p>and</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{Var}(e_{T+h}|\Omega_T)&=\mathbb{E}[(\sum_{j=1}^h\phi^{h-j}\epsilon_{T+j})^2|\Omega_T]\\
+&=\sum_{j=1}^h\phi^{2(h-j)}\mathbb{E}[\epsilon_{T+j}^2|\Omega_T]\\
+&=\sum_{j=1}^h\phi^{2(h-j)}\mathbb{E}[\mathbb{E}(\epsilon_{T+j}^2|\Omega_{T+j-1})|\Omega_T]\\
+&=\sum_{j=1}^h\phi^{2(h-j)}\mathbb{E}[\sigma_{T+j}^2|\Omega_T]
+\end{align}</script><p>The 1-step-ahead forecast  of $\sigma_{T+1}^2$ </p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_{T,1}^{\sigma^2}&=\mathbb{E}[\sigma_{T+1}^2|\Omega_T]\\
+&=\mathbb{E}[\omega+\alpha\epsilon_T^2+\beta\sigma_T^2|\Omega_T]\\
+&=\omega+\alpha\epsilon_T^2+\beta\sigma_T^2\\
+&=\sigma_{T+1}^2
+\end{align}</script><ul>
+<li><p>GARCH model are <strong>deterministic</strong> volatility models.</p>
+</li>
+<li><p>If the parameters are known, $\sigma_{T+1}^2$ is a deterministic function of $\Omega_T$ .</p>
+</li>
+</ul>
+<p>The 2-step-ahead forecast</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_{T,2}^{\sigma^2}&=\mathbb{E}[\sigma_{T+2}^2|\Omega_T]\\
+&=\mathbb{E}[\omega+\alpha\epsilon_{T+1}^2+\beta\sigma_{T+1}^2|\Omega_T]\\
+&=\omega+\alpha\mathbb{E}[\epsilon_{T+1}^2|\Omega_T]+\beta\sigma_{T+1}^2\\
+&=\omega+(\alpha+\beta)\sigma_{T+1}^2
+\end{align}</script><p>because</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\epsilon_{T+1}^2|\Omega_T]=\mathbb{E}[\sigma_{T+1}^2\eta_{T+1}^2|\Omega_T]=\sigma_{T+1}^2\mathbb{E(\eta_{T+1}^2)}=\sigma_{T+1}^2</script><p>In general, the h-step-ahead forecast</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f_{T,h}^{\sigma^2}&=\mathbb{E}[\omega+\alpha\epsilon_{T+h-1}^2+\beta\sigma_{T+h-1}^2|\Omega_T]\\
+&=\omega+\alpha\mathbb{E}[\epsilon_{T+h-1}^2|\Omega_T]+\beta f_{T,h-1}^{\sigma^2}\\
+&=\omega+(\alpha+\beta)f_{T,h-1}^{\sigma^2}
+\end{align}</script><p>By recursive substitutions it follows that</p>
+<script type="math/tex; mode=display">
+f_{T,h}^{\sigma^2}=\omega\sum_{j=0}^{h-2}(\alpha+\beta)^j+(\alpha+\beta)^{h-1}\sigma_{T+1}^2</script><ul>
+<li>If $(\alpha+\beta)&lt;1$, $lim_{h\to\infty}f_{T,h}^{\sigma^2}=\sigma^2$, where</li>
+</ul>
+<script type="math/tex; mode=display">
+\sigma^2\equiv\lim_{h\to\infty}\omega\sum_{j=0}^{h-1}(\alpha+\beta)^j=\frac{\omega}{1-\alpha-\beta}</script><ul>
+<li>If $(\alpha+\beta)=1$ (IGARCH)</li>
+</ul>
+<script type="math/tex; mode=display">
+f_{T,h}^{\sigma^2}=\omega(h-1)+\sigma_{t+1}^2</script><h4 id="Heteroskedasticity-and-interval-forecasts"><a href="#Heteroskedasticity-and-interval-forecasts" class="headerlink" title="Heteroskedasticity and interval forecasts"></a>Heteroskedasticity and interval forecasts</h4><p>The $100 \times (1 - \alpha)\%$ interval forecast for $X_{T+h}$ takes the form</p>
+<script type="math/tex; mode=display">
+Pr(L_{T,h}\leq X_{T+h}\leq U_{T,h}|\Omega_T)=1-\alpha</script><p>It is usual to construct interval forecasts that are symmetric around the conditional mean of $X_{T+h}$</p>
+<script type="math/tex; mode=display">
+f_{T,h}\pm z_{1-\alpha/2}\sqrt{\mathbb{Var}[e_{T,h}|\Omega_T]}</script><h3 id="Self-Study-Questions：-4"><a href="#Self-Study-Questions：-4" class="headerlink" title="Self-Study Questions："></a>Self-Study Questions：</h3><p>【<strong>CHP 9：Q1.d</strong>】<strong>Describe two extensions to the original GARCH model. What additional characteristics of financial data might they be able to capture?</strong></p>
+<p>EGARCH, GJR or GARCH-M. The first two of these are designed to capture leverage effects. These are asymmetries in the response of volatility to positive or negative returns. The EGARCH model also has the added benefit that the model is expressed in terms of the log of ht, so that even if the parameters are negative, the conditional variance will always be positive. GARCH-M model allows the lagged value of the conditional variance to affect the return.</p>
+<h1 id="Unit-6：Multivariate-Time-Series"><a href="#Unit-6：Multivariate-Time-Series" class="headerlink" title="Unit 6：Multivariate Time Series"></a>Unit 6：Multivariate Time Series</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 1, Section 1.7 (Essential - Week 6)</li>
+<li>Brooks, Chapter 7, Sections 7.10 - 7.16 (Essential - Week 7)</li>
+<li>Diebold, Chapter 16 (Recommended)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks, Chapter 1, Self-Study Questions 21, 22.</li>
+</ul>
+<h3 id="Definition-5"><a href="#Definition-5" class="headerlink" title="Definition:"></a>Definition:</h3><p>We consider n possibly related time series $X_{1t}. . . , X_{nt}$, and<br>define the $n$−vector</p>
+<script type="math/tex; mode=display">
+X_t\equiv[X_{1t},. . . , X_{nt}]'=\begin{bmatrix}X_{1t}\\. . . \\X_{nt}\end{bmatrix}</script><h4 id="Weak-Stationarity"><a href="#Weak-Stationarity" class="headerlink" title="Weak Stationarity"></a>Weak Stationarity</h4><ul>
+<li>$\mathbb E(X_t)\equiv \mu &lt; \infty$ for all $t$</li>
+<li>$\mathbb E(X_t-\mu)(X_t-\mu)’\equiv\Gamma(0)&lt;\infty$ for all $t$</li>
+<li>$\mathbb E(X_t-\mu)(X_{t-h}-\mu)’\equiv\Gamma(h)$ for all $t$</li>
+</ul>
+<p><strong>The expectation of a vector</strong></p>
+<script type="math/tex; mode=display">
+\mu = \mathbb E(X_t)=\begin{bmatrix}\mathbb E(X_{1t})\\. . . \\\mathbb E(X_{nt})\end{bmatrix}=\begin{bmatrix}\mathbb \mu_1\\. . . \\\mu_n\end{bmatrix}</script><p><strong>The variance-Covariance matrix</strong></p>
+<p>When $h=0$</p>
+<script type="math/tex; mode=display">
+\gamma_{ij}(0)=\mathbb E(X_{it}-\mu_i)(X_{jt}-\mu_j)=\mathbb{Cov}(X_{it},X_{jt})</script><script type="math/tex; mode=display">
+\Gamma(0)=\begin{bmatrix}
+\mathbb{Var}(X_{1t})&\mathbb{Cov}(X_{1t},X_{2t})&...&\mathbb{Cov}(X_{1t},X_{nt})\\
+\mathbb{Cov}(X_{2t},X_{1t})&\mathbb{Var}(X_{2t})&...&\mathbb{Cov}(X_{2t},X_{nt})\\
+...&...&...&...&\\
+\mathbb{Cov}(X_{nt},X_{1t})&\mathbb{Cov}(X_{nt},X_{2t})&...&\mathbb{Var}(X_{nt})
+\end{bmatrix}</script><p>When $h\ne0$</p>
+<script type="math/tex; mode=display">
+\gamma_{ij}(h)=\mathbb E(X_{it}-\mu_i)(X_{j,t-h}-\mu_j)=\mathbb{Cov}(X_{it},X_{j,t-h})</script><script type="math/tex; mode=display">
+\gamma_{ji}(-h)=\mathbb E(X_{jt}-\mu_j)(X_{i,t+h}-\mu_i)=\mathbb{Cov}(X_{jt},X_{i,t-h})</script><script type="math/tex; mode=display">
+\Gamma(h)=\Gamma'(-h)</script><script type="math/tex; mode=display">
+\Gamma(0)=\begin{bmatrix}
+\mathbb{Cov}(X_{1t},X_{1,t-h})&\mathbb{Cov}(X_{1t},X_{2,t-h})&...&\mathbb{Cov}(X_{1t},X_{n,t-h})\\
+\mathbb{Cov}(X_{2t},X_{1,t-h})&\mathbb{Cov}(X_{2t},X_{2,t-h})&...&\mathbb{Cov}(X_{2t},X_{n,t-h})\\
+...&...&...&...&\\
+\mathbb{Cov}(X_{nt},X_{1,t-h})&\mathbb{Cov}(X_{nt},X_{2,t-h})&...&\mathbb{Cov}(X_{nt},X_{n,t-h})
+\end{bmatrix}</script><p><strong>Diagonal matrix</strong></p>
+<script type="math/tex; mode=display">
+D=\begin{bmatrix}
+sd(X_{1t})&0&...&0\\
+0&sd(X_{2t})&...&0\\
+...&...&...&...&\\
+0&0&...&sd(X_{nt})
+\end{bmatrix}</script><p><strong>Correlation Matrix</strong></p>
+<script type="math/tex; mode=display">
+\rho(h)\equiv D^{-1}\Gamma(h)D^{-1},\ with\ \rho_{ij}(h)=\frac{\mathbb{Cov}(X_{it},X_{j,t-h})}{sd(X_{it})sd(X_{jt})}</script><h4 id="The-multivariate-white-noise"><a href="#The-multivariate-white-noise" class="headerlink" title="The multivariate white noise"></a>The multivariate white noise</h4><p>Let $\epsilon_t\equiv[\epsilon_{1t},…,\epsilon_{nt}]’$</p>
+<ul>
+<li>$\mathbb E(\epsilon_t)=0$</li>
+<li>$\Gamma(h)=\mathbb E(\epsilon_t\epsilon_{t-h})=\begin{cases}\Sigma&amp;for h=0\\0&amp;for h\ne 0\end{cases}$</li>
+</ul>
+<p>For individual shocks</p>
+<ul>
+<li>$\mathbb E(\epsilon_{it})=0$</li>
+<li>$\mathbb E(\epsilon_{it}^2)=\sigma_i^2$</li>
+<li>$\mathbb E(\epsilon_{it}\epsilon_{i,t-h})=0$</li>
+</ul>
+<p>We do allow for <strong>contemporaneous correlation</strong></p>
+<ul>
+<li>$\mathbb E(\epsilon_{it}\epsilon_{jt})=\sigma_{ij}$</li>
+<li>$\mathbb E(\epsilon_{it}\epsilon_{j,t-h})=0$</li>
+</ul>
+<h4 id="Vector-Autoregressive-Processes-VAR"><a href="#Vector-Autoregressive-Processes-VAR" class="headerlink" title="Vector Autoregressive Processes (VAR)"></a>Vector Autoregressive Processes (VAR)</h4><p>Let $Y_t\equiv X_t-\mu$. A VAR(p) process satisfifies the equation</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1 Y_{t-1}+...+\Phi_p Y_{t-p}+\epsilon_t</script><script type="math/tex; mode=display">
+\Phi(L)Y_t=\epsilon_t</script><script type="math/tex; mode=display">
+\Phi(L)=I_n-\Phi_1L-...-\Phi_pL^P</script><p>and $I_n$ denotes the n−dimensional identity matrix.</p>
+<p>【<strong>Example</strong>】</p>
+<p>For $n = 2, p = 2$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+y_{1t}&=\phi_{11}^{(1)}y_{1,t-1}+\phi_{12}^{(1)}y_{2,t-1}+\phi_{11}^{(2)}y_{1,t-2}+\phi_{12}^{(2)}y_{2,t-2}+\epsilon_{1t}\\
+y_{2t}&=\phi_{21}^{(1)}y_{1,t-1}+\phi_{22}^{(1)}y_{2,t-1}+\phi_{21}^{(2)}y_{1,t-2}+\phi_{22}^{(2)}y_{2,t-2}+\epsilon_{2t}
+\end{align}</script><p><strong>Stationarity of a VAR</strong></p>
+<p>Consider the VAR(1) process</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1Y_{t-1}+\epsilon_t</script><p>By recursively substituting</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1^tY_0+\sum_{j=0}^{t-1}\Phi_1^j\epsilon_{t-j}</script><p>when $max_{j=1,…,n}|\lambda_j(\Phi_1)|&lt;1$, $\Phi_1^t\to 0$ as $t\to\infty$</p>
+<script type="math/tex; mode=display">
+(I_n-\Phi_1L)Y_t=\epsilon_t</script><p>The previous condition can be restated as</p>
+<script type="math/tex; mode=display">
+det[\Phi_1-\lambda I_n]=0\ for\ |\lambda|<1</script><p> is equivalent to</p>
+<script type="math/tex; mode=display">
+det[\Phi(z)]=det[I_n-\Phi_1z]\ne 0\ for\ |z|>1</script><p>If the above conditions are satisfified</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\Phi_1^j\epsilon_{t-j}</script><p>A VAR(p) process <strong>is stationary if</strong></p>
+<script type="math/tex; mode=display">
+det(I_n-\Phi_1z-...-\Phi_pz^p)\ne 0\ for\ |z|
+\leq1</script><p><strong>Remarks</strong></p>
+<p>The VAR(p) processes belong to the class of VARMA(p,q) processes</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\Theta(L)\epsilon_t</script><p>where</p>
+<script type="math/tex; mode=display">
+\Theta(L)\equiv I_n-\Theta_1L-...-\Theta_qL^q</script><p>VARMA(p,q) processes are difficult to estimate when $q &gt; 0$. VAR models are usually used in empirical applications.</p>
+<h4 id="Applying-VAR-models"><a href="#Applying-VAR-models" class="headerlink" title="Applying VAR models"></a><strong>Applying VAR models</strong></h4><p>Supposed that the appropriate order p for the VAR model is found, that is, a VAR(p-1) is <strong>misspecified</strong> and VAR(p+1) <strong>contains too many redundant parameters</strong>, and the parameters are estimated.</p>
+<p>The resultant empirical model can be used for various purposes.</p>
+<ol>
+<li>Out-of-sample forecasting.</li>
+<li>Granger causality analysis.</li>
+<li>Structural analysis (impulse response function and error variance decomposition).</li>
+</ol>
+<p><strong>Forecasting</strong></p>
+<p>Consider the VAR(1) model. The h−step forecast at time T is given by</p>
+<script type="math/tex; mode=display">
+f_{T,h}=\Phi_1^hY_T</script><p>The forecast error covariance matrix equals</p>
+<script type="math/tex; mode=display">
+\mathbb E(e_{T,h}e_{T,h}')=\Sigma+\Phi_1\Sigma\Phi_1'+...+\Phi_1^{(h-1)}\Sigma\Phi_1^{(h-1)'}</script><p>【Example】</p>
+<script type="math/tex; mode=display">
+Y_{T+2}=\phi_1Y_{T+1}+\epsilon_{T+2}=\phi_1^2Y_T+\epsilon_{T+2}+\phi\epsilon_{T+1}</script><script type="math/tex; mode=display">
+\begin{align}
+Var(e_{T,2})&=\mathbb E(e_{T,2}e_{T,2}')=\mathbb E(\epsilon_{T+2}+\phi\epsilon_{T+1})(\epsilon_{T+2}+\phi\epsilon_{T+1})'\\
+&=\mathbb E(\epsilon_{T+2}\epsilon_{T+2}')+\mathbb E(\phi\epsilon_{T+1}\phi'\epsilon_{T+1}')\\
+&=\Sigma+\Phi\Sigma\Phi'
+\end{align}</script><p><strong>Granger Causality</strong></p>
+<p>An important statistical notion of causality that’s intimately related to forecasting is based on two key principles</p>
+<ul>
+<li><p>Cause should occur before effect.</p>
+</li>
+<li><p>A causal series should contain information useful for forecasting that in not available in other series.</p>
+</li>
+</ul>
+<p>We can say that $X$ Granger-cause $Y$ , $“X \Rightarrow Y ”$ if</p>
+<script type="math/tex; mode=display">
+\mathbb E(Y_t|Y_{t-1},X_{t-1},Y_{t-2},X_{t-2},...)\ne \mathbb E(Y_t|Y_{t-1},Y_{t-2},...)</script><p>It $Z_t=[X_t,Y_t]’$ can be represented as a bivariate VAR</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\phi_{11}(L)&\phi_{12}(L)\\\phi_{21}(L)&\phi_{22}(L)
+\end{bmatrix}
+\begin{bmatrix}
+Y_t\\X_t
+\end{bmatrix}
+=
+\begin{bmatrix}
+\epsilon_{1t}\\ \epsilon_{2t}
+\end{bmatrix}</script><p>then $X\not\Rightarrow Y$ if $\phi_{12}(L)\equiv 1+\sum_{j=1}^p\phi_{12,j}L^j=0$</p>
+<p>The the equation for $Y_t$</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=1}^p\phi_{11,j}Y_{t-j}+\sum_{j=1}^p\phi_{12,j}X_{t-j}+\epsilon_{1t}</script><p>then, the hypothesis $X\not\Rightarrow Y$ is equivalent to</p>
+<script type="math/tex; mode=display">
+H_0:\phi_{12,1}=\phi_{12,2}=...=\phi_{12,p}</script><p>If the VAR is stationary an F−test can be used.</p>
+<p><strong>Impulse Response Functions</strong>（脉冲响应函数）</p>
+<p>To understand what are the dynamic effects of the error process $\epsilon_t$ on $Y_{t+h}$, one can calculate the so-called impulse-response function.</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi_1Y_{t-1}+\epsilon_t,\ \epsilon_t\sim WN(0,\Sigma)</script><p>with $\Sigma=diag[\sigma_1^2,…,\sigma_n^2]$</p>
+<p>Suppose there is an interest in the effect of shocks corresponding to the first variable.</p>
+<p>One can then calculate</p>
+<script type="math/tex; mode=display">
+V_0\equiv e_1=[1,0,0,...,0]'</script><p>and</p>
+<script type="math/tex; mode=display">
+V_k\equiv\Phi_1^ke_1,\ k=1,...,h</script><p>The n elements of the $V_k$ vector series, $k = 0, 1, 2, . . . , h$ are called the <strong>impulse-response functions</strong></p>
+<p>The i-th impulse-response function is the trajectory $\{v_{ik},k=0,1,…,h\}$</p>
+<p>If we consider a VAR(p) stationary process</p>
+<script type="math/tex; mode=display">
+Y_t=\Phi(L)^{-1}\epsilon_t=\sum_{k=0}^\infty\Psi_k\epsilon_{t-k}</script><p>The impulse-response function is defined as</p>
+<script type="math/tex; mode=display">
+v(i,j,k)\equiv\frac{\partial Y_{it}}{\partial\epsilon_{j,t-k}}=\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><blockquote>
+<p>k 时间上 j 对 i 的影响</p>
+</blockquote>
+<p>$v(i,j,k)$ represent the response of $Y_{it}$ to a unitary shock in $Y_{j,t-k}$ (produced by a unitary shock in $\epsilon_{j,t-k}$.)</p>
+<p>$\Sigma$ is <strong>not required</strong> to be diagonal, so the component of  $\epsilon_t$ may be <strong>contemporaneously correlated</strong>.</p>
+<p>If the correlations are high, there is <strong>no way</strong> of separating the response of $Y_{it}$ to a shock on $\epsilon_{j,t−k}$ from its response to other shocks that are correlated to $\epsilon_{j,t−k}$.</p>
+<p>If we defifine the <strong>square invertible matrix</strong> $S$ such that</p>
+<script type="math/tex; mode=display">
+\epsilon_t\equiv S\xi_t\ with\ \mathbb E(\xi_t\xi_t')\equiv I_n</script><p>then, setting $\tilde\Psi_j\equiv\Psi_jS,\xi_t=S^{-1}\epsilon_t$</p>
+<script type="math/tex; mode=display">
+Y_t=\sum_{j=0}^\infty\Psi_k\epsilon_{t-k}=\sum_{j=0}^\infty(\Psi_kS)S^{-1}\epsilon_{t-k}=\sum_{j=0}^\infty\tilde\Psi_k\xi_{t-k}</script><blockquote>
+<p>让原本相关性强的残差变成白噪</p>
+</blockquote>
+<p>We can define the <strong>structural impulse-response function</strong> as</p>
+<script type="math/tex; mode=display">
+\tilde v(i,j,k)\equiv\frac{\partial T_{it}}{\partial\xi_{j,t-k}}=\tilde\psi_{ij}^{(k)},\ k=0,1,2,...,h</script><ul>
+<li>Note that if $\epsilon_t=S\xi_t$, then $\Sigma=SS’$</li>
+</ul>
+<p>$S$ is often defined as a lower triangular matrix (<strong>Choleski decomposition</strong>)</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\epsilon_{1t}\\\epsilon_{2t}\\...\\\epsilon_{nt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+s_{11}&0&...&0\\
+s_{21}&s_{22}&...&0\\
+...&...&...&...\\
+s_{n1}&s_{n2}&...&s_{nn}\\
+\end{bmatrix}
+\begin{bmatrix}
+\xi_{1t}\\\xi_{2t}\\...\\\xi_{nt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+s_{11}\xi_{1t}\\s_{21}\xi_{1t}+s_{22}\xi_{2t}\\...\\
+s_{n1}\xi_{1t}+...+s_{nn}\xi_{nt}
+\end{bmatrix}</script><p>The fact that $S$ is triangular implies that $\epsilon_{1t}$ is a function of the first structural shocks $\xi_{1t}, \epsilon_{2t}$ is a function of the structural shocks $\xi_{1t}$ and $\xi_{2t}$ and so on.</p>
+<p>【<strong>Example</strong>】</p>
+<p>Let $Y_t=\Phi Y_{t-1}+\epsilon_t,\epsilon_t\sim(0,\Sigma)$, with</p>
+<script type="math/tex; mode=display">
+\Phi=\begin{bmatrix}0.4&0.5\\-0.2&1.1\end{bmatrix}\qquad
+\Sigma=\begin{bmatrix}1&0.6\\0.6&1\end{bmatrix}</script><p>Hence,</p>
+<script type="math/tex; mode=display">
+\Phi^2=\begin{bmatrix}0.06&0.75\\-0.3&1.11\end{bmatrix}\qquad
+\Phi^3=\begin{bmatrix}-0.126&0.855\\-0.342&1.071\end{bmatrix}</script><p>and so on.</p>
+<p>Note that $\Sigma=SS’$, with</p>
+<script type="math/tex; mode=display">
+S=\begin{bmatrix}1&0\\0.6&0.8\end{bmatrix}</script><p>which is equivalent to $\tilde\Psi_0$. Moreover</p>
+<script type="math/tex; mode=display">
+\tilde\Psi_1=\Phi S=\begin{bmatrix}0.7&0.4\\0.46&0.88\end{bmatrix}\qquad
+\tilde\Psi_2=\Phi^2S=\begin{bmatrix}0.51&0.6\\0.366&0.888\end{bmatrix}</script><p>and so on.</p>
+<p>In practice $ \Sigma$ is estimate by</p>
+<script type="math/tex; mode=display">
+\hat\Sigma=\frac1T\sum_{t=1}^T\hat\epsilon_t\hat\epsilon_t'</script><p>and the Cholesky decomposition is computed on $ \hat\Sigma$, that is</p>
+<script type="math/tex; mode=display">
+\hat\Sigma=\hat S\hat S'</script><p><strong>Forecast error variance decomposition</strong></p>
+<p>The <strong>orthogonalized error variance decomposition</strong> is defined as</p>
+<script type="math/tex; mode=display">
+\psi(i,j,h)\equiv\frac{\sum_{k=0}^{h-1}\tilde v^2(i,j,k)}{\sum_{j=1}^n\sum_{k=0}^{h-1}\tilde v^2(i,j,k)}</script><p>Expressed as percentage, one can thus examine the relative importance of the error variance $Y_j$ for forecasting $Y_i$ h-step ahead.</p>
+<h4 id="Nonstationary-VAR"><a href="#Nonstationary-VAR" class="headerlink" title="Nonstationary VAR"></a>Nonstationary VAR</h4><p>Consider the n−variate VAR</p>
+<script type="math/tex; mode=display">
+\Phi(L)Y_t=\epsilon_t,\ \Phi(L)=I_n-\Phi_1L-...-\Phi_pL^p</script><p>The VAR process is stationary if</p>
+<script type="math/tex; mode=display">
+det[\Phi(z)]\ne 0,\ for |z|<1</script><p>Recall that</p>
+<script type="math/tex; mode=display">
+\Phi(L)=I_n(1-L)+\Pi L+\sum_{j=1}^{p-1}\Phi_j^*L^j(1-L)</script><p>where $\Phi_j^*=\sum_{k=j+1}^p\Phi_k$ and $\Pi\equiv\Phi(1)$</p>
+<blockquote>
+<p>Beveridge-Nelson Decomposition 取 I(1)</p>
+<p>Augmented Dickey Fuller (ADF)  Test</p>
+</blockquote>
+<ul>
+<li><p>If $\Pi$ is a matrix of zeros</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\sum_{j=1}^{p-1}\Phi^*_j\Delta Y_{t-j}+\epsilon_t</script></li>
+<li><p>If $\Pi\ne 0$ and $det(\Pi)\ne0$ the process is stationary.</p>
+</li>
+<li><p>If $\Pi\ne 0$ but $det(\Pi)=0$,  that is <strong>Π</strong> has reduced rank, then $Y_t$ is a <strong>cointegrated process</strong>.</p>
+<blockquote>
+<p>协整检验的目的是决定一组非平稳序列的线性组合是否具有稳定的均衡关系</p>
+</blockquote>
+</li>
+<li><p>If $rank(\Pi)=r&lt;n$, then</p>
+<script type="math/tex; mode=display">
+\Pi =\alpha\beta'</script><p>where $\alpha$ and $\beta$ are $(n \times r)$ full column rank matrices.</p>
+<p>Hence, the VAR admits the representation</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\alpha\beta'Y_t+\sum_{j=1}^{p-1}\Phi_j^*\Delta Y_{t-j}+\epsilon_t</script><p>where $\beta’Y_t$ needs to be stationary!</p>
+</li>
+</ul>
+<h1 id="Unit-7：Cointegration"><a href="#Unit-7：Cointegration" class="headerlink" title="Unit 7：Cointegration"></a>Unit 7：Cointegration</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 8, Sections 8.3 - 8.11 (Essential)</li>
+<li>Appendix C (Essential)</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks Chapter 8, Self-Study Questions 5,6,7</li>
+</ul>
+<h3 id="Definition-6"><a href="#Definition-6" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Cointegration"><a href="#Cointegration" class="headerlink" title="Cointegration"></a>Cointegration</h4><p>An n-variate time series {$X_t$} is called a cointegrated system of order ($d,b$), written {$X_t$} $\sim CI(d, b)$, if all the components are I($d$) and there exists a $n \times r(r &lt; n)$ matrix $\beta \ne 0$ such that $\beta ‘X_t \sim I(d − b)$, with $d \ge b &gt; 0$. The vectors $\beta_k, k = 1, . . . , r$ are called the cointegrating vectors.</p>
+<p>Examples of possible Cointegrating Relationships in finance:</p>
+<ul>
+<li>Spot and futures prices, spot and forward prices.</li>
+<li>Bid and ask prices.</li>
+<li>Ratio of relative prices and an exchange rate (law of one price) </li>
+<li>Equity prices and dividends</li>
+</ul>
+<blockquote>
+<p> Market forces arising from no arbitrage conditions should ensure an equilibrium relationship</p>
+</blockquote>
+<h4 id="The-Engle-Granger-Method（协整检验）"><a href="#The-Engle-Granger-Method（协整检验）" class="headerlink" title="The Engle-Granger Method（协整检验）"></a>The Engle-Granger Method（协整检验）</h4><p><a target="_blank" rel="noopener" href="https://www.pianshen.com/article/6716218462/">Link</a></p>
+<script type="math/tex; mode=display">
+X_{1t}=\mu+\gamma'X_{2t}+U_t</script><ul>
+<li>If the null is not rejected, $\beta=[1,-\gamma’]$ is not a cointegrating vector. (ADF Test)</li>
+</ul>
+<h4 id="Stock-prices-and-Dividends"><a href="#Stock-prices-and-Dividends" class="headerlink" title="Stock prices and Dividends"></a>Stock prices and Dividends</h4><p>The dividend-price ratio $\Lambda_t$ is usually measured as</p>
+<script type="math/tex; mode=display">
+\Lambda_t=\frac{D_t}{S_t}</script><ul>
+<li><p>$D_t$: the sum of dividends paid on the stock/index over the previous year</p>
+</li>
+<li><p>$S_t$:  the current price of the stock/ current level of the index</p>
+</li>
+</ul>
+<p>Hence,</p>
+<script type="math/tex; mode=display">
+\lambda_t=ln(D_t)-ln(S_t)=d_t-s_t</script><p>Assume $\lambda_t=\lambda+u_t$, with $u_t\sim I(0)$</p>
+<script type="math/tex; mode=display">
+d_t=s_t+\lambda+u_t</script><p>Let</p>
+<script type="math/tex; mode=display">
+\Delta s_t=\mu+v_t,\ v_t\sim I(0)</script><p>which can be rewritten as</p>
+<script type="math/tex; mode=display">
+s_t=\mu+s_{t-1}+v_t,\ v_t\sim I(0)</script><p>and we have</p>
+<script type="math/tex; mode=display">
+\Delta d_t=\mu-(d_{t-1}-s_{t-1}-\lambda)+\epsilon_t,\ \epsilon_t=u_t+v_t</script><p>This model can be generalized to</p>
+<script type="math/tex; mode=display">
+\Delta d_t=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)+\epsilon_t</script><ul>
+<li><p>known as an <strong>Error Correction Model</strong> (ECM)</p>
+</li>
+<li><p>In an ECM, the change in a variable depends on the deviations from some equilibrium relation</p>
+</li>
+</ul>
+<p>Let $x_t=(s_t,d_t)’$ and assume that</p>
+<script type="math/tex; mode=display">
+\mathbb E(\epsilon_t|x_{t-1})=0\ and\ \mathbb E(v_t|x_{t-1})=0</script><p>Then, </p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta s_t|x_{t-1})=\mu\ and\ \mathbb E(\Delta d_t|x_{t-1})=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)</script><p>Consider 3 situations:</p>
+<ol>
+<li><p>$d_{t-1}-s_{t-1}-\lambda=0$ (equilibrium)</p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta d_t|x_{t-1})=\mathbb E(\Delta s_t|x_{t-1})=\mu</script><p>where $\mu$ represent the growth rates of stock prices (and dividends) in the long-run.</p>
+</li>
+<li><p>$d_{t-1}-s_{t-1}-\lambda&gt;0$ (positive disequilibrium error)</p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta d_t|x_{t-1})=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)<\mu</script><p>If $\alpha&lt;0$, the model predicts that $d_t$ will grow more slowly than its long-run rate to restore the dividend-yield to its long-run mean.</p>
+</li>
+<li><p>$d_{t-1}-s_{t-1}-\lambda&lt;0$ (negative disequilibrium error)</p>
+<script type="math/tex; mode=display">
+\mathbb E(\Delta d_t|x_{t-1})=\mu+\alpha(d_{t-1}-s_{t-1}-\lambda)>\mu</script><p>If $\alpha&lt;0$, the model predicts that $d_t$ will grow faster thani ts long-run rate to restore the dividend-yield to its long-run mean.</p>
+</li>
+</ol>
+<h4 id="VARs-with-Integrated-Variables"><a href="#VARs-with-Integrated-Variables" class="headerlink" title="VARs with Integrated Variables"></a>VARs with Integrated Variables</h4><p>we have</p>
+<script type="math/tex; mode=display">
+X_t=\sum_{j=1}^p\Phi_jX_{t-j}+\epsilon_t</script><p>can be re-written as</p>
+<script type="math/tex; mode=display">
+\Delta X_t=\Pi X_{t-1}+\sum_{j=1}^{p-1}\Phi_j^*\Delta X_{t-j}+\epsilon_t</script><ul>
+<li><p>$\Phi_j^*=-\sum_{k=j+1}^p\Phi_k$ and $\Pi \equiv -\Phi(1)$</p>
+</li>
+<li><p>$\Pi$ is know as the long-run matrix</p>
+</li>
+<li><p>The representation is the multivariate counterpart of the ADF regression</p>
+</li>
+<li><p>If $det(\Pi) = 0$ then the $VAR(p)$ is said to have at least a unit root</p>
+</li>
+<li><p>If $det(\Pi) = 0$, then $rank(\Pi) = r &lt; n$.</p>
+</li>
+<li><p>If $r = 0$, then $\Pi = 0$ (n unit roots), and $\Delta X_t$ is a $VAR(p − 1)$.</p>
+</li>
+<li><p>If $0&lt; r &lt; n$, then</p>
+<script type="math/tex; mode=display">
+\Pi =\alpha\beta'</script></li>
+<li><p>$\alpha$ and $\beta$ are $(n \times r)$ matrices.</p>
+</li>
+<li><p>$\beta$ is know as cointegrating vectors</p>
+</li>
+<li><p>The system will contain only $(n − r)$ unit roots</p>
+</li>
+<li><p>we obtain the <strong>Vector Error Correction Model</strong> (VECM)</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\alpha\beta'Y_t+\sum_{j=1}^{p-1}\Phi_j^*\Delta Y_{t-j}+\epsilon_t</script></li>
+</ul>
+<p>Let $A$ a $(r \times r)$ non-singular matrix. Then,</p>
+<script type="math/tex; mode=display">
+\Pi = \alpha\beta'=(\alpha A)(A^{-1}\beta')</script><p>Let</p>
+<script type="math/tex; mode=display">
+\beta = \begin{bmatrix}\beta_1(r\times r)\\ \beta_2 (n\times r)\end{bmatrix}</script><p>and assume that $\beta_1$ is invertible. To identify the matrices, the following normalization is often imposed</p>
+<script type="math/tex; mode=display">
+\beta = \begin{bmatrix}I_r\\ \beta_2\beta_1^{-1}\end{bmatrix}</script><h4 id="Testing-for-Cointegrating"><a href="#Testing-for-Cointegrating" class="headerlink" title="Testing for Cointegrating"></a>Testing for Cointegrating</h4><p>Johansen (1988) proposed to estimated the model using the MLE, assuming the Gausssianity of {$\epsilon_t$}</p>
+<p>MLE estimation is based upon a known value of the cointegrating rank r (<strong>usually unknown</strong>).</p>
+<p>The <strong>maximum eigenvalue statistic</strong>, $λ_{max}$ has been proposed to the the hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:rank(\Pi)=r_0\ versus\ H_1:rank(\Pi)=r_0+1</script><p>The statistic $λ_{max}$ is constructed as follow:</p>
+<ul>
+<li><p>A positive semi-definite matrix $\Xi$ having the same rank of<br>$\Pi$ is defined. Let $\lambda_k\equiv\lambda_k(\Xi)$, $k = 1, . . . , n$. By definition</p>
+<script type="math/tex; mode=display">
+1>\lambda_1\ge\lambda_2\ge...\ge\lambda_r>0,\ \lambda_{r+1}=...=\lambda_n=0</script></li>
+<li><p>Obtain a consistent estimate $\hat{\Xi}$. Then $\lambda_k(\hat{\Xi})$ are consistent estimates of $\lambda_k, k = 1,…, n$</p>
+</li>
+<li><p>Test the null hypothesis $H_0 : −T ln(1 − \lambda_{r_0+1}) = 0$, for $r_0 = 0, …, n − 1$ until we fail to reject</p>
+</li>
+<li><p>Let $r^∗_0$ the value of $r_0$ for which the null hypothesis cannot<br>be rejected for the first time. Then, $\hat r = r^∗_0$</p>
+</li>
+</ul>
+<p>The <strong>trace statistic</strong> $λ_{trace}$ has been proposed to the the hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:rank(\Pi)=r_0\ versus\ H_1:r_0<rank(\Pi)\leq n</script><p>The statistic $λ_{trace}$ is constructed as</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\lambda_{trace}(r_0)=-T\sum_{k=r_0+1}^nln(1-\lambda_k),\ r_0=0,1,...,n-1</script></li>
+<li><p>Test the sequence of null hypotheses $H_0 : λ_{trace}(r_0) = 0$, from $r_0 = 0$ to $r_0 = n − 1$ until we fail to reject</p>
+</li>
+</ul>
+<blockquote>
+<p>$r_0$ 按顺序依次取</p>
+</blockquote>
+<h4 id="Forecasting-Causality-and-IRFs"><a href="#Forecasting-Causality-and-IRFs" class="headerlink" title="Forecasting, Causality and IRFs"></a>Forecasting, Causality and IRFs</h4><p><strong>Causality Testing in VECMs</strong></p>
+<p>Assume $n = 2$ and $X_t = (Y_t , Z_t)’$. The VECM taks the form</p>
+<script type="math/tex; mode=display">
+\Delta Y_t=\sum_{j=1}^{p-1}\phi_{11,j}^*\Delta Y_{t-j}+\sum_{j=1}^{p-1}\phi_{12,j}^*\Delta Z_{t-j}+\alpha_1(\beta_1Y_{t-1}+\beta_2Z_{t-1})+\epsilon_{1t}</script><script type="math/tex; mode=display">
+\Delta Z_t=\sum_{j=1}^{p-1}\phi_{21,j}^*\Delta Y_{t-j}+\sum_{j=1}^{p-1}\phi_{22,j}^*\Delta Z_{t-j}+\alpha_2(\beta_1Y_{t-1}+\beta_2Z_{t-1})+\epsilon_{2t}</script><p>where</p>
+<script type="math/tex; mode=display">
+\Phi_j^*=\begin{bmatrix}\phi_{11,j}^*&\phi_{12,j}^*\\\phi_{21,j}^*&\phi_{22,j}^*\end{bmatrix},\alpha=\begin{bmatrix}\alpha_1\\ \alpha_2\end{bmatrix},\beta=\begin{bmatrix}\beta_1\\ \beta_2\end{bmatrix}</script><p>The hypothesis that $Z$ does not Granger-cause $Y$ may be formalized as</p>
+<script type="math/tex; mode=display">
+H_0:\phi_{12,1}^*=\phi_{12,2}^*=...=\phi_{12,p-1}^*,\ \alpha_1=0</script><p>Testing the hypothesis is not straightforward.</p>
+<p>Alternative approaches (as the lag-augmented VAR) have been proposed.</p>
+<p><strong>Forecasting Integrated and Cointegrated systems</strong></p>
+<ul>
+<li><p>Forecasting can be discussed in the framework of the levels VAR representation.</p>
+</li>
+<li><p>A VECM may be rewritten in VAR form, or forecasting can be obtained directly from the VECM.</p>
+<p>If a variable enters the system in differenced form only, it is, of course still possible to generated forecasts of the levels. See Brooks, Rew and Ritson (2001), Section 4.</p>
+</li>
+</ul>
+<p><strong>Impulse Response Analysis</strong></p>
+<p>In principle, impulse response analysis in cointegrated systems can be conducted in the same way as for stationary systems.</p>
+<h3 id="Self-Study-Questions：-5"><a href="#Self-Study-Questions：-5" class="headerlink" title="Self-Study Questions："></a>Self-Study Questions：</h3><p>【<strong>CHP 8：Q6.a</strong>】<strong>Suppose that a researcher has a set of three variables, she wishes to test for the existence of cointegrating relationships using the Johansen procedure. What is the implication of finding that the rank of the appropriate matrix takes on a value of 0,1,2,3</strong></p>
+<p>If the rank of the  matrix is zero, this implies that there is no cointegration or no common stochastic trends between the series. The rank of  is one or two would imply that there were one or two linearly independent cointegrating vectors or combinations of the series that would be stationary, respectively. A finding that the rank of  is 3 would imply that the matrix is of full rank. The implication of a rank of 3 would be that the original series were stationary, and provided that unit root tests had been conducted on each series, this would have effectively been ruled out.</p>
+<h1 id="Unit-8：Forecasts-Evaluation-Part-I"><a href="#Unit-8：Forecasts-Evaluation-Part-I" class="headerlink" title="Unit 8：Forecasts Evaluation (Part I)"></a>Unit 8：Forecasts Evaluation (Part I)</h1><p><strong>Reading</strong>：</p>
+<ul>
+<li>Brooks, Chapter 6, Section 6.10 (Essential)</li>
+<li>Diebold, Chapter 10 (Essential, Subsections 10.2.2 and 10.2.4 excluded )</li>
+</ul>
+<p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks Chapter 6, Self-Study Questions 11(d), 12(f).</li>
+<li>Diebold, Section 10.4, Exercises, Problems and Complements 1-3. The solutions can be found <a target="_blank" rel="noopener" href="https://www.sas.upenn.edu/~fdiebold/Teaching221/Fcst4Solns.pdf">here</a> (See Chapter 12, Exercises 1.2.6).</li>
+</ul>
+<h3 id="Definition-7"><a href="#Definition-7" class="headerlink" title="Definition:"></a>Definition:</h3><p><strong>Rolling vs Recursive Samples</strong></p>
+<ul>
+<li>Rolling （M1-M12；M2-M1；M3-M2；…）</li>
+<li>Recursive（M1-M12；M1-M1；M1-M2；…）</li>
+</ul>
+<h4 id="Testing-Properties-of-Optimal-Forecasts"><a href="#Testing-Properties-of-Optimal-Forecasts" class="headerlink" title="Testing Properties of Optimal Forecasts"></a>Testing Properties of Optimal Forecasts</h4><ol>
+<li><p>Have a zero mean (unbiasedness). </p>
+</li>
+<li><p>1-step-ahead optimal forecast errors are white noise.</p>
+</li>
+<li><p>h-step-ahead optimal forecast errors are at most MA (h <em>−</em> 1).</p>
+</li>
+<li><p>The h-step-ahead optimal forecast error variance is non-decreasing in h.</p>
+</li>
+</ol>
+<p><strong>Hypothesis 1</strong></p>
+<script type="math/tex; mode=display">
+H_0:\mathbb E[e_{t,h}]=0,\ vs\ H_1:\mathbb E[e_{t,h}]\ne0</script><ul>
+<li><p>Regress $e_{t,h}$ on a constant and use the reported t−statistic:</p>
+<script type="math/tex; mode=display">
+t=\frac{\bar{e}_{t,h}}{s.e.(\bar{e}_{t,h})}</script></li>
+<li><p>Multi-step-ahead forecast errors will be serially correlated because the forecast periods overlap.</p>
+</li>
+<li>Fitting a MA(h − 1) is a good initial guess to model autocorrelation in the regression error.</li>
+<li>Robust standard errors can be used (e.g. Newey-West estimator).</li>
+</ul>
+<p><strong>Hypothesis 2</strong></p>
+<p>1-step-ahead optimal forecast errors are white noise.</p>
+<ul>
+<li>Regress the $e_{t,1}$ on a constant test the null hypothesis that the residuals are white noises</li>
+</ul>
+<p><strong>Hypothesis 3</strong></p>
+<p>The h-step ahead optimal forecast errors are at most MA (h <em>−</em> 1).</p>
+<ul>
+<li><p>Examine the statistical signifificance of sample ACF(k), k &gt; (h <em>−</em> 1) using Bartlett’s standard errors.</p>
+</li>
+<li><p>Regress $e_{t,h}$ on a constant, allowing for MA(q) disturbances, with q &gt; (h − 1) and test.</p>
+<script type="math/tex; mode=display">
+\theta_h=\theta_{h+1}=...=\theta_q=0</script></li>
+</ul>
+<p><strong>Hypothesis 4</strong></p>
+<p>The h-step ahead optimal forecast error variance is non-decreasing in h. </p>
+<p><strong>Is {$e_{t,h}$} orthogonal to available information?</strong></p>
+<p>Mincer and Zarnowitz (1969) proposed to test partial optimality with respect to $f_{t+h,t}$ using the regressions</p>
+<script type="math/tex; mode=display">
+e_{t,h}=\beta_0+\beta_1 f_{t,h}+U_t</script><p>or, equivalently</p>
+<script type="math/tex; mode=display">
+Y_{t,h}=\alpha_0+\alpha_1 f_{t,h}+U_t</script><p>If the forecast is optimal with respect to the information set used to construct it, then we’d expect</p>
+<script type="math/tex; mode=display">
+(\beta_0,\beta_1)'=(0,0)'\ or\ (\alpha_0,\alpha_1)'=(0,1)'</script><p>Ramsey (1969)’s test account for various sort of nonlinearity</p>
+<script type="math/tex; mode=display">
+e_{t,h}=\sum_{j=0}^k\beta_jf_{t,h}^j+U_t</script><p>If the forecast is optimal with respect to the information set used to construct it, then we’d expect</p>
+<script type="math/tex; mode=display">
+\beta_0=\beta_1=...=\beta_k=0</script><p>In general $\Omega_t$ doesn’t include all information available at the time the forecast was made. We will deal with forecasts that will be at most partially optimal.</p>
+<h4 id="Relative-standards-for-point-forecasts"><a href="#Relative-standards-for-point-forecasts" class="headerlink" title="Relative standards for point forecasts"></a>Relative standards for point forecasts</h4><p><strong>Accuracy ranking via expected loss</strong></p>
+<ul>
+<li>Forecast accuracy is measured with respect to a loss function, $\mathscr L(e_{t,h})$, and the forecast horizon h</li>
+</ul>
+<p><strong>Forecast error</strong></p>
+<p>Accuracy measure are defined on the forecast errors</p>
+<script type="math/tex; mode=display">
+e_{t,h}=Y_{t+h}-f_{t,h}</script><p>or the percent forecast error</p>
+<script type="math/tex; mode=display">
+p_{t,h}=\frac{Y_{t+h}-f_{t,h}}{Y_{t+h}}</script><p><strong>Mean error</strong></p>
+<script type="math/tex; mode=display">
+ (population)\quad ME(h)=\mathbb E(e_{t,h})</script><script type="math/tex; mode=display">
+(sample)\quad \hat{ME}(h)=\frac1{N-h+1}\sum_{t=0}^{N-h} e_{t,h}</script><ul>
+<li>The ME measures the bias</li>
+<li>If ME&gt; 0, then on average we are “under-forecasting” (“over-forecasting”  if ME &lt; 0)</li>
+<li>Other things the same, we prefer a forecast whose error have small bias.</li>
+</ul>
+<p><strong>Error Variance</strong></p>
+<script type="math/tex; mode=display">
+(population)\quad EV(h)=\mathbb E(e_{t,h}-ME)^2</script><script type="math/tex; mode=display">
+(sample)\quad \hat{EV}(h)=\frac1{N-h+1}\sum_{t=0}^{N-h} (e_{t,h}-\hat{ME})^2</script><ul>
+<li>EV measures the dispersion of the forecast error. </li>
+<li>Other things the same, we prefer a forecast whose error have small variance.</li>
+<li>Although ME and EV are components of accuracy, neither provides an overall accuracy measure.</li>
+</ul>
+<p><strong>Mean Square Error</strong></p>
+<p>The most common overall accuracy measures is the <strong>mean squared error</strong></p>
+<script type="math/tex; mode=display">
+MSE(h)=\mathbb E[e_{t,h}^2]</script><p>In sample we write</p>
+<script type="math/tex; mode=display">
+\hat{MSE}(h)=\frac1{N-h+1}\sum_{t=0}^{N-h} e_{t,h}^2</script><p><strong>Mean Square Error Decomposition</strong></p>
+<script type="math/tex; mode=display">
+MSE=\mathbb{Var}(e_{t,h})+[\mathbb E(e_{t,h})]^2=EV+ME^2</script><p>Bias-Variance trade-off: a small bias increase is acceptable in exchange for a massive variance reduction.</p>
+<p><strong>Root Mean Square Error</strong></p>
+<p>Often the square roots of MSE is used to preserve units.</p>
+<script type="math/tex; mode=display">
+RMSE(h)=\sqrt{MSE(h)}</script><p>Suppose that the forecast errors are measured in dollars, then the MSE is measured in dollars squared.</p>
+<p>Taking the square root brings the unit back to dollars.</p>
+<p><strong>Mean Absolute Error</strong></p>
+<p>Somehow less popular, but nevertheless common measures are the mean absolute error</p>
+<script type="math/tex; mode=display">
+MAE(h)=\mathbb E|e_{t,h}|</script><script type="math/tex; mode=display">
+\hat{MAE}(h)=\frac1{N-h+1}\sum_{t=0}^{N-h} |e_{t,h}|</script><blockquote>
+<p>Quadratic 的 loss function 会放更多 weight 在大的值</p>
+</blockquote>
+<h4 id="Statistical-comparison-of-forecast-accuracy"><a href="#Statistical-comparison-of-forecast-accuracy" class="headerlink" title="Statistical comparison of forecast accuracy"></a>Statistical comparison of forecast accuracy</h4><ul>
+<li><p>Suppose that two different forecasts of the same object are available, say $f_{t,h}^{(1)}$ and $f_{t,h}^{(2)}$.</p>
+</li>
+<li><p>Suppose that $\hat{MSE}^{(1)}(h) &lt; \hat{MSE}^{(2)}(h)$</p>
+</li>
+<li><p>One is tempted to conclude that $f_{t,h}^{(1)}$ “wins” under the<br>quadratic loss function （$\mathscr L$）.</p>
+</li>
+<li><p>The Diebold-Mariano test answers that question.</p>
+</li>
+<li><p>In hypothesis testing terms, we might want to test the null of equal predictive accuracy</p>
+<script type="math/tex; mode=display">
+\mathbb E[\mathscr L(e_{t,h})^{(1)}]=\mathbb E[\mathscr L(e_{t,h})^{(2)}]</script><p>against the alternative that one forecast is better, i.e.</p>
+<script type="math/tex; mode=display">
+\mathbb E(d_{12,t})=\mathbb E[\mathscr L(e_{t,h})^{(1)}-\mathscr L(e_{t,h})^{(2)}]=0</script><p>against $\mathbb E(d_{12,t})\ne 0$, where $d_{12,t}=e_{t,h})^{(1)}-\mathscr L(e_{t,h})^{(2)}$</p>
+</li>
+</ul>
+<p><strong>The Diebold-Mariano Test</strong></p>
+<ul>
+<li><p>Diebold and Mariano assume that $d_{12,t}$ is covariance stationary, i.e., for every t</p>
+<script type="math/tex; mode=display">
+\mathbb E(d_{12,t})=\mu_d,\ \mathbb Cov(d_{12,t},d_{12,t-k})=\gamma_d(k),\ \mathbb Var(d_{12,t})=\sigma_{12}^2<\infty</script><p>and short memory, i.e.  $\sum_{k=-\infty}^\infty|\gamma_d(k)|&lt;\infty$</p>
+</li>
+<li><p>Under $H_0:\mathbb E(d_{12,t})=0$</p>
+<script type="math/tex; mode=display">
+DM_{12}\equiv\frac{\bar d_{12}}{\hat\sigma_{\bar d_{12}}}\sim^aN(0,1)</script><p>where $\bar d_{12} = (N − h + 1)^{−1}\sum^{N−h}_{t=0} d_{12,t}$ has an estimated standard deviation equal to $\hat\sigma_{\bar d_{12}}$</p>
+</li>
+</ul>
+<p><strong>Benchmark Comparisons: the predictive</strong> $R^2$</p>
+<p>To assess the forecasts, one might compare a forecast to a “naive” competitor .</p>
+<p>The Predictive $R^2$</p>
+<script type="math/tex; mode=display">
+R^2=1-\frac{\sum_{t=0}^{N-1}e_{t,1}^2}{\sum_{t=0}^{N-1}(Y_{t-1}-\bar Y)^2}</script><p>considers $\bar Y$ as a benchmark for $f_{t,1}$.</p>
+<ul>
+<li>The (estimate of) 1-step-ahead out-of-sample forecast error variance is compared to an estimate of unconditional variance.</li>
+<li>The predictive $R^2$ should be close to 1 if the forecast is by far more accurate than $\bar Y$ .</li>
+<li>The h-step-ahead version of the predictive $R^2$ is defined replacing $e_{t,1}$ with $e_{t,h}$.</li>
+</ul>
+<p><strong>Benchmark Comparison: Theils’s U-Statistic</strong></p>
+<p>The Theil U-Statistic is similar to a predictive $R^2$ , but the benchmark changes from $\bar Y$ , to a “no change” forecast</p>
+<script type="math/tex; mode=display">
+U=1-\frac{\sum_{t=0}^{N-1}e_{t,1}^2}{\sum_{t=0}^{N-1}(Y_{t+1}-Y_t)^2}</script><p>Many economic variables may in fact be nearly random walk.</p>
+<p>In this case the forecaster will have great difficult beating the random walk (RW), for which $f_{t,1} = Y_{t}$.</p>
+<blockquote>
+<p>此方法不能运用于 GARCH，因为 Y 部分</p>
+</blockquote>
+<h4 id="Evaluating-direction-of-change-forecasts"><a href="#Evaluating-direction-of-change-forecasts" class="headerlink" title="Evaluating direction-of-change-forecasts"></a>Evaluating direction-of-change-forecasts</h4><ul>
+<li>In terms of profitability of a trading strategy, a forecast can be assessed in terms of the ability to predict direction changes irrespective of their magnitude.</li>
+<li>The accuracy of the forecast is measured in terms of % correct sign prediction.</li>
+<li>We can also test the null hypothesis of no predictive power.</li>
+</ul>
+<p>Introduce the indicator variables</p>
+<script type="math/tex; mode=display">
+Z_t^y=\begin{cases}1&if\ Y_{t+1}>0\\0&otherwise\end{cases},\quad Z_t^f=\begin{cases}1&if\ f_{t+1}>0\\0&otherwise\end{cases}</script><p>Let $P_y = Pr(Y_{t+1} &gt; 0)$ and $P_f = Pr(f_{t,1} &gt; 0)$. Define</p>
+<script type="math/tex; mode=display">
+W_t=\begin{cases}1&if\ (Y_{t+1}\times f_{t,1})>0\\0&otherwise\end{cases}</script><p>Denote by $\hat P$ the proportion of times that the sign of $Y_{t+1}$ is predicted correctly, i.e.</p>
+<script type="math/tex; mode=display">
+\hat P=\frac1N\sum_{t=1}^NW_t=\bar W</script><ul>
+<li><p>The assessment is based on a test for the null that $Z_t^y$ and $Z_t^f$ are independent (no predictive power).</p>
+</li>
+<li><p>Under the null, $N\hat P$ has a binomial distribution with mean $NP_∗$, where</p>
+<script type="math/tex; mode=display">
+P_*=P_yP_f+(1-P_y)(1-P_f)</script><p>and</p>
+<script type="math/tex; mode=display">
+\hat P_*=\hat P_y\hat P_f+(1-\hat P_y)(1-\hat P_f)</script><p>with</p>
+<script type="math/tex; mode=display">
+\hat P_y=N^{-1}\sum_{t=1}^NZ_t^y,\quad \hat P_f=N^{-1}\sum_{t=1}^NZ_t^f</script></li>
+<li><p>A nonparametric test of predictive performance of $f_{t,1}$​ can be based on</p>
+<script type="math/tex; mode=display">
+S_n=\frac{\hat P-\hat P_*}{\hat{\mathbb Var}(\hat P)-\hat{\mathbb Var}(\hat P_*)}\sim^aN(0,1)</script><blockquote>
+<p>如果是 iid $P(xy)=P(x)P(y)$, 即 $\hat P-\hat P_*=0$</p>
+</blockquote>
+<p>where</p>
+<script type="math/tex; mode=display">
+\hat{\mathbb Var}(\hat P)=N^{-1}\hat P_*(1-\hat P_*)</script><p>and</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat{\mathbb Var}(\hat P_*)&=N^{-1}(2\hat P_y-1)^2\hat P_f(1-\hat P_f)+N^{-1}(2\hat P_f-1)^2\hat P_y(1-\hat P_y)...\\
+&...+4N^{-2}\hat P_y\hat P_f(1-\hat P_y)(1-\hat P_f)
+
+\end{align}</script></li>
+</ul>
+<h1 id="Unit-8：Forecasts-Evaluation-Part-II"><a href="#Unit-8：Forecasts-Evaluation-Part-II" class="headerlink" title="Unit 8：Forecasts Evaluation (Part II)"></a>Unit 8：Forecasts Evaluation (Part II)</h1><p><strong>Activities</strong>：</p>
+<ul>
+<li>Brooks Chapter 6, Self-Study Questions 11(d), 12(f).</li>
+<li>Diebold, Section 10.4, Exercises, Problems and Complements 1-3. The solutions can be found <a target="_blank" rel="noopener" href="https://www.sas.upenn.edu/~fdiebold/Teaching221/Fcst4Solns.pdf">here</a> (See Chapter 12, Exercises 1.2.6).</li>
+</ul>
+<h3 id="Definition-8"><a href="#Definition-8" class="headerlink" title="Definition:"></a>Definition:</h3><h4 id="Evaluating-Volatility-Forecasts"><a href="#Evaluating-Volatility-Forecasts" class="headerlink" title="Evaluating Volatility Forecasts"></a>Evaluating Volatility Forecasts</h4><p>We can compute the forecasts $f_{t,1}^{\sigma^2}$ but we don’t observe $\sigma_{t+1}^2$</p>
+<p>If $\epsilon_t=\sigma_t\eta_t$, $\eta_t\sim iid(0,1)$, a popular proxy is $\epsilon_{t+1}^2$, because $\mathbb E(\epsilon_{t+1}^2|\Omega_t)=\sigma_{t+1}^2$​.</p>
+<blockquote>
+<p>$\sigma_{t+1}^2$ 依附于 $\Omega_t$</p>
+</blockquote>
+<p>Assume we have generated the series of 1-step-ahead-point forecasts $\{f_{T+j,1}^{\sigma^2}\}_{j=1}^N$</p>
+<p>To simplify the notation we write</p>
+<script type="math/tex; mode=display">
+\{f_{T+j,1}^{\sigma^2}\}_{j=1}^N=\{f_{t,1}^{\sigma^2}\}_{t=1}^N=\{f_{1,1}^{\sigma^2},...,f_{N,1}^{\sigma^2}\}</script><p>For example, the MSE is computed as</p>
+<script type="math/tex; mode=display">
+MSE=\frac1N\sum_{t=1}^N(\epsilon_{t+1}^2-f_{t,1}^{\sigma^2})^2</script><p>$\epsilon_t^2$ is an unbiased proxy of $\sigma_t^2$</p>
+<p>Alternative volatility proxies have been proposed (see Section 9.18 Brooks).</p>
+<p>If  $\epsilon_t=\sigma_t\eta_t$, $\eta_t\sim NID(0,1)$, then</p>
+<script type="math/tex; mode=display">
+\frac{\epsilon_t^2}{\sigma_t^2}=\eta_t^2\sim \chi^2(1),\quad Pr(\eta_t^2\leq0.455)=\frac12</script><ul>
+<li>i.e. $\epsilon_t^2&lt;1/2\sigma_t^2$​ more than fifty percent of the time.</li>
+</ul>
+<blockquote>
+<p>not a good proxy</p>
+</blockquote>
+<p>Even if one is willing to accept a proxy that is up to 50% different from $\sigma_t^2$ , $\epsilon_t^2$ would fulfil this condition only 25% of the time</p>
+<script type="math/tex; mode=display">
+Pr(\epsilon_t^2\in[\frac12\sigma_t^2,\frac32\sigma_t^2])=Pr(\eta_t^2\in[\frac12,\frac32])=0.2588</script><blockquote>
+<p>25%的可能 $\epsilon^2$ 与 $\sigma^2$ 差 50% 的比</p>
+</blockquote>
+<h4 id="Transforming-Volatility-Forecasts-into-Probability-Forecasts"><a href="#Transforming-Volatility-Forecasts-into-Probability-Forecasts" class="headerlink" title="Transforming Volatility Forecasts into Probability Forecasts"></a>Transforming Volatility Forecasts into Probability Forecasts</h4><p>Lopez (2001) proposed an alternative forecast evaluation framework.</p>
+<p>If $\epsilon_t=\sigma_t\eta_t$, $\eta_t\sim D(0,1)$, and $\sigma_t^2$ is a predictable function of $\Omega_{t-1}$, then</p>
+<script type="math/tex; mode=display">
+\epsilon_t|\Omega_{t-1}\sim D(0,\sigma_t^2)</script><p>volatility forecasts can be readily transformed into probability forecasts.</p>
+<p>Out-of-sample $P_{t|t-1}$ for $t = 1, . . . , N$ is the one-step-ahead probability forecast conditional on $\Omega_{t-1}$</p>
+<p><strong>Probability Forecasts</strong></p>
+<p>Let $Y_t=\mu_t+\epsilon_t$</p>
+<p>Suppose for example that a Central Bank is interested in forecasting whether the exchange rate ($Y_t$) will remain within a target zone</p>
+<p>In such a case, the event of interest is</p>
+<script type="math/tex; mode=display">
+Y_t\in[L_t,U_t]</script><p>where $L_t$ and $U_t$ are fixed by the Central Bank (forecast user).</p>
+<p>Assuming that D is continuous and $\mu_t$ and $\sigma_t$ are known</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Pr(L_t\leq Y_t\leq U_t)&=Pr(L_t-\mu_t\leq \epsilon_t\leq U_t-\mu_t)\\
+&=Pr(\frac{L_t-\mu_t}{\sigma_t}< \eta_t< \frac{U_t-\mu_t}{\sigma_t})\\
+&=Pr(l_t< \eta_t< u_t)=\int_{l_t}^{u_t}f(\eta_t)d\eta_t
+\end{align}</script><ul>
+<li>Out aim is to forecast $Pr (L_t \leq Y_t \leq U_t)$ at time $t − 1$.</li>
+</ul>
+<p>Then, the one-step-ahead probability forecast $P_t$ is computed as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+P_{t|t-1}&=Pr(\frac{L_t-\mu_{t|t-1}}{\sigma_{t|t-1}}< \eta_t< \frac{U_t-\mu_{t|t-1}}{\sigma_{t|t-1}})\\
+&=Pr(l_{t|t-1}< \eta_t< u_{t|t-1})=\int_{l_{t|t-1}}^{u_{t|t-1}}f(\eta_t)d\eta_t
+\end{align}</script><p><strong>Remark</strong></p>
+<ul>
+<li><p>To avoid cumbersome notation, we will use $X_{t|t-1}$ to denote the one-step-ahead forecast of a variable $X_t$ , conditional on $\Omega_{t-1}$.</p>
+</li>
+<li><p>As an example of probability forecast evaluation, we will consider the Brier score.</p>
+</li>
+<li>The Brier score is a rough analogue of the MSE for probability forecasts.</li>
+</ul>
+<p>Accuracy measures for probability forecasts are commonly called <strong>scores</strong>.</p>
+<p>The most common is the <strong>Brier quadratic probability score</strong></p>
+<script type="math/tex; mode=display">
+QPS=\frac1N\sum_{t=1}^N2(P_{t|t-1}-R_t)^2</script><ul>
+<li>where $R_t$ takes value one if the event occurs and zero otherwise.</li>
+</ul>
+<p>$QPS\in [0, 2]$ and smaller values indicate more accurate forecasts.</p>
+<h4 id="Evaluating-Interval-Forecasts"><a href="#Evaluating-Interval-Forecasts" class="headerlink" title="Evaluating Interval Forecasts"></a>Evaluating Interval Forecasts</h4><p>The Lopez approach to volatility forecast evaluation is based on time-varying probabilities assigned to fixed intervals.</p>
+<p>Alternatively, one may fix the probabilities and vary the widths of the intervals, as in the traditional confidence intervals construction.</p>
+<p>The objective is to construct a sequence of out-of-sample interval forecasts $\{[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\}_{t=1}^N$.</p>
+<p>The sequence of ex-ante forecast interval for time t made at time $t − 1$ have coverage probability $(1 − \alpha)$.</p>
+<p>We are going to consider the approach proposed by<br>Christoffensen (1998)</p>
+<p><strong>Defifinition 1 (Indicator variable)</strong></p>
+<p>The indicator variable It for a given interval forecast $[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]$ is defined as</p>
+<script type="math/tex; mode=display">
+I_t\begin{cases}1,&if\ Y_t\in[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\\0,&if\ Y_t\not\in[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\end{cases}</script><ul>
+<li>$I_t$ is a function of $Y_t$, so $I_t$ is a random variable</li>
+</ul>
+<p><strong>Defifinition 2 (Testing Criteria)</strong></p>
+<p>We say that the sequence of interval forecasts</p>
+<script type="math/tex; mode=display">
+\{[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\}_{t=1}^N</script><p>is efficient with respect to information set $\Omega_{t-1}$, if</p>
+<script type="math/tex; mode=display">
+\mathbb E(I_t|\Omega_{t-1})=1-\alpha,\quad \forall\ t</script><p>If $\Omega_{t−1} = \{I_{t−1}, I_{t−2}, . . . , I_1\}$, it can be shown that</p>
+<script type="math/tex; mode=display">
+\mathbb E(I_t| \Omega_{t−1}) =\mathbb E(I_t|I_{t−1}, I_{t−2}, . . . , I_1) = 1 − \alpha</script><p>is equivalent to</p>
+<script type="math/tex; mode=display">
+\{I_t\}\sim^{iid}Bern(1-\alpha)</script><p><strong>Defifinition 3 (Conditional coverage)</strong></p>
+<p>We say that a sequence of interval forecasts</p>
+<script type="math/tex; mode=display">
+\{[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]\}_{t=1}^N</script><p>has correct conditional coverage if</p>
+<script type="math/tex; mode=display">
+I_t\sim^{iid}Bern(1-\alpha),\quad \forall\ t</script><p>Standard evaluation methods for interval forecasts compare the nominal coverage</p>
+<script type="math/tex; mode=display">
+N^{-1}\sum_{t=1}^NI_t</script><p>to the true coverage</p>
+<script type="math/tex; mode=display">
+\mathbb E(I_t)=1-\alpha</script><p>The interval forecast might be correct on average, but the conditional coverage might be characterized by clustered outliers.</p>
+<h4 id="LR-test-of-unconditional-coverage"><a href="#LR-test-of-unconditional-coverage" class="headerlink" title="LR test of unconditional coverage"></a>LR test of unconditional coverage</h4><p>Consider the indicator sequence $\{I_t\}^N_{t=1}$ constructed from a given interval forecast.</p>
+<p>To test the unconditional coverage, the hypothesis</p>
+<script type="math/tex; mode=display">
+H_0:\mathbb E(I_t)=1-\alpha,\quad vs\quad H_1:\mathbb E(I_t)=\pi\ne 1-\alpha</script><p>should be tested, given independence</p>
+<p>Let $n_j$ be the number of observations for which $I_t = j$, $j = 0, 1$. By construction $n_0 + n_1 = N$.<br>The likelihood under the null hypothesis is</p>
+<script type="math/tex; mode=display">
+L(p_\alpha;I_1,I_2,...,I_N)=p_\alpha^{n_1}(1-p_\alpha)^{n_0}</script><p>with $p_\alpha=1-\alpha$, and under the alternative</p>
+<script type="math/tex; mode=display">
+L(\pi;I_1,I_2,...,I_N)=\pi^{n_1}(1-\pi)^{n_0}</script><p>Testing for unconditional coverage can be formulated as a likelihood ratio test,</p>
+<script type="math/tex; mode=display">
+LR_{uc}=-2ln[\frac{L(p_\alpha;I_1,...,I_N)}{L(\hat\pi;I_1,...,I_N)}]\sim^\alpha\chi^2(1)</script><p>where $\hat\pi = n_1/(n_0 + n_1)$ is the MLE of $\pi$</p>
+<ul>
+<li>The test has no power against the alternative that zeros and ones come clustered in a time-dependent fashion.</li>
+<li><p>Testing for correct unconditional coverage is insufficient when dynamics are present in the higher-order moment.</p>
+</li>
+<li><p>Interval should be narrow in tranquil times and wide in volatile times, so that occurrences of observations outside the interval forecast would be spread out over the sample and not come in clusters.</p>
+</li>
+<li><p>An interval that fails to account for higher-order dynamics may be correct on average, but in any given period it will have incorrect conditional coverage characterized by clustered outliers.</p>
+</li>
+</ul>
+<p>The two tests presented in the next</p>
+<h4 id="LR-test-of-independence"><a href="#LR-test-of-independence" class="headerlink" title="LR test of independence"></a>LR test of independence</h4><p>Recall that a sequence of interval forecasts has correct condition coverage if $\{I_t\} \sim^{iid} Bern(p_\alpha)$.</p>
+<p>The “independence part” will be tested against an explicit first-order Markov alternative.</p>
+<p>Consider a binary first-order Markov chain $\{I_t\}$, with transition probability matrix</p>
+<script type="math/tex; mode=display">
+\Pi=\begin{bmatrix}\pi_{00}&\pi_{01}\\\pi_{10}&\pi_{11}\end{bmatrix}=\begin{bmatrix}1-\pi_{01}&\pi_{01}\\1-\pi_{11}&\pi_{11}\end{bmatrix}</script><p>where $\pi_{ij}=Pr(I_t=j|I_{t-1}=i)$</p>
+<p>The likelihood function for this process is</p>
+<script type="math/tex; mode=display">
+L(\Pi;I_1,I_2,...,I_N)=(1-\pi_{01})^{n_{00}}\pi_{01}^{n_{01}}(1-\pi_{11})^{n_{10}}\pi_{11}^{n_{11}}</script><p>where $n_{ij}$ is the number of observations with value $i$ followed by $j$.</p>
+<p>The MLE(Maximum Likelihood Estimate) of $\Pi$ is</p>
+<script type="math/tex; mode=display">
+\hat\Pi=\begin{bmatrix}\frac{\pi_{00}}{n_{00}+n_{01}}&\frac{\pi_{01}}{n_{00}+n_{01}}\\\frac{\pi_{10}}{n_{10}+n_{11}}&\frac{\pi_{11}}{n_{10}+n_{11}}\end{bmatrix}</script><p>Under the null of independence, $\Pi$ simplifies to</p>
+<script type="math/tex; mode=display">
+\Pi_{ind}=\begin{bmatrix}1-\pi_{ind}&\pi_{ind}\\1-\pi_{ind}&\pi_{ind}\end{bmatrix}</script><p>The likelihood function under the null became</p>
+<script type="math/tex; mode=display">
+L(\Pi_{ind};I_1,I_2,...,I_N)=(1-\pi_{ind})^{n_{00}+n_{10}}\pi_{ind}^{n_{01}+n_{11}}</script><p>The MLE of $\pi$ is</p>
+<script type="math/tex; mode=display">
+\hat\pi_{ind}=\frac{n_{01}+n_{11}}{n_{00}+n_{11}+n_{10}+n_{01}}=\frac{n_1}{n_0+n_1}</script><p>The LR test of independence is</p>
+<script type="math/tex; mode=display">
+LR_{ind}=-2ln[\frac{L(\hat\Pi_{ind};I_1,...,I_N)}{L(\hat\Pi;I_1,...,I_N)}]\sim^\alpha\chi^2(1)</script><p>Next we will test jointly for independence and correct probability parameter $\pi_{ind}=p_\alpha$.</p>
+<p>Combining the two test we get a complete test for correct conditional coverage (cc).</p>
+<p><strong>The Joint Test of Coverage and Independence</strong></p>
+<p>The main idea is to test the null of unconditional coverage against the alternative of the independence test.</p>
+<p>Christoffersen (1998) defifine the test for correct</p>
+<script type="math/tex; mode=display">
+LR_{cc}=-2ln[\frac{L(p_\alpha;I_1,...,I_N)}{L(\hat\Pi;I_1,...,I_N)}]\sim^\alpha\chi^2(2)</script><p>If the likelihood is computed conditional to the first observation (as we did), then</p>
+<script type="math/tex; mode=display">
+LR_{cc}=LR_{uc}+LR_{ind}</script><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>Christoffersen (1998) evaluate the forecast methodology suggested by J.P. Morgan’s (1995) RiskMetrics using Exchange rates data for different countries.</p>
+<p>He considers the model</p>
+<script type="math/tex; mode=display">
+Y_{t+1}|\Omega_t\sim D(0,\sigma_{t+1}^2)</script><p>The RiskMetrics interval forecasts is tested against two peers.</p>
+<p>The interval forecast suggested by J.P Morgan is</p>
+<script type="math/tex; mode=display">
+[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]=[\Phi^{-1}(\frac\alpha2)\hat\sigma_{t+1|t},\Phi^{-1}(1-\frac\alpha2)\hat\sigma_{t+1|t}]</script><p>where</p>
+<script type="math/tex; mode=display">
+\hat\sigma_{t+1|t}^2=\sigma_{t+1}^2=\lambda\sigma_t^2+(1-\lambda)Y_t^2</script><p>Here $\lambda$ is fixed at 0.94</p>
+<p>The distribution $D(·)$ is Gaussian, and its c.d.f. is denoted by $\Phi(·)$.<br>Let $c_\alpha = \Phi^{−1} (\alpha)$, then $c_\alpha$ satisfies $P(Y_{t+1}/\sigma_{t+1}\leq c_\alpha)=\alpha$</p>
+<p>The first peer is constructed from an estimated GARCH(1,1) model with a Student’s t−innovation.</p>
+<p>If the Student’s t−distribution has 4 degrees of freedom with c.d.f. $\tau$ , for $\alpha = 95%$ we have $\tau^{-1} (\alpha/2) = −2.776$ and $\tau^{−1}(1 − \alpha/2) = 2.776$.</p>
+<script type="math/tex; mode=display">
+[L_{t|t-1}(\alpha),U_{t|t-1}(\alpha)]=[-2.776\hat\sigma_{t+1|t},2.776\hat\sigma_{t+1|t}]</script><p>To compute the interval, the unknown parameters in $\hat\sigma_{t+1|t}^2$ need to be replaced by estimates.</p>
+<p>The second peer is a simple static forecast, constructed assuming that $D(·)$ is Gaussian.</p>
+<p>Let $F(·)$ the unconditional, time-invariant c.d.f. of $Y_{t+1}$</p>
+<script type="math/tex; mode=display">
+[L(\alpha),U(\alpha)]=[F^{-1}(\frac\alpha2),F^{-1}(1-\frac\alpha2)]</script><p>Comparing interval forecasting of daily exchange rates.</p>
+<ul>
+<li>Tests for UC, IND, CC across coverage rates and exchange rates.</li>
+<li>Nominal coverage rate.</li>
+<li>Average width of the interval prediction.</li>
+<li>See Christoffersen (1996) Section 5 for further details</li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Econometrics/" class="category-chain-item">Econometrics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Time-Series/">#Time Series</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】Modelling and Forecasting Financial Markets</div>
+      <div>http://achlier.github.io/2021/05/18/Modelling_and_Forecasting_Financial_Markets/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 18, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/23/Change_of_Measure/" title="【笔记】Change of Measure">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Change of Measure</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/" title="【课程】Economic Fundamentals and Financial Markets">
+                        <span class="hidden-mobile">【课程】Economic Fundamentals and Financial Markets</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

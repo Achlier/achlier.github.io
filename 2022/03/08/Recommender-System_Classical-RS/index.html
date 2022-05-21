@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="重新整理出来的推荐系统相关的资料； 传统的推荐系统包括：  基于用户的（User-based ）推荐系统 基于物品的（Item-based ）推荐系统 运用PMF（Probabilistic matrix factorization）技术的推荐系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Recommender System:Classical RS">
+<meta property="og:url" content="http://achlier.github.io/2022/03/08/Recommender-System_Classical-RS/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="重新整理出来的推荐系统相关的资料； 传统的推荐系统包括：  基于用户的（User-based ）推荐系统 基于物品的（Item-based ）推荐系统 运用PMF（Probabilistic matrix factorization）技术的推荐系统">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/03/08/Recommender-System_Classical-RS/pic1-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/03/08/Recommender-System_Classical-RS/pic1-2.jpg">
+<meta property="article:published_time" content="2022-03-08T10:29:12.000Z">
+<meta property="article:modified_time" content="2022-03-13T16:43:49.927Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/03/08/Recommender-System_Classical-RS/pic1-1.jpg">
+  
+  
+  
+  <title>【笔记】Recommender System:Classical RS - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Recommender System:Classical RS"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-08 18:29" pubdate>
+          March 8, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          54 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Recommender System:Classical RS</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>重新整理出来的推荐系统相关的资料；</p>
+<p>传统的推荐系统包括：</p>
+<ol>
+<li>基于用户的（User-based ）推荐系统</li>
+<li>基于物品的（Item-based ）推荐系统</li>
+<li>运用PMF（Probabilistic matrix factorization）技术的推荐系统</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+<h1 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h1><p>推荐系统指的是依照用户过去的信息来判断用户的喜好，并且给用户未接触过的事物打分，将分数排序后将最高者推荐给用户。这在社交媒体发达的当今社会被广泛运用。</p>
+<p>但是推荐算法的建立中有这么经典的两大问题-Sparsity and Scalability.</p>
+<p>稀疏性指得是可用的训练数据在矩阵形式的表现中稀疏。这个方面还能扩展到冷启动问题，指对于一个新用户该如何推荐的难题。</p>
+<p>可扩性指得是在小规模的运算中表现很好，但是当对大数量的数据进行运算时计算成本飞速增长。</p>
+<p>当然对这些个问题现在都有了许多针推性的研究，不过在基础部分我们介绍的就只是经典的两种模型，以及一个可以作为推荐系统里程碑的算法。</p>
+<p>Github 上有大佬整理出了所有推荐系统相关的文章，可以通过 <a target="_blank" rel="noopener" href="https://github.com/hongleizhang/RSPapers/tree/master/02-General_RS">此处</a> 进行拓展阅读</p>
+<h1 id="User-based"><a href="#User-based" class="headerlink" title="User-based"></a>User-based</h1><blockquote>
+<p>推荐阅读 《GroupLens An Open Architecture for Collaborative Filtering of Netnews》^[1]^</p>
+</blockquote>
+<p>作为研究推荐系统的首几篇论文，GroupLens这篇文章更多的是在描述其系统在文章推荐的作用。不过我们的关注的点还是在算法的建立上。首先，进行基础的定义：</p>
+<p>$U_{(i)}:$ 访问过物品 $i$ 的用户集合</p>
+<p>$I_{(u)}:$ 用户 $u$ 访问过的物品集合</p>
+<p>$|I_{u}|:$ 用户 $u$ 访问过的物品的个数</p>
+<p>$r_{ui}:$ 用户 $u$ 对物品 $i$ 的打分</p>
+<p>$R_{(u)}:$ 用户 $u$ 的打分集合</p>
+<script type="math/tex; mode=display">R_{(u)} \in \{r_{ui}\ |\ i \in I_{(u)}\}</script><p>$\overline{r_{u}}:$ 用户 $u$ 的所有评分的均值</p>
+<script type="math/tex; mode=display">\overline{r_{u}}=\frac{\sum\limits_{i\in I_{(u)}}r_{ui}}{|I_{(u)}|}</script><p>$\rho_{uj}:$ 用户 $u$ 与用户 $j$ 的相关系数</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\rho_{ui}&=\frac{Cov(R_{(u)},R_{(j)})}{\sigma_{R_{(u)}}\sigma_{R_{(j)}}}
+\\     &=\frac{\sum\limits_{i\in I_{(u)} \cap I_{(j)}}(r_{ui}-\overline{r_{u}})(r_{ji}-\overline{r_{j}})}{\sqrt{\sum\limits_{i\in I_{(u)} \cap I_{(j)}}(r_{ui}-\overline{r_{u}})^{2}}\sqrt{\sum\limits_{i\in I_{(u)} \cap I_{(j)}}(r_{ji}-\overline{r_{j}})^{2}}}
+\end{align}</script><p>$\hat{r_{ui}}:$ 用户 $u$ 对物品 $i$ 的打分的预测值</p>
+<script type="math/tex; mode=display">\hat{r_{ui}}=\overline{r_{u}}+\frac{\sum\limits_{j\in U_{(i)}}(r_{ij}-\overline{r_{j}})\rho_{uj}}{\sum\limits_{j\in U_{(i)}}\rho_{uj}}</script><p>我们可以看到，定义中使用了 $\rho_{ui}$ 这个用户间的相关系数，而对未知物品的打分也最主要取决于这个值。用通俗的话来解释，如果 u 喜欢苹果，i 也喜欢苹果，那么这个相似的爱好会使两人之间的相关系数增大，当猜测 u 喜欢不喜欢梨子的时候，参考 i 的可信度也就越大。因此这个算法被称为 User-based。</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p><img src="/2022/03/08/Recommender-System_Classical-RS/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>这是一个文章中给的例子，左边表格横轴是四个用户，纵轴是六个文章，又可以认作物品。而每个人和物品对应的值就是那个人对特定物品的评分。如果空白便是没有评分记录。如果问号便是我们待求的值。其中 K 代表 Ken，L 代表 Lee。我们可以轻松算得评分值。</p>
+<p>但在现实中得到数据的会存在大量的空白值，导致矩阵稀疏且使结果不那么准确。同时用户的数量众多，运算量也巨大。为了减轻运算的压力，另一种模型被提出。</p>
+<h1 id="Item-based"><a href="#Item-based" class="headerlink" title="Item-based"></a>Item-based</h1><blockquote>
+<p>推荐阅读 《Item based Collaborative Filtering Recommendation Algorithms》^[2]^</p>
+</blockquote>
+<p>此文章不再局限于对于文字的推荐，而将视野放宽到了视频，电影，与音乐的领域。而在算法上也不再以用户间的相关系数为主，是以物品间的相关系数为主。</p>
+<p>$U_{(i)}:$ 访问过物品 $i$ 的用户集合</p>
+<p>$I_{(u)}:$ 用户 $u$ 访问过的物品集合</p>
+<p>$|U_{(i)}|:$ 访问过物品 $i$ 的用户的个数</p>
+<p>$r_{ui}:$ 用户 $u$ 对物品 $i$ 的打分</p>
+<p>$R_{(i)}:$ 物品 $i$ 的打分集合</p>
+<script type="math/tex; mode=display">R_{(i)} \in \{r_{ui}\ |\ u \in U_{(i)}\}</script><p>$\overline{r_{i}}:$ 物品 $i$ 的所有评分的均值</p>
+<script type="math/tex; mode=display">\overline{r_{i}}=\frac{\sum\limits_{u\in U_{(i)}}r_{ui}}{|U_{(i)}|}</script><p>$\rho_{ki}:$ 物品 $k$ 与物品 $i$ 的相关系数</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\rho_{ki}&=\frac{Cov(R_{(k)},R_{(i)})}{\sigma_{R_{(k)}}\sigma_{R_{(i)}}}
+\\
+\quad&=\frac{\sum\limits_{u\in U_{(k)} \cap U_{(i)}}(r_{ui}-\overline{r_{i}})(r_{uk}-\overline{r_{k}})}{\sqrt{\sum\limits_{u\in U_{(k)} \cap U_{(i)}}(r_{uk}-\overline{r_{k}})^{2}}\sqrt{\sum\limits_{u\in U_{(k)} \cap U_{(i)}}(r_{ui}-\overline{r_{i}})^{2}}}
+\end{align}</script><p>$\hat{r_{ui}}:$ 用户 $u$ 对物品 $i$ 的打分的预测值</p>
+<script type="math/tex; mode=display">\hat{r_{ui}}=\overline{r_{i}}+\frac{\sum\limits_{k\in I_{(u)}}(r_{uk}-\overline{r_{k}})\rho_{ki}}{\sum\limits_{k\in I_{(u)}}\rho_{ki}}</script><p>我们可以发现，两种算法在定义上很相似，而最大的区别就是 $\rho_{ki}$ 现在指的是物品间的相关系数。用通俗的话来解释，如果用户 u 喜欢苹果，因为梨子和苹果相似也属于水果，而坚果与苹果相差巨大，所以在评分时会更多地参考用户给梨子的评分。</p>
+<p>作者认为，在系统中存在许多不活跃的用户，而即使是活跃的用户对物品评分的数量也仅仅占了所以物品的一小部分。因此作者将重点放在了物品的相关性上，并且提出可以预先进行相关性的判断得到一组静态的模型，来适应不断增大的用户数量。</p>
+<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><p>到此处最经典的两个已经被提出，而作为评估的方法在此时也有必要提及一下。Mean Absolute Error (MAE) 是一个被广泛运用的度量标准</p>
+<script type="math/tex; mode=display">
+MAE=\frac{\sum_{i=1}^N|p_i-q_i|}{N}</script><p>其中 $p_i$ 指得是真实的评分 $q_i$ 指得是预测的评分。MAE 的值越低，推荐系统的评分越准确。</p>
+<p> Root Mean Squared Error (RMSE) 是另一种被常用的度量方法</p>
+<script type="math/tex; mode=display">
+RMAE=\sqrt{\frac{\sum_{i=1}^N(p_i-q_i)^2}{N}}</script><h1 id="PMF"><a href="#PMF" class="headerlink" title="PMF"></a>PMF</h1><blockquote>
+<p>推荐阅读 《Matrix Factorization Techniques for Recommender Systems》^[3]^</p>
+</blockquote>
+<p>Probabilistic Matrix Factorization 的方法是推荐算法研究史上的一大突破。在 Netflix Prize competition 中，Koren 第一次将这个算法带到了舞台上。比起之前的两种算法，PMF在速度与准确度上有了显著的提升，一举成为推荐系统的主流算法。</p>
+<p><strong>假定有 n个用户，m个物品，f个特征</strong></p>
+<p><img src="/2022/03/08/Recommender-System_Classical-RS/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>$P_{n\times f}: $ user-factor matrix </p>
+<p>$Q_{m\times f}:$ item-factor matrix </p>
+<p>$R^f:$ 1$×$factor vector</p>
+<p>$q_i:$ $Q$ 中物品 $i$ 所在行的向量</p>
+<p>$p_u:$ $P$ 中用户所在的行的向量 </p>
+<p>$U_{(i)}:$ 访问过物品 $i$ 的用户集合</p>
+<p>$I_{(u)}:$ 用户 $u$ 访问过的物品集合</p>
+<p>$r_{ui}:$ 用户 $u$ 对物品 $i$ 的评分</p>
+<p>$\kappa$ $:$ $\{ (u,i)|$  $r_{ui}$ is known $\}$</p>
+<p>$|\kappa|:$ 已知的所有评分总数</p>
+<p>$\mu:$ 所有评分的均值</p>
+<script type="math/tex; mode=display">\mu = \frac{\sum\limits_{(u,i) \in \kappa} r_{ui}}{|\kappa|}</script><p>$b_i:$ 物品 $i$ 的平均分与整体评分均值的偏差</p>
+<script type="math/tex; mode=display">b_i = \frac{ \sum\limits_{u \in U_{(i)}}(r_{ui} - \mu) }{ |U_{(i)}| }</script><p>$b_u:$ 用户 $u$ 的平均分与整体评分均值的偏差</p>
+<script type="math/tex; mode=display">b_u = \frac{ \sum\limits_{i \in I_{(u)}}(r_{ui} - \mu - b_i) }{ |I_{(u)}| }</script><p>$b_{ui}:$ A baseline estimate for an unknown rating</p>
+<script type="math/tex; mode=display">b_{ui} = \mu + b_i + b_u</script><p>$\hat{r_{ui}}:$ 用户 $u$ 对物品 $i$ 的评分的预测值</p>
+<p>$\lambda:$ 正则化系数</p>
+<p>$\alpha:$ 学习速率(learning rate)</p>
+<script type="math/tex; mode=display">\hat{r_{ui}} = b_{ui} + q_i^T p_u \quad (q_i,p_u \in R^f ，下同)</script><script type="math/tex; mode=display">C(q_i, p_u, b_u, b_i) =\frac{1}{2} \sum\limits_{(u,i) \in \kappa}\{(r_{ui} - \hat{r}_{ui})^2 + \lambda(||q_i||^2 + ||p_u||^2 + b_u^2 + b_i^2)\}</script><script type="math/tex; mode=display">||q_i||^2 = q_i^T q_i \quad ||p_u||^2 = p_u^T p_u</script><p><strong>By Stochastic Gradient Descent(SGD):</strong></p>
+<p>$\begin{align}<br>error &amp;= r_{ui} - \hat{r}_{ui}<br>\end{align}$</p>
+<p>$\begin{align}<br> b_u :&amp;= b_u - \triangledown C<br>  \  &amp;= b_u - \alpha \frac{\partial C}{\partial b_u}<br>  \  &amp;= b_u - \frac{\alpha}{2} (error\cdot(-2) + \lambda \cdot 2b_u)<br>  \  &amp;= b_u + \alpha(error - \lambda \cdot b_u)<br>\end{align}$</p>
+<p>$\begin{align}<br> b_i :&amp;= b_i - \triangledown C<br>  \  &amp;= b_i - \alpha \frac{\partial C}{\partial b_i}<br>  \  &amp;= b_i - \frac{\alpha}{2} (error\cdot(-2) + \lambda \cdot 2b_i)<br>  \  &amp;= b_i + \alpha(error - \lambda \cdot b_i)<br>\end{align}$</p>
+<p>$\begin{align}<br> p_u :&amp;= p_u - \triangledown C<br>  \  &amp;= p_u - \alpha \frac{\partial C}{\partial p_u}<br>  \  &amp;= p_u - \frac{\alpha}{2} (error\cdot(-2)\cdot q_i + \lambda \cdot 2p_u)<br>  \  &amp;= p_u + \alpha(error \cdot q_i - \lambda \cdot p_u)<br>\end{align}$</p>
+<p>$\begin{align}<br> q_i :&amp;= q_i - \triangledown C<br>  \  &amp;= q_i - \alpha \frac{\partial C}{\partial q_i}<br>  \  &amp;= q_i - \frac{\alpha}{2} (error\cdot(-2)\cdot p_u + \lambda \cdot 2q_i)<br>  \  &amp;= q_i + \alpha(error \cdot p_u - \lambda \cdot q_i)<br>\end{align}$</p>
+<p>此算法的主要是将 “特征” 作为连接物品与用户评分的桥梁。作者评分矩阵 R 拆分为了 user-factor matrix 和 item-factor matrix，而每个 matrix 都包含对 f 个特征的评分，只有两个矩阵对应的特征分数都大时，最终的评分才会大。比如，《阿凡达》在科幻的特征上高分，在喜剧的特征上低分，而用户 u 偏爱科幻片，所以他在科幻的特征上高，在喜剧的特征上低。这样预测用户 u 对《阿凡达》的总体评分就会高，而其他喜剧片的分就偏低。其中，因为 P Q 矩阵的未知，需要机器学习利用历史数据结合梯度下降来进行训练得出。具体推算过程可以参考有关 <a href="https://achlier.github.io/2022/03/07/MLE_and_MAP/#4-新知识应用于pmf的推算">MAP</a> 的笔记。</p>
+<p>作者还提出了后续几点改进的方向。</p>
+<p>一是添加 Implicit Feedback ，即那些非评分分数，而是需要处理的，类似于浏览记录，购买记录等额外的信息。作者将 $N(u)$ 定义为那些用户在Implicit Feedback中提供了的所有项。$x_i$ 为用户 u 在 Implicit Feedback 中对物品 i 的偏好。另一种 Implicit Feedback 指的是已知的用户属性，如人口统计，性别，年龄，收入水平等。这些数据被包括在集合 $A(u)$ 中，$y_a$ 是一个特殊的值来描述用户的属性。最终预测公式可变为</p>
+<script type="math/tex; mode=display">\hat{r_{ui}} = b_{ui} + q_i^T[ p_u+|N(u)|^{-0.5}\sum_{i\in N(u)}x_i+\sum_{a\in A(u)}y_a]</script><p>另一种是考虑到时间的因素，因为人的兴趣爱好可能会随着时间而改变。因此变量从定值变成了一个与时间有关的函数</p>
+<script type="math/tex; mode=display">\hat{r_{ui}} =\mu + b_i(t) + b_u(t) + q_i^T p_u(t)</script><p>最后，作者考虑到了同样的评分不一定值得同样的权重与信息，因为有些物品的高分可能是短时期的广告宣传的影响，而在回过头来看，其实并不是那么优秀。因此，作者以观看节目或者购买某个物品的频率 $c_{ui}$ 作为置信度，作为优化函数的改进。</p>
+<script type="math/tex; mode=display">C(q_i, p_u, b_u, b_i) =\sum\limits_{(u,i) \in \kappa}c_{ui}(r_{ui} - \hat{r}_{ui})^2 + \lambda(||q_i||^2 + ||p_u||^2 + b_u^2 + b_i^2)</script><hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li>Resnick, P., Iacovou, N., Suchak, M., Bergstrom, P., &amp; Riedl, J. (1994). GroupLens: an open architecture for collaborative filtering of netnews. <em>CSCW ‘94</em>.</li>
+<li>Sarwar, B.M., Karypis, G., Konstan, J.A., &amp; Riedl, J. (2001). Item-based collaborative filtering recommendation algorithms. <em>WWW ‘01</em>.</li>
+<li>Koren, Y., Bell, R.M., &amp; Volinsky, C. (2009). Matrix Factorization Techniques for Recommender Systems. <em>Computer, 42</em>.</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Recommender-System/">#Recommender System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Recommender System:Classical RS</div>
+      <div>http://achlier.github.io/2022/03/08/Recommender-System_Classical-RS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 8, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/11/Recommender-System_Social-RS/" title="【笔记】Recommender System:Social RS">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Recommender System:Social RS</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/07/MLE_and_MAP/" title="【笔记】MLE and MAP">
+                        <span class="hidden-mobile">【笔记】MLE and MAP</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

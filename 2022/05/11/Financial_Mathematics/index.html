@@ -1,0 +1,845 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于 ChiuFai WONG 教授的FM课件进行的零碎知识的整理；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Financial_Mathematics">
+<meta property="og:url" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于 ChiuFai WONG 教授的FM课件进行的零碎知识的整理；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-4.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-5.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-6.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-7.jpg">
+<meta property="article:published_time" content="2022-05-11T10:24:06.000Z">
+<meta property="article:modified_time" content="2022-05-12T19:25:23.121Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Financial Mathematics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/05/11/Financial_Mathematics/pic1-1.jpg">
+  
+  
+  
+  <title>【笔记】Financial_Mathematics - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Financial_Mathematics"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-11 18:24" pubdate>
+          May 11, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          67 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Financial_Mathematics</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于 ChiuFai WONG 教授的FM课件进行的零碎知识的整理；</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="Chapter-1-Annuities"><a href="#Chapter-1-Annuities" class="headerlink" title="Chapter 1 Annuities"></a>Chapter 1 Annuities</h1><ul>
+<li><p>$i_t=\frac{a(t)-a(t-1)}{a(t-1)}$ , $d_t=\frac{a(t)-a(t-1)}{a(t)}$</p>
+</li>
+<li><p>$a(t)=(1+i)^t$ <strong>compound interest accumulation function</strong></p>
+</li>
+<li><p>$a(t)=(1-d)^{-t}$ <strong>compound discount accumulation function</strong></p>
+</li>
+<li><p>$1-d=v=\frac1{1+i}$</p>
+</li>
+<li><p>$i^{(m)}$ <strong>nominal rate of interest compounded m times a year</strong></p>
+</li>
+<li><p>$(1+\frac{i^{(m)}}m)^m=1+i$ , $i^{(m)}=m((1+i)^{1/m}-1)$</p>
+</li>
+<li><p>$d^{(m)}$ <strong>nominal rate of discount compounded m times a year</strong></p>
+</li>
+<li><p>$(1-\frac{d^{(m)}}m)^m=1-d$ , $d^{(m)}=m(1-(1-d)^{1/m})$</p>
+</li>
+<li><p>$a_{_n\bigg\urcorner_i}=\frac{1-v^{n}}{i}$ <strong>annuity-immediate</strong></p>
+<p><img src="/2022/05/11/Financial_Mathematics/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+<li><p>$S_{_n\bigg\urcorner_i}=(1+i)^na_{_n\bigg\urcorner_i}=\frac{(1+i)^n-1}{i}$</p>
+</li>
+<li><p>$\ddot a_{_n\bigg\urcorner_i}=\frac{1-v^{n}}{d}$ <strong>annuity-due</strong> , $\ddot a_{_n\bigg\urcorner_i}=(1+i)a_{_n\bigg\urcorner_i}=1+a_{_{n-1}\bigg\urcorner_i}$</p>
+<p><img src="/2022/05/11/Financial_Mathematics/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+<li><p>$\ddot S_{_n\bigg\urcorner_i}=\frac{(1+i)^n-1}{d}$ , $S_{_n\bigg\urcorner_i}=(1+i)^{-1}\ddot S_{_n\bigg\urcorner_i}=1+\ddot S_{_{n-1}\bigg\urcorner_i}$</p>
+</li>
+<li><p>$a_{_\infty\bigg\urcorner_i}=\frac{1}{i}$ <strong>perpetuity-due</strong></p>
+</li>
+<li><p>$\frac{a_{_n\bigg\urcorner_i}}{S_{_k\bigg\urcorner_i}}$ pays 1 at the end of each k interest periods for a total of n interest periods</p>
+<p><img src="/2022/05/11/Financial_Mathematics/pic1-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+<li><p><script type="math/tex">\frac{a_{_n\bigg\urcorner_i}}{a_{_k\bigg\urcorner_i}}</script> pays 1 at the beginning of each k interest periods for a total of n interest periods</p>
+<p><img src="/2022/05/11/Financial_Mathematics/pic1-4.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+<li><p>$a_{_n\bigg\urcorner_i}^{(m)}=\frac{1-v^n}{i^{(m)}}$ pays 1/m at the end of each m-th of an interest period for a total of n interest periods</p>
+<p><img src="/2022/05/11/Financial_Mathematics/pic1-5.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+<li><p>$S_{_n\bigg\urcorner_i}^{(m)}=\frac{(1+i)^n-1}{i^{(m)}}$</p>
+</li>
+<li><p>$\ddot a_{_n\bigg\urcorner_i}^{(m)}=\frac{1-v^n}{d^{(m)}}$ pays 1 m at the end of each m-th of an interest period for a total of n interest periods</p>
+<p><img src="/2022/05/11/Financial_Mathematics/pic1-6.jpg" srcset="/img/loading.gif" lazyload alt></p>
+</li>
+<li><p>$S_{_n\bigg\urcorner_i}^{(m)}=\frac{(1+i)^n-1}{d^{(m)}}$</p>
+</li>
+</ul>
+<h1 id="Chapter-2-Forwards-and-Futures"><a href="#Chapter-2-Forwards-and-Futures" class="headerlink" title="Chapter 2 Forwards and Futures"></a>Chapter 2 Forwards and Futures</h1><script type="math/tex; mode=display">
+\begin{array}{|c|c|c|}
+\hline \text { Underlying asset } & \text { Forward price } F_{t, T} & \text { Prepaid forward price } F_{t, T}^{P} \\
+\hline \text { Non-dividend pay stock } & S(t) e^{r(T-t)} & S(t) \\
+\hline \text { Discrete dividend paying stock } & S(t) e^{r(T-t)}-\text { CumValue(Divs) } & S(t)-\mathrm{PV}_{t, T}(\text { Divs }) \\
+\hline \text { Continuous dividend paying stock } & S(t) e^{(r-\delta)(T-t)} & S(t) e^{-\delta(T-t)} \\
+\hline \begin{array}{c}
+\text { Currency, denominated in currency } \\
+d \text { for delivery of currency } f
+\end{array} & x(t) e^{\left(r_{d}-r_{f}\right)(T-t)} & x(t) e^{-r_{f}(T-t)} \\
+\hline
+\end{array}</script><h1 id="Chapter-3-Options"><a href="#Chapter-3-Options" class="headerlink" title="Chapter 3 Options"></a>Chapter 3 Options</h1><ul>
+<li>$\Delta=\frac{f_{u}-f_{d}}{S(0) u-S(0) d}$</li>
+<li>$p=\frac{e^{(r-\delta) T}-d}{u-d}$ (on the futures $p=\frac{1-d}{u-d}$)</li>
+<li>$f=e^{-r T}\left(p f_{u}+(1-p) f_{d}\right)$  expected future payoff in a risk-neutral world discounted at the risk-free rate</li>
+</ul>
+<h3 id="Cox-Ross-Rubinstein-Formula"><a href="#Cox-Ross-Rubinstein-Formula" class="headerlink" title="Cox-Ross-Rubinstein Formula"></a>Cox-Ross-Rubinstein Formula</h3><script type="math/tex; mode=display">
+C_{E u r}(S(0), K, N \Delta t)=S(0)\left[1-\Phi\left(m-1, N, p u e^{-r \Delta t}\right)\right]-e^{-r N \Delta t} K[1-\Phi(m-1, N, p)]</script><script type="math/tex; mode=display">
+P_{E u r}(S(0), K, N \Delta t)=e^{-r N \Delta t} K \Phi(m-1, N, p)-S(0) \Phi\left(m-1, N, p u e^{-r \Delta t}\right)</script><p>In order to match the stock price volatility with the tree’s parameters, we must therefore have</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma^{2} \Delta t &=p u^{2}+(1-p) d^{2}-(p u+(1-p) d)^{2} \\
+&=p(1-p) u^{2}+p(1-p) d^{2}-2 p(1-p) u d \\
+&=p(1-p)(u-d)^{2} \\
+&=\left(u-e^{r \Delta t}\right)\left(e^{r \Delta t}-d\right) \\
+&=e^{r \Delta t}(u+d)-u d-e^{2 r \Delta t}
+\end{aligned}</script><p>where</p>
+<script type="math/tex; mode=display">
+u=e^{\sigma \sqrt{\Delta t}} \quad \text { and } \quad d=e^{-\sigma \sqrt{\Delta t}}</script><h3 id="Black-Scholes-Formula"><a href="#Black-Scholes-Formula" class="headerlink" title="Black-Scholes Formula"></a>Black-Scholes Formula</h3><script type="math/tex; mode=display">
+C=S(0) N\left(d_{1}\right)-K e^{-r T} N\left(d_{2}\right) \quad \text { and } \quad P=K e^{-r T} N\left(-d_{2}\right)-S(0) N\left(-d_{1}\right)</script><p>where</p>
+<script type="math/tex; mode=display">
+d_1=\frac{\ln(S_0/K)+(r + \frac{\sigma^2}{2})T}{\sigma\sqrt T}</script><script type="math/tex; mode=display">
+d_2=\frac{\ln(S_0/K)+(r - \frac{\sigma^2}{2})T}{\sigma\sqrt T}=d_1-\sigma\sqrt{T}</script><h3 id="Put-Call-parity"><a href="#Put-Call-parity" class="headerlink" title="Put-Call parity"></a>Put-Call parity</h3><script type="math/tex; mode=display">
+C(K,T)-P(K,T)=S(0)-Ke^{-rT}-PV_{0,T}(Divs)</script><p><strong>For put futures option</strong></p>
+<script type="math/tex; mode=display">
+C(K,T)-P(K,T)=F(0)e^{-rT}-Ke^{-rT}</script><p><strong>The put-call parity result for currency options (in domestic HK dollars) is</strong></p>
+<script type="math/tex; mode=display">
+C_d(x(0),K,T)-P_d(x(0),K,T)=x(0)e^{-r_fT}-Ke^{-r_dT}</script><p>$C_d(x(0),K,T)$ purchase 1 foreign currency(US dollars) for K domestic currency</p>
+<script type="math/tex; mode=display">
+\underbrace{C_{d}(x(0), K, T)}_{\text {domestic curency }}=\underbrace{Kx(0) P_{f}\left(\frac{1}{x(0)}, \frac{1}{K}, T\right)}_{\text {foreign curency }}</script><p><strong>Exchange option</strong></p>
+<script type="math/tex; mode=display">
+C(S_1(t),S_2(t),T-t)-P(S_1(t),S_2(t),T-t)=F_{t,T}^P(S_1)-F_{t,T}^P(S_2)</script><p>or</p>
+<script type="math/tex; mode=display">
+C(S_1(t),S_2(t),T-t)-C(S_2(t),S_1(t),T-t)=F_{t,T}^P(S_1)-F_{t,T}^P(S_2)</script><script type="math/tex; mode=display">
+P(S_2(t),S_1(t),T-t)-P(S_1(t),S_2(t),T-t)=F_{t,T}^P(S_1)-F_{t,T}^P(S_2)</script><h3 id="Early-exercise-of-American-call-option"><a href="#Early-exercise-of-American-call-option" class="headerlink" title="Early exercise of American call option"></a>Early exercise of American call option</h3><script type="math/tex; mode=display">
+\begin{aligned}
+C_{A m e r}(S(t), K, T-t) & \geq C_{E u r}(S(t), K, T-t) \\
+&=P_{E u r}(S(t), K, T-t)+F_{t, T}^{P}(S)-K e^{-r(T-t)} \\
+&=P_{E u r}(S(t), K, T-t)+S(t)-\mathrm{PV}_{t, T}(\mathrm{Div})-K e^{-r(T-t)} \\
+&=P_{E u r}(S(t), K, T-t)+\underbrace{(S(t)-K)}_{\text {call exercise value at } t}+\underbrace{K\left(1-e^{-r(T-t)}\right)}_{\text {PV of interest of } K \text { in } T-t}-\mathrm{PV}_{t, T}(\text { Div) }
+\end{aligned}</script><p>The put option must be worth at least 0. Early exercise will not be rational if $PV_{t,T}(Div)&lt;K(1-e^{-r(T-t)})$ , because $C_{Amer}\ge(S(t)-K)$</p>
+<h3 id="The-bounds-for-European-and-American-put-option-on-a-non-dividend-paying-stock"><a href="#The-bounds-for-European-and-American-put-option-on-a-non-dividend-paying-stock" class="headerlink" title="The bounds for European and American put option on a non-dividend-paying stock"></a><strong>The bounds for European and American put option on a non-dividend-paying stock</strong></h3><p><img src="/2022/05/11/Financial_Mathematics/pic1-7.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h1 id="Chapter-4-Black-Scholes-Equations"><a href="#Chapter-4-Black-Scholes-Equations" class="headerlink" title="Chapter 4 Black-Scholes Equations"></a>Chapter 4 Black-Scholes Equations</h1><p>Let $X_i$, either $\sqrt{t/n}$ or $-\sqrt{t/n}$, $Z_n=\sum_{i=1}^nX_i$</p>
+<p>The <strong>quadratic variation</strong> of the random walk is defined by</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n(Z_i-Z_{i-1})^2=\sum_{i=1}^nX_i^2=t</script><p>If the time steps go to zero , $Z(t)$ is called <strong>Brownian motion</strong></p>
+<script type="math/tex; mode=display">
+(dZ(t))^2=dt,\quad dZ(t)\sim N(0,dt)</script><p>Let $S(t)$ be stock price at time t</p>
+<script type="math/tex; mode=display">
+dS(t)=\alpha S(t)dt+\sigma S(t)dZ(t)</script><script type="math/tex; mode=display">
+S(t)=S(0)e^{\sigma Z(t)+(\alpha -\frac12 \sigma^2)t}</script><p><strong>Let us analyze a portfolio $W$</strong></p>
+<script type="math/tex; mode=display">
+W(t)=\varphi S(t)+(1-\varphi)B(t)</script><p>Hence</p>
+<script type="math/tex; mode=display">
+\frac{d W(t)}{W(t)}=(\varphi \alpha+(1-\varphi) r) d t+\varphi \sigma d Z(t)</script><script type="math/tex; mode=display">
+\frac{W(t)}{W(0)}=e^{(\varphi \alpha+(1-\varphi) r-0.5\varphi^2\sigma^2)t+\varphi \sigma d Z(t)}=\left(\frac{S(t)}{S(0)}\right)^{\varphi}e^{(1-\varphi)(r+0.5\varphi\sigma^2)t}</script><p>with $\delta_s$ and $\delta_w$ be the continuous dividend rates of the stock and the portfolio</p>
+<script type="math/tex; mode=display">
+\frac{W(t)}{W(0)}=\left(\frac{S(t)}{S(0)}\right)^{\varphi}e^{(\varphi\delta_s-\delta_w+(1-\varphi)r-0.5\varphi^2\sigma^2+0.5\phi\sigma^2)t}</script><p><strong>Sharpe ratio</strong></p>
+<p>If $c_1S_1(t)+c_2S_2(t)$ is a risk free portfolio with risk-free interest rate $r$</p>
+<script type="math/tex; mode=display">
+c_{1}\left(\alpha_{1}-\delta_{1}\right) S_{1}(t)+c_{2}\left(\alpha_{2}-\delta_{2}\right) S_{2}(t)=r\left(c_{1} S_{1}(t)+c_{2} S_{2}(t)\right)</script><p>with $c_1\sigma_1S_1(t)\pm c_2\sigma_2S_2(t)=0$</p>
+<script type="math/tex; mode=display">
+\frac{\alpha_{1}-\delta_{1}-r}{\sigma_{1}}=\pm \frac{\alpha_{2}-\delta_{2}-r}{\sigma_{2}}</script><p><strong>Black-Scholes for currency</strong></p>
+<script type="math/tex; mode=display">
+C=x(t)e^{-r_f T}N\left(d_{1}\right)-K e^{-r T} N\left(d_{2}\right) \quad \text { and } \quad P=K e^{-r T} N\left(-d_{2}\right)-x(t)e^{-r_f T}N\left(-d_{1}\right)</script><p><strong>Black-Scholes for options on Future</strong></p>
+<script type="math/tex; mode=display">
+C=Fe^{-r T}N\left(d_{1}\right)-K e^{-r T} N\left(d_{2}\right) \quad \text { and } \quad P=K e^{-r T} N\left(-d_{2}\right)-Fe^{-r T}N\left(-d_{1}\right)</script><p><strong>Black-Scholes PDE for options on Future</strong></p>
+<script type="math/tex; mode=display">
+\frac{\partial V}{\partial t}+\frac{1}{2} \sigma^{2} F^{2} \frac{\partial^{2} V}{\partial F^{2}}-r V=0</script><h1 id="Chapter-5-Greek-Symbol-and-Hedging"><a href="#Chapter-5-Greek-Symbol-and-Hedging" class="headerlink" title="Chapter 5 Greek Symbol and Hedging"></a>Chapter 5 Greek Symbol and Hedging</h1><h3 id="Black-Scholes-partial-differential-equation"><a href="#Black-Scholes-partial-differential-equation" class="headerlink" title="Black-Scholes partial differential equation"></a>Black-Scholes partial differential equation</h3><script type="math/tex; mode=display">
+\frac{\partial V}{\partial t}+\frac{1}{2} \sigma^{2} S^{2} \frac{\partial^{2} V}{\partial S^{2}}+(r-\delta) S \frac{\partial V}{\partial S}-r V=0</script><p>gives us the relation between Greek symbols</p>
+<script type="math/tex; mode=display">
+\theta+(r-\delta) \Delta S+0.5 S^{2} \sigma^{2} \Gamma=r V</script><h3 id="A-better-approximation-of-the-change-on-option-value"><a href="#A-better-approximation-of-the-change-on-option-value" class="headerlink" title="A better approximation of the change on option value"></a>A better approximation of the change on option value</h3><script type="math/tex; mode=display">
+f(x)=f(x_0)+f'(x_0)(x-x_0)+\frac12f''(x_0)(x-x_0)^2+error</script><p>set $\varepsilon=S(t+h)-S(t)$ , $x_0=S(t)$ , $x=S(t+h)$ , $f(x_0)=V(S(t))$ , $f’(x_0)=\Delta$ , $f’’(x_0)=\Gamma$ , error term $=\theta h$</p>
+<script type="math/tex; mode=display">
+V(S(t+h))=V(S(t))+\Delta \varepsilon+\frac{1}{2} \Gamma \varepsilon^{2}+\theta h</script><p>Consider a delta-neutral portfolio</p>
+<script type="math/tex; mode=display">
+V(S(t+h))-V(S(t))=\frac{1}{2} \Gamma \varepsilon^{2}+\theta h</script><p><strong>The market-maker makes</strong></p>
+<p>Assume a delta hedged portfolio consists of selling (or buying) an option $V(0)$, buying $\Delta$ shares of stock $S(0)$, and borrowing the money needed for the other two transactions $\Delta S(0)-V(0)$.</p>
+<script type="math/tex; mode=display">
+Profit = -\overbrace{(V(h)-V(0))}^{\text{change in the value of the option}}+\Delta\overbrace{(S(h)-S(0))}^{\text{change in the price of the stock}}-\overbrace{(e^{rh}-1)(\Delta S(0)-V(0))}^{\text{Interest on the borrowed money}}+\overbrace{\delta h\Delta S(0)}^{\text{dividend}}</script><p>If we approximate $e^{rh}-1$ as $rh$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\text { Profit }&=-(V(h)-V(0))+\Delta(S(h)-S(0))-\left(e^{r h}-1\right)(\Delta S(0)-V(0))+\delta h\Delta S(0)\\
+&\approx-\left(\overbrace{\frac{1}{2} \Gamma \varepsilon^{2}}^{\text{change of stock
+ price effect}}+\overbrace{\theta h}^{\text{time decay
+of option}}+\overbrace{rh(\Delta S(0)-V(0))}^{\text{interest effect}}-\delta h\Delta S(0)\right)  \quad\text{[by delta-gamma-theta approximation]}\\
+&=-\left(\frac{1}{2} \Gamma \varepsilon^{2}-\frac{1}{2} \Gamma \sigma^{2} S(0)^{2} h\right) \quad \text { [by Black-Scholes Equation] }
+\end{aligned}</script>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Financial-Mathematics/">#Financial Mathematics</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Financial_Mathematics</div>
+      <div>http://achlier.github.io/2022/05/11/Financial_Mathematics/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 11, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/21/Blog%E6%90%AD%E5%BB%BA%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" title="【BUG】Blog搭建常见问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【BUG】Blog搭建常见问题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="【笔记】高等数学复习笔记">
+                        <span class="hidden-mobile">【笔记】高等数学复习笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

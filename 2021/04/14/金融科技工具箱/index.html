@@ -1,0 +1,1544 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于B站up 无机言nokay 的视频《金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课》的笔记，此视频偏向面对金融系学生的基础讲解； 优点：快速入门，全面，有主讲人个人研究时的想法； 缺点：因为面向群众不是计算机系且时间有限，比较零碎，深入需要自学；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】金融科技工具箱">
+<meta property="og:url" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于B站up 无机言nokay 的视频《金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课》的笔记，此视频偏向面对金融系学生的基础讲解； 优点：快速入门，全面，有主讲人个人研究时的想法； 缺点：因为面向群众不是计算机系且时间有限，比较零碎，深入需要自学；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-4.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-5.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-6.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-7.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-8.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-9.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-10.jpeg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-11.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-12.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-13.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-14.jpeg">
+<meta property="article:published_time" content="2021-04-14T09:23:07.000Z">
+<meta property="article:modified_time" content="2022-03-07T12:26:42.716Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Web Crawler">
+<meta property="article:tag" content="Natural Language Processing">
+<meta property="article:tag" content="Machine learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-1.jpg">
+  
+  
+  
+  <title>【课程】金融科技工具箱 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】金融科技工具箱"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-14 17:23" pubdate>
+          April 14, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          21k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          173 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】金融科技工具箱</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于B站up 无机言nokay 的视频《金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课》的笔记，此视频偏向面对金融系学生的基础讲解；</p>
+<p>优点：快速入门，全面，有主讲人个人研究时的想法；</p>
+<p>缺点：因为面向群众不是计算机系且时间有限，比较零碎，深入需要自学；</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="0-其他资料"><a href="#0-其他资料" class="headerlink" title="0. 其他资料"></a>0. 其他资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/">廖雪峰的官方网站</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57372332">《Python数据科学手册》</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39602876">《利用python进行数据分析》</a></li>
+</ol>
+<h2 id="1-基础部分"><a href="#1-基础部分" class="headerlink" title="1. 基础部分"></a>1. 基础部分</h2><ul>
+<li>跳过，有时间另外整一版统一复习</li>
+</ul>
+<h3 id="1-5-数据结构"><a href="#1-5-数据结构" class="headerlink" title="1.5 数据结构"></a>1.5 数据结构</h3><p>用于导出$Jason$的数据结构，爬虫时应该会用到</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> json<br>l1 = [[<span class="hljs-string">&#x27;李磊&#x27;</span>,<span class="hljs-number">25</span>,[&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;韩梅梅&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-string">&#x27;23&#x27;</span>&#125;]],[<span class="hljs-string">&#x27;王二蛋&#x27;</span>,<span class="hljs-number">21</span>,[]],[<span class="hljs-string">&#x27;朱一旦&#x27;</span>,<span class="hljs-number">35</span>,[&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;赵大&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-string">&#x27;23&#x27;</span>&#125;,&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;钱二&#x27;</span>,<span class="hljs-string">&#x27;age&#x27;</span>:<span class="hljs-string">&#x27;21&#x27;</span>,<span class="hljs-string">&#x27;ex&#x27;</span>:[<span class="hljs-string">&#x27;周五&#x27;</span>,<span class="hljs-string">&#x27;吴六&#x27;</span>,<span class="hljs-string">&#x27;郑七&#x27;</span>]&#125;]]]<br>js = json.dumps(l1, sort_keys=<span class="hljs-literal">True</span>, indent=<span class="hljs-number">4</span>, separators=(<span class="hljs-string">&#x27;,&#x27;</span>, <span class="hljs-string">&#x27;:&#x27;</span>),ensure_ascii=<span class="hljs-literal">False</span>)<br><span class="hljs-built_in">print</span>(js)<br></code></pre></td></tr></table></figure>
+<p>导出/导入$Jason$文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">root_dir = !echo %cd% <span class="hljs-comment"># 在notebook里面运用的系统查找当前路径的方法</span><br><span class="hljs-comment"># 或os.getcwd()</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(root_dir+<span class="hljs-string">&#x27;exs&#x27;</span>+ <span class="hljs-string">&#x27;.json&#x27;</span>,<span class="hljs-string">&#x27;wb+&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    f.write(json.dumps(l1).encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br><span class="hljs-keyword">del</span> l1<br>l1 = json.load(<span class="hljs-built_in">open</span>(root_dir+<span class="hljs-string">&#x27;exs.json&#x27;</span>))<br></code></pre></td></tr></table></figure>
+<h3 id="1-6-常用函数"><a href="#1-6-常用函数" class="headerlink" title="1.6 常用函数"></a>1.6 常用函数</h3><p>$cmd$操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.system(<span class="hljs-built_in">str</span>格式的命令)<br></code></pre></td></tr></table></figure>
+<p>按位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 按位与&amp; 参与运算的两个值，如果其二进制值对应位都为1，则该位的结果为1，否则该位为 0</span><br><span class="hljs-comment"># 按位或| 只要对应的二个二进位有一个为 1 时，结果位就为 1，只有对应为都是 0， 结果为才是 0</span><br><span class="hljs-comment"># 二进制运算符</span><br></code></pre></td></tr></table></figure>
+<p>复制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># .copy()</span><br></code></pre></td></tr></table></figure>
+<p>打乱</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br>l_1 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]<br>random.shuffle(l_1)<br><span class="hljs-built_in">print</span>(l_1)<br></code></pre></td></tr></table></figure>
+<p>计个时</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">ltime = time.asctime( time.localtime(time.time()) )<br><span class="hljs-built_in">print</span> (ltime)<br></code></pre></td></tr></table></figure>
+<p>查看文档</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">?要查的fun名<br></code></pre></td></tr></table></figure>
+<h3 id="1-7-作业"><a href="#1-7-作业" class="headerlink" title="1.7 作业"></a>1.7 作业</h3><p>有趣的$tips$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">[<span class="hljs-number">1</span>,*[<span class="hljs-number">0.1</span>]] <span class="hljs-comment"># 做一个list首位是1，后面连接[0.1],类似[1]+[0.1]</span><br></code></pre></td></tr></table></figure>
+<p>画红❤</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span>  time,os,math<br>[(time.sleep(<span class="hljs-number">0.001</span>),  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\033[91m&quot;</span>+i,end=<span class="hljs-string">&quot;&quot;</span>,flush=<span class="hljs-literal">True</span>)) <br><span class="hljs-comment">#\033[91m 红色 flush 滑动特效</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27; *&#x27;</span>+<span class="hljs-string">&#x27;\n *&#x27;</span>.join([<span class="hljs-string">&#x27;&#x27;</span>.join([(<span class="hljs-string">&#x27; I love U&#x27;</span>[(x-y)%<span class="hljs-number">9</span>] <span class="hljs-comment"># 画出错位效果</span><br><span class="hljs-keyword">if</span>((x*<span class="hljs-number">0.05</span>)**<span class="hljs-number">2</span>+(y*<span class="hljs-number">0.15</span>)**<span class="hljs-number">2</span>-<span class="hljs-number">1</span>)**<span class="hljs-number">3</span>-(x*<span class="hljs-number">0.05</span>)**<span class="hljs-number">2</span>*(y*<span class="hljs-number">0.15</span>)**<span class="hljs-number">3</span>&lt;=<span class="hljs-number">0</span> <span class="hljs-keyword">else</span><span class="hljs-string">&#x27; &#x27;</span> <br><span class="hljs-comment"># 心型的函数，注释掉就是一面表白墙（↑）</span><br>)<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(-<span class="hljs-number">30</span>,<span class="hljs-number">30</span>)])+<span class="hljs-string">&#x27;*&#x27;</span> <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">15</span>,-<span class="hljs-number">15</span>,-<span class="hljs-number">1</span>)]))<br>]<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>图片颜色代替（不提供材料，可在原视频下载）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2<br><span class="hljs-keyword">import</span> os<br><span class="hljs-comment">#cv2 是OpenCV，一个专门用于图像处理的包</span><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>root_dir = <span class="hljs-string">&#x27;C:/Users/lenovo/Desktop/.....&#x27;</span> <span class="hljs-comment">#替换</span><br><span class="hljs-comment">#定义根目录</span><br><br><span class="hljs-comment">#------------------------</span><br><span class="hljs-comment">#此部分用于读取文件夹lego brick所有图片，并根据文件名，构建颜色名和颜色RGB的字典</span><br>work_dir = root_dir + <span class="hljs-string">&#x27;lego&#x27;</span><br>color_dic = &#123;&#125;<br><br><span class="hljs-keyword">for</span> parent, dirnames, filenames <span class="hljs-keyword">in</span> os.walk(work_dir,  followlinks=<span class="hljs-literal">True</span>):<br>    <span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> filenames:<br>        <span class="hljs-comment">#file_path = os.path.join(parent, filename)</span><br>        file_path = work_dir+<span class="hljs-string">&#x27;/&#x27;</span>+filename<br>        <span class="hljs-comment">#print(file_path)</span><br>        <span class="hljs-comment"># 以上为遍历work_dir中所有文件</span><br>        <span class="hljs-keyword">if</span> file_path[-<span class="hljs-number">3</span>:] != <span class="hljs-string">&#x27;jpg&#x27;</span> <span class="hljs-keyword">and</span> file_path[-<span class="hljs-number">3</span>:] != <span class="hljs-string">&#x27;png&#x27;</span>:<br>            <span class="hljs-keyword">continue</span><br>        <br>        <span class="hljs-comment"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br>        img = cv2.imread(file_path)<br>        x_size = <span class="hljs-built_in">len</span>(img)<br>        y_size = <span class="hljs-built_in">len</span>(img[<span class="hljs-number">0</span>])<br>        mid_point = img[x_size//<span class="hljs-number">2</span>][y_size//<span class="hljs-number">2</span>] <span class="hljs-comment">#选中点</span><br>        color_dic[filename.split(<span class="hljs-string">&#x27;.&#x27;</span>)[<span class="hljs-number">0</span>]] = mid_point<br>        <br>col_list=[]<br><span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> color_dic:<br>    col_list.append(color_dic[key].astype(<span class="hljs-string">&#x27;float64&#x27;</span>))<br><span class="hljs-comment">#------------------------</span><br><span class="hljs-comment">#此部分用于读取待处理图片，并截取中心1：1比例，并resize至le*le</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">img_mosaic</span>(<span class="hljs-params">file_name,base_len</span>):<br>    raw_img = cv2.imread(file_name)<br>    xlen = <span class="hljs-built_in">len</span>(raw_img)<br>    ylen = <span class="hljs-built_in">len</span>(raw_img[<span class="hljs-number">0</span>])<br>    min_len = <span class="hljs-built_in">min</span>(xlen,ylen)<br>    <br>    sq_img = raw_img[xlen//<span class="hljs-number">2</span>-min_len//<span class="hljs-number">2</span>:xlen//<span class="hljs-number">2</span>+min_len//<span class="hljs-number">2</span>][ylen//<span class="hljs-number">2</span>-min_len//<span class="hljs-number">2</span>:ylen//<span class="hljs-number">2</span>+min_len//<span class="hljs-number">2</span>]<br>    <span class="hljs-comment"># 按最小长or宽截图</span><br>    mc_img = cv2.resize(sq_img,(base_len,base_len))<br>    <span class="hljs-comment"># 按比例压缩</span><br>    <span class="hljs-keyword">return</span> mc_img<br><span class="hljs-comment">#------------------------</span><br><span class="hljs-comment">#此部分用于替换颜色，按照RGB数之差的平方的最小值选择</span><br>le=<span class="hljs-number">350</span> <span class="hljs-comment">#resize值</span><br>mc_lena = img_mosaic(root_dir+<span class="hljs-string">&#x27;lena.jpg&#x27;</span>,le)<br><br><span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(le):<br>    <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(le):<br>        diff = np.<span class="hljs-built_in">sum</span>(np.subtract(mc_lena[x,y],col_list)**<span class="hljs-number">2</span>,axis=<span class="hljs-number">1</span>)<br>        index = np.argmin(diff)<br>        mc_lena[x,y]=col_list[index]<br>        <br>cv2.imwrite(root_dir+<span class="hljs-string">&#x27;lena_mc.jpg&#x27;</span>, mc_lena) <span class="hljs-comment"># 保存</span><br></code></pre></td></tr></table></figure>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h2 id="2-Numpy和Pandas"><a href="#2-Numpy和Pandas" class="headerlink" title="2. Numpy和Pandas"></a>2. Numpy和Pandas</h2><h3 id="2-1-Numpy"><a href="#2-1-Numpy" class="headerlink" title="2.1 Numpy"></a>2.1 Numpy</h3><ul>
+<li>$array$所有元素都会变成同一个格式</li>
+<li>注意 $dtype$ 格式，有时候（格式不对会导致计算错误，如非10进制的格式）</li>
+</ul>
+<h4 id="初始化函数"><a href="#初始化函数" class="headerlink" title="初始化函数"></a>初始化函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 矩阵生成</span><br>np.zeros/np.empty/np.ones/np.identity<br>np.full(维度,值)<br>np.eye(维,度,k = 偏移)<br><span class="hljs-comment"># 区间生成</span><br>np.arange(首,尾,步长)<br>np.linspace(首,尾,分离点个数)<br><span class="hljs-comment"># 随机数生成</span><br>np.random.random/np.random.normal/np.random.randint<br>np.random.seed(num) <span class="hljs-comment"># 伪随机数</span><br></code></pre></td></tr></table></figure>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 维度</span><br>arr.ndim <span class="hljs-comment"># 第一层维度 = len(arr)</span><br>arr.shape <span class="hljs-comment"># 所有维度 = (len(arr),len(arr[0]),len(arr[0][0]))</span><br>arr.size <span class="hljs-comment"># 总数</span><br><span class="hljs-comment"># 数据类型</span><br><span class="hljs-comment"># arr_浮点数.dtype &gt; arr_整数.dtype</span><br><span class="hljs-comment"># arr_字符串.dtype 与其他无法比较</span><br>arr.itemsize <span class="hljs-comment"># 每一个元素所占字节数</span><br>arr.nbytes <span class="hljs-comment"># 共占多大</span><br>arr.astype(np.<span class="hljs-built_in">float</span>) <span class="hljs-comment"># 改数据类型</span><br></code></pre></td></tr></table></figure>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><ul>
+<li>更换新数字时如果$type$不同将无法替换</li>
+<li>但如果是字符串包数字，可以放</li>
+<li>$array$内截取的部分是$point$,如果改动截取的部分,原矩阵也会改变</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 数字索引</span><br>arr[首:尾:步长]<br>arr = np.array(<span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>))<br>arr[<span class="hljs-number">3</span>::<span class="hljs-number">3</span>]<br>arr[<span class="hljs-number">5</span>::-<span class="hljs-number">1</span>]<br>arr[:<span class="hljs-number">10</span>:-<span class="hljs-number">2</span>]<br><span class="hljs-comment"># 布尔索引</span><br>arr[(arr &gt; <span class="hljs-number">0</span>)&amp;(arr &lt; <span class="hljs-number">10</span>)]<br></code></pre></td></tr></table></figure>
+<h4 id="变形，拼接和分裂"><a href="#变形，拼接和分裂" class="headerlink" title="变形，拼接和分裂"></a>变形，拼接和分裂</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">arr.T<br>arr.reshape<br>np.concatenate <span class="hljs-comment"># 有 axis</span><br>np.vstack/np.hstack<br>np.split/np.vsplit/np.hsplit<br></code></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python">arr = np.arange(<span class="hljs-number">100000</span>)<br>li = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">100000</span>))<br>%time arr = arr*<span class="hljs-number">2</span><br>%time li = [l*<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> li]<br><span class="hljs-comment"># 高级函数</span><br>l1 =<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x:x*<span class="hljs-number">2</span>,li) <span class="hljs-comment"># 此时只是map函数本身的对象，需要list()操作</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">fun</span>(<span class="hljs-params">x</span>):<br>    <span class="hljs-keyword">return</span> x*<span class="hljs-number">2</span><br>l1 =<span class="hljs-built_in">map</span>(fun,li) <span class="hljs-comment"># 同等上面的</span><br><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> reduce<br>l2 = reduce(<span class="hljs-keyword">lambda</span> x,y:x+y,li)<br><span class="hljs-comment"># 运算</span><br><span class="hljs-comment"># +-*/ // ** %</span><br>np.sin/cos/tan/arcsin<br>np.log/log2/log10/exp/exp2/exp10<br>np.expm1(x) <span class="hljs-comment"># = exp(x) - 1 </span><br>np.log1p(x) <span class="hljs-comment"># = log(1 + x)</span><br>arr1.dot(arr2)/np.dot(arr1,arr2)<br><span class="hljs-comment"># tips:np有matrix函数，利于矩阵计算</span><br></code></pre></td></tr></table></figure>
+<h5 id="Numpy中可用的聚合函数"><a href="#Numpy中可用的聚合函数" class="headerlink" title="Numpy中可用的聚合函数"></a>Numpy中可用的聚合函数</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>描述</th>
+<th>函数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>np.sum</td>
+<td>计算元素的和</td>
+<td>np.argmin</td>
+<td>找出最小值的索引</td>
+</tr>
+<tr>
+<td>np.prod</td>
+<td>计算元素的积</td>
+<td>np.argmax</td>
+<td>找出最大值的索引</td>
+</tr>
+<tr>
+<td>np.mean</td>
+<td>计算元素的平均值</td>
+<td>np.median</td>
+<td>计算元素的中位数</td>
+</tr>
+<tr>
+<td>np.std</td>
+<td>计算元素的标准差</td>
+<td>np.percentile</td>
+<td>计算基于元素排序的统计值</td>
+</tr>
+<tr>
+<td>np.var</td>
+<td>计算元素的方差</td>
+<td>np.quantile</td>
+<td>计算基于元素排序的统计值</td>
+</tr>
+<tr>
+<td>np.min</td>
+<td>找出最小值</td>
+<td>np.any</td>
+<td>验证任何一个元素是否为真</td>
+</tr>
+<tr>
+<td>np.max</td>
+<td>找出最大值</td>
+<td>np.all</td>
+<td>验证所以元素是否为真</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 排序</span><br>np.sort/np.argsort/arr.sort<br>li.sort(key = <span class="hljs-keyword">lambda</span> x:x%<span class="hljs-number">3</span>) <span class="hljs-comment"># 有 axis</span><br>np.sort(arr)[::-<span class="hljs-number">1</span>]/li.sort(...,reverse=<span class="hljs-literal">True</span>) <span class="hljs-comment"># 降序排序</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-2-Pandas"><a href="#2-2-Pandas" class="headerlink" title="2.2 Pandas"></a>2.2 Pandas</h3><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 一维</span><br>pd.Series(arr,index = []) <span class="hljs-comment"># index 可重复</span><br>pd.Series(<span class="hljs-built_in">dict</span>)<br><span class="hljs-comment"># 二维</span><br>pd.DataFrame(&#123;col1:sr1,col2:sr2&#125;)<br></code></pre></td></tr></table></figure>
+<h4 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">df.loc[[index],col]<br>df.iloc[num]<br><span class="hljs-comment"># df.ix 综合以上两种方法,不推荐</span><br><span class="hljs-comment"># 缺失值</span><br>df.isnull()/df.notnull() <span class="hljs-comment"># 找缺失值</span><br>df.dropna() <span class="hljs-comment"># 删除整行</span><br>df.fillna(method = <span class="hljs-string">&quot;ffill&quot;</span>) <span class="hljs-comment"># 按前位填充 有 axis</span><br>df.fillna(&#123;col1:num1,col2:num2&#125;,limit = fillnum, inplace = <span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">pd.concate <span class="hljs-comment"># 用于纵向合并</span><br><span class="hljs-comment"># join = &quot;inner&quot; 交集 &quot;outer&quot; 并集</span><br>pd.merge <span class="hljs-comment"># 用于横向合并</span><br><span class="hljs-comment"># on 依照哪个变量拼接 left_on/right_on 不同名称对应拼接</span><br></code></pre></td></tr></table></figure>
+<h4 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">df.groupby(col)<br>df.describe() <span class="hljs-comment"># 描述性统计</span><br></code></pre></td></tr></table></figure>
+<h4 id="Jason转DF"><a href="#Jason转DF" class="headerlink" title="Jason转DF"></a>Jason转DF</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">all_res = []<br><span class="hljs-keyword">for</span> ii <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    this_line = &#123;&#125;<br>    this_line[<span class="hljs-string">&#x27;num&#x27;</span>] = ii<br>    this_line[<span class="hljs-string">&#x27;奇偶&#x27;</span>] = <span class="hljs-number">0</span>   <span class="hljs-comment"># 0是奇数</span><br>    <span class="hljs-keyword">if</span> ii % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:<br>        this_line[<span class="hljs-string">&#x27;奇偶&#x27;</span>] = <span class="hljs-number">1</span><br>    all_res.append(this_line)<br><span class="hljs-keyword">import</span> json<br>js = json.dumps(all_res, sort_keys=<span class="hljs-literal">True</span>, indent=<span class="hljs-number">4</span>, separators=(<span class="hljs-string">&#x27;,&#x27;</span>,<span class="hljs-string">&#x27;:&#x27;</span>),ensure_ascii=<span class="hljs-literal">False</span>)<br><span class="hljs-built_in">print</span>(js)<br>df_l = pd.DataFrame(all_res)<br>df_l<br></code></pre></td></tr></table></figure>
+<h4 id="保存、读取"><a href="#保存、读取" class="headerlink" title="保存、读取"></a>保存、读取</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">df.to_csv(root_dir+<span class="hljs-string">&#x27;df.csv&#x27;</span>,encoding=<span class="hljs-string">&#x27;utf-8_sig&#x27;</span>) <span class="hljs-comment"># sig 有中文时</span><br>df_in = pd.read_csv(root_dir+<span class="hljs-string">&#x27;df.csv&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3. 可视化"></a>3. 可视化</h2><ul>
+<li>跳过，有时间另外整一版统一复习</li>
+<li>可视化不只是画图，而是为了更好地表达（如:南丁格尔玫瑰图）</li>
+<li>画图工具包$pyecharts$</li>
+</ul>
+<h2 id="4-爬虫"><a href="#4-爬虫" class="headerlink" title="4. 爬虫"></a>4. 爬虫</h2><ul>
+<li>跳过，有时间另外整一版统一复习</li>
+</ul>
+<h4 id="BeautifulSoup"><a href="#BeautifulSoup" class="headerlink" title="BeautifulSoup"></a>BeautifulSoup</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">html.strip() <span class="hljs-comment"># 刚爬取到网页之后以防格式问题需要提前去头掐尾</span><br>html.find()/html.find_all() <span class="hljs-comment"># 可包含 class_=</span><br>parse.quote() <span class="hljs-comment"># 汉字编码</span><br></code></pre></td></tr></table></figure>
+<h4 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">driver.find_element_by_xpath() <span class="hljs-comment"># 可以使用xpath查找</span><br></code></pre></td></tr></table></figure>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><ul>
+<li>高德地图,$FutuQuant,Tushare,RiceQuant$等</li>
+</ul>
+<h2 id="5-自然语言处理"><a href="#5-自然语言处理" class="headerlink" title="5. 自然语言处理"></a>5. 自然语言处理</h2><ul>
+<li>有监督算法的描述-情绪判断，作者识别</li>
+<li>无监督算法的描述-主题模型，词嵌入</li>
+</ul>
+<h4 id="独热编码（One-Hot）"><a href="#独热编码（One-Hot）" class="headerlink" title="独热编码（One-Hot）"></a>独热编码（One-Hot）</h4><p>主要是采用N位状态寄存器来对N个状态进行编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> preprocessing  <br>   <br>enc = preprocessing.OneHotEncoder()  <br>enc.fit([[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]])  <br><span class="hljs-comment"># 这里一共有4个数据，3种特征</span><br>   <br>array = enc.transform([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]]).toarray()  <br><span class="hljs-comment"># 这里使用一个新的数据来测试</span><br>   <br><span class="hljs-built_in">print</span> (array)   <span class="hljs-comment"># [[ 1  0 | 0  1  0 | 0  0  0  1]]</span><br></code></pre></td></tr></table></figure>
+<h3 id="5-1-词袋模型（bag-of-words）"><a href="#5-1-词袋模型（bag-of-words）" class="headerlink" title="5.1 词袋模型（bag of words）"></a>5.1 词袋模型（bag of words）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.corpora <span class="hljs-keyword">import</span> Dictionary<br><br>texts = [[<span class="hljs-string">&#x27;human&#x27;</span>,<span class="hljs-string">&#x27;interface&#x27;</span>,<span class="hljs-string">&#x27;computer&#x27;</span>]]<br>dct = Dictionary(texts)<br>dct.add_documents([[<span class="hljs-string">&#x27;cat&#x27;</span>,<span class="hljs-string">&#x27;say&#x27;</span>,<span class="hljs-string">&#x27;moon&#x27;</span>],[<span class="hljs-string">&#x27;dog&#x27;</span>]])<br>dct.doc2bow([<span class="hljs-string">&#x27;dog&#x27;</span>,<span class="hljs-string">&#x27;computer&#x27;</span>,<span class="hljs-string">&#x27;non_existent_word&#x27;</span>])<br><span class="hljs-comment"># output:[(0,1),(6,1)] -&gt; (index,num)</span><br></code></pre></td></tr></table></figure>
+<h4 id="TF-IDF（term-frequency–inverse-document-frequency）"><a href="#TF-IDF（term-frequency–inverse-document-frequency）" class="headerlink" title="TF-IDF（term frequency–inverse document frequency）"></a>TF-IDF（term frequency–inverse document frequency）</h4><p>TF用以评估一字词对于一个文章的重要程度</p>
+<script type="math/tex; mode=display">
+tf_{i,j}=\frac{n_{i,j}}{\sum _kn_{k,j}}</script><ul>
+<li>$n_{i,j}$ 词 $i$ 在 $j$ 中出现的次数</li>
+</ul>
+<p>IDF用以评估一字词对于一个文章的不相关程度</p>
+<script type="math/tex; mode=display">
+idf_i = lg\frac{\left|D\right|}{\left|\{j:t_i\in d_j\}\right|}</script><ul>
+<li>$D$ 文章总数</li>
+<li>$\{j:t_i\in d_j\}$ 包含词 $t_i$ 的文件数目</li>
+</ul>
+<script type="math/tex; mode=display">
+tfidf_{i,j}=tf_{i,j}\times idf_i</script><h4 id="时间转换工具"><a href="#时间转换工具" class="headerlink" title="时间转换工具"></a>时间转换工具</h4><p>用于时间排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">large_time</span>(<span class="hljs-params">raw_str</span>):<br>    tt = time.strptime(raw_str,<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">float</span>(tt[<span class="hljs-number">0</span>])*<span class="hljs-number">10000</span>+<span class="hljs-built_in">float</span>(tt[<span class="hljs-number">1</span>])*<span class="hljs-number">100</span>+<span class="hljs-built_in">float</span>(tt[<span class="hljs-number">2</span>])<br><span class="hljs-comment"># time.localtime/time.mktime</span><br><span class="hljs-comment"># 注意冬令时夏令时切换会少一小时</span><br></code></pre></td></tr></table></figure>
+<h4 id="英文文章预处理"><a href="#英文文章预处理" class="headerlink" title="英文文章预处理"></a>英文文章预处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x:x[<span class="hljs-string">&#x27;content&#x27;</span>].upper(),all_text))<br></code></pre></td></tr></table></figure>
+<h4 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> jieba<br>trial_str = <span class="hljs-string">&#x27;该书根据邓小平同志建设有中国特色的社会主义理论，把生产关系的研究与生产力的研究结合起来，把政治经济学与宏观经济学结合起来，把经济运动质的规律性与量的规律性的研究结合起来，形成了一个独具特色的国民经济学的理论体系&#x27;</span><br>r1 = jieba.cut(trial_str)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;/ &quot;</span>.join(r1))<br>r2 = jieba.cut(trial_str,cut_all=<span class="hljs-literal">True</span>) <span class="hljs-comment"># cut_all所有可能</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;/ &quot;</span>.join(r2))<br>jieba.add_word(<span class="hljs-string">&#x27;宏观经济学&#x27;</span>, <span class="hljs-literal">True</span>) <span class="hljs-comment"># 增加新词 防止切开</span><br>jieba.suggest_freq(<span class="hljs-string">&#x27;与量&#x27;</span>, <span class="hljs-literal">False</span>) <span class="hljs-comment"># 降低切割频率</span><br>r1 = jieba.cut(trial_str,HMM=<span class="hljs-literal">False</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;/ &quot;</span>.join(r1))<br><span class="hljs-comment"># 增加新词典</span><br>jieba.set_dictionary(root_dir+<span class="hljs-string">&#x27;dict.txt.big&#x27;</span>) <span class="hljs-comment"># 官方提供</span><br>jieba.load_userdict(root_dir+<span class="hljs-string">&quot;user_dict.txt&quot;</span>)<br><span class="hljs-comment"># 词 频率 词性(可选)</span><br></code></pre></td></tr></table></figure>
+<h4 id="以防万一，先保存"><a href="#以防万一，先保存" class="headerlink" title="以防万一，先保存"></a>以防万一，先保存</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">all_para = []<br><span class="hljs-keyword">for</span> li <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(ptext)):<br>    cutted = jieba.cut(ptext[li])<br>    all_para.append(<span class="hljs-built_in">list</span>(cutted))<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(root_dir+<span class="hljs-string">&#x27;sub_cutted&#x27;</span>+ <span class="hljs-string">&#x27;.json&#x27;</span>,<span class="hljs-string">&#x27;wb+&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>    f.write(json.dumps(all_para).encode(<span class="hljs-string">&#x27;utf-8&#x27;</span>))<br></code></pre></td></tr></table></figure>
+<h4 id="添加停用词"><a href="#添加停用词" class="headerlink" title="添加停用词"></a>添加停用词</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">stwf = <span class="hljs-built_in">open</span>(root_dir+<span class="hljs-string">&#x27;stop_words.txt&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>,encoding = <span class="hljs-string">&#x27;utf-8&#x27;</span>)<br>stset = stwf.readlines()<br>stop_words = []<br><span class="hljs-keyword">for</span> sti <span class="hljs-keyword">in</span> stset[:-<span class="hljs-number">1</span>]:<br>    stop_words.append(sti[:-<span class="hljs-number">1</span>])<br>stoplist = <span class="hljs-built_in">set</span>(stop_words)<br><span class="hljs-comment"># 开始去除</span><br>texts = [[word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> doc <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> stoplist]<br>         <span class="hljs-keyword">for</span> doc <span class="hljs-keyword">in</span> all_para]<br></code></pre></td></tr></table></figure>
+<h4 id="去除低频词"><a href="#去除低频词" class="headerlink" title="去除低频词"></a>去除低频词</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> defaultdict<br>frequency = defaultdict(<span class="hljs-built_in">int</span>)<br><span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> texts:<br>    <span class="hljs-keyword">for</span> token <span class="hljs-keyword">in</span> text:<br>        frequency[token] += <span class="hljs-number">1</span><br>            <br>texts = [[token <span class="hljs-keyword">for</span> token <span class="hljs-keyword">in</span> text <span class="hljs-keyword">if</span> frequency[token] &gt; <span class="hljs-number">1</span>]<br>         <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> texts]<br></code></pre></td></tr></table></figure>
+<h4 id="小容量储存"><a href="#小容量储存" class="headerlink" title="小容量储存"></a>小容量储存</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim <span class="hljs-keyword">import</span> corpora, models, similarities<br>dic = corpora.Dictionary(texts)<br><span class="hljs-built_in">print</span>(dic.token2id)<br>dic.save(root_dir+<span class="hljs-string">&#x27;sub_rmrb.dict&#x27;</span>) <span class="hljs-comment"># 向前兼容</span><br></code></pre></td></tr></table></figure>
+<h4 id="转为语料格式"><a href="#转为语料格式" class="headerlink" title="转为语料格式"></a>转为语料格式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.corpora <span class="hljs-keyword">import</span> MmCorpus<br>corpus = [dic.doc2bow(text) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> texts]<br>output_fname = root_dir+<span class="hljs-string">&#x27;sub_rmrb.mm&#x27;</span><br>MmCorpus.serialize(output_fname, corpus)<br></code></pre></td></tr></table></figure>
+<h4 id="TF-IDF-模型"><a href="#TF-IDF-模型" class="headerlink" title="TF-IDF 模型"></a>TF-IDF 模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> TfidfModel<br>tf_model = TfidfModel(corpus)<br>vector = tf_model[corpus[<span class="hljs-number">0</span>]]<br></code></pre></td></tr></table></figure>
+<p>更多可查看 <a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/">gensim官方网站</a></p>
+<h3 id="5-2-主题模型"><a href="#5-2-主题模型" class="headerlink" title="5.2 主题模型"></a>5.2 主题模型</h3><h4 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h4><h5 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h5><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+p(W)=\prod_{n=1}^Np(w_n)</script><ul>
+<li>$N:$ 文档</li>
+<li>$w:$ 词</li>
+<li>$Unigram$ 认为,每篇文章的词语是从一个独立多项式分布中抽取出来的</li>
+</ul>
+<h5 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h5><p>引入了一个主题的概念</p>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-4.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+p(W)=\sum_zp(z)\prod_{n=1}^Np(w_n|z)</script><ul>
+<li>$z:$ 主题</li>
+</ul>
+<h5 id="step-3"><a href="#step-3" class="headerlink" title="step 3"></a>step 3</h5><p>提出了混合主题，概率潜语义分析（pLSA/pLSI）</p>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-5.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+p(d,w_n)=p(d)\sum_zp(w_n|z)p(z|d)</script><h5 id="step-4"><a href="#step-4" class="headerlink" title="step 4"></a>step 4</h5><p>为参数引入先验分布，潜狄利克雷分布（LDA）</p>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-6.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<ul>
+<li>主题 $z$ 是一个参数为 $\theta$ 的多项式分布，这个参数的先验分布是一个参数为$\alpha$ 的狄利克雷分布</li>
+<li>主题是否包含一个词是一个参数为 $\eta$ 的多项式分布，这个参数的先验分布是一个参数为 $\beta$ 的狄利克雷分布</li>
+<li>如果主题数目为 $K$ ,则 $\alpha = 50/K$ </li>
+<li>如果词数量为 $W$ ,则 $\beta = 200/W $</li>
+</ul>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>动态主题模型</p>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-7.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> LdaMulticore<br>num_topics = <span class="hljs-number">20</span> <span class="hljs-comment">#主题数</span><br>lda_fst = LdaMulticore(<br>    corpus=corpus, num_topics=num_topics, id2word=dic,<br>    workers=<span class="hljs-number">6</span>, eval_every=<span class="hljs-literal">None</span>, passes=<span class="hljs-number">10</span>, batch=<span class="hljs-literal">True</span><br>)<br><span class="hljs-comment"># 以下步骤仅在Jupyter notebook内显示</span><br><span class="hljs-keyword">import</span> pyLDAvis.gensim<br>pyLDAvis.enable_notebook()<br>vis_sub_10 = pyLDAvis.gensim.prepare(lda_fst, corpus, dic, sort_topics = <span class="hljs-literal">False</span>)<br><br>pyLDAvis.display(vis_sub_10)<br>lda_fst.save(root_dir+<span class="hljs-string">&#x27;tiny_10.lda&#x27;</span>)<br><br><span class="hljs-comment"># 读取的方法</span><br>lda_fst = LdaMulticore.load(<span class="hljs-string">&#x27;tiny_10.lda&#x27;</span>)<br>dic = corpora.Dictionary.load(root_dir+<span class="hljs-string">&#x27;sub_rmrb.dict&#x27;</span>)<br>corpus = MmCorpus(root_dir+<span class="hljs-string">&#x27;sub_rmrb.mm&#x27;</span>)<br><br><span class="hljs-comment"># 某篇文章对应主题的概率,可不用训练集</span><br><span class="hljs-built_in">print</span>(lda_fst.get_document_topics(corpus[<span class="hljs-number">0</span>],minimum_probability=<span class="hljs-number">0.5</span>))<br></code></pre></td></tr></table></figure>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-8.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="主题相关性检验"><a href="#主题相关性检验" class="headerlink" title="主题相关性检验"></a>主题相关性检验</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 官方文档给的代码</span><br><span class="hljs-keyword">from</span> string <span class="hljs-keyword">import</span> punctuation<br><span class="hljs-keyword">from</span> nltk <span class="hljs-keyword">import</span> RegexpTokenizer<br><span class="hljs-keyword">from</span> nltk.stem.porter <span class="hljs-keyword">import</span> PorterStemmer<br><span class="hljs-keyword">from</span> nltk.corpus <span class="hljs-keyword">import</span> stopwords<br><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> fetch_20newsgroups<br>%matplotlib inline<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_difference_plotly</span>(<span class="hljs-params">mdiff, title=<span class="hljs-string">&quot;&quot;</span>, annotation=<span class="hljs-literal">None</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;Plot the difference between models.</span><br><span class="hljs-string">    Uses plotly as the backend.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">import</span> plotly.graph_objs <span class="hljs-keyword">as</span> go<br>    <span class="hljs-keyword">import</span> plotly.offline <span class="hljs-keyword">as</span> py<br>    annotation_html = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">if</span> annotation <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        annotation_html = [<br>            [<br>                <span class="hljs-string">&quot;+++ &#123;&#125;&lt;br&gt;--- &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;, &quot;</span>.join(int_tokens), <span class="hljs-string">&quot;, &quot;</span>.join(diff_tokens))<br>                <span class="hljs-keyword">for</span> (int_tokens, diff_tokens) <span class="hljs-keyword">in</span> row<br>            ]<br>            <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> annotation<br>        ]<br>    data = go.Heatmap(z=mdiff, colorscale=<span class="hljs-string">&#x27;RdBu&#x27;</span>, text=annotation_html)<br>    layout = go.Layout(width=<span class="hljs-number">950</span>, height=<span class="hljs-number">950</span>, title=title, xaxis=<span class="hljs-built_in">dict</span>(title=<span class="hljs-string">&quot;topic&quot;</span>), yaxis=<span class="hljs-built_in">dict</span>(title=<span class="hljs-string">&quot;topic&quot;</span>))<br>    py.iplot(<span class="hljs-built_in">dict</span>(data=[data], layout=layout))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_difference_matplotlib</span>(<span class="hljs-params">mdiff, title=<span class="hljs-string">&quot;&quot;</span>, annotation=<span class="hljs-literal">None</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;Helper function to plot difference between models.</span><br><span class="hljs-string">    Uses matplotlib as the backend.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>    fig, ax = plt.subplots(figsize=(<span class="hljs-number">18</span>, <span class="hljs-number">14</span>))<br>    data = ax.imshow(mdiff, cmap=<span class="hljs-string">&#x27;RdBu_r&#x27;</span>, origin=<span class="hljs-string">&#x27;lower&#x27;</span>)<br>    plt.title(title)<br>    plt.colorbar(data)<br><span class="hljs-keyword">try</span>:<br>    get_ipython()<br>    <span class="hljs-keyword">import</span> plotly.offline <span class="hljs-keyword">as</span> py<br><span class="hljs-keyword">except</span> Exception:<br>    <span class="hljs-comment">#</span><br>    <span class="hljs-comment"># Fall back to matplotlib if we&#x27;re not in a notebook, or if plotly is</span><br>    <span class="hljs-comment"># unavailable for whatever reason.</span><br>    <span class="hljs-comment">#</span><br>    plot_difference = plot_difference_matplotlib<br><span class="hljs-keyword">else</span>:<br>    py.init_notebook_mode()<br>    plot_difference = plot_difference_plotly<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> LdaMulticore,LdaModel<br>lda_sub_10 = LdaModel.load(root_dir+<span class="hljs-string">&#x27;sub_10.lda&#x27;</span>)<br>mdiff, annotation = lda_sub_10.diff(lda_sub_10, distance=<span class="hljs-string">&#x27;jaccard&#x27;</span>, num_words=<span class="hljs-number">50</span>)<br>plot_difference(mdiff, title=<span class="hljs-string">&quot;Topic difference (one model) [jaccard distance]&quot;</span>, annotation=annotation)<br></code></pre></td></tr></table></figure>
+<p>当集体颜色偏红，且对角一条为蓝点，则拟合成功</p>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-9.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="5-3-词向量模型"><a href="#5-3-词向量模型" class="headerlink" title="5.3 词向量模型"></a>5.3 词向量模型</h3><ul>
+<li>$Word2vec$ 简单扩展：$doc2vec$</li>
+</ul>
+<h5 id="针对主题"><a href="#针对主题" class="headerlink" title="针对主题"></a>针对主题</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models <span class="hljs-keyword">import</span> Word2Vec<br><span class="hljs-comment"># 输入doc2bow之前的texts</span><br>model = Word2Vec(texts, size=<span class="hljs-number">50</span>, window=<span class="hljs-number">5</span>, min_count=<span class="hljs-number">1</span>, workers=-<span class="hljs-number">1</span>)<br><span class="hljs-comment"># workers=-1 ， 最大-1</span><br>model.train(sentences = texts,total_words = <span class="hljs-built_in">len</span>(dic),epochs = <span class="hljs-number">50</span>)<br>model.wv.most_similar(<span class="hljs-string">&quot;中国&quot;</span>)<br><br><span class="hljs-comment"># 保存和读取</span><br>model.save(root_dir+<span class="hljs-string">&#x27;sub.w2v&#x27;</span>)<br>model = Word2Vec.load(root_dir+<span class="hljs-string">&#x27;sub.w2v&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h5 id="针对文章"><a href="#针对文章" class="headerlink" title="针对文章"></a>针对文章</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim.models.doc2vec <span class="hljs-keyword">import</span> Doc2Vec, TaggedDocument<br>documents = [TaggedDocument(doc, [i]) <span class="hljs-keyword">for</span> i, doc <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(texts)]<br>model = Doc2Vec(documents, size=<span class="hljs-number">50</span>)<br>model.train(sentences = documents,total_examples=<span class="hljs-built_in">len</span>(documents),epochs = <span class="hljs-number">40</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="6-机器学习"><a href="#6-机器学习" class="headerlink" title="6. 机器学习"></a>6. 机器学习</h2><ul>
+<li>公式推导可参考B站另一视频<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aE411o7qd">【机器学习】【白板推导系列】【合集 1～23】</a></li>
+<li>理论知识可阅读 林轩田机器学习基石 (本视频采用课件来源)+西瓜书+<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0800a33fd86e">ESL</a></li>
+</ul>
+<h3 id="6-1-一些概念"><a href="#6-1-一些概念" class="headerlink" title="6.1 一些概念"></a>6.1 一些概念</h3><h4 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h4><ul>
+<li>有监督 : 有标签的数据，人能指出的</li>
+<li>无监督 : 无标签的数据，理论上无法给出完美答案</li>
+<li>半监督 : 部分数据带标签, 如部分带标签的情绪识别</li>
+<li>强化学习 : 含隐藏标签</li>
+</ul>
+<h4 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h4><ul>
+<li>$Batch$ 批处理 : 一次性训练所有数据</li>
+<li>$Online$ : 一批一批使用数据</li>
+<li>$Mini-batch$ : 以上两者结合</li>
+<li>$Active Learning$ : 机器自己选择需要的数据</li>
+</ul>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
+<li>特征数据 : 有具体的含义</li>
+<li>原始数据 : 图像声音本身</li>
+<li>抽象数据 : 无意义的$UID$，主成分，其他中间结果</li>
+</ul>
+<h4 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h4><p>由于不可能真正地存在完整的数据，输入数据$E_{in}(simple)$和真正完美的数据$E_{out}$ 必然存在误差；由于大数定理，及霍夫丁不等式 $(Hoeffding’s  inequality)$ 得</p>
+<script type="math/tex; mode=display">
+\mathbb{P}[|E_{in}(h)-E_{out}(h)|>\epsilon]\leq 2exp(-2\epsilon^2N)</script><p>如果$|E_{in}(h)-E_{out}(h)|$ 过大，则为坏数据</p>
+<p>当存在$Breakpoint$, 则增长函数存在上限, 得$Vapnik-Chervonenkis (VC) bound$</p>
+<script type="math/tex; mode=display">
+\mathbb{P}[\exist h\in \mathcal{H} s.t.|E_{in}(h)-E_{out}(h)|>\epsilon]\leq 4(2N)^{k-1}exp(-\frac{1}{8}\epsilon^2N)</script><p>因此，机器学习不仅要使$E_{in}$的误差尽量小，还需要使$E_{in}(h) \approx E_{out}(h)$ ；对此需要求得 $dvc (OLS，线性中为变量+1)$ , $N = 10 dvc$</p>
+<h3 id="6-2-线性回归"><a href="#6-2-线性回归" class="headerlink" title="6.2 线性回归"></a>6.2 线性回归</h3><ul>
+<li>$Lasso$ 和 岭回归 此类带正则的通常不是无偏， 而计量经济中多为对系数的解释，通常不用此方法</li>
+<li>超参数（$hyperparameter$）</li>
+</ul>
+<h3 id="6-3-SVM-Support-Vector-Machine"><a href="#6-3-SVM-Support-Vector-Machine" class="headerlink" title="6.3 SVM (Support Vector Machine)"></a>6.3 SVM (Support Vector Machine)</h3><ul>
+<li><p>$fewer  dichotomies \to smaller  ‘VC  dim’$</p>
+</li>
+<li><p>$SVM$ 虽然不是无偏的，但 $B$ 变量可大于 $N$ 样本量</p>
+</li>
+<li><p>$CV(Cross-Validation)$ 交叉验证，可用 $K-Fold$ $(sklearn包)$</p>
+</li>
+<li>反向扩充(基础)<ul>
+<li>$PLA(perceptron  learning  algorithm)$ -&gt; $Pocket$算法 (前者改进)</li>
+<li>$KNN(k-NearestNeighbor)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-4-决策树-Decision-Tree"><a href="#6-4-决策树-Decision-Tree" class="headerlink" title="6.4 决策树 (Decision Tree)"></a>6.4 决策树 (Decision Tree)</h3><h4 id="节点选择-切分策略"><a href="#节点选择-切分策略" class="headerlink" title="节点选择/切分策略"></a>节点选择/切分策略</h4><ul>
+<li>$ID3$算法，选择信息熵增大的最优算法</li>
+<li>$C4.5$算法，选择信息增益比最大的切分点，限制了$ID3$多切带来的过拟合</li>
+<li>$CART$算法，每一步切分使得数据正确率提升最多</li>
+</ul>
+<h4 id="停止切分"><a href="#停止切分" class="headerlink" title="停止切分"></a>停止切分</h4><ul>
+<li>剩余数据$y$相同</li>
+<li>剩余数据$x$相同</li>
+<li>设定最小收益值</li>
+</ul>
+<h4 id="决策树的正则化"><a href="#决策树的正则化" class="headerlink" title="决策树的正则化"></a>决策树的正则化</h4><ul>
+<li>剪枝，减去几个带来收益最小的分叉节点</li>
+<li>$Early Stopping$，提升停止的最小值阈值</li>
+<li>限制树高</li>
+</ul>
+<h4 id="实操建议"><a href="#实操建议" class="headerlink" title="实操建议"></a>实操建议</h4><ul>
+<li>特征数量大容易过拟合</li>
+<li>应预先进行维度压缩 $(PCA,ICA)$</li>
+<li>对不同树的构建方法应有了解</li>
+<li>提前将样本调平<ul>
+<li>把劣势数据复制多份</li>
+</ul>
+</li>
+</ul>
+<h4 id="融合算法-Blending​"><a href="#融合算法-Blending​" class="headerlink" title="融合算法 (Blending​)"></a>融合算法 (Blending​)</h4><ul>
+<li>$t = 1,2,3…T$</li>
+<li>$D_t$ : the data at time $t$</li>
+<li>Obtain $g_t$ by $A(D)$</li>
+</ul>
+<script type="math/tex; mode=display">
+\bar{g} = \lim_{T \to \infty} G = \lim_{T \to \infty} \frac{1}{T}\sum_{t=1}^Tg_t = \varepsilon A(D)</script><h4 id="Bootstrap-Aggregation-Bagging"><a href="#Bootstrap-Aggregation-Bagging" class="headerlink" title="Bootstrap Aggregation (Bagging)"></a>Bootstrap Aggregation (Bagging)</h4><p>在$Size$为$N$的数据里面抽$N’$个数据作为第一个子样本，放回去，再抽$N’$个数据作为第二个子样本</p>
+<h4 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林 (Random Forest)"></a>随机森林 (Random Forest)</h4><script type="math/tex; mode=display">
+Random \ Forest = Bagging + Decision \ Tree</script><h4 id="Out-of-Bag"><a href="#Out-of-Bag" class="headerlink" title="Out of Bag"></a>Out of Bag</h4><ul>
+<li>当数据足够大时，一定有约等于 $\frac{1}{e}$的数据没有被抽取到</li>
+</ul>
+<script type="math/tex; mode=display">
+(1-\frac{1}{N})^N = \frac{1}{(\frac{N}{N-1})^N} = \frac{1}{(1+\frac{1}{N-1})^N}\approx \frac{1}{e}</script><ul>
+<li>样本外数据可以用于 对$G$的$Validation$<ul>
+<li>$G_N^-(x)=average(g_{没被用到的t})$</li>
+<li>$E_{oob}(G)=\frac{1}{N}\sum_{n=1}^Nerr(y_n,G_n^-(x_n))$</li>
+</ul>
+</li>
+</ul>
+<h4 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h4><ul>
+<li>变量重要性筛选 $permutation$ : 把变量打乱，$x_1 \to y_5$ ，差距越大越重要<ul>
+<li>对于$Dummy Variable$ 这种方法肯能会低估，因为打乱不充足</li>
+</ul>
+</li>
+</ul>
+<h4 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h4><ul>
+<li>计算$E_{in}$的时候，减少对做错过的$g_t$的$err$的权重<ul>
+<li>所有做错的权重只占1/2</li>
+<li>当错$=n_1$，对$=n_2$<ul>
+<li>$incorrect: u_n^{(t)}·n_2 \to u_n^{(t+1)}$</li>
+<li>$correct: u_n^{(t)}·n_1 \to u_n^{(t+1)}$</li>
+</ul>
+</li>
+<li>$\epsilon_t = \frac{\sum_{n=1}^N u_n^{(t)}[y_n \neq g_t(x_n)]}{\sum_{n=1}^N u_n^{(t)}}$，$\Diamond_t=\sqrt\frac{1-\epsilon_t}{\epsilon_t}$，$\alpha_t=ln(\Diamond_t)$<ul>
+<li>$incorrect: u_n^{(t)}·\Diamond_t \to u_n^{(t+1)}$</li>
+<li>$correct: u_n^{(t)}/\Diamond_t \to u_n^{(t+1)}$</li>
+<li>$G(x)=sign(\sum_{t=1}^T\alpha_tg_t(x))$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>决策树中，在再抽样的步骤完成$u^{(t)}\to u^{(t+1)}$的变换（复制多份）</li>
+<li>对于连续值：$GradientBoost$</li>
+</ul>
+<h3 id="6-5-编程的流程"><a href="#6-5-编程的流程" class="headerlink" title="6.5 编程的流程"></a>6.5 编程的流程</h3><ul>
+<li>数据的准备<ul>
+<li>数据的获取与存储方式</li>
+<li>数据的标签化（特征化）</li>
+<li>数据的清洗与预处理</li>
+</ul>
+</li>
+<li>方法的选择<ul>
+<li>合适的方法</li>
+<li>合适的超参数</li>
+<li>编程实现</li>
+</ul>
+</li>
+<li>工程流水线<ul>
+<li>标准流程</li>
+<li>训练、测试集切分</li>
+<li>正确的评价</li>
+</ul>
+</li>
+<li>结果呈现<ul>
+<li>表达准确</li>
+<li>易于理解</li>
+<li>飒</li>
+</ul>
+</li>
+</ul>
+<p>( 编程包 $sklearn$ )</p>
+<h2 id="7-深度学习"><a href="#7-深度学习" class="headerlink" title="7 深度学习"></a>7 深度学习</h2><h3 id="7-1-基础部分"><a href="#7-1-基础部分" class="headerlink" title="7.1 基础部分"></a>7.1 基础部分</h3><ul>
+<li>对元和层的理解<ul>
+<li>单元数表达更细致的切分</li>
+<li>多层表达更复杂的非线性组合方式</li>
+</ul>
+</li>
+<li>$Sigmoid$<ul>
+<li>代替$sign$求导</li>
+<li>$S(x)=\frac{1}{1+e^{-x}}$</li>
+<li>$S’(x)=\frac{e^{-x}}{(1+e^{-x})^2}=S(x)(1-S(x))$</li>
+</ul>
+</li>
+<li>$VC-dimension$<ul>
+<li>$V = $神经元的数量， $D = $权重的数量 （前一个元数$+1$再乘后一个元数）</li>
+</ul>
+</li>
+<li>正则化<ul>
+<li>$L2$正则， 由于$sign$中心趋近0，且为了保持可导，通常用其他方法</li>
+<li>$Early Stopping$</li>
+<li>加入白噪音</li>
+<li>$Dropout$</li>
+</ul>
+</li>
+<li>发展进程<ul>
+<li>$BP$神经网络（1986，$Hinton$）</li>
+<li>手写体识别（1989，$LeCun$）</li>
+<li>预处理 ：权重训练方法的革新（2007，$Bengio$）</li>
+<li>正式提出$CNN$（2012，$Hinton$）<ul>
+<li>图像分类，输入的是$3(RGB)\times224\times224$ (三维张量$tensor$)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-2-卷积神经网络（CNN）"><a href="#7-2-卷积神经网络（CNN）" class="headerlink" title="7.2 卷积神经网络（CNN）"></a>7.2 卷积神经网络（CNN）</h3><h4 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h4><ul>
+<li>$input$为一个矩阵</li>
+<li>同时设定一个$filter$作为特征，和$step$值作为每次平移的步长</li>
+<li>$input$最左上角切割出一个同$filter$同大小的矩阵，并与其相乘，得到$output$中的第一块</li>
+<li>按照步长平移最终得到完整的$output$</li>
+</ul>
+<p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-10.jpeg" srcset="/img/loading.gif" lazyload alt></p>
+<ul>
+<li>卷积神经网络中会取一个值$b$，$output=sign(output-b)$</li>
+<li>达到了<strong>稀疏连接</strong>与<strong>参数共享</strong>的效果</li>
+</ul>
+<h4 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h4><ul>
+<li>把数据变小，并保留最敏感的数$（Max Pooling）$</li>
+<li>对应可放大缩小的性质</li>
+</ul>
+<h4 id="扩充"><a href="#扩充" class="headerlink" title="扩充"></a>扩充</h4><ul>
+<li>根据图片的特性推断，卷积神经网络适用于拥有以下特征的某些事物<ul>
+<li>小特征决定</li>
+<li>放缩旋转存在</li>
+<li>放大缩小不改变性质</li>
+</ul>
+</li>
+<li>不够数据的时候可以补0​</li>
+</ul>
+<h3 id="7-3-循环神经网络（RNN）"><a href="#7-3-循环神经网络（RNN）" class="headerlink" title="7.3 循环神经网络（RNN）"></a>7.3 循环神经网络（RNN）</h3><ul>
+<li>把握时序特征（$Recurrent NN$）<ul>
+<li>隐藏层有一个循环</li>
+<li>历史输出端作为隐藏层的元素</li>
+<li>双向$RNN$</li>
+</ul>
+</li>
+<li>当权重$w$跨过1的临界值时，如果迭代次数大，会有一个断崖式的变化，解决方法：<ul>
+<li>$Clipping$<ul>
+<li>$(2013,Pascanu)$</li>
+</ul>
+</li>
+<li>$Long  Short-Term  Memory$<ul>
+<li>$(1997,Sepp  Hochreiter \&amp; Jurgen  Schmidhuber)$</li>
+<li>建立遗忘门</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-4-聚类算法"><a href="#7-4-聚类算法" class="headerlink" title="7.4 聚类算法"></a>7.4 聚类算法</h3><h4 id="算法总览"><a href="#算法总览" class="headerlink" title="算法总览"></a>算法总览</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-11.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Method name</th>
+<th>Parameters</th>
+<th>Scalability</th>
+<th>Usecase</th>
+<th>Geometry (metric used)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#k-means">K-Means</a></td>
+<td>number of clusters</td>
+<td>Very large <code>n_samples</code>, medium <code>n_clusters</code> with <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#mini-batch-kmeans">MiniBatch code</a></td>
+<td>General-purpose, even cluster size, flat geometry, not too many clusters</td>
+<td>Distances between points</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#affinity-propagation">Affinity propagation</a></td>
+<td>damping, sample preference</td>
+<td>Not scalable with n_samples</td>
+<td>Many clusters, uneven cluster size, non-flat geometry</td>
+<td>Graph distance (e.g. nearest-neighbor graph)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#mean-shift">Mean-shift</a></td>
+<td>bandwidth</td>
+<td>Not scalable with <code>n_samples</code></td>
+<td>Many clusters, uneven cluster size, non-flat geometry</td>
+<td>Distances between points</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#spectral-clustering">Spectral clustering</a></td>
+<td>number of clusters</td>
+<td>Medium <code>n_samples</code>, small <code>n_clusters</code></td>
+<td>Few clusters, even cluster size, non-flat geometry</td>
+<td>Graph distance (e.g. nearest-neighbor graph)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering">Ward hierarchical clustering</a></td>
+<td>number of clusters or distance threshold</td>
+<td>Large <code>n_samples</code> and <code>n_clusters</code></td>
+<td>Many clusters, possibly connectivity constraints</td>
+<td>Distances between points</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering">Agglomerative clustering</a></td>
+<td>number of clusters or distance threshold, linkage type, distance</td>
+<td>Large <code>n_samples</code> and <code>n_clusters</code></td>
+<td>Many clusters, possibly connectivity constraints, non Euclidean distances</td>
+<td>Any pairwise distance</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#dbscan">DBSCAN</a></td>
+<td>neighborhood size</td>
+<td>Very large <code>n_samples</code>, medium <code>n_clusters</code></td>
+<td>Non-flat geometry, uneven cluster sizes</td>
+<td>Distances between nearest points</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#optics">OPTICS</a></td>
+<td>minimum cluster membership</td>
+<td>Very large <code>n_samples</code>, large <code>n_clusters</code></td>
+<td>Non-flat geometry, uneven cluster sizes, variable cluster density</td>
+<td>Distances between points</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/mixture.html#mixture">Gaussian mixtures</a></td>
+<td>many</td>
+<td>Not scalable</td>
+<td>Flat geometry, good for density estimation</td>
+<td>Mahalanobis distances to  centers</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#birch">Birch</a></td>
+<td>branching factor, threshold, optional global clusterer.</td>
+<td>Large <code>n_clusters</code> and <code>n_samples</code></td>
+<td>Large dataset, outlier removal, data reduction.</td>
+<td>Euclidean distance between points</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="7-5-PCA"><a href="#7-5-PCA" class="headerlink" title="7.5 PCA"></a>7.5 PCA</h2><p>将数据投射为波动最大的$n$维</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>缓解维度灾难，提高可视度</li>
+<li>降噪，提高模型稳定性</li>
+<li>特征独立</li>
+<li>可以对数据进行放缩（各向同性）</li>
+</ul>
+<h4 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h4><ul>
+<li>$PCA$的根据源于训练集，可能会过拟合</li>
+<li>如果在训练数据进行了放缩，那么测试集要进行同参数的$mean-shift$和$variance$</li>
+<li>不要先放缩再分割样本</li>
+</ul>
+<h4 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto-Encoder"></a>Auto-Encoder</h4><ul>
+<li>输入输出长度相等</li>
+<li>扩展：$Denoising  AutoEncoder$</li>
+</ul>
+<h3 id="7-6-生成模型"><a href="#7-6-生成模型" class="headerlink" title="7.6 生成模型"></a>7.6 生成模型</h3><ul>
+<li>$GAN   Generative  Adversarial  Network$<ul>
+<li>人脸生成</li>
+<li>图片上色</li>
+<li>照片补充</li>
+<li>根据文字生成图片</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-特征工程"><a href="#8-特征工程" class="headerlink" title="8 特征工程"></a>8 特征工程</h2><p>从数据到变量</p>
+<h3 id="8-1-结构化与缺失值"><a href="#8-1-结构化与缺失值" class="headerlink" title="8.1 结构化与缺失值"></a>8.1 结构化与缺失值</h3><h4 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h4><ul>
+<li>先思考缺失本身是不是就是一种信息<ul>
+<li>确保缺失是纯随机的</li>
+<li>缺失是在哪个环境造成的<ul>
+<li>原始收集环节/采集环节/清洗环节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>是否可以承担删变量带来的风险<ul>
+<li>主要变量与控制变量，应该补上</li>
+<li>其他缺失如果超过阈值（一般为60%），应该删去</li>
+</ul>
+</li>
+<li>处理方法<ul>
+<li>$Sklearn 6.4$ 专门用于缺失值处理</li>
+<li>单变量填充（固定值，统计值）</li>
+<li>多变量填充，近邻填充</li>
+<li>先分割再填充</li>
+</ul>
+</li>
+</ul>
+<h4 id="结构化"><a href="#结构化" class="headerlink" title="结构化"></a>结构化</h4><ul>
+<li>数据<ul>
+<li>分类信息：性别，学历</li>
+<li>文本信息：$one-hot$</li>
+</ul>
+</li>
+<li>$Encoding$<ul>
+<li>$Ordinary  encoder$<ul>
+<li>0,1,2;</li>
+</ul>
+</li>
+<li>$one-hot  encoder$<ul>
+<li>类似计量中的方法：$FixedEffect$</li>
+<li>0,1 ; 0,1 ; 0,1 ;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>$Embedding$ ： 嵌入<ul>
+<li>$Doc2vec$：每一段（篇）文章一个向量</li>
+<li>$Glove$：考虑上下文窗口之外的其他文本</li>
+<li>$Elmo$：考虑不同文本在不同环境下的变义</li>
+<li>图片嵌入<ul>
+<li>$VAE(variation  auto-encoder)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-2-改变分布"><a href="#8-2-改变分布" class="headerlink" title="8.2 改变分布"></a>8.2 改变分布</h3><p>正则项和系数有关系，而系数又和数据有关系，所以要先做标准化</p>
+<p>树方法的正则化不是来自于对系数的惩罚，可省略</p>
+<h4 id="前奏"><a href="#前奏" class="headerlink" title="前奏"></a>前奏</h4><ul>
+<li><p>清洗异常值</p>
+</li>
+<li><p>变形，删除极端值（$winsor$)</p>
+</li>
+</ul>
+<h4 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h4><ul>
+<li><p>（变量-均值）/标准差</p>
+</li>
+<li><p>测试集的标准化按训练集来</p>
+</li>
+<li><p>$preprocessing.StandardScaler()+scaler.transform()$</p>
+</li>
+<li><p>其他类似处理</p>
+<ul>
+<li>$MinMaxScaler$</li>
+<li>$MaxAbsScaler$</li>
+</ul>
+</li>
+</ul>
+<h4 id="非线性变化：不惜一切变正态分布"><a href="#非线性变化：不惜一切变正态分布" class="headerlink" title="非线性变化：不惜一切变正态分布"></a>非线性变化：不惜一切变正态分布</h4><ul>
+<li><p>方法</p>
+<ul>
+<li>$Box-Cox$</li>
+<li>$Yeo-Johnson$</li>
+<li>$Quantile  transform$</li>
+</ul>
+</li>
+<li><p>可以 $Lognormal，Ohi-squared，Weibull$</p>
+</li>
+<li><p>不建议 $Gaussian，Uniform，Bimodal$，会损失信息</p>
+</li>
+<li><p>改进了线性模型的预测能力</p>
+<ul>
+<li>看$R^2$和$MAE$</li>
+</ul>
+</li>
+</ul>
+<h4 id="连续值变成分段值"><a href="#连续值变成分段值" class="headerlink" title="连续值变成分段值"></a>连续值变成分段值</h4><ul>
+<li><p>增强稳健性：对异常值和非线性</p>
+</li>
+<li><p>试用于分类算法：信用风险模型，征信模型</p>
+</li>
+<li><p>$preprocessing.KBinsDiscretizer()$</p>
+</li>
+</ul>
+<h3 id="8-3-变量选择"><a href="#8-3-变量选择" class="headerlink" title="8.3 变量选择"></a>8.3 变量选择</h3><p>$sklearn.feature_selection$</p>
+<h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h4><ul>
+<li>方法制约</li>
+<li>解释制约</li>
+<li>预测制约</li>
+<li>实践制约</li>
+</ul>
+<h4 id="单变量选择"><a href="#单变量选择" class="headerlink" title="单变量选择"></a>单变量选择</h4><p>单纯地从一个变量数据的分布进行筛选：$variation$大</p>
+<ul>
+<li>$VarianceThreshold$：$variance$大于某值的</li>
+<li>$SelectKBest$：筛选$K$个$variance$最高</li>
+<li>$SelectPercentile$：筛选高于某个阈值的<ul>
+<li>用于回归方法的分布：$f_regression,mutual_info_regression$</li>
+<li>用于分类方法的分布：$chi2,f_classif,mutual_info_classif$</li>
+</ul>
+</li>
+</ul>
+<h4 id="多变量选择"><a href="#多变量选择" class="headerlink" title="多变量选择"></a>多变量选择</h4><p>多次共线性的影响</p>
+<ul>
+<li>方差膨胀系数（$variance inflation factor$）<ul>
+<li>$VIF_i = \frac{1}{1-R_i^2}$</li>
+<li>当$VIF&gt;10(or 5)$时，可以删去</li>
+<li>当变量比较重要，删去与它相关的变量</li>
+</ul>
+</li>
+</ul>
+<h4 id="算法选择"><a href="#算法选择" class="headerlink" title="算法选择"></a>算法选择</h4><p>最稳健的方法</p>
+<ul>
+<li>$SelectFromModel$ 统一接口</li>
+<li>后台算法<ul>
+<li>$L1-based$</li>
+<li>$Support vector based$</li>
+<li>$Tree based$</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-4-实践：金融风控"><a href="#8-4-实践：金融风控" class="headerlink" title="8.4 实践：金融风控"></a>8.4 实践：金融风控</h3><ul>
+<li>方法基础：评分卡模型，逻辑回归</li>
+<li>变量处理：离散化</li>
+<li>变量筛选：单变量，多变量</li>
+<li>重要方法：$WOE$与$IV$<ul>
+<li>$WOE_i = ln(\frac{py_i}{pn_i}) = ln(\frac{y_i/y_T}{n_i/n_T}) = ln(\frac{y_i/n_i}{y_T/n_T})$</li>
+<li>$IV_i = (py_i-pn_i)*WOE_i$</li>
+<li>$i = 1$ 是男生</li>
+<li>$py_1 ： $男生违约占比</li>
+<li>$pn_1 ： $男生不违约占比</li>
+<li>$y_1 : $男生违约数量</li>
+<li>$n_1 : $男生不违约数量</li>
+<li>$y_T : $总体违约数量</li>
+<li>$n_T : $总体不违约数量</li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>IV范围</th>
+<th>预测效果</th>
+<th>英文描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;0.02</td>
+<td>几乎没有</td>
+<td>Useless for prediction</td>
+</tr>
+<tr>
+<td>0.02~0.1</td>
+<td>弱</td>
+<td>Weak predictor</td>
+</tr>
+<tr>
+<td>0.1~0.3</td>
+<td>中等</td>
+<td>Medium predictor</td>
+</tr>
+<tr>
+<td>0.3~0.5</td>
+<td>强</td>
+<td>Strong predictor</td>
+</tr>
+<tr>
+<td>&gt;0.5</td>
+<td>难以置信</td>
+<td>Suspicious or too good to be true</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="9-训练框架"><a href="#9-训练框架" class="headerlink" title="9 训练框架"></a>9 训练框架</h2><h3 id="9-1-度量指标：二分类问题"><a href="#9-1-度量指标：二分类问题" class="headerlink" title="9.1 度量指标：二分类问题"></a>9.1 度量指标：二分类问题</h3><h4 id="一个标准"><a href="#一个标准" class="headerlink" title="一个标准"></a>一个标准</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-12.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="四个定义（数据-模型）"><a href="#四个定义（数据-模型）" class="headerlink" title="四个定义（数据-模型）"></a>四个定义（数据-模型）</h5><ul>
+<li>$True-positives$：数据+，模型+</li>
+<li>$False-positives$：数据-，模型+</li>
+<li>$False-negatives$：数据+，模型-</li>
+<li>$True-negatives$：数据-，模型-</li>
+</ul>
+<h5 id="两个公式"><a href="#两个公式" class="headerlink" title="两个公式"></a>两个公式</h5><ul>
+<li>$Precision = True-positives$/ 模型+</li>
+<li>$Recall = True-positives$/ 数据+</li>
+</ul>
+<h5 id="一个指标：F1-score"><a href="#一个指标：F1-score" class="headerlink" title="一个指标：F1_score"></a>一个指标：F1_score</h5><script type="math/tex; mode=display">
+F_1 = (\frac{2}{recall^{-1}+precision^{-1}})=2·\frac{precision·recall}{precision+recall}</script><h4 id="另一个标准：ROC曲线与ROC面积（AUROC）"><a href="#另一个标准：ROC曲线与ROC面积（AUROC）" class="headerlink" title="另一个标准：ROC曲线与ROC面积（AUROC）"></a>另一个标准：ROC曲线与ROC面积（AUROC）</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-13.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="两个指标"><a href="#两个指标" class="headerlink" title="两个指标"></a>两个指标</h5><ul>
+<li>真正例率（$TPR$）：召回的同义词 ，$sensitivity$<ul>
+<li>$TPR = \frac{TP}{TP+FN}$</li>
+</ul>
+</li>
+<li>假正例率（$FPR$）$specifity$<ul>
+<li>$FPR = \frac{FP}{FP+TN}$</li>
+</ul>
+</li>
+</ul>
+<h4 id="扩展：多分类问题"><a href="#扩展：多分类问题" class="headerlink" title="扩展：多分类问题"></a>扩展：多分类问题</h4><ul>
+<li>三个指标：F1_micro，F1_macro，F1_weighted</li>
+</ul>
+<h3 id="9-2-度量指标：回归"><a href="#9-2-度量指标：回归" class="headerlink" title="9.2 度量指标：回归"></a>9.2 度量指标：回归</h3><ul>
+<li>$MAE = \frac{1}{N}\sum_{t=1}^N|y_i-\hat{y}|$</li>
+<li>$MSE = \frac{1}{N}\sum_{t=1}^N(y_i-\hat{y})^2$</li>
+<li>$RMSE = \sqrt{MSE}$</li>
+<li>$R^2 = 1-\frac{\sum(y_i-\hat{y})^2}{\sum(y_i-\bar{y})^2} = 1-\frac{MSE(\hat{y},y)}{Var(y)}$</li>
+</ul>
+<h3 id="9-3-超参搜寻"><a href="#9-3-超参搜寻" class="headerlink" title="9.3 超参搜寻"></a>9.3 超参搜寻</h3><h4 id="搜索方法"><a href="#搜索方法" class="headerlink" title="搜索方法"></a>搜索方法</h4><ul>
+<li>$Grid Layout$</li>
+<li>$Random Layout$</li>
+<li>步骤<ul>
+<li>阅读论文找范围</li>
+<li>不同尺度的$Grid Layout$</li>
+<li>$Random Layout$</li>
+</ul>
+</li>
+<li>暴力手段之外<ul>
+<li>$Model specific cross-validation$</li>
+<li>$AIC，BIC$</li>
+<li>$Out of Bag Estimates$</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-4-交叉验证"><a href="#9-4-交叉验证" class="headerlink" title="9.4 交叉验证"></a>9.4 交叉验证</h3><p>$sklearn.model_selection$</p>
+<h4 id="数据切割"><a href="#数据切割" class="headerlink" title="数据切割"></a>数据切割</h4><ul>
+<li><p>训练数据（7）验证数据（2）测验数据（1）</p>
+</li>
+<li><p>时间上的泄漏：注意时序数据中途没有被其他情况影响</p>
+</li>
+<li>数据分组上的泄漏：一家人不能分开处理</li>
+<li>统计特征上的泄漏：先分割后处理</li>
+</ul>
+<h4 id="怎么划分"><a href="#怎么划分" class="headerlink" title="怎么划分"></a>怎么划分</h4><p><img src="/2021/04/14/%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%B7%A5%E5%85%B7%E7%AE%B1/pic1-14.jpeg" srcset="/img/loading.gif" lazyload alt></p>
+<ul>
+<li>$KFold$</li>
+<li>随机抽取 = $ShuffleSplit$</li>
+<li>抽取时要保证类别间的平衡$= StratifiedShuffleSplit$</li>
+<li>当有小组时 $= GroupKFold$</li>
+<li>当有时间存在，训练集必须早于验证集 = $TimeSeriesSplit$</li>
+</ul>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><ol>
+<li><p>问题提出</p>
+</li>
+<li><p>文献搜集</p>
+<ul>
+<li>做过吗</li>
+<li>怎么做</li>
+<li>与课题有何差别</li>
+<li>能改什么方法</li>
+</ul>
+</li>
+<li>数据搜集<ul>
+<li>典型数据库</li>
+<li>特异数据源</li>
+<li>数据更新管理</li>
+<li>成本控制</li>
+</ul>
+</li>
+<li>特征工程<ul>
+<li>抽取哪些变量</li>
+<li>生成那些指标</li>
+<li>是否要改特征</li>
+<li>是否能改特征</li>
+</ul>
+</li>
+<li>模型选择<ul>
+<li>符合假设</li>
+<li>能力优化</li>
+<li>容易解释</li>
+<li>开销合理</li>
+</ul>
+</li>
+<li>模型优化<ul>
+<li>变量</li>
+<li>结构</li>
+<li>超参数</li>
+<li>训练技巧</li>
+</ul>
+</li>
+<li>结构呈现<ul>
+<li>数据可视化</li>
+<li>关键词提炼</li>
+<li>模型更新策略</li>
+<li>边界与预警</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DE411y7nz">金融科技工具箱——面向经管金融同学的Python、爬虫、机器学习课</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65511873">文本挖掘从小白到精通（二）—-语料库和词向量空间</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cx411i7op?p=1">林轩田机器学习基石(国语)</a></li>
+<li><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/clustering.html#clustering">scikit-learn</a></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Web-Crawler/">#Web Crawler</a>
+      
+        <a href="/tags/Natural-Language-Processing/">#Natural Language Processing</a>
+      
+        <a href="/tags/Machine-learning/">#Machine learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】金融科技工具箱</div>
+      <div>http://achlier.github.io/2021/04/14/金融科技工具箱/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 14, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/22/Financial_Markets_Securities_and_Derivatives/" title="【课程】Financial Markets Securities and Derivatives">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【课程】Financial Markets Securities and Derivatives</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/17/%E7%95%99%E8%A8%80%E6%9D%BF%E7%BD%AE%E9%A1%B6/" title="【留言板置顶】">
+                        <span class="hidden-mobile">【留言板置顶】</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

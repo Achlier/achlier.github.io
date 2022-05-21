@@ -1,0 +1,1259 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于格拉斯哥ECON5020的笔记；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】Mathematical Finance">
+<meta property="og:url" content="http://achlier.github.io/2021/04/25/Mathematical_Finance/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于格拉斯哥ECON5020的笔记；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-24T16:15:38.000Z">
+<meta property="article:modified_time" content="2022-05-11T10:26:41.867Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Financial Mathematics">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【课程】Mathematical Finance - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】Mathematical Finance"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-25 00:15" pubdate>
+          April 25, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          167 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】Mathematical Finance</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于格拉斯哥ECON5020的笔记；</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h2><h3 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h3><p>The general aims of this course are to:</p>
+<ul>
+<li>provide an overall introduction to the type of mathematics used extensively in finance;</li>
+<li>provide a necessary foundation for further study of modern finance in the second semester courses.</li>
+</ul>
+<h3 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h3><p>By the end of this course students will be able to:</p>
+<ol>
+<li>Analyse <strong>stochastic processes</strong> closely related to finance and apply stochastic calculus</li>
+<li>Discuss <strong>how well</strong> various stochastic processes function as models in finance and explain the <strong>limitations of</strong> these models</li>
+<li>Deploy techniques of mathematical finance within a <strong>problem solving</strong> context</li>
+<li>Demonstrate skills based on <strong>data interpretation and numeracy</strong></li>
+<li>Demonstrate an ability to construct a focused argument based on <strong>coherent general principles</strong></li>
+<li><strong>Explain</strong> financial issues, problems and solutions.</li>
+</ol>
+<h2 id="Unit-1：Introduction"><a href="#Unit-1：Introduction" class="headerlink" title="Unit 1：Introduction"></a>Unit 1：Introduction</h2><p><strong>Two types of Financial markets:</strong></p>
+<ul>
+<li><p>Exchanges (stock exchange, options exchange, futures exchange, etc.)</p>
+</li>
+<li><p>Over-the-counter (OTC) markets.</p>
+</li>
+</ul>
+<p><strong>Exchanges:</strong> </p>
+<ul>
+<li><p>Equity markets: stocks and shares.</p>
+</li>
+<li><p>Bond market: zero-coupon bonds (ZCBs), government bonds and corporate bonds.</p>
+</li>
+<li><p>Futures market: futures contracts.</p>
+</li>
+<li><p>Foreign exchange (FX) market: foreign currencies, options on foreign currencies.</p>
+</li>
+<li><p>Options market: equity options and interest rate options.</p>
+</li>
+<li><p>Commodity market: oil and metals futures.</p>
+</li>
+</ul>
+<p><strong>OTC Markets:</strong> </p>
+<ul>
+<li><p>Interest rate market (mostly OTC): caps, áoors, swaps and swaptions.</p>
+</li>
+<li><p>Exotic options market: barrier options, lookback options, compound options.</p>
+</li>
+<li><p>Credit market (mostly OTC): credit derivatives such as CDSs and CDOs.</p>
+</li>
+</ul>
+<p><strong>Bear and Bull Markets:</strong> </p>
+<ul>
+<li>In over-supply or under-demand, security prices will generally fall. This is referred to as the bear market.</li>
+<li>In under-supply or over-demand, security prices will generally rise. This is called the bull market.</li>
+<li>Prices that satisfy supply and demand are called to be in equilibrium (at least, in the academic literature).</li>
+</ul>
+<h4 id="Perfect-Markets"><a href="#Perfect-Markets" class="headerlink" title="Perfect Markets:"></a>Perfect Markets:</h4><p><strong>Assumption 1</strong>. Markets are <strong>frictionless</strong>, i.e., no transaction costs, no taxes or other costs and there are no penalties for short selling.</p>
+<p><strong>Assumption 2</strong>. <strong>Infinitely divisible</strong> security prices. It is possible to buy or sell any (also non-integer) quantity of any security.</p>
+<p><strong>Assumption 3</strong>. All traders have <strong>access to the same information</strong>. The Efficient Market Hypothesis (EMH) holds:</p>
+<ul>
+<li>Weak-form: Current security prices reflect all past market prices and data. Technical analysis is of no benefit.</li>
+<li>Semi-strong form: Current security prices reflect all publicly available information. Fundamental analysis is of no benefit.</li>
+<li>Strong form: Current security prices reáect all available information. Inside information is of no benefit.</li>
+</ul>
+<p><strong>Assumption 4</strong>. Markets are assumed to be <strong>arbitrage-free</strong>:</p>
+<ul>
+<li><p>Arbitrage is the guarantee of certain future profit without any current investment. Much of the modern financial theory holds under the assumption that efficient financial markets should forbid such an arbitrage opportunity.</p>
+</li>
+<li><p>It follows from the no-arbitrage principle that if two financial securities have the same pattern of future cash-flows, they should have the same price today. This property is commonly known as the law of one price.</p>
+</li>
+</ul>
+<blockquote>
+<p>Standing assumptions 1. to 4. provide a framework in which we can develop mathematical models for primary securities and propose pricing methods for derivative securities.</p>
+</blockquote>
+<p><strong>European Call Option:</strong> </p>
+<script type="math/tex; mode=display">
+C_T := max(S_T-K,0) = (S_T-K)^+</script><p><strong>European Call Option:</strong>  </p>
+<script type="math/tex; mode=display">
+P_T := max(K-S_T,0) = (K-S_T,0)^+</script><p> <strong>Zero-Coupon Bond:</strong></p>
+<script type="math/tex; mode=display">
+B_t = (1+r)^t\ ,\ B(t,T) = \frac{B_t}{B_T}=(1+r)^{-(T-t)}</script><h2 id="Unit-2：Elementary-Market-Model"><a href="#Unit-2：Elementary-Market-Model" class="headerlink" title="Unit 2：Elementary Market Model"></a>Unit 2：Elementary Market Model</h2><p>Stock price movements are more complicated than indicated by the elementary market model. Hence it cannot be claimed that the elementary model gives a realistic picture of the stock price fluctuations.</p>
+<p><strong>Notation:</strong></p>
+<ul>
+<li>Initial Wealth： $x$</li>
+<li>Riskless Asset：$B$ (Bank account)</li>
+<li>Risky Asset：$S$ (Stock)</li>
+<li>Shares of the stock：$\phi$ </li>
+<li>Sample space：$\Omega = \{\omega_1,\omega_2\}$</li>
+<li>Probability measure：$\mathbb{P}(\omega_1)=p&gt;0$ and $\mathbb{P}(\omega_2)=1-p&gt;0$</li>
+<li>A deterministic interest rate：$r &gt; -1$</li>
+<li>The price of a risky asset at time $t$：$S_t$ ，$S0 &gt; 0$</li>
+<li>$u = \frac{S_1(\omega_1)}{S_0}$ and $d = \frac{S_1(\omega_2)}{S_0}$，$0&lt;d&lt;u$</li>
+<li>Model：$M = (B, S)$</li>
+</ul>
+<h4 id="Trading-Strategy-x-phi"><a href="#Trading-Strategy-x-phi" class="headerlink" title="Trading Strategy: $(x,\phi)$"></a>Trading Strategy: $(x,\phi)$</h4><script type="math/tex; mode=display">
+V_0(x,\phi):=x=(x-\phi S_0)+\phi S_0</script><script type="math/tex; mode=display">
+V_1(x,\phi)(\omega_i):=(x-\phi S_0)(1+r)+\phi S_1(\omega_i)\ ,\ i=1,2</script><h4 id="Arbitrage"><a href="#Arbitrage" class="headerlink" title="Arbitrage:"></a>Arbitrage:</h4><p>A trading strategy $(x, \phi)$ in the single-period market model is called an <strong>arbitrage opportunity</strong> if</p>
+<ol>
+<li>$x = 0$, that is, no initial investment is required.</li>
+<li>$V_1(x, \phi) \ge 0$, that is, no risk of losing money.</li>
+<li>$\mathbb{E}_{\mathbb{P}}\{V_1(x,\phi)\}&gt;0$, that is, a strictly positive expected payoff.<ol>
+<li>OR There exists an $\omega_i$ such that $V_1(x,\phi)(\omega_i)&gt;0$.</li>
+</ol>
+</li>
+</ol>
+<p><strong>Arbitrage-free:</strong> if no arbitrage opportunity exists in the model.</p>
+<ul>
+<li>The elementary market model $M = (B, S)$ is arbitrage free <strong>if and only if</strong> $d&lt;1+r&lt;u$.</li>
+</ul>
+<p><strong>Contingent claim:</strong> a trading strategy $(x, \phi)$ obtain $X=h(S_1)=V_1(x,\phi)$.</p>
+<h4 id="Replicationg-Strategy-or-a-hedge"><a href="#Replicationg-Strategy-or-a-hedge" class="headerlink" title="Replicationg Strategy (or a hedge):"></a>Replicationg Strategy (or a hedge):</h4><script type="math/tex; mode=display">
+\begin{align}
+(x-\phi S_0)(1+r)+\phi S_1(\omega_1)=h(S_1(\omega_1))\\
+(x-\phi S_0)(1+r)+\phi S_1(\omega_2)=h(S_1(\omega_2))
+\end{align}</script><p><strong>Arbitrage Price:</strong> If $(x, \phi)$ is a replicating strategy of a contingent claim then $x$ is called the arbitrage price. $x=\pi_0(X)$</p>
+<p><strong>Delta hedging formula:</strong></p>
+<script type="math/tex; mode=display">
+\phi = \frac{h(S_1(\omega_1))-h(S_1(\omega_2))}{S_1(\omega_1)-S_1(\omega_2)}=\frac{h(uS_0)-h(dS_0)}{(u-d)S_0}</script><script type="math/tex; mode=display">
+\tilde{p}:=\frac{1+r-d}{u-d}\in(0,1)\ ,\ \tilde{\mathbb{P}}(\omega_1)=\tilde{p}\ ,\ \tilde{\mathbb{P}}(\omega_2)=1-\tilde{p}</script><script type="math/tex; mode=display">
+x = \frac{1}{1+r}[\tilde{p}h(S_1(\omega_1))+(1-\tilde{p})h(S_1(\omega_2))]</script><p><strong>Market Completeness:</strong></p>
+<p>All contingent claims (that is, all derivative securities) in thethe elementary market model have replicating strategies, the market described by this model is called <strong>complete</strong>.</p>
+<p><strong>Risk-Neutral Probability Measure:</strong></p>
+<p>A probability measure $\mathbb{Q}$ on the sample space  $\Omega = \{\omega_1,\omega_2\}$ is called a <strong>risk-neutral probability measure</strong> (or an <strong>equivalent martingale measure</strong>) for the market model $M = (B, S)$ if <strong>$\mathbb{Q}$</strong> is equivalent to <strong>$\mathbb{P}$</strong> and the following equality holds</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{Q}}(\frac{S_1}{1+r})=S_0</script><ul>
+<li>The risk-neutral probability measure for the market model $M = (B, S)$ is unique and it satisfies <strong>if and only if</strong> $d &lt; 1 + r &lt; u$.</li>
+</ul>
+<p><strong>Risk-Neutral Valuation Formula:</strong></p>
+<script type="math/tex; mode=display">
+\pi_0(X) = \frac{1}{1+r}\mathbb{E}_{\tilde{\mathbb{P}}}(h(S_1))=\mathbb{E}_{\tilde{\mathbb{P}}}(\frac{X}{1+r})</script><p><strong>Put-Call Parity:</strong></p>
+<script type="math/tex; mode=display">
+C_T - P_T = S_T - B(t,T)K\ ,\ B(t,T) = (1+r)^{-(T-t)}</script><p><strong>Generalisation of the Elementary Market Model:</strong></p>
+<p>If the sample space $\Omega = \{\omega_1,\omega_2,…,\omega_k\}$ where $k&gt;3$.</p>
+<ul>
+<li><p>Some (but not all) contingent claims can be replicated (that is, are attainable). Hence the model $M = (B, S)$ is <strong>incomplete</strong>.</p>
+</li>
+<li><p>The risk-neutral probability measure $\mathbb{Q}$ for the model $M$ exists if and only if $S_1(\omega_k ) &lt; S_0(1 + r) &lt; S_1(\omega_1)$. It is <strong>not unique</strong>.</p>
+</li>
+</ul>
+<h2 id="Unit-3：Single-Period-Market-Model"><a href="#Unit-3：Single-Period-Market-Model" class="headerlink" title="Unit 3：Single Period Market Model"></a>Unit 3：Single Period Market Model</h2><p><strong>General Single-Period Market Model:</strong></p>
+<p>The main differences between the elementary and general single-period market models are:</p>
+<ul>
+<li><p>The investor is allowed to invest in <strong>several risky securities</strong> instead of only one.</p>
+</li>
+<li><p>The sample set is bigger, that is, there are <strong>more possible states</strong> of the world at time $t = 1$.</p>
+</li>
+</ul>
+<h4 id="Trading-Strategy-x-phi-1-…-phi-n"><a href="#Trading-Strategy-x-phi-1-…-phi-n" class="headerlink" title="Trading Strategy: $(x,\phi^1,…,\phi^n)$"></a>Trading Strategy: $(x,\phi^1,…,\phi^n)$</h4><p><strong>Wealth Process:</strong></p>
+<script type="math/tex; mode=display">
+V_1(x,\phi^1,...,\phi^n):=(x-\sum_{j=1}^n\phi^jS_0^j)(1+r)+\sum_{j-1}^n\phi^jS_1^j</script><p><strong>Gains Process:</strong></p>
+<script type="math/tex; mode=display">
+\Delta S_1^j = S_1^j-S_0^j</script><script type="math/tex; mode=display">
+\begin{aligned}
+G_1(x,\phi^1,...,\phi^n) : &= V_1(x,\phi^1,...,\phi^n)-V_0(x,\phi^1,...,\phi^n)\\
+&= (x-\sum_{j=1}^n\phi^jS_0^j)r + \sum_{j=1}^n \phi^j \Delta S_1^j
+\end{aligned}</script><p><strong>Discounted stock prices:</strong></p>
+<script type="math/tex; mode=display">
+\hat{S}_0^j := S_0^j = \frac{S_0^j}{B_0},\ \hat{S}_1^j := \frac{S_1^j}{1+r} = \frac{S_1^j}{B_1}</script><p><strong>Discounted wealth process:</strong></p>
+<script type="math/tex; mode=display">
+\hat{V}_0(x,\phi^1,...,\phi^n) := x</script><script type="math/tex; mode=display">
+\hat{V}_0(x,\phi^1,...,\phi^n) = x + \sum_{j=1}^n \phi^j(\hat{S}_1^j-\hat{S}_0^j)</script><p><strong>Discounted gains process:</strong></p>
+<script type="math/tex; mode=display">
+\Delta S_1^j = S_1^j-S_0^j</script><script type="math/tex; mode=display">
+\hat{G_0}(x,\phi^1,...,\phi^n)=0</script><script type="math/tex; mode=display">
+\hat{G}_1(x,\phi^1,...,\phi^n) := \sum_{j=1}^n\phi^j\Delta\hat{S}_1^j</script><h4 id="Arbitrage-1"><a href="#Arbitrage-1" class="headerlink" title="Arbitrage:"></a>Arbitrage:</h4><p>A trading strategy $(x,\phi^1,…,\phi^n)$ in a general single-period market model is called an arbitrage opportunity if</p>
+<ol>
+<li>$V_0(x,\phi^1,…,\phi^n) = 0$, </li>
+<li>$V_1(x,\phi^1,…,\phi^n)(\omega_i) \ge 0$, for $ i = 1,2…,k,$</li>
+<li>$\mathbb{E}_{\mathbb{P}}\{V_1(x,\phi^1,…,\phi^n)\}&gt;0$, <ul>
+<li>That is $\sum_{i=1}^k V_1(x,\phi^1,…,\phi^n)(\omega_i)\mathbb{P}(\omega_i)&gt;0$</li>
+<li>OR There exists an $\omega_i$ such that $V_1(x,\phi)(\omega_i)&gt;0$.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>$\hat{V}(x,\phi^1,…,\phi^n)$ can take the place of $V(x,\phi^1,…,\phi^n)$</p>
+<p>When $V_0(x,\phi^1,…,\phi^n)=0$, $\hat{G}(x,\phi^1,…,\phi^n)$ can take the place of $\hat{V}(x,\phi^1,…,\phi^n)$</p>
+</blockquote>
+<p><strong>Risk-Neutral Probability Measure:</strong></p>
+<p>A probability measure $\mathbb{Q}$ on $\Omega$ is called a <strong>risk-neutral probability measure</strong> for a general single-period market model $M$ if:</p>
+<ul>
+<li>$\mathbb{Q}(\omega_i)&gt;0$ for all $\omega_i \in \Omega$</li>
+<li>$\mathbb{E}_{\mathbb{Q}}(\Delta\hat{S}_1^j) = 0$ for $j = 1,2,…,n$<ul>
+<li>OR $\mathbb{E}_{\mathbb{Q}}(\hat{S}_1^j) = \hat{S}_0^j$</li>
+<li>OR $\mathbb{E}_{\mathbb{Q}}(S_1^j) = (1+r)S_0^j$</li>
+</ul>
+</li>
+</ul>
+<h4 id="Fundamental-Theorem-of-Asset-Pricing-FTAP"><a href="#Fundamental-Theorem-of-Asset-Pricing-FTAP" class="headerlink" title="Fundamental Theorem of Asset Pricing (FTAP)"></a>Fundamental Theorem of Asset Pricing (FTAP)</h4><p>A general single-period market model $M = (B, S^1, . . . , S^n)$ is arbitrage-free if and only if there exists a risk-neutral probability measure for $M$, that is, $\mathbb{M}\ne\empty$.</p>
+<p><a href="https://achlier.github.io/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D%E3%80%90%E7%AC%94%E8%AE%B0_1%E3%80%91/">Proof</a></p>
+<p><strong>Contingent Claim:</strong> is a random variable $X$ defined on $\Omega$ and representing a payoff at the maturity date.</p>
+<p><strong>Replication and Arbitrage Price:</strong> </p>
+<p>A trading strategy $(x,\phi^1,…,\phi^n)$ is called a <strong>replicating strategy</strong> (<strong>a hedging strategy</strong>) for a claim X when $V_1(x,\phi^1,…,\phi^n)=X$. Then the initial wealth is also denoted as $\pi_0(X)$ and it is called the <strong>arbitrage price</strong> of $X$.</p>
+<p><strong>No-Arbitrage Principle:</strong></p>
+<p>Assume that a contingent claim X can be replicated by means of a trading strategy $(x,\phi^1,…,\phi^n)$. Then the unique price of X at 0 consistent with no-arbitrage principle equals $V_0(x,\phi^1,…,\phi^n)=x$.</p>
+<h4 id="Stochastic-Volatility-Model"><a href="#Stochastic-Volatility-Model" class="headerlink" title="Stochastic Volatility Model:"></a>Stochastic Volatility Model:</h4><script type="math/tex; mode=display">
+\Omega = \{\omega_1,\omega_2,\omega_3,\omega_4\}</script><p> The volatility is defined as</p>
+<script type="math/tex; mode=display">
+v(\omega_i) = \begin{cases} h\ for\ i = 1,4,\\ l\ for\ i = 2,3. \end{cases}</script><p>We furthermore assume that $0 &lt; l &lt; h &lt; 1$. The stock price $S_1$ is given by</p>
+<script type="math/tex; mode=display">
+S_1(\omega_i) = \begin{cases} (1+v(\omega_i))S_0\ for\ i = 1,2,\\
+(1-v(\omega_i))S_0\ for\ i = 3,4. \end{cases}</script><p>It is easy to check that the model is arbitrage-free whenever $1-h&lt;1+r&lt;1+h$.</p>
+<p>We claim that for some contingent claims a replicating strategy does not exist. In that case, we say that a claim is <strong>not attainable</strong>.</p>
+<p>To justify this claim, we consider the <strong>digital call option</strong> $X$ with the payoff.</p>
+<script type="math/tex; mode=display">
+x = \begin{cases} 1\ if\ S_1>K,\\
+0\ otherwise,\end{cases}</script><p><strong>We assume</strong> that $(1 + l)S_0 &lt; K &lt; (1 + h)S_0$, and ($\Rightarrow$ lead to not attainable)</p>
+<script type="math/tex; mode=display">
+X(\omega_i)=\begin{cases} 1\ for\ i = 1,\\
+0\ otherwise.\end{cases}</script><p>Suppose that $(x, \phi)$ is a replicating strategy for $X$. Equality $V_1(x, \phi) = X$ becomes</p>
+<script type="math/tex; mode=display">
+(x-\phi S_0)\begin{pmatrix}1+r\\1+r\\1+r\\1+r \end{pmatrix}+\phi
+\begin{pmatrix}(1+h)S_0\\(1+l)S_0\\(1+h)S_0\\(1+l)S_0 \end{pmatrix}=\begin{pmatrix}1\\0\\0\\0 \end{pmatrix}</script><p>It is easy to see that the above system of equations has <strong>no solution</strong> and thus a digital call is <strong>not an attainable contingent claim</strong> within the framework of the stochastic volatility model.</p>
+<p>The heuristic explanation is that the <strong>randomness generated by the volatility cannot be replicated</strong>, we do not have anough traded assets to replicate volatility, since the volatility itself is not a traded asset in this model.</p>
+<p><strong>Attainable Contingent Claim:</strong></p>
+<p>A contingent claim $X$ is called to be attainable if there exists a replicating strategy for $X$.</p>
+<p><strong>Risk-neutral valuation formula:</strong></p>
+<p>Let $X$ be an attainable contingent claim and let $\mathbb{Q}\in\mathbb{M}$ be any risk-neutral probability measure. Then the arbitrage price of $X$ at $t  =  0$ equals</p>
+<script type="math/tex; mode=display">
+\pi_0(X)=\frac{1}{1+r}\mathbb{E}_{\mathbb{Q}}(X)</script><p>which shows that risk-neutral probability measures can be used to price attainable contingent claims.</p>
+<h4 id="Pricing-Stochastic-Volatility-Model"><a href="#Pricing-Stochastic-Volatility-Model" class="headerlink" title="Pricing Stochastic Volatility Model:"></a>Pricing Stochastic Volatility Model:</h4><p>The increments of the discounted stock price $\hat{S}$ are represented in the following</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$\omega_1$</th>
+<th>$\omega_2$</th>
+<th>$\omega_3$</th>
+<th>$\omega_4$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\Delta\hat{S}_1$</td>
+<td>$hS_0$</td>
+<td>$lS_0$</td>
+<td>$-lS_0$</td>
+<td>$-hS_0$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recall that a vector $(q1, q2, q3, q4)^{\top}$ must satisfy $\sum_{i=1}^4q_i=1$ holds and $q_i &gt; 0$ for $i = 1, 2, 3, 4$.</p>
+<p>The class $\mathbb{M}$ of all risk-neutral probability measures in our stochastic volatility model is therefore given by</p>
+<script type="math/tex; mode=display">
+\mathbb{M} = \begin{Bmatrix}\begin{pmatrix}q_1\\q_2\\q_3\\q_4\end{pmatrix}\vline \begin{matrix}q_1>0,q_2>0,q_3>0,\\q_1+q_2+q_3<1,\\l(q_2-q_3)=h(1-(2q_1+q_2+q_3))\end{matrix}\end{Bmatrix}</script><p>Indeed, it suffices to take $q_1\in(0,\frac{1}{2})$ and to set</p>
+<script type="math/tex; mode=display">
+q_4=q_1,q_2=q_3=\frac{1}{2}-q_1</script><script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{Q}}(X)=q_1·1+q_2·0+q_3·0+q_4·0=q_1</script><p><strong>Valuation of Non-Attainable Claims:</strong> still using the risk-neutral probability measure.</p>
+<p><strong>Complete and Incomplete Markets:</strong></p>
+<p>A financial market, described by a model, is called <strong>complete</strong> if for any contingent claim $X$ there <strong>exists a replicating strategy</strong> $(x, \phi) \in \mathbb{R}^{n+1}$ . A market is incomplete when there exists a claim $X$ for which a replicating strategy does not exist.</p>
+<p>$M$ is complete if and <strong>only if</strong> the $k\times(n+1)$ matrix A</p>
+<script type="math/tex; mode=display">
+A=\begin{pmatrix}1+r&S_1^1(\omega_1)&···&S_1^n(\omega_1)\\
+1+r&S_1^1(\omega_2)&···&S_1^n(\omega_3)\\
+···&···&···&···\\1+r&S_1^1(\omega_k)&···&S_1^n(\omega_k)\end{pmatrix}=(A_0,A_1,···,A_n)</script><p>has a full row rank, that is, $rank(A) = k$. </p>
+<h2 id="Unit-4：Modelling-Uncertainty"><a href="#Unit-4：Modelling-Uncertainty" class="headerlink" title="Unit 4：Modelling Uncertainty"></a>Unit 4：Modelling Uncertainty</h2><h4 id="sigma-Field"><a href="#sigma-Field" class="headerlink" title="$\sigma$-Field:"></a>$\sigma$-Field:</h4><p>can be used to describe the amount of information available at a given moment.</p>
+<ul>
+<li>A collection $\mathcal{F}$ of subsets of $\Omega$ is called a $\sigma$<strong>-field</strong> (or a $\sigma$<strong>-algebra</strong>)</li>
+<li><p>Most of the literature uses $\sigma$<strong>-algebra</strong> than​ $\sigma$<strong>-field</strong>.</p>
+</li>
+<li><p>Any set $A \in \mathcal{F}$ is interpreted as an observed <strong>event</strong>.</p>
+</li>
+<li>Let $\mathbb{N} = \{1, 2, . . .\}$  be the set of all natural numbers.</li>
+</ul>
+<p><strong>Probability Measure:</strong> A map $\mathbb{P}:\mathcal{F} \to [0,1]$ is called a <strong>probability measure</strong> if</p>
+<ul>
+<li>$\mathbb{P}(\Omega)=1$</li>
+<li>For any sequence $A_i, i \in \mathbb{N}$ of pairwise disjoint events we have</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{P}(\bigcup_{i\in\mathbb{N}}A_i)=\sum_{i\in\mathbb{N}}\mathbb{P}(A_i)</script><ul>
+<li>The triplet $(\Omega, \mathcal{F}, \mathbb{P})$ is called a <strong>probability space</strong>.</li>
+</ul>
+<p><strong>Partition:</strong> By a partition of $\Omega$, we mean any collection $P = (A_i)_{i \in l}$of non-empty subsets of $\Omega$. </p>
+<p><strong>F-Measurability:</strong> A map $X : \Omega \to \mathbb{R}$ is said to be <strong>F-measurable</strong> (measurable with respect to algebra F) if the function $\omega \to X (\omega)$ is constant on any subset in the partition corresponding to $\mathcal{F}$. Equivalently, for every real number $x$ the subset $\{\omega\in\Omega:X(\omega)=x\}$ is an element of algebra $\mathcal{F}$. If $X$ is $\mathcal{F}$-measurable then $X$ is called a random variable on $(\Omega,\mathcal{F})$.</p>
+<p><strong>Filtration:</strong> A family $(\mathcal{F}_t)_{0\leq t\leq T}$ of $\sigma$-fields on $\Omega$ is called a <strong>filtration</strong> if $\mathcal{F}_s \subset \mathcal{F}_t$ whenever $s \leq t$. For brevity, we denote $\mathbb{F}=(\mathcal{F}_t)_{0\leq t\leq T}$.</p>
+<p><strong>Stochastic Process:</strong> A stochastic process is a real-valued function $S_n (t, \omega) : \{0, 1, …,T\} \times \Omega \to \mathbb{R}$. For each fixed $\omega \to \Omega$ the function $t \to S_n (t, \omega)$ is called <strong>sample path</strong>. For each fixed $t$ the function $\omega \to S_n (t, \omega)$ is a random variable.</p>
+<p><strong>Conditional Expectation:</strong></p>
+<script type="math/tex; mode=display">
+\mathbb{E}(X|A)=\sum_xx\mathbb{P}(X=x|A)</script><ul>
+<li>Assume that $\mathcal{G}$ is a $\sigma$-field which is contained in $\mathcal{F}$.</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(X|\mathcal{G})(\omega)=\sum_{i\in l}\frac{1}{\mathbb{P}(A_i)}\mathbb{E}_{\mathbb{P}}(X\mathbb{I}_{A_i})\mathbb{I}_{A_i}</script><script type="math/tex; mode=display">
+\sum_{\omega\in G}X(\omega)\mathbb{P}(\omega)=\sum_{\omega\in G}\mathbb{E}_{\mathbb{P}}(X|\mathcal{G})(\omega)\mathbb{P}(\omega),\ \forall G \in \mathcal{G}</script><p><strong>Properties of Conditional Expectation:</strong></p>
+<p>Let $(\Omega, \mathcal{F}, \mathbb{P})$ be endowed with sub-$\sigma$-fields $\mathcal{G}$ and $\mathcal{G}_1 \subset \mathcal{G}_2$ of $\mathcal{F}$. Then</p>
+<ul>
+<li><strong>Tower property</strong>: If $X : \Omega\to \mathbb{R}$ is an F-measurable random variable, then</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(X|\mathcal{G}_1) =\mathbb{E}_{\mathbb{P}}(\mathbb{E}_{\mathbb{P}}(X|\mathcal{G}_2)|\mathcal{G}_1)=\mathbb{E}_{\mathbb{P}}(\mathbb{E}_{\mathbb{P}}(X|\mathcal{G}_1)|\mathcal{G}_2)</script><ul>
+<li><strong>Taking out what is known</strong>: If $X : \Omega\to\mathbb{R}$  is a $\mathcal{G}$-measurable random variable and $Y : \Omega\to\mathbb{R}$ is an $\mathcal{F}$-measurable random variable, then</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(XY|\mathcal{G})=X\mathbb{E}_{\mathbb{P}}(Y|\mathcal{G})</script><ul>
+<li><strong>Trivial conditioning</strong>: If $X : \Omega\to\mathbb{R}$ is an $\mathcal{F}$-measurable random variable independent of $\mathcal{G}$, then</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(X|\mathcal{G}) = \mathbb{E}_{\mathbb{P}}(X)</script><p><strong>Martingales:</strong> are stochastic processes representing <strong>fair games</strong>.</p>
+<p>An $\mathbb{F}$-adapted process $X = (X_t)_{0\leq t\leq T}$ on a finite probability space $(\Omega, \mathcal{F}, \mathbb{P})$ is called a <strong>martingale</strong> whenever for all $s &lt; t$ </p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(X_t|\mathcal{F}_s) = X_s</script><ul>
+<li><strong>supermartingale:</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(X_t|\mathcal{F}_s) \leq X_s</script><ul>
+<li><strong>submartingale:</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(X_t|\mathcal{F}_s) \ge X_s</script><h2 id="Unit-5：Multi-Period-Market-Model"><a href="#Unit-5：Multi-Period-Market-Model" class="headerlink" title="Unit 5：Multi-Period Market Model"></a>Unit 5：Multi-Period Market Model</h2><p><strong>Trading Strategy:</strong></p>
+<ul>
+<li>$\phi_t=(\phi_t^0,\phi_t^1,…,\phi_t^n)$ for $t=0,1,…,T$</li>
+<li>$\phi_t^0$ is the number of ‘shares’ of the money market account $B$ held at time $t$. </li>
+<li>$\phi_t^j$ is the number of shares of the $j$th stock held at time $t$.</li>
+</ul>
+<p><strong>Wealth process:</strong></p>
+<script type="math/tex; mode=display">
+V_t(\phi) = \phi_t^0B_t + \sum_{j=1}^n\phi_t^jS_t^j</script><p><strong>Self-Financing Trading Strategy:</strong></p>
+<script type="math/tex; mode=display">
+\phi_t^0B_{t+1}+\sum_{j=1}^n\phi_t^jS_{t+1}^j=
+\phi_{t+1}^0B_{t+1}+\sum_{j=1}^n\phi_{t+1}^jS_{t+1}^j</script><p><strong>Gains Process:</strong></p>
+<script type="math/tex; mode=display">
+G_t(\phi):=V_t(\phi)-V_0(\phi)</script><script type="math/tex; mode=display">
+G_t(\phi) = \sum_{u=0}^{t-1}\phi_u^0B_{u+1} + \sum_{u=0}^{t-1}\sum_{j=1}^n\phi_u^jS_{u+1}^j</script><p><strong>Increment Processes:</strong></p>
+<script type="math/tex; mode=display">
+\Delta S_{t+1}^j := S_{t+1}^j-S_t^j</script><script type="math/tex; mode=display">
+\Delta B_{t+1} := B_{t+1}-B_t=(1+r)^tr=B_tr</script><p><strong>Discounted stock prices:</strong></p>
+<script type="math/tex; mode=display">
+\hat{S}_t^j := \frac{S_t^j}{B_t}</script><p><strong>Discounted wealth process:</strong></p>
+<script type="math/tex; mode=display">
+\hat{V}_t(\phi) := \frac{V_t(\phi)}{B_t}</script><script type="math/tex; mode=display">
+\hat{V}_t(\phi) = \hat{V}_0(\phi)+\sum_{u=0}^{t-1}\sum_{j=1}^n\phi_u^j\Delta \hat{S}_{u+1}^j</script><p><strong>Discounted gains process:</strong></p>
+<script type="math/tex; mode=display">
+\hat{G}_t(\phi):=\hat{V}_t(\phi)-\hat{V}_0(\phi)</script><script type="math/tex; mode=display">
+\hat{G}_t(\phi) = \sum_{u=0}^{t-1}\sum_{j=1}^n\phi_u^j\Delta \hat{S}_{u+1}^j</script><p>Hence for every $t = 0, . . . ,T-1 $</p>
+<script type="math/tex; mode=display">
+\Delta\hat{V}_{t+1}(\phi)=\Delta\hat{G}_{t+1}(\phi)=\sum_{j=1}^n\phi_u^j\Delta \hat{S}_{u+1}^j</script><h4 id="Arbitrage-2"><a href="#Arbitrage-2" class="headerlink" title="Arbitrage:"></a>Arbitrage:</h4><p>A trading strategy $\phi \in \Phi$ is an <strong>arbitrage opportunity</strong> if</p>
+<ul>
+<li>$V_0(\phi)=0,$</li>
+<li>$V_T(\phi)(\omega)\ge 0$ for all $\omega \in \Omega$,</li>
+<li>$V_T(\phi)(\omega)&gt; 0$ for some $\omega \in \Omega$,<ul>
+<li>OR $\mathbb{E}_{\mathbb{P}}(V_T(\phi))&gt;0$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Risk-Neutral Probability Measure:</strong></p>
+<p>A probability measure $\mathbb{Q}$ on $\Omega$ is called a <strong>risk-neutral probability measure</strong> for a multi-period market model $M = (B, S^1, . . . , S^n)$ whenever</p>
+<ul>
+<li>$\mathbb{Q}(\omega)&gt;0$ for all $\omega \in \Omega$</li>
+<li>$\mathbb{E}_{\mathbb{Q}}(\Delta\hat{S}_{t+1}^j|\mathcal{F}_t) = 0$ for $j = 1,2,…,n$ and $t=0,…,T-1$.<ul>
+<li>OR $\mathbb{E}_{\mathbb{Q}}(\hat{S}_{t+1}^j|\mathcal{F}_t) = \hat{S}_t^j$</li>
+</ul>
+</li>
+</ul>
+<p><strong>Fundamental Theorem of Asset Pricing:</strong></p>
+<script type="math/tex; mode=display">
+\mathrm{Class\ } \mathbb{Q} \mathrm{\ is\ non-empty } \Leftrightarrow \mathrm{Market\ model}\ M\ \mathrm{is\ arbitrage-free}</script><p><strong>Replicating Strategy:</strong></p>
+<p>A <strong>replicating strategy</strong> (or a <strong>hedging strategy</strong>) for a contingent claim $X$ is a trading strategy $\phi\in\Phi$ such that $V_T(\phi) = X$, that is, the terminal wealth of the trading strategy matches the claim’s payoff for all $\omega$.</p>
+<p><strong>Attainable Contingent Claim:</strong> A contingent claim $X$ is called to be attainable if there exists a trading strategy $\phi\in\Phi$, which replicates $X$, i.e., $V_T (\phi) = X$.</p>
+<p><strong>Completeness:</strong> A multi period market model is said to be complete if and only if all contingent claims have replicating strategies.</p>
+<p><strong>Risk-neutral valuation formula:</strong></p>
+<script type="math/tex; mode=display">
+\pi_t(X)=B_t\mathbb{E}_{\mathbb{Q}}(\frac{X}{B_T}|\mathcal{F}_t)</script><p><strong>Completeness:</strong> Assume that a multi-period market model $M = (B, S^1, . . . , S^n)$ is arbitrage-free. Then $M$ is complete if and only if there is only one risk-neutral probability measure, that is, $\mathbb{M} = \{\tilde{\mathbb{P}}\}$ is a singleton.</p>
+<h2 id="Unit-6：Binomial-Asset-Pricing-Model"><a href="#Unit-6：Binomial-Asset-Pricing-Model" class="headerlink" title="Unit 6：Binomial Asset Pricing Model"></a>Unit 6：Binomial Asset Pricing Model</h2><p>If $d &lt; 1 + r &lt; u$ then the CRR market model $M = (B, S)$ is <strong>arbitrage-free</strong> and <strong>complete</strong>.</p>
+<h4 id="Risk-Neutral-Probability-Measure"><a href="#Risk-Neutral-Probability-Measure" class="headerlink" title="Risk-Neutral Probability Measure:"></a>Risk-Neutral Probability Measure:</h4><p>Assume that $d &lt; 1 + r &lt; u$. Then a probability measure $\tilde{\mathbb{P}}$ on $(\Omega, \mathcal{F}_T )$ is a <strong>risk-neutral probability measure</strong> for the CRR model $M = (B, S)$ with parameters $p, u, d,r$ and time horizon $T$ <strong>if and only if</strong>:</p>
+<ul>
+<li>$X_1,X_2,X_3,…,X_T$ are independent under the probability measure $\tilde{\mathbb{P}}$</li>
+<li>$0&lt;\tilde{p}:=\tilde{\mathbb{P}}$(X_t=1)&lt;1$ for all $t = 1,…,T$</li>
+<li>$\tilde{p}u+(1-\tilde{p})d=(1+r)$</li>
+</ul>
+<p>where $X$ is the Bernoulli process governing the stock price $S$.</p>
+<h4 id="CRR-Call-Option-Pricing-Formula"><a href="#CRR-Call-Option-Pricing-Formula" class="headerlink" title="CRR Call Option Pricing Formula"></a><strong>CRR Call Option Pricing Formula</strong></h4><script type="math/tex; mode=display">
+C_0=S_0\sum_{k=\hat{k}}^T\begin{pmatrix}T\\k\end{pmatrix}\hat{p}^k(1-\hat{p})^{T-k}-\frac{K}{(1+r)^T}\sum_{k=\hat{k}}^T\begin{pmatrix}T\\k\end{pmatrix}\tilde{p}^k(1-\tilde{p})^{T-k}</script><p>where</p>
+<script type="math/tex; mode=display">
+\tilde{p}=\frac{1+r-d}{u-d},\ \ \hat{p}=\frac{\tilde{p}u}{1+r}</script><p>and $\hat{k}$ is the smallest integer k such that</p>
+<script type="math/tex; mode=display">
+klog(\frac{u}{d})>log(\frac{K}{S_0d^T})</script><h4 id="Put-Call-Parity"><a href="#Put-Call-Parity" class="headerlink" title="Put-Call Parity"></a>Put-Call Parity</h4><p>Set $\mathbb{P}(S_T=S_0u^kd^{T-k})=\begin{pmatrix}T\\k\end{pmatrix}p^k(1-p)^{T-k}$</p>
+<script type="math/tex; mode=display">
+C_t:=S_t\hat{\mathbb{P}}(D|\mathcal{F}_t)-KB(t,T)\tilde{\mathbb{P}}(D|\mathcal{F}_t)</script><script type="math/tex; mode=display">
+P_t:=-S_t\hat{\mathbb{P}}(\bar{D}|\mathcal{F}_t)+KB(t,T)\tilde{\mathbb{P}}(\bar{D}|\mathcal{F}_t)</script><p>where $D = \{\omega\in\Omega:S_T(\omega)&gt;K\}, \bar{D}=\{\omega\in\Omega:S_T(\omega)&lt;K\}$</p>
+<p>Therefore:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C_t-P_t &=S_t(\hat{\mathbb{P}}(D|\mathcal{F}_t)+\hat{\mathbb{P}}(\bar{D}|\mathcal{F}_t))-KB(t,T)(\tilde{\mathbb{P}}(D|\mathcal{F}_t)+\tilde{\mathbb{P}}(\bar{D}|\mathcal{F}_t))\\
+&=S_t-KB(t,T)
+\end{align}</script><p>where $B(t,T)=(1+r)^{-(T-t)}$</p>
+<h4 id="American-Call-Option"><a href="#American-Call-Option" class="headerlink" title="American Call Option"></a>American Call Option</h4><p>By an arbitrage free price of the American call we mean a price process $C_t^a, t \leq T$, such that the extended financial market model - that is, a market with trading in riskless bonds, stocks and the American call option - remains arbitrage-free.</p>
+<script type="math/tex; mode=display">
+C_t^a=\max_\tau \mathbb{E}_{\tilde{\mathbb{P}}}((1+r)^{-(\tau-t)}(S_\tau-K)^+|\mathcal{F}_t),\ \forall t\leq T</script><script type="math/tex; mode=display">
+\tau^*_t = min\{u\ge t|(S_u-K)^+\ge C_u^a \}</script><script type="math/tex; mode=display">
+C_t^a\ge C_t\ge S_t-\frac{K}{(1+r)^{T-t}}>S_t-K</script><p>The result only holds for non-dividend-paying stock.</p>
+<h4 id="American-Put-Option"><a href="#American-Put-Option" class="headerlink" title="American Put Option"></a>American Put Option</h4><script type="math/tex; mode=display">
+P_t^a=\max_\tau \mathbb{E}_{\tilde{\mathbb{P}}}((1+r)^{-(\tau-t)}(K-S_\tau)^+|\mathcal{F}_t),\ \forall t\leq T</script><script type="math/tex; mode=display">
+\tau^*_t = min\{u\ge t|(K-S_u)^+\ge P_u^a \}</script><p>The stopping time $\tau^*_t$ is called the rational exercise time of an American put option that is assumed to be still alive at time $t$.</p>
+<p><strong>Dynamic Programming Recursion:</strong></p>
+<p>In the CRR model, the arbitrage pricing of the American call/put option reduces to the following recursive recipe, for $t \leq T-1$, </p>
+<script type="math/tex; mode=display">
+C_t^a=max\{(S_t-K)^+,(1+r)^{-1}(\tilde{p}C_{t+1}^{au}+(1-\tilde{p})C_{t+1}^{ad})\}</script><script type="math/tex; mode=display">
+P_t^a=max\{(K-S_t)^+,(1+r)^{-1}(\tilde{p}P_{t+1}^{au}+(1-\tilde{p})P_{t+1}^{ad})\}</script><p>with the terminal condition</p>
+<script type="math/tex; mode=display">
+C_T^a = (S_T-K)^+\ ,\ P_T^a = (K-S_T)^+</script><p>The quantities $C_{t+1}^{au}/P_{t+1}^{au}$ and $C_{t+1}^{ad}P/_{t+1}^{ad}$ represent the values of the American call/put in the next step corresponding to the upward and downward movements of the stock price starting from a given node on the CRR lattice.</p>
+<h4 id="Derivation-of-u-and-d-from-r-and-sigma"><a href="#Derivation-of-u-and-d-from-r-and-sigma" class="headerlink" title="Derivation of $u$ and $d$ from $r$ and $\sigma$"></a>Derivation of $u$ and $d$ from $r$ and $\sigma$</h4><p><strong>The Cox-Ross-Rubinstein (CRR) parametrisation:</strong> </p>
+<script type="math/tex; mode=display">
+u = e^{\sigma\sqrt{\Delta t}}\ and\ d=\frac{1}{u}</script><p>Assume that $B_{k\Delta t}=(1+r\Delta t)^k$ for every $k = 0, 1, . . . , n$. Then the risk-neutral probability measure  $\tilde{\mathbb{P}}$ satisfies</p>
+<script type="math/tex; mode=display">
+\tilde{\mathbb{P}}(S_{t+\Delta t}=S_tu|S_t)=\frac{1+r\Delta t-d}{u-d}=\frac{1}{2}+\frac{r-\frac{\sigma^2}{2}}{2\sigma}\sqrt{\Delta t}+o(\sqrt{\Delta t})</script><blockquote>
+<p>BS-PDE是这个 CRR 求的</p>
+<p>$\tilde{\mathbb{P}}$ 部分可以用泰勒展开约到 $o(\Delta t)$求</p>
+</blockquote>
+<p><strong>The Jarrow-Rudd (JR) parameterisation:</strong></p>
+<script type="math/tex; mode=display">
+u=e^{(r-\frac{\sigma^2}{2})\Delta t+\sigma\sqrt{\Delta t}}\ and \ d=e^{(r-\frac{\sigma^2}{2})\Delta t-\sigma\sqrt{\Delta t}}</script><p>Let  $B_{k\Delta t}=(1+r\Delta t)^k$ for every $k = 0, 1, . . . , n$. Then the risk-neutral probability measure  $\tilde{\mathbb{P}}$ satisfies</p>
+<script type="math/tex; mode=display">
+\tilde{\mathbb{P}}(S_{t+\Delta t}=S_tu|S_t)=\frac{1}{2}+o(\sqrt{\Delta t})</script><h4 id="MatlabCode"><a href="#MatlabCode" class="headerlink" title="MatlabCode"></a>MatlabCode</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs matlab">r = <span class="hljs-number">0.008333333</span>; u = <span class="hljs-number">1.095583494</span>; d = <span class="hljs-number">0.912755628</span>; <br>strike = <span class="hljs-number">53</span>; S0 = <span class="hljs-number">50</span>; T = <span class="hljs-number">5</span>; N = T;<br>SS = <span class="hljs-built_in">zeros</span>(N,T);<br>SS(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) = S0;<br><span class="hljs-keyword">for</span> t = <span class="hljs-number">2</span>:T<br>    <span class="hljs-keyword">for</span> n = <span class="hljs-number">1</span>:t<br>        SS(n,t) = S0*u^(t-n)*d^(n<span class="hljs-number">-1</span>);<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>payoff = <span class="hljs-built_in">max</span>((strike-SS(:,T)),<span class="hljs-number">0</span>); <span class="hljs-comment">% put</span><br>rnp = (<span class="hljs-number">1</span>+r-d)/(u-d);<br>PayOffMatr = <span class="hljs-built_in">zeros</span>(N,T);<br>PayOffMatr(:,T) = payoff;<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span>=T<span class="hljs-number">-1</span>:<span class="hljs-number">-1</span>:<span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> k = <span class="hljs-number">1</span>:N<span class="hljs-number">-1</span><br>        PayOffMatr(k,<span class="hljs-built_in">j</span>) = <span class="hljs-built_in">max</span>(((PayOffMatr(k,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>)*rnp+ PayOffMatr(k+<span class="hljs-number">1</span>,<span class="hljs-built_in">j</span>+<span class="hljs-number">1</span>)*(<span class="hljs-number">1</span>-rnp))/(<span class="hljs-number">1</span>+r)),(strike-SS(k,<span class="hljs-built_in">j</span>))); <br>        <span class="hljs-comment">% American put</span><br>        <span class="hljs-comment">% PayOffMatr(k,j) = (PayOffMatr(k,j+1)*rnp + PayOffMatr(k+1,j+1)*(1-rnp))/(1+r); </span><br>        <span class="hljs-comment">% European put</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="Unit-7：Black-Scholes-Formula"><a href="#Unit-7：Black-Scholes-Formula" class="headerlink" title="Unit 7：Black-Scholes Formula"></a>Unit 7：Black-Scholes Formula</h2><h4 id="Wiener-Process"><a href="#Wiener-Process" class="headerlink" title="Wiener Process:"></a>Wiener Process:</h4><p>A stochastic process $W = (W_t, t \to \mathbb{R}_+)$ on $\Omega$ is called the <strong>Wiener process</strong> if the following conditions hold:</p>
+<ul>
+<li>W(0) = 0</li>
+<li>Sample paths of $W$ are continuous functions.</li>
+<li>For any $0 \leq s &lt; t, W (t) - W(s) \sim N(0,t-s)$ where $N(\mu,\sigma^2)$ denotes the normal distribution with expected value $\mu$ and variance $\sigma^2$.</li>
+<li>The process $W_t$ has independent increments, are mutually independent.</li>
+</ul>
+<p>Let $N$ denote the normal distribution.  Probability distribution function (pdf) or a normally distributed variable is</p>
+<script type="math/tex; mode=display">
+f(x,\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>For any $t&gt;0,W_t \sim N(0,t)$ and thus $(\sqrt{t})^{-1}W_t \sim N(0,1)$. The random variable  $W_t$ has the pdf given by</p>
+<script type="math/tex; mode=display">
+p(t,x)=\frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}</script><p>Hence for any real numbers $a\leq b$</p>
+<script type="math/tex; mode=display">
+\mathbb{P}(W_t\in[a,b])=\int_a^b\frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}dx = N(\frac{b}{\sqrt{t}})-N(\frac{a}{\sqrt{t}})</script><h4 id="Markov-Property"><a href="#Markov-Property" class="headerlink" title="Markov Property"></a>Markov Property</h4><script type="math/tex; mode=display">
+\mathbb{P}(W_t\leq x|W_{t_1}=x_1,...,W_{t_n}=x_n)=\mathbb{P}(W_t\leq x|W_{t_n}=x_n)</script><script type="math/tex; mode=display">
+\mathbb{P}(W_t\leq y|W_s=x) = \int_{-\infty}^yp(t-s,z-x)dz</script><script type="math/tex; mode=display">
+p(t-s,z-x)=\frac{1}{\sqrt{2\pi (t-s)}}exp(-\frac{(z-x)^2}{2(t-s)})</script><script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{P}}(W_t|W_s)=W_s</script><p><strong>Stochastic Differential Equation:</strong></p>
+<script type="math/tex; mode=display">
+dS_t = rS_tdt + \sigma S_tdW_t</script><p><strong>Geometric Brownian motion:</strong></p>
+<script type="math/tex; mode=display">
+S_t = S_0 exp(\sigma W_t+(r-\frac{1}{2}\sigma^2)t)</script><p><strong>Random Walk Approximation:</strong></p>
+<p>Let $Y_t^h$ for $t = 0,\Delta t, . . . , $ be a random walk starting at 0.</p>
+<script type="math/tex; mode=display">
+\mathbb{P}(Y_{t+\Delta t}^h=y+h|Y_t^h=y)=\mathbb{P}(Y_{t+\Delta t}^h=y-h|Y_t^h=y)=0.5</script><script type="math/tex; mode=display">
+W_t = \lim_{h\to0}Y_t^h</script><p><strong>Approximation of the Stock Price:</strong></p>
+<script type="math/tex; mode=display">
+S_t = S_s e^{(r-\frac{1}{2}\sigma^2)(t-s)+\sigma (W_t-W_s)}</script><script type="math/tex; mode=display">
+W_t-W_{t-\Delta t} \approx Y_t-Y_{t-\Delta t}=\pm h = \pm\sqrt{\Delta t}</script><h4 id="Black-Scholes-market-model"><a href="#Black-Scholes-market-model" class="headerlink" title="Black-Scholes market model"></a>Black-Scholes market model</h4><p><strong>Assumptions:</strong></p>
+<ul>
+<li>There are no arbitrage opportunities in the class of trading strategies.</li>
+<li>It is possible to borrow or lend any amount of cash at a constant interest rate $r \ge 0$.</li>
+<li>The stock price dynamics are governed by a geometric Brownian motion.</li>
+<li>It is possible to purchase any amount of a stock and short-selling is allowed.</li>
+<li>The market is frictionless: there are no transaction costs (or any other costs).</li>
+<li>The underlying stock does not pay any dividends.</li>
+</ul>
+<p><strong>Discounted Stock Price:</strong></p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\tilde{\mathbb{P}}}(\hat{S}_t|\hat{S}_s,s\leq t)=\hat{S}_t</script><p>Recall $W_t-W_s = Z\sqrt{t-s}$ where $Z \sim N(0,1)$, and thus $e^{z} \sim$ Log-Normal Distribution</p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\tilde{\mathbb{P}}}(e^{aZ})=e^{a^2/2}</script><script type="math/tex; mode=display">
+\mathbb{E}_{\tilde{\mathbb{P}}}(e^{\sigma Z\sqrt{t-s}})=e^{\frac{1}{2}\sigma^2(t-s)}</script><h4 id="The-Black-Scholes-Formula"><a href="#The-Black-Scholes-Formula" class="headerlink" title="The Black-Scholes Formula"></a>The Black-Scholes Formula</h4><script type="math/tex; mode=display">
+C_t(S_t)=S_tN(d_+(S_t,T-t))-Ke^{-r(T-t)}N(d_{\_}(S_t,T-t))</script><script type="math/tex; mode=display">
+P_t(S_t)=Ke^{-r(T-t)}N(-d_{\_}(S_t,T-t))-S_tN(-d_+(S_t,T-t))</script><script type="math/tex; mode=display">
+C_t-P_t = S_T-Ke^{-r(T-t)}</script><p>where</p>
+<script type="math/tex; mode=display">
+d_\pm(S_t,T-t)=\frac{ln\frac{S_t}{K}+(r\pm\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}</script><p><a href="https://achlier.github.io/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">推导过程</a></p>
+<h4 id="The-Black-Scholes-PDE"><a href="#The-Black-Scholes-PDE" class="headerlink" title="The Black-Scholes PDE"></a>The Black-Scholes PDE</h4><p>Let the price of the contingent claim at t given the current stock price $S_t = x$ be denoted by $V (t, x)$. Then $V (t, x)$ is the solution of the <strong>Black-Scholes partial differential equation</strong>.</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial t}V(t,x)+\frac{\sigma^2x^2}{2}\frac{\partial^2}{\partial x^2}V(t,x)+rx\frac{\partial}{\partial x}V(t,x)-rV(t,x)=0</script><p>with the terminal condition $V (T, x) = h(x)$.</p>
+<p><a href="https://achlier.github.io/2021/03/14/Feynman-Kac_To_Black-Scholes-PDE/">推导过程</a></p>
+<h4 id="To-summarise-Black-Scholes-equation-is-written-in-the-form"><a href="#To-summarise-Black-Scholes-equation-is-written-in-the-form" class="headerlink" title="To summarise, Black-Scholes equation is written in the form"></a>To summarise, Black-Scholes equation is written in the form</h4><script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}+\frac{1}{2}\sigma^2S^2\frac{\partial^2 C}{\partial S^2}+bS\frac{\partial C}{\partial S}-rC=0</script><p>where $b$ is the cost-to-carry:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Asset with no dividend</th>
+<th>$b = r$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Asset with dividend $D$</strong></td>
+<td>$b = r - D$</td>
+</tr>
+<tr>
+<td><strong>foreign currency with return $r_f$</strong></td>
+<td>$b = r - r_f$</td>
+</tr>
+<tr>
+<td><strong>Commodity with storage cost $q$</strong></td>
+<td>$b = r + q$</td>
+</tr>
+<tr>
+<td><strong>Futures</strong></td>
+<td>$b = 0$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Unit-8：Greeks-Hedging-and-limits-of-Black-Scholes"><a href="#Unit-8：Greeks-Hedging-and-limits-of-Black-Scholes" class="headerlink" title="Unit 8：Greeks, Hedging and limits of Black-Scholes"></a>Unit 8：Greeks, Hedging and limits of Black-Scholes</h2><p><strong>Suppose that the stock price satisfies the Black-Scholes assumption:</strong></p>
+<script type="math/tex; mode=display">
+\mathbb{E}_{\mathbb{Q}}\{S_t\} = S_0e^{rt}</script><script type="math/tex; mode=display">
+Var(S_t) = S_0^2e^{2rt}(e^{\sigma^2t}-1)</script><p>Two ideas to estimate $σ$ in the Black-Scholes model:</p>
+<ol>
+<li>Collect some historical stock prices to evaluate the variance $ν$ and then apply equation:</li>
+</ol>
+<script type="math/tex; mode=display">
+v \approx S_0^2e^{2rt}(e^{\sigma^2t}-1)</script><ol>
+<li>Collect some historical stock prices per $\Delta t$, and define the return $R$. Then compute the variance of $R$ and</li>
+</ol>
+<script type="math/tex; mode=display">
+\sigma^2 \approx \frac{Var(R)}{\Delta t}</script><p><strong>The leads to Idea 2:</strong></p>
+<p>Since $dlnS_t \approx lnS_{t+\Delta t}-lnS_t$ and</p>
+<script type="math/tex; mode=display">
+dlnS_t = \frac{dS_t}{S_t} \approx \frac{S_{t+\Delta t}-S_t}{S_t} = R_t</script><p>we  have</p>
+<script type="math/tex; mode=display">
+R_t \approx lnS_{t+\Delta t}-lnS_t = (r - \frac{\sigma^2}{2})\Delta t +\sigma(W^*(t+\Delta t)- W^*(t)).</script><p>Then $Var(R) = \sigma^2 \Delta t$</p>
+<p><strong>Numerical methods are important in mathematical finance:</strong></p>
+<ul>
+<li><p>The Monte Carlo scheme</p>
+</li>
+<li><p>Bellman equations: The finite difference methods, the Markov chain approach, or the projection methods.</p>
+</li>
+</ul>
+<h4 id="Greeks"><a href="#Greeks" class="headerlink" title="Greeks"></a>Greeks</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Delta</th>
+<th>Gamma</th>
+<th>Rho</th>
+<th>Theta</th>
+<th>Vega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\Delta$</td>
+<td>$\Gamma$</td>
+<td>$\rho$</td>
+<td>$\Theta$</td>
+<td>$vega$</td>
+</tr>
+<tr>
+<td>$\frac{\partial C}{\partial S}$</td>
+<td>$\frac{\partial^2 C}{\partial S^2}$</td>
+<td>$\frac{\partial C}{\partial r}$</td>
+<td>$\frac{\partial C}{\partial t}$</td>
+<td>$\frac{\partial C}{\partial \sigma}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+\Phi'(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}</script><script type="math/tex; mode=display">
+S\Phi'(d_1)-e^{-r(T-t)}K\Phi'(d_2)=0</script><h4 id="Call-option"><a href="#Call-option" class="headerlink" title="Call option"></a>Call option</h4><p><strong>Delta</strong>:  always <strong>positive</strong> : An increase in the asset price increases the likely payoff and therefore the price of the option.</p>
+<script type="math/tex; mode=display">
+\Delta = \Phi(d_1)</script><p><strong>Gamma</strong>:</p>
+<script type="math/tex; mode=display">
+\Gamma = \frac{\Phi'(d_1)}{S\sigma\sqrt{T-t}}</script><p><strong>Rho</strong>: always <strong>positive</strong> : An increase in the interest rate is equivalent to lowering the strike price $K$ ( the present price of this future payment decreases with an increase of the interest rate ). This again makes payoff more likely which in e§ect increases the price of the option.</p>
+<script type="math/tex; mode=display">
+\rho = (T-t)Ke^{-r(T-t)}\Phi(d_2)</script><p><strong>Theta</strong>: always <strong>negative</strong> : The option price is decreasing in time, given that everything else is fixed. This fact can be deduced from a no arbitrage argument.</p>
+<script type="math/tex; mode=display">
+\Theta = \frac{-S\sigma}{2\sqrt{T-t}}\Phi'(d_1)-rKe^{-r(T-t)}\Phi(d_2)</script><p><strong>Vega</strong>:  always <strong>positive</strong> : This can be understood by considering that an increase in volatility leads to a wider spread of asset prices. However the payoff from a European call option is bounded from below, so that this spread has a more positive effect then a negative effect and is therefore increasing the payoff. The increase in payoff leads to an increase of the price of the option.</p>
+<script type="math/tex; mode=display">
+vega = S\sqrt{T-t}\Phi'(d_1)</script><p><strong>Implied Volatility:</strong></p>
+<p>The solution of equation is called an implied volatility.</p>
+<script type="math/tex; mode=display">
+C(t,T, \sigma_{impl},K) = C^{obs}(t)</script><p>We can therefore compute its zeros numerically by applying the Newton method.</p>
+<script type="math/tex; mode=display">
+\sigma_{k+1} = \sigma_k - \frac{C(t,T, \sigma_k,K)-C^{obs}(t)}{\frac{\partial}{\partial \sigma}C(t,T, \sigma_k,K)}</script><p>one can cure some of these problems by using either local volatility models ( nowadays quite famous among financial institutions ) or stochastic volatility models ( for example the Heston model ).</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Financial-Mathematics/">#Financial Mathematics</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】Mathematical Finance</div>
+      <div>http://achlier.github.io/2021/04/25/Mathematical_Finance/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 25, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/27/Basic_Econometrics/" title="【课程】Basic Econometrics">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【课程】Basic Econometrics</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/22/Financial_Markets_Securities_and_Derivatives/" title="【课程】Financial Markets Securities and Derivatives">
+                        <span class="hidden-mobile">【课程】Financial Markets Securities and Derivatives</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

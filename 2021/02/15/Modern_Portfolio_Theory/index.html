@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="构造拉格朗日函数公式研究马科维茨投资模型； 目前包含：  求最小 sigma_p；  最优组合下每个资产的权重；  加入 risk free security 后的权重；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【推导】Modern Portfolio Theory">
+<meta property="og:url" content="http://achlier.github.io/2021/02/15/Modern_Portfolio_Theory/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="构造拉格朗日函数公式研究马科维茨投资模型； 目前包含：  求最小 sigma_p；  最优组合下每个资产的权重；  加入 risk free security 后的权重；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-02-14T17:59:41.000Z">
+<meta property="article:modified_time" content="2022-03-14T05:43:05.841Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Markowitz">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【推导】Modern Portfolio Theory - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【推导】Modern Portfolio Theory"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-02-15 01:59" pubdate>
+          February 15, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【推导】Modern Portfolio Theory</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>构造拉格朗日函数公式研究马科维茨投资模型；</p>
+<p>目前包含：</p>
+<ol>
+<li><p>求最小 sigma_p；</p>
+</li>
+<li><p>最优组合下每个资产的权重；</p>
+</li>
+<li><p>加入 risk free security 后的权重；</p>
+</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+<h4 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h4><p>原模型等价于固定预期收益率为常数、权重之和为1的限制条件下求最小方差的线性规划问题如下：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+目标函数：&min\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)\\
+&s.t.\begin{cases}
+\sum_{i=1}^nr_iw_i=E(R)\\
+\sum_{i=1}^nw_i=1
+\end{cases}\\
+\end{align}</script><h4 id="Part-1："><a href="#Part-1：" class="headerlink" title="Part 1："></a>Part 1：</h4><p>构造的拉格朗日函数公式如下：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(w,\lambda_1,\lambda_2)=\sum_{i=1}^n\sum_{j=1}^nw_iw_jCov(r_i,r_j)
+-\lambda_1(\sum_{i=1}^nr_iw_i-E(R))-\lambda_2(\sum_{i=1}^nw_i-1)</script><p>对$w_i,\lambda_1,\lambda_2$分别求导取0，满足条件如下:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial w_i}&=\sum_{j=1}^nw_jCov(r_i,r_j)
+-\lambda_1r_i-\lambda_2=0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_1}&=\sum_{i=1}^nr_iw_i-E(R)=0\\
+\frac{\partial \mathcal{L}}{\partial \lambda_2}&=\sum_{i=1}^nw_i-1=0\\
+\end{aligned}</script><p>整合$w_j =&gt; w,r_i =&gt; R,Cov(r_i,r_j)=&gt;\Sigma$</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+&2\Sigma w -\lambda_1R-\lambda_21_n=0\\
+&w^TR-E(R)=0\\
+&e^T1_n-1=0
+\end{cases}</script><p>假设收益率协方差可逆</p>
+<script type="math/tex; mode=display">
+w =\frac{1}{2}\Sigma^{-1}(\lambda_1R+\lambda_21_n) \tag{1}</script><script type="math/tex; mode=display">
+E(R)=w^TR \tag{2}</script><script type="math/tex; mode=display">
+e^T1_n=1 \tag{3}</script><p>将(2),(3)代入(1)</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+E(R)=\frac{1}{2}(\lambda_1R^T\Sigma^{-1}R+\lambda_21_n^T\Sigma^{-1}R)\\
+1 = \frac{1}{2}(\lambda_1R^T\Sigma^{-1}1_n+\lambda_21_n^T\Sigma^{-1}1_n)
+\end{cases}</script><p>转为矩阵格式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E(R)\\1\end{bmatrix}
+=\frac{1}{2}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}\tag{4}</script><p>由于目标函数$=&gt;min\quad\sigma_p^2$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sigma_p^2&=w^T\Sigma w\\
+&=\frac{1}{4}(\lambda_1R^T\Sigma^{-1}+\lambda_21_n^T\Sigma^{-1})\Sigma\Sigma^{-1}(\lambda_1R+\lambda_21_n) \\
+&=\frac{1}{4}(\lambda_1^2R^T\Sigma^{-1}R+2\lambda_1\lambda_2R^T\Sigma^{-1}1_n+\lambda_2^21_n^T\Sigma^{-1}1_n)\\
+&=\frac{1}{4}\begin{bmatrix}\lambda_1&\lambda_2 \end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\\lambda_2\end{bmatrix}
+\end{aligned}\tag{5}</script><p>联立(4),(5)得</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E(R)&1\end{bmatrix}\begin{bmatrix}R^T\Sigma^{-1}R&1_n^T\Sigma^{-1}R\\R^T\Sigma^{-1}1_n&1_n^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}E(R)\\1\end{bmatrix}=\sigma_p^2</script><p>设  $a = R^T\Sigma^{-1}R,b = R^T\Sigma^{-1}1_n,c = 1_n^T\Sigma^{-1}1_n$ , 化简得</p>
+<script type="math/tex; mode=display">
+\sigma_p^2=\frac{cE(R)^2-2bE(R)+a}{ac-b^2}</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[P_return]</span> = <span class="hljs-title">optimal_portfolio_e</span><span class="hljs-params">(mu,Sigma,sigma)</span></span><br>n = <span class="hljs-built_in">size</span>(Sigma,<span class="hljs-number">1</span>); <br>V = Sigma^(<span class="hljs-number">-1</span>); <br>e = <span class="hljs-built_in">ones</span>(n,<span class="hljs-number">1</span>); <br>A = mu&#x27;*V*mu;<br>B = e&#x27;*V*mu;<br>C = e&#x27;*V*e;<br>P_return = fzero(@(x) C*x^<span class="hljs-number">2</span><span class="hljs-number">-2</span>*B*x+A-sigma^<span class="hljs-number">2</span>*(A*C-B^<span class="hljs-number">2</span>),<span class="hljs-number">1</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h4 id="Part-2："><a href="#Part-2：" class="headerlink" title="Part 2："></a>Part 2：</h4><p>从矩阵形式得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\begin{bmatrix}2\\2E(R)\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\ R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}\\
+\begin{bmatrix}\lambda_1\\ \lambda_2\end{bmatrix}
+&=\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}2\\2E(R)\end{bmatrix}
+\end{align}</script><p>代入$w$得</p>
+<script type="math/tex; mode=display">
+w = \begin{bmatrix} \Sigma^{-1}R&\Sigma^{-1}1_n\end{bmatrix}\begin{bmatrix}1_n^T\Sigma^{-1}R&1_n^T\Sigma^{-1}1_n\\R^T\Sigma^{-1}R&R^T\Sigma^{-1}1_n\end{bmatrix}^{-1}\begin{bmatrix}1\\E(R)\end{bmatrix}</script><p>求得$w^T\Sigma w$</p>
+<h4 id="Part-3："><a href="#Part-3：" class="headerlink" title="Part 3："></a>Part 3：</h4><p>加入收益率是 $r_f$ 的  risk free security 之后</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&目标函数：min\quad w^T\Sigma w\\
+&s.t.\quad (1-\sum_{i=1}^n)r_f+w^TR=E(R)
+\end{align}</script><p>Solution</p>
+<script type="math/tex; mode=display">
+\sigma_p^2=\frac{(E(R)-r_f)^2}{(R-r_f1_n)^T\Sigma^{-1}(R-r_f1_n)}</script><script type="math/tex; mode=display">
+\xi=\frac{\sigma_p^2}{E(R)-r_f}</script><script type="math/tex; mode=display">
+w=\xi\Sigma^{-1}(E(R)-r_f1_n)</script><hr>
+<h4 id="MATLAB代码："><a href="#MATLAB代码：" class="headerlink" title="MATLAB代码："></a>MATLAB代码：</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">[w]</span> = <span class="hljs-title">optimal_portfolio_1</span><span class="hljs-params">(R,Sigma,ER)</span></span><br><span class="hljs-comment">% no risk-free asset</span><br>n = <span class="hljs-built_in">size</span>(Sigma,<span class="hljs-number">1</span>); <span class="hljs-comment">% the number of risky shares</span><br>V = Sigma^(<span class="hljs-number">-1</span>); <span class="hljs-comment">%inverse of  variance-covariance matrix</span><br>e = <span class="hljs-built_in">ones</span>(n,<span class="hljs-number">1</span>); <span class="hljs-comment">% unit vector, column</span><br>A = e&#x27;*V*R;<br>B = R&#x27;*V*R;<br>C = e&#x27;*V*e;<br>K = [A C;  B A];<br>LM = K^(<span class="hljs-number">-1</span>)*[<span class="hljs-number">1</span>; ER];<br>w = [V*R, V*e]*LM; <span class="hljs-comment">% optimal weight</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">[w]</span> = <span class="hljs-title">optimal_portfolio_2</span><span class="hljs-params">(mu,Sigma,rf,p)</span></span><br><span class="hljs-comment">% with risk free asset</span><br>n = <span class="hljs-built_in">size</span>(Sigma,<span class="hljs-number">1</span>); <span class="hljs-comment">% the number of risky shares</span><br>V = Sigma^(<span class="hljs-number">-1</span>); <span class="hljs-comment">%inverse of  variance-covariance matrix</span><br>e = <span class="hljs-built_in">ones</span>(n,<span class="hljs-number">1</span>); <span class="hljs-comment">% unit vector, column</span><br><br>sigma2min = (p - rf)^<span class="hljs-number">2</span>/((mu-rf*e)&#x27;*V*(mu-rf*e));<br>xi = sigma2min/(p - rf);<span class="hljs-comment">% tangency</span><br><br>w = xi*V*(mu-rf*e); <span class="hljs-comment">% optimal weight</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://xueqiu.com/1985849148/145570290">投资组合理论学习之马科维茨投资模型（一）</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/273729929">矩阵求导公式的数学推导（矩阵求导——基础篇）</a></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Markowitz/">#Markowitz</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【推导】Modern Portfolio Theory</div>
+      <div>http://achlier.github.io/2021/02/15/Modern_Portfolio_Theory/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 15, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/15/%E5%9F%BA%E4%BA%8E%E8%B6%85%E9%A2%9D%E6%94%B6%E7%9B%8A%E7%9A%84%E8%B5%84%E4%BA%A7%E7%BB%84%E5%90%88%E4%BC%98%E5%8C%96/" title="【代码】基于超额收益的资产组合优化">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【代码】基于超额收益的资产组合优化</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/15/Inner_product_and_Cross_Product/" title="【笔记】Inner product and Cross Product">
+                        <span class="hidden-mobile">【笔记】Inner product and Cross Product</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

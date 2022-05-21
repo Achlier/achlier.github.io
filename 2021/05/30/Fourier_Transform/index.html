@@ -1,0 +1,1072 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于B站up 童哲校长 的视频《傅里叶变换，拉普拉斯变换与小波变换》的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Fourier Transform">
+<meta property="og:url" content="http://achlier.github.io/2021/05/30/Fourier_Transform/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于B站up 童哲校长 的视频《傅里叶变换，拉普拉斯变换与小波变换》的笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/05/30/Fourier_Transform/pic1-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/05/30/Fourier_Transform/pic1-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/05/30/Fourier_Transform/pic1-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/05/30/Fourier_Transform/pic1-4.jpg">
+<meta property="og:image" content="http://achlier.github.io/2021/05/30/Fourier_Transform/pic1-5.jpg">
+<meta property="article:published_time" content="2021-05-30T03:32:47.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:38:58.267Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Complex Number">
+<meta property="article:tag" content="Fourier Transform">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/05/30/Fourier_Transform/pic1-1.jpg">
+  
+  
+  
+  <title>【笔记】Fourier Transform - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Fourier Transform"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-30 11:32" pubdate>
+          May 30, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          103 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Fourier Transform</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于B站up 童哲校长 的视频《傅里叶变换，拉普拉斯变换与小波变换》的笔记</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="复数基本复习"><a href="#复数基本复习" class="headerlink" title="复数基本复习"></a>复数基本复习</h1><p><img src="/2021/05/30/Fourier_Transform/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+Z=x+iy,\ i^2=-1</script><script type="math/tex; mode=display">
+f(Z)=u(x,y)+iv(x,y),\ x,y,u,v\in\mathbb{R}</script><h4 id="在图中虚部的解释"><a href="#在图中虚部的解释" class="headerlink" title="在图中虚部的解释"></a>在图中虚部的解释</h4><ol>
+<li><p>当一个实数乘 $i$，相当于把它逆时针旋转了90°</p>
+</li>
+<li><p>如果存在两个单位向量 $Z_1,Z_2$，并且它们的夹角呈90°，那么 $\frac{Z_1}{Z_2}=e^{i\frac{\pi}{2}}=i$</p>
+</li>
+</ol>
+<h4 id="复数的极坐标表示"><a href="#复数的极坐标表示" class="headerlink" title="复数的极坐标表示"></a>复数的极坐标表示</h4><script type="math/tex; mode=display">
+Z=x+iy=re^{i\theta}=r(Cos\theta+iSin\theta)</script><blockquote>
+<p>$e^{i\pi}=-1$ Euler Formula (欧拉公式)</p>
+</blockquote>
+<h4 id="共轭"><a href="#共轭" class="headerlink" title="共轭"></a>共轭</h4><script type="math/tex; mode=display">
+\bar{Z}=x-iy=re^{-i\theta}</script><script type="math/tex; mode=display">
+Z+\bar{Z}=2cos\theta</script><script type="math/tex; mode=display">
+Z-\bar{Z}=2isin\theta</script><h3 id="特性1"><a href="#特性1" class="headerlink" title="特性1"></a>特性1</h3><p>若 $f’(Z)$ 存在，$u,v$ 存在牵连关系，延 $x$轴 $y$轴接近的表达式相同</p>
+<p>延 $x$轴：$Z-Z_0=\Delta x$</p>
+<script type="math/tex; mode=display">
+\lim_{z-z_0}\frac{\Delta f(Z)}{\Delta Z}=\lim\frac{\Delta u+i\Delta v}{\Delta x}</script><p>延 $y$轴：$Z-Z_0=i\Delta y$</p>
+<script type="math/tex; mode=display">
+\lim_{z-z_0}\frac{\Delta f(Z)}{\Delta Z}=\lim\frac{\Delta u+i\Delta v}{i\Delta y}</script><p>So we have <strong>Cauchy-Riemann Equations</strong> (柯西-黎曼方程)</p>
+<script type="math/tex; mode=display">
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y},\ \frac{\partial v}{\partial x}=-\frac{\partial u}{\partial y}</script><blockquote>
+<p>所有初等函数都满足此条件</p>
+</blockquote>
+<h3 id="特性2"><a href="#特性2" class="headerlink" title="特性2"></a>特性2</h3><p>当 $f(Z)$ 满足 C-R (柯西-黎曼)关系，只要知道边界的表达式，就能确定内部任意一个点的函数值</p>
+<h4 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h4><p>当复变函数存在闭合的边界 $L$</p>
+<script type="math/tex; mode=display">
+\oint_{L}f(Z)dZ=0</script><p><strong>证明</strong></p>
+<p>对于 复变函数</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\oint_{L}f(Z)dZ&=\oint_{L}(u+iv)(dx+idy)\\
+&=\oint_{L}(udx-vdy)+i\oint_{L}(vdx+udy)
+\end{align}</script><p>Recall Green formula (格林公式)</p>
+<script type="math/tex; mode=display">
+\oint_{L}(Pdx+Qdy)=\iint_L(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy</script><script type="math/tex; mode=display">
+\begin{align}
+\oint_{L}f(Z)dZ&=\oint_{L}(udx-vdy)+i\oint_{L}(vdx+udy)\\
+&=\iint_L(-\frac{\partial v}{\partial x}-\frac{\partial u}{\partial y})dxdy+i\iint_L(\frac{\partial u}{\partial x}-\frac{\partial v}{\partial y})dxdy
+\end{align}</script><p>According to Cauchy-Riemann Equations</p>
+<script type="math/tex; mode=display">
+\oint_{L}f(Z)dZ=0+0=0</script><h4 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h4><p>求 $Z_0$ 点上的函数值</p>
+<script type="math/tex; mode=display">
+f(Z_0)=\frac{1}{2\pi i}\oint_{L}\frac{f(Z)}{Z-Z_0}dZ</script><p><strong>证明</strong></p>
+<p>以 $Z_0$ 为圆心，取一个 $l$ 为边界，$\delta$为半径的圆.  此时我们有</p>
+<script type="math/tex; mode=display">
+\oint_{L}f(Z)dZ=\oint_{l}f(Z)dZ=0</script><p>or</p>
+<script type="math/tex; mode=display">
+\oint_{L-l}f(Z)dZ=0</script><p><img src="/2021/05/30/Fourier_Transform/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>对边界求积时的 $dZ$ 相当于在边界上走一步</p>
+<script type="math/tex; mode=display">
+dZ=\delta(-Sin\theta d\theta+iCos\theta d\theta)</script><script type="math/tex; mode=display">
+Z-Z_0=\delta(Cos\theta+iSin\theta)</script><script type="math/tex; mode=display">
+\frac{dZ}{Z-Z_0}=id\theta</script><p>$\theta\in[0,2\pi]$</p>
+<script type="math/tex; mode=display">
+\oint_{L} id\theta =2\pi i</script><p>当 $\delta \to 0$, $Z\to Z_0$</p>
+<script type="math/tex; mode=display">
+\frac{f(Z_0)}{2\pi i}\oint_{L}\frac{dZ}{Z-Z_0}=\frac{f(Z_0)}{2\pi i}2\pi i=f(Z_0)</script><h1 id="卷积-Convolution"><a href="#卷积-Convolution" class="headerlink" title="卷积 Convolution"></a>卷积 Convolution</h1><script type="math/tex; mode=display">
+\int_{-\infty}^\infty f(t)g(x-t)dt=f*g</script><p>t：哑指标，$t+(x-t)=x$</p>
+<h4 id="常见性质"><a href="#常见性质" class="headerlink" title="常见性质"></a>常见性质</h4><ol>
+<li>线性</li>
+<li>交互律<ul>
+<li>$f\star g=g\star f$</li>
+</ul>
+</li>
+<li>结合律<ul>
+<li>$(f\star g)\star k=f\star (g\star k)$</li>
+</ul>
+</li>
+</ol>
+<h4 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h4><p>有 $u(x,y)=f(x)·g(y)$, 期望求关于 $s=x+y$ 的概率密度, 就是 $f*g$</p>
+<h1 id="傅里叶展开"><a href="#傅里叶展开" class="headerlink" title="傅里叶展开"></a>傅里叶展开</h1><p>傅里叶级数：表示$2\pi$为周期</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2}a_0+\sum_{n=1}^\infty a_nCosnx+\sum_{n=1}^\infty b_nSinnx</script><p>以 $\{\mathbb{I},Sinnx,Cosnx\}$ 为基向量</p>
+<p>其中</p>
+<script type="math/tex; mode=display">
+\frac{1}{2\pi}\int_0^{2\pi}SinnxSinmx\ dx=\begin{cases}0&m\ne n\\\frac{1}{2}&m=n\ne 0\\0&m=n=0\end{cases}</script><script type="math/tex; mode=display">
+\frac{1}{2\pi}\int_0^{2\pi}CosnxCosmx\ dx=\begin{cases}0&m\ne n\\\frac{1}{2}&m=n\ne 0\\1&m=n=0\end{cases}</script><script type="math/tex; mode=display">
+\int_0^{2\pi}SinnxCosmx\ dx=0</script><p>可证得正交性被满足</p>
+<script type="math/tex; mode=display">
+\int_0^{2\pi}f(x)Cosnx\ dx=\int_0^{2\pi}a_nCosnxCosnx\ dx=\pi a_n</script><script type="math/tex; mode=display">
+a_n=\frac{1}{\pi}\int_0^{2\pi}f(x)Cosnx\ dx</script><p>同理</p>
+<script type="math/tex; mode=display">
+b_n=\frac{1}{\pi}\int_0^{2\pi}f(x)Sinnx\ dx</script><p>and</p>
+<script type="math/tex; mode=display">
+a_0=\frac{1}{\pi}\int_0^{2\pi}f(x)\ dx=2</script><p>使得常值为 1</p>
+<h3 id="【Example-1】"><a href="#【Example-1】" class="headerlink" title="【Example 1】"></a>【Example 1】</h3><p><img src="/2021/05/30/Fourier_Transform/pic1-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+a_0=\frac{1}{\pi}\int_0^\pi f(x)dx=1</script><blockquote>
+<p>$a_0$ 通常是均值</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+a_n&=\frac{1}{\pi}\int_0^\pi f(x)Cosnx\ dx\\
+&=\frac{1}{\pi}\int_0^\pi Cosnx\ dx\\
+&=\frac{1}{n\pi}\int_0^\pi Cosnx\ dnx\\
+&=\frac{1}{n\pi}\int_0^\pi dSinnx\\
+&=\frac{1}{n\pi} Sinnx|_0^\pi=0-0
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+b_n&=\frac{1}{\pi}\int_0^\pi f(x)Sinnx\ dx\\
+&=\frac{1}{\pi}\int_0^\pi Sinnx\ dx\\
+&=\frac{1}{n\pi}\int_0^\pi Sinnx\ dnx\\
+&=\frac{1}{n\pi}\int_0^\pi -\ dCosnx\\
+&=-\frac{1}{n\pi} Cosnx|_0^\pi\\
+&=\begin{cases}\frac{2}{n\pi}& n=2k+1\\
+0&n=2k
+\end{cases}
+\end{align}</script><script type="math/tex; mode=display">
+f(x)=\frac{1}{2}+\frac{2}{\pi}(Sinx+\frac{Sin3x}{3}+\frac{Sin5x}{5}+...)</script><p>当 $Sinnx$ 项加的越多 $n\to\infty$, 越趋近目标图像. 但当不够多时，振动会比较剧烈，且存在吉布斯现象/音爆 (可用小波变换解决)</p>
+<p>如果将原目标往左移 $\frac{\pi}{2}$ , $x\to x+\frac{\pi}{2}$</p>
+<blockquote>
+<p>$Sinx$ 向左移 $\frac{\pi}{2}$ 得到 $Cosx$, $Cosx$ 向左移 $\frac{\pi}{2}$ 得到 $-Sinx$</p>
+<p>$Sinx$ 向右移 $\frac{\pi}{2}$ 得到 $-Cosx$, $Cosx$ 向右移 $\frac{\pi}{2}$ 得到 $Sinx$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+f(x+\frac{1}{2}\pi)&=\frac{1}{2}+\frac{2}{\pi}(Sin(x+\frac{1}{2}\pi)+\frac{Sin(3x+\frac{3}{2}\pi)}{3}+\frac{Sin(5x+\frac{5}{2}\pi)}{5}+...)\\
+&=\frac{1}{2}+\frac{2}{\pi}(Cosx-\frac{Cos3x}{3}+\frac{Cos5x}{5}-...)
+\end{align}</script><p>令 $x=0$</p>
+<script type="math/tex; mode=display">
+1=\frac{1}{2}+\frac{2}{\pi}(1-\frac{1}{3}+\frac{1}{5}-...)</script><p>得出一个重要的恒等式</p>
+<script type="math/tex; mode=display">
+\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-...</script><h3 id="【Example-2】"><a href="#【Example-2】" class="headerlink" title="【Example 2】"></a>【Example 2】</h3><p><img src="/2021/05/30/Fourier_Transform/pic1-4.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+a_0=\frac{1}{\pi}\frac{x^2}{2}|_0^\pi=\frac{\pi}{2}</script><blockquote>
+<p>$\int udv=uv-\int vdu$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+a_n&=\frac{1}{n\pi}\int_0^\pi x\ dSinnx\\
+&=\frac{1}{n\pi}[0-\int_0^\pi Sinnx\ dx]\\
+&=\frac{1}{n^2\pi}Cosnx|_0^\pi\\
+&=\begin{cases}-\frac{2}{n^2\pi}&n=2k+1\\0&n=2k\end{cases}
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+b_n&=\frac{1}{n\pi}\int_0^\pi -x\ dCosnx\\
+&=\frac{1}{n\pi}[\int_0^\pi Cosnx\ dx+\pi]\\
+&=\frac{1}{n^2\pi}Sinnx|_0^\pi-\frac{Cosn\pi}{n}\\
+&=\frac{(-1)^{n-1}}{n}
+\end{align}</script><script type="math/tex; mode=display">
+f(x)=\frac{\pi}{4}-\frac{2}{\pi}(Cosx+\frac{Cos3x}{3^2}+\frac{Cos5x}{5^2}+...)+(Sinx-\frac{Sin2x}{2}+\frac{Sin3x}{3}-...)</script><p>令 $x=0$</p>
+<script type="math/tex; mode=display">
+0=\frac{\pi}{4}-\frac{2}{\pi}(1+\frac{1}{3^2}+\frac{1}{5^2}+...)</script><p>得出一个重要的恒等式</p>
+<script type="math/tex; mode=display">
+\frac{\pi^2}{8}=1+\frac{1}{3^2}+\frac{1}{5^2}+...</script><h2 id="扩充到复数域"><a href="#扩充到复数域" class="headerlink" title="扩充到复数域"></a>扩充到复数域</h2><p>以复数与共轭替换原表达式</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f(x)&=\frac{a_0}{2}+\sum_{n=1}^\infty a_nCosnx+\sum_{n=1}^\infty b_nSinnx\\
+&=\frac{a_0}{2}+\sum_{n=1}^\infty a_n(\frac{e^{inx}+e^{-inx}}{2})+\sum_{n=1}^\infty b_n(\frac{e^{inx}-e^{-inx}}{2i})\\
+&\Rightarrow c_n\sum_{n=-\infty}^\infty e^{inx}
+\end{align}</script><p>此时</p>
+<p>当 $n&gt;0$</p>
+<script type="math/tex; mode=display">
+c_n=\frac{a_n}{2}-\frac{ib_n}{2}</script><p>当 $n&lt;0$</p>
+<script type="math/tex; mode=display">
+c_{-n}=\frac{a_{-n}}{2}+\frac{ib_{-n}}{2}</script><p>当 $n=0$</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{a_0}{2}+振动=c_0+振动</script><p>以 $e^{inx}$ 为基向量</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^{2\pi}e^{inx}·e^{-imx}dx\\
+=&\int_0^{2\pi}e^{i(n-m)x}dx\\
+=&\int_0^{2\pi}Cos(n-m)x+iSin(n-m)x\ dx\\
+=&\begin{cases}2\pi&m=n\\0&m\ne n\end{cases}
+\end{align}</script><p>可证得正交性被满足</p>
+<script type="math/tex; mode=display">
+c_n=\frac{1}{2\pi}\int_0^{2\pi}f(x)·e^{-inx}dx</script><h3 id="帕塞瓦尔定理"><a href="#帕塞瓦尔定理" class="headerlink" title="帕塞瓦尔定理"></a>帕塞瓦尔定理</h3><script type="math/tex; mode=display">
+E(f^2(x))=\frac{1}{2\pi}\int_0^{2\pi}f^2(x)dx=(\frac{a_0}{2})^2+\sum_{n=1}^\infty(\frac{1}{2}a_n^2+\frac{1}{2}b_n^2)</script><script type="math/tex; mode=display">
+E(f^2(x))=\frac{1}{2\pi}\int_0^{2\pi}|f(x)|^2dx=\sum_{n=1}^\infty|c_n|^2,\ \frac{a_0}{2}=c_0</script><p>where $|f(x)|^2=f(x)\bar{f}(x)$</p>
+<h1 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h1><p>将原先以 $(-\pi,\pi)$ 为一周期，改写为以 $(-L,L)$ 为一周期</p>
+<script type="math/tex; mode=display">
+Cosnx \Leftrightarrow Cosn(\frac{2\pi x}{2L})=Cos\frac{n\pi x}{L}</script><script type="math/tex; mode=display">
+Sinnx \Leftrightarrow Sin\frac{n\pi x}{L}</script><script type="math/tex; mode=display">
+e^{inx}\Leftrightarrow e^{\frac{in\pi x}{L}}</script><script type="math/tex; mode=display">
+a_n=\frac{1}{\pi}\int_{-\pi}^\pi f(x)Cosnx\ dx\Leftrightarrow \frac{1}{L}\int_{-L}^L f(x)Cos\frac{n\pi x}{L}\ dx</script><script type="math/tex; mode=display">
+c_n\Leftrightarrow\frac{1}{L}\int_{-L}^Lf(x)·e^{-\frac{in\pi x}{L}}dx</script><p>普通 $2L$ 周期的展开</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{n=-\infty}^\infty c_n e^{\frac{in\pi}{L}x}</script><p>定义：$\frac{n\pi}{L}=\alpha_n$, $\Delta \alpha=\alpha_{n+1}-\alpha_n=\frac{\pi}{L}$</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{n=-\infty}^\infty c_n e^{i\alpha_nx}</script><script type="math/tex; mode=display">
+c_n=\frac{1}{2L}\int_{-L}^Lf(x)e^{-i\alpha_nx}dx=\frac{\Delta\alpha}{2\pi}\int_{-L}^Lf(x)e^{-i\alpha_nx}dx</script><p>把 $c_n$ 代入 $f(x)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f(x)&=\sum_{n=-\infty}^\infty \frac{\Delta\alpha}{2\pi} \int_{-L}^Lf(u)e^{-i\alpha_nu}du\ e^{i\alpha_nx}\\
+&=\frac{1}{2\pi}\sum_{n=-\infty}^\infty \int_{-L}^Lf(u)e^{i\alpha_n(x-u)}du\ \Delta\alpha\\
+\end{align}</script><p>令 $L\to\infty$, 有 $\Delta\alpha\to 0$</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty\int_{-\infty}^\infty f(u)e^{i\alpha_n(x-u)}du\ d\alpha\\</script><p>可以将上式拆成两份</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty g(\alpha)e^{i\alpha_nx}d\alpha\\</script><script type="math/tex; mode=display">
+g(\alpha)=\int_{-\infty}^\infty f(u)e^{-i\alpha_nu}du</script><h3 id="双重可逆定义"><a href="#双重可逆定义" class="headerlink" title="双重可逆定义"></a>双重可逆定义</h3><script type="math/tex; mode=display">
+f(x) \leftrightarrow g(\alpha)</script><p>总结得</p>
+<script type="math/tex; mode=display">
+F.T\begin{cases}
+g(\alpha)=\int_{-\infty}^\infty f(x)e^{-i\alpha_nx}dx\\
+f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty g(\alpha)e^{i\alpha_nx}d\alpha\\
+\end{cases}</script><p>有时候表达式不同，但积分前的数相乘必须等于$\frac{1}{2\pi}$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f'(x)&\leftrightarrow\int_{-\infty}^\infty f'(x)e^{-i\alpha_nx}dx\\
+&=f(x)e^{-i\alpha_nx}|_{-\infty}^\infty-\int_{-\infty}^\infty (-i\alpha_n)f(x)e^{-i\alpha_nx}dx\\
+&=0+i\alpha_ng(\alpha)
+\end{align}</script><p>因此可推导</p>
+<script type="math/tex; mode=display">
+f''(x)\leftrightarrow(i\alpha)^2g(\alpha),\ f'''(x)\leftrightarrow(i\alpha)^3g(\alpha)</script><p>此方法可以用来 $求导\leftrightarrow乘积$</p>
+<script type="math/tex; mode=display">
+(3f'''(x)+2f''(x)+f(x))\rightarrow多项式</script><script type="math/tex; mode=display">
+f(x)\leftarrow g(\alpha)</script><p>如果采用</p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^\infty f(x)e^{-\alpha x}dx</script><p>则是拉普拉斯变换</p>
+<h3 id="傅里叶变换的正式表达"><a href="#傅里叶变换的正式表达" class="headerlink" title="傅里叶变换的正式表达"></a>傅里叶变换的正式表达</h3><script type="math/tex; mode=display">
+\mathscr{F}(f(x))(\alpha)=g(\alpha)</script><script type="math/tex; mode=display">
+\mathscr{F}(g(\alpha))(x)=f(x)</script><h3 id="帕塞瓦尔定理-1"><a href="#帕塞瓦尔定理-1" class="headerlink" title="帕塞瓦尔定理"></a>帕塞瓦尔定理</h3><p>函数的模（在一定区间内的积分）= 所有系数的平方和的叠加； 能量没有损失</p>
+<script type="math/tex; mode=display">
+\int_{-\infty}^\infty|g(\alpha)|^2d\alpha=2\pi\int_{-\infty}^\infty|f(x)|^2dx</script><p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\int_{-\infty}^\infty|g(\alpha)|^2d\alpha&=\int_{-\infty}^\infty g(\alpha)\bar{g}(\alpha)d\alpha\\
+&=\int_{-\infty}^\infty g(\alpha)(\int_{-\infty}^\infty\bar{f}(x)e^{idx}dx)d\alpha\\
+&=\int_{-\infty}^\infty \bar{f}(x)(\int_{-\infty}^\infty g(\alpha)e^{idx}d\alpha)dx\\
+&=2\pi\int_{-\infty}^\infty \bar{f}(x)f(x)dx
+\end{align}</script><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p><strong>线性性</strong></p>
+<p>有 F.T : $f\to g$, $t\to s$</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(\alpha f+\beta t)=\alpha g+\beta s</script><p><strong>求导特性</strong></p>
+<script type="math/tex; mode=display">
+f^{(n)}(x)\leftrightarrow(i\alpha)^ng(\alpha)</script><script type="math/tex; mode=display">
+(-ix)^nf(x)\leftrightarrow g^{(n)}(\alpha)</script><p><strong>卷积特性</strong></p>
+<p>有 F.T : $f\to g$, $t\to s$</p>
+<script type="math/tex; mode=display">
+f*t\leftrightarrow g*s</script><h2 id="不确定性关系-Uncertainty-Principle"><a href="#不确定性关系-Uncertainty-Principle" class="headerlink" title="不确定性关系 Uncertainty Principle"></a>不确定性关系 Uncertainty Principle</h2><script type="math/tex; mode=display">
+\Delta X\Delta P\ge\frac{\hbar}{2}</script><blockquote>
+<p>$G(引力), \hbar (普朗克常量 量子), c (时定)$</p>
+</blockquote>
+<h3 id="求正态分布分F-T"><a href="#求正态分布分F-T" class="headerlink" title="求正态分布分F.T"></a>求正态分布分F.T</h3><script type="math/tex; mode=display">
+f(x)=\frac{1}{\sqrt{4\pi a}}e^{-\frac{x^2}{4a}}</script><script type="math/tex; mode=display">
+\mathscr{F}(f(x))=e^{-\alpha u^2}</script><blockquote>
+<p>用到解析函数在解析区域内围道积分=0</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+g(u)&=\int_{-\infty}^\infty f(x)e^{-iux}dx\\
+&=\frac{1}{\sqrt{4\pi a}}\int_{-\infty}^\infty e^{-\frac{x^2}{4a}}e^{-iux}dx\\
+&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}\int_{-\infty}^\infty e^{-(\frac{x^2}{4a}+iux+a(iu)^2)}dx\\
+&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}\int_{-\infty}^\infty e^{-(\frac{x}{2\sqrt{a}}+\sqrt{a}iu)^2}dx\\
+\end{align}</script><h4 id="Recall"><a href="#Recall" class="headerlink" title="Recall"></a>Recall</h4><script type="math/tex; mode=display">
+\int_{-\infty}^\infty e^{-x^2}dx=I=\sqrt{\pi}</script><p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align}
+I^2&=\int_{-\infty}^\infty e^{-x^2}dx\int_{-\infty}^\infty e^{-y^2}dy\\
+&=\int\int_{-\infty}^\infty e^{-(x^2+y^2)}dx\ dy\\
+&=\int_0^{2\pi}\int_{-\infty}^\infty e^{-r^2}rdr\ d\theta\\
+&=\pi\int_{-\infty}^\infty e^{-r^2}dr^2\\
+&=\pi
+\end{align}</script><blockquote>
+<p>$\int\int_Df(x,y)dxdy=\int\int_Df(\rho Cos\theta,\rho Sin\theta)\rho d\rho d\theta$</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\oint_{I-II}e^{-z^2}dZ=0</script><script type="math/tex; mode=display">
+II:\int_{-\infty}^\infty e^{-(\frac{x}{2\sqrt{a}}+\sqrt{a}iu)^2}dx=I:\int_{-\infty}^\infty e^{-(\frac{x}{2\sqrt{a}})^2}dx=2\sqrt{a}\int_{-\infty}^\infty e^{-x'^2}dx'=2\sqrt{a\pi}</script><blockquote>
+<p>从另一种角度解释了正态分布的形成</p>
+</blockquote>
+<p>所以</p>
+<script type="math/tex; mode=display">
+\begin{align}
+g(u)&=\frac{1}{\sqrt{4\pi a}}e^{-au^2}·2\sqrt{a\pi}\\
+&=e^{-au^2}
+\end{align}</script><p>引入定理</p>
+<script type="math/tex; mode=display">
+\psi(x)=\frac{1}{\sqrt{4\pi a}}e^{-\frac{x^2}{4a}}</script><script type="math/tex; mode=display">
+P(k)=e^{-ak^2}</script><p>with $4a=2\sigma_x^2$, $\frac{1}{a}=2\sigma_k^2$; $\sigma_x\sigma_k=const.$ 位置越确定，动量越不确定，反之亦然. 两者只有一种能优化到一种程度.</p>
+<h2 id="解热传导公式"><a href="#解热传导公式" class="headerlink" title="解热传导公式"></a>解热传导公式</h2><blockquote>
+<p>此步骤可以套入由BS-PDE推导的BS model</p>
+</blockquote>
+<p>初始热温分布 $f(x)$, 目标函数 $h(x,t)$ 在 t 时间 x 位置的温度.</p>
+<h3 id="热传导方程"><a href="#热传导方程" class="headerlink" title="热传导方程"></a>热传导方程</h3><script type="math/tex; mode=display">
+\frac{\partial h(x,t)}{\partial t}=k\frac{\partial^2 h(x,t)}{\partial x^2}</script><p>在 t 时增加的温度，是两边温差的差乘以一个系数</p>
+<p>选择 x 消去，用 F.T $x\to u$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{F}(\frac{\partial h}{\partial t})&=\mathscr{F}(k\frac{\partial^2 h}{\partial x^2})\\
+\frac{\partial}{\partial t}[\mathscr{F}(h)]&=k(iu)^2\mathscr{F}(h)
+\end{align}</script><p>因为有 $\frac{d}{dt}W=aW$, 判断 $\mathscr{F}(h)$ 为指数形式</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(h)=c(u)e^{-ku^2t}</script><p>由卷积特性，若 F.T : $f\to g$, $t\to s$, 有$f\star t\leftrightarrow g\star s$</p>
+<p>因为存在初态 t=0 时，$h(x,0)=f(x)$</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(f(x))=c(u)e^{-ku^20}=c(u)</script><p>依照正态分布分F.T得出</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(\frac{1}{\sqrt{4\pi kt}}e^{-\frac{x^2}{4kt}})=e^{-ku^2t}</script><p>总结</p>
+<script type="math/tex; mode=display">
+h(x,t)=\int_{-\infty}^\infty f(L)\frac{1}{\sqrt{4\pi kt}}e^{-\frac{(x-L)^2}{4kt}}dL</script><h2 id="核磁共振成像-MRI"><a href="#核磁共振成像-MRI" class="headerlink" title="核磁共振成像 MRI"></a>核磁共振成像 MRI</h2><p>密度分布 $\mu(x,y)$，原强度 $I_0$，穿透后的强度 $I=I_0e^{-\int_L \mu}$，现已知 $\int_L \mu$, $\theta$ 射入角度，$\rho$ 距圆心距离</p>
+<h3 id="将变换扩展到二维"><a href="#将变换扩展到二维" class="headerlink" title="将变换扩展到二维"></a>将变换扩展到二维</h3><script type="math/tex; mode=display">
+F.T\begin{cases}
+g(k_x,k_y)=\int\int f(x,y)e^{-i(k_xx+k_yy)}dxdy\\
+f^{(n)}(x,y)\leftrightarrow(i(k_xx+k_yy))^ng(k_x,k_y)\\
+\end{cases}</script><p>固定 $\theta$，改变 $\rho$，并对 $\rho$ 进行 F.T</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{F}(\int_L \mu(\rho,\theta))(r)&=\int(\int_L \mu(\rho,\theta))e^{-ir\rho}d\rho\\
+&=\int\int \mu(x,y)e^{-ir(xCos\theta+ySin\theta)}dxdy\\
+\end{align}</script><p>变量替换 $rCos\theta=k_x, rSin\theta=k_y$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{F}(\int_L \mu(\rho,\theta))(r)&=\int\int \mu(x,y)e^{-i(k_xx+k_yy)}dxdy\\
+\end{align}</script><p>得到 $\mathscr{F}(\mu(x,y))$ 后，I.F.T，得到 $\mu(x,y)$</p>
+<h2 id="离散傅里叶变换"><a href="#离散傅里叶变换" class="headerlink" title="离散傅里叶变换"></a>离散傅里叶变换</h2><p>等效与矩阵算法，发展为快速傅里叶变换 F.F.T</p>
+<p>定义 [x] 中括号为离散, 以下是 D.F.T, $2\pi$ 为一个周期</p>
+<script type="math/tex; mode=display">
+\mathscr{F}(f[n])(m)\equiv\sum_{n=0}^{N-1}f[n]e^{-2\pi inm/N}</script><h4 id="矩阵形式"><a href="#矩阵形式" class="headerlink" title="矩阵形式"></a>矩阵形式</h4><script type="math/tex; mode=display">
+W_{nm}=e^{-\frac{2\pi i}{N}nm},\ m,n\in[0,N-1]</script><script type="math/tex; mode=display">
+\mathscr{F}(f[n])(m)= Wf[n]</script><p>定义 $e^{-\frac{2\pi i}{N}}=\omega$</p>
+<script type="math/tex; mode=display">
+W=\begin{bmatrix}
+1&1&1&...&1\\
+1&\omega&\omega^2&...&\omega^m\\
+1&\omega^{2}&\omega^{4}&...&\omega^{2m}\\
+...&...&...&...&...\\
+1&\omega^{n}&\omega^{2n}&...&\omega^{mn}\\
+\end{bmatrix}</script><script type="math/tex; mode=display">
+W^{-1}=\frac{1}{N}\begin{bmatrix}
+1&1&1&...&1\\
+1&\omega^{-1}&\omega^{-2}&...&\omega^{-m}\\
+1&\omega^{-2}&\omega^{-4}&...&\omega^{-2m}\\
+...&...&...&...&...\\
+1&\omega^{-n}&\omega^{-2n}&...&\omega^{-mn}\\
+\end{bmatrix}</script><script type="math/tex; mode=display">
+WW^{-1}=I</script><h4 id="快速傅里叶变换"><a href="#快速傅里叶变换" class="headerlink" title="快速傅里叶变换"></a>快速傅里叶变换</h4><p>有 $e^{i\theta}=Cos\theta+iSin\theta$, 在 $e^{-\frac{2\pi i}{N}nm}$ 中，当 nm 能被 N 整除，则 $W_{mn}$ 等于 1</p>
+<p>$W_{N\times N}$ 可以分成 $一个分块矩阵\times一个对角分块矩阵\times位移矩阵$</p>
+<script type="math/tex; mode=display">
+W_{N\times N}=
+\begin{bmatrix}
+I&D\\I&-D
+\end{bmatrix}
+\begin{bmatrix}
+W_{\frac{N}{2}}&0\\0&W_{\frac{N}{2}}
+\end{bmatrix}
+\begin{bmatrix}
+n\leq\frac{N}{2},第n行2n+1列为1\\n\ge\frac{N}{2},第(n-\frac{N}{2})行2(n-\frac{N}{2})列为1
+\end{bmatrix}</script><p>D 是一个包含 $[1,\omega,\omega^2,…,\omega^{\frac{N}{2}-1}]$ 的对角矩阵</p>
+<h2 id="Gabor变换-短时傅里叶变换"><a href="#Gabor变换-短时傅里叶变换" class="headerlink" title="Gabor变换/短时傅里叶变换"></a>Gabor变换/短时傅里叶变换</h2><p>为了研究一段时间，引入$g(t)$ 时窗因子，只在 0 点附近不为 0，其余快速消减</p>
+<script type="math/tex; mode=display">
+G(f(t))(w,u)=\int_{-\infty}^\infty f(t)g(t-u)e^{-iwt}dt</script><h2 id="小波变换-Wavelet-Transform"><a href="#小波变换-Wavelet-Transform" class="headerlink" title="小波变换 Wavelet Transform"></a>小波变换 Wavelet Transform</h2><script type="math/tex; mode=display">
+W(f(t))(a,b)=\int_{-\infty}^\infty f(t)\psi_{a,b}(t)dt</script><script type="math/tex; mode=display">
+f(t)=\frac{1}{C}\int_0^\infty\int_{-\infty}^\infty a^{-2}W_f(a,b)\psi_{a,b}(t)db\ da</script><script type="math/tex; mode=display">
+C=\int_0^\infty\frac{|\mathscr{F}(\psi(t))(\omega)|^2}{\omega}d\omega</script><script type="math/tex; mode=display">
+\psi_{a,b}(t)=\frac{1}{\sqrt{a}}\psi(\frac{t-b}{a})</script><ul>
+<li>$a&gt;0$ 放缩尺度因子</li>
+<li>$-\infty&lt;b&lt;\infty$ 平移因子</li>
+<li>$\psi(t)$ 基函数</li>
+</ul>
+<blockquote>
+<p> 基函数/小波平均值必须为0</p>
+</blockquote>
+<h3 id="墨西哥草帽式"><a href="#墨西哥草帽式" class="headerlink" title="墨西哥草帽式"></a>墨西哥草帽式</h3><script type="math/tex; mode=display">
+\psi(t)=\frac{2}{B}\pi^{-\frac{1}{4}}(1-t^2)e^{-\frac{t^2}{2}}</script><h3 id="Morlet-小波"><a href="#Morlet-小波" class="headerlink" title="Morlet 小波"></a>Morlet 小波</h3><script type="math/tex; mode=display">
+\psi(t)=e^{-\frac{t^2}{2}}e^{i\omega_0t}</script><h2 id="拉普拉斯变换-Laplace-Transform"><a href="#拉普拉斯变换-Laplace-Transform" class="headerlink" title="拉普拉斯变换 Laplace Transform"></a>拉普拉斯变换 Laplace Transform</h2><script type="math/tex; mode=display">
+F.T\begin{cases}
+\mathscr{L}(f(t))(p)=F(p)=\int_0^\infty f(t)e^{-pt}dt\\
+f'(t)\leftrightarrow pF(p)-f(0)\\
+f''(t)\leftrightarrow p(pF(p)-f(0))-f'(0)\\
+\end{cases}</script><h1 id="傅里叶变换表"><a href="#傅里叶变换表" class="headerlink" title="傅里叶变换表"></a>傅里叶变换表</h1><p><img src="/2021/05/30/Fourier_Transform/pic1-5.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析之掐死教程（完整版）</a></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Complex-Number/">#Complex Number</a>
+      
+        <a href="/tags/Fourier-Transform/">#Fourier Transform</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Fourier Transform</div>
+      <div>http://achlier.github.io/2021/05/30/Fourier_Transform/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 30, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/11/Ito_Integral/" title="【笔记】Ito Integral">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Ito Integral</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/23/Change_of_Measure/" title="【笔记】Change of Measure">
+                        <span class="hidden-mobile">【笔记】Change of Measure</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

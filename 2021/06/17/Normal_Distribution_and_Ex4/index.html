@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于各种笔记的总结归纳； 原目的是求正态分布下的E(x^4)，结果找到了许多之前遗忘的知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Normal Distribution and Ex4">
+<meta property="og:url" content="http://achlier.github.io/2021/06/17/Normal_Distribution_and_Ex4/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于各种笔记的总结归纳； 原目的是求正态分布下的E(x^4)，结果找到了许多之前遗忘的知识点。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/06/17/Normal_Distribution_and_Ex4/pic1-1.png">
+<meta property="og:image" content="http://achlier.github.io/2021/06/17/Normal_Distribution_and_Ex4/pic1-2.png">
+<meta property="article:published_time" content="2021-06-17T14:55:23.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:36:59.991Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Normal Distribution">
+<meta property="article:tag" content="Moment Generating Function">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/06/17/Normal_Distribution_and_Ex4/pic1-1.png">
+  
+  
+  
+  <title>【笔记】Normal Distribution and Ex4 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Normal Distribution and Ex4"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-06-17 22:55" pubdate>
+          June 17, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Normal Distribution and Ex4</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于各种笔记的总结归纳；</p>
+<p>原目的是求正态分布下的E(x^4)，结果找到了许多之前遗忘的知识点。</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><script type="math/tex; mode=display">
+f(x)=\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><p>我们知道求标准正态分布下的 $E(x^k)$ 有很多种方法，可以用极坐标转换推，本文章的第一步就先把这两种基础方法不快乐地各推一遍，再引入矩母函数用更快乐更多样的方法求值.</p>
+<h3 id="极坐标转换第一种"><a href="#极坐标转换第一种" class="headerlink" title="极坐标转换第一种"></a>极坐标转换第一种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以套用其他系数（虽然过程会特别麻烦）</p>
+<script type="math/tex; mode=display">
+\begin{align}
+E(x)&=\int x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx\\
+&=\frac1{\sqrt{2\pi}}\int x^4e^{-\frac{x^2}{2}}dx\\
+(换元t=\frac{x}{\sqrt2})&=\frac1{\sqrt{2\pi}}\int 4t^4e^{-t^2}\sqrt 2dt\\
+&=\frac4{\sqrt{\pi}}\int t^4e^{-t^2}dt\\
+\end{align}</script><p>换元的这一步主要是把$exp$上面的系数换掉，如果存在$\mu$,也要加上去，虽然会变得比较麻烦.</p>
+<p>接下来极坐标转换, 注意转换的时候要乘$\rho$</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\frac{\partial x}{\partial\theta}&\frac{\partial x}{\partial \rho}\\
+\frac{\partial y}{\partial\theta}&\frac{\partial y}{\partial \rho}
+\end{bmatrix}
+=\begin{bmatrix}
+-\rho sin\theta&cos\theta\\
+\rho cos\theta&sin\theta
+\end{bmatrix}
+=\rho</script><blockquote>
+<p>Jacobian Matrix</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{align}
+E(x)&=\int x^4e^{-x^2}dx\int y^4e^{-y^2}dy\\
+&=\int\int x^4y^4e^{-(x^2+y^2)}dxdy
+\end{align}</script><script type="math/tex; mode=display">
+x=\rho cos\theta,\quad y=\rho sin\theta</script><script type="math/tex; mode=display">
+\begin{align}
+E(x)&=\int_0^\infty\int_0^{2\pi} \rho^8cos\theta^4sin\theta^4e^{-\rho^2}\times\rho\ d\theta  d\rho\\
+&=\frac12\int_0^\infty\rho^8e^{-\rho^2} d\rho^2\int_0^{2\pi} cos\theta^4sin\theta^4d\theta \\
+\end{align}</script><p>接下来分成两部分相乘，主要如果原分布含有$\mu$, 此时会有许多相加的项，但也按同样的方法分成两部分计算</p>
+<p><strong>第一部分</strong></p>
+<p>令 $t=\rho^2$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^\infty t^4e^{-t}dt\\
+=&-\int_0^\infty t^4de^{-t}\\
+=&-t^4e^{-t}|_0^\infty+4\int_0^\infty e^{-t}t^3dt\\
+=&-4\int_0^\infty t^3de^{-t}\\
+=&-4t^3e^{-t}|_0^\infty+4\times3\int_0^\infty e^{-t}t^2dt\\
+=&4!\int_0^\infty e^{-t}dt\\
+=&-4!e^{-t}|_0^\infty=4!=24
+\end{align}</script><p>可以得到规律</p>
+<script type="math/tex; mode=display">
+\int_0^\infty t^{n}e^{-t}dt=n!</script><p>当我们的次数 $n$ 变换时也可以直接套用</p>
+<p><strong>第二部分</strong></p>
+<p>当存在 $\mu$ 时，这部分会有不同的组合，可能会遍历 $sin^n x \times cos^m x,\quad m,n\in (1,2,…,k)$  的所有可能. 但由于其从0到2pi的定积分有以下特性：</p>
+<ol>
+<li><p>当n为奇数时,被积函数是奇函数,所以积分等于0</p>
+</li>
+<li><p>当m为奇数时, $m=2k+1$, 原式化为$sin^n x * (1-sin^2 x)^k dsinx$  在-pi到+pi的积分,然后这个式子等于0</p>
+</li>
+</ol>
+<p>因此只取 $n,m$ 都为双数和整数的部分，如果 $k=4$, 只取 $x^2$,$y^2$,$x^4$,$y^4$,$x^2y^2$,$x^2y^4$,$x^4y^2$,$x^4y^4$和整数的部分.</p>
+<p>然后争取把所有项凑成 $m,n$ 相同的形式，配合 <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d1b29418fad6195f312ba64c.html">常用三角函数公式大全</a> ，$sin\theta^2cos\theta^2=(\frac{sin2\theta}{2})^2$，,$sin\theta^4cos\theta^4=(\frac{sin2\theta}{2})^4$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^{2\pi}(\frac{sin2\theta}{2})^4d\theta\\
+=&\frac 1{16}\int_0^{2\pi}sin2\theta^4d\theta\\
+=&\frac 1{16}\int_0^{2\pi}(\frac{1-cos4\theta}2)^4d\theta\\
+=&\frac 1{64}\int_0^{2\pi}(1-2cos4\theta+\frac{1+cos8\theta}2)d\theta\\
+=&\frac 1{64}\times\frac 32\times2\pi=\frac{3}{64}\pi
+\end{align}</script><p>最终得到</p>
+<script type="math/tex; mode=display">
+E(x)=\frac4{\sqrt{\pi}}\times\sqrt{\frac12\times 24\times\frac{3}{64}\pi}=3</script><blockquote>
+<p>运用好 Matlab 的 符号运算 和 simplify(f)  对符号表达式进行化简</p>
+</blockquote>
+<h3 id="极坐标转换第二种"><a href="#极坐标转换第二种" class="headerlink" title="极坐标转换第二种"></a>极坐标转换第二种</h3><p>为了简单按 $N(0,1)$ 为例子，但可以转到 $N(0,\sigma^2)$</p>
+<p>If $X\sim N(0,\sigma^2)$, $Y=\frac{x-0}\sigma=\frac x\sigma\sim N(0,1)$</p>
+<script type="math/tex; mode=display">
+\mathbb E[\frac{x^4}{\sigma^4}]=3\Rightarrow E[x^4]=3\sigma^4</script><p>开始求</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_{-\infty}^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
+=&2\int_0^\infty x^4\frac1{\sqrt{2\pi}}e^{-\frac{x^2}2}dx\\
+=&(-2)\int_0^\infty x^3\frac1{\sqrt{2\pi}}de^{-\frac{x^2}2}\\
+=&-\frac2{\sqrt{2\pi}}(x^3e^{-\frac{x^2}2}|_0^\infty-3\int_0^\infty e^{-\frac{x^2}2}x^2dx)\\
+=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}x^2dx\\
+=&-\frac6{\sqrt{2\pi}}\int_0^\infty xde^{-\frac{x^2}2}\\
+=&-\frac6{\sqrt{2\pi}}(xe^{-\frac{x^2}2}|_0^\infty-\int_0^\infty e^{-\frac{x^2}2}dx)\\
+=&\frac6{\sqrt{2\pi}}\int_0^\infty e^{-\frac{x^2}2}dx
+\end{align}</script><blockquote>
+<p>这部分感觉能直接说是 CDF 的一半，就是 $\frac 12$，结果等于 3 , 但是up主继续求了，不确定有没有坑.</p>
+</blockquote>
+<p>极坐标转换</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^\infty\int_0^\infty e^{-\frac{x^2}2} e^{-\frac{y^2}2} dxdy\\
+(只在第一象限)=&\int_0^\frac{\pi}2\int_0^\infty e^{-\frac{r^2}2}rdrd\theta\\
+=&\int_0^\frac{\pi}2 [e^{-\frac{r^2}2}|_\infty^0]d\theta\\
+=&\frac\pi2
+\end{align}</script><p>原式子等于</p>
+<script type="math/tex; mode=display">
+\frac6{\sqrt{2\pi}}\sqrt{\frac{\pi}2}=3</script><h3 id="矩母函数"><a href="#矩母函数" class="headerlink" title="矩母函数"></a>矩母函数</h3><script type="math/tex; mode=display">
+M_x(t)=\mathbb E(e^{tx})</script><p>对于正态分布 $x\sim N(\mu,\sigma^2)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+M_x(t)&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}+tx}dx\\
+&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{x^2+\mu^2-2(\mu+t\sigma^2)x}{2\sigma^2}}dx\\
+&=\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2+\mu^2-(\mu+t\sigma^2)^2}{2\sigma^2}}dx\\
+&=e^{-\frac{\mu^2-(\mu^2+t^2\sigma^4+2\mu\sigma^2 t)}{2\sigma^2}}\int\frac1{\sqrt{2\pi}\sigma}e^{-\frac{[x-(\mu+t\sigma^2)]^2}{2\sigma^2}}dx\\
+&=e^{\frac{t^2\sigma^2}2+\mu t}
+\end{align}</script><p>通过 Moment Generating Function 的特性可知</p>
+<script type="math/tex; mode=display">
+e^{uY}=1+uY+\frac{u^2Y^2}{2!}+\frac{u^3Y^3}{3!}+...</script><script type="math/tex; mode=display">
+M_Y(u)=\mathbb E[e^{uY}]=1+u\mathbb E(Y)+\frac{u^2\mathbb E(Y^2)}{2!}+\frac{u^3\mathbb E(Y^3)}{3!}+...</script><script type="math/tex; mode=display">
+M_Y^{(k)}(0)=E(Y^k)</script><p><strong>【补充】</strong></p>
+<p><img src="/2021/06/17/Normal_Distribution_and_Ex4/pic1-1.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2021/06/17/Normal_Distribution_and_Ex4/pic1-2.png" srcset="/img/loading.gif" lazyload alt></p>
+<h3 id="补充使用-Ito-求-mathbb-E-W-6-T-的方法"><a href="#补充使用-Ito-求-mathbb-E-W-6-T-的方法" class="headerlink" title="补充使用 Ito 求$\mathbb E(W^6(T))$的方法"></a>补充使用 Ito 求$\mathbb E(W^6(T))$的方法</h3><p>如果要求 $\mathbb E(W^6(T))$, 设 $f(t,x)=x^6$, $f_t=0, f_x=6x^5, f_{xx}=30x^4$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+df(t,W(t))=dW^6(T)&=6W(t)^5dW(t)+\frac1230W(t)^4dW(t)dW(t)\\
+&=6W(t)^5dW(t)+15W(t)^4dt
+\end{align}</script><script type="math/tex; mode=display">
+W^6(T)-W^6(0)=I_W[6W^5](T)+\int_0^T15W^4(t)dt</script><script type="math/tex; mode=display">
+\mathbb E[W^6(T)]=0+\int_0^T15·3t^2dt=15T^3</script><blockquote>
+<p>当然也可以直接查表</p>
+</blockquote>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_41895958/article/details/103827936">标准正态分布的E(X^4)积分求解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fb411V7Gg">[金融工程][Jerry Xu的金工小知识]Stochastc Calculus布朗运动(Part 3)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61828433">矩母函数、正态分布、二次型</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NC4y1a7XY">Ito积分练习题(Part 2)</a></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Normal-Distribution/">#Normal Distribution</a>
+      
+        <a href="/tags/Moment-Generating-Function/">#Moment Generating Function</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Normal Distribution and Ex4</div>
+      <div>http://achlier.github.io/2021/06/17/Normal_Distribution_and_Ex4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 17, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/20/Brownian_Motion/" title="【笔记】Brownian Motion">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Brownian Motion</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/" title="【推导】Black Scholes Model 进阶版">
+                        <span class="hidden-mobile">【推导】Black Scholes Model 进阶版</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

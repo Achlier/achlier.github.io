@@ -1,0 +1,840 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于 UIC 金融数学的课程 Numerical Analysis 中代码的复习笔记；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【代码】Numerical_Analysis">
+<meta property="og:url" content="http://achlier.github.io/2022/03/13/Numerical_Analysis/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于 UIC 金融数学的课程 Numerical Analysis 中代码的复习笔记；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-13T15:46:13.000Z">
+<meta property="article:modified_time" content="2022-03-13T20:08:10.099Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Matlab">
+<meta property="article:tag" content="Numerical Analysis">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【代码】Numerical_Analysis - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【代码】Numerical_Analysis"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-13 23:46" pubdate>
+          March 13, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          79 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【代码】Numerical_Analysis</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于 UIC 金融数学的课程 Numerical Analysis 中代码的复习笔记；</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="The-Bisection-Method"><a href="#The-Bisection-Method" class="headerlink" title="The Bisection Method"></a>The Bisection Method</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">Bisection</span><span class="hljs-params">(a,b,tol,n0)</span></span><br><span class="hljs-comment">%input:</span><br><span class="hljs-comment">%    interval [a,b]</span><br><span class="hljs-comment">%    function fx</span><br><span class="hljs-comment">%    tolerance tol</span><br><span class="hljs-comment">%    maximum number of iterations n0</span><br><span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>;<br>fa = fx(a);<br><span class="hljs-keyword">if</span> fx(a)*fx(b) &gt; <span class="hljs-number">0</span><br>    fprintf(<span class="hljs-string">&quot;Please change the interval [a,b].\n&quot;</span>)<br><span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">i</span> &lt;= n0<br>        p = a+(b-a)/<span class="hljs-number">2</span>;<br>        fp = fx(p);<br>        <span class="hljs-keyword">if</span> fp == <span class="hljs-number">0</span> || (b-a)/<span class="hljs-number">2</span> &lt; tol<br>            sol = p;<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-built_in">i</span> = <span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>;<br>            fprintf(<span class="hljs-string">&quot;a:&quot;</span>+a+<span class="hljs-string">&quot; b:&quot;</span>+b+<span class="hljs-string">&quot; p:&quot;</span>+p+<span class="hljs-string">&quot;\n&quot;</span>)<br>            <span class="hljs-keyword">if</span> fa*fp &gt; <span class="hljs-number">0</span><br>                a=p;<br>                fa=fp;<br>            <span class="hljs-keyword">else</span><br>                b=p;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="Fixed-point-Iteration"><a href="#Fixed-point-Iteration" class="headerlink" title="Fixed-point Iteration"></a>Fixed-point Iteration</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> =  <span class="hljs-title">FixedPoint</span><span class="hljs-params">(p0,tol,n0)</span></span><br><span class="hljs-comment">%input:</span><br><span class="hljs-comment">%    initial approximation p0</span><br><span class="hljs-comment">%    function fx</span><br><span class="hljs-comment">%    tolerance tol</span><br><span class="hljs-comment">%    maximum number of iterations n0</span><br><span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> <span class="hljs-built_in">i</span> &lt;= n0<br>    fprintf(<span class="hljs-string">&quot;p&quot;</span>+(<span class="hljs-built_in">i</span><span class="hljs-number">-1</span>)+<span class="hljs-string">&quot;:&quot;</span>+p0+<span class="hljs-string">&quot;\n&quot;</span>)<br>    p = fx(p0);<br>    fprintf(<span class="hljs-string">&quot;|p-p0|:&quot;</span>+<span class="hljs-built_in">abs</span>(p-p0)+<span class="hljs-string">&quot;\n&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">abs</span>(p-p0) &lt; tol<br>        sol = p;<br>        <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">i</span> = <span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>;<br>        p0 = p;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="Newton’s-Method"><a href="#Newton’s-Method" class="headerlink" title="Newton’s Method"></a>Newton’s Method</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> =  <span class="hljs-title">Newton</span><span class="hljs-params">(p0,tol,n0)</span></span><br><span class="hljs-comment">%input:</span><br><span class="hljs-comment">%    initial approximation p0</span><br><span class="hljs-comment">%    function fx</span><br><span class="hljs-comment">%    tolerance tol</span><br><span class="hljs-comment">%    maximum number of iterations n0</span><br>fx = @(x) x<span class="hljs-number">-0.8</span><span class="hljs-number">-0.2</span>*<span class="hljs-built_in">sin</span>(x);<br>dfx = @(x) <span class="hljs-number">1</span><span class="hljs-number">-0.2</span>*<span class="hljs-built_in">cos</span>(x);<br><span class="hljs-built_in">i</span>=<span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> <span class="hljs-built_in">i</span> &lt;= n0<br>    fprintf(<span class="hljs-string">&quot;p&quot;</span>+(<span class="hljs-built_in">i</span><span class="hljs-number">-1</span>)+<span class="hljs-string">&quot;:&quot;</span>+p0+<span class="hljs-string">&quot;\n&quot;</span>)<br>    p = p0-fx(p0)/dfx(p0);<br>    fprintf(<span class="hljs-string">&quot;|p-p0|:&quot;</span>+<span class="hljs-built_in">abs</span>(p-p0)+<span class="hljs-string">&quot;\n&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">abs</span>(p-p0) &lt; tol<br>        sol = p;<br>        <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">i</span> = <span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>;<br>        p0 = p;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="nth-Lagrange-Interpolation-Polynomials"><a href="#nth-Lagrange-Interpolation-Polynomials" class="headerlink" title="nth Lagrange Interpolation Polynomials"></a>nth Lagrange Interpolation Polynomials</h2><p>如果我们已知 n+1 个点的值 </p>
+<script type="math/tex; mode=display">
+(x_0,f(x_0)),(x_1,f(x_1)),(x_2,f(x_2))...(x_n,f(x_n))</script><p>存在一个多项式</p>
+<script type="math/tex; mode=display">
+P(x)=f(x_{0}) L_{n, 0}(x)+\cdots+f(x_{n}) L_{n, n}(x)=\sum_{k=0}^{n} f(x_{k}) L_{n, k}(x)</script><p>通过所有点</p>
+<script type="math/tex; mode=display">
+L_{n, k}(x_{j})=\left\{\begin{array}{ll}
+1, & \text { if } j=k \\
+0, & \text { if } j \neq k
+\end{array}\right.</script><script type="math/tex; mode=display">
+L_{n, k}(x)=\frac{(x-x_{0})(x-x_{1}) \cdots(x-x_{k-1})(x-x_{k+1}) \cdots(x-x_{n})}{(x_{k}-x_{0})(x_{k}-x_{1}) \cdots(x_{k}-x_{k-1})(x_{k}-x_{k+1}) \cdots(x_{k}-x_{n})}=\prod_{\substack{i=0 \\ i \neq k}}^{n} \frac{(x-x_{i})}{(x_{k}-x_{i})}</script><h4 id="Code-of-Degree-one"><a href="#Code-of-Degree-one" class="headerlink" title="Code of Degree one"></a>Code of Degree one</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">Degree1_Interpolation</span><span class="hljs-params">(x0,x1,X)</span></span><br><span class="hljs-comment">%input:</span><br><span class="hljs-comment">%    distinct nodes x0,x1</span><br><span class="hljs-comment">%    function fx</span><br>L0 = @(x) (x-x1)/(x0-x1);<br>L1 = @(x) (x-x0)/(x1-x0);<br>sol = L0(X)*fx(x0)+L1(X)*fx(x1);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h4 id="Code-of-Degree-two"><a href="#Code-of-Degree-two" class="headerlink" title="Code of Degree two"></a>Code of Degree two</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">Degree2_Interpolation</span><span class="hljs-params">(x0,x1,x2,X)</span></span><br><span class="hljs-comment">%input:</span><br><span class="hljs-comment">%    distinct nodes x0,x1,x2</span><br><span class="hljs-comment">%    function fx</span><br>L0 = @(x) (x-x1)*(x-x2)/((x0-x1)*(x0-x2));<br>L1 = @(x) (x-x0)*(x-x2)/((x1-x0)*(x1-x2));<br>L2 = @(x) (x-x0)*(x-x1)/((x2-x0)*(x2-x1));<br>sol = L0(X)*fx(x0)+L1(X)*fx(x1)+L2(X)*fx(x2);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>注意：预测的点应该在已知点的范围之间</p>
+<h2 id="Neville’s-Iterated-Interpolation"><a href="#Neville’s-Iterated-Interpolation" class="headerlink" title="Neville’s Iterated Interpolation"></a>Neville’s Iterated Interpolation</h2><p>如果一个多项式建立在 k 个确定的点上 $x_{m_1},x_{m_2},…,x_{m_k}$。那么，此多项式可以表示为 $P_{m_1,m_2,…,m_k}$，$Q_{i,j}=P_{i-j,i-j+1,…,i-1,i}$</p>
+<script type="math/tex; mode=display">
+P(x)=\frac{(x-x_{j}) P_{0,1, \cdots, j-1, j+1, \cdots, k}(x)-(x-x_{i}) P_{0,1, \cdots, i-1, i+1, \cdots, k}(x)}{x_{i}-x_{j}}</script><script type="math/tex; mode=display">
+Q_{i, j}=\frac{(x-x_{i-j}) Q_{i, j-1}-(x-x_{i}) Q_{i-1, j-1}}{x_{i}-x_{i-j}}</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">Qfunction</span><span class="hljs-params">(x0,x1,y0,y1,X)</span></span><br><span class="hljs-comment">%input:</span><br><span class="hljs-comment">%    distinct nodes (x0,y0),(x1,y1)</span><br><span class="hljs-comment">%    function fx</span><br>L0 = @(x) (x-x1)/(x0-x1);<br>L1 = @(x) (x-x0)/(x1-x0);<br>sol = L0(X)*y0+L1(X)*y1;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">NevilleIterated</span><span class="hljs-params">(x,x_box,y_box)</span></span><br>Q = <span class="hljs-built_in">zeros</span>(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">3</span><br>    Q(<span class="hljs-built_in">i</span>,<span class="hljs-number">1</span>) = Qfunction(x_box(<span class="hljs-built_in">i</span>),x_box(<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>),y_box(<span class="hljs-built_in">i</span>),y_box(<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>),x);<br><span class="hljs-keyword">end</span><br><span class="hljs-comment">%[ p12 , p123 , p1234</span><br><span class="hljs-comment">%         </span><br><span class="hljs-comment">%  p23 , p234</span><br><span class="hljs-comment">%</span><br><span class="hljs-comment">%  p34 ,</span><br><span class="hljs-keyword">for</span> <span class="hljs-built_in">j</span> = <span class="hljs-number">2</span>:<span class="hljs-number">3</span><br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:<span class="hljs-number">4</span>-<span class="hljs-built_in">j</span><br>        Q(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span>) = ((x-x_box(<span class="hljs-built_in">i</span>))*Q(<span class="hljs-built_in">i</span>+<span class="hljs-number">1</span>,<span class="hljs-built_in">j</span><span class="hljs-number">-1</span>)-(x-x_box(<span class="hljs-built_in">i</span>+<span class="hljs-built_in">j</span>))*Q(<span class="hljs-built_in">i</span>,<span class="hljs-built_in">j</span><span class="hljs-number">-1</span>))/(x_box(<span class="hljs-built_in">i</span>+<span class="hljs-built_in">j</span>)-x_box(<span class="hljs-built_in">i</span>));<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br>sol = Q(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="Numerical-Differentiation"><a href="#Numerical-Differentiation" class="headerlink" title="Numerical Differentiation"></a>Numerical Differentiation</h2><ul>
+<li><strong>The  (n+1) -point formula</strong> to approximate  $f^{\prime}\left(x_{j}\right)$</li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime}\left(x_{j}\right)=\sum_{k=0}^{n} f\left(x_{k}\right) L_{k}^{\prime}\left(x_{j}\right)+\frac{f^{(n+1)}\left[\xi\left(x_{j}\right)\right]}{(n+1) !} \prod_{\substack{k=0 \\ k \neq j}}^{n}\left(x_{j}-x_{k}\right)</script><ul>
+<li><strong>Forward-Difference and Backward-Difference Formula</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime}\left(x_{0}\right)=\frac{f\left(x_{0}+h\right)-f\left(x_{0}\right)}{h}-\frac{h}{2} f^{\prime \prime}[\xi(x)]</script><p>where $ \xi(x)$  lies between  $x_{0}$  and  $x_{0}+h$ . When  $h&gt;0$ , it is the forward-difference formula; The backward-difference formula if  $h&lt;0$ .</p>
+<ul>
+<li><strong>Three-Point Endpoint Formula</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime}\left(x_{0}\right)=\frac{-3 f\left(x_{0}\right)+4 f\left(x_{0}+h\right)-f\left(x_{0}+2 h\right)}{2 h}+\frac{h^{2}}{3} f^{(3)}\left(\xi_{0}\right)</script><p>where  $\xi_{0}$  lies between  $x_{0}$  and  $x_{0}+2 h$ .</p>
+<ul>
+<li><strong>Three-Point Midpoint Formula</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime}\left(x_{0}\right)=\frac{f\left(x_{0}+h\right)-f\left(x_{0}-h\right)}{2 h}-\frac{h^{2}}{6} f^{(3)}\left(\xi_{1}\right)</script><p>where  $\xi_{1}$  lies between  $x_{0}-h$  and  $x_{0}+h$ .</p>
+<ul>
+<li><strong>Five-Point Endpoint Formula</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime}\left(x_{0}\right)=\frac{1}{12 h}\left[-25 f\left(x_{0}\right)+48 f\left(x_{0}+h\right)-36 f\left(x_{0}+2 h\right)+16 f\left(x_{0}+3 h\right)-3 f\left(x_{0}+4 h\right)\right]+\frac{h^{4}}{5} f^{(5)}\left(\xi_{0}\right)</script><p>where  $\xi_{0}$  lies between  $x_{0}$  and  $x_{0}+4 h$ .</p>
+<ul>
+<li><strong>Five-Point Midpoint Formula</strong></li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime}\left(x_{0}\right)=\frac{1}{12 h}\left[f\left(x_{0}-2 h\right)-8 f\left(x_{0}-h\right)+8 f\left(x_{0}+h\right)-f\left(x_{0}+2 h\right)\right]+\frac{h^{4}}{30} f^{(5)}\left(\xi_{1}\right)</script><p>where  $\xi_{1}$  lies between  $x_{0}-2 h$  and  $x_{0}+2 h$ .</p>
+<ul>
+<li><strong>Second Derivative Midpoint Formula</strong> (To approximate  $f^{\prime \prime}\left(x_{0}\right)$)</li>
+</ul>
+<script type="math/tex; mode=display">
+f^{\prime \prime}\left(x_{0}\right)=\frac{1}{h^{2}}\left[f\left(x_{0}-h\right)-2 f\left(x_{0}\right)+f\left(x_{0}+h\right)\right]-\frac{h^{2}}{12} f^{(4)}(\xi)</script><p>where  $\xi$  lies between  $x_{0}-h$  and  $x_{0}+h$ .</p>
+<h2 id="Numerical-Integration"><a href="#Numerical-Integration" class="headerlink" title="Numerical Integration"></a>Numerical Integration</h2><h4 id="The-n-1-point-Closed-Newton-Cotes-Formulas"><a href="#The-n-1-point-Closed-Newton-Cotes-Formulas" class="headerlink" title="The  $(n+1)$ -point Closed Newton-Cotes Formulas:"></a>The  $(n+1)$ -point Closed Newton-Cotes Formulas:</h4><p>Use  $x_{i}=x_{0}+i h$ , for  $i=   0,1, \cdots, n$ , where  $x_{0}=a, x_{n}=b$  and  $h=(b-a) / n$ . The endpoints of the closed interval  [a, b]  are included as nodes.</p>
+<script type="math/tex; mode=display">
+\int_{a}^{b} f(x) \mathrm{d} x \approx \sum_{i=0}^{n} a_{i} f\left(x_{i}\right)</script><p>where  $a_{i}=\int_{a}^{b} L_{i}(x) \mathrm{d} x$ .</p>
+<ul>
+<li><strong>Trapezoidal Rule</strong>  (n=1) </li>
+</ul>
+<script type="math/tex; mode=display">
+\int_{x_{0}}^{x_{1}} f(x) \mathrm{d} x=\frac{h}{2}\left[f\left(x_{0}\right)+f\left(x_{1}\right)\right]-\frac{h^{3}}{12} f^{\prime \prime}(\xi), \quad \xi \in\left(x_{0}, x_{1}\right)</script><ul>
+<li><strong>Simpson’s Rule</strong>  (n=2) </li>
+</ul>
+<script type="math/tex; mode=display">
+\int_{x_{0}}^{x_{2}} f(x) \mathrm{d} x=\frac{h}{3}\left[f\left(x_{0}\right)+4 f\left(x_{1}\right)+f\left(x_{2}\right)\right]-\frac{h^{5}}{90} f^{(4)}(\xi), \quad \xi \in\left(x_{0}, x_{2}\right)</script><ul>
+<li><strong>Simpson’s Three-Eights Rule</strong>  (n=3) </li>
+</ul>
+<script type="math/tex; mode=display">
+\int_{x_{0}}^{x_{3}} f(x) \mathrm{d} x=\frac{3 h}{8}\left[f\left(x_{0}\right)+3 f\left(x_{1}\right)+3 f\left(x_{2}\right)+f\left(x_{3}\right)\right]-\frac{3 h^{5}}{80} f^{(4)}(\xi), \quad \xi \in\left(x_{0}, x_{3}\right)</script><h4 id="The-n-1-point-Open-Newton-Cotes-Formulas"><a href="#The-n-1-point-Open-Newton-Cotes-Formulas" class="headerlink" title="The $(n+1)$-point Open Newton-Cotes Formulas:"></a>The $(n+1)$-point Open Newton-Cotes Formulas:</h4><p>Use $x_{i}=x_{0}+i h$, for $i=$ $0,1, \cdots, n$, where $h=(b-a) /(n+2), x_{0}=a+h$ and $x_{n}=b-h$. Label the endpoints as $x_{-1}=a$ and $x_{n+1}=b$. Open formulas contain all the nodes within the open interval $(a, b)$.</p>
+<script type="math/tex; mode=display">
+\int_{a}^{b} f(x) \mathrm{d} x=\int_{x-1}^{x_{n+1}} f(x) \mathrm{d} x \approx \sum_{i=0}^{n} a_{i} f\left(x_{i}\right)</script><p>where $a_{i}=\int_{a}^{b} L_{i}(x) \mathrm{d} x$.</p>
+<ul>
+<li>Midpoint Rule $(n=0)$</li>
+</ul>
+<script type="math/tex; mode=display">
+\int_{x-1}^{x_{1}} f(x) \mathrm{d} x=2 h f\left(x_{0}\right)+\frac{h^{3}}{3} f^{\prime \prime}(\xi), \quad \xi \in\left(x_{-1}, x_{1}\right) .</script><h4 id="Composite-Numerical-Integration"><a href="#Composite-Numerical-Integration" class="headerlink" title="Composite Numerical Integration"></a>Composite Numerical Integration</h4><ul>
+<li><strong>Composite Simpsons rule:</strong> Let $f \in C^{4}[a, b], n$ be even, $h=(b-a) / n$, and $x_{j}=a+j h$, for each $j=0,1, \cdots, n$. There exists a $\mu \in(a, b)$ for which the Composite Simpsons rule for $n$ subintervals can be written with its error term as<script type="math/tex; mode=display">
+\int_{a}^{b} f(x) \mathrm{d} x=\frac{h}{3}\left[f(a)+2 \sum_{j=1}^{(n / 2)-1} f\left(x_{2 j}\right)+4 \sum_{j=1}^{n / 2} f\left(x_{2 j-1}\right)+f(b)\right]-\frac{b-a}{180} h^{4} f^{(4)}(\mu)</script></li>
+<li><strong>Composite Trapezoidal rule:</strong> Let $f \in C^{2}[a, b], h=(b-a) / n$, and $x_{j}=a+j h$, for each $j=0,1, \cdots, n$. There exists a $\mu \in(a, b)$ for which the Composite Trapezoidal rule for $n$ subintervals can be written with its error term as<script type="math/tex; mode=display">
+\int_{a}^{b} f(x) \mathrm{d} x=\frac{h}{2}\left[f(a)+2 \sum_{j=1}^{n-1} f\left(x_{j}\right)+f(b)\right]-\frac{b-a}{12} h^{2} f^{\prime \prime}(\mu)</script></li>
+<li><strong>Composite Midpoint rule:</strong> Let $f \in C^{2}[a, b], n$ be even, $h=(b-a) /(n+2)$, and $x_{j}=a+(j+1) h$, for each $j=-1,0, \cdots, n+1$. There exists a $\mu \in(a, b)$ for which the Composite Midpoint rule for $n+2$ subintervals can be written with its error term as</li>
+</ul>
+<script type="math/tex; mode=display">
+\int_{a}^{b} f(x) \mathrm{d} x=2 h \sum_{j=1}^{n / 2} f\left(x_{2 j}\right)+\frac{b-a}{6} h^{2} f^{\prime \prime}(\mu)</script><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">ComTrapezoidal</span><span class="hljs-params">(a,b,n)</span></span><br>h = (b-a)/n;<br>sum = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:(n<span class="hljs-number">-1</span>)<br>    sum = sum+fx(a+<span class="hljs-built_in">i</span>*h);<br><span class="hljs-keyword">end</span><br>sol = h/<span class="hljs-number">2</span>*(fx(a)+fx(b)+<span class="hljs-number">2</span>*sum);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sol</span> = <span class="hljs-title">ComSimpsons</span><span class="hljs-params">(a,b,n)</span></span><br>h = (b-a)/n;<br>sum1 = <span class="hljs-number">0</span>;<br>sum2 = dfx(a+(n<span class="hljs-number">-1</span>)*h);<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span> = <span class="hljs-number">1</span>:(n/<span class="hljs-number">2</span><span class="hljs-number">-1</span>)<br>    sum1 = sum1+dfx(a+<span class="hljs-number">2</span>*<span class="hljs-built_in">i</span>*h);<br>    sum2 = sum2+dfx(a+(<span class="hljs-number">2</span>*<span class="hljs-built_in">i</span><span class="hljs-number">-1</span>)*h);<br><span class="hljs-keyword">end</span><br>sol = h/<span class="hljs-number">3</span>*(dfx(a)+dfx(b)+<span class="hljs-number">2</span>*sum1+<span class="hljs-number">4</span>*sum2);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="Initial-Value-Problems-for-ODEs"><a href="#Initial-Value-Problems-for-ODEs" class="headerlink" title="Initial Value Problems for ODEs"></a>Initial Value Problems for ODEs</h2><p>Approximate the solution $y(t)$ to an initial-value problem</p>
+<script type="math/tex; mode=display">
+y'(t)=f(t,y),\quad a\le t\le b,\quad y(a)=\alpha</script><h4 id="Euler’s-Method"><a href="#Euler’s-Method" class="headerlink" title="Euler’s Method"></a>Euler’s Method</h4><ul>
+<li><strong>Forward Euler’s Method</strong>:</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{rcl}
+w_0&=&a\\
+w_{i+1}&=&w_i+hf(t_i,w_i)\qquad \text{for each }i =0,1,...,N-1
+\end{array}</script><ul>
+<li><strong>Backward Euler’s Method</strong>: </li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{rcl}
+w_0&=&a\\
+w_{i+1}&=&w_i+hf(t_{i+1},w_{i+1})\qquad \text{for each }i =0,1,...,N-1
+\end{array}</script><h4 id="Higher-Order-Taylor-Methods"><a href="#Higher-Order-Taylor-Methods" class="headerlink" title="Higher-Order Taylor Methods"></a>Higher-Order Taylor Methods</h4><ul>
+<li>Taylor method of order $n$ :<script type="math/tex; mode=display">
+\begin{aligned}
+w_{0} &=\alpha \\
+w_{i+1} &=w_{i}+h T^{(n)}\left(t_{i}, w_{i}\right), \quad \text { for each } i=0,1, \cdots, N-1
+\end{aligned}</script>where<script type="math/tex; mode=display">
+T^{(n)}\left(t_{i}, w_{i}\right)=f\left(t_{i}, w_{i}\right)+\frac{h}{2} f^{\prime}\left(t_{i}, w_{i}\right)+\cdots+\frac{h^{n-1}}{n !} f^{(n-1)}\left(t_{i}, w_{i}\right)</script></li>
+<li>Forward Euler’s Method is Taylor’s method of order one.</li>
+</ul>
+<h4 id="Runge-Kutta-Method"><a href="#Runge-Kutta-Method" class="headerlink" title="Runge-Kutta Method"></a>Runge-Kutta Method</h4><ul>
+<li><p>Runge-Kutta methods of order two (RK2):</p>
+<ul>
+<li><p>Midpoint method: with local truncation error $O\left(h^{2}\right)$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w_{0} &=\alpha \\
+w_{i+1} &=w_{i}+h f\left(t_{i}+\frac{h}{2}, w_{i}+\frac{h}{2} f\left(t_{i}, w_{i}\right)\right)
+\end{aligned}</script><p>for each $i=0,1, \cdots, N-1$.</p>
+</li>
+<li><p>Modified Euler method: with local truncation error $O\left(h^{2}\right)$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w_{0} &=\alpha \\
+w_{i+1} &=w_{i}+\frac{h}{2}\left[f\left(t_{i}, w_{i}\right)+f\left(t_{i+1}, w_{i}+h f\left(t_{i}, w_{i}\right)\right)\right]
+\end{aligned}</script><p>for each $i=0,1, \cdots, N-1$.</p>
+</li>
+</ul>
+</li>
+<li><p>Runge-Kutta methods of order four (RK4):</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w_{0} &=\alpha \\
+k_{1} &=h f\left(t_{i}, w_{i}\right) \\
+k_{2} &=h f\left(t_{i}+\frac{h}{2}, w_{i}+\frac{1}{2} k_{1}\right) \\
+k_{3} &=h f\left(t_{i}+\frac{h}{2}, w_{i}+\frac{1}{2} k_{2}\right) \\
+k_{4} &=f\left(t_{i+1}, w_{i}+k_{3}\right), \\
+w_{i+1} &=w_{i}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right),
+\end{aligned}</script><p>for each $i=0,1, \cdots, N-1$.</p>
+</li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Matlab/">#Matlab</a>
+      
+        <a href="/tags/Numerical-Analysis/">#Numerical Analysis</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【代码】Numerical_Analysis</div>
+      <div>http://achlier.github.io/2022/03/13/Numerical_Analysis/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 13, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="【笔记】高等数学复习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】高等数学复习笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/11/Lab_of_Applied_Computational_Finance/" title="【代码】Lab of Applied Computational Finance">
+                        <span class="hidden-mobile">【代码】Lab of Applied Computational Finance</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

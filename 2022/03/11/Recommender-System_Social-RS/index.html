@@ -1,0 +1,774 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="重新整理出来的推荐系统相关的资料； Social Recommendation 包括：  加入了 Social Network 的 SoRec 与在前者基础上改进的 Social Trust">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Recommender System:Social RS">
+<meta property="og:url" content="http://achlier.github.io/2022/03/11/Recommender-System_Social-RS/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="重新整理出来的推荐系统相关的资料； Social Recommendation 包括：  加入了 Social Network 的 SoRec 与在前者基础上改进的 Social Trust">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/03/11/Recommender-System_Social-RS/pic1-1.jpg">
+<meta property="article:published_time" content="2022-03-10T16:06:35.000Z">
+<meta property="article:modified_time" content="2022-03-11T07:55:28.062Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/03/11/Recommender-System_Social-RS/pic1-1.jpg">
+  
+  
+  
+  <title>【笔记】Recommender System:Social RS - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Recommender System:Social RS"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-11 00:06" pubdate>
+          March 11, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Recommender System:Social RS</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>重新整理出来的推荐系统相关的资料；</p>
+<p>Social Recommendation 包括：</p>
+<ol>
+<li>加入了 Social Network 的 SoRec</li>
+<li>与在前者基础上改进的 Social Trust</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+<h1 id="SoRec"><a href="#SoRec" class="headerlink" title="SoRec"></a>SoRec</h1><blockquote>
+<p>推荐阅读 《SoRec Social Recommendation using Probabilistic Matrix Factorization》^[1]^</p>
+</blockquote>
+<p>数据的稀疏性一直是推荐算法发展的一个巨大难题，作者考虑到了社交媒体在当今社会的发展，提出了一种加入 social network 的信息和评分记录来改进模型的方法。其主要思路是，用户对一件物品的评分很可能受关注的人/朋友的影响。</p>
+<p><strong>假设有m个物品(item)，n个用户(user)，f个因子(factor)</strong></p>
+<p>$U :$ 所有用户的集合</p>
+<p>$I :$ 所有物品的集合</p>
+<p>$P_{n\times f}: $ user-factor matrix </p>
+<p>$Q_{m\times f}:$ item-factor matrix </p>
+<p>$Z_{n\times f}:$ user-factor matrix in the social network graph</p>
+<p>$R^f:$ 1$×$factor vector</p>
+<p>$q_i:$ $Q$ 中物品 $i$ 所在行的向量</p>
+<p>$p_u:$ $P$ 中用户 $u$ 所在的行的向量 </p>
+<p>$\vartheta :$ social network graph</p>
+<p>$\nu :$ all the users in a social network</p>
+<p>$\varepsilon :$ the edge set in social network graph</p>
+<script type="math/tex; mode=display">\vartheta = (\nu,\varepsilon)</script><p><img src="/2022/03/11/Recommender-System_Social-RS/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>$C_{n\times n} :$ user-user matrix of $\vartheta$</p>
+<p>$c_{uj}\in (0,1] :$ donate the weight associated with an edge from $\nu_{u}$ to $\nu_{j}$</p>
+<p>这里特别注意，在 social network 中的信息是单项的。这代表一个用户 A 关注了另一个用户 B，但 用户 B 不一定知道用户 A。</p>
+<p>$d^{+}(\nu_{u}) :$ the outdegree of $\nu_{u}$</p>
+<p>$d^{-}(\nu_{u}) :$ the indegree of $\nu_{u}$</p>
+<script type="math/tex; mode=display">c_{uj}^{*} = \sqrt{\frac{d^{-}(\nu_{j})}{d^{+}(\nu_{u})+d^{-}(\nu_{j})}}c_{uj}</script><p>如果将上式进行解释，就是一个用户 u 关注的其他的用户越多，那么他受某个特定用户 k 的影响就越少。如果特定用户 k 被很多人关注，那么用户 u 就会更加信任他。</p>
+<p>$\kappa$ $:$ $\{ (u,i)|$  $r_{ui}$ is known $\}$</p>
+<p>$\hat{r_{ui}}:$ 用户 $u$ 对物品 $i$ 的评分的预测值</p>
+<script type="math/tex; mode=display">\hat{r_{ui}}=q_{i}^{T}p_{u}</script><p>$N(x|\mu,\sigma^2): $ 正态分布,均值为 $\mu$ , 方差为 $\sigma^2$</p>
+<p>假设 P，Q，R，C，S 皆服从高斯分布，既：</p>
+<p>$\begin{align}<br>\\p(R|P,Q,\sigma_{R}^{2})&amp;=\prod\limits_{u\in U}\prod\limits_{i\in I}N(r_{ui}|p_{u}^{T}q_{i},\sigma_{R}^{2})<br>\\p(C|P,Z,\sigma_{C}^{2})&amp;=\prod\limits_{u\in U}\prod\limits_{j\in U}N(c_{uj}|p_{u}^{T}z_{j},\sigma_{C}^{2})<br>\\p(P|\sigma_{P}^{2})&amp;=\prod\limits_{u\in U} N(p_{u}|0,\sigma_{P}^{2})<br>\\p(Q|\sigma_{Q}^{2})&amp;=\prod\limits_{i\in I} N(q_{i}|0,\sigma_{Q}^{2})<br>\\p(Z|\sigma_{Z}^{2})&amp;=\prod\limits_{u\in U} N(z_{u}|0,\sigma_{Z}^{2})<br>\end{align}$</p>
+<p>使用极大似然估计，既希望最大化：</p>
+<p>$\begin{align}<br>p(P,Q|R,\overrightarrow{\theta})\qquad and \qquad p(P,Z|C,\overrightarrow{\theta})<br>\end{align}$</p>
+<p>使用贝叶斯定理可知：</p>
+<p>$\begin{align}<br>&amp;p(P,Q|R,\overrightarrow{\theta})\propto p(R|P,Q,\overrightarrow{\theta_{1}})p(P,Q|\overrightarrow{\theta_{2}})<br>\ =&amp;p(P,Q|R,\overrightarrow{\theta})\propto p(R|P,Q,\overrightarrow{\theta_{1}})p(P|\overrightarrow{\theta_{2}})p(Q|\overrightarrow{\theta_{2}})<br>\ =&amp;\prod\limits_{u\in U}\prod\limits_{i\in I}N(r_{ui}|p_{u}^{T}q_{i},\sigma_{R}^{2})\prod\limits_{u\in U} N(p_{u}|0,\sigma_{P}^{2})\prod\limits_{i\in I} N(q_{i}|0,\sigma_{Q}^{2})<br>\end{align}$</p>
+<p>同理得出 $p(P,Z|C,\overrightarrow{\theta})$ 后进行 $log$ 处理，并且合并两个式子，得：</p>
+<p>$\begin{align}<br>&amp;lnp(P,Q,Z|C,R,\sigma_{C}^{2},\sigma_{R}^{2},\sigma_{P}^{2},\sigma_{Q}^{2},\sigma_{Z}^{2})<br>\  =&amp;-\frac{1}{2\sigma_{R}^{2}}\sum\limits_{u\in U}\sum\limits_{i\in I}(r_{ui}-p_{u}^{2}q_{i})^{2}<br>-\frac{1}{2\sigma_{C}^{2}}\sum\limits_{u\in U}\sum\limits_{j\in U}(c_{uj}^{*}-p_{u}^{2}z_{j})^{2}<br>\  &amp;-\frac{1}{2\sigma_{P}^{2}}\sum\limits_{u\in U}p_{u}^{T}p_{u}<br>-\frac{1}{2\sigma_{Q}^{2}}\sum\limits_{i\in I}q_{i}^{T}q_{i}<br>-\frac{1}{2\sigma_{Z}^{2}}\sum\limits_{u\in U}z_{u}^{T}z_{u}<br>\  &amp;-\frac{1}{2}\sum\limits_{u\in U}\sum\limits_{i\in I}ln\sigma_{R}^{2}-\frac{1}{2}\sum\limits_{u\in U}\sum\limits_{i\in I}ln\sigma_{C}^{2}<br>-\frac{1}{2}(n\times f ln\sigma_{P}^{2}+m\times f ln\sigma_{Q}^{2}+n\times f ln\sigma_{Z}^{2})<br>\end{align}$</p>
+<p>$\lambda:$ 正则化系数</p>
+<p>$\alpha:$ 学习速率(learning rate)</p>
+<script type="math/tex; mode=display">C(q_{i},p_{u},z_{u})=\sum\limits_{(u,i)\in \kappa}(r_{ui}-\hat{r_{ui}})^{2}+\lambda(\sum\limits_{u\in \nu}\sum\limits_{j\in \nu}(c^{*}_{uj}-p_{u}^{T}z_{j})^{2}+\Arrowvert q_{i}\Arrowvert^{2}+\Arrowvert p_{u}\Arrowvert^{2}+\Arrowvert z_{u}\Arrowvert^{2})</script><p>$error=r_{ui}-\hat{r_{ui}}$</p>
+<p>$err = c^{*}_{uj}-p_{u}^{T}z_{j}$</p>
+<p>$\begin{align}<br>q_{i}:&amp;=q_{i}-\frac{\alpha}{2}\triangledown C(q_{i},p_{u},z_{u})<br>\ &amp;=q_{i}-\frac{\alpha}{2}\frac{\partial C(q_{i},p_{u},z_{u})}{\partial q_{i}}<br>\ &amp;=q_{i}-\frac{\alpha}{2}(2error\times(-p_{u})+2\lambda q_{i})<br>\ &amp;=q_{i}+\alpha(error\times p_{u}-\lambda q_{i})<br>\end{align}$</p>
+<p>$\begin{align}<br>p_{u}:&amp;=p_{u}-\frac{\alpha}{2}\triangledown C(q_{i},p_{u},z_{u})<br>\ &amp;=p_{u}-\frac{\alpha}{2}\frac{\partial C(q_{i},p_{u},z_{u})}{\partial p_{u}}<br>\ &amp;=p_{u}-\frac{\alpha}{2}(2error\times(-q_{i})+2err\times(-z_{u})+2\lambda p_{u})<br>\ &amp;=p_{u}+\alpha(error\times q_{i}+err\times z_{u}-\lambda p_{u})<br>\end{align}$</p>
+<p>$\begin{align}<br>z_{u}:&amp;=z_{u}-\frac{\alpha}{2}\triangledown C(q_{i},p_{u},z_{u})<br>\ &amp;=z_{u}-\frac{\alpha}{2}\frac{\partial C(q_{i},p_{u},z_{u})}{\partial z_{u}}<br>\ &amp;=z_{u}-\frac{\alpha}{2}(2err\times(-p_{u})+2\lambda p_{u})<br>\ &amp;=z_{u}+\alpha(err\times p_{u}-\lambda z_{u})<br>\end{align}$</p>
+<h1 id="Social-Trust"><a href="#Social-Trust" class="headerlink" title="Social Trust"></a>Social Trust</h1><blockquote>
+<p>推荐阅读 《Learning to recommend with social trust ensemble》^[2]^</p>
+</blockquote>
+<p>这个模型是作者在上一个模型的基础改进的，主要思想是不再对用户在 social network 中关注的所有用户进行运算，而是挑选出几个用户最信任的朋友。</p>
+<p><strong>假设有m个物品(item)，n个用户(user)，f个因子(factor)</strong></p>
+<p>$P_{n\times f}: $ user-factor matrix </p>
+<p>$Q_{m\times f}:$ item-factor matrix </p>
+<p>$\vartheta :$ social network graph</p>
+<p>$R^f:$ 1$×$factor vector</p>
+<p>$q_i:$ $Q$ 中物品 $i$ 所在行的向量</p>
+<p>$p_u:$ $P$ 中用户 $u$ 所在的行的向量 </p>
+<p>$\nu :$ all the users in a social network</p>
+<p>$\varepsilon :$ the edge set in social network graph</p>
+<script type="math/tex; mode=display">\vartheta = (\nu,\varepsilon)</script><p>$S_{n\times n} :$ user-user matrix of $\vartheta$</p>
+<p>$s_{uj}\in (0,1] :$ donate the weight associated with an edge from $\nu_{u}$ to $\nu_{j}$</p>
+<p>$T(u) :$ the friends set that user $u$ trusts</p>
+<script type="math/tex; mode=display">s_{uj}^{*} = \frac{s_{uj}}{|T(u)|}</script><p>$r_{ui}:$ 用户 $u$ 对物品 $i$ 的打分</p>
+<p>$\kappa$ $:$ $\{ (u,i)|$  $r_{ui}$ is known $\}$</p>
+<p>$\lambda:$ 正则化系数</p>
+<p>$\alpha:$ 学习速率(learning rate)</p>
+<p>$\gamma :$ controls how much do users trust themselves or their trusted friends</p>
+<p>注意此处依旧有一个控制变量，来调节用户对朋友的信任度</p>
+<script type="math/tex; mode=display">C(q_{i},p_{u})=\sum\limits_{(u,i)\in \kappa}(r_{ui}-(\gamma p_{u}^{T}q_{i}+(1-\gamma)\sum\limits_{j \in T(u)}s_{uj}^{*} p_{j}^{T} q_{i}))^{2}+\lambda(\Arrowvert q_{i}\Arrowvert^{2}+\Arrowvert p_{u}\Arrowvert^{2})</script><p>$\hat{r_{ui}}:$ 用户 $u$ 对物品 $i$ 的评分的预测值</p>
+<script type="math/tex; mode=display">\hat{r_{ui}}=\gamma p_{u}^{T}q_{i}+(1-\gamma)\sum\limits_{j \in T(u)}s_{uj}^{*} p_{j}^{T} q_{i}</script><p>$error=r_{ui}-\hat{r_{ui}}$</p>
+<p>$B(u) :$ is the set that includes all the users who trust user $u$</p>
+<p>$\begin{align}<br>q_{i}:&amp;=q_{i}-\frac{\alpha}{2}\triangledown C(q_{i},p_{u})<br>\ &amp;=q_{i}-\frac{\alpha}{2}\frac{\partial C(q_{i},p_{u})}{\partial q_{i}}<br>\ &amp;=q_{i}-\frac{\alpha}{2}(2error\times(-\gamma p_{u}-(1-\gamma)\sum\limits_{j \in T(u)}s_{uj}^{<em>} p_{j}^{T})+2\lambda q_{i})<br>\ &amp;=q_{i}+\alpha(error\times(\gamma p_{u}+(1-\gamma)\sum\limits_{j \in T(u)}s_{uj}^{</em>} p_{j}^{T})-\lambda q_{i})<br>\end{align}$</p>
+<p>$\begin{align}<br>p_{u}:&amp;=p_{u}-\frac{\alpha}{2}\triangledown C(q_{i},p_{u})<br>\ &amp;=p_{u}-\frac{\alpha}{2}\frac{\partial C(q_{i},p_{u})}{\partial p_{u}}<br>\ &amp;=p_{u}-\frac{\alpha}{2}(2error\times(-\gamma q_{i})+(1-\gamma)\sum\limits_{p\in B(u)}\sum\limits_{j\in T(u)}(-2error_{pi}\times s_{pj}^{<em>}q_{i}^{T}))+2\gamma p_{j})<br>\ &amp;=p_{u}+\frac{\alpha}{2}(error\times(\gamma q_{i})+(1-\gamma)\sum\limits_{p\in B(u)}\sum\limits_{j\in T(u)}(error_{pi}\times s_{pj}^{</em>}q_{i}^{T}))-\gamma p_{j})<br>\end{align}$</p>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li>Ma, H., Yang, H., Lyu, M.R., &amp; King, I. (2008). SoRec: social recommendation using probabilistic matrix factorization. <em>CIKM ‘08</em>.</li>
+<li>Ma, H., King, I., &amp; Lyu, M.R. (2009). Learning to recommend with social trust ensemble. <em>Proceedings of the 32nd international ACM SIGIR conference on Research and development in information retrieval</em>.</li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Recommender-System/">#Recommender System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Recommender System:Social RS</div>
+      <div>http://achlier.github.io/2022/03/11/Recommender-System_Social-RS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 11, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/11/Lab_of_Applied_Computational_Finance/" title="【代码】Lab of Applied Computational Finance">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【代码】Lab of Applied Computational Finance</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/08/Recommender-System_Classical-RS/" title="【笔记】Recommender System:Classical RS">
+                        <span class="hidden-mobile">【笔记】Recommender System:Classical RS</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

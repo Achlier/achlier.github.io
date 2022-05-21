@@ -1,0 +1,1922 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于格拉斯哥ECON5065的笔记；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】Applied Computational Finance">
+<meta property="og:url" content="http://achlier.github.io/2021/05/12/Applied_Computational_Finance/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于格拉斯哥ECON5065的笔记；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://mathworld.wolfram.com/images/eps-gif/ConcaveConvexFunction_1000.gif">
+<meta property="article:published_time" content="2021-05-12T14:02:44.000Z">
+<meta property="article:modified_time" content="2022-03-12T15:50:45.931Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Financial Engineering">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://mathworld.wolfram.com/images/eps-gif/ConcaveConvexFunction_1000.gif">
+  
+  
+  
+  <title>【课程】Applied Computational Finance - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】Applied Computational Finance"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-12 22:02" pubdate>
+          May 12, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          47k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          389 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】Applied Computational Finance</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于格拉斯哥ECON5065的笔记；</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="General-information"><a href="#General-information" class="headerlink" title="General information"></a>General information</h1><p>Many problems in economics, finance and financial engineering do not possess a closed-form solution which could be computed easily. Typically, these problems are solved by using <strong>numerical algorithms and simulation methods</strong>. This course covers the study and implementation of such techniques. These include <strong>Monte Carlo simulation</strong> for <strong>pricing complex derivatives</strong>; <strong>finite difference methods</strong> to solve <strong>partial differential equations</strong> for option pricing; <strong>effective methods</strong> to compute <strong>hedging strategies</strong>; <strong>numerical dynamic programming</strong> for <strong>optimal portfolios</strong>, <strong>resource management and economic growth</strong>. Advanced understanding of these techniques and their implementation on computer using software packages and programming languages is the focus of this course.</p>
+<h1 id="Aims"><a href="#Aims" class="headerlink" title="Aims"></a>Aims</h1><p>The main aims of this course are to introduce students to core techniques in computational finance, such as <strong>simulation of asset prices</strong>, pricing options using <strong>stochastic models</strong>, <strong>Monte Carlo methods</strong> as applied to complex derivatives, solving <strong>Black-Scholes</strong> type equations <strong>numerically</strong>, solving <strong>dynamic optimization</strong> problems <strong>numerically</strong>, and how to implement these techniques using modelling software packages and programming languages.</p>
+<h1 id="ILOs"><a href="#ILOs" class="headerlink" title="ILOs"></a>ILOs</h1><p>By the end of this course, students will be able to:</p>
+<ol>
+<li>Calculate the price and hedging portfolios of complex derivatives using <strong>Monte Carlo simulations</strong>; </li>
+<li>Calculate the price of American and other exotic options by implementing <strong>numerical methods</strong> to solve the related partial differential equations; </li>
+<li>Implement <strong>dynamic programming algorithms</strong> to solve problems in portfolio optimisation, resource management and monetary policy; </li>
+<li>Demonstrate advanced skills in modelling software package <strong>MATLAB</strong>.</li>
+</ol>
+<h1 id="Unit-1：Black-Scholes-Model"><a href="#Unit-1：Black-Scholes-Model" class="headerlink" title="Unit 1：Black-Scholes Model"></a>Unit 1：Black-Scholes Model</h1><h2 id="Unit-1-1：P-amp-L-Approach-to-Black-Scholes-Equation"><a href="#Unit-1-1：P-amp-L-Approach-to-Black-Scholes-Equation" class="headerlink" title="Unit 1.1：P&amp;L Approach to Black-Scholes Equation"></a>Unit 1.1：P&amp;L Approach to Black-Scholes Equation</h2><ul>
+<li><strong>P&amp;L</strong>：profit and loss </li>
+<li><strong>T</strong>：maturity</li>
+<li><strong>S</strong>：underlying asset price</li>
+<li>$F(S_T)$：payoff function</li>
+<li>$P(t, S)$：pricing function </li>
+</ul>
+<p>Consider the <strong>P&amp;L</strong> due to trading between time $t$ and $t + \delta t$</p>
+<script type="math/tex; mode=display">
+P\&L=-[P(t+\delta t,S+\delta S)-P(t,S)]+rP(t,S)\delta t+\Delta\delta S-(r-q)\Delta S\delta t</script><script type="math/tex; mode=display">
+P(t+\delta t,S+\delta S)-P(t,S) \approx \frac{dP}{dt}\delta t+\frac{dP}{dS}\delta S +\frac{1}{2}\frac{d^2P}{dS^2}(\delta S)^2</script><ul>
+<li><p>$\delta S$：change in the stock price, $\delta S$ independent of $\delta t$</p>
+</li>
+<li><p>$\Delta = \frac{dP}{dS}$</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+P\&L&=-[\frac{dP}{dt}\delta t+\frac{dP}{dS}\delta S +\frac{1}{2}\frac{d^2P}{dS^2}(\delta S)^2]+rP\delta t+\frac{dP}{dS}\delta S-(r-q)\frac{dP}{dS} S\delta t\\
+&=-\underbrace{(\frac{dP}{dt}-rP+(r-q)\frac{dP}{dS} S)}\delta t -\underbrace{\frac{1}{2}S^2\frac{d^2P}{dS^2}(\frac{\delta S}{S})^2}\\
+&\qquad \qquad deterministic\ part \quad \quad \quad random\ exposure
+\end{align}</script><ul>
+<li>theta：$\frac{dP}{dt}$</li>
+<li><p>corrected theta：$\frac{dP}{dt}-rP+(r-q)S\frac{dP}{dS}$</p>
+</li>
+<li><p>gamma：$\frac{d^2P}{dS^2}$</p>
+</li>
+<li>Dollar gamma：$S^2\frac{d^2P}{dS^2}$</li>
+</ul>
+<script type="math/tex; mode=display">
+P\&L=-A(t,S)\delta t -B(t,S)(\frac{\delta S}{S})^2</script><p>Any model is unusable if $A(t, S)$ and $B(t, S)$ have the same sign. The model is usable only if $A(t, S)$ and $B(t, S)$ have different signs.</p>
+<p>No money is made if</p>
+<script type="math/tex; mode=display">
+\frac{\delta S}{S}=\pm \sqrt{-\frac{A(t, S)}{B(t, S)}}\delta t</script><p>On average we have </p>
+<script type="math/tex; mode=display">
+\langle(\frac{\delta S}{S})^2\rangle=\hat{\sigma}^2\delta t</script><p>where $\hat{\sigma}$ is the historical volatility of $S$ based on returns $\delta S/S$</p>
+<p>For risk-management, our model should satisfy the condition</p>
+<script type="math/tex; mode=display">
+A(t, S) = -\hat{\sigma}^2B(t, S)</script><p>Thus,</p>
+<script type="math/tex; mode=display">
+\frac{dP_{\sigma^2}}{dt}-rP_{\sigma^2}+(r-q)\frac{dP_{\sigma^2}}{dS} S= -\frac{\hat{\sigma}^2}{2}S^2\frac{d^2P_{\sigma^2}}{dS^2}</script><p>where $P_{\sigma^2}$ accounts for dependence on the volatility level $\hat{\sigma}$</p>
+<p>We then get,</p>
+<script type="math/tex; mode=display">
+P\&L=-\frac{S^2}{2}\frac{d^2P_{\sigma}^2}{dS^2}((\frac{\delta S}{S})^2-\hat{\sigma}^2\delta t)</script><p>For vanilla options in the market, $\hat{\sigma}$ is the <strong>implied volatility</strong> such that $P_{\sigma^2}$ is equal to the market price.</p>
+<h2 id="Unit-1-2：Stochastic-Differential-Equations"><a href="#Unit-1-2：Stochastic-Differential-Equations" class="headerlink" title="Unit 1.2：Stochastic Differential Equations"></a>Unit 1.2：Stochastic Differential Equations</h2><p>Recall a <strong>differential equation</strong></p>
+<script type="math/tex; mode=display">
+\dot{X}(t)=\frac{dX(t)}{dt}=g(t,X(t))</script><p>This can be written alternatively as</p>
+<script type="math/tex; mode=display">
+dX(t)=g(t,X(t))dt</script><p>or approximately as an <strong>difference equation</strong> with small time interval (increment) $\Delta t$</p>
+<script type="math/tex; mode=display">
+\Delta X(t)=X(t+\Delta t)-X(t)=g(t,X(t))\Delta t</script><p>with  the increments of <strong>Brownian motion</strong> $\Delta W = W(t+\Delta t)-W(t), \Delta W \sim N(0,\Delta t)$</p>
+<script type="math/tex; mode=display">
+\begin{matrix}
+\Delta X(t)=\underbrace{g(t,X(t))\Delta t}+\underbrace{\sigma(t,X(t))\Delta W}\\
+\qquad\qquad\quad drift\ part \quad \quad diffusion\ part
+\end{matrix}</script><p><strong>stochastic differential equation</strong></p>
+<script type="math/tex; mode=display">
+dX(t)=g(t,X(t))d t+\sigma(t,X(t))d W</script><h2 id="Unit-1-3：Ito-Formula"><a href="#Unit-1-3：Ito-Formula" class="headerlink" title="Unit 1.3：Ito Formula"></a>Unit 1.3：Ito Formula</h2><blockquote>
+<p>Ito Formula 相当于 Taylor 展开的一种特殊形式，因为它是针对随机过程的，因此在二次导的展开项中直接略过了所有与 dt 相乘的项， 只留下 $F_{XX}$</p>
+<p>与 dt 相乘的项都趋近 0 的原因是，对于 dtdt/dtdW，其中一个部分是作用于 $||\pi||\to 0$ 时，把累加部分相连的. $\sum f(x) (t_{i+1}-t_i)\to \int f(x) dt$. 剩下的那一部分由于 $||\pi||$ 极限趋近于 0，即两个 t 之间相隔极近，会使整个式子趋近 0. 比如 dtdt 为 $(dt)^2$, dtdW 为 $(dt)^{1.5}$, 去掉一个 dt 仍然有保留的幂，则整个式子取 0.</p>
+</blockquote>
+<p>We are interested in the dynamics of an expression such as $f(t)=F(t,X(t))$ with $F:[0,\infty]\times \mathbb{R}\to \mathbb{R}$ .</p>
+<ul>
+<li>$F$：option pricing function</li>
+<li>$X(t)$：underlying share price</li>
+<li>$(dW)^2 = dt$</li>
+<li>up to order 1 in $dt$：$(dt)^2=0$， $(dW)(dt)=dt\sqrt{dt}=0$</li>
+<li>$(dX)^2=\sigma(t,X(t))^2dt$</li>
+</ul>
+<p>Then, the stochastic process $f$  has the following dynamics</p>
+<script type="math/tex; mode=display">
+\begin{align}
+df&=F_tdt+F_XdX+\frac{1}{2}F_{XX}(dX)^2\\
+&=F_tdt+F_Xg(t,X(t))dt+F_X\sigma(t,X(t)) dW+\frac{1}{2}F_{XX}\sigma(t,X(t))^2dt\\
+&=(F_t+F_Xg(t,X(t))+\frac{1}{2}F_{XX}\sigma(t,X(t))^2)dt+F_X\sigma(t,X(t)) dW
+\end{align}</script><p>Suppose that the asset price $S$ solves the following stochastic differential equation</p>
+<script type="math/tex; mode=display">
+\frac{dS(t)}{S(t)}=\mu dt+\sigma dW(t) \sim N(\mu,\sigma^2 dt)</script><p>At $t = T$, we have</p>
+<script type="math/tex; mode=display">
+S(T)=S(t)exp((\mu-\frac{1}{2}\sigma^2)(T-t)+\sigma(W(T)-W(t)))</script><h4 id="Delta-Hedging"><a href="#Delta-Hedging" class="headerlink" title="Delta Hedging"></a>Delta Hedging</h4><p>Black, Scholes, Merton approach : construct a riskless portfolio, which consists of selling the option and buying the asset</p>
+<script type="math/tex; mode=display">
+\begin{align}
+-dP+\Delta dS&=-(P_tdt+P_SdS+\frac{1}{2}P_{SS}(dS)^2)+\Delta dS\\
+&=-(P_t+\frac{1}{2}S^2\sigma^2P_{SS})dt+(-P_S+\Delta)dS
+\end{align}</script><p>where</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(dS)^2&=(S(t)(\mu dt+\sigma dW(t)))^2\\
+&=S(t)^2(\mu^2(dt)^2+2\mu\sigma dtdW(t)+\sigma^2(dW(t))^2)\\
+&=S(t)^2(0+0+\sigma^2dt)
+\end{align}</script><p>Substitution of $dS$ gives</p>
+<script type="math/tex; mode=display">
+-dP+\Delta dS=-(P_t+\frac{1}{2}S^2\sigma^2P_{SS}+(P_S-\Delta)S\mu)dt+(-P_S+\Delta)S\sigma dW</script><p>riskless $\Rightarrow \Delta = P_S$</p>
+<p>Substitution gives</p>
+<script type="math/tex; mode=display">
+-dP+\Delta dS=-(P_t+\frac{1}{2}S^2\sigma^2P_{SS})dt</script><p>Recall that</p>
+<script type="math/tex; mode=display">
+-dP+\Delta dS=(-P+\Delta S)rdt</script><p>Combining the above results, leads to the Black-Scholes equation</p>
+<script type="math/tex; mode=display">
+-Pr+P_SSr+P_t+\frac{1}{2}S^2\sigma^2P_{SS}=0</script><p>with boundary condition</p>
+<script type="math/tex; mode=display">
+P(T,S(T))=F(S(T))</script><p>Under the Black-Scholes-Merton (BSM) model, European call option price is given as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C(t,S,T,K)&=S\Phi(d_1)-Ke^{-r(T-t)}\Phi(d_2)\\
+d_1&=\frac{ln(\frac{S}{Ke^{-r(T-t)}})+\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}\\
+d_2&=\frac{ln(\frac{S}{Ke^{-r(T-t)}})-\frac{1}{2}\sigma^2(T-t)}{\sigma\sqrt{T-t}}\\
+&=d_1-\sigma\sqrt{T-t}
+\end{align}</script><p>European put option price is given as</p>
+<script type="math/tex; mode=display">
+P(t,S,T,K)=Ke^{-r(T-t)}\Phi(-d_2)-S\Phi(-d_1)</script><p>Black-Scholes PDE can be transformed to Black-Scholes Pricing Formula through <strong>solving the heat equation</strong></p>
+<h2 id="Unit-1-4：Greeks"><a href="#Unit-1-4：Greeks" class="headerlink" title="Unit 1.4：Greeks"></a>Unit 1.4：Greeks</h2><p>Certain partial derivatives of option prices are widely used for hedging purposes and have been assigned Greek names and symbols : </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Delta</th>
+<th>Gamma</th>
+<th>Rho</th>
+<th>Theta</th>
+<th>Vega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\Delta$</td>
+<td>$\Gamma$</td>
+<td>$\rho$</td>
+<td>$\Theta$</td>
+<td>$vega$</td>
+</tr>
+<tr>
+<td>$\frac{\partial C}{\partial S}$</td>
+<td>$\frac{\partial^2 C}{\partial S^2}$</td>
+<td>$\frac{\partial C}{\partial r}$</td>
+<td>$\frac{\partial C}{\partial t}$</td>
+<td>$\frac{\partial C}{\partial \sigma}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a href="https://achlier.github.io/2021/04/25/Mathematical_Finance/#Greeks">Read more about those functions</a></p>
+<p>Recall that</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C(t,S,T,K)&=S\Phi(d_1)-Ke^{-r(T-t)}\Phi(d_2)\\
+\underbrace{Ke^{-r(T-t)}\Phi(d_2)}&=S\underbrace{\Phi(d_1)}-C(t,S,T,K)\\
+money\ market &\quad shares\ in\ asset
+\end{align}</script><h2 id="Unit-1-5：Implied-Volatility"><a href="#Unit-1-5：Implied-Volatility" class="headerlink" title="Unit 1.5：Implied Volatility"></a>Unit 1.5：Implied Volatility</h2><p>Suppose that the market price of a European call option with expiry $T$ and strike $K$ at time $t$ is observed to be $C^{mkt}(t)$</p>
+<p>In our model</p>
+<script type="math/tex; mode=display">
+C(t,T,\sigma,K)=C^{mkt}(t)</script><p>Now consider <strong>vega</strong> of the option given by</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial\sigma}C(t,T,\sigma,K)=S_t\sqrt{T-t}\Phi'(d_1)</script><ul>
+<li>It can be shown, that there exists a solution whenever $C^{mkt}(t)$ is contained in the open interval  $((S_t-Ke^{-r(T-t)})^+,S_t)$</li>
+<li>The positivity of vega tells us that the function $C(t,T, σ,K) – C^{obs}(t)$ is strictly increasing as a function of $\sigma$</li>
+</ul>
+<p>The solution of the equation,  $\sigma^{impl}$ , is called implied volatility</p>
+<p>We can therefore compute its zeros numerically by applying the <strong>Newton method</strong> (it always works if the function is convex)</p>
+<script type="math/tex; mode=display">
+\sigma_{k+1} = \sigma_k - \frac{C(t,T, \sigma_k,K)-C^{obs}(t)}{\frac{\partial}{\partial \sigma}C(t,T, \sigma_k,K)}</script><p>Plot the Implied Volatility - Moneyness ( $\frac{ln(K/F)}{\sigma\sqrt{T}}$ ) and we could have volatility smile</p>
+<blockquote>
+<p>然而实际上 BS model 服从的是 normal distribution ，并且只包函基本的参数。因此对于 BS model 来说 moneyness （in，at，out of money）是不影响 volatility的，即画出的 moneyness-volatility 是一条直线。</p>
+<p>对于真正的市场，存在 fat tail 现象，除此之外流动性，手续费，最低报价间隔，以及最小报价单位等变量未包含在 BS model 中，导致了它的不准确。此外，投资者参与期权交易的目的对隐含波动率也有影响。股票期权交易者中有很大一部分的交易目的是防止股票下跌，因此他们选择的策略多是 buy put 或者 covered call ，这样导致波动率曲线向右下侧倾斜；而外汇期权的交易者的交易目的并不偏向两种方向，因此隐含波动率曲线多是smile的形状。</p>
+</blockquote>
+<h1 id="Unit-2：Advanced-stochastic-models-and-their-calibration"><a href="#Unit-2：Advanced-stochastic-models-and-their-calibration" class="headerlink" title="Unit 2：Advanced stochastic models and their calibration"></a>Unit 2：Advanced stochastic models and their calibration</h1><h2 id="Unit-2-1：local-volatility"><a href="#Unit-2-1：local-volatility" class="headerlink" title="Unit 2.1：local volatility"></a>Unit 2.1：local volatility</h2><p>Local volatility is a class of market models which is an extension of the fixed volatility Black-Scholes-Merton model. In the model, instantaneous volatility is a function of t, S; $\sigma(t,S)$</p>
+<p>Given the market observed European option prices, our aim is to find<br>the function $\sigma(t,S)$. It was shown by Bruno Dupire that</p>
+<script type="math/tex; mode=display">
+\sigma(t,S)^2=2\frac{\frac{dC}{dt}+qC+(r-q)K\frac{dC}{dK}}{K^2\frac{d^2C}{dK^2}}| _ { K = S,T=t }</script><h2 id="Unit-2-2：Derivation-of-the-Dupire-Formula"><a href="#Unit-2-2：Derivation-of-the-Dupire-Formula" class="headerlink" title="Unit 2.2：Derivation of the Dupire Formula"></a>Unit 2.2：Derivation of the Dupire Formula</h2><p>Suppose that we have the following dynamics</p>
+<script type="math/tex; mode=display">
+dS_t=(r-q)S_t dt+\sigma_tS_tdW_t</script><p>Next, recall that the price of a European call option is given as $C(T,K)=e^{-rT}\mathbb{E}[(S_T-K)^+]$</p>
+<p>First, use Ito’s formula for $(S_T-K)^+$ over $[T,T + dT]$ :</p>
+<script type="math/tex; mode=display">
+d(S_T-K)^+=\frac{\partial(S_T-K)^+}{\partial S_T}dS_T+\frac{1}{2}\frac{\partial^2(S_T-K)^+}{\partial S_T^2}(dS_T)^2</script><p>We then get</p>
+<script type="math/tex; mode=display">
+d(S_T-K)^+=\frac{\partial(S_T-K)^+}{\partial S_T}((r-q)S_T dT+\sigma_TS_TdW_T)+\frac{1}{2}\frac{\partial^2(S_T-K)^+}{\partial S_T^2}\sigma^2_TS^2_TdT</script><p>Next, note that</p>
+<script type="math/tex; mode=display">
+\frac{\partial(S_T-K)^+}{\partial S_T}=\theta(S_T-K)\ Heaviside\ function</script><script type="math/tex; mode=display">
+\frac{\partial^2(S_T-K)^+}{\partial S_T^2}=\delta(S_T-K)\ Dirac\ delta\ function</script><p>where <strong>Heaviside function</strong></p>
+<script type="math/tex; mode=display">
+\theta(x)=\begin{cases}1&x>0\\0&x<0\end{cases}</script><p>and <strong>delta function</strong></p>
+<script type="math/tex; mode=display">
+\delta(x)=\begin{cases}\infty&x=0\\0&x\ne0\end{cases},\ \int_{-\infty}^\infty \delta(x)dx=1</script><blockquote>
+<p>$\int_{-\infty}^\infty\delta(x-y)f(x)dx=f(y)$</p>
+</blockquote>
+<p>Then,</p>
+<script type="math/tex; mode=display">
+d(S_T-K)^+=\theta(S_T-K)((r-q)S_T dT+\sigma_TS_TdW_T)+\frac{1}{2}\delta(S_T-K)\sigma^2_TS^2_TdT</script><p>To use the above formula, let us consider “undiscounted” option prices $\mathscr{C}(T,K)=\mathbb{E}[(S_T-K)^+]$. Taking derivative w.r.t. K</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{d\mathbb{E}[(S_T-K)^+]}{d K}&=-\mathbb{E}[\theta(S_T-K)]\\ \frac{d^2\mathbb{E}[(S_T-K)^+]}{d K^2}&=\mathbb{E}[\delta(S_T-K)]
+\end{align}</script><p>Note that $\mathbb{E}[\delta(S_T-K)]$ is the density of stock prices</p>
+<blockquote>
+<p>$\mathbb{E}[\delta(S_T-K)]=\int_{-\infty}^\infty\delta(S_T-K)f(S_T)dx=f(K)$</p>
+</blockquote>
+<p>From the identity</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{C}(T,K)&=\mathbb{E}[(S_T-K)\theta(S_T-K)]\\
+&=\mathbb{E}[S_T\theta(S_T-K)]-K\mathbb{E}[\theta(S_T-K)]
+\end{align}</script><p>we get $\mathbb{E}[S_T\theta(S_T-K)]=\mathscr{C}+K\mathbb{E}[\theta(S_T-K)]=\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}$</p>
+<p>Next note that $\mathbb{E}[d(S_T-K)^+]=d\mathbb{E}[(S_T-K)^+]$</p>
+<p>Then, by taking expectation in the Ito’s formula applied on $(S_T-K)^+$ with $\mathbb{E}[W_t]=0$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}[d(S_T-K)^+]&=\mathbb{E}[\theta(S_T-K)((r-q)S_T dT+0)]+\frac{1}{2}\mathbb{E}[\delta(S_T-K)\sigma^2_TS^2_TdT]\\
+d\mathscr{C}&=(r-q)\mathbb{E}[\theta(S_T-K)S_T]dT+\frac{1}{2}\mathbb{E}[\delta(S_T-K)\sigma^2_TS^2_T]dT\\
+\frac{d\mathscr{C}}{dT}dT&=(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})dT+\frac{1}{2}\mathbb{E}[\delta(S_T-K)\sigma^2_TS^2_T]dT
+\end{align}</script><p>we evaluate the function at $S_t$ equal to $K$</p>
+<script type="math/tex; mode=display">
+\frac{d\mathscr{C}}{dT}dT=(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})dT+\frac{1}{2}K^2\mathbb{E}[\delta(S_T-K)\sigma^2_T]dT</script><p>Above yields</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\delta(S_T-K)\sigma^2_T]=\frac{2}{K^2}(\frac{d\mathscr{C}}{dT}-(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K}))</script><script type="math/tex; mode=display">
+\frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}=2\frac{\frac{d\mathscr{C}}{dT}-(r-q)(\mathscr{C}-K\frac{\partial\mathscr{C}}{\partial K})}{K^2\frac{d^2\mathscr{C}}{dK^2}}</script><p>Going back to the notation of $C = e^{–rT}\mathscr{C}$ , we obtain the Dupire’se quation</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}[\sigma_T^2|S_T=K]&=\frac{\sigma(T,K)f(K)}{f(K)}=\frac{\mathbb{E}[\delta(S_T-K)\sigma^2_T]}{\mathbb{E}[\delta(S_T-K)]}\\
+&=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}
+\end{align}</script><p>Thus, we get the Dupire’s formula</p>
+<script type="math/tex; mode=display">
+\sigma^2(t,S)=2\frac{\frac{dC}{dT}+qC+(r-q)K\frac{\partial C}{\partial K}}{K^2\frac{d^2C}{dK^2}}|_{K=S, T=t}</script><p>For a known volatility function $\sigma(t, S)$, we can use the Dupire’s formula to price all European call options on $S_0$</p>
+<script type="math/tex; mode=display">
+\frac{dC}{dT}+(r-q)K\frac{\partial C}{\partial K}-\frac{1}{2}K^2\sigma^2(t=T,S=K)\frac{d^2C}{dK^2}=-qC</script><p>with initial condition $C(T=0,K)=(S_0-K)^+$</p>
+<h2 id="Unit-2-3：Positivity-of-the-right-hand-side-of-the-Dupire-formula"><a href="#Unit-2-3：Positivity-of-the-right-hand-side-of-the-Dupire-formula" class="headerlink" title="Unit 2.3：Positivity of the right hand side of the Dupire formula"></a>Unit 2.3：Positivity of the right hand side of the Dupire formula</h2><p>Consider the second derivative in the <strong>denominator</strong></p>
+<script type="math/tex; mode=display">
+\frac{d^2C}{dK^2}=\lim_{\epsilon\to 0}\frac{C(T,K-\epsilon)-2C(T,K)+C(T,K+\epsilon)}{\epsilon^2}</script><p>The right hand side can be thought of a <strong>Butterfly spread</strong></p>
+<p>As $\epsilon \to 0$, the butterfly spread (more narrow and more much higher) converges to a Dirac-delta function which is either 0 or strictly positive and thus, it’s price must be positive, thus $\frac{d^2C}{dK^2}&gt;0$</p>
+<p>The <strong>numerator</strong> in the Dupire’s formula can be re-written as</p>
+<script type="math/tex; mode=display">
+e^{-qT}\frac{d}{dT}(e^{qT}C(T,Ke^{(r-q)T}))|_{K=S}</script><p>For the above to be positive, call option with a strike which is a fixed proportion $K$ of the forward $F_T=Se^{(r-q)T}$ must be an increasing function of $T$</p>
+<p>For $T_1 \leq  T_2$</p>
+<script type="math/tex; mode=display">
+e^{qT_1}C(T_1,KF_{T_1})\leq e^{qT_2}C(T_2,KF_{T_2})</script><p>In order to prove it, we suppose that the monotonicity condition is violated, that is </p>
+<script type="math/tex; mode=display">
+e^{qT_1}C(T_1,KF_{T_1})> e^{qT_2}C(T_2,KF_{T_2})</script><p>Set up the following strategy:</p>
+<ul>
+<li><p>Buy one option of maturity $T_2$, strike $KF_{T_2}$ </p>
+</li>
+<li><p>Sell $e^{–q(T2–T1)}$ options of maturity $T_1$, strike $KF_{T1}$</p>
+</li>
+</ul>
+<p>At inception, setting up the above strategy pays a premium ( &gt; 0 )</p>
+<p>At $T_1$, take the following $\Delta$ position on S:</p>
+<ul>
+<li>If $S_{T_1}&lt;KF_{T1}$ : $\Delta =0$</li>
+<li>If $S_{T_1}&gt;KF_{T1}$ : $\Delta =-1$</li>
+</ul>
+<p>At $T_2$ , the P&amp;L comprises of the following positions</p>
+<ul>
+<li>receipt of payoff from $T_2$ maturity option</li>
+<li>payment of payoff from $T_1$ maturity option, capitalized up to $T_2$</li>
+<li>P&amp;L generated by the delta position created at $T_1$ and liquidated at $T_2$</li>
+</ul>
+<p>For $S_{T_1}^*=\frac{F_{T_2}}{F_{T_1}}S_{T_1}$ , the P&amp;L is written as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&T_2\ Option\ at\ T_2 \qquad\ \qquad T_1\ Option\ at\ T_2 \qquad\qquad\ \quad Delta\  portfolio\\
+&\overbrace{(S_{T_2}-KF_{T_2})^+}-\overbrace{e^{r(T_2-T_1)}e^{-q(T_2-T_1)}(S_{T_1}-KF_{T_1})^+}+\overbrace{\Delta(S_{T_2}-\frac{F_{T_2}}{F_{T_1}}S_{T_1})}\\
+&=(S_{T_2}-KF_{T_2})^+-[\frac{F_{T_2}}{F_{T_1}}(S_{T_1}-KF_{T_1})^++1_{S_{T_1}>KF_{T_1}}(S_{T_2}-\frac{F_{T_2}}{F_{T_1}}S_{T_1})]\\
+&=(S_{T_2}-KF_{T_2})^+-[(S_{T_1}^*-KF_{T_2})^++1_{S_{T_1}^*>KF_{T_2}}(S_{T_2}-S_{T_1}^*)]
+\end{align}</script><p>The last equation reads as</p>
+<script type="math/tex; mode=display">
+f(S_{T_2})-[f(S_{T_1}^*)+(S_{T_2}-S_{T_1}^*)\frac{df}{dx}(S_{T_1}^*)]</script><p>for $f(x)=(x-KF_{T_2})^+$</p>
+<blockquote>
+<p>$f(y)-f(x)&gt;(y-x)f(x) when f’’(x)&gt;0$</p>
+</blockquote>
+<p>Thus, our strategy produces positive amount at inception and at $T_2$. Therefore, there’s an arbitrage.</p>
+<p>Thus, the numerator in the Dupire’s formula is always positive.</p>
+<h2 id="Unit-2-4-Further-aspects-of-the-Dupire-formula-and-local-volatility"><a href="#Unit-2-4-Further-aspects-of-the-Dupire-formula-and-local-volatility" class="headerlink" title="Unit 2.4 Further aspects of the Dupire formula and local volatility"></a>Unit 2.4 Further aspects of the Dupire formula and local volatility</h2><p>To compute the Dupire’s local volatility function in terms of implied volatility $\hat\sigma(T,K)$, first write</p>
+<script type="math/tex; mode=display">
+C(S_0,T,K)=C^{BS}(S_0,T,K,\hat\sigma(T,K))</script><p>Next, define</p>
+<ul>
+<li>forward price as $F_t=S_0e^{(r-q)(t-t_0)}$</li>
+<li>log strike as $y=ln(\frac{K}{F_t})$</li>
+<li>parameterized volatility as $f(t,y)=(t-t_0)\hat\sigma^2(t,K)$</li>
+</ul>
+<p>Next, replace $C(S_0,T,K)$ in the Dupire’s formula with $C^{BS}(S_0,T,K,\hat\sigma(T,K))$ and compute derivatives using $f$ and $y$ rather than $\hat\sigma$and $K$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C^{BS}(F_t,y,f)&=F_tN(d_1)-KN(d_2)\\
+&=F_t(N(\frac{-y}{\sqrt{f}}+\frac{\sqrt{f}}{2})-e^{y}N(\frac{-y}{\sqrt{f}}-\frac{\sqrt{f}}{2}))
+\end{align}</script><h4 id="【Method-1】"><a href="#【Method-1】" class="headerlink" title="【Method 1】"></a>【Method 1】</h4><blockquote>
+<p>这个方法需要求 $\frac{\partial f}{\partial K}$, 此处省略了, 计算比较复杂,以下$C$为$C^{BS}$</p>
+</blockquote>
+<p>With</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial K}=\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}+\frac{\partial C}{\partial f}\frac{\partial f}{\partial K}=\frac{1}{K}\frac{\partial C}{\partial y}+\frac{\partial C}{\partial f}\frac{\partial f}{\partial K}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial^2 C}{\partial K^2}&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})+\frac{\partial}{\partial K}(\frac{\partial C}{\partial f})\frac{\partial f}{\partial K}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}\\
+&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f})...\\
+&...+\frac{\partial f}{\partial K}(\frac{1}{K}\frac{\partial^2 C}{\partial y\partial f}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial f^2})+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}\\
+&=\frac{1}{K^2}(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\frac{2}{K}\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f}+(\frac{\partial f}{\partial K})^2\frac{\partial^2 C}{\partial f^2}+\frac{\partial C}{\partial f}\frac{\partial^2 f}{\partial K^2}
+\end{align}</script><p>【Hint】</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})&=\frac{\partial}{\partial y}(\frac{\partial C}{\partial y})\frac{\partial y}{\partial K}+\frac{\partial}{\partial f}(\frac{\partial C}{\partial y})\frac{\partial f}{\partial K}\\
+&=\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f}
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial}{\partial K}(\frac{\partial C}{\partial f})&=\frac{\partial}{\partial y}(\frac{\partial C}{\partial f})\frac{\partial y}{\partial K}+\frac{\partial}{\partial f}(\frac{\partial C}{\partial f})\frac{\partial f}{\partial K}\\
+&=\frac{1}{K}\frac{\partial^2 C}{\partial y\partial f}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial f^2}
+\end{align}</script><p>Inserting these equations into</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{dC}{dt}=\frac{1}{2}K^2\sigma^2(t,S)\frac{d^2C}{dK^2}-(r-q)K\frac{\partial C}{\partial K}-qC
+\end{align}</script><h4 id="【Method-2】"><a href="#【Method-2】" class="headerlink" title="【Method 2】"></a>【Method 2】</h4><blockquote>
+<p>以下$c$ 为 $C^{BS}$</p>
+</blockquote>
+<h4 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h4><p>按Method 1同样的方法, 但此时C考虑的是K与f不相关,与t相关</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial K}=\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}=\frac{1}{K}\frac{\partial C}{\partial y}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial^2 C}{\partial K^2}&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}\frac{\partial}{\partial K}(\frac{\partial C}{\partial y})\\
+&=-\frac{1}{K^2}\frac{\partial C}{\partial y}+\frac{1}{K}(\frac{1}{K}\frac{\partial^2 C}{\partial y^2}+\frac{\partial f}{\partial K}\frac{\partial^2 C}{\partial y\partial f})\\
+&=\frac{1}{K^2}(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})
+\end{align}</script><p>Since $K=S_0e^{(r-q)(t-t_0)}$ so that $\frac{\partial K}{\partial t}=K(r-q)=K\mu$. And $\frac{\partial y}{\partial K}=\frac{1}{K}$</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=\frac{\partial C}{\partial t}+\frac{\partial C}{\partial y}\frac{\partial y}{\partial K}K\mu=\frac{\partial C}{\partial t}+\frac{\partial C}{\partial y}\mu</script><p>we substitute into Equation</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{dC}{dt}=\frac{1}{2}K^2\sigma^2(t,S)\frac{d^2C}{dK^2}+(r-q)(C-K\frac{\partial C}{\partial K})
+\end{align}</script><blockquote>
+<p>因为考虑的是forward，不用把C折现，所以不减去rC</p>
+</blockquote>
+<p>We get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial C}{\partial t}+\frac{\partial C}{\partial y}\mu&=\frac{1}{2}\sigma^2(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\mu(C-\frac{\partial C}{\partial y})\\
+\frac{\partial C}{\partial t}&=\frac{1}{2}\sigma^2(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+\mu C
+\end{align}</script><h4 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h4><p>By taking derivatives of the Black-Scholes formula, we obtain</p>
+<blockquote>
+<p>这个部分我还没推过，但在More的第二个连接里有过程</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\frac{\partial^2c}{\partial f^2}=(-\frac{1}{8}-\frac{1}{2f}+\frac{y^2}{2f^2})\frac{\partial c}{\partial f}</script><script type="math/tex; mode=display">
+\frac{\partial^2 c}{\partial y\partial f}=(\frac{1}{2}-\frac{y}{f})\frac{\partial c}{\partial f}</script><script type="math/tex; mode=display">
+\frac{\partial^2 c}{\partial y^2}-\frac{\partial c}{\partial y}=2\frac{\partial c}{\partial f}</script><p>and we have</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial y}=\frac{\partial c}{\partial y}+\frac{\partial c}{\partial f}\frac{\partial f}{\partial y}</script><script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial^2 C}{\partial y^2}&=\frac{\partial^2 c}{\partial^2 y}+\frac{\partial^2 c}{\partial y\partial f}\frac{\partial f}{\partial y}+(\frac{\partial^2 c}{\partial f\partial y}+\frac{\partial^2 c}{\partial f^2}\frac{\partial f}{\partial y})\frac{\partial f}{\partial y}+\frac{\partial c}{\partial f}\frac{\partial^2 f}{\partial y^2}\\
+&=\frac{\partial^2 c}{\partial^2 y}+2\frac{\partial^2 c}{\partial y\partial f}\frac{\partial f}{\partial y}+\frac{\partial^2 c}{\partial f^2}(\frac{\partial f}{\partial y})^2+\frac{\partial c}{\partial f}\frac{\partial^2 f}{\partial y^2}
+\end{align}</script><script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=\frac{\partial c}{\partial t}+\frac{\partial c}{\partial f}\frac{\partial f}{\partial t}=(r-q)c+\frac{\partial c}{\partial f}\frac{\partial f}{\partial t}</script><p>Inserting these equations into</p>
+<script type="math/tex; mode=display">
+\frac{\partial C}{\partial t}=\frac{\sigma^2}{2}(\frac{\partial^2 C}{\partial y^2}-\frac{\partial C}{\partial y})+(r-q)C</script><p>The local volatility function is then given as</p>
+<script type="math/tex; mode=display">
+\sigma^2(t,S)=\frac{\frac{df}{dt}}{(\frac{y}{2f}\frac{df}{dy}-1)^2+\frac{1}{2}\frac{d^2f}{dy^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{f})(\frac{df}{dy})^2}|_{y=ln(\frac{S}{F_t})}</script><p>As in the markets, the option prices are only available for discrete strikes and maturities, to use the Dupire’s formula, we need to interpolate between the available strikes and maturities, and extrapolate outside the market range.</p>
+<p><strong>Issues with Dupire’s Local Volatility Model</strong></p>
+<ul>
+<li>The local volatility surface obtained by the Dupire’s formula is very sensitive to the method of data interpolation</li>
+<li>The only risky asset used is the underlying asset which does not account for the volatility risk (affected by random shocks)</li>
+<li>The calibrated local volatility surface is not stable with the passage of time (in practice the local volatility surface is is changing all the time)</li>
+<li>The dynamics of the volatility process assumed by the model does not correspond to that observed in the market</li>
+</ul>
+<h4 id="More"><a href="#More" class="headerlink" title="More"></a>More</h4><p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/539e67b7910ef12d2af9e763.html">Derivation of Loval Volatility</a></p>
+<p><a target="_blank" rel="noopener" href="http://frouah.com/finance%20notes/Dupire%20Local%20Volatility.pdf">Dupire Local Volatility</a></p>
+<p><a target="_blank" rel="noopener" href="https://max.book118.com/html/2017/0322/96459464.shtm">Local volatility modelling</a></p>
+<p><a target="_blank" rel="noopener" href="http://web.math.ku.dk/~rolf/teaching/ctff03/Gatheral.1.pdf">Stochastic Volatility and Local Volatility</a></p>
+<h4 id="CEV-Model"><a href="#CEV-Model" class="headerlink" title="CEV Model"></a>CEV Model</h4><p>Constant Elasticity of Variance (CEV) model is given as</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\frac{\sigma}{S_t^{1-a}}dW_t</script><blockquote>
+<p>If $a$ less than one, then we have that non constant local volatility function</p>
+</blockquote>
+<p>Under the risk-neutral measure, by assuming that the forward price is given as $F_t=S_te^{r(T-t)}$, the CEV model can be re-written as</p>
+<script type="math/tex; mode=display">
+dF_t=\sigma_0F_t^adW_t,\ 0<a\leq1</script><p>The implied volatility is given by the asymptotic approximation</p>
+<script type="math/tex; mode=display">
+\sigma^{imp}(T,K)=\frac{\sigma_0}{F_m^{(1-a)}}(1+\frac{(1-a)(2+a)}{24}(\frac{F_0-K}{F_m})^2+\frac{(1-a)^2}{24}\frac{\sigma^2_0T}{F_m^{2-2a}}+...)</script><p>with $F_m=\frac{1}{2}(F_0+K)$</p>
+<h4 id="Trinomial-Pricing-Tree"><a href="#Trinomial-Pricing-Tree" class="headerlink" title="Trinomial Pricing Tree"></a>Trinomial Pricing Tree</h4><p>The issue of non-recombining binomial tree is addressed by using a trinomial tree model where the prices are given by</p>
+<script type="math/tex; mode=display">
+\hat{S}_{t_{i+1}}=\begin{cases}u\hat{S}_{t_i}&p\\
+(1+r\Delta t)\hat{S}_{t_i}&1-p-q\\d\hat{S}_{t_i}&q\end{cases}</script><p>For the trinomial tree to converge to a continuous process, we further impose</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\hat{S}_{t_{i+1}}|\hat{S}_{t_i}]=(1+r\Delta t)\hat{S}_{t_i}</script><script type="math/tex; mode=display">
+Var(\hat{S}_{t_{i+1}}|\hat{S}_{t_i})=\hat{S}_{t_i}^2\sigma^2(t_i,\hat{S}_{t_i})\Delta t</script><p>For a recombining tree (i.e. the number of nodes increase linearly and not exponentially), we need $u d=(1+\Delta t)^2$ </p>
+<p>The probabilities are given as</p>
+<script type="math/tex; mode=display">
+\begin{align}
+p(t_i,\hat{S}_{t_i})&=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(u-1-r\Delta t)}\\
+q(t_i,\hat{S}_{t_i})&=\frac{\sigma(t_i,\hat{S}_{t_i})^2\Delta t}{(u-d)(1+r\Delta t-d)}
+\end{align}</script><p>To ensure the absence of arbitrage in the model, we need that $p + q\leq 1$ whic is ensured if</p>
+<script type="math/tex; mode=display">
+1 + r\Delta t - d > \sigma(t_i, \hat S_{t_i}) \sqrt{∆t}</script><p>Such that the above inequality is always satisfied, we choose</p>
+<script type="math/tex; mode=display">
+d=1+r\Delta t-\bar\sigma\sqrt{\Delta t}</script><p>where $\sigma &gt; \sigma(t, S)$ for all the nodes in the trinomial tree</p>
+<p>By choosing $\bar\sigma$ sufficiently large, in the limit, we obtain the following model which does not admit arbitrage</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\min(\bar\sigma,\sigma(t,S))dW_t</script><h2 id="Unit-2-5：Stochastic-Volatility"><a href="#Unit-2-5：Stochastic-Volatility" class="headerlink" title="Unit 2.5：Stochastic Volatility"></a>Unit 2.5：Stochastic Volatility</h2><p>For local volatility</p>
+<script type="math/tex; mode=display">
+d\sigma(t,S_t)=\frac{\partial}{\partial t}\sigma(t,S_t)dt+\frac{1}{2}\frac{\partial^2}{\partial S^2}\sigma(t,S_t)dS_tdS_t+\frac{\partial}{\partial S}\sigma(t,S_t)dS_t</script><p>The last part show that the randomness of volatility is totally depended on the randomness of stock. However, the empirical data we will find that the randomness in the stock and the randomness in the volatility differ from each other. So the volatility should affected by other sources of randomness.</p>
+<p>The class of models where volatility is supposed to be a stochastic process is called <strong>stochastic volatility models</strong></p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=a_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><h2 id="Unit-2-6：Pricing-Equation"><a href="#Unit-2-6：Pricing-Equation" class="headerlink" title="Unit 2.6：Pricing Equation"></a>Unit 2.6：Pricing Equation</h2><h4 id="Incomplete-Market"><a href="#Incomplete-Market" class="headerlink" title="Incomplete Market"></a>Incomplete Market</h4><p>In an incomplete market, the <strong>risk from volatility (vega)</strong> cannot be eliminated by trading only in the underlying asset</p>
+<p>We have two sources of randomness. However we only allow trading in the money market account. So the market is incomplete. We can make an incomplete market complete by adding additional assets (like option or future).</p>
+<p>We create a self-financing portfolio using two risky assets $S$ and option $C^0$</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=a_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><script type="math/tex; mode=display">
+\frac{dB_t}{B_t}=rdt</script><p>The coefficients $a_t$, $b_t$ and $C^0$ are functions of ($t, S_t, \sigma$)</p>
+<p>Often the volatility process will be chosen as a <strong>mean-reverting process</strong></p>
+<p>Suppose $V_t$ denotes the value of a self-financing portfolio with $\delta_t$ shares in $S$ and $\omega_t$ units of $C^0$</p>
+<script type="math/tex; mode=display">
+dV_t=(V_t-\delta_tS_t-\omega_tC^0_t)rdt+\delta_tdS_t+\omega_tdC^0_t</script><p>By using Ito’s formula, we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dC^0_t&=\frac{\partial C^0}{\partial t}dt+\frac{\partial C^0}{\partial S_t}dS_t+\frac{\partial C^0}{\partial \sigma_t}d\sigma_t...\\
+&...+\frac{1}{2}\frac{\partial^2 C^0}{\partial S_t^2}(dS_t)^2+\frac{1}{2}\frac{\partial^2 C^0}{\partial \sigma_t^2}(d\sigma_t)^2+\frac{\partial^2 C^0}{\partial S_t\partial \sigma_t}dS_td\sigma_t\\
+&=(\frac{\partial C^0}{\partial t}+\frac{1}{2}S_t^2\sigma_t^2\frac{\partial^2 C^0}{\partial S_t^2}+\frac{1}{2}b_t^2\frac{\partial^2 C^0}{\partial \sigma_t^2}+S_t\sigma_tb_t\rho\frac{\partial^2 C^0}{\partial S_t\partial \sigma_t})dt...\\
+&...+\frac{\partial C^0}{\partial S_t}dS_t+\frac{\partial C^0}{\partial \sigma_t}d\sigma_t\\
+&=\mathscr{L}_tC^0dt+\frac{\partial C^0}{\partial S_t}dS_t+\frac{\partial C^0}{\partial \sigma_t}d\sigma_t
+\end{align}</script><p>where $\mathscr{L}_t$ is a <strong>operator</strong></p>
+<script type="math/tex; mode=display">
+dV_t=(V_t-\delta_tS_t-\omega_tC^0_t)rdt+(\delta_t+\omega_t\frac{\partial C^0}{\partial S_t})dS_t+\omega_t\frac{\partial C^0}{\partial \sigma_t}d\sigma_t+\omega_t\mathscr{L}_tC^0dt</script><p>The value of portfolio to match the option price of C</p>
+<script type="math/tex; mode=display">
+dV_t\Rightarrow dC_t=\mathscr{L}_tCdt+\frac{\partial C}{\partial S_t}dS_t+\frac{\partial C}{\partial \sigma_t}d\sigma_t</script><p>For the two expressions of dV<em>t</em> to match, we need</p>
+<script type="math/tex; mode=display">
+\omega_t=\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}},\ \delta_t=\frac{\partial C}{\partial S_t}-\omega_t\frac{\partial C^0}{\partial S_t}</script><p>Set $V_t=C$ and substitute it to</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathscr{L}_tCdt-\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}}\mathscr{L}_tC^0dt&=(V_t-S_t\frac{\partial C}{\partial S_t}+S_t\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}}\frac{\partial C^0}{\partial S_t}-\frac{\frac{\partial C}{\partial \sigma_t}}{\frac{\partial C^0}{\partial \sigma_t}}C^0_t)rdt\\
+\mathscr{L}_tC-rC+rS_t\frac{\partial C}{\partial S_t}+&=\frac{\partial C}{\partial \sigma_t}\frac{rS_t\frac{\partial C^0}{\partial S_t}-rC^0_t+\mathscr{L}_tC^0}{\frac{\partial C^0}{\partial \sigma_t}}\\
+\end{align}</script><p>In the pricing equation for $C$, there is a factor which depends on $C^0$, which we add to our portfolio to complete the market </p>
+<p>Denote</p>
+<script type="math/tex; mode=display">
+\lambda(t,S_t,\sigma_t)=-\frac{rS_t\frac{\partial C^0}{\partial S_t}-rC^0_t+\mathscr{L}_tC^0}{\frac{\partial C^0}{\partial \sigma_t}}</script><p>Thus, by argument of creating a self-replicating portfolio, we have shown that the price $C$ of a European option with payoff $h(S_T)$, solves the following equation</p>
+<script type="math/tex; mode=display">
+\mathscr{L}_tC-rC+rS_t\frac{\partial C}{\partial S_t}+\lambda(t,S_t,\sigma_t)\frac{\partial C}{\partial \sigma_t}=0,\ C(T,S_T,\sigma_T)=h(S)</script><p>with</p>
+<script type="math/tex; mode=display">
+\mathscr{L}_t=\frac{\partial}{\partial t}+\frac{1}{2}S_t^2\sigma_t^2\frac{\partial^2}{\partial S_t^2}+\frac{1}{2}b_t^2\frac{\partial^2}{\partial \sigma_t^2}+S_t\sigma_tb_t\rho\frac{\partial^2}{\partial S_t\partial \sigma_t}</script><p>if chosen $\lambda=0$, the difference of BS-PDE is the last two part of $\mathscr{L}$ with $b_t$</p>
+<h2 id="Unit-2-7：Risk-Neutral-Measure-and-Risk-Premia"><a href="#Unit-2-7：Risk-Neutral-Measure-and-Risk-Premia" class="headerlink" title="Unit 2.7：Risk Neutral Measure and Risk Premia"></a>Unit 2.7：Risk Neutral Measure and Risk Premia</h2><h4 id="Finding-the-Risk-Neutral-Measure"><a href="#Finding-the-Risk-Neutral-Measure" class="headerlink" title="Finding the Risk-Neutral Measure"></a>Finding the Risk-Neutral Measure</h4><p>From its definition, under the risk-neutral measure, price $C_t$ of a European satisfies</p>
+<script type="math/tex; mode=display">
+dC_t=rC_tdt+\text{ a random term with zero mean}</script><p>Applying the Ito’s formula and using the equation (PDE) in previous part, we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+dC_t&=\mathscr{L}_tC_tdt+\frac{\partial C_t}{\partial S_t}dS_t+\frac{\partial C_t}{\partial \sigma_t}d\sigma_t\\
+&=(rC_t-rS_t\frac{\partial C_t}{\partial S_t}-\lambda(t,S_t,\sigma_t)\frac{\partial C_t}{\partial \sigma_t})dt+\frac{\partial C_t}{\partial S_t}dS_t+\frac{\partial C_t}{\partial \sigma_t}d\sigma_t\\
+&=rC_tdt+\frac{\partial C_t}{\partial S_t}(dS_t-rS_tdt)+\frac{\partial C_t}{\partial \sigma_t}(d\sigma_t-\lambda_tdt)
+\end{align}</script><p>Thus, under the risk-neutral measure (cancels out the $dt$ part in parenthese of the function above), we must have the following</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=\lambda_tdt+b_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt</script><p>Under the risk-neutral measure, the price of a European option is written as</p>
+<script type="math/tex; mode=display">
+C(t,s,\sigma)=\mathbb{E}[e^{-rT}h(S_T)|\sigma_t=\sigma,S_t=s]</script><p>For the choice of model under physical measure</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=\mu_tdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+d\sigma_t=\alpha_tdt+b_tdW'_t</script><p>By matching the coefficients, we get</p>
+<script type="math/tex; mode=display">
+\mu_t=r+\sigma_t\beta_t,\ \alpha_t=\lambda_t+b_t\phi_t</script><p>where $\beta_t$(<strong>market prices of risk</strong>) and $\phi_t$ are bounded processes </p>
+<blockquote>
+<p>$dW_t^\mathbb{P}+\theta_tdt=dW_t^\mathbb{Q}$, $\mathbb{P}:$现实测度</p>
+</blockquote>
+<h4 id="Risk-Premiums"><a href="#Risk-Premiums" class="headerlink" title="Risk Premiums"></a>Risk Premiums</h4><p>$\beta_t$ is typically called the risk premium. Analogously, $\phi_t$ is called the risk premium of volatility</p>
+<script type="math/tex; mode=display">
+\beta_t=\frac{\mu_t-r}{\sigma_t},\ \phi_t=\frac{\alpha_t-\lambda_t}{b_t}</script><p>$\lambda_t$ is calibrated directly under the risk-neutral measure (chosen by market)</p>
+<h2 id="Unit-2-8：Estimation-Error"><a href="#Unit-2-8：Estimation-Error" class="headerlink" title="Unit 2.8：Estimation Error"></a>Unit 2.8：Estimation Error</h2><p><strong>Estimation of Volatility</strong></p>
+<p>We could approximate $\sigma_t$ by its <strong>average</strong> over a period of T estimated using the historical data. However, estimation of historical volatility faces the following issues</p>
+<ul>
+<li>Variance of the estimator decreases with T</li>
+<li>Bias of the approximation of $\sigma_t$ by average volatility increases with T</li>
+</ul>
+<p>Recall that</p>
+<script type="math/tex; mode=display">
+dlogS_t=(\mu_t-\frac{1}{2}\sigma_t^2)dt+\sigma_tdW_t</script><p>Thus, the quadratic variation of $log S_t$ is given as</p>
+<script type="math/tex; mode=display">
+\langle log S\rangle_t=\int_0^t\sigma_s^2ds</script><p>Recall from the definition of quadratic variation of a random process</p>
+<script type="math/tex; mode=display">
+\langle X\rangle_t=\lim_{N\to\infty}\sum_{i=1}^N(X_{\frac{i}{N}t}-X_{\frac{i-1}{N}t})^2</script><p>Denote the log-returns of asset price as</p>
+<script type="math/tex; mode=display">
+r(t,h):=log\frac{S_{t+h}}{S_t}</script><blockquote>
+<p>$dlogS_t=(logS_{t+1}-logS_t)dt=log\frac{S_{t+1}}{S_t}dt$</p>
+</blockquote>
+<p>Then, we have</p>
+<script type="math/tex; mode=display">
+\langle log S\rangle_t=\int_0^t\sigma_s^2ds=\lim_{N\to\infty}\sum_{i=1}^Nr(\frac{i-1}{N}t,\frac{t}{N})^2</script><h4 id="Realised-Variance"><a href="#Realised-Variance" class="headerlink" title="Realised Variance"></a>Realised Variance</h4><p>Therefore, we could estimate the integrated variance by the <strong>realised variance</strong></p>
+<script type="math/tex; mode=display">
+VR_t^N:=\sum_{i=1}^Nr(\frac{i-1}{N}t,\frac{t}{N})^2</script><p>Next, suppose that</p>
+<ul>
+<li>$\sigma_t$ is independent of Brownian motion W driving asset prices S </li>
+<li>Drift function $\mu$ is deterministic</li>
+</ul>
+<p>Then, for a fixed volatility path (由已知数据得出), the log-returns $R_i:=r(\frac{i-1}{N}t,\frac{t}{N})$  are <strong>independent Gaussian random variables</strong> with variance &amp; mean</p>
+<script type="math/tex; mode=display">
+v_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2ds,\ m_i=\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_s-\frac{\sigma_s^2}{2})ds</script><h4 id="Error-in-Realised-Variance"><a href="#Error-in-Realised-Variance" class="headerlink" title="Error in Realised Variance"></a>Error in Realised Variance</h4><blockquote>
+<p>Thank the Professor Ankush Agarwal and Christian Ewald. They provide the precise process of following.</p>
+</blockquote>
+<p>If we compute thxe expectation of realised variance $VR^N_t$ for a given volatility path $\sigma_t$, we get</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}_\sigma[VR_t^N]&=\sum_{i=1}^NE_\sigma[R_i^2]=\sum_{i=1}^N(v_i+m_i^2)\\
+&=\sum_{i=1}^N\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2ds+\sum_{i=1}^Nm_i^2\\
+&=\int_0^t\sigma_s^2ds+\sum_{i=1}^Nm_i^2
+\end{align}</script><blockquote>
+<p>$E(x^2)=Var(x)+E(x)^2$</p>
+</blockquote>
+<p>with</p>
+<script type="math/tex; mode=display">
+m_i^2=(\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_s-\frac{\sigma_s^2}{2})ds)^2
+\approx(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\frac{t^2}{N^2}</script><blockquote>
+<p>直接取一个固定值来代替这一段的积分，积分在t时间上的宽度是 t/N​</p>
+</blockquote>
+<p>Then</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=1}^Nm_i^2&\approx\sum_{i=1}^N\frac{t^2}{N^2}(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\\
+&=\frac{t}{N}\sum_{i=1}^N\frac{t}{N}(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\\
+&\approx\frac{t}{N}\sum_{i=1}^N\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds\\
+&=\frac{t}{N}\int_{0}^{t}(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+&\ (Estimator) (True\ Value) \\
+&\quad\ \overbrace{\mathbb{E}_\sigma[VR_t^N]}\approx\overbrace{\int_0^t\sigma_s^2ds}+\frac{t}{N}\int_0^t(\mu_s-\frac{\sigma_s^2}{2})^2ds
+\end{align}</script><p>Thus, the bias of estimating the integrated variance with realised variance</p>
+<script type="math/tex; mode=display">
+Bias:=\mathbb{E}[True\ Value-Estimator]\approx\mathscr{O}(\frac{t}{N})</script><p>Similarly, the variance of $VR^N_t$ for a given volatility path $\sigma_t$ is</p>
+<script type="math/tex; mode=display">
+Var(VR_t^N)=E[(VR_t^N-(E[VR_t^N])^2)]=E[(\sum_{i=1}^N(R_i^2-v_i-m_i^2))^2]</script><p>$R_i$ are iid</p>
+<script type="math/tex; mode=display">
+E[(\sum_{i=1}^N(R_i^2-v_i-m_i^2))^2]=\sum_{i=1}^NE[(R_i^2-v_i-m_i^2)^2]</script><p>For every i</p>
+<script type="math/tex; mode=display">
+\begin{align}
+E[(R_i^2-v_i-m_i^2)^2]&=E[R_i^4-2v_iR_i^2-2m_i^2R_i^2+v_i^2+2v_im_i^2+m_i^4]\\
+&=E[R_i^4]-2(v_i+m_i^2)(v_i+m_i^2)+v_i^2+2v_im_i^2+m_i^4\\
+&=E[R_i^4]-v_i^2-2v_im_i^2-m_i^4\\
+\end{align}</script><p>With $E[R_i^4]=m_i^4+6m_i^2v_i+3v_i^2$</p>
+<blockquote>
+<p>关于这一定理可以参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148408669">如何通俗的理解矩母函数</a>，以及 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Normal_distribution">wiki</a> 中展示的 Order 4 的 Non-central moment</p>
+<p>本站更多参考 <a href="https://achlier.github.io/2021/06/17/Normal_Distribution_and_E(x4">正态分布与矩母函数</a>/)</p>
+</blockquote>
+<script type="math/tex; mode=display">
+E[(R^2-v-m^2)^2]=2v_i^2+4v_im_i^2</script><p>and</p>
+<script type="math/tex; mode=display">
+Var(VR_t^N)=\sum_{i=1}^N\mathbb{E}_\sigma[(R_i^2-v_i-m_i^2)^2]=\sum_{i=1}^N(2v_i^2+4v_im_i^2)</script><p>Repeat the same step as above</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^Nv_i^2\approx\frac{t}{N}\int_0^t\sigma_s^4ds</script><p>Also</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=1}^Nv_im_i^2&\approx\sum_{i=1}^N\frac{t}{N}\sigma_{\frac{i-1}{N}t}^2\frac{t^2}{N^2}(\mu_{\frac{i-1}{N}t}-\sigma_{\frac{i-1}{N}t}^2/2)^2\\
+&\approx\frac{t^2}{N^2}\sum_{i=1}^N\int_{\frac{i-1}{N}t}^{\frac{i}{N}t}\sigma_s^2(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds\\
+&=\frac{t^2}{N^2}\int_{0}^{t}\sigma^2_s(\mu_{s}-\frac{\sigma_{s}^2}{2})^2ds
+\end{align}</script><p>Approximately, the variance of $VR^N_t$ for a given volatility path  $\sigma_t$ is</p>
+<script type="math/tex; mode=display">
+Var(VR_t^N)\approx\frac{2t}{N}\int_0^t\sigma_s^4ds+\frac{4t^2}{N^2}\int_0^t\sigma_s^2(\mu_s-\frac{\sigma_s^2}{2})^2ds</script><p>Next, we note that the root mean squared error (RMSE) of an estimator is given by</p>
+<script type="math/tex; mode=display">
+RMSE=\sqrt{Bias+Variance}</script><p>Therefore, the dominant term in the error of realised variance is</p>
+<script type="math/tex; mode=display">
+\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}</script><script type="math/tex; mode=display">
+Relative\ error=\frac{\sqrt{\frac{2t}{N}\int_0^t\sigma_s^4ds}}{\int_0^t\sigma_s^2ds}</script><p>If the Relative error is large. We should check out the Greek (sensitive of option price to the Volatility). Insensitive $\to$ no matter that much</p>
+<h4 id="Supplymental-reading"><a href="#Supplymental-reading" class="headerlink" title="Supplymental reading"></a>Supplymental reading</h4><p><a target="_blank" rel="noopener" href="https://faculty.washington.edu/ezivot/econ589/econ512realizedvariance.pdf">link</a></p>
+<p><strong>defination</strong></p>
+<ul>
+<li>$p_t$ = log-price of asset at time $t$ = $logS_t$</li>
+<li>$\Delta$ = fraction of a trading session associated with the implied sampling frequency</li>
+<li>$m=1/\Delta$ = number of sampled observations per trading session</li>
+<li>$T$ = number of days in the sample $\Rightarrow$ $mT$ total observations</li>
+<li>$r_{t-1+j\Delta}=p_{t-1+j\Delta}-p_{t-1+(j-1)\Delta}=log\frac{S_{t-1+j\Delta}}{S_{t-1+(j-1)\Delta}}$</li>
+<li>$r_t=r_{t-1+\Delta}+r_{t-1+2\Delta}+…+r_t=log\frac{S_t}{S_{t-1}}$</li>
+<li>Realized variance (RV=VR) on day $t$</li>
+</ul>
+<script type="math/tex; mode=display">
+RV_t^m=\sum_{j=1}^mr_{t-1+j\Delta}^2</script><ul>
+<li><p>Realized volatility (RVOL) on day $t$</p>
+<script type="math/tex; mode=display">
+RVOL_t^m=\sqrt{RV_t^m}</script></li>
+<li><p>Realized log-volatility (RLVOL) :</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+RLVOL_t^m=ln(RVOL_t^m)</script><ul>
+<li>Arithematic Brownian Motion (只参考，我们运用的$\mu,\sigma$不是固定的)</li>
+</ul>
+<script type="math/tex; mode=display">
+dp(t)=\mu dt+\sigma dW(t)</script><script type="math/tex; mode=display">
+p(t)=p(0)+\mu t+\sigma W(t)</script><script type="math/tex; mode=display">
+r(t,t-1)=p(t)-p(t-1)</script><ul>
+<li>The quadratic variation (QV) of the return process from time $0$ to $t$ is</li>
+</ul>
+<script type="math/tex; mode=display">
+[r](t)=\lim_{m\to\infty}\sum_{j=0}^{m-1}(p(t_{j+1})-p(t_j))^2</script><ul>
+<li>Let $p(t)$ be described by the stochastic differential equation</li>
+</ul>
+<script type="math/tex; mode=display">
+dp(t)=\mu(t) dt+\sigma(t) dW(t)</script><script type="math/tex; mode=display">
+r(t,t-1)=\int_{t-1}^t\mu(s)ds+\int_{t-1}^t\sigma(s)dW(s)</script><script type="math/tex; mode=display">
+[r](t)=\int_0^t\sigma^2(s)ds</script><ul>
+<li>IV$_t$ denotes integrated variance for day $t$</li>
+</ul>
+<script type="math/tex; mode=display">
+QV_T \equiv [r](t)-[r](t-1)=\int_{t-1}^t\sigma^2(s)ds=IV_t</script><p><strong>Example: QV for Wiener process</strong></p>
+<script type="math/tex; mode=display">
+dp(t)=dW(t),\ \sigma(t)=1</script><script type="math/tex; mode=display">
+[r](t)=\int_0^t\sigma^2(s)ds=\int_0^tds=t</script><script type="math/tex; mode=display">
+QV_t=\int_{t-1}^t\sigma^2(s)ds=\int_{t-1}^tds=1</script><p><strong>Q1 What does RV estimate?</strong></p>
+<script type="math/tex; mode=display">
+RV_t^m \xrightarrow{p} [r](t)-[r](t-1)\equiv QV_t,\ as\ m\to\infty</script><p>That is, daily RV converges in probability to the daily increment in QV.</p>
+<script type="math/tex; mode=display">
+var(r(t,t-1)|\mathcal{F}_{t-1})=E[QV_t|\mathcal{F}_{t-1}]=E[RV_t^m|\mathcal{F}_{t-1}]</script><p><strong>ABDL (2003)</strong></p>
+<script type="math/tex; mode=display">
+r(t,t-1)\sim N(\int_{t-1}^t\mu(s)ds,IV_t)</script><ul>
+<li>Since $\int^t_{t−1}\mu(s)ds$ is generally very small for daily returns and $RV_t^m$ is a consistent estimator of $IV_t$, for Itô processes daily returns should follow a normal mixture distribution with $RV_t^m$ as the mixing variable. As a result, returns standardized by realized volatility should be standard normal</li>
+</ul>
+<script type="math/tex; mode=display">
+r_t/RVOL_t^m \approx N(0,1)</script><ul>
+<li>If there are jumps in $dp (t)$, then $RV_t^m \xrightarrow{p} IV_t$ IVt but returns are no longer conditionally normally distributed.</li>
+</ul>
+<p><strong>Define the error</strong></p>
+<script type="math/tex; mode=display">
+u_t(\Delta)=RV_t^m-IV_t</script><p><strong>BNS (2001)</strong> : For the Ito diffusion model under the assumption that mean and volatility processes are jointly independent of $W(t)$</p>
+<script type="math/tex; mode=display">
+\sqrt{m}\frac{u_t(\Delta)}{\sqrt{2\ IQ_t}}=\sqrt{m}\frac{(RV_t^m-IV_t)}{\sqrt{2\ IQ_t}}\xrightarrow{d} N(0,1),\ as\ m\to\infty</script><p>where is the integrated quarticity (IQ)</p>
+<script type="math/tex; mode=display">
+IQ_t=\int_{t-1}^t\sigma^4(s)ds</script><p>Hence,</p>
+<script type="math/tex; mode=display">
+RV_t^m\sim N(IV_t,\frac{2\ IQ_t}{m})</script><p>IQ$_t$ may be consistently estimated using the following scaled version of realized quarticity (RQ)</p>
+<script type="math/tex; mode=display">
+RQ_t^m=\sum_{j=1}^mr_{t-1+j\Delta}^4</script><script type="math/tex; mode=display">
+\frac{m}{3}RQ_t^m\xrightarrow{p}IQ_t,\ as\ m\to\infty</script><p>The feasible asymptotic distribution for $RV_t^m$ is</p>
+<script type="math/tex; mode=display">
+RV_t^m\sim N(IV_t,\frac{2}{3}RQ_t^m)</script><h2 id="Unit-2-9：The-Heston-Model"><a href="#Unit-2-9：The-Heston-Model" class="headerlink" title="Unit 2.9：The Heston Model"></a>Unit 2.9：The Heston Model</h2><h3 id="Heston’s-Stochastic-Volatility-Model"><a href="#Heston’s-Stochastic-Volatility-Model" class="headerlink" title="Heston’s Stochastic Volatility Model"></a>Heston’s Stochastic Volatility Model</h3><p>Under the <strong>risk-neutral measure</strong>, Heston’s stochastic volatility model is given as</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma_tdW_t</script><script type="math/tex; mode=display">
+\begin{align}
+&d\sigma_t^2=k(\theta-\sigma_t^2)dt+\delta\sigma_tdW'_t,\ d\langle W,W'\rangle_t=\rho dt\\
+or,\ &dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t,\ with\ v_t=\sigma_t^2
+\end{align}</script><blockquote>
+<p>本课的模型都是在风险中性 (鞅) 的测度下，对于有些文章会按现实测度写，但实际是效果都相同</p>
+</blockquote>
+<p>If we have $W_1,\tilde W$ where $\langle W _1,\tilde W\rangle=0$</p>
+<script type="math/tex; mode=display">
+W_2=\rho W_1+\sqrt{1-\rho^2}\tilde W</script><script type="math/tex; mode=display">
+\begin{align}
+d\langle W_1,W_2\rangle&=d\langle W_1,\rho W_1+\sqrt{1-\rho^2}\tilde W\rangle_t\\
+&=\rho d\langle W_1,W_1\rangle+\sqrt{1-\rho^2} d\langle W _1,\tilde W\rangle\\
+&=\rho dt
+\end{align}</script><p>The variance process $v_t$ is also known by the name of <strong>Cox-Ingersoll-Rubinstein (CIR)</strong> process</p>
+<p>To model the variance of asset prices, we need $v_t$ to remain positive</p>
+<p><strong>（Advantage）</strong>For $\frac{2k\theta}{\delta^2}&gt;1$ the process never hits zero. This constraint on parameters is also known as <strong>Feller condition</strong></p>
+<p>This process is <strong>mean reverting</strong></p>
+<p>For the square root process</p>
+<script type="math/tex; mode=display">
+dv_t=k(\theta-v_t)dt+\delta\sqrt{v_t}dW'_t</script><ul>
+<li>$\theta$ is the long term mean</li>
+<li>k is the speed of mean-reversion</li>
+<li>$\delta$ is volatility of volatility</li>
+</ul>
+<p>First we define the log-price $X_t$ by $S_t=S_0e^{rt+X_t}$</p>
+<p>Next, by using the Ito’s formula, we get</p>
+<script type="math/tex; mode=display">
+dX_t=-\frac{1}{2}\sigma_t^2dt+\sigma_tdW_t</script><p>European call option price with maturity T and strike K is given as</p>
+<script type="math/tex; mode=display">
+C(K)=e^{-rT}\mathbb{E}[(S_0e^{rt+X_T}-K)^+]=S_0\mathbb{E}[(e^{X_T}-\frac{Ke^{-rT}}{S_0})^+]</script><p>For log-strike</p>
+<script type="math/tex; mode=display">
+K:=log\frac{Ke^{-rT}}{S_0},\ C(K)=S_0\mathbb{E}[(e^{X_T}-e^k)^+]</script><p>We first find the characteristic function of $X_T$</p>
+<script type="math/tex; mode=display">
+f(t,u,x,v):=\mathbb{E}[e^{iuX_T}|X_t=x,v_t=v]</script><p>To compute $C(K)=S_0\mathbb{E}[(e^{X_T}-e^k)^+]$ , we then use the <strong>Fourier transform</strong> $f (t, u, x, v)$ of $X_T$</p>
+<h4 id="European-Call-Option-Price-Formula"><a href="#European-Call-Option-Price-Formula" class="headerlink" title="European Call Option Price Formula"></a>European Call Option Price Formula</h4><script type="math/tex; mode=display">
+C(x,v;T-t,K)=e^xP_1-Ke^{-r(T-t)}P_2, where\ for j=1,2</script><script type="math/tex; mode=display">
+P_j(x,v;T-t,lnK):=\frac{1}{2}+\frac{1}{\pi}\int_0^\infty Re(\frac{e^{-i\phi lnK}f_j(\phi;T-t,x,v)}{i\phi})d\phi</script><p>where $Re(a+ib)=a$, We can only solve the $P_j$ numerical</p>
+<script type="math/tex; mode=display">
+f_j(\phi;T-t,x,v):=exp(C_j(T-t,\phi)+D_j(T-t,\phi)+i\phi x)</script><script type="math/tex; mode=display">
+C_j(\tau,\phi):=ri\phi\tau+\frac{a}{\delta^2}((b_j-\rho\delta i\phi+d_j)\tau-2ln\frac{1-g_je^{d_j\tau}}{1-g_j})</script><script type="math/tex; mode=display">
+D_j(\tau,\phi):=\frac{b_j-\rho\delta i\phi+d_j}{\delta^2}(\frac{1-e^{d_j\tau}}{1-g_je^{d_j\tau}})</script><script type="math/tex; mode=display">
+g_j:=\frac{b_j-\rho\delta i\phi+d_j}{b_j-\rho\delta i\phi-d_j}</script><script type="math/tex; mode=display">
+d_j=\sqrt{(b_j-\rho\delta i\phi)^2-\delta^2(2iu_j\phi-\phi^2)}</script><h2 id="Unit-2-10：Introduction-to-Calibration"><a href="#Unit-2-10：Introduction-to-Calibration" class="headerlink" title="Unit 2.10：Introduction to Calibration"></a>Unit 2.10：Introduction to Calibration</h2><h4 id="Exotic-Option"><a href="#Exotic-Option" class="headerlink" title="Exotic Option"></a>Exotic Option</h4><p><strong>Not traded on the market and $\to$ need to be priced by a model</strong></p>
+<ul>
+<li><p>A forward start option: $(S_T-aS_{T_1})^+$</p>
+</li>
+<li><p>A cliquet: $\sum_{i=1}^{n-1}(S_{T_{i+1}}-aS_{T_i})^+$</p>
+</li>
+<li><p>A barrier option: $(S_T-K)^+1_{sup_{t\in[0,T]}S_t\leq B}$</p>
+</li>
+</ul>
+<p><strong>Identify the hedging instruments</strong> : liquid products (small bid-ask spread) quoted on a market</p>
+<p>we aim at constructing a hedging portfolio of the form</p>
+<script type="math/tex; mode=display">
+V_t=\Delta_t^0B_t+\Delta_tS_t+\sum_{i=1}^n\Delta_t^{C,i}Call^i+\sum_{j=1}^m\Delta_t^{P,j}Put^j</script><p><strong>Choose a model</strong></p>
+<p>Reproduce the prices of simple instruments quoted on the market.  (This step is <strong>model calibration</strong>)</p>
+<p>Then compute the hedging strategies $\Delta^0,\Delta,\Delta^{C,i},\Delta^{P,j}$</p>
+<h4 id="General-Considerations"><a href="#General-Considerations" class="headerlink" title="General Considerations"></a>General Considerations</h4><p><strong>Model calibration</strong> = determine the model parameters from market data of liquid instruments</p>
+<p><strong>Two approaches in model calibration</strong></p>
+<ol>
+<li><strong>Statistical</strong> parameter estimation<ul>
+<li>from <strong>historical</strong> observations</li>
+<li>done under the physical (market) measure</li>
+</ul>
+</li>
+<li><strong>Calibration</strong><ul>
+<li>based on quotes of option prices (typically calls/puts)</li>
+<li>done under the <strong>risk-neutral measure</strong></li>
+<li>reflects the market view on the future evolution of the asset</li>
+</ul>
+</li>
+</ol>
+<p><strong>Which price? Bid or Ask?</strong></p>
+<ul>
+<li>Typically one calibrates to the mid-price</li>
+</ul>
+<h4 id="Model-Calibration"><a href="#Model-Calibration" class="headerlink" title="Model Calibration"></a>Model Calibration</h4><p>In general, a “good” model should have</p>
+<ul>
+<li><p>A parsimonious parametrization and should be intuitive</p>
+</li>
+<li><p>An efficient numerical calibration method</p>
+</li>
+</ul>
+<p>We want to find $\theta$ such that</p>
+<script type="math/tex; mode=display">
+P^{model(\theta)}(T_i,K_j)=P^{market(\theta)}(T_i,K_j)</script><p>or a <strong>least squares approach</strong></p>
+<script type="math/tex; mode=display">
+\min_{\theta}\sum_{i,j}(P^{model}(T_i,K_j)-P^{market}(T_i,K_j))^2</script><h4 id="Calibration-of-local-volatility-models"><a href="#Calibration-of-local-volatility-models" class="headerlink" title="Calibration of local volatility models"></a>Calibration of local volatility models</h4><p>The inverse problem of finding the local volatility function with finite number of call option prices is then ill posed. To overcome the difficulty, typically two approaches are used</p>
+<ul>
+<li><p><strong>Implied volatility interpolation</strong> using either parametric or semi-parametric form</p>
+<ul>
+<li>Non-parametric methods of interpolation, for example, the method of splines(三次样条插值), provide very mediocre performance for such problems</li>
+<li>Implied volatility interpolation methods are very intuitive and fast, but could lead to <strong>infeasible volatility surface</strong></li>
+</ul>
+</li>
+<li><p><strong>Regularisation approach</strong></p>
+<ul>
+<li>Regularisation methods provide the best <strong>performance</strong> in terms of precision and regularity of the volatility surface</li>
+</ul>
+</li>
+</ul>
+<h4 id="Stochastic-Volatility-Inspired-SVI-Parametrisation-by-Jim-Gatheral"><a href="#Stochastic-Volatility-Inspired-SVI-Parametrisation-by-Jim-Gatheral" class="headerlink" title="Stochastic Volatility Inspired(SVI) Parametrisation (by Jim Gatheral)"></a>Stochastic Volatility Inspired(SVI) Parametrisation (by Jim Gatheral)</h4><p>It is a parametrisation of implied volatility as a function of parameters in terms of log-strike $k=log\frac{K}{S}-rT$</p>
+<p>In the parametrisation, for a given maturity $T$, the total implied variance $V(T, k) := I^2(T, k)T$ satisfies</p>
+<script type="math/tex; mode=display">
+V(T, k)=a+b(\rho(k-m)+\sqrt{(k-m)^2+\sigma^2})</script><p>with</p>
+<ul>
+<li><p>$a\ge 0$: global level of smile</p>
+</li>
+<li><p>$b\ge 0$: slope of the wings</p>
+</li>
+<li><p>$\rho\in[-1,1]$: asymmetry (rotation of the smile)</p>
+</li>
+<li><p>$m\in\mathbb{R}$: translation to the right</p>
+</li>
+<li><p>$\sigma\ge 0$: at-the-money convexity</p>
+</li>
+</ul>
+<p><strong>Step</strong></p>
+<ul>
+<li>For a given maturity $T_i$, we compute the implied volatility $I(T_i, k_j)$ for all the strikes $K_j$ of the liquidly traded call options</li>
+</ul>
+<script type="math/tex; mode=display">
+\sigma^2(T,k)=\frac{\frac{\partial V(T,k)}{\partial T}}{(1-\frac{k}{2V}\frac{\partial V}{\partial k})^2+\frac{1}{2}\frac{\partial^2V}{\partial k^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{V})(\frac{\partial V}{d k})^2}</script><ul>
+<li><p>Then using an optimisation procedure, for example, <strong>least-squares</strong>, we compute the optimal values for parameters $a,b,\rho,m$ and $\sigma$ for maturity $T_i$</p>
+<ul>
+<li>The parameters are estimated for each maturity separately</li>
+</ul>
+</li>
+<li><p>For the intermediate maturities without liquidly traded options, the implied volatility can be computed using linear <strong>interpolation</strong> and the SVI parameters can be computed</p>
+</li>
+</ul>
+<p><strong>Absence of Arbitrage</strong></p>
+<ul>
+<li>Due to the interpolation procedure, SVI parametrisation can lead to arbitrage opportunities in the model<ul>
+<li>Option price function $P(T, k)$ which is not convex with respect to $k$</li>
+<li>$\frac{\partial^2P(T,k)}{\partial k^2}&lt;0$</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://mathworld.wolfram.com/images/eps-gif/ConcaveConvexFunction_1000.gif" srcset="/img/loading.gif" lazyload alt></p>
+<ul>
+<li><p>To ensure the absence of arbitrage: $\lim_{k\to\infty}C^{BS}(T,k)=0$</p>
+</li>
+<li><p>The absence of arbitrage of the “calendar spread” type: $\frac{\partial V(T,k)}{\partial T}\ge 0$</p>
+<ul>
+<li>The above condition implies that the total implied variance is an increasing function with respect to maturity. This is equivalent to non-crossing of the curves of total implied variance for different maturities</li>
+</ul>
+</li>
+<li><p>The absence of arbitrage of the “butterfly” type</p>
+<ul>
+<li>The condition leads to the convexity of option prices with respect to $k$</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+d(T,k)=(1-\frac{k}{2V}\frac{\partial V}{\partial k})^2+\frac{1}{2}\frac{\partial^2V}{\partial k^2}-\frac{1}{4}(\frac{1}{4}+\frac{1}{V})(\frac{\partial V}{d k})^2\ge 0</script><h4 id="Regularisation-Approach"><a href="#Regularisation-Approach" class="headerlink" title="Regularisation Approach"></a>Regularisation Approach</h4><p>The calibration of volatility surface is posed as an optimisation problem using <strong>Tikhonov regularisation</strong></p>
+<p>Minimise the functional</p>
+<script type="math/tex; mode=display">
+J(\sigma):=\sum_{i,j=1}^{n,m}w_{ij}(C(T_i,K_j,\sigma)-C^{market}(T_i,K_j))^2+\alpha||\nabla\sigma||_2^2</script><script type="math/tex; mode=display">
+||\nabla\sigma||_2^2=\int_{K_{min}}^{K_{max}}dK\int_{T_{min}}^{T_{max}}dT((\frac{\partial\sigma}{\partial K})^2+(\frac{\partial\sigma}{\partial T})^2)</script><p>To minimise $J(\sigma)$, we use, for example, the method of <strong>gradient descent</strong> or the method of <strong>conjugate gradient</strong></p>
+<p><strong>Typical algortihm</strong></p>
+<ul>
+<li>Discretise local volatility function on a mesh of space and time</li>
+<li>Make an initial guess $\sigma^{(0)}$,for example, a constant function</li>
+<li>Evaluate the gradient of $J(\sigma)$ at point $\sigma^{(0)}$to calculate the direction of descent $\lambda^{(0)}$ </li>
+<li>Solve the one-dimensional minimisation problem</li>
+</ul>
+<script type="math/tex; mode=display">
+h^*=arg\min_{h}J(\sigma^{(0)}+h\lambda^{(0)})</script><ul>
+<li>Set $\sigma^{(1)}:=\sigma^{(0)}+h^*\lambda^{(0)}$ and iterate again</li>
+</ul>
+<p>The local volatility function is discretised using different methods, for example, finite differences or trinomial tree model</p>
+<p>The regularisation using $||\nabla\sigma||$ is the same in regions of the surface where the influence of volatility on the price is very high and in the regions where it is very small</p>
+<h1 id="Unit-3-1：Monte-Carlo-methods"><a href="#Unit-3-1：Monte-Carlo-methods" class="headerlink" title="Unit 3.1：Monte Carlo methods"></a>Unit 3.1：Monte Carlo methods</h1><p>Readings for the module on Monte Carlo Methods</p>
+<ul>
+<li>Chapter 3 Section 3.1, Section 3.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
+<li>Chapter 6 Section 6.1 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
+</ul>
+<h2 id="Unit-3-1-1：Introduction"><a href="#Unit-3-1-1：Introduction" class="headerlink" title="Unit 3.1.1：Introduction"></a>Unit 3.1.1：Introduction</h2><p>Monte Carlo methods are preferable in high dimensions as their accuracy is independent of dimensionality</p>
+<p>If f is integrable over [0, 1], then by strong <strong>law of large numbers</strong> (SLLN)</p>
+<blockquote>
+<p>大数定律的定义是，当随机事件发生的次数足够多时，随机事件发生的频率趋近于预期的概率。可以简单理解为样本数量越多，其平概率越接近于期望值。大数定律的条件：1、独立重复事件；2、重复次数足够多。</p>
+</blockquote>
+<p>for</p>
+<script type="math/tex; mode=display">
+\alpha=\int_0^1f(x)dx=\mathbb{E}[f(U)]</script><script type="math/tex; mode=display">
+\hat{\alpha}_N=\frac{1}{N}\sum_{i=1}^Nf(U_i),U_i\sim U</script><script type="math/tex; mode=display">
+\hat{\alpha}_N\to \alpha\ w.p.\ 1\ as\ N\to\infty</script><blockquote>
+<p>w.p. 1 (with probability 1)</p>
+</blockquote>
+<p>If f is also square integrable, for</p>
+<script type="math/tex; mode=display">
+\sigma_f^2=\int_0^1(f(x)-\alpha)^2dx=\mathbb{E}[(f(U)-\alpha)^2]</script><p><strong>the error in the estimator</strong> $\hat\alpha_N$ is approximately normally distributed with mean 0 and standard deviation $\frac{\sigma_f}{\sqrt{N}}$</p>
+<p>Typically $\sigma_f$ is <strong>unknown</strong> and is estimated as</p>
+<script type="math/tex; mode=display">
+s_f=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(f(U_i)-\hat\alpha_N)^2}</script><h3 id="Monte-Carlo-Estimation-for-European-Option"><a href="#Monte-Carlo-Estimation-for-European-Option" class="headerlink" title="Monte Carlo Estimation for European Option"></a>Monte Carlo Estimation for European Option</h3><p>Monte Carlo samples $S_i(T)$ of $S(T)$ can be generated as</p>
+<script type="math/tex; mode=display">
+S_i(T)=S_0exp((r-\frac{1}{2}\sigma^2)T+\sigma\sqrt{T}Z_i)</script><p>where $Z_i\sim N(0,1)$</p>
+<blockquote>
+<p>用 $\sqrt TZ_i$ 代替 $W_t$ 可以减少 noise</p>
+</blockquote>
+<p>Call price estimator is given as</p>
+<script type="math/tex; mode=display">
+\hat C_N=\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+</script><p>The estimator $\hat C_N$ is unbiased in the sense that</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\hat C_N]=\mathbb{E}[\frac1N\sum_{i=1}^Ne^{-rT}(S_i(T)-K)^+]=\mathbb{E}[\frac1N\sum_{i=1}^NC_i]=C(T,K)</script><h2 id="Unit-3-1-2：Efficiency-of-Monte-Carlo-methods"><a href="#Unit-3-1-2：Efficiency-of-Monte-Carlo-methods" class="headerlink" title="Unit 3.1.2：Efficiency of Monte Carlo methods"></a>Unit 3.1.2：Efficiency of Monte Carlo methods</h2><h4 id="Confidence-Interval"><a href="#Confidence-Interval" class="headerlink" title="Confidence Interval"></a>Confidence Interval</h4><p>Using estimator $\hat C_N$ makes sense with a confidence interval</p>
+<script type="math/tex; mode=display">
+[\hat C_N-z_{\delta/2}\frac{s_C}{\sqrt{N}},\hat C_N+z_{\delta/2}\frac{s_C}{\sqrt{N}}]</script><p>where</p>
+<script type="math/tex; mode=display">
+s_C=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(C_i-\hat C_N)^2}</script><ul>
+<li>$2z_{\delta/2}\frac{s_C}{\sqrt{N}}$ is called the width of the confidence interval</li>
+<li>$z_\delta$ denotes the $1-\delta$ quantile of the standard normal distribution<ul>
+<li>$\mathbb{P}(Z\leq z_\delta)=1-\delta$ for $Z\sim N(0,1)$</li>
+<li>For $\delta = 0.05, z_\delta/2 \approx 1.96$, we get a 95% confidence interval</li>
+</ul>
+</li>
+</ul>
+<h4 id="Central-limit-theorem-CLT"><a href="#Central-limit-theorem-CLT" class="headerlink" title="Central limit theorem (CLT)"></a>Central limit theorem (CLT)</h4><p>With unbiased estimator $\hat C_N=\frac1N\sum_{i=1}^NC_i$ for iid samples $C_i$, $\mathbb{E}[C_i]=C$ and $Var(C_i)=\sigma_C^2&lt;\infty$</p>
+<script type="math/tex; mode=display">
+\frac{\hat C_N-C}{\sigma_C/\sqrt{N}}\sim N(0,1)</script><ul>
+<li>$\sigma_C$ can only be estimated</li>
+</ul>
+<p>Suppose it takes $\tau$ time to generate $C_i$. Given computational budget $\Gamma$,  can generate $\Gamma/\tau$ samples and create estimator $\hat C_{\Gamma/\tau}$</p>
+<ul>
+<li>$\sqrt{\Gamma/\tau}(\hat C_{\Gamma/\tau}-C)\sim N(0,\sigma_C^2)$</li>
+<li><p>as $\Gamma\to\infty$, $\sqrt{\Gamma}(\hat C_{\Gamma/\tau}-C)\sim N(0,\sigma_C^2\tau)$</p>
+</li>
+<li><p>Given a choice, we should use an estimator with lower value of $\sigma_C^2\tau$</p>
+</li>
+</ul>
+<h4 id="Mean-Square-Error"><a href="#Mean-Square-Error" class="headerlink" title="Mean Square Error"></a>Mean Square Error</h4><p>For an estimator $\hat\alpha$ of true value $\alpha$</p>
+<script type="math/tex; mode=display">
+MSE(\hat\alpha)=\mathbb{E}[(\hat\alpha-\alpha)^2]=(\mathbb{E}\hat\alpha-\alpha)^2+\mathbb{E}[(\hat\alpha-\mathbb{E}\hat\alpha)^2]=Bias^2(\hat\alpha)+Variance(\hat\alpha)</script><blockquote>
+<p>两边可以尝试配平</p>
+</blockquote>
+<p>Landau’s notation: For parameter $h\to 0$</p>
+<script type="math/tex; mode=display">
+f(h)=\mathscr{O}(h^n)\Rightarrow |f(h)|\leq Mh^n</script><script type="math/tex; mode=display">
+f(h)=o(h^n)\Rightarrow \lim_{h\to 0}f(h)/h^n \to 0</script><blockquote>
+<p>类似于算法复杂度，大 O 是上界，小 o 是下届</p>
+</blockquote>
+<h2 id="Unit-3-1-3：Euler-Method"><a href="#Unit-3-1-3：Euler-Method" class="headerlink" title="Unit 3.1.3：Euler Method"></a>Unit 3.1.3：Euler Method</h2><p>Consider an ordinary differential equation (ODE) in time interval [0, 1]</p>
+<script type="math/tex; mode=display">
+\frac{dX(t)}{dt}=\dot x(t)=b(t,x(t)),\ x(0)=x_0</script><p>Divide interval into $N$, $h=1/N$ </p>
+<p>The above ODE can be solved approximately using an <strong>Euler scheme</strong></p>
+<script type="math/tex; mode=display">
+x_0^h=x_0,\ x_n^h=x_{n-1}^h+b(t_{n-1}^h,x_{n-1}^h)h</script><p>where</p>
+<script type="math/tex; mode=display">
+x_n^h:=x^h(t_n^h),\ t_n^h:=nh,\ h=\frac1N</script><ul>
+<li>Error criterion $e(h):=|x(1)-x^h(1)|$</li>
+<li>Under suitable assumptions $e(h)=\mathscr{O}(h)=\mathscr{O}(1/N)$</li>
+</ul>
+<blockquote>
+<p>Euler Method更多解释可参考数值分析的部分</p>
+</blockquote>
+<h4 id="Euler-Discretisation-for-BM"><a href="#Euler-Discretisation-for-BM" class="headerlink" title="Euler Discretisation for BM"></a>Euler Discretisation for BM</h4><p>with $h=\frac TN,t_n^h:=nh,\Delta W_n^h:=W(t_n^h)-W(t_{n-1}^h)$,  the Euler scheme for BM is given as</p>
+<script type="math/tex; mode=display">
+W_n^h:=W(t_n^h)=\Delta W_1^h+...+\Delta W_n^h</script><p>Note that $\Delta W_n^h$ are iid increments which are normally distributed $N(0,h)$</p>
+<h4 id="Euler-Method-for-SDEs"><a href="#Euler-Method-for-SDEs" class="headerlink" title="Euler Method for SDEs"></a>Euler Method for SDEs</h4><script type="math/tex; mode=display">
+dX(t)=b(t,X(t))dt+\sigma(t,X(t))dW_t</script><p>The Euler scheme for $X(t)$ is given as $X^h(0)=x_0$</p>
+<script type="math/tex; mode=display">
+X_n^h:=X(t_n^h)=X_{n-1}^h+b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p>If we wish to price options based on <strong>the path of</strong> the SDE, for example, Asian option with price</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[e^{-rT}(\frac1M\sum_{j=1}^MS(t_j)-K)^+]</script><p>we need a good approximation of the <strong>sample path</strong> of $X$ which leads to the error criterion (<strong>strong error</strong>)</p>
+<script type="math/tex; mode=display">
+e_s(h):=\mathbb E|X(T)-X_N^h(T)|</script><p>If we wish to price options based only on <strong>the terminal value</strong> of the SDE, for example, European option with price</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[e^{-rT}(S(T)-K)^+]</script><p>we need a good approximation of the distribution of $X(T)$ which leads to the error criterion (<strong>weak error</strong>)</p>
+<script type="math/tex; mode=display">
+e_w(h):=|\mathbb E_gX(T)-\mathbb E_gX_N^h(T)|</script><p>for smooth functions g</p>
+<blockquote>
+<p>光滑函数（smooth function）:在其定义域内无穷阶数连续可导的函数</p>
+<p>g 可以取 $(S(T)-K)^+$</p>
+</blockquote>
+<p>We say that $X^h$ converges to $X$ with order $\beta &gt; 0$</p>
+<ul>
+<li>strongly with order $\beta$ if $e_s(h)=\mathscr O(h^\beta)$</li>
+<li>weakly with order $\beta$ if $e_w(h)=\mathscr O(h^\beta)$</li>
+</ul>
+<p>Under some regularity conditions on functions $b$ and $\sigma$, Euler scheme converges strongly with order $\beta = 1/2$ (Euler) and weakly with order $\beta = 1$ (Milstein)</p>
+<blockquote>
+<p>当 $\beta$ 数越大，收敛速度越快，越准确</p>
+</blockquote>
+<h2 id="Unit-3-1-4：Milstein-Scheme"><a href="#Unit-3-1-4：Milstein-Scheme" class="headerlink" title="Unit 3.1.4：Milstein Scheme"></a>Unit 3.1.4：Milstein Scheme</h2><p>Consider the SDE</p>
+<script type="math/tex; mode=display">
+X(t_{n-1}+h)-X(t_{n-1})=\int_{t_{n-1}}^{t_{n-1}+h}b(s,X(s))ds+\int_{t_{n-1}}^{t_{n-1}+h}\sigma(s,X(s))dW(s)</script><p>and its Euler scheme approximation</p>
+<script type="math/tex; mode=display">
+X_n^h-X_{n-1}^h=b(t_{n-1}^h,X_{n-1}^h)h+\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p>Thus, the Euler scheme approximates</p>
+<script type="math/tex; mode=display">
+\int_{t_{n-1}}^{t_{n-1}+h}\sigma(s,X(s))dW(s)\sim\sigma(t_{n-1}^h,X_{n-1}^h)\Delta W_n^h</script><p><strong>Milstein scheme is an improvement on the Euler scheme</strong>. The main idea is to approximate the stochastic integral in a better way</p>
+<p>Let us estimate the error in Euler scheme by applying Itô’s formula on $\sigma(t,X(t))$. Suppose $t_{n-1}=0$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(\sigma(s,X(s)))&=\partial_t\sigma ds+\partial_x\sigma dX(s)+\frac12\partial_x^2\sigma dX(s)dX(s)\\
+&=\partial_t\sigma ds+\partial_x\sigma (bds+\sigma dW(s))+\frac12\partial_x^2\sigma\sigma^2 ds
+\end{align}</script><p>Then</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&\int_0^h\sigma(t,X(t))dW(t)-\sigma(0,X(0))W(h)\\
+=&\int_0^h(\sigma(t,X(t))-\sigma(0,X(0)))dW(t)
+\end{align}</script><p>Combined with</p>
+<script type="math/tex; mode=display">
+\int_0^hd(\sigma(s,X(s)))=\sigma(t,X(t))-\sigma(0,X(0))</script><p>So we have</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\int_0^h\int_0^t[\partial_t\sigma+\partial_x\sigma b+\frac12\partial_x^2\sigma\sigma^2]dsdW(t)+\int_0^h\int_0^t\partial_x\sigma\sigma dW(s)dW(t)\\
+\sim\mathscr{O}(h^{3/2})+\partial_x\sigma(0,X(0))\sigma(0,X(0))\int_0^h\int_0^tdW(s)dW(t)
+\end{align}</script><blockquote>
+<p>$W(h)\sim o(h^{1/2})$，$\sigma$ 采用 0 点时</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\int_0^h\int_0^tdW(s)dW(t)=\int_0^hW(t)dW(t)=\frac12(W^2(h)-h)</script><blockquote>
+<p>这一步过程看 <a href="https://achlier.github.io/2021/06/11/Ito%E7%A7%AF%E5%88%86%E4%B8%8E%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E3%80%90%E7%AC%94%E8%AE%B0_%E7%9F%A5%E4%B9%8E%E3%80%91/">定义</a></p>
+</blockquote>
+<p>Thus, the Milstein scheme is given as $X^h(0)=x_0$</p>
+<script type="math/tex; mode=display">
+X_n^h=X(t_n^h)=X_{n-1}^h+bh+\sigma\Delta W_n^h+\frac12\partial_x\sigma\sigma((\Delta W_n^h)^2-h)</script><blockquote>
+<p>如果 payoff 只取决于最终的价格，两种方法不明显，如果取决于path，Milstein 会明显提高</p>
+</blockquote>
+<h1 id="Unit-3-2：Variance-reduction-methods"><a href="#Unit-3-2：Variance-reduction-methods" class="headerlink" title="Unit 3.2：Variance reduction methods"></a>Unit 3.2：Variance reduction methods</h1><p>Readings for the module on variance reduction methods</p>
+<ul>
+<li>Chapter 4 Section 4.1, 4.2 - Monte Carlo Methods in Financial Engineering by Paul Glasserman</li>
+</ul>
+<h2 id="Unit-3-2-1：Control-variate-method"><a href="#Unit-3-2-1：Control-variate-method" class="headerlink" title="Unit 3.2.1：Control variate method"></a>Unit 3.2.1：Control variate method</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>In financial markets and the insurance industry, most quantities of interest can be expressed as</p>
+<script type="math/tex; mode=display">
+\alpha=\mathbb{E}[\psi(x)],\ p=\mathbb{P}(x\in A)</script><p>Suppose the goal is to compute $p$. Then, use the Monte Carlo method:</p>
+<ul>
+<li><p>Generate $(X_i)_{1\leq i\leq N}$ i.i.d. samples of $X$ &amp; set</p>
+<script type="math/tex; mode=display">
+\hat p_N:=(N)^{-1}\sum_{i=1}^N1_{X_i\in A}</script></li>
+<li><p>By the Central Limit Theorem (CLT)</p>
+<script type="math/tex; mode=display">
+\sqrt{N}(\hat p_N-\mathbb{P}(x\in A))\Rightarrow N(0,p(1-p))</script><blockquote>
+<p>binomial 分布, p 是存在的概率</p>
+</blockquote>
+</li>
+<li><p>95% confidence interval</p>
+<script type="math/tex; mode=display">
+(\hat p_N-1.96\sqrt{\frac{p(1-p)}{N}},\hat p_N+1.96\sqrt{\frac{p(1-p)}{N}})</script></li>
+</ul>
+<p>The <strong>relative error</strong> is given as</p>
+<script type="math/tex; mode=display">
+\frac{Estimator\ error}{True\ Value}=\sqrt{p(1-p)}/(p\sqrt{N})\approx(\sqrt{Np})^{-1}</script><p>which is large for small value of $p$</p>
+<p>Thus, to estimate small $p$, using the crude Monte Carlo method, we may need a <strong>large number of samples</strong> $N$</p>
+<blockquote>
+<p>如果 $p = 0.01 (10^{-2})$, $N$ 至少 $=10^6$ 才使得 relative error $=(\sqrt{10^4})^{-1}=10^{-2}$</p>
+</blockquote>
+<p>As discussed in the last lecture, the estimator error is given by $s_p/\sqrt{N}$ where $s_p$ is the estimate of standard deviation of estimator $\hat p_N$</p>
+<p>The aim of <strong>variance reduction methods</strong> is to produce an alternative estimator $\hat p_N^{var}$ such that $\mathbb{E}[\hat p_N^{var}]=p$ but with <strong>smaller variance</strong> than estimator $\hat p_N$</p>
+<h3 id="Control-Variates"><a href="#Control-Variates" class="headerlink" title="Control Variates"></a>Control Variates</h3><p>Let $Y_1, Y_2, . . . , Y_N$ be i.i.d. outputs from $N$ replications of a simulation. For example, $Y_i$ could be the discounted payoff of a derivative security on the $i$th simulated path.</p>
+<p>Suppose that our aim is to compute $\alpha=\mathbb{E}[Y_i]$ and the crude Monte Carlo estimator $\alpha_N:=\sum_{i=1}^N\frac{Y_i}N$ is unbiased and converges with probability (w.p.) 1 as $N\to\infty$</p>
+<p>Suppose on each replication, we generate another output $X_i$ along with $Y_i$</p>
+<p>Suppose that $(X_i,Y_i)$ are i.i.d. $i=1,…,N$ and that $\alpha_0=\mathbb{E}[X_i]$ is known</p>
+<p>Furthermore, denote $(X, Y)$ as a generic pair of $(X_i,Y_i)$</p>
+<p>For fixed $b$, calculate</p>
+<script type="math/tex; mode=display">
+Y_i(b):=Y_i-b(X_i-\alpha_0)</script><p>and compute the sample mean</p>
+<script type="math/tex; mode=display">
+\hat\alpha_N(b):=\hat\alpha_N-b(N_{-1}\sum_{i=1}^NX_i-\alpha_0)=\frac1N\sum_{i=1}^NY_i(b)</script><p>$\hat\alpha_N(b)$ is a <strong>control variate estimator</strong> and the observable error $N^{-1}\sum_{i=1}^NX_i-\alpha_0$ acts as a control in estimating $\alpha$</p>
+<p>The control variate estimator is <strong>unbiased</strong></p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\hat\alpha_N(b)]=\frac1N\sum_{i=1}^N\mathbb{E}[Y_i(b)]=\alpha</script><script type="math/tex; mode=display">
+\mathbb{E}[\hat\alpha_N(b)]=\mathbb{E}[\hat\alpha_N]-\mathbb{E}[b(N_{-1}\sum_{i=1}^NX_i-\alpha_0)]=\alpha-(\alpha_0-\alpha_0)</script><p>$\hat\alpha_N(b)$ is also <strong>strongly consistent</strong></p>
+<script type="math/tex; mode=display">
+Var(\hat\alpha_N(b))=\frac{Var(\sum_{i=1}^NY_i(b))}{N^2}=\frac{N\sigma^2(b)}{N^2}=\frac{\sigma^2(b)}{N}</script><p>Each $Y_i(b)$ has variance which is equal to</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Var(Y_i(b))&=Var(Y_i-b(X_i-\alpha_0))\\
+&=\sigma_Y^2-2b\sigma_X\sigma_Y\rho_{XY}+b^2\sigma_X^2\equiv\sigma^2(b)
+\end{align}</script><script type="math/tex; mode=display">
+\sigma_X^2=Var(X),\sigma_Y^2=Var(Y),\rho_{XY}=Correl(X,Y)</script><script type="math/tex; mode=display">
+Var(\hat\alpha_N(b))=\frac{\sigma^2(b)}N,Var(\hat\alpha_N)=\frac{\sigma^2_Y}N</script><p>$\hat\alpha_N(b)$ <strong>provides variance reduction</strong> if</p>
+<script type="math/tex; mode=display">
+b\sigma_X<2\sigma_Y\rho_{XY}</script><p>Optimal coefficient $b^<em>$ <em>*minimizes</em></em> $\sigma^2(b)$ and is given as</p>
+<script type="math/tex; mode=display">
+b^*=\frac{\sigma_Y\rho_{XY}}{\sigma_X}=\frac{Cov(X,Y)}{Var(X)}</script><p>The ratio of the variance of optimally controlled estimator to that of uncontrolled</p>
+<script type="math/tex; mode=display">
+\frac{Var(\hat\alpha_N(b^*))}{Var(\hat\alpha_N)}=1-\rho_{XY}^2</script><p>The <strong>variance reduction factor</strong> is given as</p>
+<script type="math/tex; mode=display">
+\frac{Var(\hat\alpha_N)}{Var(\hat\alpha_N(b^*))}=\frac{1}{1-\rho_{XY}^2}</script><blockquote>
+<p>$Var(\hat\alpha_N)\times(1-\rho_{XY}^2)={Var(\hat\alpha_N(b^*))}$ 如果要达到原来的值，需要用 $N/(1-\rho_{XY}^2)$ 个样本</p>
+</blockquote>
+<p>For example, for $|\rho_{XY}| = 0.95$, leads to 10-times variance reduction, whereas $|\rho_{XY}| = 0.90$, leads to 5-times variance reduction (usually 5)</p>
+<h3 id="Computing-b"><a href="#Computing-b" class="headerlink" title="Computing $b^*$"></a>Computing $b^*$</h3><p>As $\alpha=\mathbb E[Y]$ is unknown, in practice, $\sigma_Y$ or $\rho_{XY}$ are also unknown</p>
+<p>Estimate $b^*$ as</p>
+<script type="math/tex; mode=display">
+\hat b_N=\frac{\sum_{i=1}^N(X_i-\frac{\sum_{j=1}^NX_j}N)(Y_i-\frac{\sum_{j=1}^NY_j}N)}{\sum_{i=1}^N(X_i-\frac{\sum_{j=1}^N X_j}N)^2}</script><p>Then, instead of $Y_i(b)$, we use</p>
+<script type="math/tex; mode=display">
+Y_i(\hat b_N):=Y_i-\hat b_N(X_i-\alpha_0)</script><p>Replacing $b$ with $\hat b_N$ introduces bias as the samples $Y_i(\hat b_N)$ are not independent any more, thus, application of CLT is not clear</p>
+<p>Estimate $\alpha$ as $\hat\alpha_N(\hat b_N)=\frac1N\sum_{i=1}^NY_i(\hat b_N)$</p>
+<h2 id="Unit-3-2-2：Application-of-control-variate-estimator"><a href="#Unit-3-2-2：Application-of-control-variate-estimator" class="headerlink" title="Unit 3.2.2：Application of control variate estimator"></a>Unit 3.2.2：Application of control variate estimator</h2><h3 id="Using-Underlying-Assets"><a href="#Using-Underlying-Assets" class="headerlink" title="Using Underlying Assets"></a>Using Underlying Assets</h3><p>Consider the Black-Scholes model</p>
+<script type="math/tex; mode=display">
+\frac{dS_t}{S_t}=rdt+\sigma dW_t,\ S_0=s_0</script><p>Suggest a Monte Carlo control variate method to estimate the price of option</p>
+<h3 id="Asian-Options"><a href="#Asian-Options" class="headerlink" title="Asian Options"></a>Asian Options</h3><p>An arithmetic Asian call option with discounted payoff $e^{-rT}(\bar S_m^A(T)-K)^+$ where</p>
+<script type="math/tex; mode=display">
+\bar S_m^A(T):=\frac{1}{m}\sum_{j=1}^mS_{t_j},\ t_j=j\ \frac Tm,\ j=1,...,m</script><p>we have a closed-form formula for geometric Asian call option with discounted payoff $e^{-rT}(\bar S_m^G(T)-K)^+$</p>
+<script type="math/tex; mode=display">
+\bar S_m^G(T):=(\prod_{j=1}^mS_{t_j})^{1/m},\ t_j=j\ \frac Tm,\ j=1,...,m</script><h2 id="Unit-3-2-3：Antithetic-variate-method"><a href="#Unit-3-2-3：Antithetic-variate-method" class="headerlink" title="Unit 3.2.3：Antithetic variate method"></a>Unit 3.2.3：Antithetic variate method</h2><p>Method of <strong>antithetic variates</strong> attempts to reduce variance by introducing <strong>negative dependence</strong> between pair of replications</p>
+<ul>
+<li><p>Note that if $U$ is uniformly distributed over [0, 1] then so is $1 – U$</p>
+<ul>
+<li>$U_i$ and $1 – U_i$ form an antithetic pair in the sense that a big value of one is accompanied by a small value of the other</li>
+<li>Thus, a large value of the function value computed on one path is compensated by the small value on the antithetic path, leading to reduction in variance</li>
+</ul>
+</li>
+<li><p>If $Z$ is distributed as $N (0, 1)$ then so is $–Z$</p>
+<ul>
+<li><p>Suppose we generate a path $Y_i$ using a sample $Z_1, Z_2 , . . . , Z_n$ of normally distributed random variable, we can create an antithetic path $\tilde Y_i$ using the sample $–Z_1, –Z_2, . . . , –Z_n$</p>
+</li>
+<li><p>Suppose we generate N antithetic pairs $(Y_i, \tilde Y_i )^N_{i=1}$</p>
+<script type="math/tex; mode=display">
+\hat Y_N^{AV}=\frac{1}{2N}(\sum_{i=1}^NY_i+\sum_{i=1}^N\tilde Y_i )=\frac{1}{N}\sum_{i=1}^N\frac12(Y_i+\tilde Y_i )</script></li>
+<li><p>The confidence interval is given as</p>
+<script type="math/tex; mode=display">
+(\hat Y_N^{AV}-z_{\delta/2}\frac{s_N^{AV}}{\sqrt{N}},\hat Y_N^{AV}+z_{\delta/2}\frac{s_N^{AV}}{\sqrt{N}})</script></li>
+<li><p>Antithetic sampling reduces variance when $Cov(Y_i,\tilde Y_i)&lt;0$</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Unit-4-1：Finite-difference-methods"><a href="#Unit-4-1：Finite-difference-methods" class="headerlink" title="Unit 4.1：Finite difference methods"></a>Unit 4.1：Finite difference methods</h1><h2 id="Unit-4-1-1：Introduction"><a href="#Unit-4-1-1：Introduction" class="headerlink" title="Unit 4.1.1：Introduction"></a>Unit 4.1.1：Introduction</h2><p>The finite difference method solves a partial differential equation on a discrete grid in time and space</p>
+<h4 id="Consider-a-general-equation-as"><a href="#Consider-a-general-equation-as" class="headerlink" title="Consider a general equation as"></a>Consider a general equation as</h4><script type="math/tex; mode=display">
+\partial_t V+b(x,t)\partial_x V+\frac12 a(x,t)\partial_x^2 V-r(x,t)V+f(x,t)=0</script><script type="math/tex; mode=display">
+V(x,T)=g(x),\ (x,t)\in \Omega\times[0,T)</script><ul>
+<li>$f$ is called the <strong>source term</strong></li>
+<li>$a, b, r,$ are assumed to be bounded and continuous</li>
+<li>$a$ is assumed to be nonnegative</li>
+</ul>
+<h4 id="The-Black-Scholes-equation-is-given-as"><a href="#The-Black-Scholes-equation-is-given-as" class="headerlink" title="The Black-Scholes equation is given as"></a>The Black-Scholes equation is given as</h4><script type="math/tex; mode=display">
+\partial_t V+xr\partial_x V+\frac12 \sigma^2x^2\partial_x^2 V-rV=0</script><script type="math/tex; mode=display">
+V(x,T)=g(x),\ (x,t)\in \mathbb R_+\times[0,T)</script><p>we note that</p>
+<script type="math/tex; mode=display">
+b(x,t)=rx,a(x,t)=\sigma^2x^2\ and\ r(x,t)=r</script><p>Change of variable</p>
+<script type="math/tex; mode=display">
+z=logx\ and\ v(z,t)=V(e^z,t)</script><script type="math/tex; mode=display">
+v_t=V_t,\ v_z=e^zV_x=xV_x,\ v_{zz}=e^{2z}V_{xx}+e^zV_x=x^2V_{xx}+xV_x</script><p>In the Black-Scholes equation, we then plug</p>
+<script type="math/tex; mode=display">
+xV_x=v_z,\ x^2V_{xx}=v_{zz}-v_z</script><p>The transformed Black-Scholes equation with bounded coefficients is then given as</p>
+<script type="math/tex; mode=display">
+v_t+(r-\frac12 \sigma^2)v_z+\frac12 \sigma^2v_{zz}-rv=0</script><script type="math/tex; mode=display">
+V(e^z,T)=g(e^z),\ (z,t)\in \mathbb R\times[0,T)</script><p>The above equation has bounded coefficients and is suitable to apply finite difference methods</p>
+<h2 id="Unit-4-1-2：Explicit-Scheme"><a href="#Unit-4-1-2：Explicit-Scheme" class="headerlink" title="Unit 4.1.2：Explicit Scheme"></a>Unit 4.1.2：Explicit Scheme</h2><p>Consider the equation</p>
+<script type="math/tex; mode=display">
+V_t+\frac12 a(x,t)V_{xx}+f(x,t)=0</script><script type="math/tex; mode=display">
+V(x,T)=g(x),\ (x,t)\in \Omega\times[0,T)</script><p>For positive integer N discretise the domain with time step size $h_0=\frac TN$ and space step size $h_1&gt;0$</p>
+<p>Denote by $v_j^k\approx V(jh_1,kh_0)$, $j\in \mathbb Z$, $k=0,1,…,N$</p>
+<p>Standard explicit finite difference scheme is written as</p>
+<script type="math/tex; mode=display">
+\frac{v_j^k-v_j^{k-1}}{h_0}+\frac12a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
+v_j^N=g_j</script><p>In the scheme, we define</p>
+<script type="math/tex; mode=display">
+a_j^k:=a(jh_1,kh_0),\ f_j^k:=f(jh_1,kh_0),\ g_j:=g(jh_1)</script><p>The ordered form of the equation is written as</p>
+<script type="math/tex; mode=display">
+v_j^{k-1}=(1-\frac{h_0}{h_1^2}a_j^k)v_j^k+\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+h_0f_j^k</script><p>The coefficients of the values at previous time step are all nonnegative if the following <strong>monotonicity condition</strong> holds:</p>
+<script type="math/tex; mode=display">
+\frac{h_0}{h_1^2}||a||_\infty\leq 1</script><blockquote>
+<p>$||a||_\infty$ : Maximum possible value of $a$</p>
+</blockquote>
+<h4 id="Example-Digital-Option"><a href="#Example-Digital-Option" class="headerlink" title="Example: Digital Option"></a>Example: Digital Option</h4><p>Consider the digital option with payoff $g(x)=1_{x&gt;0}(x)$. Suppose $f(x,t)=0$ and $a(x,t)=1$</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+v_j^{k-1}=\frac12(v_{j-1}^k+v_{j+1}^k),& if\ h_0=h_1^2\\
+v_j^{k-1}=\frac12v_j^k+\frac14(v_{j-1}^k+v_{j+1}^k),& if\ h_0=\frac12h_1^2\\
+\end{cases}</script><p>Suppose the spatial domain is taken as $[–1, 1]$ and $T = 1$. For the boundary condition</p>
+<script type="math/tex; mode=display">
+V(-1,t)=0,\ V(1,t)=1,\ t\in[0,T]</script><p>we solve the explicit scheme</p>
+<h2 id="Unit-4-1-3：Implicit-Scheme"><a href="#Unit-4-1-3：Implicit-Scheme" class="headerlink" title="Unit 4.1.3：Implicit Scheme"></a>Unit 4.1.3：Implicit Scheme</h2><p>For $j\in \mathbb Z$, $k=0,1,…,N$</p>
+<script type="math/tex; mode=display">
+\frac{v_j^{k+1}-v_j^k}{h_0}+\frac12a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
+v_j^N=g_j</script><p>the fixed-point form of the equation is written as</p>
+<script type="math/tex; mode=display">
+v_j^k=(1+\frac{h_0}{h_1^2}a_j^k)^{-1}(\frac12\frac{h_0}{h_1^2}a_j^k(v_{j-1}^k+v_{j+1}^k)+v_j^{k+1}+h_0f_j^k)</script><ul>
+<li>The scheme is monotonic without any condition</li>
+</ul>
+<h2 id="Unit-4-1-4：Family-of-theta-Schemes"><a href="#Unit-4-1-4：Family-of-theta-Schemes" class="headerlink" title="Unit 4.1.4：Family of $\theta$ Schemes"></a>Unit 4.1.4：Family of $\theta$ Schemes</h2><p>For $\theta\in [0, 1]$, consider the following scheme</p>
+<script type="math/tex; mode=display">
+\frac{v_j^{k+1}-v_j^k}{h_0}+\frac12\theta a_j^k\frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+\frac12(1-\theta) a_j^{k+1}\frac{v_{j+1}^{k+1}+v_{j-1}^{k+1}-2v_j^{k+1}}{h_1^2}+f_j^k=0</script><script type="math/tex; mode=display">
+v_j^N=g_j</script><p><strong>The scheme is explicit if $\theta=0$, and implicit otherwise (standard implicit for $\theta=1$)</strong></p>
+<p>The scheme is monotonic if</p>
+<script type="math/tex; mode=display">
+(1-\theta)\frac{h_0}{h_1^2}||a||_\infty\leq 1</script><h4 id="Application-Option-Pricing"><a href="#Application-Option-Pricing" class="headerlink" title="Application: Option Pricing"></a>Application: Option Pricing</h4><p>Consider the transformed Black-Scholes equation</p>
+<script type="math/tex; mode=display">
+v_t+\frac12 \sigma^2v_{xx}+(r-\frac12 \sigma^2)v_x-rv=0</script><script type="math/tex; mode=display">
+V(T,x)=(e^x-K)^+</script><p>Choose the domain $D=[0,T]\times[X_{min},X_{max}]$ with $-\infty&lt;X_{min}&lt;X_{max}&lt;\infty$</p>
+<p>Approximate $D$ with a uniform mesh</p>
+<script type="math/tex; mode=display">
+\mathscr D=\{(t^k,x_j):k=0,1,...,N,j=0,1,...,M\}</script><p>where $t^k=kh_0$ and $x_j=X_{min}+jh_1$ for $h_0=T/N$ and $h_1=(X_{max}-X_{min})/M$</p>
+<p>Denote $v(t^k,x_j)=v_j^k$. Then, we use the finite difference derivative approximation based on the $\theta$ scheme</p>
+<script type="math/tex; mode=display">
+\frac{\partial v}{\partial t}(t^k,x_j)\approx \frac{v_j^{k+1}-v_j^k}{h_0}</script><script type="math/tex; mode=display">
+\frac{\partial v}{\partial x}(t^k,x_j)\approx \theta\frac{v_{j+1}^k-v_j^k}{h_1}+(1-\theta)\frac{v_{j+1}^{k+1}-v_j^{k+1}}{h_1}</script><script type="math/tex; mode=display">
+\frac{\partial^2 v}{\partial x^2}(t^k,x_j)\approx \theta \frac{v_{j+1}^k+v_{j-1}^k-2v_j^k}{h_1^2}+ (1-\theta) \frac{v_{j+1}^{k+1}+v_{j-1}^{k+1}-2v_j^{k+1}}{h_1^2}</script><p>where $\theta\in [0, 1]$ is a constant parameter.</p>
+<p>We also replace $v_j^k$ by $\theta v_j^k+(1-\theta)v_j^{k+1}$.  For $\theta=0.5$ the method corresponds to Crank-Nicholson method</p>
+<p>We can formulate a tridiagonal system at each time step $k = N, . . . , 0$ which can be solved by the well-known Thomas algorithm (MATLAB command: tridiag)</p>
+<script type="math/tex; mode=display">
+Av_k=b^{k+1}</script><p>with non-zero coefficients of the tridiagonal matrix $A = (a_{ij})$ given by</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&a_{0,0}=1,\ a_{0,1}=0,\\
+&a_{M,M-1}=0,\ a_{M,M}=1,\\
+&a_{i,i}=1+2\omega\theta+\kappa\theta+\rho\theta,\\
+&a_{i,i+1}=-\omega\theta-\kappa\theta,\\
+&a_{i-1,i}=-\omega\theta,\quad i=1,...,M-1
+\end{align}</script><p>The time dependent vector $b^{k+1}$ is given as:</p>
+<script type="math/tex; mode=display">
+b_0^{k+1}=v_0^{k+1},\ b_M^{k+1}=v_M^{k+1},</script><script type="math/tex; mode=display">
+\begin{align}
+b_i^{k+1}&=\omega(1-\theta)v_{i-1}^{k+1}+(1-2\omega(1-\theta)-\kappa(1-\theta)-\rho(1-\theta))v_i^{k+1}...\\
+&...+(\omega(1-\theta)+\kappa(1-\theta))v_{i+1}^{k+1}
+\end{align}</script><p>where $v_0^{k+1},v_M^{k+1}$ are given by the boundary conditions and the remaining constants are defined as below</p>
+<script type="math/tex; mode=display">
+\omega=\frac{h_0\sigma^2}{2h_1^2},\ \kappa=\frac{(r-\frac12\sigma^2)h_0}{h_1},\ \rho=rh_0</script><p>The $i$th coordinate of the vector $v^k$ is the approximation of the value $v(t^k,x_i)$</p>
+<h1 id="Unit-4-2：Optimisation-methods-in-finance"><a href="#Unit-4-2：Optimisation-methods-in-finance" class="headerlink" title="Unit 4.2：Optimisation methods in finance"></a>Unit 4.2：Optimisation methods in finance</h1><h4 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h4><p>In finance, the parameters in stochastic models are estimated using the available market data. This procedure is called <strong>model calibration</strong></p>
+<p>Most calibration problems can be seen as either a <strong>root-finding procedure</strong> or as an <strong>optimisation problem</strong></p>
+<h4 id="Convex-Functions"><a href="#Convex-Functions" class="headerlink" title="Convex Functions"></a>Convex Functions</h4><p>Let $\mathscr U$ denote a convex set and let $f :\mathscr U \to \mathbb R$ be a function. Then, $f$ is <strong>convex</strong> if for all $u_1, u_2 \in \mathscr U$ , for all $\lambda \in [0, 1]$,</p>
+<script type="math/tex; mode=display">
+f(\lambda u_1+(1-\lambda)u_2)\leq\lambda f(u_1)+(1-\lambda)f(u_2)</script><p>Any local minimun of a convex function is also its global minimum</p>
+<p>If $w_1,…,w_n\ge0$ and $f_1,…,f_n$ are all convex, then $\sum_{i=1}^n w_if_i$ is also aconvex function</p>
+<p>If $f_1,…,f_n$ are convex, then $g(x):=max(f_1,…,f_n)$ is also a convex function</p>
+<h2 id="Unit-4-2-1：Newton’s-Method"><a href="#Unit-4-2-1：Newton’s-Method" class="headerlink" title="Unit 4.2.1：Newton’s Method"></a>Unit 4.2.1：Newton’s Method</h2><p>Basic approach:</p>
+<ul>
+<li>Approximate the function $f$ by its tangent at a given point</li>
+<li>The point at which the tangent crosses the x-axis is taken as an approximate solution to the equation $f (x) = 0$</li>
+<li>The process is repeated with the new point</li>
+</ul>
+<p>Given an initial guess $x_0$, a sequence of points is constructed using the recurrence relation</p>
+<script type="math/tex; mode=display">
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}</script><p>For the method to converge, we need, at least, that $|f′′| \leq K$ and the initial guess is close to the true solution</p>
+<h4 id="Example-Implied-Volatility"><a href="#Example-Implied-Volatility" class="headerlink" title="Example: Implied Volatility"></a>Example: Implied Volatility</h4><p>Consider $C(\sigma)$ as the call option price formula given strike $K$ and time to maturity $T$ with volatility $\sigma$ as the parameter</p>
+<p>Aim is to find the implied volatility for call option with market price $C_0$</p>
+<p>Given an initial guess $\sigma_0$, Newton’s method can be used to construct a sequence of points as</p>
+<script type="math/tex; mode=display">
+\sigma_{n+1}=\sigma_n-\frac{C(\sigma_n)-C_0}{\frac{\partial_\sigma C(\sigma_n)}{\partial \sigma}}</script><p>For error tolerance $\epsilon$, stop the iteration for some $n + 1$, when $|\sigma_{n+1} – \sigma_n| &lt; \epsilon$ (convergence)</p>
+<h2 id="Unit-4-2-2：Descent-Methods"><a href="#Unit-4-2-2：Descent-Methods" class="headerlink" title="Unit 4.2.2：Descent Methods"></a>Unit 4.2.2：Descent Methods</h2><p>To solve optimisation problems, Newton’s method cannot be used as it can guarantee only <strong>local convergence</strong> for a good initial guess</p>
+<p>In practice, to solve optimisation problems, we need methods with <strong>global convergence</strong>, that is convergence from an arbitrary initial guess (starting point)</p>
+<p>The overall idea of descent methods is to construct a sequence of points as</p>
+<script type="math/tex; mode=display">
+x_{n+1}=x_n+\mu_np_n</script><p>where $\mu_n$ is a non-increasing sequence of learning rate and $p_n$  is direction vector</p>
+<h3 id="Gradient-Descent-Method"><a href="#Gradient-Descent-Method" class="headerlink" title="Gradient Descent Method"></a>Gradient Descent Method</h3><p>For model parameter $u$ taking values in the space $\mathscr U$ , we consider the problem</p>
+<script type="math/tex; mode=display">
+\min_{u\in\mathscr U} J(u)</script><p>The sequence of points is constructed as</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n-\mu\Delta J(u_n)</script><p>where $\mu &gt; 0$ and $\Delta J(u_n)$ is the gradient of cost function evaluated at $u_n$</p>
+<p>$\mu$ has to be carefully chosen to ensure convergence of the method</p>
+<h3 id="Gradient-Descent-Method-with-Constraints"><a href="#Gradient-Descent-Method-with-Constraints" class="headerlink" title="Gradient Descent Method with Constraints"></a>Gradient Descent Method with Constraints</h3><p>Under some constraints on the parameters, we look to solve the problem</p>
+<script type="math/tex; mode=display">
+\min_{u\in K} J(u)</script><p>where $K$ is a closed convex subset of the parameter space $\mathscr U$</p>
+<p>For $\mu &gt; 0$, a sequence of points is constructed as</p>
+<script type="math/tex; mode=display">
+u_{n+1}=P_K(u_n-\mu\Delta J(u_n))</script><p>where $P_K(u)$ is the orthogonal projection of $u$ on $K$</p>
+<p>For $x \in \mathscr U$ , its orthogonal projection in $K$ is given by $x_K$ where</p>
+<script type="math/tex; mode=display">
+||x-x_K||=\min_{y\in K}||x-y||</script><h4 id="Penalisation-of-Constraints"><a href="#Penalisation-of-Constraints" class="headerlink" title="Penalisation of Constraints"></a>Penalisation of Constraints</h4><p>We can convert a minimisation problem with constraints into an optimisation problem without constraints</p>
+<p>The idea is to <strong>penalise</strong> the constraints and form a new unconstrained minimisation problem</p>
+<p>Consider the constrained minimisation problem with continuous convex cost function $J:\mathbb R^d\to\mathbb R$</p>
+<script type="math/tex; mode=display">
+\min_{F(u)\leq 0}J(u)</script><p>where $F : \mathbb R^d \to \mathbb R^M$ is a continuous convex function representing thec onstraints on parameter $u \in \mathbb R^d$</p>
+<p>An unconstrained problem is then given as</p>
+<script type="math/tex; mode=display">
+\min_{u\in\mathbb R^d}(J(u)+\frac1\epsilon\sum_{i=1}^M[\max(F_i(u),0)]^2)</script><p>where the constraint $F_i(u) \leq 0$ has been penalised</p>
+<p>The above problem can be solved using descent methods</p>
+<p>For small value of $\epsilon &gt; 0$, the solution of unconstrained problem approximates the solution of constrained problem</p>
+<h2 id="Unit-4-2-3：Stochastic-Gradient-Descent"><a href="#Unit-4-2-3：Stochastic-Gradient-Descent" class="headerlink" title="Unit 4.2.3：Stochastic Gradient Descent"></a>Unit 4.2.3：Stochastic Gradient Descent</h2><p>Unlike the gradient descent methods which are deterministic, stochastic gradient methods choose the direction of descent randomly</p>
+<p>Gradient descent methods perform well for convex cost functions whereas stochastic gradient descent methods can handle non-convex cost functions</p>
+<p>Consider the model parameter $\theta \in \mathbb R^d$</p>
+<p><strong>For example:</strong> </p>
+<p>consider the Heston’s stochastic volatility model</p>
+<script type="math/tex; mode=display">
+\frac{d S_t}{S_t}=rdt+\sqrt{v_t}dW_t</script><script type="math/tex; mode=display">
+dv_t=\kappa(\theta-v_t)dt+\delta\sqrt{v_t}dW_t',\ d\langle W,W'\rangle=\rho dt</script><p>The parameter vector $\theta = (\kappa,\theta,\delta,\rho)\in \mathbb R^4$</p>
+<p>Next, consider the cost function $J:\mathbb R^d\to\mathbb R$</p>
+<p><strong>For example:</strong></p>
+<p> Given market prices $P^{market}$ of call options with strike<br>$K_j, 1 \leq j \leq N$ and time to maturity $T_i, 1 \leq i \leq M$, the cost function for Heston’s model calibration can be written as</p>
+<script type="math/tex; mode=display">
+J(\theta;\{K\}_{j=1}^N,\{T\}_{i=1}^M)=\frac1{MN}\sum_{i=1}^M\sum_{j=1}^N(P^\theta(T_i,K_j)-P^{market}(T_i,K_j))^2</script><p>where $P^\theta$ is the call option price function under Heston’s model</p>
+<p>Unlike the gradient descent methods, which use the entire dataset $\{K\}^N_{j=1}$, $\{T\}^M_{i=1}$, to construct the points sequence, the stochastic gradient descent methods use only a fraction of the dataset to construct the sequence</p>
+<h4 id="Stochastic-Gradient-Descent-Algorithm"><a href="#Stochastic-Gradient-Descent-Algorithm" class="headerlink" title="Stochastic Gradient Descent Algorithm"></a>Stochastic Gradient Descent Algorithm</h4><p>Stochastic gradient descent (SGD) method constructs the sequence as</p>
+<script type="math/tex; mode=display">
+\theta_{n+1}=\theta_n-\mu\Delta_\theta J(\theta_n;K_j,T_i)</script><p>where $\mu &gt; 0$ is a positive scalar and the update is performed for a uniformly randomly chosen sample $K_j$ and $T_i$ from the dataset</p>
+<p>The SGD method updates frequently with a high variance which leads to a slower convergence</p>
+<p>On the other hand, due to high variance, the SGD method is able to better explore the parameter space and is able to jump to better local minima for non-convex cost functions</p>
+<h4 id="Mini-batch-Gradient-Descent"><a href="#Mini-batch-Gradient-Descent" class="headerlink" title="Mini-batch Gradient Descent"></a>Mini-batch Gradient Descent</h4><p>Mini-batch gradient descent algorithm randomly picks a sample from the dataset to compute the derivative of the cost function</p>
+<p>Uniformly randomly select m samples $(K_i,T_j)$ from the dataset $\{K\}^N_{j=1}$, $\{T\}^M_{i=1}$, and denote it by $\{X_i\}^m_{i=1}$ , called the mini-batch</p>
+<p>Compute the derivative of the cost function using the mini-batch, that is, compute $\Delta_\theta J(\theta;\{X_i\}^m_{i=1})$</p>
+<p>Construct the sequence using the recursion</p>
+<script type="math/tex; mode=display">
+\theta_{n+1}=\theta_n-\mu\Delta_\theta J(\theta_n;\{X_i\}_{i=1}^m)</script><p>Small batch sizes lead to noisy updates whereas large batch sizes require considerable computation time</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Stochastic gradient descent algorithms can be further improved using different statistical features. The most famous algorithms are</p>
+<ul>
+<li>AdaGrad</li>
+<li>AdaDelta</li>
+<li>AdaM</li>
+</ul>
+<p>The above variations of the stochastic gradient algorithm are mostly used for very large datasets</p>
+<p>For most model calibration purposes, mini-batch gradient descent method provides good performance</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Finance/" class="category-chain-item">Finance</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Financial-Engineering/">#Financial Engineering</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】Applied Computational Finance</div>
+      <div>http://achlier.github.io/2021/05/12/Applied_Computational_Finance/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 12, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/17/Economic_Fundamentals_and_Financial_Markets/" title="【课程】Economic Fundamentals and Financial Markets">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【课程】Economic Fundamentals and Financial Markets</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/06/Exercise_1/" title="【练习】Option Pricing">
+                        <span class="hidden-mobile">【练习】Option Pricing</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

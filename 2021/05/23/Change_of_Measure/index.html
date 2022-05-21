@@ -1,0 +1,977 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频《概率测度变换》系列的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】Change of Measure">
+<meta property="og:url" content="http://achlier.github.io/2021/05/23/Change_of_Measure/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频《概率测度变换》系列的笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2021/05/23/Change_of_Measure/pic1-1.png">
+<meta property="article:published_time" content="2021-05-23T04:46:38.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:41:38.562Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Probability Theory">
+<meta property="article:tag" content="Rado-Nicodym">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2021/05/23/Change_of_Measure/pic1-1.png">
+  
+  
+  
+  <title>【笔记】Change of Measure - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】Change of Measure"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-23 12:46" pubdate>
+          May 23, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          77 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】Change of Measure</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于B站up Jerry Xu (Love小矫情Forever) 的视频《概率测度变换》系列的笔记</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="Section-1：Preliminary-of-Probability-Theory"><a href="#Section-1：Preliminary-of-Probability-Theory" class="headerlink" title="Section 1：Preliminary of Probability Theory"></a>Section 1：Preliminary of Probability Theory</h1><h3 id="1-Probability-Space"><a href="#1-Probability-Space" class="headerlink" title="1. Probability Space"></a>1. Probability Space</h3><script type="math/tex; mode=display">
+(\Omega,\mathcal{F},\mathbb{P})</script><ul>
+<li><p>Sample Space (可能出现的结果)：$\Omega$</p>
+<ul>
+<li>$\Omega=\{\omega_1,\omega_2,…\}$</li>
+<li>$\Omega =\omega_i, i\in I(index set)$，无限多不可数</li>
+<li>Random Variable $X(\omega)$定义在$\Omega$上<ul>
+<li>$X：\Omega \to \mathbb{R}^K$</li>
+<li>$X^{-1}(B)=\{\omega\in\Omega:X(\omega)\in B\}\in \mathcal{F} for all$<ul>
+<li>Borel sets：$B\in\mathscr{B}(\mathbb{R}^K)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>$\sigma$-algebra (all measurable events)：$\mathcal{F}$</p>
+<ul>
+<li>$\varnothing \in \mathcal{F}$</li>
+<li>$A \in \mathcal{F} \Rightarrow A^C \in \mathcal{F}$</li>
+<li>$A_1,A_2,…\in\mathcal{F}\Rightarrow\cup_{n=1}^\infty A_n\in\mathcal{F}$</li>
+<li>Events are subset of $\Omega$</li>
+</ul>
+</li>
+<li><p>Probability measure (all events will be assigned a value)：$\mathbb{P}$</p>
+<ul>
+<li><p>$\mathbb{P}(\Omega)=1$</p>
+</li>
+<li><p>$If A_1,A_2,… are disjoint sets$</p>
+<p>$\Rightarrow \mathbb{P}(\cup_{n=1}^\infty A_n)=\sum_{n=1}^\infty\mathbb{P}(A_n)$</p>
+</li>
+<li><p>$\mathbb{P}$能给$\mathcal{F}$中每一个事件都映射到闭区间0到1上，所以概率测度定义域是$\sigma$域</p>
+<ul>
+<li>$\mathbb{P}：\Omega \to [0,1]$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="De-Morgan’s-law"><a href="#De-Morgan’s-law" class="headerlink" title="De Morgan’s law"></a>De Morgan’s law</h4><script type="math/tex; mode=display">
+(A\cap B)^C=A^C\cup B^C,\ (A\cup B)^C=A^C\cap B^C</script><h3 id="2-Other-Definition"><a href="#2-Other-Definition" class="headerlink" title="2. Other Definition"></a>2. Other Definition</h3><p><strong>期望</strong></p>
+<ul>
+<li>Countable Infinite</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbb{E}X=\sum_{k=1}^\infty X(\omega_k)\mathbb{P}(\omega_k)</script><ul>
+<li>Uncountable Infinite</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}X&=\int_\Omega X(\omega)d\mathbb{P}(\omega) (Leb\ Integral)\\
+&=\int_{-\infty}^\infty x\underbrace{f(x)}dx=\int_{-\infty}^\infty xd\underbrace{F(x)}\\
+&\ \qquad\qquad  pdf\ \qquad\qquad\quad\quad cdf
+\end{align}</script><p><strong>Riemann积分(upper)&amp;Lebesgue积分(lower)</strong></p>
+<p><img src="/2021/05/23/Change_of_Measure/pic1-1.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><strong>Indicator function (示性函数)</strong></p>
+<script type="math/tex; mode=display">
+\mathbb{I}_A(\omega)=\begin{cases}1&,\omega\in A\\0&,\omega\not\in A\end{cases}</script><script type="math/tex; mode=display">
+\mathbb{E}[\mathbb{I}_A(\omega)]=\mathbb{P}(\omega\in A)</script><p><strong>积分</strong></p>
+<p>For $A\subset\Omega, A\in\mathcal{F}$</p>
+<script type="math/tex; mode=display">
+\int_AX(\omega)d\mathbb{P}(\omega)=\int_\Omega\mathbb{I}_A(\omega)X(\omega)d\mathbb{P}(\omega)</script><p>For $A\subset\Omega, B\subset\Omega, A,B\in\mathcal{F}$</p>
+<p>and $A \cap B = \varnothing$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\int_{A\cup B}X(\omega)d\mathbb{P}(\omega)&=\int_\Omega\mathbb{I}_{A\cup B}(\omega)X(\omega)d\mathbb{P}(\omega)\\
+&=\int_\Omega\mathbb{I}_A(\omega)X(\omega)d\mathbb{P}(\omega)+\int_\Omega\mathbb{I}_B(\omega)X(\omega)d\mathbb{P}(\omega)
+\end{align}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>($A \cap B = \varnothing$)</th>
+<th>$\mathbb{I}_A$</th>
+<th>$\mathbb{I}_B$</th>
+<th>$\mathbb{I}_{A\cup B}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A$</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>$B$</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>$A\cup B$</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-Change-of-Measure"><a href="#3-Change-of-Measure" class="headerlink" title="3. Change of Measure"></a>3. Change of Measure</h3><p><strong>测度</strong></p>
+<ul>
+<li><p>测度$\mathbb{P}$：真实世界测度</p>
+</li>
+<li><p>测度$\mathbb{Q}$：单个风险中性测度 (股票过程) 多个等价鞅测度 (债券过程)</p>
+</li>
+</ul>
+<p><strong>Radon-Nikodym Derivative</strong></p>
+<p>Let $Z\ge 0$, with</p>
+<script type="math/tex; mode=display">
+\mathbb{E}^\mathbb{P}[Z(\omega)]=1</script><p>For $A\in \mathcal{F}$, define</p>
+<script type="math/tex; mode=display">
+\mathbb{Q}(A)=\int_AZ(\omega)d\mathbb{P}(\omega)</script><script type="math/tex; mode=display">
+\mathbb{Q}(A)=\sum_{\omega\in A}\mathbb{Q}(\omega)=\sum_{\omega\in A}\mathbb{P}(\omega)Z(\omega)</script><p>Then $\mathbb{Q}$ is a prob measure.</p>
+<p>Furtheremore, if $X\ge 0$, then</p>
+<script type="math/tex; mode=display">
+\mathbb{E}^\mathbb{Q}[X]=\mathbb{E}^\mathbb{P}[XZ]</script><p>if $Z&gt; 0$, then</p>
+<script type="math/tex; mode=display">
+\mathbb{E}^\mathbb{Q}[\frac{X}{Z}]=\mathbb{E}^\mathbb{P}[X]</script><h3 id="4-Example"><a href="#4-Example" class="headerlink" title="4. Example"></a>4. Example</h3><p><strong>Question</strong>：we have $X(\omega)=\omega\sim N^\mathbb{P}(0,1)$ . Set $Y(\omega)=X(\omega)+\theta (\theta&gt;0)$ . So it follow $N^\mathbb{P}(\theta,1)$ . Build a Probability measure $\mathbb{Q}$ and make $Y$ follow $N^\mathbb{Q}(0,1)$ . Find the Radon-Nikodym Derivative.</p>
+<script type="math/tex; mode=display">
+Z(\omega)=\frac{d\mathbb{Q}(\omega)}{d\mathbb{P}(\omega)}</script><p>Recall that the PDF and CDF of Standard normal distribution：</p>
+<p><strong>PDF</strong></p>
+<script type="math/tex; mode=display">
+\phi(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}},\ x\in \mathbb{R}</script><p><strong>CDF</strong></p>
+<script type="math/tex; mode=display">
+\Phi(x)=\int_{-\infty}^x\frac{1}{\sqrt{2\pi}}e^{-\frac{s^2}{2}}ds</script><p>Under $\mathbb{P}: X\sim N^\mathbb{P}(0,1)$, we have:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\Delta\mathbb{P}(l)&=\mathbb{P}(l\leq\omega\leq l+\Delta l)\\
+&= \Phi(l+\Delta l)-\Phi(l)
+\end{align}</script><p>Under $\mathbb{Q}: Y\sim N^\mathbb{Q}(0,1)$, we have:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\Delta\mathbb{Q}^*(l)&=\mathbb{Q}(l\leq Y(\omega)\leq l+\Delta l)\\
+&=\mathbb{Q}(l-\theta\leq\omega\leq l+\Delta l-\theta)\\
+&=\Phi(l+\Delta l)-\Phi(l)
+\end{align}</script><p>Set $l\to l+\theta$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\Delta\mathbb{Q}(l)=\Delta\mathbb{Q}^*(l+\theta)&=\mathbb{Q}(l\leq\omega\leq l+\Delta l)\\
+&=\Phi(l+\Delta l+\theta)-\Phi(l+\theta)
+\end{align}</script><p>Solving the function</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Z(l)&=\frac{d\mathbb{Q}(l)}{d\mathbb{P}(l)}\\
+&=\lim_{\Delta l\to 0}\frac{\Delta\mathbb{Q}(l)}{\Delta\mathbb{P}(l)}\\
+&=\lim_{\Delta l\to 0}\frac{\Phi(l+\Delta l+\theta)-\Phi(l+\theta)}{\Phi(l+\Delta l)-\Phi(l)}\\
+& (\frac{0}{0})\ 洛必达法则\\
+&=\lim_{\Delta l\to 0}\frac{\phi(l+\Delta l+\theta)}{\phi(l+\Delta l)}\\
+&=\frac{\phi(l+\theta)}{\phi(l)}
+\end{align}</script><p>so</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Z(\omega)&=\frac{\phi(\omega+\theta)}{\phi(\omega)}\\
+&=\frac{\frac{1}{\sqrt{2\pi}}e^{-\frac{(\omega+\theta)^2}{2}}}{\frac{1}{\sqrt{2\pi}}e^{-\frac{\omega^2}{2}}}\\
+&=exp(-\frac{(\omega+\theta)^2}{2}+\frac{\omega^2}{2})\\
+&=exp(-\frac{\theta^2}{2}-X(\omega)\theta)
+\end{align}</script><p>在随机变量中 $Z(\omega)$ 为 exponential martingale (指数鞅)</p>
+<script type="math/tex; mode=display">
+dW_t^\mathbb{P}=dW_t^\mathbb{Q}-\theta_tdt,\ \theta_t=\frac{\mu-r}{\sigma}</script><p>真实世界中</p>
+<script type="math/tex; mode=display">
+\mathbb{P}:dS_t=\mu S_tdt+\sigma S_tdW_t^\mathbb{P}</script><p>风险中性世界中</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{Q}:dS_t&=\mu S_tdt+\sigma S_t(dW_t^\mathbb{Q}-\theta_tdt)\\
+&=\mu S_tdt+\sigma S_tdW_t^\mathbb{Q}-S_t(\mu-r)dt\\
+&=r S_tdt+\sigma S_tdW_t^\mathbb{Q}
+\end{align}</script><h1 id="Section-2：Girsanov’s-Theorem"><a href="#Section-2：Girsanov’s-Theorem" class="headerlink" title="Section 2：Girsanov’s Theorem"></a>Section 2：Girsanov’s Theorem</h1><h3 id="1-Conditional-Expection"><a href="#1-Conditional-Expection" class="headerlink" title="1. Conditional Expection"></a>1. Conditional Expection</h3><p>$\mathscr{G}$ is a sub-$\sigma$-algebra of $\mathcal{F}$. $X$ is a nonnegative &amp; integrable r.v. The conditiond expextation of $X$ given $\mathscr{G}$, denoted $\mathbb{E}[X|\mathscr{G}]$, is any r.v. that satisfies：</p>
+<ul>
+<li>$\mathbb{E}[X|\mathscr{G}]$ is $\mathscr{G}$-measurable</li>
+<li>$\int_A \mathbb{E}[X|\mathscr{G}]d\mathbb{P}(\omega)=\int_AX(\omega)d\mathbb{P}(\omega), for \forall A\in\mathscr{G}$ : Partical Averaging</li>
+</ul>
+<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><ol>
+<li><p><strong>Pull out property:</strong> If $X$ is a $\mathscr{G}$-measureable, then</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[XY|\mathscr{G}]=X\mathbb{E}[Y|\mathscr{G}]</script></li>
+<li><p><strong>Tower property (or Iteration):</strong> If $\mathcal{H}$ is a sub-$\sigma$-algebra of $\mathscr{G}$</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\mathbb{E}[X|\mathscr{G}]|\mathcal{H}]=\mathbb{E}[X|\mathcal{H}]</script></li>
+</ol>
+<h4 id="Radon-Nikodym-Derivative-Process"><a href="#Radon-Nikodym-Derivative-Process" class="headerlink" title="Radon-Nikodym Derivative Process"></a>Radon-Nikodym Derivative Process</h4><script type="math/tex; mode=display">
+Z(t)=\mathbb{E}[Z|\mathcal{F}(t)],\ 0\leq t\leq T</script><ol>
+<li><p>$Z(t)$ is a martingale ($ 0\leq s\leq t\leq T$)</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}[Z(t)|\mathcal{F}(s)]&=\mathbb{E}[Z(t)|\mathcal{F}(s)]\\
+&=\mathbb{E}[\mathbb{E}[Z|\mathcal{F}(t)]|\mathcal{F}(s)]\\
+&=\mathbb{E}[Z|\mathcal{F}(s)]\\
+&=Z(s)
+\end{align}</script></li>
+<li><p>$Z(t)$ is Radon-Nikodym Derivative ($Y$ is $\mathcal{F}(t)$-measureable)</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mathbb{E}^\mathbb{Q}[Y]&=\mathbb{E}^\mathbb{P}[YZ]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{E}^\mathbb{P}[YZ|\mathcal{F}(t)]]\\
+&=\mathbb{E}^\mathbb{P}[Y\mathbb{E}^\mathbb{P}[Z|\mathcal{F}(t)]]\\
+&=\mathbb{E}^\mathbb{P}[YZ(t)]
+\end{align}</script></li>
+<li><p>$\mathbb{Q}^\mathbb{P}[Y|\mathcal{F}(s)]=\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]$ (Right hand side is the conditiond expextation of $Y$)</p>
+<ul>
+<li>$\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]$ is $\mathcal{F}(s)$-measureable</li>
+<li>For any $A \in \mathcal{F}(s)$, we have $\int_AY(\omega)d\mathbb{Q}(\omega)=\int_A \frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]d\mathbb{Q}(\omega)$</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+RHS&=\int_\Omega \mathbb{I}_A(\omega)\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]d\mathbb{Q}(\omega)\\
+&=\mathbb{E}^\mathbb{Q}[\mathbb{I}_A(\omega)\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{I}_A(\omega)\mathbb{E}^\mathbb{P}[YZ(t)|\mathcal{F}(s)]]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{E}^\mathbb{P}[\mathbb{I}_A(\omega)YZ(t)|\mathcal{F}(s)]]\\
+&=\mathbb{E}^\mathbb{P}[\mathbb{I}_A(\omega)YZ(t)]\\
+&=\mathbb{E}^\mathbb{Q}[\mathbb{I}_A(\omega)Y]\\
+&=\int_\Omega\mathbb{I}_A(\omega)Yd\mathbb{Q}(\omega)\\
+&=\int_A Yd\mathbb{Q}(\omega)=LHS
+\end{align}</script></li>
+<li><p>levy’s theorem：Let $M(t)$, $t\ge 0$, be a martingale, relative to$\mathcal{F}(t)$, $t\ge 0$. Assume $M(0)=0$, $M(T)$ has contiunous paths and quadratic variation = t ( 二次变差 ) for all $t\ge 0$. $\Rightarrow M(t)$ is a Brownian Motion.</p>
+<ul>
+<li><p>当 $\{t_i^n\}_{i=0}^n$ 遍取 $[0,t]$ 的分割，其模 $\delta_n=max_{0\leq i\leq n-1}\{t_{i+1}^n-t_i^n\}\to 0$时，依概率收敛意义下的极限</p>
+<script type="math/tex; mode=display">
+[B,B](t)=[B,B]([0,t])=\lim_{\delta_n\to0}\sum_{i=0}^{n-1}|B(t_{i+1}^n)-B(t_i^n)|^2</script></li>
+<li><p>BM 只有 $dW(t)dW(t)=dt$ 会在一单位时间内积累一单位二次变差. $dtdt=dtdW(t)=0$</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-Girsanov"><a href="#2-Girsanov" class="headerlink" title="2. Girsanov"></a>2. Girsanov</h3><p>Let $W(t)$ be a BM on $(\Omega,\mathcal{F},\mathbb{P})$ and let $\mathcal{F}(t)$ be a filtration. For this BM, let $\Theta(t)$ be an adopted process. Define</p>
+<script type="math/tex; mode=display">
+Z(t)=exp(-\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv)</script><script type="math/tex; mode=display">
+\tilde{W}(t)=W(t)+\int_0^t\Theta(u)du</script><p>or</p>
+<script type="math/tex; mode=display">
+Z(t)=exp(\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv)</script><script type="math/tex; mode=display">
+\tilde{W}(t)=W(t)-\int_0^t\Theta(u)du</script><p>Set $Z=Z(T)$. Then $\mathbb{E}Z=1$, $Z\ge 0$</p>
+<p>Where $\mathbb{Q}$ given by</p>
+<script type="math/tex; mode=display">
+\mathbb{Q}=\int_AZ(\omega)d\mathbb{P}(\omega),\ for\ \forall A\in \mathcal{F}</script><p>The process $\tilde{W}(t)$ is a BM</p>
+<h4 id="Prove"><a href="#Prove" class="headerlink" title="Prove"></a>Prove</h4><ol>
+<li><p>$\mathbb{E}Z=1$</p>
+<p>Set </p>
+<script type="math/tex; mode=display">
+X(t)=-\int_0^t\Theta(u)dW(u)-\frac{1}{2}\int_0^t\Theta^2(u)dv</script><script type="math/tex; mode=display">
+\begin{align}
+dZ(t)&=0+e^{X(t)}dX(t)+\frac{1}{2}e^{X(t)}dX(t)dX(t)\\
+&=Z(t)(-\Theta(t)dW(t)-\frac{1}{2}\Theta^2(t)dt)+\frac{1}{2}Z(t)\Theta^2(t)dt\\
+&=-\Theta(t)Z(t)dW(t)
+\end{align}</script><p>$\Rightarrow Z(t)$ is a $\mathbb{P}$-martingale</p>
+<script type="math/tex; mode=display">
+Z(t)=Z(0)-\int_0^t\Theta(u)Z(u)dW(u),\ Z(0)=exp(0)=1</script><script type="math/tex; mode=display">
+\mathbb{E}Z=\mathbb{E}[Z(T)]=\mathbb{E}[Z(T)|\mathcal{F}(0)]=Z(0)=1</script></li>
+<li><p>$\tilde{W}(t)Z(t)$ is a martingale</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d(\tilde{W}(t)Z(t))&=Z(t)d\tilde{W}(t)+\tilde{W}(t)dZ(t)+dZ(t)d\tilde{W}(t)\\
+&=Z(t)[dW(t)+\Theta(t)dt]+\tilde{W}(t)[-\Theta(t)Z(t)dW(t)]...\\
+&\quad ...+[-\Theta(t)Z(t)dW(t)][dW(t)+\Theta(t)dt]\\
+&=Z(t)\Theta(t)dt+Z(t)dW(t)-\tilde{W}(t)\Theta(t)Z(t)dW(t)-\Theta(t)Z(t)dt\\
+&=Z(t)(1-\tilde{W}(t)\Theta(t))dW(t)
+\end{align}</script><p>$\Rightarrow \tilde{W}(t)Z(t)$ is a $\mathbb{P}$-martingale</p>
+</li>
+<li><p>$\tilde{W}(t)$ is a martingale $\mathbb{E}^\mathbb{Q}[\tilde{W}(t)|\mathcal{F(s)}]=\tilde{W}(s)$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+LHS&=\frac{1}{Z(s)}\mathbb{E}^\mathbb{P}[\tilde{W}Z(t)|\mathcal{F}(s)]\\
+&=\frac{1}{Z(s)}\tilde{W}(s)Z(s)=\tilde{W}(s)
+\end{align}</script><p>$\Rightarrow \tilde{W}(t)$ is a $\mathbb{Q}$-martingale</p>
+</li>
+<li><p>$\tilde{W}(0)=W(0)+\int_0^0\Theta(s)ds=0$</p>
+</li>
+<li><p>The both parts of $\tilde{W}(t)$ has contiunous paths.</p>
+</li>
+<li><p>$d\tilde{W}(t)=dW(t)+\Theta(t)dt$, where $dtdt=0$ accumulated zero quadratic variation. </p>
+<script type="math/tex; mode=display">
+[\tilde{W},\tilde{W}](t)=[W,W](t)=t</script></li>
+<li><p>$[3-6]\Rightarrow \tilde{W}(t)$ is a BM </p>
+</li>
+</ol>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/275959084/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate">Jerry Xu B站主页</a></li>
+<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/275959084/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate">从Riemann积分到Lebesgue积分</a></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Probability-Theory/">#Probability Theory</a>
+      
+        <a href="/tags/Rado-Nicodym/">#Rado-Nicodym</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】Change of Measure</div>
+      <div>http://achlier.github.io/2021/05/23/Change_of_Measure/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 23, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/30/Fourier_Transform/" title="【笔记】Fourier Transform">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【笔记】Fourier Transform</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/18/Modelling_and_Forecasting_Financial_Markets/" title="【课程】Modelling and Forecasting Financial Markets">
+                        <span class="hidden-mobile">【课程】Modelling and Forecasting Financial Markets</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
