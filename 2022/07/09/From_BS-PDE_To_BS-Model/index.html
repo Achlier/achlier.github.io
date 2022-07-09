@@ -16,22 +16,23 @@
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
   
-    <meta name="description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频《Ito积分练习题(Part 1)》； 从 BS model 反向推符合 PDE">
+    <meta name="description" content="基于 ChiuFai WONG 教授的FM2课件中从 BS-PDE 到 BS-MODEL 的推导过程； 带有个人理解；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【练习】From BS Model To BS PDE">
-<meta property="og:url" content="http://achlier.github.io/2021/06/20/Exercise_2/index.html">
+<meta property="og:title" content="【推导】From BS PDE To BS Model">
+<meta property="og:url" content="http://achlier.github.io/2022/07/09/From_BS-PDE_To_BS-Model/index.html">
 <meta property="og:site_name" content="Borderland">
-<meta property="og:description" content="基于B站up Jerry Xu (Love小矫情Forever) 的视频《Ito积分练习题(Part 1)》； 从 BS model 反向推符合 PDE">
+<meta property="og:description" content="基于 ChiuFai WONG 教授的FM2课件中从 BS-PDE 到 BS-MODEL 的推导过程； 带有个人理解；">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-19T16:52:19.000Z">
-<meta property="article:modified_time" content="2022-07-09T10:22:40.808Z">
+<meta property="article:published_time" content="2022-07-09T08:19:10.000Z">
+<meta property="article:modified_time" content="2022-07-09T11:14:03.089Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Black Scholes Model">
+<meta property="article:tag" content="Black Scholes PDE">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>【练习】From BS Model To BS PDE - Borderland</title>
+  <title>【推导】From BS PDE To BS Model - Borderland</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【练习】From BS Model To BS PDE"></span>
+            <span id="subtitle" data-typed-text="【推导】From BS PDE To BS Model"></span>
           
         </div>
 
@@ -205,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-06-20 00:52" pubdate>
-          June 20, 2021 am
+        <time datetime="2022-07-09 16:19" pubdate>
+          July 9, 2022 pm
         </time>
       </span>
     
@@ -217,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          498 words
+          1.2k words
         
       </span>
     
@@ -228,7 +229,7 @@
         
         
         
-          5 mins
+          10 mins
         
       </span>
     
@@ -266,79 +267,69 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【练习】From BS Model To BS PDE</h1>
+            <h1 style="display: none">【推导】From BS PDE To BS Model</h1>
             
             <div class="markdown-body">
               
               <blockquote>
-<p>基于B站up Jerry Xu (Love小矫情Forever) 的视频《Ito积分练习题(Part 1)》；</p>
-<p>从 BS model 反向推符合 PDE</p>
+<p>基于 ChiuFai WONG 教授的FM2课件中从 BS-PDE 到 BS-MODEL 的推导过程；</p>
+<p>带有个人理解；</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>For a European Call option at time T, with strike price K.</p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p><strong>Black-Scholes partial differential equation</strong></p>
 <script type="math/tex; mode=display">
-c(t,x) = xN(d_+)- Ke^{-r(T-t)}N(d_-)</script><p>where</p>
+\frac{\partial V}{\partial t}+\frac{1}{2} \sigma^{2} S^{2} \frac{\partial^{2} V}{\partial S^{2}}+r S \frac{\partial V}{\partial S}-r V=0</script><p>with boundary conditions</p>
 <script type="math/tex; mode=display">
-d_+=\frac{ln\frac{x}{K}+(r + \frac{1}{2}\sigma^2)(T-t)}{\sigma \sqrt{T-t}}</script><script type="math/tex; mode=display">
-d_-=\frac{ln\frac{x}{K}+(r - \frac{1}{2}\sigma^2)(T-t)}{\sigma \sqrt{T-t}}</script><p>Show that this function satisfies the BS-PDE</p>
+C(S, T)=\max (S(T)-K, 0), \quad C(0, t)=0</script><p><strong>$S(t)$ with Brownian motion $Z(t)$ has the following features</strong></p>
 <script type="math/tex; mode=display">
-rc(t,x)=c_t+\frac12\sigma^2x^2c_{xx}+rxc_x</script><p>with</p>
+dS(t)=\alpha S(t)dt+\sigma S(t)dZ(t)</script><script type="math/tex; mode=display">
+S(t)=S(0)e^{\sigma Z(t)+(\alpha -\frac12 \sigma^2)t}</script><h2 id="Step-1-换元化简"><a href="#Step-1-换元化简" class="headerlink" title="Step 1 换元化简"></a>Step 1 换元化简</h2><p>In order to get rid of $S \frac{\partial C}{\partial S}$ and $S^{2} \frac{\partial^{2} C}{\partial S^{2}}$ in Black-Scholes equation, we set</p>
 <script type="math/tex; mode=display">
-\lim_{t\to T}c(t,x)=max\{x-K,0\},x>0,x\ne K</script><script type="math/tex; mode=display">
-\lim_{x\to 0}c(t,x)=0,\ \lim_{x\to \infty}[c(t,x)-(x-e^{r(T-t)}K)=0,\  0\leq t<T</script><h3 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h3><p>(1) Show that $Ke^{-r(T-t)}N’(d_-)=xN’(d_+)$;</p>
-<script type="math/tex; mode=display">
-N'(x)=\frac1{\sqrt{2\pi}}e^{-\frac{x^2}{2}}</script><p>原问题可以转换为</p>
-<script type="math/tex; mode=display">
-e^{\frac{d_+^2-d_-^2}{2}}=\frac xKe^{r(T-t)}</script><p>where </p>
-<script type="math/tex; mode=display">
-d_+^2-d_-^2=\frac{[ln\frac{x}{K}+(r + \frac{1}{2}\sigma^2)(T-t)]^2-[ln\frac{x}{K}+(r - \frac{1}{2}\sigma^2)(T-t)]^2}{\sigma^2(T-t)}</script><p>Set $A=ln\frac xK+r(T-t)$, $B=\frac12\sigma^2(T-t)$</p>
-<script type="math/tex; mode=display">
-(A+B)^2-(A-B)^2=4AB</script><script type="math/tex; mode=display">
-d_+^2-d_-^2=\frac{4(ln\frac xK+r(T-t))\frac12\sigma^2(T-t)}{\sigma^2(T-t)}=2(ln\frac xK+r(T-t))</script><script type="math/tex; mode=display">
-e^{\frac{d_+^2-d_-^2}{2}}=e^{ln\frac xK+r(T-t)}=\frac xKe^{r(T-t)}</script><p>(2) Show that Delta $c_x(t,x)=N(d_+)$</p>
-<script type="math/tex; mode=display">
-c_x(t,x)=N(d_+)+xN'(d_+)\frac{\partial d_+}{\partial x}-ke^{-r(T-t)}N'(d_-)\frac{\partial d_-}{\partial x}</script><script type="math/tex; mode=display">
-\frac{\partial d_+}{\partial x}=\frac{\partial d_-}{\partial x}=\frac{1}{\sigma \sqrt{T-t}}\frac{K}{x}\frac1K=\frac{1}{x\sigma \sqrt{T-t}}</script><script type="math/tex; mode=display">
-c_x(t,x)=N(d_+)+\frac{xN'(d_+)-ke^{-r(T-t)}N'(d_-)}{x\sigma \sqrt{T-t}}=N(d_+)+0</script><blockquote>
-<p>行权价值附近，斜率最大，Delta 约等于 1/2</p>
+S(t)=K e^{x}, \quad t=T-\frac{2 \tau}{\sigma^{2}}, \quad C(S, t)=K v(x, \tau)=K v\left(\ln \frac{S(t)}{K}, \frac{\sigma^{2}}{2}(T-t)\right)</script><blockquote>
+<p>这步主要排除偏导前 S 的影响, 同时为了配合 S 把 K 消除</p>
 </blockquote>
+<p>So we have</p>
 <script type="math/tex; mode=display">
-c_{xx}=\frac{\partial N(d_+)}{\partial x}=\frac{N'(d_+)}{x\sigma \sqrt{T-t}}</script><p>(3) Show $c_t(t,x)=-rKe^{-r(T-t)}N(d_-)-\frac{\sigma x}{2\sqrt{T-t}}N’(d_+)$</p>
+\frac{\partial C}{\partial t}=-\frac{\sigma^{2} K}{2} \frac{\partial v}{\partial \tau}, \quad \frac{\partial C}{\partial S}=\frac{K}{S} \frac{\partial v}{\partial x}, \quad \frac{\partial^{2} C}{\partial S^{2}}=-\frac{K}{S^{2}} \frac{\partial v}{\partial x}+\frac{K}{S^{2}} \frac{\partial^{2} v}{\partial x^{2}}</script><p>Placing these expressions into the Black-Scholes partial differential equation and simplifying, we have</p>
 <script type="math/tex; mode=display">
-C_t(t,x)=xN'(d_+)\frac{\partial d_+}{\partial t}- rKe^{-r(T-t)}N(d_-)- Ke^{-r(T-t)}N'(d_-)\frac{\partial d_-}{\partial t}</script><script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial d_+}{\partial t}&=\frac{-(r + \frac{1}{2}\sigma^2)\sigma \sqrt{T-t}+\frac12\sigma (T-t)^{-1/2}(ln\frac{x}{K}+(r + \frac{1}{2}\sigma^2)(T-t))}{\sigma^2(T-t)}\\
-&=\frac{-\frac12(r + \frac{1}{2}\sigma^2)\sigma \sqrt{T-t}+\frac12\sigma (T-t)^{-1/2}ln\frac{x}{K}}{\sigma^2(T-t)}\\
-&=-\frac{(r + \frac{1}{2}\sigma^2)}{2\sigma \sqrt{T-t}}+\frac{ln\frac{x}{K}}{2\sigma(T-t)^{3/2}}\\
-&=\frac{1}{2\sigma\sqrt{T-t}}[\frac{ln\frac{x}{K}}{T-t}-(r + \frac{1}{2}\sigma^2)]
-\end{align}</script><script type="math/tex; mode=display">
-\frac{\partial d_-}{\partial t}=\frac{1}{2\sigma\sqrt{T-t}}[\frac{ln\frac{x}{K}}{T-t}-(r - \frac{1}{2}\sigma^2)]</script><script type="math/tex; mode=display">
-\begin{align}
-C_t(t,x)&=- rKe^{-r(T-t)}N(d_-)+x\frac{N'(d_+)}{2\sigma\sqrt{T-t}}[\frac{ln\frac{x}{K}}{T-t}-(r + \frac{1}{2}\sigma^2)]- Ke^{-r(T-t)}\frac{N'(d_-)}{2\sigma\sqrt{T-t}}[\frac{ln\frac{x}{K}}{T-t}-(r - \frac{1}{2}\sigma^2)]\\
-&=- rKe^{-r(T-t)}N(d_-)-x\frac{N'(d_+)}{2\sigma\sqrt{T-t}}\frac{1}{2}\sigma^2- Ke^{-r(T-t)}\frac{N'(d_-)}{2\sigma\sqrt{T-t}}\frac{1}{2}\sigma^2\\
-&=- rKe^{-r(T-t)}N(d_-)-\frac{\sigma x N'(d_+)}{2\sqrt{T-t}}
-\end{align}</script><p>(4) Prove that satisfies</p>
+\frac{\partial^{2} v}{\partial x^{2}}+(k-1)\frac{\partial v}{\partial x}-kv=\frac{\partial v}{\partial \tau}, \quad -\infty<x<\infty, \quad 0\leq\tau\leq\frac{\sigma^2}2T</script><p>where $k=2\frac r{\sigma^{2}}$. The initial condition becomes</p>
 <script type="math/tex; mode=display">
-\begin{align}
-&c_t+\frac12\sigma^2x^2c_{xx}+rxc_x\\
-=&- rKe^{-r(T-t)}N(d_-)-\frac{\sigma xN'(d_+)}{2\sqrt{T-t}}+\frac{\sigma xN'(d_+)}{2\sqrt{T-t}}+rxN(d_+)\\
-=& rxN(d_+)- rKe^{-r(T-t)}N(d_-)=rc(t,x)
-\end{align}</script><p>(5) Calculate $\lim_{t\to T}d_+$ and $\lim_{t\to T}d_-$ for $x&gt;0$, $x\ne K$.</p>
+v(x, 0)=\frac{1}{K} C(S, T)=\max \left(e^{x}-1,0\right)</script><p>In order to eliminate $v$ and $\frac{\partial v}{\partial x}$, we set</p>
 <script type="math/tex; mode=display">
-\lim_{t\to T}d_+=\lim_{t\to T}d_-=\lim_{t\to T}\frac{ln\frac{x}{K}+(r + \frac{1}{2}\sigma^2)(T-t)}{\sigma \sqrt{T-t}}=\frac{ln\frac{x}{K}}0</script><script type="math/tex; mode=display">
-\lim_{t\to T}c(t,x)=\lim_{t\to T}[xN(d_+)- Ke^{-r(T-t)}N(d_-)]</script><p>If $x&gt;K$：</p>
+v(x, \tau)=e^{a x+b \tau} u(x, \tau)</script><p> Computing the partials of $v$ in terms of $x$ and $\tau$ , we have</p>
 <script type="math/tex; mode=display">
-\lim_{t\to T}[xN(d_+)- Ke^{-r(T-t)}N(d_-)]=xN(+\infty)- KN(+\infty)=x-K</script><p>If $x&lt;K$：</p>
+\begin{aligned}
+\frac{\partial v}{\partial \tau}&=b e^{a x+b \tau} u(x, \tau)+e^{a x+b \tau} \frac{\partial u}{\partial \tau} \\
+\frac{\partial v}{\partial x}&=a e^{a x+b \tau} u(x, \tau)+e^{a x+b \tau} \frac{\partial u}{\partial x} \\
+\frac{\partial^{2} v}{\partial x^{2}}&=a^{2} e^{a x+b \tau} u(x, \tau)+2 a e^{a x+b \tau} \frac{\partial u}{\partial x}+e^{a x+b \tau} \frac{\partial^{2} u}{\partial x^{2}}
+\end{aligned}</script><p>Placing these expressions into the partial differential equation</p>
 <script type="math/tex; mode=display">
-\lim_{t\to T}[xN(d_+)- Ke^{-r(T-t)}N(d_-)]=xN(-\infty)- KN(-\infty)=0</script><p>(6) Calculate $\lim_{x\to 0}d_+$ and $\lim_{x\to 0}d_-$ for $0\leq t&lt;T$.</p>
+\begin{aligned}
+a^{2}u+2 a\frac{\partial u}{\partial x}+\frac{\partial^{2} u}{\partial x^{2}}+(k-1)(au+\frac{\partial u}{\partial x})-ku&=bu+\frac{\partial u}{\partial \tau} \\
+\frac{\partial^{2} u}{\partial x^{2}}+(2a+k-1)\frac{\partial u}{\partial x}+(a^{2}+a(k-1)-b-k)u&=\frac{\partial u}{\partial \tau}
+\end{aligned}</script><p>So we can obtain an equation by choosing</p>
 <script type="math/tex; mode=display">
-\lim_{x\to 0}d_+=\lim_{x\to 0}d_-=\lim_{x\to 0}\frac{ln\frac{x}{K}+(r + \frac{1}{2}\sigma^2)(T-t)}{\sigma \sqrt{T-t}}=\frac{-\infty}{\sigma \sqrt{T-t}}</script><script type="math/tex; mode=display">
-\lim_{x\to 0}c(t,x)=xN(-\infty)- Ke^{-r(T-t)}N(-\infty)=0</script><p>(7) Calculate $\lim_{x\to \infty}d_+$ and $\lim_{x\to \infty}d_-$ for $0\leq t&lt;T$.</p>
+\begin{aligned}
+&b=a^2+(k-1)a-k,\quad 2a=1-k\\
+\Rightarrow\quad &a=-\frac12(k-1)=\frac{\sigma^2-2r}{2\sigma^2},
+\quad b=-\frac14(k+1)^2=-(\frac{\sigma^2+2r}{2\sigma^2})^2\\
+\Rightarrow\quad & v(x, \tau)=e^{-\frac{1}{2}(k-1) x-\frac{1}{4}(k+1)^{2} \tau} u(x, \tau)
+\end{aligned}</script><p>We then have the heat equation</p>
 <script type="math/tex; mode=display">
-\lim_{x\to \infty}d_+=\lim_{x\to \infty}d_-=\frac{+\infty}{\sigma \sqrt{T-t}}</script><script type="math/tex; mode=display">
-\lim_{x\to 0}c(t,x)=xN(+\infty)- Ke^{-r(T-t)}N(+\infty)=x- Ke^{-r(T-t)}</script><p>Hint for (7)：From the formula of $d_+$, we can obtain that</p>
+\frac{\partial u}{\partial \tau}=\frac{\partial^{2} u}{\partial x^{2}}, \quad-\infty<x<\infty, \quad 0 \leq \tau \leq \frac{\sigma^{2}}{2} T</script><p>with initial condition</p>
 <script type="math/tex; mode=display">
-x=Kexp(\sigma\sqrt{T-t}d_+-(T-t)(r+\frac12\sigma^2))</script>
+u(x, 0)=e^{-\alpha x} v(x, 0)=\max \left(e^{\frac{1}{2}(k+1) x}-e^{\frac{1}{2}(k-1) x}, 0\right)</script><h2 id="Step-2-使用Laplace方法求热传导公式"><a href="#Step-2-使用Laplace方法求热传导公式" class="headerlink" title="Step 2 使用Laplace方法求热传导公式"></a>Step 2 使用Laplace方法求热传导公式</h2><h4 id="知识点回顾-Fourier-Transform"><a href="#知识点回顾-Fourier-Transform" class="headerlink" title="知识点回顾 Fourier Transform"></a>知识点回顾 <a href="https://achlier.github.io/2021/05/30/Fourier_Transform">Fourier Transform</a></h4><p>Define </p>
+<script type="math/tex; mode=display">
+U(x, s)=\mathfrak{L}_{s}(u(x, \tau)):=\int_{0}^{\infty} e^{-s \tau} u(x, \tau) d \tau</script><p>where $\mathfrak{L}_{s}$​ is the Laplace operator with parameter $s$. Then, we have</p>
+<script type="math/tex; mode=display">
+sU(x, s)-u(x, 0)=U_{x x}(x, s)</script><p>Its characteristic equation is $r^2-s=0$. The roots are $r_1=\sqrt{s},r_2=-\sqrt{s}$</p>
+<p>The homogeneous solution is </p>
+<script type="math/tex; mode=display">
+U_{h}(x, s)=c_{1} e^{x \sqrt{s}}+c_{2} e^{-x \sqrt{s}}</script><h4 id="Before-calculating-particular-solution-we-need-Definition-4-12-and-Theorem-4-13"><a href="#Before-calculating-particular-solution-we-need-Definition-4-12-and-Theorem-4-13" class="headerlink" title="Before calculating particular solution, we need Definition 4.12 and Theorem 4.13"></a>Before calculating particular solution, we need Definition 4.12 and Theorem 4.13</h4><h5 id="Definition-4-12"><a href="#Definition-4-12" class="headerlink" title="Definition 4.12"></a>Definition 4.12</h5><p>Define error function $\operatorname{erf}(x)=\frac{1}{\sqrt{\pi}} \int_{-x}^{x} e^{-t^{2}} d t=\frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^{2}} d t$ and complementary error function $\operatorname{erfc}(x)=1-\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^{2}} d t$</p>
+<h5 id="Theorem-4-13"><a href="#Theorem-4-13" class="headerlink" title="Theorem 4.13"></a>Theorem 4.13</h5><p>Suppose $\frac{\partial u}{\partial \tau}=\frac{\partial^{2} u}{\partial x^{2}}$ with $u(x, 0)=u(\infty, \tau)=0, u(0, \tau)=1$ . Then $u(x, \tau)=\frac{2}{\sqrt{\pi}} \int_{\frac{x}{2 \sqrt{\tau}}}^{\infty} e^{-t^{2}} d t$ . </p>
+<p>Furthermore,  $\mathfrak{L}_{s}\left(\frac{1}{2 \sqrt{\pi \tau}} e^{-\frac{x^{2}}{4 \tau}}\right)=\frac{e^{-x \sqrt{s}}}{2 \sqrt{s}} \text { for } x&gt;0$ .</p>
+<p>额外资料-<a target="_blank" rel="noopener" href="http://www.doc88.com/p-5744422808605.html">求解 Black-Scholes 偏微分方程</a></p>
+
               
             </div>
             <hr/>
@@ -372,6 +363,8 @@ x=Kexp(\sigma\sqrt{T-t}d_+-(T-t)(r+\frac12\sigma^2))</script>
       
         <a href="/tags/Black-Scholes-Model/">#Black Scholes Model</a>
       
+        <a href="/tags/Black-Scholes-PDE/">#Black Scholes PDE</a>
+      
     </div>
   
 </div>
@@ -382,8 +375,8 @@ x=Kexp(\sigma\sqrt{T-t}d_+-(T-t)(r+\frac12\sigma^2))</script>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【练习】From BS Model To BS PDE</div>
-      <div>http://achlier.github.io/2021/06/20/Exercise_2/</div>
+      <div>【推导】From BS PDE To BS Model</div>
+      <div>http://achlier.github.io/2022/07/09/From_BS-PDE_To_BS-Model/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +388,7 @@ x=Kexp(\sigma\sqrt{T-t}d_+-(T-t)(r+\frac12\sigma^2))</script>
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 20, 2021</div>
+          <div>July 9, 2022</div>
         </div>
       
       
@@ -425,18 +418,12 @@ x=Kexp(\sigma\sqrt{T-t}d_+-(T-t)(r+\frac12\sigma^2))</script>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/20/Poisson_Process/" title="【笔记】Poisson Process">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【笔记】Poisson Process</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/20/Brownian_Motion/" title="【笔记】Brownian Motion">
-                        <span class="hidden-mobile">【笔记】Brownian Motion</span>
+                      <a href="/2022/05/21/Blog%E6%90%AD%E5%BB%BA%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" title="【BUG】Blog搭建常见问题">
+                        <span class="hidden-mobile">【BUG】Blog搭建常见问题</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
