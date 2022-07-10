@@ -18,13 +18,13 @@
   
     <meta name="description" content="基于 ChiuFai WONG 教授的FM2课件中从 BS-PDE 到 BS-MODEL 的推导过程； 带有个人理解；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【推导】From BS PDE To BS Model">
-<meta property="og:url" content="http://achlier.github.io/2022/07/09/From_BS-PDE_To_BS-Model/index.html">
+<meta property="og:title" content="【推导】BS PDE To BS Model">
+<meta property="og:url" content="http://achlier.github.io/2022/07/09/BS-PDE_To_BS-Model/index.html">
 <meta property="og:site_name" content="Borderland">
 <meta property="og:description" content="基于 ChiuFai WONG 教授的FM2课件中从 BS-PDE 到 BS-MODEL 的推导过程； 带有个人理解；">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-09T08:19:10.000Z">
-<meta property="article:modified_time" content="2022-07-09T11:14:03.089Z">
+<meta property="article:modified_time" content="2022-07-10T17:09:25.862Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Black Scholes Model">
 <meta property="article:tag" content="Black Scholes PDE">
@@ -32,7 +32,7 @@
   
   
   
-  <title>【推导】From BS PDE To BS Model - Borderland</title>
+  <title>【推导】BS PDE To BS Model - Borderland</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【推导】From BS PDE To BS Model"></span>
+            <span id="subtitle" data-typed-text="【推导】BS PDE To BS Model"></span>
           
         </div>
 
@@ -267,7 +267,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【推导】From BS PDE To BS Model</h1>
+            <h1 style="display: none">【推导】BS PDE To BS Model</h1>
             
             <div class="markdown-body">
               
@@ -318,17 +318,113 @@ a^{2}u+2 a\frac{\partial u}{\partial x}+\frac{\partial^{2} u}{\partial x^{2}}+(k
 <script type="math/tex; mode=display">
 \frac{\partial u}{\partial \tau}=\frac{\partial^{2} u}{\partial x^{2}}, \quad-\infty<x<\infty, \quad 0 \leq \tau \leq \frac{\sigma^{2}}{2} T</script><p>with initial condition</p>
 <script type="math/tex; mode=display">
-u(x, 0)=e^{-\alpha x} v(x, 0)=\max \left(e^{\frac{1}{2}(k+1) x}-e^{\frac{1}{2}(k-1) x}, 0\right)</script><h2 id="Step-2-使用Laplace方法求热传导公式"><a href="#Step-2-使用Laplace方法求热传导公式" class="headerlink" title="Step 2 使用Laplace方法求热传导公式"></a>Step 2 使用Laplace方法求热传导公式</h2><h4 id="知识点回顾-Fourier-Transform"><a href="#知识点回顾-Fourier-Transform" class="headerlink" title="知识点回顾 Fourier Transform"></a>知识点回顾 <a href="https://achlier.github.io/2021/05/30/Fourier_Transform">Fourier Transform</a></h4><p>Define </p>
+u(x, 0)=e^{-\alpha x} v(x, 0)=\max \left(e^{\frac{1}{2}(k+1) x}-e^{\frac{1}{2}(k-1) x}, 0\right)</script><h2 id="Step-2-使用Laplace变换的方法求热传导公式"><a href="#Step-2-使用Laplace变换的方法求热传导公式" class="headerlink" title="Step 2 使用Laplace变换的方法求热传导公式"></a>Step 2 使用Laplace变换的方法求热传导公式</h2><h4 id="知识点回顾-Fourier-Transform"><a href="#知识点回顾-Fourier-Transform" class="headerlink" title="知识点回顾 Fourier Transform"></a>知识点回顾 <a href="https://achlier.github.io/2021/05/30/Fourier_Transform">Fourier Transform</a></h4><p>Define </p>
 <script type="math/tex; mode=display">
 U(x, s)=\mathfrak{L}_{s}(u(x, \tau)):=\int_{0}^{\infty} e^{-s \tau} u(x, \tau) d \tau</script><p>where $\mathfrak{L}_{s}$​ is the Laplace operator with parameter $s$. Then, we have</p>
 <script type="math/tex; mode=display">
 sU(x, s)-u(x, 0)=U_{x x}(x, s)</script><p>Its characteristic equation is $r^2-s=0$. The roots are $r_1=\sqrt{s},r_2=-\sqrt{s}$</p>
 <p>The homogeneous solution is </p>
 <script type="math/tex; mode=display">
-U_{h}(x, s)=c_{1} e^{x \sqrt{s}}+c_{2} e^{-x \sqrt{s}}</script><h4 id="Before-calculating-particular-solution-we-need-Definition-4-12-and-Theorem-4-13"><a href="#Before-calculating-particular-solution-we-need-Definition-4-12-and-Theorem-4-13" class="headerlink" title="Before calculating particular solution, we need Definition 4.12 and Theorem 4.13"></a>Before calculating particular solution, we need Definition 4.12 and Theorem 4.13</h4><h5 id="Definition-4-12"><a href="#Definition-4-12" class="headerlink" title="Definition 4.12"></a>Definition 4.12</h5><p>Define error function $\operatorname{erf}(x)=\frac{1}{\sqrt{\pi}} \int_{-x}^{x} e^{-t^{2}} d t=\frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^{2}} d t$ and complementary error function $\operatorname{erfc}(x)=1-\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^{2}} d t$</p>
-<h5 id="Theorem-4-13"><a href="#Theorem-4-13" class="headerlink" title="Theorem 4.13"></a>Theorem 4.13</h5><p>Suppose $\frac{\partial u}{\partial \tau}=\frac{\partial^{2} u}{\partial x^{2}}$ with $u(x, 0)=u(\infty, \tau)=0, u(0, \tau)=1$ . Then $u(x, \tau)=\frac{2}{\sqrt{\pi}} \int_{\frac{x}{2 \sqrt{\tau}}}^{\infty} e^{-t^{2}} d t$ . </p>
-<p>Furthermore,  $\mathfrak{L}_{s}\left(\frac{1}{2 \sqrt{\pi \tau}} e^{-\frac{x^{2}}{4 \tau}}\right)=\frac{e^{-x \sqrt{s}}}{2 \sqrt{s}} \text { for } x&gt;0$ .</p>
-<p>额外资料-<a target="_blank" rel="noopener" href="http://www.doc88.com/p-5744422808605.html">求解 Black-Scholes 偏微分方程</a></p>
+U_{h}(x, s)=c_{1} e^{x \sqrt{s}}+c_{2} e^{-x \sqrt{s}}</script><hr>
+<h4 id="Before-calculating-particular-solution-we-need-Definition-4-12-and-Theorem-4-13"><a href="#Before-calculating-particular-solution-we-need-Definition-4-12-and-Theorem-4-13" class="headerlink" title="Before calculating particular solution, we need Definition 4.12 and Theorem 4.13"></a>Before calculating particular solution, we need Definition 4.12 and Theorem 4.13</h4><h5 id="Definition-4-12"><a href="#Definition-4-12" class="headerlink" title="Definition 4.12"></a>Definition 4.12</h5><p>Define error function $\operatorname{erf}(x)=\frac{1}{\sqrt{\pi}} \int_{-x}^{x} e^{-t^{2}} d t=\frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^{2}} d t$ and complementary error function $\operatorname{erfc}(x)=1-\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}} \int_{x}^{\infty} e^{-t^{2}} d t$</p>
+<h5 id="Theorem-4-13"><a href="#Theorem-4-13" class="headerlink" title="Theorem 4.13"></a>Theorem 4.13</h5><p>Suppose $\frac{\partial u}{\partial \tau}=\frac{\partial^{2} u}{\partial x^{2}}$ with $u(x, 0)=u(\infty, \tau)=0, u(0, \tau)=1$ . Then we have</p>
+<ol>
+<li>$u(x, \tau)=\frac{2}{\sqrt{\pi}} \int_{\frac{x}{2 \sqrt{\tau}}}^{\infty} e^{-t^{2}} d t$ . </li>
+<li>$\mathfrak{L}_{s}\left(\frac{1}{2 \sqrt{\pi \tau}} e^{-\frac{x^{2}}{4 \tau}}\right)=\frac{e^{-x \sqrt{s}}}{2 \sqrt{s}} \text { for } x&gt;0$ .</li>
+</ol>
+<h5 id="proof-1"><a href="#proof-1" class="headerlink" title="proof 1"></a>proof 1</h5><p>Let $\xi=\frac{x}{\sqrt{\tau}}$ such that $u(x, \tau)=U(\xi)$</p>
+<blockquote>
+<p>此处的 $U$ 与之前的不相同，这里表示的是以 $\xi$ 为变量的 $u$ 的另外一个形式</p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\frac{\partial u}{\partial \tau}=U^{\prime}(\xi) \frac{d \xi}{d \tau}=U^{\prime}(\xi)\left(-\frac{1}{2} x \tau^{-\frac{3}{2}}\right)=-\frac{1}{2 \tau} \xi U^{\prime}(\xi) \\
+&\frac{\partial u}{\partial x}=U^{\prime}(\xi) \frac{d \xi}{d x}=U^{\prime}(\xi) \frac{1}{\sqrt{\tau}} \\
+&\frac{\partial^{2} u}{\partial x^{2}}=U^{\prime \prime}(\xi) \frac{d \xi}{d x} \frac{1}{\sqrt{\tau}}=U^{\prime \prime}(\xi) \frac{1}{\tau}
+\end{aligned}</script><script type="math/tex; mode=display">
+\frac{\partial^{2} u}{\partial x^{2}}=\frac{\partial u}{\partial \tau} \Rightarrow U^{\prime \prime}(\xi) \frac{1}{\tau}=-\frac{1}{2 \tau} \xi U^{\prime}(\xi) \Rightarrow \frac{U^{\prime \prime}(\xi)}{U^{\prime}(\xi)}=-\frac{1}{2} \xi \Rightarrow \int \frac{U^{\prime \prime}(\xi)}{U^{\prime}(\xi)} d \xi=\int-\frac{1}{2} \xi d \xi</script><script type="math/tex; mode=display">
+\begin{aligned}
+&U^{\prime}(\xi)=C e^{-\frac{\xi^{2}}{4}} \\
+&U(\xi)=C \int_{0}^{\xi} e^{-\frac{s^{2}}{4}} d s+D \\
+&u(x, 0)=u(\infty, \tau)=0, u(0, \tau)=1 \Rightarrow U(0)=1, U(\infty)=0\\
+\end{aligned}</script><p>Recall $\int_{0}^{\infty} e^{-\frac{s^{2}}{4}} d s=\sqrt{\pi}$  . We have $D=1, \quad C=-\frac{1}{\sqrt{\pi}}$</p>
+<script type="math/tex; mode=display">
+U(\xi)=\frac{1}{\sqrt{\pi}} \int_{\xi}^{\infty} e^{-\frac{s^{2}}{4}} d s</script><script type="math/tex; mode=display">
+u(x, \tau)=\frac{1}{\sqrt{\pi}} \int_{\frac{x}{\sqrt{\tau}}}^{\infty} e^{-\frac{s^{2}}{4}} d s \quad \stackrel{t=\frac{s}{2}}{=} \frac{2}{\sqrt{\pi}} \int_{\frac{x}{2 \sqrt{\tau}}}^{\infty} e^{-t^{2}} d t=\operatorname{erfc}\left(\frac{x}{2 \sqrt{\tau}}\right)</script><h5 id="proof-2"><a href="#proof-2" class="headerlink" title="proof 2"></a>proof 2</h5><p>We have found that</p>
+<script type="math/tex; mode=display">
+U(x, s)=c_{1} e^{x \sqrt{s}}+c_{2} e^{-x \sqrt{s}}</script><script type="math/tex; mode=display">
+\begin{aligned}
+&U(\infty, s)=\mathfrak{L}_{s}(u(\infty, \tau))=0 \Rightarrow c_{1}=0 \\
+&U(0, s)=\mathfrak{L}_{s}(u(0, \tau))=\int_{0}^{\infty} e^{-s \tau} d \tau=\frac{1}{s} \Rightarrow c_{2}=\frac{1}{s}
+\end{aligned}</script><p>So we have both $u(x,\tau)$ and $U(x,s)$</p>
+<script type="math/tex; mode=display">
+\frac{e^{-x \sqrt{s}}}{s}=U(x, s)=\mathfrak{L}_{s}\left(\operatorname{erfc}\left(\frac{x}{2 \sqrt{\tau}}\right)\right)</script><p>Since $\mathfrak{L}_{s}\left(f^{\prime}(\tau)\right)=s \mathfrak{L}_{s}(f(\tau))-\lim _{\tau \rightarrow 0^{+}} f(\tau)$,</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathfrak{L}_{s}\left(\frac{d}{d \tau} \operatorname{erf} c\left(\frac{x}{2 \sqrt{\tau}}\right)\right)&=s \mathfrak{L}_{s}\left(\operatorname{erfc}\left(\frac{x}{2 \sqrt{\tau}}\right)\right)-\operatorname{erfc}(\infty) \quad \text { if } x>0 \\
+\mathfrak{L}_{s}\left(\left(\frac{x}{2}\right)\left(-\frac{1}{2}\right)\left(\frac{1}{\sqrt{\tau^{3}}}\right) \frac{-2}{\sqrt{\pi}} e^{-\frac{x^{2}}{4 \tau}}\right)&=e^{-x \sqrt{s}}+0 \\
+\mathfrak{L}_{s}\left(\frac{-x \tau}{2 \sqrt{\pi \tau^{3}}} e^{-\frac{x^{2}}{4 \tau}}\right)=\frac{d}{d s} \mathfrak{L}_{s}\left(\frac{x}{2 \sqrt{\pi \tau^{3}}} e^{-\frac{x^{2}}{4 \tau}}\right)&=\frac{d}{d s} e^{-x \sqrt{s}}=\frac{-x e^{-x \sqrt{s}}}{2 \sqrt{s}}\end{aligned}</script><blockquote>
+<p>第三行则是考虑到了此类变换的求导性质</p>
+<ul>
+<li>$f^{(n)}(\tau)\leftrightarrow(s)^ng(s)$</li>
+<li>$(-i\tau)^nf(\tau)\leftrightarrow g^{(n)}(s)$</li>
+</ul>
+</blockquote>
+<p>We have</p>
+<script type="math/tex; mode=display">
+\mathfrak{L}_{s}\left(\frac{1}{2 \sqrt{\pi \tau}} e^{-\frac{x^{2}}{4 \tau}}\right)=\frac{e^{-x \sqrt{s}}}{2 \sqrt{s}}</script><blockquote>
+<p>同时除 $x$ 并且消掉 $\tau$ 后得到</p>
+</blockquote>
+<hr>
+<p>Let us come back to particular solution.</p>
+<script type="math/tex; mode=display">
+y_{1}(x)=e^{x \sqrt{s}} \text { and } y_{2}(x)=e^{-x \sqrt{s}}</script><p>The Wronskian of $y_1(x)$ and $y_2(x)$ is</p>
+<script type="math/tex; mode=display">
+W\left(y_{1}, y_{2}\right)=y_{1} y_{2}^{\prime}-y_{1}^{\prime} y_{2}=-\sqrt{s} e^{x \sqrt{s}} e^{-x \sqrt{s}}-\sqrt{s} e^{x \sqrt{s}} e^{-x \sqrt{s}}=-2 \sqrt{s}</script><p>Recall that</p>
+<script type="math/tex; mode=display">
+U_{x x}(x, s)-sU(x, s)=-u(x, 0)</script><p>Then, the particular solution is</p>
+<script type="math/tex; mode=display">
+U_{p}(x, s)=u_{1}(x) y_{1}(x)+u_{2}(x) y_{2}(x)=u_{1}(x) e^{x \sqrt{s}}+u_{2}(x) e^{-x \sqrt{s}}</script><p>with <a href="https://achlier.github.io/2022/03/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/#Nonhomogeneous-Equations">the computating of Nonhomogeneous Equations</a></p>
+<script type="math/tex; mode=display">
+u_{1}^{\prime}(x)=\frac{y_{2}(x) u(x, 0)}{W\left(y_{1}, y_{2}\right)(x)}=-\frac{e^{-x \sqrt{s}} u(x, 0)}{2 \sqrt{s}} \text { and } u_{2}^{\prime}(x)=-\frac{y_{1}(x) u(x, 0)}{W\left(y_{1}, y_{2}\right)(x)}=\frac{e^{x \sqrt{s}} u(x, 0)}{2 \sqrt{s}} \text {. }</script><p>So</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&u_{1}(x)=-\int \frac{e^{-x \sqrt{s}} u(x, 0)}{2 \sqrt{s}} d x=-\int_{\infty}^{x} \frac{e^{-\xi \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi=\int_{x}^{\infty} \frac{e^{-\xi \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi\\
+&u_{2}(x)=\int \frac{e^{x \sqrt{s}} u(x, 0)}{2 \sqrt{s}} d x=\int_{-\infty}^{x} \frac{e^{\xi \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi
+\end{aligned}</script><blockquote>
+<p>11th ODE教材中写到，对于求积的下限 $t_0$ “ t0 is any conveniently chosen point in interval I ” </p>
+</blockquote>
+<script type="math/tex; mode=display">
+\begin{aligned}
+U_{p}(x, s) &=u_{1}(x) e^{x \sqrt{s}}+u_{2}(x) e^{-x \sqrt{s}} \\
+&=e^{x \sqrt{s}} \int_{x}^{\infty} \frac{e^{-\xi \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi+e^{-x \sqrt{s}} \int_{-\infty}^{x} \frac{e^{\xi \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi \\
+&=\int_{x}^{\infty} \frac{e^{-(\xi-x) \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi+\int_{-\infty}^{x} \frac{e^{-(x-\xi) \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi \\
+&=\int_{-\infty}^{\infty} \frac{e^{-|\xi-x| \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi 
+\end{aligned}</script><p>Thus, to get $u(x,\tau)$ it has to be done inverse Laplace operation</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+u(x, \tau)
+&=\mathfrak{L}_{s}^{-1}(U(x, s)) \\ &=\mathfrak{L}_{s}^{-1}\left(\int_{-\infty}^{\infty} \frac{e^{-|\xi-x| \sqrt{s}} u(\xi, 0)}{2 \sqrt{s}} d \xi\right) \\
+&=\int_{-\infty}^{\infty} \mathfrak{L}_{s}^{-1}\left(\frac{e^{-|\xi-x| \sqrt{s}}}{2 \sqrt{s}}\right) u(\xi, 0) d \xi \\ &=\frac{1}{2 \sqrt{\pi \tau}} \int_{-\infty}^{\infty} e^{-\frac{(\xi-x)^{2}}{4 \tau}} u(\xi, 0) d \xi
+\end{aligned}</script><h2 id="Step-3-将系数代回"><a href="#Step-3-将系数代回" class="headerlink" title="Step 3 将系数代回"></a>Step 3 将系数代回</h2><p>It is convenient to make the change of variable $x_{1}=\frac{\xi-x}{\sqrt{2 \tau}}$， so that</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+u(x, \tau) &=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} u\left(x_{1} \sqrt{2 \tau}+x, 0\right) e^{-\frac{x_{1}^{2}}{2}} d x_{1} \\
+&=\underbrace{\frac{1}{\sqrt{2 \pi}} \int_{-\frac{x}{\sqrt{2 \tau}}}^{\infty} e^{\frac{1}{2}(k+1)\left(x+x_{1} \sqrt{2 \tau}\right)} e^{-\frac{x_{1}^{2}}{2}} d x_{1}}_{I_{1}}-\underbrace{\frac{1}{\sqrt{2 \pi}} \int_{-\frac{x}{\sqrt{2 \tau}}}^{\infty} e^{\frac{1}{2}(k-1)\left(x+x_{1} \sqrt{2 \tau}\right)} e^{-\frac{x_{1}^{2}}{2}} d x_{1}}_{I_{2}} 
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+I_{1} &=\frac{1}{\sqrt{2 \pi}} \int_{-\frac{x}{\sqrt{2 \tau}}}^{\infty} e^{\frac{1}{2}(k+1)\left(x+x_{1} \sqrt{2 \tau}\right)} e^{-\frac{x_1^{2}}{2}} d x_{1} \\
+&=\frac{e^{\frac{1}{2}(k+1) x}}{\sqrt{2 \pi}} \int_{-\frac{x}{\sqrt{2 \tau}}}^{\infty} e^{\frac{1}{4}(k+1)^{2} \tau} e^{-\frac{1}{2}\left(x_{1}-\frac{1}{2}(k+1) \sqrt{2 \tau}\right)^{2}} d x_{1} \\
+&=\frac{e^{\frac{1}{2}(k+1) x+\frac{1}{4}(k+1)^{2} \tau}}{\sqrt{2 \pi}} \int_{-\frac{x}{\sqrt{2 \tau}}-\frac{1}{2}(k+1) \sqrt{2 \tau}}^{\infty} e^{-\frac{1}{2} \rho^{2}} d \rho \quad\left[\rho=x_{1}-\frac{1}{2}(k+1) \sqrt{2 \tau}\right] \\
+&=e^{\frac{1}{2}(k+1) x+\frac{1}{4}(k+1)^{2} \tau} N\left(d_{1}\right)
+\end{aligned}</script><p>Similarly, $I_{2}=e^{\frac{1}{2}(k-1) x+\frac{1}{4}(k-1)^{2} \tau} N\left(d_{2}\right)$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+v(x, \tau) &=e^{\alpha x+\beta t} u(x, \tau) \\
+&=e^{-\frac{1}{2}(k-1) x-\frac{1}{4}(k+1)^{2} \tau}\left(e^{\frac{1}{2}(k+1) x+\frac{1}{4}(k+1)^{2} \tau} N\left(d_{1}\right)-e^{\frac{1}{2}(k-1) x+\frac{1}{4}(k-1)^{2} \tau} N\left(d_{2}\right)\right) \\
+&=e^{x} N\left(d_{1}\right)-e^{-k \tau} N\left(d_{2}\right) \\
+&=\frac{S(t)}{K} N\left(d_{1}\right)-e^{-\frac{2 r}{\sigma^{2}} \frac{\sigma^{2}}{2}(T-t)} N\left(d_{2}\right) \\
+&=\frac{S(t)}{K} N\left(d_{1}\right)-e^{-r(T-t)} N\left(d_{2}\right) \end{aligned}</script><p>额外资料-<a target="_blank" rel="noopener" href="http://www.doc88.com/p-5744422808605.html">求解 Black-Scholes 偏微分方程</a></p>
 
               
             </div>
@@ -375,8 +471,8 @@ U_{h}(x, s)=c_{1} e^{x \sqrt{s}}+c_{2} e^{-x \sqrt{s}}</script><h4 id="Before-ca
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【推导】From BS PDE To BS Model</div>
-      <div>http://achlier.github.io/2022/07/09/From_BS-PDE_To_BS-Model/</div>
+      <div>【推导】BS PDE To BS Model</div>
+      <div>http://achlier.github.io/2022/07/09/BS-PDE_To_BS-Model/</div>
     </div>
     <div class="license-meta">
       
