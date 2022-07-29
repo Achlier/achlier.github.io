@@ -1,0 +1,923 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于 ChiuFai WONG 教授的随机过程课件的笔记； 结合应坚刚教授的随机分析讲义； 程士宏教授测度论与概率论基础进行整理； 对于部分基础多有忽略，主要用于知识点查找；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】高等数学复习笔记-随机过程">
+<meta property="og:url" content="http://achlier.github.io/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于 ChiuFai WONG 教授的随机过程课件的笔记； 结合应坚刚教授的随机分析讲义； 程士宏教授测度论与概率论基础进行整理； 对于部分基础多有忽略，主要用于知识点查找；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/pic5-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/pic5-2.jpg">
+<meta property="article:published_time" content="2022-07-29T03:36:38.000Z">
+<meta property="article:modified_time" content="2022-07-29T19:21:42.473Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Stochastic Process">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/pic5-1.jpg">
+  
+  
+  
+  <title>【笔记】高等数学复习笔记-随机过程 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【笔记】高等数学复习笔记-随机过程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-29 11:36" pubdate>
+          July 29, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          68 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【笔记】高等数学复习笔记-随机过程</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于 ChiuFai WONG 教授的随机过程课件的笔记；</p>
+<p>结合应坚刚教授的随机分析讲义；</p>
+<p>程士宏教授测度论与概率论基础进行整理；</p>
+<p>对于部分基础多有忽略，主要用于知识点查找；</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="1-概率论预备知识"><a href="#1-概率论预备知识" class="headerlink" title="1. 概率论预备知识"></a>1. 概率论预备知识</h2><h4 id="1-1-集合的运算"><a href="#1-1-集合的运算" class="headerlink" title="1.1 集合的运算"></a>1.1 集合的运算</h4><script type="math/tex; mode=display">
+\begin{array}{l}A \cup B \stackrel{\text { def }}{=}\{x: x \in A \text { 或 } x \in B\}, \\ A \cap B \stackrel{\text { def }}{=}\{x: x \in A \text { 且 } x \in B\}, \\ A \backslash B \stackrel{\text { def }}{=}\{x: x \in A \text { 且 } x \notin B\}, \\ A \Delta B \stackrel{\text { def }}{=}(A \backslash B) \bigcup(B \backslash A)\end{array}</script><p>分别称为集合 A 和 B 的<strong>并, 交, 差</strong>和<strong>对称差</strong>. 如 $B \subset A$ , 则 $A \backslash B$ 也称为 A 和 B 的<strong>真差</strong>. </p>
+<h4 id="1-2-单调序列"><a href="#1-2-单调序列" class="headerlink" title="1.2 单调序列"></a>1.2 单调序列</h4><p>设 $\left\{A_{n}, n=1,2, \cdots\right\}$ 是一个集合序列. 如果对每个 $n=1,2, \cdots$ , 有</p>
+<script type="math/tex; mode=display">
+A_{n} \subset A_{n+1}</script><p>则称 $A_{n}$  为<strong>非降的</strong>, 记为 $A_{n} \uparrow$  , 并把集合 $\lim_{n \rightarrow \infty} A_{n} \stackrel{ def }{=} \bigcup_{n=1}^{\infty} A_{n} $ 叫做它的极限; </p>
+<p>如果对每个 $n=1,2, \cdots$  , 有</p>
+<script type="math/tex; mode=display">
+A_{n} \supset A_{n+1}</script><p>则称 $A_{n}$ 为<strong>非增的</strong>, 记为 $A_{n} \downarrow$  , 并称 $\lim_{n \rightarrow \infty} A_{n} \stackrel{ def }{=} \bigcap_{n=1}^{\infty} A_{n}$  为它的极限. 非降或非增的集合序列统称为<strong>单调序列</strong>. 因此, <strong>单调集合序列总有极限</strong>. </p>
+<p>对于任意给定的一个集合序列 $\left\{A_{n}, n=1,2, \cdots\right\} $ , 集合序列非降和非增分别有极限</p>
+<script type="math/tex; mode=display">
+\liminf _{n \rightarrow \infty} A_{n}=\bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} A_{k} \qquad\text{和}\qquad\limsup _{n \rightarrow \infty} A_{n}=\bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_{k}</script><blockquote>
+<p>注意第二个运算符的范围是从 n 到 $\infty$ ，因此左边是非减右侧是非增</p>
+</blockquote>
+<p>我们将把 $\liminf _{n \rightarrow \infty} A_{n}$  和 $\lim _{n \rightarrow \infty} \sup A_{n}$ 分别叫做 $\left\{A_{n}, n=1,2, \cdots\right\}$  的<strong>下极限</strong>和<strong>上极限</strong>. </p>
+<h4 id="1-3-集合系"><a href="#1-3-集合系" class="headerlink" title="1.3 集合系"></a>1.3 集合系</h4><p>以空间 X 中的一些集合为元素组成的集合成为 X 上的<strong>集合系</strong>，一般用花体字母来表示。</p>
+<ul>
+<li><p>$\pi$ 系：如果 X 上的非空集合系 $\mathscr{P}$ 对<strong>交</strong>是运算是<strong>封闭的</strong>，即</p>
+<script type="math/tex; mode=display">
+A,B\in\mathscr{P}\Rightarrow A\bigcap B\in \mathscr{P}</script><p>则称 $\mathscr{P}$ 为 $\pi$ 系</p>
+</li>
+<li><p>半环：满足 $\pi$ 系要求的基础上，对任意的 $A,B\in\mathscr{Q}$ 且 $A\supset B$，存在有限个两两不相交的 $\{C_k\in\mathscr{Q},k=1,…,n\}$ 使得</p>
+<script type="math/tex; mode=display">
+A\backslash B=\bigcup_{k=1}^nC_k</script></li>
+</ul>
+<ul>
+<li><p>环：如果 X 上的非空集合系 $\mathscr{R}$ 对<strong>并和差</strong>是运算是<strong>封闭的</strong>，则称 $\mathscr{R}$ 为 <strong>环</strong></p>
+</li>
+<li><p>域：满足 $\pi$ 系要求的基础上</p>
+<script type="math/tex; mode=display">
+X\in\mathscr{A};\quad A\in\mathscr{A}\Rightarrow A^c\in\mathscr{A}</script></li>
+<li><p>$\lambda$ 系：集合系 $\mathscr{L}$  称为 $\lambda$ 系，如果它满足下列条件</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}X \in \mathscr{L} ; \\ A, B \in \mathscr{L} \text { 且 } A \supset B \Longrightarrow A \backslash B \in \mathscr{L}\\ A_{n} \in \mathscr{L} \text { 且 } A_{n} \uparrow \Longrightarrow \bigcup_{n=1}^{\infty} A_{n} \in \mathscr{L}\end{array}</script></li>
+<li><p>$\sigma$ 域：集合系 $\mathscr{F}$  称为 $\sigma$ 域，如果它满足下列条件</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}X \in \mathscr{F} ; \\ A \in \mathscr{F} \Longrightarrow A^{c} \in \mathscr{F} \\ A_{n} \in \mathscr{F}, n=1,2, \cdots \Longrightarrow \bigcup_{n=1}^{\infty} A_{n} \in \mathscr{T}\end{array}</script></li>
+<li><p>Borel 集合系：$\mathscr{O}_R$ 为 $R$ 中开集组成的集合系</p>
+<script type="math/tex; mode=display">
+\mathscr{B}\stackrel{ def }{=}\sigma(\mathscr{O})</script></li>
+</ul>
+<h4 id="1-4-事件域与信息"><a href="#1-4-事件域与信息" class="headerlink" title="1.4 事件域与信息"></a>1.4 事件域与信息</h4><p>一个随机现象可能出现的所有结果称为<strong>样本空间</strong> $\Omega$，$\mathscr{F}$ 是 $\Omega$ 的子集组成的集合，如果满足</p>
+<ol>
+<li>$\emptyset, \Omega \in \mathscr{F}$ </li>
+<li>如果 $A \in \mathscr{F}$, 则 $A^{c} \in \mathscr{F}$</li>
+<li>如果 $A_{n} \in \mathscr{F}, n \geq 1$ , 则 $\bigcup_{n} A_{n} \in \mathscr{F}$</li>
+</ol>
+<p>则可称 $\mathscr{F}$ 为一个<strong>事件域</strong>，属于由 $\Omega$ 生成的 $\sigma$ 域 $\sigma(\Omega)$，而 $(\Omega,\mathscr{F},\mathbb{P})$ 是一个概率空间</p>
+<h2 id="2-条件期望"><a href="#2-条件期望" class="headerlink" title="2. 条件期望"></a>2. 条件期望</h2><h4 id="2-1-期望和数字特征"><a href="#2-1-期望和数字特征" class="headerlink" title="2.1 期望和数字特征"></a>2.1 期望和数字特征</h4><p><strong>连续性或者单调收敛定理</strong>：如果 $\xi_n$ 是非负递增的随机序列，那么</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\lim_n\xi_n]=\lim_n\mathbb{E}[\xi_n]</script><p>期望是随机变量的一个数字特征, 或者说是分布的数字特征, 表示平均. 这是最有用的, 它是使得函数 $f(x)=\mathbb{E}\left[(\xi-x)^{2}\right]$ 达到最小值的地方, 通常两个随机变量 $\xi, \eta$ 的均方距离定义为</p>
+<script type="math/tex; mode=display">
+\sqrt{\mathbb{E}[(\xi-\eta)^2]}</script><p>那么期望是实数空间中离 $\xi$ 的均方距离最近的数字. 实数空间是关于最少信息 $\{\empty,\Omega\}$ 可测的随机变量全体. </p>
+<h4 id="2-2-条件期望的直观"><a href="#2-2-条件期望的直观" class="headerlink" title="2.2 条件期望的直观"></a>2.2 条件期望的直观</h4><p>让我们用 Hilbert 空间的眼光看条件期望的问题, 我们已经有一个 Hilbert 空间 $ L^{2}(\Omega, \mathscr{F}, \mathbb{P}) $ , 关于部分信息 $ \mathscr{G} $ 可测的平方可积随机变量全体 $ L^{2}(\Omega, \mathscr{G}, \mathbb{P})$ 是 $ L^{2}(\Omega, \mathscr{F}, \mathbb{P}) $ 的闭子空间. </p>
+<p>空间 $ L^{2}(\Omega, \mathscr{G}, \mathbb{P})$ 中距离 $\xi$ 最近的那个随机变量记为 $\mathbb{E}[\xi|\mathscr{G}]=\eta$ ，等价于说 $\eta$ 是 $\xi$ 在子空间上的正交投影，即 $\xi-\eta$ 与子空间垂直或者说正交，对于任何 $\zeta\in L^{2}(\Omega, \mathscr{G}, \mathbb{P})$ 有</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[(\xi-\eta) \zeta]=0</script><h4 id="2-3-条件期望的性质"><a href="#2-3-条件期望的性质" class="headerlink" title="2.3 条件期望的性质"></a>2.3 条件期望的性质</h4><ol>
+<li><p>条件期望是线性算子</p>
+</li>
+<li><p>$\mathbb{E}[\xi \mid\{\emptyset, \Omega\}]=\mathbb{E}[\xi]$ </p>
+</li>
+<li><p>如果 $\xi$ 是 $\mathscr{G}$ 可测的, 那么 $\mathbb{E}[\xi \mid \mathscr{G}]=\xi$ . 这是因为投影算子在闭子空间自身上是恒等算子.</p>
+</li>
+<li><p>条件期望有保正性: 如果 $\xi \geq 0$ a.s., 那么 $\mathbb{E}[\xi \mid \mathscr{G}] \geq 0$ a.s. 事实上, 由定义的第二条推出, 对任何 $A \in \mathscr{G}$ 有 $\mathbb{E}[\mathbb{E}[\xi \mid \mathscr{G}] ; A] \geq 0$, 因此 $\mathbb{E}[\xi \mid \mathscr{G}] \geq 0$.</p>
+</li>
+<li><p>塔性 (相容性): 如果 $\mathscr{G}_{1} \subset \mathscr{G}_{2}$ 是两个子事件域, 那么 </p>
+<script type="math/tex; mode=display">
+\mathbb{E}\left[\mathbb{E}\left[\xi \mid \mathscr{G}_{2}\right] \mid \mathscr{G}_{1}\right]=\mathbb{E}\left[\xi \mid \mathscr{G}_{1}\right]=\mathbb{E}\left[\mathbb{E}\left[\xi \mid \mathscr{G}_{1}\right] \mid \mathscr{G}_{2}\right]</script><p>如果 $\xi$ 在大的子空间上投影然后再投影到小的子空间上，等于它自己投影到小的子空间上</p>
+</li>
+<li><p>如果 $\eta$  是 $ \mathscr{G}$ 可测的随机变量, 那么</p>
+<script type="math/tex; mode=display">
+\mathbb{E}[\xi \eta \mid \mathscr{G}]=\eta \mathbb{E}[\xi \mid \mathscr{G}]</script></li>
+<li><p>如果 $ \xi $ 与 $ \mathscr{G}$ 独立, 那么 $ \mathbb{E}[\xi \mid \mathscr{G}]=\mathbb{E} \xi$. 也就是说, $ \mathscr{G} $ 代表的信息对于预测 $ \xi $ 没有任何作用.</p>
+</li>
+</ol>
+<h2 id="3-Discrete-Markov-Chain"><a href="#3-Discrete-Markov-Chain" class="headerlink" title="3. Discrete Markov Chain"></a>3. Discrete Markov Chain</h2><ul>
+<li><strong>P</strong> denote the one-step transition matrix of probabilities </li>
+<li>A state $i$ is said to be <strong>absorbing</strong> if once entered they are never left</li>
+<li>the n-step transition probabilities ,$P_{i,j}^n$ to be the probability that a process in state i will be in state j after n additional transitions.</li>
+<li>Two states that <strong>communicate</strong> are said to be in the same <strong>class</strong>. </li>
+<li>$f_{i,j}^n$ to be the probability that, starting in i, the <strong>first transition</strong> into j occurs at time n.</li>
+<li>State i is said to be <strong>recurrent</strong> if $f_{i,i}=1$ and <strong>transient</strong> if $f_{i,i}&lt;1$</li>
+<li>State i is said to be <strong>recurrent</strong> if $\sum_{n=0}^{\infty} P_{i, i}^{n}=\infty$ and <strong>transient</strong> if $\sum_{n=0}^{\infty} P_{i, i}^{n}&lt;\infty$</li>
+<li>$P_{i, j}^{n}=f_{i, j}^{n}+f_{i, j}^{n-1} P_{j, j}^{1}+\cdots+f_{i, j}^{1} P_{i, i}^{n-1} \quad n \geq 1$</li>
+</ul>
+<h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><p>Let $P_{i, j}(z)=\sum_{n=0}^{\infty} P_{i, j}^{n} z^{n}$ be the probability generating function of number of transition entering state $j$ starting from state $i$ and let $\delta_{i, j}=\left\{\begin{array}{cc}1 &amp; \text { if } i=j \ 0 &amp; \text { otherwise. }\end{array}\right.$ Then $P_{i, j}(z)=\delta_{i, j}+f_{i, j}(z) P_{j, j}(z)$. In particular, </p>
+<script type="math/tex; mode=display">
+P_{i, i}(z)=\frac{1}{1-f_{i, i}(z)}</script><h4 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><p>Let $T$ denote the set of all transient states. If $j$ is recurrent, then the set of probabilities $\left\{f_{i, j}, i \in T\right\}$ satisfies</p>
+<script type="math/tex; mode=display">
+f_{i, j}=\sum_{k \in T} P_{i, k} f_{k, j}+\sum_{k \in R_{j}} P_{i, k}, \quad i \in T,</script><p>where $R_{j}$ denotes the set of recurrence states communicating with $j$.</p>
+<h4 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem 3"></a>Theorem 3</h4><p>Assuming that successive plays of the game are independent, what is the probability that, starting with $i$ units, the gambler’s fortune will reach $N$ before reaching 0?</p>
+<p><img src="/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/pic5-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<script type="math/tex; mode=display">
+P_{i}=\left\{\begin{array}{cc}
+\frac{1-(q / p)^{i}}{1-(q / p)^{N}}, & \text { if } p \neq \frac{1}{2} \\
+\frac{i}{N}, & \text { if } p=\frac{1}{2}
+\end{array}\right.</script><p>The expected number of bets that the gambler starting at $k, 0 &lt; k &lt; N$, will reach $0$ or $N$ is</p>
+<script type="math/tex; mode=display">
+m_{k}=\left\{\begin{array}{cl}
+\frac{1}{2 p-1}\left[N \frac{1-(q / p)^{k}}{1-(q / p)^{N}}-k\right] & \text { if } p \neq \frac{1}{2} \\
+N k-k^{2} & \text { if } p=\frac{1}{2}
+\end{array}\right.</script><ul>
+<li><p>let $m_{i,j}$ denote the expected number of visits in state $j$, given that </p>
+<p>it starts in state $i$.</p>
+</li>
+<li><p>$m_{i, j}=\delta_{i, j}+\sum_{k} P_{i, k} m_{k, j}$, $M=I_{t}+P_{T} M\to M=\left(I_{t}-P_{T}\right)^{-1}$</p>
+</li>
+<li><p>$f_{i, j}=\frac{m_{i, j}-\delta_{i, j}}{m_{j, j}}$</p>
+</li>
+<li><p>A state with period 1 is said to be <strong>aperiodic</strong></p>
+</li>
+<li><p>$\mu_{i,j}$ denote the expected number of transition need to return state $i$. That is, $\mu_{i,i}=\sum_{n=1}^\infty nf_{i,i}^n$</p>
+</li>
+<li><p>If the expected recurrence time is finite then this is called <strong>positive-recurrent</strong>; if the expected recurrence time is infinite then this is called <strong>null recurrent</strong>. Positive recurrent, aperiodic states are called <strong>ergodic</strong>.</p>
+</li>
+</ul>
+<h4 id="Stirling’s-approximation"><a href="#Stirling’s-approximation" class="headerlink" title="Stirling’s approximation"></a>Stirling’s approximation</h4><p>for $n$ large</p>
+<script type="math/tex; mode=display">
+n!\approx\sqrt{2\pi n}(\frac n e)^n</script><h3 id="1-dimensional-Simple-Random-Walk"><a href="#1-dimensional-Simple-Random-Walk" class="headerlink" title="1-dimensional Simple Random Walk"></a>1-dimensional Simple Random Walk</h3><p><img src="/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/pic5-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<ul>
+<li>The chain is recurrent when $p=\frac12$ and transient if $p\ne\frac12$</li>
+</ul>
+<p>Because  $f_{0,1}(z)=pz+(qz)f_{0,1}(z)f_{-1,0}(z)=pz+(qz)f_{0,1}(z)^2$</p>
+<p>we obtain</p>
+<script type="math/tex; mode=display">
+f_{0,1}(z)=\frac{1-\sqrt{1-4pqz^2}}{2qz}=p z+\cdots+\frac{(2 n-2) !}{n !(n-1) !} p^{n} q^{n-1} z^{2 n-1}+\cdots</script><p>So $p_{2n-1}=\frac{(2 n-2) !}{n !(n-1) !} p^{n} q^{n-1}$. As the same $q_{2n-1}=\frac{(2 n-2) !}{n !(n-1) !} p^{n-1} q^{n}$.</p>
+<p>Then</p>
+<script type="math/tex; mode=display">
+f_{0,0}(z)=(p z) f_{1,0}(z)+(q z) f_{-1,0}(z)=(p z) f_{0,-1}(z)+(q z) f_{0,1}(z)=1-\sqrt{1-4 p q z^{2}}</script><p>And</p>
+<script type="math/tex; mode=display">
+f_{0,0}=f_{0,0}(1)=1-\sqrt{1-4 p q}=1-\sqrt{(p+q)^{2}-4 p q}=1-\sqrt{(p-q)^{2}}=1-|p-q|</script><p>if $p=q$</p>
+<script type="math/tex; mode=display">
+\mu_{i,i}=f'_{0,0}(1)=\frac z{\sqrt{1-z^2}}\bigg|_{z=1}=\infty</script><ul>
+<li>$\pi_j=\sum_i\pi_jP_{i,j}$ is called <strong>stationary</strong> probability. </li>
+<li>$\pi_j=\lim_{n\to\infty}P_{i,j}^n$ and $\pi P=\pi\to\pi(P-I)=0$</li>
+</ul>
+<p>For an irreducible Markov chain, suppose state $i$ has period $d$</p>
+<script type="math/tex; mode=display">
+\lim_{n\to\infty}P_{i,i}^{nd}=\frac d{\mu_{i,i}}=d\pi_i</script><h2 id="4-Poisson-Process"><a href="#4-Poisson-Process" class="headerlink" title="4. Poisson Process"></a>4. Poisson Process</h2><script type="math/tex; mode=display">
+P(N(t+s)-N(s)=n)=e^{-\lambda t} \frac{(\lambda t)^{n}}{n !}, \quad n=0,1, \cdots</script><ul>
+<li><p>$\lambda$ is called the rate of the process</p>
+</li>
+<li><p>$\{T_n,n=1,2,…\}$ is called the <strong>sequence of interarrival times</strong>. </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P\left(T_{2}>t \mid T_{1}=s\right) &=P\left(0 \text { events in }(s, s+t] \mid T_{1}=s\right) \\
+&=P(0 \text { events in }(s, s+t]) \\
+&=e^{-\lambda t}
+\end{aligned}</script><p>$T_1$ has an exponential distribution with mean $1/\lambda$. </p>
+</li>
+<li><p>$S_n=\sum_{i=1}^nT_i,n\ge 1$ called the <strong>waiting time</strong> until the nth event</p>
+<script type="math/tex; mode=display">
+M_{S_{n}}(t)=E\left[e^{t\left(T_{1}+\cdots+T_{n}\right)}\right]=E\left[e^{t T_{1}}\right] \cdots E\left[e^{t T_{n}}\right]=\left(\frac{\lambda}{\lambda-t}\right)^{n} \quad \text { for } t<\lambda</script><p>$S_n$ has a gamma distribution with parameters n and $\lambda$, and $P\left(S_{n} \leq t\right)=P(N(t) \geq n)$</p>
+</li>
+</ul>
+<h2 id="5-Brownian-Motion"><a href="#5-Brownian-Motion" class="headerlink" title="5. Brownian Motion"></a>5. Brownian Motion</h2><p>Define</p>
+<script type="math/tex; mode=display">
+\Delta x=\sigma \sqrt{\Delta t}, \quad \text { and } \quad p=\frac{1}{2}\left(1+\frac{\mu}{\sigma} \sqrt{\Delta t}\right)</script><p>the position at time t, is</p>
+<script type="math/tex; mode=display">
+W_{n}(t)=\sigma \sqrt{\Delta t}\left(X_{1}+\cdots+X_{n}\right)</script><p>Now</p>
+<script type="math/tex; mode=display">
+E\left[X_{i}\right]=1(p)-1(1-p)=2 p-1=\frac{\mu}{\sigma} \sqrt{\Delta t} \quad \text { and } \quad \operatorname{Var}\left[X_{i}\right]=E\left[X_{i}^{2}\right]-E\left[X_{i}\right]^{2}=1-(2 p-1)^{2}</script><p>Then</p>
+<script type="math/tex; mode=display">
+E[W_n(t)]=\mu t\qquad Var(W_n(t))=\sigma^2t(1-(2p-1)^2)</script><h4 id="Theorem-1-1"><a href="#Theorem-1-1" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><p>Set $W\left(t_{1}\right)=x_{1}, W\left(t_{2}\right)=x_{2}, \cdots, W\left(t_{m}\right)=x_{m}$</p>
+<script type="math/tex; mode=display">
+f(x_1,x_2,\cdots,x_m)=\frac{1}{(2 \pi)^{m / 2} \sigma^{m} \sqrt{t_{1}\left(t_{2}-t_{1}\right) \cdots\left(t_{m}-t_{m-1}\right)}} e^{-\frac{1}{2 \sigma^{2}}\left[\frac{\left.\left(x_{1}-\mu_{1}\right)^{2}\right|}{t_{1}}+\frac{\left(\left(x_{2}-x_{1}\right)-\mu\left(t_{2}-t_{1}\right)\right)^{2}}{t_{2}-t_{1}}+\cdots+\frac{\left(\left(x_{m}-x_{m-1}\right)-\mu\left(t_{m}-t_{m-1}\right)\right)^{2}}{t_{m}-t_{m-1}}\right]}</script><h4 id="Theorem-2-1"><a href="#Theorem-2-1" class="headerlink" title="Theorem 2"></a>Theorem 2</h4><p>The probability of $W(t)+x$ starting at x will hit A before B where $B\le x\le A$ is</p>
+<script type="math/tex; mode=display">
+P(\text{up to A beforce down to B | starting at x})=\left\{\begin{array}{cl}
+\frac{1-e^{-2 \mu(x-B) / \sigma^{2}}}{1-e^{-2 \mu(A-B) / \sigma^{2}},} & \text { if } \mu \neq 0 \\
+\frac{x-B}{A-B}, & \text { if } \mu=0
+\end{array}\right.</script><p>If $\mu&gt;0$, by letting $A\to\infty$,</p>
+<script type="math/tex; mode=display">
+P(\text{never goes down to B | starting at x})=\lim _{A \rightarrow \infty} \frac{1-e^{-2 \mu(x-B) / \sigma^{2}}}{1-e^{-2 \mu(A-B) / \sigma^{2}}}=1-e^{-\frac{2 \mu(x-B)}{\sigma^{2}}}</script><h4 id="Theorem-3-1"><a href="#Theorem-3-1" class="headerlink" title="Theorem 3"></a>Theorem 3</h4><p>Define the stopping time T by $T=min\{t:W(t)=A\quad or\quad W(t)=B\}$</p>
+<script type="math/tex; mode=display">
+E[T]=\left\{\begin{array}{cl}
+\frac{(A-x)(x-B)}{\sigma^{2}} & \text { if } \mu=0 \\
+\frac{(A-x)\left(e^{2 \mu(x-B) / \sigma^{2}}-1\right)+(x-B)\left(e^{-2 \mu(A-x) / \sigma^{2}}-1\right)}{\mu\left(e^{2 \mu(x-B) / \sigma^{2}}-e^{-2 \mu(A-x) / \sigma^{2}}\right)} & \text { if } \mu \neq 0
+\end{array}\right.</script><p>Let $T_A$ denote the first time W(t) is equal to A, by setting $B\to\infty$</p>
+<script type="math/tex; mode=display">
+E[T_A]=\frac{A-x}{\mu}+\lim _{x - B \rightarrow \infty} \frac{e^{-2 \mu(A-x) / \sigma^{2}}-1}{\mu e^{2 \mu(x-B) / \sigma^{2}}\left(2 \mu / \sigma^{2}\right)}=\frac{A-x}{\mu}</script><h4 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem 4"></a>Theorem 4</h4><script type="math/tex; mode=display">
+\begin{aligned}
+&P\left(T_{A} \leq t\right)=P\left(\max _{0 \leq s \leq t} W(s) \geq A\right)=e^{\frac{2 \mu(A-x)}{\sigma^{2}}}\left(1-N\left(\frac{A-x+\mu t}{\sigma \sqrt{t}}\right)\right)+\left(1-N\left(\frac{A-x-\mu t}{\sigma \sqrt{t}}\right)\right) \\
+&P\left(T_{B} \leq t\right)=P\left(\min _{0 \leq s \leq t} W(s) \leq B\right)=e^{-\frac{2 \mu(x-B)}{\sigma^{2}}}\left(1-N\left(\frac{x-B-\mu t}{\sigma \sqrt{t}}\right)\right)+\left(1-N\left(\frac{x-B+\mu t}{\sigma \sqrt{t}}\right)\right)
+\end{aligned}</script><h2 id="6-Geometric-Brownian-Motion"><a href="#6-Geometric-Brownian-Motion" class="headerlink" title="6. Geometric Brownian Motion"></a>6. Geometric Brownian Motion</h2><script type="math/tex; mode=display">
+S(t)=S(0)e^{W(t)}=S(0)e^{\sigma Z(t)+\mu t}</script><p>$ln(S(t)/S(0))$ is normally distributed with parameters $(\mu t,\sigma^2t)$.Then $S(t)/S(0)$ has a lognormal distribution with parameters $(\mu t,\sigma^2 t)$E</p>
+<script type="math/tex; mode=display">
+E[S(t)]=S(0)e^{(\mu+\sigma^2/2)t}</script><h4 id="Theorem-1-2"><a href="#Theorem-1-2" class="headerlink" title="Theorem 1"></a>Theorem 1</h4><p>The covariance of $S(t_1)$ and $S(t_2)$, for $t_1&lt;t_2$</p>
+<p>Let $Q_{1}=S\left(t_{1}\right) / S(0)=e^{\mu t_{1}+\sigma Z\left(t_{1}\right)}$ and $Q_{2}=S\left(t_{2}\right) / S\left(t_{1}\right)=e^{\mu\left(t_{2}-t_{1}\right)+\sigma Z\left(t_{2}-t_{1}\right)}$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E\left[S\left(t_{1}\right) S\left(t_{2}\right)\right] &=S(0)^{2} E\left[Q_{1}^{2} Q_{2}\right] \\
+&=S(0)^{2} E\left[Q_{1}^{2}\right] E\left[Q_{2}\right] \\
+&=S(0)^{2} e^{2 \mu t_{1}+2 \sigma^{2} t_{1}} e^{\mu\left(t_{2}-t_{1}\right)+0.5 \sigma^{2}\left(t_{2}-t_{1}\right)} \\
+&=S(0)^{2} e^{\mu\left(t_{2}+t_{1}\right)+\sigma^{2}\left(1.5 t_{1}+0.5 t_{2}\right)}
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+Cov\left(S\left(t_{1}\right), S\left(t_{2}\right)\right)&=E\left[S\left(t_{1}\right) S\left(t_{2}\right)\right]-E\left[S\left(t_{1}\right) \right]E\left[S\left(t_{2}\right) \right]\\
+&=S(0)^{2}\left(e^{\mu\left(t_{1}+t_{2}\right)+\sigma^{2}\left(1.5 t_{1}+0.5 t_{2}\right)}-e^{\mu\left(t_{1}+t_{2}\right)+0.5 \sigma^{2}\left(t_{1}+t_{2}\right)}\right)\\
+&=S(0)^{2} e^{\left(\mu+0.5 \sigma^{2}\right)\left(t_{1}+t_{2}\right)}\left(e^{\sigma^{2} t_{1}}-1\right)
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\rho_{S\left(t_{1}\right), S\left(t_{2}\right)}&=\frac{\operatorname{Cov}\left(S\left(t_{1}\right), S\left(t_{2}\right)\right)}{\sigma_{S\left(t_{1}\right)} \sigma_{S\left(h_{2}\right)}}\\
+&=\frac{S(0)^{2} e^{\left(\mu+0.5 \sigma^{2}\right)\left(\left(_{1}+t_{2}\right)\right.}\left(e^{\sigma^{2} t_{1}}-1\right)}{\sqrt{S(0)^{2} e^{2\left(\mu+0.5 \sigma^{2}\right) x_{1}}\left(e^{\sigma^{2} t_{1}}-1\right) S(0)^{2} e^{2\left(\mu+0.5 \sigma^{2}\right) r_{2}}\left(e^{\sigma^{2} t_{2}}-1\right)}}\\
+&=\sqrt{\frac{e^{\sigma^{2} t_{1}}-1}{e^{\sigma^{2} t_{2}}-1}}
+\end{aligned}</script><p>Suppose $S_1\left(t\right)=S_1(0)e^{\mu_1 t+\sigma_1 Z_2\left(t\right)}$ and $S_2\left(t\right)=S_2(0)e^{\mu_2 t+\sigma_2 Z_2\left(t\right)}$</p>
+<script type="math/tex; mode=display">
+Cov\left(S_{1}(t), S_{2}(t)\right)=S_{1}(0) S_{2}(0) e^{\left(\mu_{1}+\mu_{2}\right) t+\frac{1}{2}\left(\sigma_{1}^{2}+\sigma_{2}^{2}\right) t}\left(e^{\rho \sigma_{1} \sigma_{2} t}-1\right)</script><script type="math/tex; mode=display">
+\rho_{S_{1}(t), S_{2}(t)}=\frac{e^{\rho \sigma_{1} \sigma_{2} t}-1}{\sqrt{\left(e^{\rho \sigma_{1}^{2} t}-1\right)\left(e^{\rho \sigma_{2}^{2} t}-1\right)}}</script><h2 id="7-Price-jump"><a href="#7-Price-jump" class="headerlink" title="7. Price jump"></a>7. Price jump</h2><p>$S_J(t)$ denote the stock price (with jump) at time t</p>
+<script type="math/tex; mode=display">
+S_J(t)=S(t)\prod_{i=1}^{N(t)} J_{i},\quad t\ge 0</script><script type="math/tex; mode=display">
+\begin{aligned}
+E\left[\prod_{i=1}^{N(t)} J_{i}\right] &=\sum_{n=0}^{\infty} E\left[\prod_{i=1}^{N(t)} J_{i} \mid N(t)=n\right] P(N(t)=n) \\
+&=\sum_{n=0}^{\infty}(E[J])^{n} \frac{e^{-\lambda t}(\lambda t)^{n}}{n !} \\
+&=e^{-\lambda t} \sum_{n=0}^{\infty} \frac{(\lambda E[J] t)^{n}}{n !} \\
+&=e^{-\lambda t(1-E[J])}
+\end{aligned}</script><script type="math/tex; mode=display">
+E\left[S_{J}(t)\right]=E\left[S(t) \prod_{i=1}^{N(t)} J_{i}\right] \stackrel{\text { independence }}{=} E[S(t)] E\left[\prod_{i=1}^{N(t)} J_{i}\right]=S(0) e^{\left(\mu+\sigma^{2} / 2-\lambda(1-E[J]) r\right.}</script><p>Set $\mu=r-\sigma^2/2+\lambda(1-E[J])$</p>
+<p>If the jumps $J_i$ have a lognormal distribution $X_i=ln(J_i),i\ge 1$ with mean $\mu_0$ and variance $\sigma_0^2$.The no-arbitrage cost of a European call option having strike price K and expiration time T is</p>
+<script type="math/tex; mode=display">
+e^{-r T} E\left[\left(S_{J}(T)-K\right)^{+}\right]=e^{-r T} E\left[\left(S(0) e^{W(T)} \prod_{i=1}^{N(T)} J_{i}-K\right)^{+}\right]=e^{-r T} E\left[\left(S(0) e^{W(T)+\sum_{i=1}^{N(T)} X_{i}}-K\right)^{+}\right]</script><p>eq to</p>
+<script type="math/tex; mode=display">
+\sum_{n=0}^\infty e^{-\lambda E[J]T}\frac{(\lambda E[J]T)^n}{n!}C(S(0),T,K,\sigma(n),r(n))</script><p>where</p>
+<script type="math/tex; mode=display">
+\sigma(n)=\sqrt{\sigma^{2}+\frac{n \sigma_{0}^{2}}{T}}, \quad E[J]=e^{\mu_{0}+\frac{\sigma_{0}^{2}}{2}} \quad \text { and } \quad r(n)=\mu+\sigma^{2} / 2+\lambda(1-E[J])+\frac{n \ln E[J]}{T}</script><p>A jump is called <strong>pure</strong> if the jump happens at a specific time</p>
+<script type="math/tex; mode=display">
+S_J(t)=S(t)U^{N_1(t)}D^{N_2(t)},\quad t\ge 0</script><p>where</p>
+<script type="math/tex; mode=display">
+N_1(t)\sim Poisson(\lambda p),N_2(t)\sim Poisson(\lambda (1-p))</script><script type="math/tex; mode=display">
+E\left[S_{J}(t)\right]=E\left[S(t) U^{N_{1}(t)} D^{N_{2}(t)}\right]=E[S(t)] E\left[U^{N_{1}(t)}\right] E\left[D^{N_{2}(t)}\right]=S(0) e^{\left(\mu+\sigma^{2} / 2+\lambda p(U-1)+\lambda(1-p)(D-1)\right) t}</script><p>Under the above assumption, the no-arbitrage cost of a European call option having strike price K and expiration time T is given by</p>
+<script type="math/tex; mode=display">
+\sum_{m=0}^{\infty} \sum_{n=0}^{\infty} e^{-\lambda p T} \frac{(\lambda p T)^{m}}{m !} e^{-\lambda(1-p) T} \frac{(\lambda(1-p) T)^{n}}{n !} C\left(S(0) U^{m} D^{n}, T, K, \sigma, r\right)</script>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Stochastic-Process/">#Stochastic Process</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】高等数学复习笔记-随机过程</div>
+      <div>http://achlier.github.io/2022/07/29/高等数学复习笔记-随机过程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 29, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%AB%98%E7%AD%89%E6%A6%82%E7%8E%87/" title="【笔记】高等数学复习笔记-高等概率">
+                        <span class="hidden-mobile">【笔记】高等数学复习笔记-高等概率</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
