@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记和作业代码分析； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要结合两版本的作业进行记录；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】吴恩达机器学习课程">
+<meta property="og:url" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记和作业代码分析； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要结合两版本的作业进行记录；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic4-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic6-2.jpg">
+<meta property="article:published_time" content="2022-08-03T05:12:29.000Z">
+<meta property="article:modified_time" content="2022-08-03T22:34:03.445Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Complex Number">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic4-3.jpg">
+  
+  
+  
+  <title>【课程】吴恩达机器学习课程 - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】吴恩达机器学习课程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-03 13:12" pubdate>
+          August 3, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          114 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】吴恩达机器学习课程</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于吴恩达机器学习 - Machine Learning Specialization <a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/machine-learning-introduction">课程</a> 的笔记和作业代码分析；</p>
+<p>本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要结合两版本的作业进行记录；</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="Course-1-Supervised-Machine-Learning-Regression-and-Classification"><a href="#Course-1-Supervised-Machine-Learning-Regression-and-Classification" class="headerlink" title="Course 1 : Supervised Machine Learning: Regression and Classification"></a>Course 1 : Supervised Machine Learning: Regression and Classification</h1><p>In the first course of the Machine Learning Specialization, you will:</p>
+<ul>
+<li>Build machine learning models in Python using popular machine learning libraries NumPy and scikit-learn. </li>
+<li>Build and train supervised machine learning models for prediction and binary classification tasks, including linear regression and logistic regression</li>
+</ul>
+<h2 id="Week-1-Introduction-to-Machine-Learning"><a href="#Week-1-Introduction-to-Machine-Learning" class="headerlink" title="Week 1 : Introduction to Machine Learning"></a>Week 1 : Introduction to Machine Learning</h2><h3 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h3><h4 id="1-1-监督学习-Supervised-Learning"><a href="#1-1-监督学习-Supervised-Learning" class="headerlink" title="1.1 监督学习 Supervised Learning"></a>1.1 监督学习 Supervised Learning</h4><ul>
+<li>回归问题 - 连续输出</li>
+<li>分类问题（支持向量机） - 离散输出</li>
+</ul>
+<h4 id="1-2-无监督学习-Unsupervised-Learning"><a href="#1-2-无监督学习-Unsupervised-Learning" class="headerlink" title="1.2 无监督学习 Unsupervised Learning"></a>1.2 无监督学习 Unsupervised Learning</h4><ul>
+<li><p>聚类算法 - 把个体聚类到不同的类或不同类型的组</p>
+<ul>
+<li>谷歌新闻搜索非常多的新闻事件，自动地将同一主题的新闻事件聚类到一起</li>
+<li>组织大型计算机集群，判断什么样的机器易于协同地工作，使数据中心工作得更高效</li>
+<li>进行社交网络的分析，自动地将熟悉的人分在一起</li>
+<li>通过检索消费者信息，自动地发现市场分类，并地把顾客划分到不同的细分市场中，更有效地在不同的细分市场一起进行销售产品</li>
+<li>天文数据分析</li>
+</ul>
+</li>
+<li><p>鸡尾酒会问题 cocktail party problem - 将两个说话的声音区分开来</p>
+</li>
+</ul>
+<h3 id="2-Linear-Regression-with-One-Variable"><a href="#2-Linear-Regression-with-One-Variable" class="headerlink" title="2. Linear Regression with One Variable"></a>2. Linear Regression with One Variable</h3><h4 id="2-1-Model-Representation"><a href="#2-1-Model-Representation" class="headerlink" title="2.1 Model Representation"></a>2.1 Model Representation</h4><p>我们将要用来描述这个回归问题的标记如下:</p>
+<ul>
+<li>$m$ 代表训练集中实例的数量</li>
+<li>$x$  代表特征/输入变量</li>
+<li>$y$ 代表目标变量/输出变量</li>
+<li>$\left( x,y \right)$ 代表训练集中的实例</li>
+<li>$(x^{(i)},y^{(i)})$ 代表第$i$ 个观察实例</li>
+<li>$h$  代表学习算法的解决方案或函数也称为假设（<strong>hypothesis</strong>）</li>
+<li>$\theta_{0}$ 和 $\theta_{1}$ 代表需要训练的参数（<strong>parameters</strong>）</li>
+</ul>
+<p>因为只含有一个特征/输入变量，因此这样的问题叫作单变量线性回归问题</p>
+<script type="math/tex; mode=display">
+h_\theta \left( x \right)=\theta_{0} + \theta_{1}x</script><h4 id="2-2-Cost-Function"><a href="#2-2-Cost-Function" class="headerlink" title="2.2 Cost Function"></a>2.2 Cost Function</h4><p>我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。 即使得代价函数 $J$ 最小</p>
+<script type="math/tex; mode=display">
+J \left( \theta_0, \theta_1 \right) = \frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}</script><blockquote>
+<p>此处 $\frac12$ 是为了在后面求导的时候能消去 2，方便运算</p>
+</blockquote>
+<p>此处采用 <strong>Squared error cost function</strong> 是因为，对于大多数问题，特别是回归问题，都是一个合理的选择。还有其他的代价函数也能很好地发挥作用，但 <strong>Squared error cost function</strong> 是解决回归问题最常用的手段了。</p>
+<h4 id="2-3-Gradient-Descent-Intuition"><a href="#2-3-Gradient-Descent-Intuition" class="headerlink" title="2.3 Gradient Descent Intuition"></a>2.3 Gradient Descent Intuition</h4><p>梯度下降算法为</p>
+<script type="math/tex; mode=display">
+\theta_{j}:=\theta_{j}-\alpha \frac{\partial }{\partial \theta_{j}}J\left(\theta \right)</script><p>在梯度下降法中，当我们接近局部最低点时，梯度下降法会自动采取更小的幅度，这是因为当我们接近局部最低点时，很显然在局部最低时导数等于零，所以当我们接近局部最低时，导数值会自动变得越来越小，所以梯度下降将自动采取较小的幅度，这就是梯度下降的做法。</p>
+<p>其中 $\alpha$ 是学习率（<strong>learning rate</strong>），决定了我们沿着能让代价函数下降程度最大的方向向下迈出的步子有多大。</p>
+<ul>
+<li>如果 $\alpha$ 太小，更新可能会很慢，它会需要很多步才能到达全局最低点</li>
+<li>如果 $\alpha$ 太大，梯度下降法可能会越过最低点，会导致无法收敛，甚至发散。</li>
+</ul>
+<p>同时，当参数已经处于局部最低点时，梯度下降法将不会改变参数的值，这导致参数最终停留在局部最低而不是全局最优点。</p>
+<blockquote>
+<p>显然，在梯度下降的过程中要考虑合适的学习率与初始值，才能得到好的结果</p>
+</blockquote>
+<p>更深入的理解可以观看B站视频《图解机器学习的数学直觉》 中，图解微积分  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iW411T781?p=36&amp;share_source=copy_pc">Jacobian</a> 和 [<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iW411T781?p=37">Jacobian matrix</a> 的部分</p>
+<h4 id="2-4-Gradient-Descent-for-Linear-Regression"><a href="#2-4-Gradient-Descent-for-Linear-Regression" class="headerlink" title="2.4 Gradient Descent for Linear Regression"></a>2.4 Gradient Descent for Linear Regression</h4><p>对我们之前的线性回归问题运用梯度下降法，关键在于求出代价函数的导数，即：</p>
+<script type="math/tex; mode=display">
+\frac{\partial }{\partial \theta _{j}}J(\theta _{0},\theta _{1})=\frac{\partial }{\partial \theta _{j}}\frac{1}{2m}\sum\limits_{i=1}^{m}{\left( h_{\theta }(x^{(i)})-y^{(i)} \right)}^{2}</script><ul>
+<li><p>$j=0$  时：$\frac{\partial }{\partial \theta _{0}}J(\theta _{0},\theta _{1})=\frac{1}{m}\sum\limits_{i=1}^{m}{\left( h_{\theta }(x^{(i)})-y^{(i)} \right)}$</p>
+</li>
+<li><p>$j=1$  时：$\frac{\partial }{\partial \theta _{1}}J(\theta _{0},\theta _{1})=\frac{1}{m}\sum\limits_{i=1}^{m}{\left( \left( h_{\theta }(x^{(i)})-y^{(i)} \right)\cdot x^{(i)} \right)}$</p>
+</li>
+</ul>
+<blockquote>
+<p>此处采用的是<strong>批量梯度下降</strong> （batch gradient descent），即在梯度下降的每一步中，用到了所有的训练样本 （$m$) 来进行函数优化</p>
+</blockquote>
+<p>则算法改写成：</p>
+<script type="math/tex; mode=display">
+\theta_{0}:=\theta_{0}-a\frac{1}{m}\sum\limits_{i=1}^{m}{ \left(h_{\theta }(x^{(i)})-y^{(i)} \right)}</script><script type="math/tex; mode=display">
+\theta_{1}:=\theta_{1}-a\frac{1}{m}\sum\limits_{i=1}^{m}{\left( \left(h_{\theta }(x^{(i)})-y^{(i)} \right)\cdot x^{(i)} \right)}</script><p><strong>线性回归的代价函数都是凸函数</strong>（convex function），因此不用担心仅仅得到局部最优的结果。</p>
+<blockquote>
+<p>注意，国内对凹凸函数的定义与国外相反，仅有经济学上是一致的，在这我们定义向下凸出的为凸函数。</p>
+</blockquote>
+<h3 id="3-Linear-Algebra-Review"><a href="#3-Linear-Algebra-Review" class="headerlink" title="3. Linear Algebra Review"></a>3. Linear Algebra Review</h3><p>此部分由于过于基础可以参考 <a href="https://achlier.github.io/2022/07/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数单独的笔记 </a> 进行学习</p>
+<h2 id="Week-2-linear-regression-with-multiple-variables"><a href="#Week-2-linear-regression-with-multiple-variables" class="headerlink" title="Week 2 : linear regression with multiple variables"></a>Week 2 : linear regression with multiple variables</h2><h3 id="4-Multivariate-Linear-Regression"><a href="#4-Multivariate-Linear-Regression" class="headerlink" title="4. Multivariate Linear Regression"></a>4. Multivariate Linear Regression</h3><h4 id="4-1-Multiple-Features"><a href="#4-1-Multiple-Features" class="headerlink" title="4.1 Multiple Features"></a>4.1 Multiple Features</h4><p>增添更多特征 $\left( x_{1},x_{2},…,x_{n} \right)$ 后，我们引入一系列新的注释：</p>
+<ul>
+<li>$n$ 代表特征的数量</li>
+<li>${x^{\left( i \right)}}$代表第 $i$ 个训练实例，是特征矩阵中的第$i$行，是一个<strong>向量</strong>（<strong>vector</strong>）</li>
+<li>$x_{j}^{\left( i \right)}$代表特征矩阵中第 $i$ 行的第 $j$ 个特征，也就是第 $i$ 个训练实例的第 $j$ 个特征</li>
+<li>支持多变量的假设 $h$ 表示为：$h_{\theta}\left( x \right)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+…+\theta_{n}x_{n}$</li>
+<li>因此公式可以简化为：$h_{\theta} \left( x \right)=\theta^{T}X$</li>
+</ul>
+<h4 id="4-2-Gradient-Descent-for-Multiple-Variables"><a href="#4-2-Gradient-Descent-for-Multiple-Variables" class="headerlink" title="4.2 Gradient Descent for Multiple Variables"></a>4.2 Gradient Descent for Multiple Variables</h4><p>为了使得公式能够简化一些，引入$x_{0}=1$</p>
+<p>多变量线性回归的批量梯度下降算法，当$n&gt;=1$时，</p>
+<script type="math/tex; mode=display">
+\theta_j:=\theta_j-a\frac{1}{m}\sum\limits_{i=1}^{m}(h_{\theta }(x^{(i)})-y^{(i)})x_{j}^{(i)}</script><h5 id="【Python-代码】"><a href="#【Python-代码】" class="headerlink" title="【Python 代码】"></a>【Python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">computeCost</span>(<span class="hljs-params">X, y, theta</span>):<br>    inner = np.power(((X * theta.T) - y), <span class="hljs-number">2</span>)<br>    <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(inner) / (<span class="hljs-number">2</span> * <span class="hljs-built_in">len</span>(X))<br></code></pre></td></tr></table></figure>
+<h4 id="4-3-Gradient-Descent-in-Practice-I-Feature-Scaling"><a href="#4-3-Gradient-Descent-in-Practice-I-Feature-Scaling" class="headerlink" title="4.3 Gradient Descent in Practice I - Feature Scaling"></a>4.3 Gradient Descent in Practice I - Feature Scaling</h4><p>在我们面对多维特征问题的时候，我们需要保证这些特征都具有相近的尺度，这将帮助梯度下降算法更快地收敛</p>
+<p>考虑到我们设定 $x_0=1$ , 因此我们希望变量的值都在 $[-1,1]$ 左右</p>
+<p>如果不采用 Feature Scaling ，而直接进行计算，可能会进入如下图红色路径需要多次迭代才能收敛的状态</p>
+<p><img src="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic4-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="【Mean-normalization】"><a href="#【Mean-normalization】" class="headerlink" title="【Mean normalization】"></a>【Mean normalization】</h5><p>我们在对数据进行处理的时候可以直接除一个数，或者是使用均值归一化</p>
+<script type="math/tex; mode=display">
+x_n=\frac{x_n-\mu_n}{s_n}</script><p>其中 $\mu_n$是平均值，$s_n$是标准差</p>
+<h4 id="4-4-Gradient-Descent-in-Practice-II-Learning-Rate"><a href="#4-4-Gradient-Descent-in-Practice-II-Learning-Rate" class="headerlink" title="4.4 Gradient Descent in Practice II - Learning Rate"></a>4.4 Gradient Descent in Practice II - Learning Rate</h4><p>梯度下降算法的每次迭代受到学习率的影响，如果学习率 $\alpha$ 过小，则达到收敛所需的迭代次数会非常高；如果学习率过 $\alpha$  大，每次迭代可能不会减小代价函数，反而会越过局部最小值导致无法收敛。我们可以通过观察迭代次数与 $J(\theta)$ 的关系来判断学习率取值的好坏。</p>
+<p>通常可以考虑尝试些学习率：$\alpha=…,0.01，0.03，0.1，0.3，1，3，10,…$</p>
+<h4 id="4-5-Features-and-Polynomial-Regression"><a href="#4-5-Features-and-Polynomial-Regression" class="headerlink" title="4.5 Features and Polynomial Regression"></a>4.5 Features and Polynomial Regression</h4><p>线性回归并不适用于所有数据，有时我们需要曲线来适应我们的数据，比如一个二次方模型：</p>
+<script type="math/tex; mode=display">
+h_{\theta}\left( x \right)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}^2</script><h4 id="4-6-Normal-Equation"><a href="#4-6-Normal-Equation" class="headerlink" title="4.6 Normal Equation"></a>4.6 Normal Equation</h4><p>到目前为止，我们都在使用梯度下降算法，但是对于某些线性回归问题，<strong>Normal Equation</strong> 作为更好的解决方案可以一次性解出最优的值。</p>
+<script type="math/tex; mode=display">
+\theta =\left( {X^T}X \right)^{-1}X^{T}y</script><p>在使用这个方法的时候，Feature Scaling 可以不用做</p>
+<p>梯度下降与正规方程的比较：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">梯度下降</th>
+<th style="text-align:center">正规方程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">需要选择学习率$\alpha$</td>
+<td style="text-align:center">不需要选择学习率$\alpha$</td>
+</tr>
+<tr>
+<td style="text-align:center">需要多次迭代</td>
+<td style="text-align:center">一次运算得出</td>
+</tr>
+<tr>
+<td style="text-align:center">当特征数量$n$大时也能较好适用</td>
+<td style="text-align:center">需要计算$\left( X^TX \right)^{-1}$ 如果特征数量n较大则运算代价大，因为矩阵逆的计算时间复杂度为$O\left( n^3 \right)$，通常来说当$n$小于10000 时还是可以接受的</td>
+</tr>
+<tr>
+<td style="text-align:center">适用于各种类型的模型</td>
+<td style="text-align:center">只适用于线性模型，不适合逻辑回归模型等其他模型</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="【推导过程】"><a href="#【推导过程】" class="headerlink" title="【推导过程】"></a>【推导过程】</h5><script type="math/tex; mode=display">
+J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}\left( h_{\theta}\left( x^{(i)} \right)-y^{(i)} \right)^{2}</script><script type="math/tex; mode=display">
+h_{\theta}\left( x \right)=\theta^{T}X=\theta_{0}x_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+\cdots+\theta_{n}x_{n}</script><p>将向量表达形式转为矩阵表达形式，则有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+J(\theta )&=\frac{1}{2}\left( X\theta -y\right)^{T}\left( X\theta -y \right)\\
+&=\frac{1}{2}\left( \theta ^{T}X^T-y^{T} \right)\left(X\theta -y \right)\\
+&=\frac{1}{2}\left( \theta ^{T}X^TX\theta -\theta^{T}X^Ty-y^{T}X\theta -y^{T}y \right)
+\end{aligned}</script><p>接下来对$J(\theta )$偏导，需要用到以下几个矩阵的求导法则:</p>
+<ul>
+<li><p>$\frac{dAB}{dB}=A^{T}$ </p>
+</li>
+<li><p>$\frac{dX^{T}AX}{dX}=2AX$                            </p>
+</li>
+</ul>
+<p>所以有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial J\left( \theta  \right)}{\partial \theta }&=\frac{1}{2}\left(2X^TX\theta -X^Ty -(y^{T}X )^{T}-0 \right)\\
+&=\frac{1}{2}\left(2X^TX\theta -X^Ty -X^Ty -0 \right)\\
+&=X^TX\theta -X^Ty
+\end{aligned}</script><p>当等式取 0 时，则有$\theta =\left( X^{T}X \right)^{-1}X^{T}y$</p>
+<h5 id="【python-代码】"><a href="#【python-代码】" class="headerlink" title="【python 代码】"></a>【python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>    <br> <span class="hljs-keyword">def</span> <span class="hljs-title function_">normalEqn</span>(<span class="hljs-params">X, y</span>):<br>    <br>   theta = np.linalg.inv(X.T@X)@X.T@y <span class="hljs-comment">#X.T@X等价于X.T.dot(X)</span><br>    <br>   <span class="hljs-keyword">return</span> theta<br></code></pre></td></tr></table></figure>
+<h2 id="Week-3-Logistic-Regression"><a href="#Week-3-Logistic-Regression" class="headerlink" title="Week 3: Logistic Regression"></a>Week 3: Logistic Regression</h2><h3 id="5-Classification-and-Representation"><a href="#5-Classification-and-Representation" class="headerlink" title="5. Classification and Representation"></a>5. Classification and Representation</h3><h4 id="5-1-Classification"><a href="#5-1-Classification" class="headerlink" title="5.1 Classification"></a>5.1 Classification</h4><p>我们从二元的分类问题开始讨论，将因变量（<strong>dependent variable</strong>）可能属于的两个类分别称为负向类（<strong>negative class</strong>）和正向类（<strong>positive class</strong>），则因变量$y\in { 0,1 \\}$ ，其中 0 表示负向类，1 表示正向类。</p>
+<p>如果我们要用线性回归算法来解决一个分类问题，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签  $y$ 都等于 0 或 1。所以我们在接下来的要研究的算法就叫做<strong>逻辑回归算法</strong>，这个算法的性质是：它的输出值永远在0到 1 之间。</p>
+<h4 id="5-2-Hypothesis-Representation"><a href="#5-2-Hypothesis-Representation" class="headerlink" title="5.2 Hypothesis Representation"></a>5.2 Hypothesis Representation</h4><p>根据线性回归模型我们只能预测连续的值，然而对于分类问题，我们需要输出0或1，我们可以预测：</p>
+<ul>
+<li><p>当$h_\theta\left( x \right)&gt;=0.5$时，预测 $y=1$</p>
+</li>
+<li><p>当$h_\theta\left( x \right)&lt;0.5$时，预测 $y=0$ </p>
+</li>
+</ul>
+<p>逻辑回归模型的假设函数是</p>
+<script type="math/tex; mode=display">
+h_\theta \left( x \right)=g\left(\theta^{T}X \right),\qquad g\left( z \right)=\frac{1}{1+e^{-z}}</script><p>其中 $g$ 代表逻辑函数（<strong>logistic function</strong>）是一个常用的逻辑函数为<strong>S</strong>形函数（<strong>Sigmoid function</strong>）</p>
+<p><img src="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic6-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>$h_\theta \left( x \right)$的作用是，对于给定的输入变量，根据选择的参数计算输出变量为 1 的可能性（<strong>estimated probablity</strong>）即 $h_\theta \left( x \right)=P\left( y=1|x;\theta \right)$</p>
+<h5 id="【python-代码】-1"><a href="#【python-代码】-1" class="headerlink" title="【python 代码】"></a>【python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>    <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sigmoid</span>(<span class="hljs-params">z</span>):<br>    <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-z))<br></code></pre></td></tr></table></figure>
+<h4 id="5-3-Decision-Boundary"><a href="#5-3-Decision-Boundary" class="headerlink" title="5.3 Decision Boundary"></a>5.3 Decision Boundary</h4><p>根据上面绘制出的 <strong>S</strong> 形函数图像，我们知道当</p>
+<ul>
+<li><p>$z\geq0$ 时 $g(z)\geq0.5$，即 $\theta^{T}x&gt;=0$  时，预测 $y=1$</p>
+</li>
+<li><p>$z&lt;0$ 时 $g(z)&lt;0.5$，即 $\theta^{T}x&lt;0$  时，预测 $y=0$</p>
+</li>
+</ul>
+<p>逻辑回归实际上是以 $\theta^{T}=0$ 构成的函数为分界线，将预测为1的区域和预测为 0的区域分隔开。上为正，下为负。这条分界线就被成为<strong>决策边界</strong>（Decision Boundary）</p>
+<h3 id="6-Logistic-Regression-Model"><a href="#6-Logistic-Regression-Model" class="headerlink" title="6. Logistic Regression Model"></a>6. Logistic Regression Model</h3><h4 id="6-1-Cost-Function"><a href="#6-1-Cost-Function" class="headerlink" title="6.1 Cost Function"></a>6.1 Cost Function</h4><p>对于线性回归模型，我们定义的代价函数是所有模型误差的平方和。理论上来说，我们也可以对逻辑回归模型沿用这个定义，但是问题在于，当我们将 $h_\theta\left( x \right)=\frac{1}{1+e^{-\theta^{T}x}}$ 带入到这样定义了的代价函数中时，我们得到的代价函数将是一个<strong>非凸函数</strong>（<strong>non-convexfunction</strong>）。这意味着我们的代价函数有许多局部最小值，这将影响梯度下降算法寻找全局最小值。</p>
+<p>我们重新定义逻辑回归的代价函数为</p>
+<script type="math/tex; mode=display">
+J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}Cost\left( h_\theta\left( x^{\left( i \right)} \right),y^{\left( i \right)} \right)</script><script type="math/tex; mode=display">
+\textCost\left(h_{\theta}(x), y\right)=\left\{\begin{aligned}-\log \left(h_{\theta}(x)\right) & \text { if } y=1 \\-\log \left(1-h_{\theta}(x)\right) & \text { if } y=0 \end{aligned}\right.</script><ul>
+<li>当实际的  $y=1$ 且 $h_\theta\left( x \right)$ 也为 1 时误差为 0</li>
+<li>当 $y=1$ 但 $h_\theta\left( x \right)$ 不为1时误差随着 $h_\theta\left( x \right)$ 变小而变大</li>
+<li>当实际的 $y=0$ 且 $h_\theta\left( x \right)$ 也为 0 时代价为 0</li>
+<li>当 $y=0$ 但 $h_\theta\left( x \right)$ 不为 0 时误差随着 $h_\theta\left( x \right)$ 的变大而变大</li>
+</ul>
+<p>简化如下：</p>
+<script type="math/tex; mode=display">
+Cost\left( h_\theta\left( x \right),y \right)=-y\times log\left( h_\theta\left( x \right) \right)-(1-y)\times log\left( 1-h_\theta\left( x \right) \right)</script><h5 id="【Python-代码】-1"><a href="#【Python-代码】-1" class="headerlink" title="【Python 代码】"></a>【Python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>    <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cost</span>(<span class="hljs-params">theta, X, y</span>):<br>    <br>  theta = np.matrix(theta)<br>  X = np.matrix(X)<br>  y = np.matrix(y)<br>  first = np.multiply(-y, np.log(sigmoid(X* theta.T)))<br>  second = np.multiply((<span class="hljs-number">1</span> - y), np.log(<span class="hljs-number">1</span> - sigmoid(X* theta.T)))<br>  <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(first - second) / (<span class="hljs-built_in">len</span>(X))<br></code></pre></td></tr></table></figure>
+<h4 id="6-2-Simplified-Cost-Function-and-Gradient-Descent"><a href="#6-2-Simplified-Cost-Function-and-Gradient-Descent" class="headerlink" title="6.2 Simplified Cost Function and Gradient Descent"></a>6.2 Simplified Cost Function and Gradient Descent</h4><h5 id="【Cost-Function-推导】"><a href="#【Cost-Function-推导】" class="headerlink" title="【Cost Function 推导】"></a>【Cost Function 推导】</h5><script type="math/tex; mode=display">
+J\left( \theta  \right)=-\frac{1}{m}\sum\limits_{i=1}^{m}[y^{(i)}\log \left( h_\theta\left( x^{(i)} \right) \right)+\left( 1-y^{(i)} \right)\log \left( 1-h_\theta\left( x^{(i)} \right) \right)]</script><p>代入函数</p>
+<script type="math/tex; mode=display">
+h_\theta\left( x^{(i)} \right)=\frac{1}{1+e^{-\theta^Tx^{(i)}}}</script><p>得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&y^{(i)}\log \left( h_\theta\left( x^{(i)} \right) \right)+\left( 1-y^{(i)} \right)\log \left( 1-h_\theta\left( x^{(i)} \right) \right)\\
+=&y^{(i)}\log \left( \frac{1}{1+e^{-\theta^Tx^{(i)}}} \right)+\left( 1-y^{(i)} \right)\log \left( 1-\frac{1}{1+e^{-\theta^Tx^{(i)}}} \right)\\
+=&-y^{(i)}\log \left( 1+e^{-\theta^Tx^{(i)}} \right)-\left( 1-y^{(i)} \right)\log \left( 1+e^{\theta^Tx^{(i)}} \right)
+\end{aligned}</script><p>对函数进行求导</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\frac{\partial }{\partial \theta_{j}}J\left( \theta  \right)=\frac{\partial }{\partial \theta_{j}}[-\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\log \left( 1+e^{-\theta^{T}x^{(i)}} \right)-\left( 1-y^{(i)} \right)\log \left( 1+e^{\theta^{T}x^{(i)}} \right)]]\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\frac{-x_{j}^{(i)}e^{-\theta^{T}x^{(i)}}}{1+e^{-\theta^{T}x^{(i)}}}-\left( 1-y^{(i)} \right)\frac{x_j^{(i)}e^{\theta^Tx^{(i)}}}{1+e^{\theta^Tx^{(i)}}}]\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}[y^{(i)}\frac{x_j^{(i)}}{1+e^{\theta^Tx^{(i)}}}-\left( 1-y^{(i)} \right)\frac{x_j^{(i)}e^{\theta^Tx^{(i)}}}{1+e^{\theta^Tx^{(i)}}}]\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}\frac{y^{(i)}x_j^{(i)}-x_j^{(i)}e^{\theta^Tx^{(i)}}+y^{(i)}x_j^{(i)}e^{\theta^Tx^{(i)}}}{1+e^{\theta^Tx^{(i)}}}\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}\frac{y^{(i)}\left( 1\text{+}e^{\theta^Tx^{(i)}} \right)-e^{\theta^Tx^{(i)}}}{1+e^{\theta^Tx^{(i)}}}x_j^{(i)}\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}(y^{(i)}-\frac{e^{\theta^Tx^{(i)}}}{1+e^{\theta^Tx^{(i)}}})x_j^{(i)}\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}(y^{(i)}-\frac{1}{1+e^{-\theta^Tx^{(i)}}})x_j^{(i)}\\
+=&-\frac{1}{m}\sum\limits_{i=1}^{m}[y^{(i)}-h_\theta\left( x^{(i)} \right)]x_j^{(i)}\\
+=&\frac{1}{m}\sum\limits_{i=1}^{m}[h_\theta\left( x^{(i)} \right)-y^{(i)}]x_j^{(i)}
+\end{aligned}</script><p>因此，我们得到同样的</p>
+<script type="math/tex; mode=display">
+\theta_j := \theta_j - \alpha \frac{1}{m}\sum\limits_{i=1}^{m}{\left( h_\theta\left( x^{(i)} \right)-y^{(i)} \right)}x_{j}^{(i)}</script><h4 id="6-4-Advanced-Optimization"><a href="#6-4-Advanced-Optimization" class="headerlink" title="6.4 Advanced Optimization"></a>6.4 Advanced Optimization</h4><p>除了梯度下降算法以外，还有另外一些常被用来令代价函数最小的算法，这些算法更加复杂和优越，而且通常不需要人工选择学习率，比梯度下降算法要更加快速。这些算法有：<strong>共轭梯度</strong>（<strong>Conjugate Gradient</strong>），<strong>局部优化法</strong>(<strong>Broyden fletcher goldfarb shann,BFGS</strong>) ，<strong>有限内存局部优化法</strong>(<strong>LBFGS</strong>) ，<strong>变尺度法</strong>(<strong>Variable Metric Algorithm</strong>) 。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/endymecy/spark-ml-source-analysis/blob/master/%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/L-BFGS/lbfgs.md">更多信息参考</a></p>
+<h4 id="6-5-Multiclass-Classification-One-vs-all"><a href="#6-5-Multiclass-Classification-One-vs-all" class="headerlink" title="6.5 Multiclass Classification_ One-vs-all"></a>6.5 Multiclass Classification_ One-vs-all</h4><p>我们现在已经知道二元分类可以使用逻辑回归将数据集一分为二为正类和负类。而此分类思想也可以用在多类分类问题上。比如假设有三个类别，我们可以将其分成三个二元分类问题。最后，在我们需要做预测时，我们将所有的分类机都运行一遍，然后对每一个输入变量，都选择最高可能性的输出变量。</p>
+<h3 id="7-Regularization"><a href="#7-Regularization" class="headerlink" title="7. Regularization"></a>7. Regularization</h3><h4 id="7-1-The-Problem-of-Overfitting"><a href="#7-1-The-Problem-of-Overfitting" class="headerlink" title="7.1 The Problem of Overfitting"></a>7.1 The Problem of Overfitting</h4><p>到现在为止，我们已经学习了几种不同的学习算法，包括线性回归和逻辑回归，它们能够有效地解决许多问题，但是当将它们应用到某些特定的机器学习应用时，会遇到过拟合 (<strong>over-fitting</strong>) 的问题，导致它们效果很差。</p>
+<p>就以多项式理解，$x$ 的次数越高，拟合的越好，但我们并没有足够的数据去约束这么多变量，导致相应的预测的能力就可能变差。</p>
+<p>如果我们发现了过拟合问题，应该如何处理？</p>
+<ol>
+<li>丢弃一些不能帮助我们正确预测的特征<ul>
+<li>可以是手工选择保留哪些特征</li>
+<li>或者使用一些模型选择的算法来帮忙（例如<strong>PCA</strong>）</li>
+</ul>
+</li>
+<li>正则化<ul>
+<li>保留所有的特征，但是减少参数的大小（<strong>magnitude</strong>）</li>
+</ul>
+</li>
+</ol>
+<h4 id="7-2-Cost-Function"><a href="#7-2-Cost-Function" class="headerlink" title="7.2 Cost Function"></a>7.2 Cost Function</h4><p>使用正则化的方法，我们可以手动对特定的系数添加惩罚项，即在代价函数中加入系数的平方。这个操作能减少变量过多的影响，但又不需要去除变量。</p>
+<p>假如我们有非常多的特征，我们并不知道其中哪些特征我们要惩罚，我们将对所有的特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。这样的结果是得到了一个较为简单的能防止过拟合问题的假设：</p>
+<script type="math/tex; mode=display">
+J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^{2}+\lambda \sum\limits_{j=1}^{n}\theta_{j}^{2}]</script><p>$\lambda $又称为正则化参数（<strong>Regularization Parameter</strong>）, 如果选择的正则化参数$\lambda$ 过大，则会把所有的参数都最小化了，导致模型变成 $h_\theta\left( x \right)=\theta_{0}$，也就造成欠拟合。</p>
+<h4 id="7-3-Regularized-Linear-Regression"><a href="#7-3-Regularized-Linear-Regression" class="headerlink" title="7.3 Regularized Linear Regression"></a>7.3 Regularized Linear Regression</h4><p>正则化线性回归的代价函数为</p>
+<script type="math/tex; mode=display">
+J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}\[((h_\theta(x^{(i)})-y^{(i)})^{2}+\lambda \sum\limits_{j=1}^{n}\theta _{j}^{2})]</script><p>如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对$\theta_0$进行正则化，所以梯度下降算法将分两种情形：</p>
+<script type="math/tex; mode=display">
+\theta_0:=\theta_0-a\frac{1}{m}\sum\limits_{i=1}^{m}((h_\theta(x^{(i)})-y^{(i)})x_{0}^{(i)})</script><script type="math/tex; mode=display">
+\theta_j:=\theta_j-a[\frac{1}{m}\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})x_{j}^{\left( i \right)}+\frac{\lambda }{m}\theta_j]\text{ , for }j=1,2,...n</script><p>我们同样也可以利用正规方程来求解正则化线性回归模型，方法如下所示：</p>
+<script type="math/tex; mode=display">
+\theta=(X^TX+\lambda[\ 0\ I_0\ ])^{-1}X^Ty</script><p>其中的 $[ 0 I_n]$ 为矩阵尺寸为 $(n+1)*(n+1)$，除了首行斜对角都为 1 的矩阵</p>
+<p>If $\lambda&gt;0$， 对于严格对角占优矩阵 $X^TX+\lambda[ 0 I_0 ]$ 一定可逆</p>
+<h4 id="7-4-Regularized-Logistic-Regression"><a href="#7-4-Regularized-Logistic-Regression" class="headerlink" title="7.4 Regularized Logistic Regression"></a>7.4 Regularized Logistic Regression</h4><p>逻辑回归的代价函数增加一个正则化，得到</p>
+<script type="math/tex; mode=display">
+J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\log \left( h_\theta\left( x^{(i)} \right) \right)-\left( 1-y^{(i)} \right)\log \left( 1-h_\theta\left( x^{(i)} \right) \right)]+\frac{\lambda }{2m}\sum\limits_{j=1}^{n}\theta _{j}^{2}</script><p>要最小化该代价函数，通过求导，得出梯度下降算法为</p>
+<script type="math/tex; mode=display">
+\theta_0:=\theta_0-a\frac{1}{m}\sum\limits_{i=1}^{m}((h_\theta(x^{(i)})-y^{(i)})x_{0}^{(i)})</script><script type="math/tex; mode=display">
+\theta_j:=\theta_j-a[\frac{1}{m}\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})x_{j}^{\left( i \right)}+\frac{\lambda }{m}\theta_j]\text{ , for }j=1,2,...n</script><h5 id="【Python-代码】-2"><a href="#【Python-代码】-2" class="headerlink" title="【Python 代码】"></a>【Python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">costReg</span>(<span class="hljs-params">theta, X, y, learningRate</span>):<br>    theta = np.matrix(theta)<br>    X = np.matrix(X)<br>    y = np.matrix(y)<br>    first = np.multiply(-y, np.log(sigmoid(X*theta.T)))<br>    second = np.multiply((<span class="hljs-number">1</span> - y), np.log(<span class="hljs-number">1</span> - sigmoid(X*theta.T)))<br>    reg = (learningRate / (<span class="hljs-number">2</span> * <span class="hljs-built_in">len</span>(X))* np.<span class="hljs-built_in">sum</span>(np.power(theta[:,<span class="hljs-number">1</span>:theta.shape[<span class="hljs-number">1</span>]],<span class="hljs-number">2</span>))<br>    <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(first - second) / (<span class="hljs-built_in">len</span>(X)) + reg<br></code></pre></td></tr></table></figure>
+<h1 id="Course-2-Advanced-Learning-Algorithms"><a href="#Course-2-Advanced-Learning-Algorithms" class="headerlink" title="Course 2 : Advanced Learning Algorithms"></a>Course 2 : Advanced Learning Algorithms</h1><p>In the second course of the Machine Learning Specialization, you will:</p>
+<ul>
+<li>Build and train a neural network with TensorFlow to perform multi-class classification </li>
+<li>Apply best practices for machine learning development so that your models generalize to data and tasks in the real world </li>
+<li>Build and use decision trees and tree ensemble methods, including random forests and boosted trees</li>
+</ul>
+<h2 id="Week-4-Neural-Networks-Representation"><a href="#Week-4-Neural-Networks-Representation" class="headerlink" title="Week 4 : Neural Networks : Representation"></a>Week 4 : Neural Networks : Representation</h2><h2 id="Week-5-Neural-Networks-Learning"><a href="#Week-5-Neural-Networks-Learning" class="headerlink" title="Week 5 : Neural Networks : Learning"></a>Week 5 : Neural Networks : Learning</h2><h2 id="Week-6-Advice-for-Applying-Machine-Learning"><a href="#Week-6-Advice-for-Applying-Machine-Learning" class="headerlink" title="Week 6 : Advice for Applying Machine Learning"></a>Week 6 : Advice for Applying Machine Learning</h2><h2 id="Week-7-Support-Vector-Machines"><a href="#Week-7-Support-Vector-Machines" class="headerlink" title="Week 7 : Support Vector Machines"></a>Week 7 : Support Vector Machines</h2><h1 id="Course-3-Unsupervised-Learning-Recommenders-Reinforcement-Learning"><a href="#Course-3-Unsupervised-Learning-Recommenders-Reinforcement-Learning" class="headerlink" title="Course 3 : Unsupervised Learning, Recommenders, Reinforcement Learning"></a>Course 3 : Unsupervised Learning, Recommenders, Reinforcement Learning</h1><p>In the third course of the Machine Learning Specialization, you will:</p>
+<ul>
+<li>Use unsupervised learning techniques for unsupervised learning: including clustering and anomaly detection</li>
+<li>Build recommender systems with a collaborative filtering approach and a content-based deep learning method</li>
+<li>Build a deep reinforcement learning model.</li>
+</ul>
+<h2 id="Week-8-Unsupervised-Learning"><a href="#Week-8-Unsupervised-Learning" class="headerlink" title="Week 8 : Unsupervised Learning"></a>Week 8 : Unsupervised Learning</h2><h2 id="Week-9-Anomaly-Detection"><a href="#Week-9-Anomaly-Detection" class="headerlink" title="Week 9 : Anomaly Detection"></a>Week 9 : Anomaly Detection</h2><h2 id="Week-10-Large-Scale-Machine-Learning"><a href="#Week-10-Large-Scale-Machine-Learning" class="headerlink" title="Week 10 : Large Scale Machine Learning"></a>Week 10 : Large Scale Machine Learning</h2><h2 id="Week-11-Application-Example-Photo-OCR"><a href="#Week-11-Application-Example-Photo-OCR" class="headerlink" title="Week 11 : Application Example : Photo OCR"></a>Week 11 : Application Example : Photo OCR</h2>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Complex-Number/">#Complex Number</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】吴恩达机器学习课程</div>
+      <div>http://achlier.github.io/2022/08/03/吴恩达机器学习课程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 3, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/29/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" title="【笔记】高等数学复习笔记-随机过程">
+                        <span class="hidden-mobile">【笔记】高等数学复习笔记-随机过程</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
