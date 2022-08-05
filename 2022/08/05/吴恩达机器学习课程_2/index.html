@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hailey">
+  <meta name="keywords" content="Notebook">
+  
+    <meta name="description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记第二部分； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【课程】吴恩达机器学习课程(二)">
+<meta property="og:url" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/index.html">
+<meta property="og:site_name" content="Borderland">
+<meta property="og:description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记第二部分； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic11-1.png">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-1.png">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-4.jpg">
+<meta property="article:published_time" content="2022-08-05T11:40:39.000Z">
+<meta property="article:modified_time" content="2022-08-05T12:06:00.106Z">
+<meta property="article:author" content="Hailey">
+<meta property="article:tag" content="Neural Networks">
+<meta property="article:tag" content="Support Vector Machines">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-1.jpg">
+  
+  
+  
+  <title>【课程】吴恩达机器学习课程(二) - Borderland</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"achlier.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Achlier&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【课程】吴恩达机器学习课程(二)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-05 19:40" pubdate>
+          August 5, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          102 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【课程】吴恩达机器学习课程(二)</h1>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>基于吴恩达机器学习 - Machine Learning Specialization <a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/machine-learning-introduction">课程</a> 的笔记第二部分；</p>
+<p>本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="Course-2-Advanced-Learning-Algorithms"><a href="#Course-2-Advanced-Learning-Algorithms" class="headerlink" title="Course 2 : Advanced Learning Algorithms"></a>Course 2 : Advanced Learning Algorithms</h1><p>In the second course of the Machine Learning Specialization, you will:</p>
+<ul>
+<li>Build and train a neural network with TensorFlow to perform multi-class classification </li>
+<li>Apply best practices for machine learning development so that your models generalize to data and tasks in the real world </li>
+<li>Build and use decision trees and tree ensemble methods, including random forests and boosted trees</li>
+</ul>
+<h2 id="Week-4-Neural-Networks-Representation"><a href="#Week-4-Neural-Networks-Representation" class="headerlink" title="Week 4 : Neural Networks : Representation"></a>Week 4 : Neural Networks : Representation</h2><h3 id="8-Neural-Networks"><a href="#8-Neural-Networks" class="headerlink" title="8. Neural Networks"></a>8. Neural Networks</h3><h4 id="8-1-Non-linear-Hypotheses"><a href="#8-1-Non-linear-Hypotheses" class="headerlink" title="8.1 Non-linear Hypotheses"></a>8.1 Non-linear Hypotheses</h4><p>无论是线性回归还是逻辑回归都有这样一个缺点，即当特征太多时，计算的负荷会非常大。</p>
+<p>假设我们希望训练一个模型来识别视觉对象（例如识别一张图片上是否是一辆汽车），我们采用的都是50x50像素的小图片，并且我们将所有的像素视为特征，则会有 2500个特征，如果我们要进一步将两两特征组合构成一个多项式模型，则会有约$2500^{2}/2$个（接近3百万个）特征。普通的逻辑回归模型，不能有效地处理这么多的特征，这时候我们需要神经网络。</p>
+<h4 id="8-2-Neurons-and-the-Brain"><a href="#8-2-Neurons-and-the-Brain" class="headerlink" title="8.2 Neurons and the Brain"></a>8.2 Neurons and the Brain</h4><p>神经网络兴起于二十世纪八九十年代，应用得非常广泛。但由于各种原因，在90年代的后期应用减少了。而其中主要的原因是：神经网络是的计算量有些偏大。然而由于近些年计算机的运行速度变快，才足以真正运行起大规模的神经网络，这门技术又再次火爆了起来。正是由于这个原因和其他一些我们后面会讨论到的技术因素，如今的神经网络对于许多应用来说是最先进的技术。</p>
+<h4 id="8-3-Model-Representation"><a href="#8-3-Model-Representation" class="headerlink" title="8.3 Model Representation"></a>8.3 Model Representation</h4><p>为了构建神经网络模型，我们需要首先思考大脑中的神经网络是怎样的？每一个神经元都可以被认为是一个处理单元/神经核（<strong>processing unit</strong>/<strong>Nucleus</strong>），它含有许多输入/树突（<strong>input</strong>/<strong>Dendrite</strong>），并且有一个输出/轴突（<strong>output</strong>/<strong>Axon</strong>）。神经网络是大量神经元相互链接并通过电脉冲来交流的一个网络。</p>
+<p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>神经网络模型建立在很多神经元之上，每一个神经元又是一个个学习模型。这些神经元（也叫激活单元，<strong>activation unit</strong>）采纳一些特征作为输出，并且根据本身的模型提供一个输出在神经网络中，参数又可被成为权重（<strong>weight</strong>）。</p>
+<p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>神经网络模型是许多逻辑单元按照不同层级组织起来的网络，每一层的输出变量都是下一层的输入变量。下图为一个3层的神经网络，第一层成为输入层（<strong>Input Layer</strong>），最后一层称为输出层（<strong>Output Layer</strong>），中间一层成为隐藏层（<strong>Hidden Layers</strong>）。我们可以为每一层都增加一个偏差单位（<strong>bias unit</strong>）$x_0,a_0$</p>
+<p>下面引入一些标记法来帮助描述模型：</p>
+<ul>
+<li>$a_{i}^{(j)}$ 代表第$j$ 层的第 $i$ 个激活单元。</li>
+<li>$\theta ^{(j)}$代表从第 $j$ 层映射到第$ j+1$ 层时的权重的矩阵。</li>
+</ul>
+<p>对于上图所示的模型，激活单元和输出分别表达为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a_{1}^{(2)}&=g\left(\Theta_{10}^{(1)} x_{0}+\Theta_{11}^{(1)} x_{1}+\Theta_{12}^{(1)} x_{2}+\Theta_{13}^{(1)} x_{3}\right) \\ a_{2}^{(2)}&=g\left(\Theta_{20}^{(1)} x_{0}+\Theta_{21}^{(1)} x_{1}+\Theta_{22}^{(1)} x_{2}+\Theta_{23}^{(1)} x_{3}\right) \\ a_{3}^{(2)}&=g\left(\Theta_{30}^{(1)} x_{0}+\Theta_{31}^{(1)} x_{1}+\Theta_{32}^{(1)} x_{2}+\Theta_{33}^{(1)} x_{3}\right) \\ h_{\Theta}(x)&=g\left(\Theta_{10}^{(2)} a_{0}^{(2)}+\Theta_{11}^{(2)} a_{1}^{(2)}+\Theta_{12}^{(2)} a_{2}^{(2)}+\Theta_{13}^{(2)} a_{3}^{(2)}\right)
+\end{aligned}</script><p>如果第 $j$ 层有 $s_j$ 个神经元，$j+1$ 层有 $s_{j+1}$ 个神经元，权重 $\Theta^{(j)}$ 的维度就是 $s_{j+1}\times(s_j+1)$</p>
+<p>为了方便理解，我们令</p>
+<ul>
+<li><p>$z^{(j+1)}=\Theta^{(j)} \times a^{(j)}$</p>
+</li>
+<li><p>$a^{(j+1)}=g\left(z^{(j+1)}\right)$</p>
+</li>
+</ul>
+<p>我们把这样从左到右的算法称为前向传播算法( <strong>FORWARD PROPAGATION</strong> )</p>
+<h4 id="8-4-Examples-and-Intuitions"><a href="#8-4-Examples-and-Intuitions" class="headerlink" title="8.4 Examples and Intuitions"></a>8.4 Examples and Intuitions</h4><p>神经网络中，单层神经元（无中间层）的计算可用来表示逻辑运算，比如逻辑与(<strong>AND</strong>)、逻辑或(<strong>OR</strong>)。</p>
+<h5 id="【Example-AND】"><a href="#【Example-AND】" class="headerlink" title="【Example AND】"></a>【Example AND】</h5><script type="math/tex; mode=display">
+h_{\Theta}(x)=g(-3+2x_1+2x_2)</script><p><strong>【Example OR】</strong></p>
+<script type="math/tex; mode=display">
+h_{\Theta}(x)=g(-1+2x_1+2x_2)</script><h5 id="【Example-Not-x-1-】"><a href="#【Example-Not-x-1-】" class="headerlink" title="【Example Not $x_1$】"></a>【Example Not $x_1$】</h5><script type="math/tex; mode=display">
+h_{\Theta}(x)=g(1-2x_1)</script><p>逻辑异或(<strong>XOR</strong>)，逻辑异或非(<strong>XNOR</strong>)则需要两层神经元来计算。</p>
+<p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic8-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h5 id="【Example-XNOR】"><a href="#【Example-XNOR】" class="headerlink" title="【Example XNOR】"></a>【Example XNOR】</h5><script type="math/tex; mode=display">
+\text{XNOR}=( \text{x}_1\, \text{AND}\, \text{x}_2 )\, \text{OR} \left( \left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right) \right)</script><p>第一层做 <strong>AND</strong> 判断，第二层做 <strong>OR</strong> 判断</p>
+<h2 id="Week-5-Neural-Networks-Learning"><a href="#Week-5-Neural-Networks-Learning" class="headerlink" title="Week 5 : Neural Networks : Learning"></a>Week 5 : Neural Networks : Learning</h2><h3 id="8-Cost-Function-and-Backpropagation"><a href="#8-Cost-Function-and-Backpropagation" class="headerlink" title="8.  Cost Function and Backpropagation"></a>8.  Cost Function and Backpropagation</h3><h4 id="8-1-Cost-Function"><a href="#8-1-Cost-Function" class="headerlink" title="8.1 Cost Function"></a>8.1 Cost Function</h4><p>首先引入一些便于稍后讨论的新标记方法：</p>
+<ul>
+<li>训练样本 $m$</li>
+<li>输入 $x$ 和输出信号 $y$</li>
+<li>$L$ 表示神经网络层数</li>
+<li>$S_l$表示每层的<strong>neuron</strong>个数 ($S_L$表示输出层神经元个数)</li>
+</ul>
+<p>将神经网络的分类定义为两种情况：</p>
+<ul>
+<li>二类分类：$S_L=1, y=0\, or\, 1$表示哪一类；</li>
+<li>$K$类分类：$S_L=k, y_i = 1$表示分到第$i$类；$(k&gt;3)$</li>
+</ul>
+<p>逻辑回归问题中我们的代价函数为：</p>
+<script type="math/tex; mode=display">
+J(\theta)=-\frac{1}{m}\left[\sum_{i=1}^{m} y^{(i)} \log h_{\theta}\left(x^{(i)}\right)+\left(1-y^{(i)}\right) \log \left(1-h_{\theta}\left(x^{(i)}\right)\right)\right]+\frac{\lambda}{2 m} \sum_{j=1}^{n} \theta_{j}^{2}</script><p>在逻辑回归中，我们只有一个输出变量，又称标量（<strong>scalar</strong>），也只有一个因变量$y$，但是在神经网络中，我们可以有很多输出变量，我们的$h_\theta(x)$是一个维度为$K$的向量，并且我们训练集中的因变量也是同样维度的一个向量，因此我们的代价函数会比逻辑回归更加复杂一些</p>
+<p>定义 $\left(h_{\Theta}(x)\right)_{i}=i^{t h} \text { output }$</p>
+<script type="math/tex; mode=display">
+\begin{aligned} J(\Theta)=&-\frac{1}{m}\left[\sum_{i=1}^{m} \sum_{k=1}^{K} y_{k}^{(i)} \log \left(h_{\Theta}\left(x^{(i)}\right)\right)_{k}+\left(1-y_{k}^{(i)}\right) \log \left(1-\left(h_{\Theta}\left(x^{(i)}\right)\right)_{k}\right)\right] \\ &+\frac{\lambda}{2 m} \sum_{l=1}^{L-1} \sum_{i=1}^{s_{l}} \sum_{j=1}^{s_{l+1}}\left(\Theta_{j i}^{(l)}\right)^{2} \end{aligned}</script><p>正则化的一项是排除了每一层$\theta_0$后，每一层的$\theta$ 矩阵的和</p>
+<h4 id="9-2-Backpropagation-Algorithm"><a href="#9-2-Backpropagation-Algorithm" class="headerlink" title="9.2 Backpropagation Algorithm"></a>9.2 Backpropagation Algorithm</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29762941/article/details/80343185">详细推导</a></p>
+<p>首先，我们定义 $\delta$ 来表示误差，则：$\delta_j^{(L)}=a_j^{(L)}-y_j$</p>
+<p>我们利用这个误差值来计算前一层的误差：$\delta^{(i)}=\left(\Theta^{(i)}\right)^{T}\delta^{(i+1)}.\ast g’\left(z^{(i)}\right)$</p>
+<blockquote>
+<p>注意误差与导数之间是点乘</p>
+</blockquote>
+<p>其中 $g’(z^{(i)})$是 $S$ 形函数的导数: $g’(z^{(i)})=a^{(i)}\ast(1-a^{(i)})$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+g'(z)=\frac{e^{-z}}{(1+e^{-z})^2}=\frac{e^{-z}+1-1}{(1+e^{-z})^2}=\frac1{1+e^{-z}}-\frac1{(1+e^{-z})^2}=g(z)(1-g(z))
+\end{aligned}</script><p>我们有了所有的误差的表达式后，便可以计算代价函数的偏导数了，假设$λ=0$，即我们不做任何正则化处理时有：</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial\Theta_{ij}^{(l)}}J(\Theta)=a_{j}^{(l)} \delta_{i}^{l+1}</script><h4 id="9-3-Backpropagation-Intuition"><a href="#9-3-Backpropagation-Intuition" class="headerlink" title="9.3 Backpropagation Intuition"></a>9.3 Backpropagation Intuition</h4><p>Formally，$\delta^{(l)}_{j}=\frac{\partial}{\partial z^{(l)}_{j}}\text{cost}$</p>
+<p>其中</p>
+<script type="math/tex; mode=display">
+\text{cost}(i)=-[y^{(i)}\log \left( h_\theta\left( x^{(i)} \right) \right)+\left( 1-y^{(i)} \right)\log \left( 1-h_\theta\left( x^{(i)} \right) \right)]</script><p>因此可求出</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\delta=\frac{\partial}{\partial z}\text{cost}(i)&=-y\frac1{a}a(1-a)-(1-y)\frac1{1-a}(-a)(1-a)\\
+&=-y(1-a)-(1-y)(-a)\\
+&=-y+ay+a-ay\\
+&=a-y
+\end{aligned}</script><p>因此 $\delta^{(l)}_{j}$ 又相当于是第 $l$ 层的第 $j$ 单元中得到的激活项的“误差”，即”正确“的 $a^{(l)}_{j}$ 与计算得到的 $a^{(l)}_{j}$ 的差</p>
+<h4 id="9-4-Gradient-Checking"><a href="#9-4-Gradient-Checking" class="headerlink" title="9.4 Gradient Checking"></a>9.4 Gradient Checking</h4><p>当我们对一个较为复杂的模型（例如神经网络）使用梯度下降算法时，可能会存在一些不容易察觉的错误，意味着，虽然代价看上去在不断减小，但最终的结果可能并不是最优解。</p>
+<p>为了避免这样的问题，我们采取一种叫做梯度的数值检验（<strong>Numerical Gradient Checking</strong>）方法。这种方法的思想是通过估计梯度值来检验我们计算的导数值是否真的是我们要求的。</p>
+<p>对梯度的估计采用的方法是在代价函数上沿着切线的方向选择离两个非常近的点然后计算两个点的平均值用以估计梯度。即对于某个特定的 $\theta$，我们计算出在 $\theta$-$\varepsilon $ 处和 $\theta$+$\varepsilon $ 的代价值（$\varepsilon $是一个非常小的值，通常选取 0.001），然后求两个代价的平均，用以估计在 $\theta$ 处的代价值。</p>
+<p>然后我们对通过反向传播方法计算出的偏导数进行检验。根据上面的算法，计算出的偏导数存储在矩阵 $D_{ij}^{(l)}$ 中。检验时，我们要将该矩阵展开成为向量，同时我们也将 $\theta$ 矩阵展开为向量，我们针对每一个 $\theta$ 都计算一个近似的梯度值，将这些值存储于一个近似梯度矩阵中，最终将得出的这个矩阵同 $D_{ij}^{(l)}$ 进行比较。</p>
+<h4 id="9-5-Random-Initialization"><a href="#9-5-Random-Initialization" class="headerlink" title="9.5 Random Initialization"></a>9.5 Random Initialization</h4><p>任何优化算法都需要一些初始的参数。到目前为止我们都是初始所有参数为0，这样的初始方法对于逻辑回归来说是可行的，但是对于神经网络来说是不可行的。如果我们令所有的初始参数都为0，这将意味着我们第二层的所有激活单元都会有相同的值。因此，我们通常使用初始参数为正负ε之间的随机值</p>
+<h4 id="9-6-Putting-It-Together"><a href="#9-6-Putting-It-Together" class="headerlink" title="9.6 Putting It Together"></a>9.6 Putting It Together</h4><p>小结一下使用神经网络时的步骤：</p>
+<p>网络结构：</p>
+<ul>
+<li>首先要做的事是选择网络结构，即决定选择多少层以及决定每层分别有多少个单元。<ul>
+<li>第一层的单元数即我们训练集的特征数量。</li>
+<li>最后一层的单元数是我们训练集的结果的类的数量。</li>
+<li>如果隐藏层数大于1，确保每个隐藏层的单元个数相同，通常情况下隐藏层单元的个数越多越好。</li>
+<li>我们真正要决定的是隐藏层的层数和每个中间层的单元数。</li>
+</ul>
+</li>
+</ul>
+<p>训练神经网络：</p>
+<ol>
+<li><p>参数的随机初始化</p>
+</li>
+<li><p>利用正向传播方法计算所有的$h_{\theta}(x)$</p>
+</li>
+<li><p>编写计算代价函数 $J$ 的代码</p>
+</li>
+<li><p>利用反向传播方法计算所有偏导数</p>
+</li>
+<li><p>利用数值检验方法检验这些偏导数</p>
+</li>
+<li><p>使用优化算法来最小化代价函数</p>
+</li>
+</ol>
+<h2 id="Week-6-Advice-for-Applying-Machine-Learning"><a href="#Week-6-Advice-for-Applying-Machine-Learning" class="headerlink" title="Week 6 : Advice for Applying Machine Learning"></a>Week 6 : Advice for Applying Machine Learning</h2><h3 id="10-Evaluating-a-Learning-Algorithm"><a href="#10-Evaluating-a-Learning-Algorithm" class="headerlink" title="10. Evaluating a Learning Algorithm"></a>10. Evaluating a Learning Algorithm</h3><h4 id="10-1-Deciding-What-to-Try-Next"><a href="#10-1-Deciding-What-to-Try-Next" class="headerlink" title="10.1 Deciding What to Try Next"></a>10.1 Deciding What to Try Next</h4><p>使用预测房价的学习例子，假如你已经完成了正则化线性回归，也就是最小化代价函数$J$的值，在你得到学习参数以后，将假设函数放到一组新的房屋样本上进行测试，你发现在预测房价时产生了巨大的误差，现在你的问题是要想改进这个算法，接下来应该怎么办？</p>
+<ul>
+<li>获得更多的训练样本——通常是有效的，但代价较大，下面的方法也可能有效，可考虑先采用下面的几种方法。</li>
+<li><p>尝试减少特征的数量</p>
+</li>
+<li><p>尝试获得更多的特征</p>
+</li>
+<li><p>尝试增加多项式特征</p>
+</li>
+<li><p>尝试减少正则化程度$\lambda$</p>
+</li>
+<li><p>尝试增加正则化程度$\lambda$</p>
+</li>
+</ul>
+<p>我们不应该随机选择上面的某种方法来改进我们的算法，而是运用一些<strong>机器学习诊断法</strong>来帮助我们知道上面哪些方法对我们的算法是有效的。</p>
+<h4 id="10-2-Evaluating-a-Hypothesis"><a href="#10-2-Evaluating-a-Hypothesis" class="headerlink" title="10.2 Evaluating a Hypothesis"></a>10.2 Evaluating a Hypothesis</h4><p>检验算法是否过拟合，我们可以将数据分成训练集和测试集，通常用70%的数据作为训练集，用剩下30%的数据作为测试集。很重要的一点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行“洗牌”，然后再分成训练集和测试集。使用训练集得到函数系数后对测试集进行预测，然后与真实值对比计算误差。</p>
+<h4 id="10-3-Model-Selection-and-Train-Validation-Test-Sets"><a href="#10-3-Model-Selection-and-Train-Validation-Test-Sets" class="headerlink" title="10.3 Model Selection and Train_Validation_Test Sets"></a>10.3 Model Selection and Train_Validation_Test Sets</h4><p><strong>交叉验证集</strong> ：使用60%的数据作为训练集，使用 20%的数据作为交叉验证集，使用20%的数据作为测试集</p>
+<p>模型选择的方法为：</p>
+<ol>
+<li><p>使用训练集训练出10个模型</p>
+</li>
+<li><p>用10个模型分别对交叉验证集计算得出交叉验证误差（代价函数的值）</p>
+</li>
+<li><p>选取代价函数值最小的模型</p>
+</li>
+<li><p>用步骤3中选出的模型对测试集计算得出推广误差（代价函数的值）</p>
+</li>
+</ol>
+<p>对于神经网络中的隐藏层的层数的选择，通常从一层开始逐渐增加层数，为了更好地作选择，可以把数据分为训练集、交叉验证集和测试集，针对不同隐藏层层数的神经网络训练神经网络，然后选择交叉验证集代价最小的神经网络。</p>
+<h4 id="10-4-Diagnosing-Bias-vs-Variance"><a href="#10-4-Diagnosing-Bias-vs-Variance" class="headerlink" title="10.4 Diagnosing Bias vs. Variance"></a>10.4 Diagnosing Bias vs. Variance</h4><p>当你运行一个学习算法时，如果这个算法的表现不理想，那么多半是出现两种情况：要么是偏差比较大，要么是方差比较大。换句话说，出现的情况要么是欠拟合，要么是过拟合问题。</p>
+<p>对于训练集，当 $d$ (<strong>degree of polynomial</strong>) 较小时，模型拟合程度更低，误差较大；随着 $d$ 的增长，拟合程度提高，误差减小。</p>
+<p>对于交叉验证集，当 $d$ 较小时，模型拟合程度低，误差较大；但是随着 $d$ 的增长，误差呈现先减小后增大的趋势，转折点是我们的模型开始过拟合训练数据集的时候。</p>
+<ul>
+<li><p>训练集误差和交叉验证集误差近似时：偏差/欠拟合</p>
+</li>
+<li><p>交叉验证集误差远大于训练集误差时：方差/过拟合</p>
+</li>
+</ul>
+<h4 id="10-5-Regularization-and-Bias-Variance"><a href="#10-5-Regularization-and-Bias-Variance" class="headerlink" title="10.5 Regularization and Bias_Variance"></a>10.5 Regularization and Bias_Variance</h4><p>在我们在训练模型的过程中，一般会使用一些正则化方法来防止过拟合。但是我们可能会正则化的程度太高或太小了，即我们在选择λ的值时也需要思考与刚才选择多项式模型次数类似的问题。</p>
+<p>我们选择一系列的想要测试的 $\lambda$ 值，通常是 0-10之间的呈现2倍关系的值（如：$0,0.01,0.02,0.04,0.08,0.15,0.32,0.64,1.28,2.56,5.12,10$ 共12个）。 我们同样把数据分为训练集、交叉验证集和测试集。</p>
+<p>选择$\lambda$的方法为：</p>
+<ol>
+<li>使用训练集训练出12个不同程度正则化的模型</li>
+<li>用12个模型分别对交叉验证集计算的出交叉验证误差</li>
+<li>选择得出交叉验证误差最小的模型</li>
+<li>运用步骤3中选出模型对测试集计算得出推广误差，我们也可以同时将训练集和交叉验证集模型的代价函数误差与λ的值绘制在一张图表上</li>
+</ol>
+<ul>
+<li>当 $\lambda$ 较小时，训练集误差较小（过拟合）而交叉验证集误差较大</li>
+<li>随着 $\lambda$ 的增加，训练集误差不断增加（欠拟合），而交叉验证集误差则是先减小后增加</li>
+</ul>
+<h4 id="10-6-Learning-Curves"><a href="#10-6-Learning-Curves" class="headerlink" title="10.6 Learning Curves"></a>10.6 Learning Curves</h4><p>我经常使用学习曲线来判断某一个学习算法是否处于偏差、方差问题。学习曲线是学习算法的一个很好的<strong>合理检验</strong>（<strong>sanity check</strong>）。学习曲线是将训练集误差和交叉验证集误差和训练集样本数量（$m$）的函数进行图表绘制。</p>
+<ul>
+<li><p>在高偏差/欠拟合的情况下，增加数据到训练集不一定能有帮助。</p>
+</li>
+<li><p>在高方差/过拟合的情况下，增加更多数据到训练集可能可以提高算法效果。</p>
+</li>
+</ul>
+<h4 id="10-7-Deciding-What-to-Do-Next-Revisited"><a href="#10-7-Deciding-What-to-Do-Next-Revisited" class="headerlink" title="10.7 Deciding What to Do Next Revisited"></a>10.7 Deciding What to Do Next Revisited</h4><p>回顾 10.1 中提出的六种可选的下一步，让我们来看一看我们在什么情况下应该怎样选择：</p>
+<ol>
+<li><p>获得更多的训练样本——解决高方差</p>
+</li>
+<li><p>尝试减少特征的数量——解决高方差</p>
+</li>
+<li><p>尝试获得更多的特征——解决高偏差</p>
+</li>
+<li><p>尝试增加多项式特征——解决高偏差</p>
+</li>
+<li><p>尝试减少正则化程度λ——解决高偏差</p>
+</li>
+<li><p>尝试增加正则化程度λ——解决高方差</p>
+</li>
+</ol>
+<h3 id="11-Machine-Learning-System-Design"><a href="#11-Machine-Learning-System-Design" class="headerlink" title="11. Machine Learning System Design"></a>11. Machine Learning System Design</h3><h4 id="11-1-Error-Analysis"><a href="#11-1-Error-Analysis" class="headerlink" title="11.1 Error Analysis"></a>11.1 Error Analysis</h4><p>构建一个学习算法的推荐方法为：</p>
+<ol>
+<li>从一个简单的能快速实现的算法开始，实现该算法并用交叉验证集数据测试这个算法</li>
+<li>绘制学习曲线，决定是增加更多数据，或者添加更多特征，还是其他选择</li>
+<li>进行<strong>误差分析</strong>：人工检查交叉验证集中我们算法中产生预测误差的样本，看看这些样本是否有某种系统化的趋势</li>
+</ol>
+<blockquote>
+<p>注意，在交叉验证向量上来做误差分析</p>
+</blockquote>
+<h4 id="11-2-Error-Metrics-for-Skewed-Classes"><a href="#11-2-Error-Metrics-for-Skewed-Classes" class="headerlink" title="11.2 Error Metrics for Skewed Classes"></a>11.2 Error Metrics for Skewed Classes</h4><p>在前面的课程中提到了误差分析，以及设定误差度量值的重要性。那就是，设定某个实数来评估你的学习算法，并衡量它的表现，有了算法的评估和误差度量值。有一件重要的事情会对于你的学习算法造成非常微妙的影响，这件重要的事情就是<strong>偏斜类</strong>（<strong>skewed classes</strong>）的问题。类偏斜情况表现为我们的训练集中有非常多的同一种类的样本，只有很少或没有其他类的样本。这时我们有两个指标可以评判，分别是 <strong>精准度</strong>（<strong>Precision</strong>）和<strong>召回率</strong>（<strong>Recall</strong>）</p>
+<p> 我们将算法预测的结果分成四种情况：</p>
+<ol>
+<li><strong>正确肯定</strong>（<strong>True Positive,TP</strong>）：预测为真，实际为真</li>
+<li><strong>正确否定</strong>（<strong>True Negative,TN</strong>）：预测为假，实际为假</li>
+<li><strong>错误肯定</strong>（<strong>False Positive,FP</strong>）：预测为真，实际为假</li>
+<li><strong>错误否定</strong>（<strong>False Negative,FN</strong>）：预测为假，实际为真</li>
+</ol>
+<script type="math/tex; mode=display">
+\text{Precision rate}=\frac{TP}{(TP+FP)}</script><script type="math/tex; mode=display">
+\text{Recall rate}=\frac{TP}{(TP+FN)}</script><p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic11-1.png" srcset="/img/loading.gif" lazyload alt></p>
+<h4 id="11-3-Trading-Off-Precision-and-Recall"><a href="#11-3-Trading-Off-Precision-and-Recall" class="headerlink" title="11.3 Trading Off Precision and Recall"></a>11.3 Trading Off Precision and Recall</h4><p>如果我们希望只在非常确信的情况下预测为真，即我们希望更高的查准率，我们可以使用比0.5更大的阈值，如0.7，0.9。相反如果我们希望提高查全率，我们可以使用比0.5更小的阈值，如0.3。</p>
+<p>而选择一个比较优秀的阈值可以通过计算<strong>F1 值</strong>（<strong>F1 Score</strong>）来判断</p>
+<script type="math/tex; mode=display">
+2\frac{PR}{P+R}</script><h2 id="Week-7-Support-Vector-Machines"><a href="#Week-7-Support-Vector-Machines" class="headerlink" title="Week 7 : Support Vector Machines"></a>Week 7 : Support Vector Machines</h2><h3 id="12-Large-Margin-Classification"><a href="#12-Large-Margin-Classification" class="headerlink" title="12. Large Margin Classification"></a>12. Large Margin Classification</h3><h4 id="12-1-Optimization-Objective"><a href="#12-1-Optimization-Objective" class="headerlink" title="12.1 Optimization Objective"></a>12.1 Optimization Objective</h4><p>支持向量机(<strong>Support Vector Machine</strong>) 代价函数与逻辑回归相似，却更加强大</p>
+<p>回顾之前逻辑回归的代价函数</p>
+<script type="math/tex; mode=display">
+J(\theta)=-\frac{1}{m}\left[\sum_{i=1}^{m} y^{(i)} \log h_{\theta}\left(x^{(i)}\right)+\left(1-y^{(i)}\right) \log \left(1-h_{\theta}\left(x^{(i)}\right)\right)\right]+\frac{\lambda}{2 m} \sum_{j=1}^{n} \theta_{j}^{2}</script><p>这个式子括号中的函数可以分为两部分</p>
+<script type="math/tex; mode=display">
+-y \log \frac{1}{1+e^{-\theta^{T} x}},\qquad-(1-y) \log \left(1-\frac{1}{1+e^{-\theta^{T} x}}\right)</script><p>当 $y=1$ 时只左边部分的值不为 0 ，当 $y=0$ 时则右边起作用，因此可得到以下两图。</p>
+<p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-1.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>我们从这里开始建立支持向量机，新的代价函数将会以图中虚线的形式表现出，它是一条同逻辑回归非常相似的直线。这里采用这种表示方式可以在之后带来计算上的优势。</p>
+<p>而对于代价函数本身，我们也有些许更变，</p>
+<script type="math/tex; mode=display">
+\min _{\theta} C \sum_{i=1}^{m}\left[y^{(i)} \operatorname{cost}_{1}\left(\theta^{T} x^{(i)}\right)+\left(1-y^{(i)}\right) \operatorname{cost}_{0}\left(\theta^{T} x^{(i)}\right)\right]+\frac{1}{2} \sum_{i=1}^{n} \theta_{j}^{2}</script><p>其中 $cost_1,cost_2$ 是上图虚线采用的函数，同时我们去掉了 $\frac1m$ 改用乘以一个常量 $C$</p>
+<h4 id="12-2-Large-Margin-Intuition"><a href="#12-2-Large-Margin-Intuition" class="headerlink" title="12.2 Large Margin Intuition"></a>12.2 Large Margin Intuition</h4><p>人们有时将支持向量机看作是大间距分类器。这个可以从代价函数中的 $cost_1,cost_2$ 可以看出。</p>
+<p>当我们有一个样本 $y=1$，只有在$z&gt;=1$时 (不仅仅是大于 0)，代价函数 $cost_1(z)$ 才等于0。这种做法相当于提高了函数的阈值，鼓励做出更精准的判断。</p>
+<p>如果 $C$ 非常大，则最小化代价函数的时候，我们将会很希望找到一个使第一项为0的最优解。</p>
+<p>因此代价函数也可以写成以下格式的优化问题</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min _{\theta} \frac{1}{2} \sum_{j=1}^{n} \theta_{j}^{2}\\
+s.t.\qquad &\theta^{T} x^{(i)} \geq 1 \text { if } y^{(i)}=1 \\
+&\theta^{T} x^{(i)} \leq-1  \text { if } y^{(i)}=0
+\end{aligned}</script><p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>从图中来看，分类器可以有很多种解 (紫，绿，黑)，但可以看出黑色线是最好的结果，因为它使得两个类有比较大的间距，而紫线和绿线离训练样本就非常近，在分离样本的时候就会比黑线表现差。因此，这个距离叫做支持向量机的间距，而这是支持向量机具有鲁棒性的原因，因为它努力用一个最大间距来分离样本。</p>
+<h4 id="12-3-Mathematics-Behind-Large-Margin-Classification"><a href="#12-3-Mathematics-Behind-Large-Margin-Classification" class="headerlink" title="12.3 Mathematics Behind Large Margin Classification"></a>12.3 Mathematics Behind Large Margin Classification</h4><p>首先，我们可以通过 <a href="https://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/">之前的笔记</a> 复习一下关于向量内积的知识。</p>
+<p>回顾之前的优化问题，如果假设 $n=2$ ，$\theta_0=0$，其中</p>
+<script type="math/tex; mode=display">
+\sum_{j=1}^{n} \theta_{j}^{2}=\frac{1}{2}\left({\theta_1^2+\theta_2^2}\right)=\frac{1}{2}\left(\sqrt{\theta_1^2+\theta_2^2}\right)^2=\frac{1}{2}\left\| \theta \right\|^2</script><p>因此支持向量机做的全部事情，就是<strong>极小化参数向量</strong>$\theta$<strong>范数的平方，或者说长度的平方</strong>。</p>
+<p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>图示中绿线为决策边界，而黑线就是向量$\theta$ ，$θ^Tx^{(i)}$ 相当于 $x^{(i)}$ 在向量$\theta$上的投影乘以向量 $\theta$ 的范数。我们可以将此转换为 $p^{(i)}\cdot{\left| \theta \right|}$。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min _{\theta} \frac{1}{2} \sum_{j=1}^{n} \theta_{j}^{2}\\
+s.t.\qquad &p^{(i)}\cdot{\left\| \theta \right\|} \geq 1 \text { if } y^{(i)}=1 \\
+&p^{(i)}\cdot{\left\| \theta \right\|} \leq-1  \text { if } y^{(i)}=0
+\end{aligned}</script><p>为了让$\left| \theta \right|$尽量小并且满足约束条件，我们需要使$p^{(i)}$尽量大，即$x^{(i)}$ 在向量$\theta$上的投影尽量大，即$x^{(i)}$远离决策边界。</p>
+<h4 id="12-4-Kernels"><a href="#12-4-Kernels" class="headerlink" title="12.4 Kernels"></a>12.4 Kernels</h4><p><img src="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-4.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>我们之前讨论过可以使用高级数的多项式模型来解决无法用直线进行分隔的分类问题，而除此之外，我们还可以用核函数计算出新的特征然后进行训练。</p>
+<p>给定一个训练样本$x$，我们利用$x$的各个特征与我们预先选定的<strong>地标</strong>(<strong>landmarks</strong>) $l^{(1)},l^{(2)},l^{(3)}$的近似程度来选取新的特征$f_1,f_2,f_3$。</p>
+<script type="math/tex; mode=display">
+f_{1}=\operatorname{similarity}\left(x, l^{(1)}\right)=\exp \left(-\frac{\left\|x-l^{(1)}\right\|^{2}}{2 \sigma^{2}}\right)</script><p>上例中的 $\operatorname{similarity}(x,l^{(1)})$ 就是核函数，准确来说，这是一个<strong>高斯核函数</strong>(<strong>Gaussian Kernel</strong>)。 我们通常直接写成 $k(x,l^{(1)})$</p>
+<ul>
+<li>如果一个训练样本$x$与地标$l$之间的距离近似于0，则新特征 $f$近似于$e^{-0}=1$</li>
+<li>如果一个训练样本$x$与地标$l$之间距离较远，则新特征$f$近似于$e^{-(一个较大的数)}=0$</li>
+</ul>
+<p>因此，当对新特征进行回归的时候，当系数都为正，越是靠近地标的值就越接近1</p>
+<p>在高斯核函数之外我们还有其他一些选择，如：</p>
+<ul>
+<li><p>多项式核函数（<strong>Polynomial Kernel</strong>）</p>
+</li>
+<li><p>字符串核函数（<strong>String kernel</strong>）</p>
+</li>
+<li><p>卡方核函数（ <strong>chi-square kernel</strong>）</p>
+</li>
+<li><p>直方图交集核函数（<strong>histogram intersection kernel</strong>）</p>
+</li>
+<li>等…</li>
+</ul>
+<p>这些核函数的目标也都是根据训练集和地标之间的距离来构建新特征，这些核函数需要满足Mercer’s定理，才能被支持向量机的优化软件正确处理。</p>
+<p>在具体实施过程中，当我们将核函数与<strong>SVM</strong>结合时，我们还需要对代价函数最后的正则化项进行些微调整，在计算$\sum_{j=1}^{n=m}\theta _{j}^{2}=\theta^{T}\theta $时，我们用$\theta^TM\theta$代替$\theta^T\theta$，其中$M$是根据我们选择的核函数而不同的一个矩阵。这样做的原因是为了简化计算。</p>
+<p>理论上讲，我们也可以在逻辑回归中使用核函数，但是上面使用 $M$来简化计算的方法不适用与逻辑回归，因此计算将非常耗费时间。</p>
+<h5 id="【参数-C-和-sigma-的影响】"><a href="#【参数-C-和-sigma-的影响】" class="headerlink" title="【参数$C$和$\sigma$的影响】"></a>【参数$C$和$\sigma$的影响】</h5><ul>
+<li>$C=1/\lambda$</li>
+<li>$C$ 较大时，相当于$\lambda$较小，可能会导致过拟合，高方差；</li>
+<li>$C$ 较小时，相当于$\lambda$较大，可能会导致低拟合，高偏差；</li>
+<li>$\sigma$较大时，可能会导致低方差，高偏差；</li>
+<li>$\sigma$较小时，可能会导致低偏差，高方差。</li>
+</ul>
+<p><strong>下面是一些普遍使用的准则：</strong></p>
+<p>$n$为特征数，$m$为训练样本数。</p>
+<ul>
+<li>如果相较于$m$而言，$n$要大许多，即训练集数据量不够支持我们训练一个复杂的非线性模型，我们选用逻辑回归模型或者不带核函数的支持向量机。</li>
+<li>如果$n$较小，而且$m$大小中等，例如$n$在 1-1000 之间，而$m$在10-10000之间，使用高斯核函数的支持向量机。</li>
+<li>如果$n$较小，而$m$较大，例如$n$在1-1000之间，而$m$大于50000，则使用支持向量机会非常慢，解决方案是创造、增加更多的特征，然后使用逻辑回归或不带核函数的支持向量机。</li>
+</ul>
+<p>值得一提的是，神经网络在以上三种情况下都可能会有较好的表现，但是训练神经网络可能非常慢，选择支持向量机的原因主要在于它的代价函数是凸函数，不存在局部最小值。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Neural-Networks/">#Neural Networks</a>
+      
+        <a href="/tags/Support-Vector-Machines/">#Support Vector Machines</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【课程】吴恩达机器学习课程(二)</div>
+      <div>http://achlier.github.io/2022/08/05/吴恩达机器学习课程_2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Hailey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 5, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_3/" title="【课程】吴恩达机器学习课程(三)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【课程】吴恩达机器学习课程(三)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/" title="【课程】吴恩达机器学习课程(一)">
+                        <span class="hidden-mobile">【课程】吴恩达机器学习课程(一)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

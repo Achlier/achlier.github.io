@@ -16,25 +16,27 @@
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
   
-    <meta name="description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记和作业代码分析； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要结合两版本的作业进行记录；">
+    <meta name="description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记第一部分； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【课程】吴恩达机器学习课程">
-<meta property="og:url" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/index.html">
+<meta property="og:title" content="【课程】吴恩达机器学习课程(一)">
+<meta property="og:url" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/index.html">
 <meta property="og:site_name" content="Borderland">
-<meta property="og:description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记和作业代码分析； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要结合两版本的作业进行记录；">
+<meta property="og:description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记第一部分； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic4-3.jpg">
-<meta property="og:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic6-2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/pic4-3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/pic6-2.jpg">
 <meta property="article:published_time" content="2022-08-03T05:12:29.000Z">
-<meta property="article:modified_time" content="2022-08-03T22:34:03.445Z">
+<meta property="article:modified_time" content="2022-08-05T11:44:11.734Z">
 <meta property="article:author" content="Hailey">
-<meta property="article:tag" content="Complex Number">
+<meta property="article:tag" content="Supervised Learning">
+<meta property="article:tag" content="linear regression">
+<meta property="article:tag" content="Logistic Regression">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic4-3.jpg">
+<meta name="twitter:image" content="http://achlier.github.io/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/pic4-3.jpg">
   
   
   
-  <title>【课程】吴恩达机器学习课程 - Borderland</title>
+  <title>【课程】吴恩达机器学习课程(一) - Borderland</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【课程】吴恩达机器学习课程"></span>
+            <span id="subtitle" data-typed-text="【课程】吴恩达机器学习课程(一)"></span>
           
         </div>
 
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k words
+          12k words
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          114 mins
+          104 mins
         
       </span>
     
@@ -269,13 +271,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【课程】吴恩达机器学习课程</h1>
+            <h1 style="display: none">【课程】吴恩达机器学习课程(一)</h1>
             
             <div class="markdown-body">
               
               <blockquote>
-<p>基于吴恩达机器学习 - Machine Learning Specialization <a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/machine-learning-introduction">课程</a> 的笔记和作业代码分析；</p>
-<p>本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要结合两版本的作业进行记录；</p>
+<p>基于吴恩达机器学习 - Machine Learning Specialization <a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/machine-learning-introduction">课程</a> 的笔记第一部分；</p>
+<p>本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；</p>
 </blockquote>
 <span id="more"></span>
 <h1 id="Course-1-Supervised-Machine-Learning-Regression-and-Classification"><a href="#Course-1-Supervised-Machine-Learning-Regression-and-Classification" class="headerlink" title="Course 1 : Supervised Machine Learning: Regression and Classification"></a>Course 1 : Supervised Machine Learning: Regression and Classification</h1><p>In the first course of the Machine Learning Specialization, you will:</p>
@@ -312,7 +314,7 @@
 </ul>
 <p>因为只含有一个特征/输入变量，因此这样的问题叫作单变量线性回归问题</p>
 <script type="math/tex; mode=display">
-h_\theta \left( x \right)=\theta_{0} + \theta_{1}x</script><h4 id="2-2-Cost-Function"><a href="#2-2-Cost-Function" class="headerlink" title="2.2 Cost Function"></a>2.2 Cost Function</h4><p>我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。 即使得代价函数 $J$ 最小</p>
+h_\theta ( x )=\theta_{0} + \theta_{1}x</script><h4 id="2-2-Cost-Function"><a href="#2-2-Cost-Function" class="headerlink" title="2.2 Cost Function"></a>2.2 Cost Function</h4><p>我们的目标便是选择出可以使得建模误差的平方和能够最小的模型参数。 即使得代价函数 $J$ 最小</p>
 <script type="math/tex; mode=display">
 J \left( \theta_0, \theta_1 \right) = \frac{1}{2m}\sum\limits_{i=1}^m \left( h_{\theta}(x^{(i)})-y^{(i)} \right)^{2}</script><blockquote>
 <p>此处 $\frac12$ 是为了在后面求导的时候能消去 2，方便运算</p>
@@ -355,8 +357,8 @@ J \left( \theta_0, \theta_1 \right) = \frac{1}{2m}\sum\limits_{i=1}^m \left( h_{
 <li>$n$ 代表特征的数量</li>
 <li>${x^{\left( i \right)}}$代表第 $i$ 个训练实例，是特征矩阵中的第$i$行，是一个<strong>向量</strong>（<strong>vector</strong>）</li>
 <li>$x_{j}^{\left( i \right)}$代表特征矩阵中第 $i$ 行的第 $j$ 个特征，也就是第 $i$ 个训练实例的第 $j$ 个特征</li>
-<li>支持多变量的假设 $h$ 表示为：$h_{\theta}\left( x \right)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+…+\theta_{n}x_{n}$</li>
-<li>因此公式可以简化为：$h_{\theta} \left( x \right)=\theta^{T}X$</li>
+<li>支持多变量的假设 $h$ 表示为：$h_{\theta}( x )=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+…+\theta_{n}x_{n}$</li>
+<li>因此公式可以简化为：$h_{\theta} ( x )=\theta^{T}X$</li>
 </ul>
 <h4 id="4-2-Gradient-Descent-for-Multiple-Variables"><a href="#4-2-Gradient-Descent-for-Multiple-Variables" class="headerlink" title="4.2 Gradient Descent for Multiple Variables"></a>4.2 Gradient Descent for Multiple Variables</h4><p>为了使得公式能够简化一些，引入$x_{0}=1$</p>
 <p>多变量线性回归的批量梯度下降算法，当$n&gt;=1$时，</p>
@@ -365,7 +367,7 @@ J \left( \theta_0, \theta_1 \right) = \frac{1}{2m}\sum\limits_{i=1}^m \left( h_{
 <h4 id="4-3-Gradient-Descent-in-Practice-I-Feature-Scaling"><a href="#4-3-Gradient-Descent-in-Practice-I-Feature-Scaling" class="headerlink" title="4.3 Gradient Descent in Practice I - Feature Scaling"></a>4.3 Gradient Descent in Practice I - Feature Scaling</h4><p>在我们面对多维特征问题的时候，我们需要保证这些特征都具有相近的尺度，这将帮助梯度下降算法更快地收敛</p>
 <p>考虑到我们设定 $x_0=1$ , 因此我们希望变量的值都在 $[-1,1]$ 左右</p>
 <p>如果不采用 Feature Scaling ，而直接进行计算，可能会进入如下图红色路径需要多次迭代才能收敛的状态</p>
-<p><img src="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic4-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/pic4-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <h5 id="【Mean-normalization】"><a href="#【Mean-normalization】" class="headerlink" title="【Mean normalization】"></a>【Mean normalization】</h5><p>我们在对数据进行处理的时候可以直接除一个数，或者是使用均值归一化</p>
 <script type="math/tex; mode=display">
 x_n=\frac{x_n-\mu_n}{s_n}</script><p>其中 $\mu_n$是平均值，$s_n$是标准差</p>
@@ -373,7 +375,7 @@ x_n=\frac{x_n-\mu_n}{s_n}</script><p>其中 $\mu_n$是平均值，$s_n$是标准
 <p>通常可以考虑尝试些学习率：$\alpha=…,0.01，0.03，0.1，0.3，1，3，10,…$</p>
 <h4 id="4-5-Features-and-Polynomial-Regression"><a href="#4-5-Features-and-Polynomial-Regression" class="headerlink" title="4.5 Features and Polynomial Regression"></a>4.5 Features and Polynomial Regression</h4><p>线性回归并不适用于所有数据，有时我们需要曲线来适应我们的数据，比如一个二次方模型：</p>
 <script type="math/tex; mode=display">
-h_{\theta}\left( x \right)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}^2</script><h4 id="4-6-Normal-Equation"><a href="#4-6-Normal-Equation" class="headerlink" title="4.6 Normal Equation"></a>4.6 Normal Equation</h4><p>到目前为止，我们都在使用梯度下降算法，但是对于某些线性回归问题，<strong>Normal Equation</strong> 作为更好的解决方案可以一次性解出最优的值。</p>
+h_{\theta}( x )=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}^2</script><h4 id="4-6-Normal-Equation"><a href="#4-6-Normal-Equation" class="headerlink" title="4.6 Normal Equation"></a>4.6 Normal Equation</h4><p>到目前为止，我们都在使用梯度下降算法，但是对于某些线性回归问题，<strong>Normal Equation</strong> 作为更好的解决方案可以一次性解出最优的值。</p>
 <script type="math/tex; mode=display">
 \theta =\left( {X^T}X \right)^{-1}X^{T}y</script><p>在使用这个方法的时候，Feature Scaling 可以不用做</p>
 <p>梯度下降与正规方程的比较：</p>
@@ -407,7 +409,7 @@ h_{\theta}\left( x \right)=\theta_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}^2</script>
 </div>
 <h5 id="【推导过程】"><a href="#【推导过程】" class="headerlink" title="【推导过程】"></a>【推导过程】</h5><script type="math/tex; mode=display">
 J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}\left( h_{\theta}\left( x^{(i)} \right)-y^{(i)} \right)^{2}</script><script type="math/tex; mode=display">
-h_{\theta}\left( x \right)=\theta^{T}X=\theta_{0}x_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+\cdots+\theta_{n}x_{n}</script><p>将向量表达形式转为矩阵表达形式，则有</p>
+h_{\theta}( x )=\theta^{T}X=\theta_{0}x_{0}+\theta_{1}x_{1}+\theta_{2}x_{2}+\cdots+\theta_{n}x_{n}</script><p>将向量表达形式转为矩阵表达形式，则有</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 J(\theta )&=\frac{1}{2}\left( X\theta -y\right)^{T}\left( X\theta -y \right)\\
@@ -432,16 +434,16 @@ J(\theta )&=\frac{1}{2}\left( X\theta -y\right)^{T}\left( X\theta -y \right)\\
 <p>如果我们要用线性回归算法来解决一个分类问题，那么假设函数的输出值可能远大于 1，或者远小于0，即使所有训练样本的标签  $y$ 都等于 0 或 1。所以我们在接下来的要研究的算法就叫做<strong>逻辑回归算法</strong>，这个算法的性质是：它的输出值永远在0到 1 之间。</p>
 <h4 id="5-2-Hypothesis-Representation"><a href="#5-2-Hypothesis-Representation" class="headerlink" title="5.2 Hypothesis Representation"></a>5.2 Hypothesis Representation</h4><p>根据线性回归模型我们只能预测连续的值，然而对于分类问题，我们需要输出0或1，我们可以预测：</p>
 <ul>
-<li><p>当$h_\theta\left( x \right)&gt;=0.5$时，预测 $y=1$</p>
+<li><p>当$h_\theta( x )&gt;=0.5$时，预测 $y=1$</p>
 </li>
-<li><p>当$h_\theta\left( x \right)&lt;0.5$时，预测 $y=0$ </p>
+<li><p>当$h_\theta( x )&lt;0.5$时，预测 $y=0$ </p>
 </li>
 </ul>
 <p>逻辑回归模型的假设函数是</p>
 <script type="math/tex; mode=display">
-h_\theta \left( x \right)=g\left(\theta^{T}X \right),\qquad g\left( z \right)=\frac{1}{1+e^{-z}}</script><p>其中 $g$ 代表逻辑函数（<strong>logistic function</strong>）是一个常用的逻辑函数为<strong>S</strong>形函数（<strong>Sigmoid function</strong>）</p>
-<p><img src="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/pic6-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<p>$h_\theta \left( x \right)$的作用是，对于给定的输入变量，根据选择的参数计算输出变量为 1 的可能性（<strong>estimated probablity</strong>）即 $h_\theta \left( x \right)=P\left( y=1|x;\theta \right)$</p>
+h_\theta ( x )=g\left(\theta^{T}X \right),\qquad g\left( z \right)=\frac{1}{1+e^{-z}}</script><p>其中 $g$ 代表逻辑函数（<strong>logistic function</strong>）是一个常用的逻辑函数为<strong>S</strong>形函数（<strong>Sigmoid function</strong>）</p>
+<p><img src="/2022/08/03/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_1/pic6-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>$h_\theta ( x )$的作用是，对于给定的输入变量，根据选择的参数计算输出变量为 1 的可能性（<strong>estimated probablity</strong>）即 $h_\theta ( x )=P\left( y=1|x;\theta \right)$</p>
 <h5 id="【python-代码】-1"><a href="#【python-代码】-1" class="headerlink" title="【python 代码】"></a>【python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>    <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">sigmoid</span>(<span class="hljs-params">z</span>):<br>    <br>   <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + np.exp(-z))<br></code></pre></td></tr></table></figure>
 <h4 id="5-3-Decision-Boundary"><a href="#5-3-Decision-Boundary" class="headerlink" title="5.3 Decision Boundary"></a>5.3 Decision Boundary</h4><p>根据上面绘制出的 <strong>S</strong> 形函数图像，我们知道当</p>
 <ul>
@@ -451,19 +453,19 @@ h_\theta \left( x \right)=g\left(\theta^{T}X \right),\qquad g\left( z \right)=\f
 </li>
 </ul>
 <p>逻辑回归实际上是以 $\theta^{T}=0$ 构成的函数为分界线，将预测为1的区域和预测为 0的区域分隔开。上为正，下为负。这条分界线就被成为<strong>决策边界</strong>（Decision Boundary）</p>
-<h3 id="6-Logistic-Regression-Model"><a href="#6-Logistic-Regression-Model" class="headerlink" title="6. Logistic Regression Model"></a>6. Logistic Regression Model</h3><h4 id="6-1-Cost-Function"><a href="#6-1-Cost-Function" class="headerlink" title="6.1 Cost Function"></a>6.1 Cost Function</h4><p>对于线性回归模型，我们定义的代价函数是所有模型误差的平方和。理论上来说，我们也可以对逻辑回归模型沿用这个定义，但是问题在于，当我们将 $h_\theta\left( x \right)=\frac{1}{1+e^{-\theta^{T}x}}$ 带入到这样定义了的代价函数中时，我们得到的代价函数将是一个<strong>非凸函数</strong>（<strong>non-convexfunction</strong>）。这意味着我们的代价函数有许多局部最小值，这将影响梯度下降算法寻找全局最小值。</p>
+<h3 id="6-Logistic-Regression-Model"><a href="#6-Logistic-Regression-Model" class="headerlink" title="6. Logistic Regression Model"></a>6. Logistic Regression Model</h3><h4 id="6-1-Cost-Function"><a href="#6-1-Cost-Function" class="headerlink" title="6.1 Cost Function"></a>6.1 Cost Function</h4><p>对于线性回归模型，我们定义的代价函数是所有模型误差的平方和。理论上来说，我们也可以对逻辑回归模型沿用这个定义，但是问题在于，当我们将 $h_\theta( x )=\frac{1}{1+e^{-\theta^{T}x}}$ 带入到这样定义了的代价函数中时，我们得到的代价函数将是一个<strong>非凸函数</strong>（<strong>non-convexfunction</strong>）。这意味着我们的代价函数有许多局部最小值，这将影响梯度下降算法寻找全局最小值。</p>
 <p>我们重新定义逻辑回归的代价函数为</p>
 <script type="math/tex; mode=display">
-J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}Cost\left( h_\theta\left( x^{\left( i \right)} \right),y^{\left( i \right)} \right)</script><script type="math/tex; mode=display">
-\textCost\left(h_{\theta}(x), y\right)=\left\{\begin{aligned}-\log \left(h_{\theta}(x)\right) & \text { if } y=1 \\-\log \left(1-h_{\theta}(x)\right) & \text { if } y=0 \end{aligned}\right.</script><ul>
-<li>当实际的  $y=1$ 且 $h_\theta\left( x \right)$ 也为 1 时误差为 0</li>
-<li>当 $y=1$ 但 $h_\theta\left( x \right)$ 不为1时误差随着 $h_\theta\left( x \right)$ 变小而变大</li>
-<li>当实际的 $y=0$ 且 $h_\theta\left( x \right)$ 也为 0 时代价为 0</li>
-<li>当 $y=0$ 但 $h_\theta\left( x \right)$ 不为 0 时误差随着 $h_\theta\left( x \right)$ 的变大而变大</li>
+J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}\text{Cost}\left( h_\theta\left( x^{(i)} \right),y^{(i)} \right)</script><script type="math/tex; mode=display">
+\text{Cost}\left(h_{\theta}(x), y\right)=\left\{\begin{aligned}-\log \left(h_{\theta}(x)\right) & \text{ if } y=1 \\-\log \left(1-h_{\theta}(x)\right) & \text{ if } y=0 \end{aligned}\right.</script><ul>
+<li>当实际的  $y=1$ 且 $h_\theta( x )$ 也为 1 时误差为 0</li>
+<li>当 $y=1$ 但 $h_\theta( x )$ 不为1时误差随着 $h_\theta( x )$ 变小而变大</li>
+<li>当实际的 $y=0$ 且 $h_\theta( x )$ 也为 0 时代价为 0</li>
+<li>当 $y=0$ 但 $h_\theta( x )$ 不为 0 时误差随着 $h_\theta( x )$ 的变大而变大</li>
 </ul>
 <p>简化如下：</p>
 <script type="math/tex; mode=display">
-Cost\left( h_\theta\left( x \right),y \right)=-y\times log\left( h_\theta\left( x \right) \right)-(1-y)\times log\left( 1-h_\theta\left( x \right) \right)</script><h5 id="【Python-代码】-1"><a href="#【Python-代码】-1" class="headerlink" title="【Python 代码】"></a>【Python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>    <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cost</span>(<span class="hljs-params">theta, X, y</span>):<br>    <br>  theta = np.matrix(theta)<br>  X = np.matrix(X)<br>  y = np.matrix(y)<br>  first = np.multiply(-y, np.log(sigmoid(X* theta.T)))<br>  second = np.multiply((<span class="hljs-number">1</span> - y), np.log(<span class="hljs-number">1</span> - sigmoid(X* theta.T)))<br>  <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(first - second) / (<span class="hljs-built_in">len</span>(X))<br></code></pre></td></tr></table></figure>
+Cost\left( h_\theta( x ),y \right)=-y\times log\left( h_\theta( x ) \right)-(1-y)\times log\left( 1-h_\theta( x ) \right)</script><h5 id="【Python-代码】-1"><a href="#【Python-代码】-1" class="headerlink" title="【Python 代码】"></a>【Python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>    <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cost</span>(<span class="hljs-params">theta, X, y</span>):<br>    <br>  theta = np.matrix(theta)<br>  X = np.matrix(X)<br>  y = np.matrix(y)<br>  first = np.multiply(-y, np.log(sigmoid(X* theta.T)))<br>  second = np.multiply((<span class="hljs-number">1</span> - y), np.log(<span class="hljs-number">1</span> - sigmoid(X* theta.T)))<br>  <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(first - second) / (<span class="hljs-built_in">len</span>(X))<br></code></pre></td></tr></table></figure>
 <h4 id="6-2-Simplified-Cost-Function-and-Gradient-Descent"><a href="#6-2-Simplified-Cost-Function-and-Gradient-Descent" class="headerlink" title="6.2 Simplified Cost Function and Gradient Descent"></a>6.2 Simplified Cost Function and Gradient Descent</h4><h5 id="【Cost-Function-推导】"><a href="#【Cost-Function-推导】" class="headerlink" title="【Cost Function 推导】"></a>【Cost Function 推导】</h5><script type="math/tex; mode=display">
 J\left( \theta  \right)=-\frac{1}{m}\sum\limits_{i=1}^{m}[y^{(i)}\log \left( h_\theta\left( x^{(i)} \right) \right)+\left( 1-y^{(i)} \right)\log \left( 1-h_\theta\left( x^{(i)} \right) \right)]</script><p>代入函数</p>
 <script type="math/tex; mode=display">
@@ -507,10 +509,10 @@ h_\theta\left( x^{(i)} \right)=\frac{1}{1+e^{-\theta^Tx^{(i)}}}</script><p>得�
 <h4 id="7-2-Cost-Function"><a href="#7-2-Cost-Function" class="headerlink" title="7.2 Cost Function"></a>7.2 Cost Function</h4><p>使用正则化的方法，我们可以手动对特定的系数添加惩罚项，即在代价函数中加入系数的平方。这个操作能减少变量过多的影响，但又不需要去除变量。</p>
 <p>假如我们有非常多的特征，我们并不知道其中哪些特征我们要惩罚，我们将对所有的特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。这样的结果是得到了一个较为简单的能防止过拟合问题的假设：</p>
 <script type="math/tex; mode=display">
-J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^{2}+\lambda \sum\limits_{j=1}^{n}\theta_{j}^{2}]</script><p>$\lambda $又称为正则化参数（<strong>Regularization Parameter</strong>）, 如果选择的正则化参数$\lambda$ 过大，则会把所有的参数都最小化了，导致模型变成 $h_\theta\left( x \right)=\theta_{0}$，也就造成欠拟合。</p>
+J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})^{2}+\lambda \sum\limits_{j=1}^{n}\theta_{j}^{2}]</script><p>$\lambda $又称为正则化参数（<strong>Regularization Parameter</strong>）, 如果选择的正则化参数$\lambda$ 过大，则会把所有的参数都最小化了，导致模型变成 $h_\theta( x )=\theta_{0}$，也就造成欠拟合。</p>
 <h4 id="7-3-Regularized-Linear-Regression"><a href="#7-3-Regularized-Linear-Regression" class="headerlink" title="7.3 Regularized Linear Regression"></a>7.3 Regularized Linear Regression</h4><p>正则化线性回归的代价函数为</p>
 <script type="math/tex; mode=display">
-J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}\[((h_\theta(x^{(i)})-y^{(i)})^{2}+\lambda \sum\limits_{j=1}^{n}\theta _{j}^{2})]</script><p>如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对$\theta_0$进行正则化，所以梯度下降算法将分两种情形：</p>
+J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}[((h_\theta(x^{(i)})-y^{(i)})^{2}+\lambda \sum\limits_{j=1}^{n}\theta _{j}^{2})]</script><p>如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对$\theta_0$进行正则化，所以梯度下降算法将分两种情形：</p>
 <script type="math/tex; mode=display">
 \theta_0:=\theta_0-a\frac{1}{m}\sum\limits_{i=1}^{m}((h_\theta(x^{(i)})-y^{(i)})x_{0}^{(i)})</script><script type="math/tex; mode=display">
 \theta_j:=\theta_j-a[\frac{1}{m}\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})x_{j}^{\left( i \right)}+\frac{\lambda }{m}\theta_j]\text{ , for }j=1,2,...n</script><p>我们同样也可以利用正规方程来求解正则化线性回归模型，方法如下所示：</p>
@@ -523,19 +525,7 @@ J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\log \left( h_\
 <script type="math/tex; mode=display">
 \theta_0:=\theta_0-a\frac{1}{m}\sum\limits_{i=1}^{m}((h_\theta(x^{(i)})-y^{(i)})x_{0}^{(i)})</script><script type="math/tex; mode=display">
 \theta_j:=\theta_j-a[\frac{1}{m}\sum\limits_{i=1}^{m}(h_\theta(x^{(i)})-y^{(i)})x_{j}^{\left( i \right)}+\frac{\lambda }{m}\theta_j]\text{ , for }j=1,2,...n</script><h5 id="【Python-代码】-2"><a href="#【Python-代码】-2" class="headerlink" title="【Python 代码】"></a>【Python 代码】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">costReg</span>(<span class="hljs-params">theta, X, y, learningRate</span>):<br>    theta = np.matrix(theta)<br>    X = np.matrix(X)<br>    y = np.matrix(y)<br>    first = np.multiply(-y, np.log(sigmoid(X*theta.T)))<br>    second = np.multiply((<span class="hljs-number">1</span> - y), np.log(<span class="hljs-number">1</span> - sigmoid(X*theta.T)))<br>    reg = (learningRate / (<span class="hljs-number">2</span> * <span class="hljs-built_in">len</span>(X))* np.<span class="hljs-built_in">sum</span>(np.power(theta[:,<span class="hljs-number">1</span>:theta.shape[<span class="hljs-number">1</span>]],<span class="hljs-number">2</span>))<br>    <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(first - second) / (<span class="hljs-built_in">len</span>(X)) + reg<br></code></pre></td></tr></table></figure>
-<h1 id="Course-2-Advanced-Learning-Algorithms"><a href="#Course-2-Advanced-Learning-Algorithms" class="headerlink" title="Course 2 : Advanced Learning Algorithms"></a>Course 2 : Advanced Learning Algorithms</h1><p>In the second course of the Machine Learning Specialization, you will:</p>
-<ul>
-<li>Build and train a neural network with TensorFlow to perform multi-class classification </li>
-<li>Apply best practices for machine learning development so that your models generalize to data and tasks in the real world </li>
-<li>Build and use decision trees and tree ensemble methods, including random forests and boosted trees</li>
-</ul>
-<h2 id="Week-4-Neural-Networks-Representation"><a href="#Week-4-Neural-Networks-Representation" class="headerlink" title="Week 4 : Neural Networks : Representation"></a>Week 4 : Neural Networks : Representation</h2><h2 id="Week-5-Neural-Networks-Learning"><a href="#Week-5-Neural-Networks-Learning" class="headerlink" title="Week 5 : Neural Networks : Learning"></a>Week 5 : Neural Networks : Learning</h2><h2 id="Week-6-Advice-for-Applying-Machine-Learning"><a href="#Week-6-Advice-for-Applying-Machine-Learning" class="headerlink" title="Week 6 : Advice for Applying Machine Learning"></a>Week 6 : Advice for Applying Machine Learning</h2><h2 id="Week-7-Support-Vector-Machines"><a href="#Week-7-Support-Vector-Machines" class="headerlink" title="Week 7 : Support Vector Machines"></a>Week 7 : Support Vector Machines</h2><h1 id="Course-3-Unsupervised-Learning-Recommenders-Reinforcement-Learning"><a href="#Course-3-Unsupervised-Learning-Recommenders-Reinforcement-Learning" class="headerlink" title="Course 3 : Unsupervised Learning, Recommenders, Reinforcement Learning"></a>Course 3 : Unsupervised Learning, Recommenders, Reinforcement Learning</h1><p>In the third course of the Machine Learning Specialization, you will:</p>
-<ul>
-<li>Use unsupervised learning techniques for unsupervised learning: including clustering and anomaly detection</li>
-<li>Build recommender systems with a collaborative filtering approach and a content-based deep learning method</li>
-<li>Build a deep reinforcement learning model.</li>
-</ul>
-<h2 id="Week-8-Unsupervised-Learning"><a href="#Week-8-Unsupervised-Learning" class="headerlink" title="Week 8 : Unsupervised Learning"></a>Week 8 : Unsupervised Learning</h2><h2 id="Week-9-Anomaly-Detection"><a href="#Week-9-Anomaly-Detection" class="headerlink" title="Week 9 : Anomaly Detection"></a>Week 9 : Anomaly Detection</h2><h2 id="Week-10-Large-Scale-Machine-Learning"><a href="#Week-10-Large-Scale-Machine-Learning" class="headerlink" title="Week 10 : Large Scale Machine Learning"></a>Week 10 : Large Scale Machine Learning</h2><h2 id="Week-11-Application-Example-Photo-OCR"><a href="#Week-11-Application-Example-Photo-OCR" class="headerlink" title="Week 11 : Application Example : Photo OCR"></a>Week 11 : Application Example : Photo OCR</h2>
+
               
             </div>
             <hr/>
@@ -567,7 +557,11 @@ J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\log \left( h_\
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Complex-Number/">#Complex Number</a>
+        <a href="/tags/Supervised-Learning/">#Supervised Learning</a>
+      
+        <a href="/tags/linear-regression/">#linear regression</a>
+      
+        <a href="/tags/Logistic-Regression/">#Logistic Regression</a>
       
     </div>
   
@@ -579,8 +573,8 @@ J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\log \left( h_\
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【课程】吴恩达机器学习课程</div>
-      <div>http://achlier.github.io/2022/08/03/吴恩达机器学习课程/</div>
+      <div>【课程】吴恩达机器学习课程(一)</div>
+      <div>http://achlier.github.io/2022/08/03/吴恩达机器学习课程_1/</div>
     </div>
     <div class="license-meta">
       
@@ -621,6 +615,12 @@ J\left( \theta  \right)=\frac{1}{m}\sum\limits_{i=1}^{m}[-y^{(i)}\log \left( h_\
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/" title="【课程】吴恩达机器学习课程(二)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【课程】吴恩达机器学习课程(二)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

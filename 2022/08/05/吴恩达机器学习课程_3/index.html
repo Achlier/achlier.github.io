@@ -16,31 +16,22 @@
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
   
-    <meta name="description" content="对内积与外积基础性质进行简要陈述；">
+    <meta name="description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记第三部分； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【笔记】Inner product and Cross Product">
-<meta property="og:url" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/index.html">
+<meta property="og:title" content="【课程】吴恩达机器学习课程(三)">
+<meta property="og:url" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_3/index.html">
 <meta property="og:site_name" content="Borderland">
-<meta property="og:description" content="对内积与外积基础性质进行简要陈述；">
+<meta property="og:description" content="基于吴恩达机器学习 - Machine Learning Specialization 课程 的笔记第三部分； 本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-1.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-8.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-2.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-3.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-4.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-5.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-6.jpg">
-<meta property="og:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-7.jpg">
-<meta property="article:published_time" content="2021-02-14T16:00:33.000Z">
-<meta property="article:modified_time" content="2022-08-05T09:03:55.674Z">
+<meta property="article:published_time" content="2022-08-05T11:47:49.000Z">
+<meta property="article:modified_time" content="2022-08-05T11:49:23.640Z">
 <meta property="article:author" content="Hailey">
-<meta property="article:tag" content="Inner product＆Cross Product">
+<meta property="article:tag" content="Notebook">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/pic1-1.jpg">
   
   
   
-  <title>【笔记】Inner product and Cross Product - Borderland</title>
+  <title>【课程】吴恩达机器学习课程(三) - Borderland</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【笔记】Inner product and Cross Product"></span>
+            <span id="subtitle" data-typed-text="【课程】吴恩达机器学习课程(三)"></span>
           
         </div>
 
@@ -214,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-02-15 00:00" pubdate>
-          February 15, 2021 am
+        <time datetime="2022-08-05 19:47" pubdate>
+          August 5, 2022 pm
         </time>
       </span>
     
@@ -226,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          577 words
         
       </span>
     
@@ -237,7 +228,7 @@
         
         
         
-          31 mins
+          5 mins
         
       </span>
     
@@ -275,133 +266,22 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【笔记】Inner product and Cross Product</h1>
+            <h1 style="display: none">【课程】吴恩达机器学习课程(三)</h1>
             
             <div class="markdown-body">
               
               <blockquote>
-<p>对内积与外积基础性质进行简要陈述；</p>
+<p>基于吴恩达机器学习 - Machine Learning Specialization <a target="_blank" rel="noopener" href="https://www.coursera.org/specializations/machine-learning-introduction">课程</a> 的笔记第三部分；</p>
+<p>本课程在2022年进行了更新，以Matlab代码为基础更变成了使用Python包运算，因此此篇笔记主要以旧版为基础并以新版内容为补充；</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="内积（Inner-product，点乘）"><a href="#内积（Inner-product，点乘）" class="headerlink" title="内积（Inner product，点乘）"></a>内积（Inner product，点乘）</h2><script type="math/tex; mode=display">
-a = [a_1,a_2,...,a_n] \qquad b = [b_1,b_2,...,b_n]</script><script type="math/tex; mode=display">
-a·b = |a||b|Cos\angle(a,b)</script><p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<h1 id="Course-3-Unsupervised-Learning-Recommenders-Reinforcement-Learning"><a href="#Course-3-Unsupervised-Learning-Recommenders-Reinforcement-Learning" class="headerlink" title="Course 3 : Unsupervised Learning, Recommenders, Reinforcement Learning"></a>Course 3 : Unsupervised Learning, Recommenders, Reinforcement Learning</h1><p>In the third course of the Machine Learning Specialization, you will:</p>
 <ul>
-<li>在几何中这个结果为b在a方向上的<strong>投影</strong>，若a与b正交，$a·b=0$</li>
-<li>Scalar projrction of x onto y ：$\alpha=\frac{x^Ty}{||y||}$</li>
-<li>Vector projection of x onto y : $P=\alpha\frac1{||y||}y=\frac{x^Ty}{y^Ty}y$</li>
+<li>Use unsupervised learning techniques for unsupervised learning: including clustering and anomaly detection</li>
+<li>Build recommender systems with a collaborative filtering approach and a content-based deep learning method</li>
+<li>Build a deep reinforcement learning model.</li>
 </ul>
-<p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-8.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<ul>
-<li><p>If $a=(a_1,a_2,a_3)$ and $b=(b_1,b_2,b_3)$.  Then $a·b=a_1b_1+a_2b_2+a_3b_3$</p>
-<p>证明：</p>
-<ul>
-<li><p>$|a-b|^2=|a|^2+|b|^2-2|a||b|Cos\angle(a,b)$</p>
-</li>
-<li><p>$|a|^2=a_q^2+a_2^2+a_3^2,|b|^2=b_q^2+b_2^2+b_3^2$</p>
-</li>
-<li><p>$|a-b|^2=(a_1-b_1)^2+(a_2-b_2)^2+(a_3-b_3)^2$</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a·b&=|a||b|Cos\angle(a,b)\\
-&=\frac12(|a|^2+|b|^2-|a-b|^2)\\
-&=\frac12(a_q^2+a_2^2+a_3^2+b_q^2+b_2^2+b_3^2-(a_1-b_1)^2-(a_2-b_2)^2-(a_3-b_3)^2)\\
-&=a_1b_1+a_2b_2+a_3b_3
-\end{aligned}</script></li>
-</ul>
-</li>
-</ul>
-<h2 id="外积（Cross-Product，叉乘）"><a href="#外积（Cross-Product，叉乘）" class="headerlink" title="外积（Cross Product，叉乘）"></a>外积（Cross Product，叉乘）</h2><script type="math/tex; mode=display">
-a = (x_1,y_1,z_1) \qquad b = (x_2,y_2,z_2)</script><script type="math/tex; mode=display">
-a \times b = \begin{vmatrix} i & j & k \\ x_1 & y_1 & z_1 \\x_2 & y_2 & z_2 \end{vmatrix} = (y_1z_2-y_2z_1)i-(x_1z_2-x_2z_1)j+(x_1y_2-x_2y_1)k</script><p>其中</p>
-<script type="math/tex; mode=display">
-i = (1,0,0) \ j = (0,1,0) \ k = (0,0,1)</script><p>得到结果向量</p>
-<script type="math/tex; mode=display">
-a \times b = (y_1z_2-y_2z_1,-(x_1z_2-x_2z_1),x_1y_2-x_2y_1)</script><p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-2.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<p>在几何中这个结果称为<strong>法向量</strong>，该向量垂直于a和b向量构成的平面</p>
-<p>叉乘同时拥有其它基本性质：</p>
-<ol>
-<li>$a \times a = 0$</li>
-<li>$a \times b = -( b \times a)$</li>
-<li>$(a + b)\times c = a \times c + b \times c$</li>
-<li>$(a\times b)\times c\ne a\times(b\times c)$</li>
-<li>$(a\times b)·c=a·(b\times c)$</li>
-</ol>
-<p>可得到叉乘公式推导：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-u \times v =& (u_1i+u_2j+u_3k)\times(v_1i+v_2j+v_3k)\\
-=&u_1v_1(i \times i)+u_1v_2(i \times j)+u_1v_3(i \times k)+\\
-&u_2v_1(j \times i)+u_2v_2(j \times j)+u_2v_3(j \times k)+\\
-&u_3v_1(k \times i)+u_3v_2(k \times j)+u_3v_3(k \times k)+
-\end{aligned}</script><p>同时因为</p>
-<script type="math/tex; mode=display">
-i\times i = j\times j = k\times k = 0</script><script type="math/tex; mode=display">
-\begin{cases}
-i\times j = k\\
-j\times k = i\\
-k\times i = j
-\end{cases}
-\
-\begin{cases}
-j\times i = -k\\
-k\times j = -i\\
-i\times k = -j
-\end{cases}</script><p>得到</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
-=& \begin{vmatrix} u_2 & u_3 \\v_2 & v_3 \end{vmatrix}i -
-\begin{vmatrix} u_1 & u_3 \\v_1 & v_3 \end{vmatrix}j +
-\begin{vmatrix} u_1 & u_2 \\v_1 & v_2 \end{vmatrix}k\\
-=& \begin{vmatrix} i & j & k\\u_1 & u_2 & u_3\\v_1 & v_2 & v_3 \end{vmatrix}
-\end{aligned}</script><ul>
-<li><p>证明垂直：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-(u\times v)·w =& (u_2v_3-u_3v_2)w_1+(u_3v_1-u_1v_3)w_2+(u_1v_2-u_2v_1)w_3\\
-=& \begin{vmatrix} w_1 & w_2 & w_3\\u_1 & u_2 & u_3\\v_1 & v_2 & v_3 \end{vmatrix}
-\end{aligned}</script><script type="math/tex; mode=display">
-(u\times v)·u = \begin{vmatrix} u_1 & u_2 & u_3\\u_1 & u_2 & u_3\\v_1 & v_2 & v_3 \end{vmatrix}=u_1u_2v_3+u_2u_3v_1+u_3u_1v_2-u_3u_2v_1-u_2u_1v_3-u_1u_3v_2=0</script><script type="math/tex; mode=display">
-(u\times v)·v = \begin{vmatrix} v_1 & v_2 & v_3\\u_1 & u_2 & u_3\\v_1 & v_2 & v_3 \end{vmatrix}=v_1u_2v_3+v_2u_3v_1+v_3u_1v_2-v_3u_2v_1-v_2u_1v_3-v_1u_3v_2=0</script><p>$u$  $v$  is perpendicular to both $u$ and $v$.</p>
-</li>
-</ul>
-<p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-3.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<h2 id="扩充"><a href="#扩充" class="headerlink" title="扩充"></a>扩充</h2><ul>
-<li><p>If $u=(u_1,u_2,u_3)$ and $v=(v_1,v_2,v_3)$.  Then $|u\times v|=|u||v|Sin\angle(a,b)$</p>
-<p>证明：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-|u\times v|^{2} &=(u_{2} v_{3}-u_{3} v_{2})^{2}+(u_{3} v_{1}-u_{1} v_{3})^{2}+(u_{1} v_{2}-u_{2} v_{1})^{2} \\
-&=(u_{2} v_{3})^{2}-2(u_{2} v_{3})(u_{3} v_{2})+(u_{3} v_{2})^{2} \\
-&+(u_{3} v_{1})^{2}-2(u_{3} v_{1})(u_{1} v_{3})+(u_{1} v_{3})^{2} \\
-&+(u_{1} v_{2})^{2}-2(u_{1} v_{2})(u_{2} v_{1})+(u_{2} v_{1})^{2} \\
-&=(u_{1} v_{1})^{2}+(u_{1} v_{2})^{2}+(u_{1} v_{3})^{2}+(u_{2} v_{1})^{2}+(u_{2} v_{2})^{2}+(u_{2} v_{3})^{2}+(u_{3} v_{1})^{2}+(u_{3} v_{2})^{2}+(u_{3} v_{3})^{2} \\
-&-[(u_{1} v_{1})^{2}+(u_{2} v_{2})^{2}+(u_{3} v_{3})^{2}+2(u_{1} v_{1})(u_{2} v_{2})+2(u_{2} v_{2})(u_{3} v_{3})+2(u_{1} v_{1})(u_{3} v_{3})] \\
-&=(u_{1}^{2}+u_{2}^{2}+u_{3}^{2})(v_{1}^{2}+v_{2}^{2}+v_{3}^{2})-(u_{1} v_{1}+u_{2} v_{2}+u_{3} v_{3})^{2} \\
-&=|u|^{2}|v|^{2}-(u \cdot v)^{2} \\
-&=|u|^{2}|v|^{2}-|u|^{2}|v|^{2}Cos^2\angle(a,b)\\
-&=|u|^{2}|v|^{2}Sin^2\angle(a,b)
-\end{aligned}</script></li>
-</ul>
-<p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-4.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<ul>
-<li>$|v\times w||u|Cos\angle(a,b)=u·(v\times w)=\begin{vmatrix}u_1 &amp; u_2 &amp; u_3\\v_1 &amp; v_2 &amp; v_3\ w_1 &amp; w_2 &amp; w_3\end{vmatrix}$</li>
-</ul>
-<p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-5.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<ul>
-<li>The area of the parallelogram generated by the vectors $(a, b)$ and $(c, d)$ is $det\left(\matrix{a&amp;b\\c&amp;d}\right)$</li>
-</ul>
-<p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-6.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<ul>
-<li>$\left\{\matrix{ax+by=e\\cx+dy=f}\right.$ ，只有在 $det\left(\matrix{a&amp;b\\c&amp;d}\right)\ne0$ 时才有解，解为 $\left(\matrix{a&amp;b\\c&amp;d}\right)^{-1}\left(\matrix{e\\f}\right)$</li>
-</ul>
-<p><img src="/2021/02/15/Inner_product_and_Cross_Product/pic1-7.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<hr>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lzhu/p/10405091.html"><strong>向量的内积（点乘）</strong></a></li>
-</ol>
-
+<h2 id="Week-8-Unsupervised-Learning"><a href="#Week-8-Unsupervised-Learning" class="headerlink" title="Week 8 : Unsupervised Learning"></a>Week 8 : Unsupervised Learning</h2><h2 id="Week-9-Anomaly-Detection"><a href="#Week-9-Anomaly-Detection" class="headerlink" title="Week 9 : Anomaly Detection"></a>Week 9 : Anomaly Detection</h2><h2 id="Week-10-Large-Scale-Machine-Learning"><a href="#Week-10-Large-Scale-Machine-Learning" class="headerlink" title="Week 10 : Large Scale Machine Learning"></a>Week 10 : Large Scale Machine Learning</h2><h2 id="Week-11-Application-Example-Photo-OCR"><a href="#Week-11-Application-Example-Photo-OCR" class="headerlink" title="Week 11 : Application Example : Photo OCR"></a>Week 11 : Application Example : Photo OCR</h2>
               
             </div>
             <hr/>
@@ -418,7 +298,7 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
     
       <span class="category-chain">
         
-  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  <a href="/categories/Machine-Learning/" class="category-chain-item">Machine Learning</a>
   
   
 
@@ -430,13 +310,6 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Inner-product%EF%BC%86Cross-Product/">#Inner product＆Cross Product</a>
-      
-    </div>
-  
 </div>
 
 
@@ -445,8 +318,8 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【笔记】Inner product and Cross Product</div>
-      <div>http://achlier.github.io/2021/02/15/Inner_product_and_Cross_Product/</div>
+      <div>【课程】吴恩达机器学习课程(三)</div>
+      <div>http://achlier.github.io/2022/08/05/吴恩达机器学习课程_3/</div>
     </div>
     <div class="license-meta">
       
@@ -458,7 +331,7 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 15, 2021</div>
+          <div>August 5, 2022</div>
         </div>
       
       
@@ -488,18 +361,12 @@ u\times v =& (u_2v_3-u_3v_2)i+(u_3v_1-u_1v_3)j+(u_1v_2-u_2v_1)k\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/15/Modern_Portfolio_Theory/" title="【推导】Modern Portfolio Theory">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【推导】Modern Portfolio Theory</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/13/%E6%95%B0%E7%90%86%E9%87%91%E8%9E%8D_1/" title="【定义】单时期离散时间模型">
-                        <span class="hidden-mobile">【定义】单时期离散时间模型</span>
+                      <a href="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/" title="【课程】吴恩达机器学习课程(二)">
+                        <span class="hidden-mobile">【课程】吴恩达机器学习课程(二)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
