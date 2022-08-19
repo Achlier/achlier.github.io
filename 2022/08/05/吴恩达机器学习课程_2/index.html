@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-3.jpg">
 <meta property="og:image" content="http://achlier.github.io/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_2/pic12-4.jpg">
 <meta property="article:published_time" content="2022-08-05T11:40:39.000Z">
-<meta property="article:modified_time" content="2022-08-09T20:20:06.718Z">
+<meta property="article:modified_time" content="2022-08-18T15:59:49.400Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Neural Networks">
 <meta property="article:tag" content="Support Vector Machines">
@@ -239,7 +239,7 @@
         
         
         
-          172 mins
+          176 mins
         
       </span>
     
@@ -381,6 +381,7 @@ g'(z)=\frac{e^{-z}}{(1+e^{-z})^2}=\frac{e^{-z}+1-1}{(1+e^{-z})^2}=\frac1{1+e^{-z
 &=-y+ay+a-ay\\
 &=a-y
 \end{aligned}</script><p>因此 $\delta^{(l)}_{j}$ 又相当于是第 $l$ 层的第 $j$ 单元中得到的激活项的“误差”，即”正确“的 $a^{(l)}_{j}$ 与计算得到的 $a^{(l)}_{j}$ 的差</p>
+<h5 id="【TensorFlow】"><a href="#【TensorFlow】" class="headerlink" title="【TensorFlow】"></a>【TensorFlow】</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf<br><span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> Sequential<br><span class="hljs-keyword">from</span> tensorflow.keras.layers <span class="hljs-keyword">import</span> Dense<br><br>model = Sequential(<br>    [<br>        Dense(<span class="hljs-number">3</span>, activation=<span class="hljs-string">&#x27;sigmoid&#x27;</span>, name = <span class="hljs-string">&#x27;layer1&#x27;</span>),<br>        Dense(<span class="hljs-number">1</span>, activation=<span class="hljs-string">&#x27;sigmoid&#x27;</span>, name = <span class="hljs-string">&#x27;layer2&#x27;</span>) <span class="hljs-comment"># activation可以换成softmax</span><br>     ]<br>)<br><br>model.<span class="hljs-built_in">compile</span>(<br>    loss = tf.keras.losses.BinaryCrossentropy(), <span class="hljs-comment"># 同时此处需要换成 SparseCategoricalCrossentropy</span><br>    optimizer = tf.keras.optimizers.Adam(learning_rate=<span class="hljs-number">0.01</span>),<br>)<br><br>model.fit(<br>    Xt,Yt,            <br>    epochs=<span class="hljs-number">10</span>,<br>)<br></code></pre></td></tr></table></figure>
 <h4 id="9-4-Gradient-Checking"><a href="#9-4-Gradient-Checking" class="headerlink" title="9.4 Gradient Checking"></a>9.4 Gradient Checking</h4><p>当我们对一个较为复杂的模型（例如神经网络）使用梯度下降算法时，可能会存在一些不容易察觉的错误，意味着，虽然代价看上去在不断减小，但最终的结果可能并不是最优解。</p>
 <p>为了避免这样的问题，我们采取一种叫做梯度的数值检验（<strong>Numerical Gradient Checking</strong>）方法。这种方法的思想是通过估计梯度值来检验我们计算的导数值是否真的是我们要求的。</p>
 <p>对梯度的估计采用的方法是在代价函数上沿着切线的方向选择离两个非常近的点然后计算两个点的平均值用以估计梯度。即对于某个特定的 $\theta$，我们计算出在 $\theta$-$\varepsilon $ 处和 $\theta$+$\varepsilon $ 的代价值（$\varepsilon $是一个非常小的值，通常选取 0.001），然后求两个代价的平均，用以估计在 $\theta$ 处的代价值。</p>
