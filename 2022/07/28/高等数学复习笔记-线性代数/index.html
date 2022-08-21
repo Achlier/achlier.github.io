@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://achlier.github.io/2022/07/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/pic1-1.jpg">
 <meta property="og:image" content="http://achlier.github.io/2022/07/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/pic1-2.jpg">
 <meta property="article:published_time" content="2022-07-28T11:00:12.000Z">
-<meta property="article:modified_time" content="2022-08-03T10:10:24.623Z">
+<meta property="article:modified_time" content="2022-08-21T09:17:28.747Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Linear Algebra">
 <meta name="twitter:card" content="summary_large_image">
@@ -408,13 +408,11 @@ U^ TU = I = U U^T</script></li>
 <script type="math/tex; mode=display">
 \operatorname{span}\left(\left\{x_{1}, \ldots x_{n}\right\}\right)=\left\{v : v=\sum_{i=1}^{n} \alpha_{i} x_{i}, \quad \alpha_{i} \in \mathbb{R}\right\}</script><p>如果$A$是满秩且$n &lt;m$，向量$y \in \mathbb{R}^{m}$到$A$的范围的投影由下式给出:</p>
 <script type="math/tex; mode=display">
-\operatorname{Proj}(y ; A)=\operatorname{argmin}_{v \in \mathcal{R}(A)}\|v-y\|_{2}=A\left(A^{T} A\right)^{-1} A^{T} y</script><blockquote>
-<p>$\begin{aligned}|A x-y|_{2}^{2} &amp;=(A x-y)^{T}(A x-y) \ &amp;=x^{T} A^{T} A x-2 y^{T} A x+y^{T} y \end{aligned}$</p>
-<p>$\begin{aligned} \nabla_{x}\left(x^{T} A^{T} A x-2 y^{T} A x+y^{T} y\right) &amp;=\nabla_{x} x^{T} A^{T} A x-\nabla_{x} 2 y^{T} A x+\nabla_{x} y^{T} y \ &amp;=2 A^{T} A x-2 A^{T} y \end{aligned}$</p>
-<p>将最后一个表达式设置为零，然后解出$x$，得到了正规方程：</p>
-<p>$x = (A^TA)^{-1}A^Ty$，$v = A(A^TA)^{-1}A^Ty$</p>
-</blockquote>
-<p>$\mathcal{R}(A^T)$和 $\mathcal{N}(A)$ 是不相交的子集，它们一起跨越$\mathbb{R}^{n}$的整个空间。 这种类型的集合称为<strong>正交补</strong>，我们用$\mathcal{R}(A^T)= \mathcal{N}(A)^{\perp}$表示。</p>
+\operatorname{Proj}(y ; A)=\operatorname{argmin}_{v \in \mathcal{R}(A)}\|v-y\|_{2}=A\left(A^{T} A\right)^{-1} A^{T} y</script><h5 id="Proof："><a href="#Proof：" class="headerlink" title="Proof："></a>Proof：</h5><script type="math/tex; mode=display">
+\begin{aligned}\|A x-y\|_{2}^{2} &=(A x-y)^{T}(A x-y) \\ &=x^{T} A^{T} A x-2 y^{T} A x+y^{T} y \end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned} \nabla_{x}\left(x^{T} A^{T} A x-2 y^{T} A x+y^{T} y\right) &=\nabla_{x} x^{T} A^{T} A x-\nabla_{x} 2 y^{T} A x+\nabla_{x} y^{T} y \\ &=2 A^{T} A x-2 A^{T} y \end{aligned}</script><p>将最后一个表达式设置为零，然后解出$x$，得到了正规方程：</p>
+<script type="math/tex; mode=display">
+x = (A^TA)^{-1}A^Ty ,\qquad v = A(A^TA)^{-1}A^Ty</script><p>$\mathcal{R}(A^T)$和 $\mathcal{N}(A)$ 是不相交的子集，它们一起跨越$\mathbb{R}^{n}$的整个空间。 这种类型的集合称为<strong>正交补</strong>，我们用$\mathcal{R}(A^T)= \mathcal{N}(A)^{\perp}$表示。</p>
 <script type="math/tex; mode=display">
 \left\{w : w=u+v, u \in \mathcal{R}\left(A^{T}\right), v \in \mathcal{N}(A)\right\}=\mathbb{R}^{n} \text { and } \mathcal{R}\left(A^{T}\right) \cap \mathcal{N}(A)=\{\mathbf{0}\}</script><h5 id="Schmidt-正交化"><a href="#Schmidt-正交化" class="headerlink" title="Schmidt 正交化"></a>Schmidt 正交化</h5><p>若$\alpha_{1},\alpha_{2},\cdots,\alpha_{s}$线性无关，则可构造$\beta_{1},\beta_{2},\cdots,\beta_{s}$使其两两正交，且$\beta_{i}$仅是$\alpha_{1},\alpha_{2},\cdots,\alpha_{i}$的线性组合$(i= 1,2,\cdots,n)$，再把$\beta_{i}$单位化，记$\gamma_{i} =\frac{\beta_{i}}{|\beta_{i}|}$，则$\gamma_{1},\gamma_{2},\cdots,\gamma_{i}$是规范正交向量组。其中:</p>
 <script type="math/tex; mode=display">
@@ -445,22 +443,20 @@ U^ TU = I = U U^T</script></li>
 D_{n} = \begin{vmatrix} 1 & 1 & \ldots & 1 \\ x_{1} & x_{2} & \ldots & x_{n} \\ \ldots & \ldots & \ldots & \ldots \\ x_{1}^{n - 1} & x_{2}^{n 1} & \ldots & x_{n}^{n - 1} \\ \end{vmatrix} =  \prod_{1 \leq j < i \leq n}^{}\,(x_{i} - x_{j})</script><h5 id="克莱姆法则-Cramer’s-Rule"><a href="#克莱姆法则-Cramer’s-Rule" class="headerlink" title="克莱姆法则 Cramer’s Rule"></a>克莱姆法则 Cramer’s Rule</h5><p>Let  A  be an  $n \times n$  nonsingular matrix, and let  $\boldsymbol{b} \in \mathbb{R}^{n}$ . Let  $A_{i}$  be the matrix obtained by replacing the</p>
 <p> i-th column of  A  by  $\boldsymbol{b}$ . If $ \boldsymbol{x}$  is the unique solution of  A $\boldsymbol{x}=\boldsymbol{b}$, then</p>
 <script type="math/tex; mode=display">
-x_{i}=\frac{\text{det}\left(A_{i}\right)}{\text{det}(A)} \quad \text { for } i=1, \cdots, n</script><h5 id="【有趣的例题】"><a href="#【有趣的例题】" class="headerlink" title="【有趣的例题】"></a>【有趣的例题】</h5><ol>
-<li><script type="math/tex; mode=display">
+x_{i}=\frac{\text{det}\left(A_{i}\right)}{\text{det}(A)} \quad \text { for } i=1, \cdots, n</script><h5 id="【有趣的例题】"><a href="#【有趣的例题】" class="headerlink" title="【有趣的例题】"></a>【有趣的例题】</h5><p>1.</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
 \left|\begin{array}{ccc}1 & 1 & 1 \\ a & b & c \\ a^{2} & b^{2} & c^{2}\end{array}\right|&=\left|\begin{array}{ccc}1 & 0 & 0 \\ a & b-a & c-a \\ a^{2} & b^{2}-a^{2} & c^{2}-a^{2}\end{array}\right| \quad\left[C_{2}-C_{1} \rightarrow C_{2}, C_{3}-C_{1} \rightarrow C_{3}\right]\\
 &=\left|\begin{array}{cc}b-a & c-a \\ b^{2}-a^{2} & c^{2}-a^{2}\end{array}\right|\\
 &=(b-a)(c-a)\left|\begin{array}{cc}1 & 1 \\ b+a & c+a\end{array}\right|\\
 &=(b-a)(c-a)(c-b)
-\end{aligned}</script></li>
-<li><script type="math/tex; mode=display">
+\end{aligned}</script><p>2.</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
 \left|\begin{array}{ccc}a+b & b+c & c+a \\ a^{2}+b^{2} & b^{2}+c^{2} & c^{2}+a^{2} \\ a^{3}+b^{3} & b^{3}+c^{3} & c^{3}+a^{3}\end{array}\right|&=\left|\begin{array}{ccc}a & b & c \\ a^{2} & b^{2} & c^{2} \\ a^{3} & b^{3} & c^{3}\end{array}\right|\left|\begin{array}{ccc}1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 1 & 1\end{array}\right|\\
 &=2abc\left|\begin{array}{ccc}1 & 1 & 1 \\a & b & c \\a^{2} & b^{2} & c^{2} \end{array}\right| \\
 &=2 a b c(b-a)(c-a)(c-b)
-\end{aligned}</script></li>
-</ol>
-<h4 id="3-11-二次型和半正定矩阵"><a href="#3-11-二次型和半正定矩阵" class="headerlink" title="3.11 二次型和半正定矩阵"></a>3.11 二次型和半正定矩阵</h4><p>给定方矩阵$A  \in \mathbb{R}^{n \times n}$和向量$x \in \mathbb{R}^{n}$，标量值$x^T Ax$被称为二次型。</p>
+\end{aligned}</script><h4 id="3-11-二次型和半正定矩阵"><a href="#3-11-二次型和半正定矩阵" class="headerlink" title="3.11 二次型和半正定矩阵"></a>3.11 二次型和半正定矩阵</h4><p>给定方矩阵$A  \in \mathbb{R}^{n \times n}$和向量$x \in \mathbb{R}^{n}$，标量值$x^T Ax$被称为二次型。</p>
 <script type="math/tex; mode=display">
 x^{T} A x=\sum_{i=1}^{n} x_{i}(A x)_{i}=\sum_{i=1}^{n} x_{i}\left(\sum_{j=1}^{n} A_{i j} x_{j}\right)=\sum_{i=1}^{n} \sum_{j=1}^{n} A_{i j} x_{i} x_{j}</script><blockquote>
 <script type="math/tex; mode=display">
@@ -492,10 +488,16 @@ Ax=\lambda x,x \ne 0</script><ul>
 <script type="math/tex; mode=display">
 [A]_{\gamma}=\left(\begin{array}{ccccc}\lambda & 1 & 0 & \cdots & 0 \\ 0 & \lambda & 1 & \ddots & \vdots \\ \vdots & \ddots & \ddots & \ddots & 0 \\ \vdots & & \ddots & \lambda & 1 \\ 0 & \cdots & 0 & 0 & \lambda\end{array}\right)</script><h5 id="【Example】"><a href="#【Example】" class="headerlink" title="【Example】"></a>【Example】</h5><p>Consider $A=\left(\begin{array}{ccc}3 &amp; 1 &amp; 0 \ -1 &amp; 1 &amp; 0 \ 3 &amp; 2 &amp; 2\end{array}\right)$. Its characteristic polynomial is $\operatorname{det}\left(\lambda I_{3}-A\right)=(\lambda-2)^{3}$.</p>
 <p>There is 1 eigenvalue $\lambda=2$ (multiplicity $=3$ ).</p>
-<p>Consider $E_{2}=N\left(A-2 I_{3}\right)=N\left(\begin{array}{ccc}1 &amp; 1 &amp; 0 \ -1 &amp; -1 &amp; 0 \ 3 &amp; 2 &amp; 0\end{array}\right)=\operatorname{span}\left\{\left(\begin{array}{l}0 \ 0 \ 1\end{array}\right)\right\}$.</p>
-<p>Since $\operatorname{dim} E_{2}=1 \neq 3$ (multiplicity of $\left.\lambda=2\right), A$ is not diagonalizable.</p>
-<p>Extend $E_{2}$ to $K_{2}=N\left(\left(A-2 I_{5}\right)^{2}\right)=N\left(\begin{array}{lll}0 &amp; 0 &amp; 0 \ 0 &amp; 0 &amp; 0 \ 1 &amp; 1 &amp; 0\end{array}\right)=\operatorname{span}\left\{\left(\begin{array}{l}0 \ 0 \ 1\end{array}\right),\left(\begin{array}{c}1 \ -1 \ 0\end{array}\right)\right\}, \operatorname{dim} K_{2}=2 \neq 3$. The generalized eigenspace $K_2$ is not large enough to provide 3 eigenvectors. Let us consider $N\left(\left(A-2 I_{3}\right)^{3}\right)=N\left(\begin{array}{lll}0 &amp; 0 &amp; 0 \ 0 &amp; 0 &amp; 0 \ 0 &amp; 0 &amp; 0\end{array}\right)=C^3$ which has dimension 3. Choose a vector, say $\left(\begin{array}{l}1 \ 0 \ 0\end{array}\right) \in N\left(\left(A-2 I_{3}\right)^{3}\right) \backslash N\left(\left(A-2 I_{3}\right)^{2}\right)$.</p>
-<p>$AP=PJ\Rightarrow(AP_1,AP_2AP_3)=(2P_1,P_1+2P_2,P_2+2P_3)$</p>
+<p>Consider </p>
+<script type="math/tex; mode=display">
+E_{2}=N\left(A-2 I_{3}\right)=N\left(\begin{array}{ccc}1 & 1 & 0 \\ -1 & -1 & 0 \\ 3 & 2 & 0\end{array}\right)=\operatorname{span}\left\{\left(\begin{array}{l}0 \\ 0 \\ 1\end{array}\right)\right\}</script><p>Since $\operatorname{dim} E_{2}=1 \neq 3$ (multiplicity of $\left.\lambda=2\right), A$ is not diagonalizable.</p>
+<p>Extend $E_{2}$ to</p>
+<script type="math/tex; mode=display">
+K_{2}=N\left(\left(A-2 I_{5}\right)^{2}\right)=N\left(\begin{array}{lll}0 & 0 & 0 \\ 0 & 0 & 0 \\ 1 & 1 & 0\end{array}\right)=\operatorname{span}\left\{\left(\begin{array}{l}0 \\ 0 \\ 1\end{array}\right),\left(\begin{array}{c}1 \\ -1 \\ 0\end{array}\right)\right\}, \operatorname{dim} K_{2}=2 \neq 3</script><p> The generalized eigenspace $K_2$ is not large enough to provide 3 eigenvectors. Let us consider</p>
+<script type="math/tex; mode=display">
+N\left(\left(A-2 I_{3}\right)^{3}\right)=N\left(\begin{array}{lll}0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0\end{array}\right)=C^3</script><p>which has dimension 3. Choose a vector, say </p>
+<script type="math/tex; mode=display">
+\left(\begin{array}{l}1 \\ 0 \\ 0\end{array}\right) \in N\left(\left(A-2 I_{3}\right)^{3}\right) \backslash N\left(\left(A-2 I_{3}\right)^{2}\right)</script><p>$AP=PJ\Rightarrow(AP_1,AP_2AP_3)=(2P_1,P_1+2P_2,P_2+2P_3)$</p>
 <script type="math/tex; mode=display">
 \left\{\begin{array}{lcl}AP_1&=&2P_1\\AP_2&=&P_1+2P_2\\AP_3&=&P_2+2P_3\end{array}\right.\Rightarrow
 \left\{\begin{array}{lcl}(A-2I_3)P_1&=&0\\(A-2I_3)P_2&=&P_1\\(A-2I_3)P_3&=&P_2\end{array}\right.</script><p>Then $P=\left\{(A-2I_3)^2\left(\begin{array}{l}1 \ 0 \ 0\end{array}\right)=\left(\begin{array}{l}0 \ 0 \     1\end{array}\right),(A-2I_3)\left(\begin{array}{l}1 \ 0 \ 0\end{array}\right)=\left(\begin{array}{l}1 \ -1 \     3\end{array}\right),\left(\begin{array}{l}1 \ 0 \ 0\end{array}\right) \right\}$ will form a basis of $C^3$. We have</p>
@@ -573,8 +575,7 @@ f_{1}^{(n-1)}(x) & f_{2}^{(n-1)}(x) & \cdots & f_{n}^{(n-1)}(x)
 </ol>
 <h4 id="5-3-Projection"><a href="#5-3-Projection" class="headerlink" title="5.3 Projection"></a>5.3 Projection</h4><p>Let  $T: \boldsymbol{R}^{2} \rightarrow \boldsymbol{R}^{2}$  be linear transformation defined by  $T\left(\begin{array}{c}1 \ m\end{array}\right)=\left(\begin{array}{c}1 \ m\end{array}\right)$ and  $ T\left(\begin{array}{c}-m \ 1\end{array}\right)=\left(\begin{array}{l}0 \ 0\end{array}\right) $</p>
 <p><img src="/2022/07/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/pic1-1.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<p>Method 1 :</p>
-<p>Since  $\text{det}\left(\begin{array}{cc}1 &amp; -m \ m &amp; 1\end{array}\right)=1+m^{2} \neq 0$,$\left\{\left(\begin{array}{c}1 \\m\end{array}\right),\left(\begin{array}{c}-m \ 1\end{array}\right)\right\}$  is linearly independent. Hence  $\left\{\left(\begin{array}{c}1 \ m\end{array}\right),\left(\begin{array}{c}-m \ 1\end{array}\right)\right\}$  is a basis of  $\boldsymbol{R}^{2}$ . Consider</p>
+<h5 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1 :"></a>Method 1 :</h5><p>Since  $\text{det}\left(\begin{array}{cc}1 &amp; -m \ m &amp; 1\end{array}\right)=1+m^{2} \neq 0$,$\left\{\left(\begin{array}{c}1 \\m\end{array}\right),\left(\begin{array}{c}-m \ 1\end{array}\right)\right\}$  is linearly independent. Hence  $\left\{\left(\begin{array}{c}1 \ m\end{array}\right),\left(\begin{array}{c}-m \ 1\end{array}\right)\right\}$  is a basis of  $\boldsymbol{R}^{2}$ . Consider</p>
 <script type="math/tex; mode=display">
 \left(\begin{array}{l}1 \\0\end{array}\right)=a\left(\begin{array}{c}1 \\m\end{array}\right)+b\left(\begin{array}{c}-m \\1\end{array}\right) \text { and }\left(\begin{array}{l}0 \\1\end{array}\right)=c\left(\begin{array}{c}1 \\m\end{array}\right)+d\left(\begin{array}{c}-m \\1\end{array}\right)</script><p>That is</p>
 <script type="math/tex; mode=display">
@@ -582,10 +583,16 @@ f_{1}^{(n-1)}(x) & f_{2}^{(n-1)}(x) & \cdots & f_{n}^{(n-1)}(x)
 1 & -m \\m & 1\end{array}\right)\left(\begin{array}{l}
 a \\b\end{array}\right) \text { and }\left(\begin{array}{l}0\\1\end{array}\right)=\left(\begin{array}{cc}1 & -m \\m & 1\end{array}\right)\left(\begin{array}{l}c \\d\end{array}\right)</script><p>By Cramer’s rule,</p>
 <script type="math/tex; mode=display">
+\begin{aligned}
 a=\frac{\left|\begin{array}{cc}1 & -m \\0 & 1\end{array}\right|}{\left|\begin{array}{cc}1 & -m \\m & 1\end{array}\right|}=\frac{1}{1+m^{2}} \quad b=\frac{\left|\begin{array}{cc}1 & 1 \\m & 0\end{array}\right|}{\left|\begin{array}{cc}1 & -m \\m & 1
-\end{array}\right|}=\frac{-m}{1+m^{2}} \quad c=\frac{\left|\begin{array}{cc}0 & -m \\1 & 1\end{array}\right|}{\left|\begin{array}{cc}1 & -m \\m & 1\end{array}\right|}=\frac{m}{1+m^{2}} \quad d=\frac{\left|\begin{array}{cc}1 & 0 \\m & 1\end{array}\right|}{\left|\begin{array}{cc}1 & -m \\m & 1\end{array}\right|}=\frac{1}{1+m^{2}}</script><p>Then</p>
+\end{array}\right|}=\frac{-m}{1+m^{2}}\\ \\
+c=\frac{\left|\begin{array}{cc}0 & -m \\1 & 1\end{array}\right|}{\left|\begin{array}{cc}1 & -m \\m & 1\end{array}\right|}=\frac{m}{1+m^{2}} \quad d=\frac{\left|\begin{array}{cc}1 & 0 \\m & 1\end{array}\right|}{\left|\begin{array}{cc}1 & -m \\m & 1\end{array}\right|}=\frac{1}{1+m^{2}}
+\end{aligned}</script><p>Then</p>
 <script type="math/tex; mode=display">
-\left(\begin{array}{l}1 \\0\end{array}\right) = \frac{1}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)-\frac{m}{1+m^{2}}\left(\begin{array}{c}-m \\1\end{array}\right) \text { and }\left(\begin{array}{l}0 \\1\end{array}\right) = \frac{m}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)+\frac{1}{1+m^{2}}\left(\begin{array}{c}-m \\1\end{array}\right)</script><script type="math/tex; mode=display">
+\begin{aligned}
+\left(\begin{array}{l}1 \\0\end{array}\right) = \frac{1}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)-\frac{m}{1+m^{2}}\left(\begin{array}{c}-m \\1\end{array}\right)\\
+\left(\begin{array}{l}0 \\1\end{array}\right) = \frac{m}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)+\frac{1}{1+m^{2}}\left(\begin{array}{c}-m \\1\end{array}\right)
+\end{aligned}</script><script type="math/tex; mode=display">
 \begin{aligned}
 T\left(\begin{array}{l}1 \\0\end{array}\right) & = T\left(\frac{1}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)-\frac{m}{1+m^{2}}\left(\begin{array}{c}-m\\1\end{array}\right)\right)\\
 & = \frac{1}{1+m^{2}} T\left(\begin{array}{c}1 \\m\end{array}\right)-\frac{m}{1+m^{2}} T\left(\begin{array}{c}-m \\1\end{array}\right)\\
@@ -618,8 +625,7 @@ T\left(\begin{array}{l}0\\1\end{array}\right) & = T\left(\frac{m}{1+m^{2}}\left(
 \frac{1}{1+m^{2}} & \frac{m}{1+m^{2}} \\
 \frac{m}{1+m^{2}} & \frac{m^{2}}{1+m^{2}}
 \end{array}\right)=[T]_{\beta}
-\end{aligned}</script><p>Method 2 :</p>
-<script type="math/tex; mode=display">
+\end{aligned}</script><h5 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2 :"></a>Method 2 :</h5><script type="math/tex; mode=display">
 \boldsymbol{p}=\frac{(x, y)\left(\begin{array}{c}1 \\m\end{array}\right)}{(1, m)\left(\begin{array}{c}1 \\m\end{array}\right)}\left(\begin{array}{c}1 \\m\end{array}\right)=\frac{x+m y}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)=\left(\begin{array}{cc}\frac{1}{1+m^{2}} & \frac{m}{1+m^{2}} \\ \frac{m}{1+m^{2}} & \frac{m^{2}}{1+m^{2}}\end{array}\right)\left(\begin{array}{l}x \\y\end{array}\right)</script><script type="math/tex; mode=display">
 \begin{aligned}
 \boldsymbol{x}-\boldsymbol{p}&=\left(\begin{array}{l}x \\y\end{array}\right)-\frac{x+m y}{1+m^{2}}\left(\begin{array}{c}1 \\m\end{array}\right)\\
@@ -1088,6 +1094,6 @@ T\left(\begin{array}{l}0\\1\end{array}\right) & = T\left(\frac{m}{1+m^{2}}\left(
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
