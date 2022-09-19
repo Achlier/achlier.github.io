@@ -16,23 +16,28 @@
   <meta name="author" content="Hailey">
   <meta name="keywords" content="Notebook">
   
-    <meta name="description" content="由于租了一台Ubuntu系统的云服务器来搭梯子，不免要用到vi来修改文档内容，此处为了方便查找特意从网上摘录了操作方便查找。">
+    <meta name="description" content="基于网上一些文章进行期权简单介绍，也算是半原创了，第一次写这么正式的文章，如有笔误请多见谅。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【笔记】ubuntu下vim的基本用法">
-<meta property="og:url" content="http://achlier.github.io/2022/09/17/ubuntu%E4%B8%8Bvim%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:title" content="【原创】期权介绍,功能,作用和策略">
+<meta property="og:url" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="Borderland">
-<meta property="og:description" content="由于租了一台Ubuntu系统的云服务器来搭梯子，不免要用到vi来修改文档内容，此处为了方便查找特意从网上摘录了操作方便查找。">
+<meta property="og:description" content="基于网上一些文章进行期权简单介绍，也算是半原创了，第一次写这么正式的文章，如有笔误请多见谅。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-09-16T18:30:23.000Z">
-<meta property="article:modified_time" content="2022-09-19T18:36:52.939Z">
+<meta property="og:image" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic1.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic2.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic3.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic4.jpg">
+<meta property="og:image" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic5.jpg">
+<meta property="article:published_time" content="2022-09-19T18:24:14.000Z">
+<meta property="article:modified_time" content="2022-09-19T18:39:06.591Z">
 <meta property="article:author" content="Hailey">
-<meta property="article:tag" content="Vim">
-<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="Option">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://achlier.github.io/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic1.jpg">
   
   
   
-  <title>【笔记】ubuntu下vim的基本用法 - Borderland</title>
+  <title>【原创】期权介绍,功能,作用和策略 - Borderland</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【笔记】ubuntu下vim的基本用法"></span>
+            <span id="subtitle" data-typed-text="【原创】期权介绍,功能,作用和策略"></span>
           
         </div>
 
@@ -206,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-17 02:30" pubdate>
-          September 17, 2022 am
+        <time datetime="2022-09-20 02:24" pubdate>
+          September 20, 2022 am
         </time>
       </span>
     
@@ -218,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          3.9k words
         
       </span>
     
@@ -229,7 +234,7 @@
         
         
         
-          15 mins
+          33 mins
         
       </span>
     
@@ -267,126 +272,66 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【笔记】ubuntu下vim的基本用法</h1>
+            <h1 style="display: none">【原创】期权介绍,功能,作用和策略</h1>
             
             <div class="markdown-body">
               
               <blockquote>
-<p>由于租了一台Ubuntu系统的云服务器来搭梯子，不免要用到vi来修改文档内容，此处为了方便查找特意从网上摘录了操作方便查找。</p>
+<p>基于网上一些文章进行期权简单介绍，也算是半原创了，第一次写这么正式的文章，如有笔误请多见谅。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>vim 自带基础教程：在任意一台装有vim的机器上，命令行中输入 <code>vimtutor</code>  然后就可以看到教程了。</p>
-<p>当想要对一个文件进行改写or阅读时只有输入 <code>vi 文件路径</code> 或者 <code>vim 文件路径</code> 就可以了。</p>
-<h2 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h2><p>vim有3个模式：<strong>命令模式（Command/Normal）、插入模式（Insert）、末行模式（Last line mode）</strong>。</p>
-<ul>
-<li>命令模式：<code>vi</code> 后初始模式，可以移动光标、删除字符等。按 <code>i/a/o</code> 进入插入模式。按 : 进入末行模式。</li>
-<li><p>插入模式：在此模式下可以输入字符，按 <code>ESC</code> 将回到命令模式。</p>
+<h2 id="期权的介绍"><a href="#期权的介绍" class="headerlink" title="期权的介绍"></a>期权的介绍</h2><p>期权（Option）又称为选择权，同时它也被广义地称为金融衍生品。期权已经产生很多年了，其最早可以追溯到17世纪，但直到1973年4月26日才第一次在交易所交易。那时，芝加哥期权交易所（CBOE）第一个创造了标准化的上市期权。最初只有16只股票的看装期权被交易，而看跌期权直到1977年才被引进交易所。期权的标的资产不仅涵盖了股票、货币、股指以及期货等金融产品，还包括了各种实物资产如铜、煤等等。2015年2月9日，中国上证50ETF股票期权正式上市交易，将这期权这一新型的衍生品工具引入了中国的金融证券市场，向交易市场注入了新鲜的血液与策略。</p>
+<p>相比其它衍生品，期权提供给合约买入者或持有者一种权利，使得持有者能在特定时间内以执行价格购买或卖出指定数量标的资产，但这种购买并不是义务。换句话来说，当持有者在到期日时察觉行权带来的损失比不行权大，他可以选择放弃合约，即不履行这种权利。这种特殊的权利使得期权在防止投资者损失过大的同时，也保留了高收益的可能性。正因多了这么一项权利，期权的购买者需要向出售者支付一笔额外的费用，即期权费（Premium），这笔额外的费用不会因为放弃合约而返还到合约持有者手里。</p>
+<h2 id="期权的功能"><a href="#期权的功能" class="headerlink" title="期权的功能"></a>期权的功能</h2><p>为了更清晰地了解期权，我们从最基础的欧式期权开始说起，它按照主要的功能可以分为看涨（call）和看跌（put）两种。欧式买入看涨/看跌期权让持有人有权利但不负有义务在到期日（T）按规定价格（Strike Price / K）购买/出售某种资产。从图1中可以很直观地看出，当股票到期价格越高时看涨期权收益越高，当股票到期价日格越低时看跌期权收益越高。同时两者都有一个最大亏损的限制，所以可以说期权给投资提供了一种保险。</p>
+<p><img src="/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic1.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>与买入相对的是卖出期权，能从字面上很容易地理解，卖出期权就是将到期是否交易的权利卖出给对手方。卖出方得到期权费的同时也有风险会面临很大的损失。欧式卖出期权的收益图示和上图很相似，将红色的收益线上下翻转便是卖出方的到期收益图示。</p>
+<p>在香草期权（Vanilla Option）也就是普通期权中，除了欧式期权之外还有一种很常见的期权，就是美式期权，它们之间最大的区别就是行权日的不同。对于欧式期权来说行权日只有规定的某一天，但对于美式期权来说，合约在到期日之前的任何时刻都可以执行。因此，不管有没有分红，美式看跌期权的价格一般都比欧式看跌期权的价格要高。</p>
+<p>除了普通期权以外还有更加复杂的奇异期权（Exotic Options），这种合约到期时的收益不仅取决于基础指数在到期时所持有的价值，而且还取决于其在合约有效期内的价值。以亚式期权为例，它的收益是资产价格在合约整个有效期内的平均值的函数。此外还有二元期权（Binary Option），回望期权（Lookback Option），障碍期权（Barrier Option）等等一系列拥有复杂收益函数的新型期权，在这里就不过多拓展。</p>
+<h2 id="期权的作用"><a href="#期权的作用" class="headerlink" title="期权的作用"></a>期权的作用</h2><p>和众多衍生品一样，在期权投资的过程中投资者们都可以通过分析金融市场上各式各样的信息，针对不同标的特性以及对未来价值的预测来配置优质的交易策略，以获得丰厚的回报。但在此基础上，期权还拥有几大优势：</p>
+<ol>
+<li><p>风险有限，盈利无限</p>
+<p>掌握交易权这个特点让期权合约的持有人能把控自己的风险，同时保持高收益的可能性。在这种收益与风险不对等的情况下，投资者将会更愿意将资金投入市场以提高潜在收益以及提高资金使用率。比如，当投资于股票市场时，投资者设定了一个最大损失的阈值，考虑到股票价值有大幅度下跌的可能，投资者只会投资资金的一部分。但如果采用期权投资，在明确最大损失的情况下，他会有更大的信心去使用自己的资金。</p>
+<p>并且期权合约天生自带高杠杆，只需要投入期权费便有机会获得几倍于投入资金的收益。因此当标的50ETF涨跌1%的情况下，合约价格平均波动30-50%，甚至更高。这种高波动带来的是比股票投资大得多的获利空间。</p>
 </li>
-<li><p>末行模式：以在最底一行输入命令。</p>
+<li><p>“保险”功能，便于管理</p>
+<p>期权的“保险”功能让它也非常适合作为一个风险管理工具加入投资者的投资策略中。当投资者害怕股价下跌导致自己持有的资产组合大幅度贬值时，他可以买入看跌期权作为保险对冲风险。当股票价值上涨时投资组合获得收益，此时只需要损失期权费。而当股票价值大幅度下跌时，投资者也不用担心太大的损失，因为期权获得的回报会抵消股票下跌的一部分价值。</p>
+<p>与期货相比它还具有便于管理的有点。利用期货管理风险时，买卖期货合约均需缴纳保证金，并要求随期货价格变动每天调整进行动态管理，一旦保证金不足，投资者就必须按规定补足保证金，否则将强制平仓。因此期货的管理更加复杂，难度更加高。而期权在交易开始时支付权利金后，持有期权的期间便不需要缴纳保证金，也不用担心后续保证金管理问题，相对来说管理期权要简便得多。</p>
 </li>
-</ul>
-<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h4 id="简单地移动的命令"><a href="#简单地移动的命令" class="headerlink" title="简单地移动的命令"></a>简单地移动的命令</h4><ul>
-<li><p><code>h/j/k/l</code> → 移动光标，同等于 (←↓↑→)</p>
+<li><p>风险度量，推动市场</p>
+<p>股指期权可以度量市场波动。波动率是市场风险偏好最直观的反映，是对市场预期风险水平以及情绪压力的监控，可以为宏观决策提供前瞻性指标。最初，人们运用波动率来给期权衍生品定价，但到了Black-Scholes期权定价模型发展的后期，投资者也开始依据当前期权价格反推出市场隐含波动率，来评估市场风险优化自己的投资组合。</p>
+<p>同时标准化期权产品的发行可以提升标的资产的关注度，对冲的需要也会提升标的资产的流动性。另一方面，期权风险收益的非线性特征，以及其多种变量形成的各式各样的合约，和其它资产组合在一起可创造出不同的策略，以满足不同交易和投资需要。它的灵活性和可变通性，能推进交易所、金融机构等进行一系列的市场连锁创新。并激发投资者们进入市场的兴趣，使交易更加活跃，推动整个股票市场的发展。显而易见，期权强大的功能使得他成为金融交易市场中不可或缺的重要一部分。</p>
 </li>
-<li><p><code>空格键</code> → 向右、Backspace → 向左</p>
+</ol>
+<h2 id="期权的相关策略"><a href="#期权的相关策略" class="headerlink" title="期权的相关策略"></a>期权的相关策略</h2><p>对于期权相关的策略，以下参考芝加哥期权交易所（CBOE）编制的期权策略指数，挑选其中多种策略。根据功能实现角度，从四个类别进行讲解。以下图片中均以蓝色为组合的策略，红色为组合的结果。</p>
+<ol>
+<li><p>增强收益类</p>
+<p>代表指数：备兑看涨（BuyWrite），看跌期权空头（PutWrite），跨式组合（CMBO）</p>
+<p><img src="/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic2.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>增强收益类指数是CBOE早年推出的组合策略类别。当市场波动小的时候，该类指数的主要通过让渡一部分市场大幅上涨时的收益（如卖出看涨/看跌期权)来获得增强收益的效果。同时在市场大幅下跌时，可以缓冲现券多头的下行风险。</p>
+<p><img src="/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic3.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>与两组策略相似，跨式组合也运用在市场不会发生大幅变动的时候。但跨式组合更加极端，它将所有的收益赌在靠近行权价的点，一旦标的物价格波动较小，便可以赚取两份权利金。但是此策略的风险较高，一旦标的价格在其两个方向上发生巨大波动时，投资者的损失可能是惨重的。</p>
 </li>
-<li><p><code>Enter</code> → 移动到下一行首、<code>-</code> → 移动到上一行首。</p>
+<li><p>对冲保护类</p>
+<p>代表指数: 看跌期权多头保护(PutProtection)，领式(Collar)</p>
+<p><img src="/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic4.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>对冲保护类策略指数的主要预防的是当标的物价值大幅下跌时，造成的巨大损失。此时持有一个对冲保护类策略，可以针对标的物的尾部风险，锁定最大损失。在此基础上领式固定了最大收益，使得买入看跌期权的费用被卖出看涨期权抵消，将标的物价值拉回了原先的位置。</p>
 </li>
-<li><p><code>w</code> → 到下一个单词的开头。</p>
+<li><p>价值套利类    </p>
+<p>代表指数: 蝶式（BFLY），目标区间收益（SPRI）</p>
+<p><img src="/2022/09/20/%E6%9C%9F%E6%9D%83%E4%BB%8B%E7%BB%8D_%E5%8A%9F%E8%83%BD_%E4%BD%9C%E7%94%A8%E5%92%8C%E7%AD%96%E7%95%A5/pic5.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p>价差套利类策略指数的编制逻辑为：运用不同行权价格的看涨、看跌期权，将组合的整体风险暴露锁定在较小的范围内，并且在市场波动幅度较小的环境下获取权利金收益。相比跨式组合，蝶式没有了在远离行权价时可能造成的巨大影响，因此更加保险。</p>
 </li>
-<li><p><code>e</code> → 到下一个单词的结尾。</p>
-<blockquote>
-<p>如果你认为单词是由默认方式，那么就用小写的e和w。默认上来说，一个单词由字母，数字和下划线组成；如果你认为单词是由blank字符分隔符，那么你需要使用大写的E和W。</p>
-</blockquote>
+<li><p>波动率套利</p>
+<p>代表指数: 风险回复（RXM），波动率微笑（Smile）</p>
+<p>波动率套利类策略是一类针对期权波动率曲线偏倚结构的交易。在真正的交易市场中，期权的波动率曲线并不像Black-Scholes模型描绘得一样完美。事实上，在1987年股市崩盘后，偏差就越发明显了。这体现在，如果执行价格越是远离标的价格，隐含波动率就会更高，使得隐含波动率出现左偏的特征。而风险回复与波动率微笑等策略便据此编制，这些策略通过卖出左侧的波动率意图在市场从高风险回归中获得收益。</p>
 </li>
-<li><p><code>0</code> → 数字零，到行头</p>
-</li>
-<li><code>^</code> → 到本行第一个不是blank字符的位置（所谓blank字符就是空格，tab，换行，回车等）</li>
-<li><code>$</code> → 到本行行尾</li>
-<li><code>g_</code> → 到本行最后一个不是blank字符的位置。</li>
-<li><code>gg</code> → 到第一行</li>
-<li><code>n+</code> → 向下跳n行</li>
-<li><code>n-</code> → 向上跳n行</li>
-<li><code>3G</code> → 到第 3 行</li>
-<li><code>G</code> → 到最后一行</li>
-</ul>
-<h4 id="删除与拷贝的命令"><a href="#删除与拷贝的命令" class="headerlink" title="删除与拷贝的命令"></a>删除与拷贝的命令</h4><ul>
-<li><code>x</code> → 删当前光标所在的一个字符</li>
-<li><code>dd</code> → 删除当前行，并把删除的行存到剪贴板里</li>
-<li><code>yy</code> → 拷贝当前行 相当行于 <code>ddP</code></li>
-<li><code>p</code> → 粘贴剪贴板到当前位置之后</li>
-<li><code>P</code> → 粘贴剪贴板到当前位置之前</li>
-<li><code>J</code> → 合并光标所在行及下一行为一行</li>
-</ul>
-<h4 id="搜索的命令"><a href="#搜索的命令" class="headerlink" title="搜索的命令"></a>搜索的命令</h4><ul>
-<li><code>f</code> 和 <code>F</code> 加上字符 → 移动光标到下（上）一个字符</li>
-<li><p><code>t</code> 和 <code>T</code> 加上字符 → 移动到选定字符前的第一个字符</p>
-</li>
-<li><p><code>/</code> 或者 ？加字符串 → 向下（上）搜索字符串，如果搜索出多个匹配，可按n键到下一个</p>
-</li>
-<li><code>%</code> → 匹配光标当前所在的括号向对应反括号移动，包括 <code>(</code>, <code>&#123;</code>, <code>[</code></li>
-<li><code>*</code> 和 <code>#</code> → 匹配光标当前所在的单词，移动光标到下一个（或上一个）匹配单词（*是下一个，#是上一个）</li>
-<li><code>n</code> → 向下搜索前一个搜素动作</li>
-<li><code>N</code> → 向上搜索前一个搜索动作</li>
-</ul>
-<h4 id="重复的命令"><a href="#重复的命令" class="headerlink" title="重复的命令"></a>重复的命令</h4><ul>
-<li><code>u</code> → undo</li>
-<li><code>ctrl r</code> → redo</li>
-<li><code>.</code> → 重复上个操作</li>
-</ul>
-<h4 id="会进入插入模式的命令"><a href="#会进入插入模式的命令" class="headerlink" title="会进入插入模式的命令"></a>会进入插入模式的命令</h4><ul>
-<li><code>i</code> → 在当前光标位置的左边添加文本</li>
-<li><code>I</code> → 在当前行的开始处添加文本(非空字符的行首)</li>
-<li><code>a</code> → 在当前光标位置的右边添加文本</li>
-<li><code>A</code> → 在当前行的末尾位置添加文本</li>
-<li><code>o</code> → 在当前行的下面新建一行</li>
-<li><code>O</code> →  在当前行的上面新建一行</li>
-<li><code>cw</code> → 替换从光标所在位置后到一个单词结尾的字符</li>
-</ul>
-<h4 id="进入了奇怪的模式"><a href="#进入了奇怪的模式" class="headerlink" title="进入了奇怪的模式"></a>进入了奇怪的模式</h4><ul>
-<li><code>R</code> → 替换(覆盖)当前光标位置及后面的若干文本(进入替换模式)</li>
-</ul>
-<h2 id="末行模式"><a href="#末行模式" class="headerlink" title="末行模式"></a>末行模式</h2><h4 id="文件的打开与推出与保存"><a href="#文件的打开与推出与保存" class="headerlink" title="文件的打开与推出与保存"></a>文件的打开与推出与保存</h4><ul>
-<li><code>:w</code> → 存盘</li>
-<li><code>:q</code> → 退出</li>
-<li><code>:x</code>， <code>ZZ</code> 或 <code>:wq</code> → 保存并退出 </li>
-<li><code>:q!</code> → 退出不保存 <code>:qa!</code> 强行退出所有的正在编辑的文件，就算别的文件有更改。</li>
-<li><code>:e 文件路径</code> → 打开一个文件</li>
-<li><code>:w 文件路径</code> → 保存至文件路径</li>
-<li><code>:saveas 文件路径</code> → 另存至文件路径</li>
-<li><code>:bn</code> 或 <code>:n</code> 和 <code>:bp</code> 或 <code>:p</code> → 你可以同时打开很多文件，使用这两个命令来切换下一个或上一个文件。</li>
-</ul>
-<h4 id="替换的命令"><a href="#替换的命令" class="headerlink" title="替换的命令"></a>替换的命令</h4><ul>
-<li><code>:s/old/new</code> → 用new替换行中首次出现的old</li>
-<li><code>:s/old/new/g</code> → 用new替换行中所有的old</li>
-<li><code>:n,m s/old/new/g</code> → 用new替换从n到m行里所有的old</li>
-<li><code>:%s/old/new/g</code> → 用new替换当前文件里所有的old</li>
-</ul>
-<h4 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h4><ul>
-<li><code>:set  nu</code>  → 显示行号</li>
-<li><code>:set nonu</code>  → 取消显示行号</li>
-</ul>
-<h2 id="更多玩法"><a href="#更多玩法" class="headerlink" title="更多玩法"></a>更多玩法</h2><p>命令前加上数字，可以令你的操作更加便捷</p>
-<ul>
-<li><code>100idesu [ESC]</code> → 输入100次 idesu</li>
-<li><code>3fa</code> → 在当前行查找第三个出现的a</li>
-<li><code>nyy</code> → 将当前行向下n行复制到缓冲区</li>
-</ul>
-<p>或者利用命令的结合，很多命令都可以如下来干：</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xquery">&lt;<span class="hljs-keyword">start</span><span class="hljs-built_in"> position</span>&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">command</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">end</span> <span class="hljs-attr">position</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<p>例如</p>
-<ul>
-<li><code>yw</code> → 复制从光标开始到词尾的字符</li>
-<li><code>nyw</code> → 复制从光标开始的n个单词</li>
-<li><code>y^</code> → 复制从光标到行首的内容</li>
-<li><p><code>y$</code> → 复制从光标到行尾的内容</p>
-</li>
-<li><p><code>0y$</code> → 从行头开始拷贝到本行最后一个字符</p>
-</li>
-<li><code>dt&quot;</code> → 删除所有的内容，直到遇到双引号</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/niushuai666/article/details/7275406">Vim简明教程【CoolShell】</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lvdepeng123/article/details/79669874">ubuntu下vi/vim 的基本用法</a></p>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Abraham,S.(2022),“The History of Options Contracts”，Investopedia,Archived from<br><a target="_blank" rel="noopener" href="https://www.investopedia.com/articles/optioninvestor/10/history-options-futures.asp">https://www.investopedia.com/articles/optioninvestor/10/history-options-futures.asp</a></p>
+<p>Fernando,J.（2022），“Call Option Definition”，Investopedia， Archived from <a target="_blank" rel="noopener" href="https://www.investopedia.com/terms/c/calloption.asp">https://www.investopedia.com/terms/c/calloption.asp</a></p>
+<p>Robot（2018），“期权的独特功能和作用”，期货日报，Retrieved from <a target="_blank" rel="noopener" href="http://futures.jrj.com.cn/2018/06/28220024742723.shtml">http://futures.jrj.com.cn/2018/06/28220024742723.shtml</a></p>
+<p>王舟懿（2017），“从国际市场看期权的功能和作用”，证券时报， Retrieved from <a target="_blank" rel="noopener" href="http://opinion.jrj.com.cn/2017/07/26024022797220.shtml">http://opinion.jrj.com.cn/2017/07/26024022797220.shtml</a></p>
+<p>Wilmott，P（2010）Paul Wilmott on Quantitative Finance (2nd ed.) Hoboken：John Wiley &amp; Sons</p>
+<p>真格量化（2019），“期权策略基准指数简介”，真格社区，Retrieved from<br><a target="_blank" rel="noopener" href="https://quant.pobo.net.cn/forum-portal/post/postDetail/1016">https://quant.pobo.net.cn/forum-portal/post/postDetail/1016</a></p>
 
               
             </div>
@@ -404,7 +349,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E3%80%90Others%E3%80%91/" class="category-chain-item">【Others】</a>
+  <a href="/categories/Financial-Market/" class="category-chain-item">Financial Market</a>
   
   
 
@@ -419,9 +364,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Vim/">#Vim</a>
-      
-        <a href="/tags/Ubuntu/">#Ubuntu</a>
+        <a href="/tags/Option/">#Option</a>
       
     </div>
   
@@ -433,8 +376,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【笔记】ubuntu下vim的基本用法</div>
-      <div>http://achlier.github.io/2022/09/17/ubuntu下vim的基本用法/</div>
+      <div>【原创】期权介绍,功能,作用和策略</div>
+      <div>http://achlier.github.io/2022/09/20/期权介绍_功能_作用和策略/</div>
     </div>
     <div class="license-meta">
       
@@ -446,7 +389,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>September 17, 2022</div>
+          <div>September 20, 2022</div>
         </div>
       
       
@@ -476,18 +419,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/19/%E9%87%91%E8%9E%8D%E5%B8%82%E5%9C%BA%E7%9F%A5%E8%AF%86%E8%A6%81%E7%82%B9/" title="【笔记】金融市场知识要点">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【笔记】金融市场知识要点</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/05/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B_3/" title="【课程】吴恩达机器学习课程(三)">
-                        <span class="hidden-mobile">【课程】吴恩达机器学习课程(三)</span>
+                      <a href="/2022/09/19/%E9%87%91%E8%9E%8D%E5%B8%82%E5%9C%BA%E7%9F%A5%E8%AF%86%E8%A6%81%E7%82%B9/" title="【笔记】金融市场知识要点">
+                        <span class="hidden-mobile">【笔记】金融市场知识要点</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
