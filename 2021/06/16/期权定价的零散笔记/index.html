@@ -19,12 +19,12 @@
     <meta name="description" content="基于B站 up Jerry Xu 的视频； 主要复习基础部分一些遗忘的，或是未观察到的点；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【笔记】期权定价的零散笔记">
-<meta property="og:url" content="http://achlier.github.io/2021/06/16/%E9%87%91%E8%9E%8D%E5%B7%A5%E7%A8%8B%E9%9B%B6%E6%95%A3%E7%9A%84%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="http://achlier.github.io/2021/06/16/%E6%9C%9F%E6%9D%83%E5%AE%9A%E4%BB%B7%E7%9A%84%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Borderland">
 <meta property="og:description" content="基于B站 up Jerry Xu 的视频； 主要复习基础部分一些遗忘的，或是未观察到的点；">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-16T06:43:05.000Z">
-<meta property="article:modified_time" content="2022-08-18T15:47:30.711Z">
+<meta property="article:modified_time" content="2022-09-24T13:36:38.688Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Financial Engineering">
 <meta name="twitter:card" content="summary_large_image">
@@ -330,7 +330,7 @@ dS_t=\mu S_tdt+\sigma S_tdW_t</script><p>按公式分为两种方法建立 BS mo
 <blockquote>
 <p>鞅是一个很好的性质，如果在第一个方法，只能形成上鞅或者下鞅，因此它可能会跑到 BS-PDE 的那边去，用换元+傅里叶变换解热传导方程.</p>
 </blockquote>
-<p><strong>针对第一个方法详细见 <a href="https://achlier.github.io/2021/03/14/Feynman-Kac_To_Black-Scholes-PDE/#2-对冲版推导">Feynman-Kac_To_Black-Scholes-PDE</a></strong> + 还没有补的PDE到BS过程</p>
+<p><strong>针对第一个方法详细见 <a href="https://achlier.github.io/2021/03/14/Feynman-Kac_To_Black-Scholes-PDE/#2-对冲版推导">Feynman-Kac_To_Black-Scholes-PDE</a> + <a href="https://achlier.github.io/2022/07/09/BS-PDE_To_BS-Model/">PDE到BS过程</a></strong></p>
 <p><strong>针对第二个方法详细见 <a href="https://achlier.github.io/2021/06/16/Black_Scholes_Model%E6%8E%A8%E5%AF%BC_%E8%BF%9B%E9%98%B6%E7%89%88/">Black_Scholes_Model推导_进阶版</a></strong></p>
 <h2 id="二叉树定价"><a href="#二叉树定价" class="headerlink" title="二叉树定价"></a>二叉树定价</h2><p>二叉树的定价也可以分为两种</p>
 <ol>
@@ -338,7 +338,7 @@ dS_t=\mu S_tdt+\sigma S_tdW_t</script><p>按公式分为两种方法建立 BS mo
 <li>复制 (Replicate Option)</li>
 </ol>
 <p><strong>详细见 <a href="https://achlier.github.io/2021/04/25/Mathematical_Finance/">Mathematical_Finance</a></strong></p>
-<h3 id="二叉树向BS的转换"><a href="#二叉树向BS的转换" class="headerlink" title="二叉树向BS的转换"></a>二叉树向BS的转换</h3><p>设 $I$ 为向上走的次数, 默认$p$为无风险概率, 以下都存在于风险中性中</p>
+<h2 id="二叉树向BS的转换"><a href="#二叉树向BS的转换" class="headerlink" title="二叉树向BS的转换"></a>二叉树向BS的转换</h2><p>设 $I$ 为向上走的次数, 默认$p$为无风险概率, 以下都存在于风险中性中</p>
 <script type="math/tex; mode=display">
 \mathbb P(I=i)=\binom iN p^i(1-p)^{N-i},\ 0\leq i\leq N</script><p>$\Rightarrow I \sim B(N,p)$, 当 $N\to\infty$ 二项分布趋近于正态分布</p>
 <p><strong>De Moivre - Laplace CLT（棣莫弗-拉普拉斯中心极限定理）</strong></p>
@@ -391,7 +391,7 @@ V=S_0N(d_1)-e^{-rt}kN(d_2)\\</script><p>证明 $lnS_N$ 的正态性</p>
 \end{align}</script><p>求导得</p>
 <script type="math/tex; mode=display">
 \mathbb P_{lnS_N}(x)=\frac{1}{\sqrt{2\pi}}exp(-\frac{(x-lnS_0-(r-\frac12\sigma^2)T)^2}{2\sigma^2T})\times \frac1{\sigma\sqrt T}</script><p>符合一个 $N(lnS_0+(r-\frac12\sigma^2)T,\sigma^2T)$</p>
-<h3 id="二叉树向BS-PDE的转换"><a href="#二叉树向BS-PDE的转换" class="headerlink" title="二叉树向BS-PDE的转换"></a>二叉树向BS-PDE的转换</h3><p>假设在某个时刻一个投资组合</p>
+<h2 id="二叉树向BS-PDE的转换"><a href="#二叉树向BS-PDE的转换" class="headerlink" title="二叉树向BS-PDE的转换"></a>二叉树向BS-PDE的转换</h2><p>假设在某个时刻一个投资组合</p>
 <script type="math/tex; mode=display">
 V-\Delta S</script><p>下一时刻</p>
 <script type="math/tex; mode=display">
@@ -418,8 +418,10 @@ V_d=V+\frac{\partial V}{\partial t}\Delta t+\frac{\partial V}{\partial S}\Delta 
 (u-\frac 1D)V_d\approx(\sigma\sqrt{\Delta t}+(\frac 12 \sigma^2-r)\Delta t)(V+\frac{\partial V}{\partial t}\Delta t+\frac{\partial V}{\partial S}(-\sigma\sqrt{\Delta t}+\frac 12 \sigma^2\Delta t) S+\frac 12\frac{\partial^2 V}{\partial S^2}\sigma^2S^2\Delta t)</script><script type="math/tex; mode=display">
 (\frac 1D-d)V_u\approx((r-\frac 12 \sigma^2)\Delta t+\sigma\sqrt{\Delta t})(V+\frac{\partial V}{\partial t}\Delta t+\frac{\partial V}{\partial S}(\sigma\sqrt{\Delta t}+\frac 12 \sigma^2\Delta t) S+\frac 12\frac{\partial^2 V}{\partial S^2}\sigma^2S^2\Delta t)</script><script type="math/tex; mode=display">
 \begin{align}
-(u-\frac 1D)V_d+(\frac 1D-d)V_u&=(2\sigma r-\sigma^3)S(\Delta t)^{1.5}\frac{\partial V}{\partial S}+(2\sigma\sqrt{\Delta t}V+2\sigma(\Delta t)^{1.5}\frac{\partial V}{\partial t}+S\sigma^3(\Delta t)^{1.5}\frac{\partial V}{\partial S}+\sigma^3S^2(\Delta t)^{1.5}\frac{\partial^2 V}{\partial S^2})\\
-&=2\sigma rS(\Delta t)^{1.5}\frac{\partial V}{\partial S}+(2\sigma\sqrt{\Delta t}V+2\sigma(\Delta t)^{1.5}\frac{\partial V}{\partial t}+\sigma^3S^2(\Delta t)^{1.5}\frac{\partial^2 V}{\partial S^2})
+(u-\frac 1D)V_d+(\frac 1D-d)V_u&=(2\sigma r-\sigma^3)S(\Delta t)^{1.5}\frac{\partial V}{\partial S}\\
+&+(2\sigma\sqrt{\Delta t}V+2\sigma(\Delta t)^{1.5}\frac{\partial V}{\partial t}+S\sigma^3(\Delta t)^{1.5}\frac{\partial V}{\partial S}+\sigma^3S^2(\Delta t)^{1.5}\frac{\partial^2 V}{\partial S^2})\\
+&=2\sigma rS(\Delta t)^{1.5}\frac{\partial V}{\partial S}\\
+&+(2\sigma\sqrt{\Delta t}V+2\sigma(\Delta t)^{1.5}\frac{\partial V}{\partial t}+\sigma^3S^2(\Delta t)^{1.5}\frac{\partial^2 V}{\partial S^2})
 \end{align}</script><p>代入</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -477,7 +479,7 @@ r(\Delta t)V&\approx rS(\Delta t)\frac{\partial V}{\partial S}+(\Delta t)\frac{\
   <div class="license-box my-3">
     <div class="license-title">
       <div>【笔记】期权定价的零散笔记</div>
-      <div>http://achlier.github.io/2021/06/16/金融工程零散的笔记/</div>
+      <div>http://achlier.github.io/2021/06/16/期权定价的零散笔记/</div>
     </div>
     <div class="license-meta">
       
