@@ -18,20 +18,20 @@
   
     <meta name="description" content="Anaconda中遇到的问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Bug】运行Anaconda_Navigator时停止在Loading_application的问题">
-<meta property="og:url" content="http://achlier.github.io/2022/09/24/%E8%BF%90%E8%A1%8CAnaconda_Navigator%E6%97%B6%E5%81%9C%E6%AD%A2%E5%9C%A8Loading_application%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="【Bug】Anaconda相关问题与解决方法">
+<meta property="og:url" content="http://achlier.github.io/2022/09/24/Anaconda%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Borderland">
 <meta property="og:description" content="Anaconda中遇到的问题">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-24T12:59:04.000Z">
-<meta property="article:modified_time" content="2022-09-24T13:11:21.216Z">
+<meta property="article:modified_time" content="2022-09-25T09:30:13.042Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Anaconda">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>【Bug】运行Anaconda_Navigator时停止在Loading_application的问题 - Borderland</title>
+  <title>【Bug】Anaconda相关问题与解决方法 - Borderland</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【Bug】运行Anaconda_Navigator时停止在Loading_application的问题"></span>
+            <span id="subtitle" data-typed-text="【Bug】Anaconda相关问题与解决方法"></span>
           
         </div>
 
@@ -217,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          2.5k words
         
       </span>
     
@@ -228,7 +228,7 @@
         
         
         
-          14 mins
+          22 mins
         
       </span>
     
@@ -266,7 +266,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【Bug】运行Anaconda_Navigator时停止在Loading_application的问题</h1>
+            <h1 style="display: none">【Bug】Anaconda相关问题与解决方法</h1>
             
             <div class="markdown-body">
               
@@ -274,15 +274,41 @@
 <p>Anaconda中遇到的问题</p>
 </blockquote>
 <span id="more"></span>
-<p>我这里的安装包是 <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=N&amp;O=D">清华开源镜像</a> 上下载的 <strong>Anaconda3-5.2.0-Windows-x86_64.exe</strong>（基于python3.6.5）</p>
+<h2 id="1-Anaconda-Navigator-无法运行"><a href="#1-Anaconda-Navigator-无法运行" class="headerlink" title="1. Anaconda_Navigator 无法运行"></a>1. Anaconda_Navigator 无法运行</h2><p>我这里的安装包是 <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/?C=N&amp;O=D">清华开源镜像</a> 上下载的 <strong>Anaconda3-5.2.0-Windows-x86_64.exe</strong>（基于python3.6.5）</p>
+<blockquote>
+<p> 注意：PyTorch 只支持 Python 3.7-3.9，所以此处应该把 Anaconda 版本安装高一点。</p>
+</blockquote>
 <p>尝试运行 Anaconda Navigator 的时候卡在了 Loading_application 的步骤</p>
 <p>试过重新安装以及使用管理员运行 Anaconda Prompt 再输入 anaconda-navigator，结果显示</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">(base) C:\Users\lenovo&gt;anaconda-navigator<br><span class="hljs-number">2022</span>-09-<span class="hljs-number">24</span> <span class="hljs-number">20</span>:<span class="hljs-number">52</span>:01,<span class="hljs-number">552</span> - ERROR download_api._get_url:<span class="hljs-number">378</span><br>Expecting value: line <span class="hljs-number">1</span> column <span class="hljs-number">1</span> (char <span class="hljs-number">0</span>)<br><br>Traceback (most recent call last):<br>  File <span class="hljs-string">&quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\main_window.py&quot;</span>, line <span class="hljs-number">484</span>, <span class="hljs-keyword">in</span> setup<br>    self.post_setup(conda_data=conda_data)<br>  File <span class="hljs-string">&quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\main_window.py&quot;</span>, line <span class="hljs-number">521</span>, <span class="hljs-keyword">in</span> post_setup<br>    self.tab_home.setup(conda_data)<br>  File <span class="hljs-string">&quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\tabs\home.py&quot;</span>, line <span class="hljs-number">169</span>, <span class="hljs-keyword">in</span> setup<br>    self.set_applications(applications, packages)<br>  File <span class="hljs-string">&quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\tabs\home.py&quot;</span>, line <span class="hljs-number">204</span>, <span class="hljs-keyword">in</span> set_applications<br>    apps = self.api.process_apps(applications, prefix=self.current_prefix)<br>  File <span class="hljs-string">&quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\api\anaconda_api.py&quot;</span>, line <span class="hljs-number">811</span>, <span class="hljs-keyword">in</span> process_apps<br>    versions=[vsdata.get(<span class="hljs-string">&#x27;productVersion&#x27;</span>)],<br>AttributeError: <span class="hljs-string">&#x27;str&#x27;</span> <span class="hljs-built_in">object</span> has no attribute <span class="hljs-string">&#x27;get&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell">(base) C:\Users\lenovo&gt;anaconda-navigator<br>2022-09-24 20:52:01,552 - ERROR download_api._get_url:378<br>Expecting value: line 1 column 1 (char 0)<br><br>Traceback (most recent call last):<br>  File &quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\main_window.py&quot;, line 484, in setup<br>    self.post_setup(conda_data=conda_data)<br>  File &quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\main_window.py&quot;, line 521, in post_setup<br>    self.tab_home.setup(conda_data)<br>  File &quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\tabs\home.py&quot;, line 169, in setup<br>    self.set_applications(applications, packages)<br>  File &quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\widgets\tabs\home.py&quot;, line 204, in set_applications<br>    apps = self.api.process_apps(applications, prefix=self.current_prefix)<br>  File &quot;D:\Anaconda3\lib\site-packages\anaconda_navigator\api\anaconda_api.py&quot;, line 811, in process_apps<br>    versions=[vsdata.get(&#x27;productVersion&#x27;)],<br>AttributeError: &#x27;str&#x27; object has no attribute &#x27;get&#x27;<br></code></pre></td></tr></table></figure>
 <p>由错误提示，找到文件anaconda_api.py的文件第811行。</p>
 <p>根据 <a target="_blank" rel="noopener" href="https://blog.csdn.net/tanmx219/article/details/88069375">网友文章</a> 了解是vscode的官方更新地址发生改变，而anaconda安装文件中并没有更新这个地址而导致的错误，因此解决办法就是修改anaconda_api.py文件第903行为可用的vscode的地址，如下代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">VSCODE_ENDPOINT = (<br>       <span class="hljs-comment"># &#x27;https://vscode-update.azurewebsites.net/api/update&#x27;</span><br>       <span class="hljs-string">&#x27;https://update.code.visualstudio.com/api/update&#x27;</span><br>       <span class="hljs-string">&#x27;/&#123;&#125;/stable/version&#x27;</span>.<span class="hljs-built_in">format</span>(VSCODE_SUBDIR)<br>)<br></code></pre></td></tr></table></figure>
 <p>然后就可以成功运行了。</p>
 <p>参考的文章见 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/etbird/p/14695244.html">此处</a>。</p>
+<h2 id="2-Torch-与-CUDA-不兼容"><a href="#2-Torch-与-CUDA-不兼容" class="headerlink" title="2. Torch 与 CUDA 不兼容"></a>2. Torch 与 CUDA 不兼容</h2><p>输入命令 <code>print(torch.cuda.is_available())</code> 的时候结果为 false。</p>
+<p>此处不建议重装 cuda，我们选择比较保险的改变 torch 版本。</p>
+<p>注意，如果 Anaconda 版本过低 无法配置 3.7及以上的 Python 版本，需要将 Anaconda 升级重装。</p>
+<p>可以通过 <a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">官方</a> 找对应兼容的 PyTorch 版本。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda -V # 查看conda版本<br>python -V # 查看Python版本<br>pip list # 查看已经安装的库的版本<br></code></pre></td></tr></table></figure>
+<p>win 下查看 cuda 版本的方法可以直接在 cmd 输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nvcc --version<br></code></pre></td></tr></table></figure>
+<p>又或者参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/nightnine/p/14260991.html?ivk_sa=1024320u">此处</a>，桌面右键-&gt; NAVIDIA桌面控制面板 -&gt; 帮助-&gt; 系统信息 -&gt; 组件，可以找到</p>
+<p>下载了比较新的 Anaconda 如果想使用早一点的 Python 可以以使用命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">conda create -n deepsort python=3.7<br></code></pre></td></tr></table></figure>
+<h2 id="3-Anaconda环境变量配置"><a href="#3-Anaconda环境变量配置" class="headerlink" title="3. Anaconda环境变量配置"></a>3. Anaconda环境变量配置</h2><p>重装完 Anaconda 后，记得重新添加环境变量。</p>
+<p>我的电脑右键-&gt; 属性-&gt; 高级系统设置-&gt; 环境变量-&gt; 系统变量-&gt; path-&gt; 编辑</p>
+<p>假设你的安装路径为：D:\ProgramData\Anaconda3</p>
+<p>需要将下面几个路径添加到环境变量里面去：</p>
+<ul>
+<li>;D:\ProgramData\Anaconda3 （Python需要）</li>
+<li>;D:\ProgramData\Anaconda3\Scripts （conda自带脚本）</li>
+<li>;D:\ProgramData\Anaconda3\Library\mingw-w64\bin (使用C with python的时候）</li>
+<li>;D:\ProgramData\Anaconda3\Library\bin（jupyter notebook动态库）</li>
+</ul>
+<p>参考文章见 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/8-b-9/p/16307640.html">此处</a>。</p>
+<h2 id="4-conda-删除环境后-notebook-依旧显示-kernal"><a href="#4-conda-删除环境后-notebook-依旧显示-kernal" class="headerlink" title="4. conda 删除环境后 notebook 依旧显示 kernal"></a>4. conda 删除环境后 notebook 依旧显示 kernal</h2><p>在 <code>conda remove -n 环境名 --all</code> 后输入<code>jupyter kernelspec list</code> 显示 kernal 依旧存在，所以需要手动删除 kernal，即</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jupyter kernelspec remove 环境名<br></code></pre></td></tr></table></figure>
 
               
             </div>
@@ -327,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【Bug】运行Anaconda_Navigator时停止在Loading_application的问题</div>
-      <div>http://achlier.github.io/2022/09/24/运行Anaconda_Navigator时停止在Loading_application的问题/</div>
+      <div>【Bug】Anaconda相关问题与解决方法</div>
+      <div>http://achlier.github.io/2022/09/24/Anaconda相关问题与解决方法/</div>
     </div>
     <div class="license-meta">
       
