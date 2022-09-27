@@ -24,7 +24,7 @@
 <meta property="og:description" content="基于 UIC 金融数学的课程 Numerical Analysis 中代码的复习笔记；">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-13T15:46:13.000Z">
-<meta property="article:modified_time" content="2022-03-13T20:08:10.099Z">
+<meta property="article:modified_time" content="2022-09-27T20:38:18.307Z">
 <meta property="article:author" content="Hailey">
 <meta property="article:tag" content="Matlab">
 <meta property="article:tag" content="Numerical Analysis">
@@ -319,7 +319,10 @@ f^{\prime}\left(x_{0}\right)=\frac{f\left(x_{0}+h\right)-f\left(x_{0}-h\right)}{
 <li><strong>Five-Point Endpoint Formula</strong></li>
 </ul>
 <script type="math/tex; mode=display">
-f^{\prime}\left(x_{0}\right)=\frac{1}{12 h}\left[-25 f\left(x_{0}\right)+48 f\left(x_{0}+h\right)-36 f\left(x_{0}+2 h\right)+16 f\left(x_{0}+3 h\right)-3 f\left(x_{0}+4 h\right)\right]+\frac{h^{4}}{5} f^{(5)}\left(\xi_{0}\right)</script><p>where  $\xi_{0}$  lies between  $x_{0}$  and  $x_{0}+4 h$ .</p>
+\begin{aligned}
+f^{\prime}\left(x_{0}\right)=&\frac{1}{12 h}[-25 f\left(x_{0}\right)+48 f\left(x_{0}+h\right)-36 f\left(x_{0}+2 h\right)\\
+&+16 f\left(x_{0}+3 h\right)-3 f\left(x_{0}+4 h\right)]+\frac{h^{4}}{5} f^{(5)}\left(\xi_{0}\right)
+\end{aligned}</script><p>where  $\xi_{0}$  lies between  $x_{0}$  and  $x_{0}+4 h$ .</p>
 <ul>
 <li><strong>Five-Point Midpoint Formula</strong></li>
 </ul>
@@ -821,20 +824,5 @@ w_{i+1} &=w_{i}+\frac{h}{6}\left(k_{1}+2 k_{2}+2 k_{3}+k_{4}\right),
   <noscript>
     <div class="noscript-warning">Blog works best with JavaScript enabled</div>
   </noscript>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
